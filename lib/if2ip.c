@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.23 2003-01-29 10:14:22 bagder Exp $
+ * $Id: if2ip.c,v 1.24 2003-02-28 13:11:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -32,7 +32,8 @@
 #include <unistd.h>
 #endif
 
-#if ! defined(WIN32) && ! defined(__BEOS__) && !defined(__CYGWIN32__)
+#if ! defined(WIN32) && ! defined(__BEOS__) && !defined(__CYGWIN32__) && \
+    ! defined(__riscos__)
 
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
