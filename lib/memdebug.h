@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.15 2003-01-16 21:08:13 bagder Exp $
+ * $Id: memdebug.h,v 1.16 2003-03-15 21:02:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,6 +28,9 @@
 #include <sys/types.h>
 #endif
 
+#ifdef WIN32
+#include <winsock.h>
+#endif
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
