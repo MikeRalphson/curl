@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.245 2002-11-20 19:11:23 bagder Exp $
+ * $Id: url.c,v 1.246 2002-11-22 16:59:40 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1610,6 +1610,9 @@ static CURLcode ConnectPlease(struct connectdata *conn,
   return result;
 }
 
+/*
+ * ALERT! The 'dns' pointer being passed in here might be NULL at times.
+ */
 static void verboseconnect(struct connectdata *conn,
                            struct Curl_dns_entry *dns)
 {
@@ -1643,7 +1646,7 @@ static void verboseconnect(struct connectdata *conn,
   }
 #else
   {
-    Curl_addrinfo *hostaddr=dns->addr;
+    Curl_addrinfo *hostaddr=dns?dns->addr:NULL;
     struct in_addr in;
     (void) memcpy(&in.s_addr, &conn->serv_addr.sin_addr, sizeof (in.s_addr));
     infof(data, "Connected to %s (%s) port %d\n",
