@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.100 2001-11-05 14:08:27 bagder Exp $
+ * $Id: main.c,v 1.101 2001-11-19 19:21:06 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2322,8 +2322,6 @@ operate(struct Configurable *config, int argc, char *argv[])
       if(config->headerfile && !headerfilep && heads.stream)
         fclose(heads.stream);
 
-      if(urlbuffer)
-        free(urlbuffer);
       if (outfile && !strequal(outfile, "-") && outs.stream)
         fclose(outs.stream);
 
