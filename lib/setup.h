@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.68 2004-06-24 07:43:49 bagder Exp $
+ * $Id: setup.h,v 1.69 2004-07-04 15:37:25 gknauf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -46,10 +46,6 @@
 #endif
 #endif
 
-#ifdef NETWARE
-/* hand-modified NetWare config.h! */
-#include "config-netware.h"
-#endif
 #ifdef macintosh
 /* hand-modified MacOS config.h! */
 #include "config-mac.h"
