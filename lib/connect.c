@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.56 2003-05-13 12:12:17 bagder Exp $
+ * $Id: connect.c,v 1.57 2003-06-26 06:47:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -77,7 +77,7 @@
 #include "if2ip.h"
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
