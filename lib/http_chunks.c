@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.4 2001-03-13 22:16:42 bagder Exp $
+ * $Id: http_chunks.c,v 1.5 2001-03-13 23:29:53 bagder Exp $
  *****************************************************************************/
 #include "setup.h"
 
@@ -214,10 +214,8 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
          even if there's no more chunks to read */
       ch->dataleft = length;
       return CHUNKE_STOP; /* return stop */
-#if 0
     default:
       return CHUNKE_STATE_ERROR;
-#endif
     }
   }
   return CHUNKE_OK;
