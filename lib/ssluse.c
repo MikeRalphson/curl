@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.71 2003-04-14 22:00:36 bagder Exp $
+ * $Id: ssluse.c,v 1.72 2003-05-01 13:37:36 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -697,6 +697,7 @@ static int Curl_ASN1_UTCTIME_output(struct connectdata *conn,
 #endif  
 
 /* ====================================================== */
+#ifdef USE_SSLEAY
 static int
 cert_hostcheck(const char *certname, const char *hostname)
 {
@@ -733,6 +734,7 @@ cert_hostcheck(const char *certname, const char *hostname)
   }
   return 0;
 }
+#endif
 
 /* ====================================================== */
 CURLcode
