@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2000, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2001, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * In order to be useful for every potential user, curl and libcurl are
  * dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.62 2001-10-19 06:27:24 bagder Exp $
+ * $Id: transfer.c,v 1.63 2001-10-19 11:58:32 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -450,12 +450,14 @@ Transfer(struct connectdata *c_conn)
                 if (data->set.http_include_header)
                   writetype |= CLIENTWRITE_BODY;
 
-                urg = Curl_client_write(data, writetype, data->state.headerbuff,
+                urg = Curl_client_write(data, writetype,
+                                        data->state.headerbuff,
                                         p - data->state.headerbuff);
                 if(urg)
                   return urg;
 
                 data->info.header_size += p - data->state.headerbuff;
+                conn->headerbytecount += p - data->state.headerbuff;
 
                 if(!header) {
                   /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.74 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: http.c,v 1.75 2001-10-19 11:58:32 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -350,6 +350,13 @@ CURLcode Curl_http_done(struct connectdata *conn)
   }
   else if(HTTPREQ_PUT == data->set.httpreq) {
     *bytecount = http->readbytecount + http->writebytecount;
+  }
+
+  if(0 == (http->readbytecount + conn->headerbytecount)) {
+    /* nothing was read from the HTTP server, this can't be right
+       so we return an error here */
+    failf(data, "Empty reply from server\n");
+    return CURLE_GOT_NOTHING;
   }
 
   return CURLE_OK;

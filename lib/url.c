@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.165 2001-10-12 12:32:20 bagder Exp $
+ * $Id: url.c,v 1.166 2001-10-19 11:58:32 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2034,6 +2034,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
   conn->now = Curl_tvnow(); /* time this *after* the connect is done */
   conn->bytecount = 0;
+  conn->headerbytecount = 0;
   
   /* Figure out the ip-number and display the first host name it shows: */
 #ifdef ENABLE_IPV6

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.84 2001-10-12 12:31:43 bagder Exp $
+ * $Id: urldata.h,v 1.85 2001-10-19 11:58:32 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -242,6 +242,7 @@ struct connectdata {
                                  not the proxy port! */
   char *ppath;
   long bytecount;
+  long headerbytecount;  /* only count received headers */
 
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */
