@@ -18,10 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: md5.c,v 1.7 2004-02-20 16:18:26 bagder Exp $
+ * $Id: md5.c,v 1.8 2004-11-12 09:18:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
+
+#ifndef CURL_DISABLE_CRYPTO_AUTH
 
 #ifndef USE_SSLEAY
 /* This code segment is only used if OpenSSL is not provided, as if it is
@@ -346,3 +348,5 @@ void Curl_md5it(unsigned char *outbuffer, /* 16 bytes */
   MD5_Update(&ctx, input, strlen((char *)input));
   MD5_Final(outbuffer, &ctx);
 }
+
+#endif

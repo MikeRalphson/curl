@@ -18,11 +18,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.23 2004-10-06 07:50:18 bagder Exp $
+ * $Id: http_digest.c,v 1.24 2004-11-12 09:18:14 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
-#ifndef CURL_DISABLE_HTTP
+#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_CRYPTO_AUTH)
 /* -- WIN32 approved -- */
 #include <stdio.h>
 #include <string.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.421 2004-11-11 23:11:04 bagder Exp $
+ * $Id: url.c,v 1.422 2004-11-12 09:18:14 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -250,7 +250,9 @@ CURLcode Curl_close(struct SessionHandle *data)
   }
   Curl_share_unlock(data, CURL_LOCK_DATA_COOKIE);
 
+#ifndef CURL_DISABLE_CRYPTO_AUTH
   Curl_digest_cleanup(data);
+#endif
 #endif
 
   /* free the connection cache */
