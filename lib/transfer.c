@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.71.2.3 2001-12-17 23:43:17 bagder Exp $
+ * $Id: transfer.c,v 1.71.2.4 2001-12-18 14:43:15 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -736,7 +736,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
     }
 
-  } while(0); /* to break out from! */
+  } while(0); /* just to break out from! */
 
   if(didwhat) {
     /* Update read/write counters */
@@ -744,6 +744,18 @@ CURLcode Curl_readwrite(struct connectdata *conn,
       *conn->bytecountp = k->bytecount; /* read count */
     if(conn->writebytecountp)
       *conn->writebytecountp = k->writebytecount; /* write count */
+  }
+  else {
+    /* no read no write, this is a timeout? */
+    if (k->write_after_100_header) {
+      /* This should allow some time for the header to arrive, but only a
+         very short time as otherwise it'll be too much wasted times too
+         often. */
+      k->write_after_100_header = FALSE;
+      FD_SET (conn->writesockfd, &k->writefd); /* write socket */
+      k->keepon |= KEEP_WRITE;
+      k->wkeepfd = k->writefd;
+    }    
   }
 
   k->now = Curl_tvnow();
@@ -797,22 +809,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
   return CURLE_OK;
 }
 
-/*
- * Transfer()
- *
- * This function is what performs the actual transfer. It is capable of
- * doing both ways simultaneously.
- * The transfer must already have been setup by a call to Curl_Transfer().
- *
- * Note that headers are created in a preallocated buffer of a default size.
- * That buffer can be enlarged on demand, but it is never shrinken again.
- *
- * Parts of this function was once written by the friendly Mark Butler
- * <butlerm@xmission.com>.
- */
-
-static CURLcode
-Transfer(struct connectdata *conn)
+CURLcode Curl_readwrite_init(struct connectdata *conn)
 {
   struct SessionHandle *data = conn->data;
   CURLcode result;
@@ -829,18 +826,11 @@ Transfer(struct connectdata *conn)
   data = conn->data; /* there's the root struct */
   k->buf = data->state.buffer;
   k->maxfd = (conn->sockfd>conn->writesockfd?
-                 conn->sockfd:conn->writesockfd)+1;
-
+              conn->sockfd:conn->writesockfd)+1;
   k->hbufp = data->state.headerbuff;
 
   Curl_pgrsTime(data, TIMER_PRETRANSFER);
   Curl_speedinit(data);
-
-  if((conn->sockfd == -1) &&
-     (conn->writesockfd == -1)) {
-    /* nothing to read, nothing to write, we're already OK! */
-    return CURLE_OK;
-  }
 
   if (!conn->getheader) {
     k->header = FALSE;
@@ -872,45 +862,93 @@ Transfer(struct connectdata *conn)
     k->rkeepfd = k->readfd;
     k->wkeepfd = k->writefd;
 
-    while (k->keepon) {
-      bool done;
+  }
 
-      k->readfd = k->rkeepfd;  /* set these every lap in the loop */
-      k->writefd = k->wkeepfd;
-      k->interval.tv_sec = 1;
-      k->interval.tv_usec = 0;
+  return CURLE_OK;
+}
 
-      switch (select (k->maxfd, &k->readfd, &k->writefd, NULL,
-                      &k->interval)) {
-      case -1: /* select() error, stop reading */
+void Curl_single_fdset(struct connectdata *conn,
+                       fd_set *read_fd_set,
+                       fd_set *write_fd_set,
+                       fd_set *exc_fd_set,
+                       int *max_fd)
+{
+  *max_fd = -1; /* init */
+  if(conn->keep.keepon & KEEP_READ) {
+    FD_SET(conn->sockfd, read_fd_set);
+    *max_fd = conn->sockfd;
+  }
+  if(conn->keep.keepon & KEEP_WRITE) {
+    FD_SET(conn->writesockfd, write_fd_set);
+    if(conn->writesockfd > *max_fd)
+      *max_fd = conn->writesockfd;
+  }
+  /* we don't use exceptions, don't touch that one */
+}
+
+
+/*
+ * Transfer()
+ *
+ * This function is what performs the actual transfer. It is capable of
+ * doing both ways simultaneously.
+ * The transfer must already have been setup by a call to Curl_Transfer().
+ *
+ * Note that headers are created in a preallocated buffer of a default size.
+ * That buffer can be enlarged on demand, but it is never shrinken again.
+ *
+ * Parts of this function was once written by the friendly Mark Butler
+ * <butlerm@xmission.com>.
+ */
+
+static CURLcode
+Transfer(struct connectdata *conn)
+{
+  struct SessionHandle *data = conn->data;
+  CURLcode result;
+  struct Curl_transfer_keeper *k = &conn->keep;
+  bool done=FALSE;
+
+  Curl_readwrite_init(conn);
+
+  if((conn->sockfd == -1) && (conn->writesockfd == -1))
+    /* nothing to read, nothing to write, we're already OK! */
+    return CURLE_OK;
+
+  /* we want header and/or body, if neither then don't do this! */
+  if(!conn->getheader && data->set.no_body)
+    return CURLE_OK;
+
+  while (!done) {
+    struct timeval interval;
+    k->readfd = k->rkeepfd;  /* set these every lap in the loop */
+    k->writefd = k->wkeepfd;
+    interval.tv_sec = 1;
+    interval.tv_usec = 0;
+    
+    switch (select (k->maxfd, &k->readfd, &k->writefd, NULL,
+                    &interval)) {
+    case -1: /* select() error, stop reading */
 #ifdef EINTR
-        /* The EINTR is not serious, and it seems you might get this more
-           ofen when using the lib in a multi-threaded environment! */
-        if(errno == EINTR)
-          ;
-        else
+      /* The EINTR is not serious, and it seems you might get this more
+         ofen when using the lib in a multi-threaded environment! */
+      if(errno == EINTR)
+        ;
+      else
 #endif
-          k->keepon = 0; /* no more read or write */
-	continue;
-      case 0:			/* timeout */
-        if (k->write_after_100_header) {
-          k->write_after_100_header = FALSE;
-          FD_SET (conn->writesockfd, &k->writefd); /* write socket */
-          k->keepon |= KEEP_WRITE;
-          k->wkeepfd = k->writefd;
-        }
-	break;
-      default:
-        result = Curl_readwrite(conn, &done);
-        if(result)
-          return result;
-
-        /* "done" is supposed to signal to us if the transfer(s) are ready */
-
-        break;
-      }
-
+        done = TRUE; /* no more read or write */
+      continue;
+    case 0:  /* timeout */
+      result = Curl_readwrite(conn, &done);
+      break;
+    default: /* readable descriptors */
+      result = Curl_readwrite(conn, &done);
+      break;
     }
+    if(result)
+      return result;
+    
+    /* "done" signals to us if the transfer(s) are ready */
   }
 
   return CURLE_OK;

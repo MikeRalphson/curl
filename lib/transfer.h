@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.h,v 1.5.2.2 2001-12-17 23:43:17 bagder Exp $
+ * $Id: transfer.h,v 1.5.2.3 2001-12-18 14:43:15 bagder Exp $
  *****************************************************************************/
 CURLcode Curl_perform(struct SessionHandle *data);
 
@@ -28,6 +28,12 @@ CURLcode Curl_pretransfer(struct SessionHandle *data);
 CURLcode Curl_posttransfer(struct SessionHandle *data);
 
 CURLcode Curl_readwrite(struct connectdata *conn, bool *done);
+void Curl_single_fdset(struct connectdata *conn, 
+                       fd_set *read_fd_set,
+                       fd_set *write_fd_set,
+                       fd_set *exc_fd_set,
+                       int *max_fd);
+CURLcode Curl_readwrite_init(struct connectdata *conn);
 
 /* This sets up a forthcoming transfer */
 CURLcode 

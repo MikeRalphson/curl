@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.92.2.2 2001-12-17 23:43:17 bagder Exp $
+ * $Id: urldata.h,v 1.92.2.3 2001-12-18 14:43:15 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -251,7 +251,6 @@ struct Curl_transfer_keeper {
   fd_set writefd;
   fd_set rkeepfd;
   fd_set wkeepfd;
-  struct timeval interval;
   int keepon;
 
 };

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.6.2.2 2001-12-17 23:43:16 bagder Exp $
+ * $Id: multi.c,v 1.6.2.3 2001-12-18 14:43:15 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -198,9 +198,12 @@ CURLMcode curl_multi_fdset(CURLM *multi_handle,
      and then we must make sure that is done. */
   struct Curl_multi *multi=(struct Curl_multi *)multi_handle;
   struct Curl_one_easy *easy;
+  int this_max_fd=-1;
 
   if(!GOOD_MULTI_HANDLE(multi))
     return CURLM_BAD_HANDLE;
+
+  *max_fd = -1; /* so far none! */
 
   easy=multi->easy.next;
   while(easy) {
@@ -215,6 +218,15 @@ CURLMcode curl_multi_fdset(CURLM *multi_handle,
     case CURLM_STATE_PERFORM:
       /* This should have a set of file descriptors for us to set.  */
       /* after the transfer is done, go DONE */
+
+      Curl_single_fdset(easy->easy_conn,
+                        read_fd_set, write_fd_set,
+                        exc_fd_set, &this_max_fd);
+
+      /* remember the maximum file descriptor */
+      if(this_max_fd > *max_fd)
+        *max_fd = this_max_fd;
+
       break;
     }
     easy = easy->next; /* check next handle */
@@ -229,6 +241,8 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
   struct Curl_one_easy *easy;
   bool done;
   CURLMcode result=CURLM_OK;
+
+  *running_handles = 0; /* bump this once for every living handle */
 
   if(!GOOD_MULTI_HANDLE(multi))
     return CURLM_BAD_HANDLE;
@@ -261,7 +275,8 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       easy->result = Curl_do(&easy->easy_conn);
       /* after do, go PERFORM */
       if(CURLE_OK == easy->result) {
-        easy->state = CURLM_STATE_PERFORM;
+        if(CURLE_OK == Curl_readwrite_init(easy->easy_conn))
+          easy->state = CURLM_STATE_PERFORM;
       }
       break;
     case CURLM_STATE_PERFORM:
@@ -298,10 +313,13 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
        */
       easy->state = CURLM_STATE_COMPLETED;
     }
+    else if(CURLM_STATE_COMPLETED != easy->state)
+      /* this one still lives! */
+      (*running_handles)++;
 
     easy = easy->next; /* operate on next handle */
   }
-  return CURLM_OK;
+  return result;
 }
 
 CURLMcode curl_multi_cleanup(CURLM *multi_handle)

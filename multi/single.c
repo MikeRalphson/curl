@@ -1,5 +1,5 @@
 /*
- * This is an example application source code using the multi interface.
+ * This is a very simple example using the multi interface.
  */
 
 #include <stdio.h>
@@ -9,13 +9,12 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-
 /* To start with, we include the header from the lib directory. This should
    later of course be moved to the proper include dir. */
 #include "../lib/multi.h"
 
 /*
- * Download a HTTP file and upload an FTP file simultaneously.
+ * Simply download a HTTP file.
  */
 int main(int argc, char **argv)
 {
@@ -66,11 +65,8 @@ int main(int argc, char **argv)
       /* select error */
       break;
     case 0:
-      /* timeout, do something else */
-      break;
     default:
-      /* one or more of curl's file descriptors say there's data to read
-         or write */
+      /* timeout or readable/writable sockets */
       curl_multi_perform(multi_handle, &still_running);
       break;
     }
