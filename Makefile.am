@@ -18,13 +18,13 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.51 2004-06-21 14:58:03 bagder Exp $
+# $Id: Makefile.am,v 1.52 2004-07-22 22:22:49 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
 
-EXTRA_DIST = CHANGES COPYING maketgz reconf Makefile.dist	\
- curl-config.in curl-style.el sample.emacs RELEASE-NOTES
+EXTRA_DIST = CHANGES COPYING maketgz reconf Makefile.dist curl-config.in \
+ curl-style.el sample.emacs RELEASE-NOTES buildconf buildconf.bat
 
 bin_SCRIPTS = curl-config
 
