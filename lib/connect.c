@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.90 2004-03-26 07:10:15 bagder Exp $
+ * $Id: connect.c,v 1.91 2004-03-27 11:15:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -493,7 +493,6 @@ static void Curl_setNoDelay(struct connectdata *conn,
 #else
   (void)conn;
   (void)sockfd;
-  (void)ip;
 #endif
 }
 
