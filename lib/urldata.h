@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.160 2003-06-12 17:34:29 bagder Exp $
+ * $Id: urldata.h,v 1.161 2003-06-12 23:03:09 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -340,7 +340,6 @@ struct Curl_transfer_keeper {
   /* for the low speed checks: */
   time_t timeofdoc;
   long bodywrites;
-  int writetype;
 
   char *buf;
   char *uploadbuf;
@@ -360,7 +359,7 @@ struct Curl_transfer_keeper {
   bool upload_done; /* set to TRUE when doing chunked transfer-encoding upload
                        and we're uploading the last chunk */
 
-  bool returnbeforebody; /* if to break transfer after headers */
+  bool ignorebody;  /* we read a response-body but we ignore it! */
 };
 
 /*
