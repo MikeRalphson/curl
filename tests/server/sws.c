@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.25 2003-03-15 16:05:47 bagder Exp $
+ * $Id: sws.c,v 1.26 2003-03-15 16:39:45 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -87,10 +87,6 @@ static const char *docconnect =
 static const char *docbadconnect =
 "HTTP/1.1 501 Forbidden you fool\r\n"
 "\r\n";
-
-/* sent as reply to the magic to find out if we are the test server or
-   not */
-static const char *docfriends = "HTTP/1.1 200 Mighty fine indeed\r\n\r\nWE ROOLZ\r\n";
 
 /* send back this on 404 file not found */
 static const char *doc404 = "HTTP/1.1 404 Not Found\n"
@@ -332,6 +328,8 @@ static int send_doc(int sock, int doc, int part_no)
   int cmdsize=0;
   FILE *dump;
 
+  static char weare[256];
+
   char filename[256];
   char partbuf[80]="data";
 
@@ -340,7 +338,9 @@ static int send_doc(int sock, int doc, int part_no)
     case DOCNUMBER_WERULEZ:
       /* we got a "friends?" question, reply back that we sure are */
       logmsg("Identifying ourselves as friends");
-      buffer = docfriends;
+      sprintf(weare, "HTTP/1.1 200 OK\r\n\r\nWE ROOLZ: %d\r\n",
+              getpid());
+      buffer = weare;
       break;
     case DOCNUMBER_INTERNAL:
       logmsg("Bailing out due to internal error");
