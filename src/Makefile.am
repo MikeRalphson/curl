@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.15 2001-12-04 08:48:37 bagder Exp $
+# $Id: Makefile.am,v 1.16 2002-02-20 23:24:04 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -13,6 +13,7 @@ bin_PROGRAMS = curl #memtest
 noinst_HEADERS = setup.h \
 	config-win32.h \
 	config-mac.h \
+	config-vms.h \
 	urlglob.h \
 	version.h \
 	writeout.h

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.10 2002-02-20 13:46:56 bagder Exp $
+ * $Id: setup.h,v 1.11 2002-02-20 23:24:04 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -33,7 +33,7 @@
 
 #ifdef HAVE_CONFIG_H
 #ifdef VMS
-#include "../config-vms.h"
+#include "config-vms.h"
 #else
 #include "config.h" /* the configure script results */
 #endif
