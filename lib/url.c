@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-02-01 23:57:54 $
+ * $Revision: 1.6 $
+ * $Date: 2000-02-14 23:03:05 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -392,7 +392,7 @@ UrgError curl_urlget(UrgTag tag, ...)
         data->postfields = (char *)param_obj;
         break;
       case URGTAG_PROGRESSMODE:
-        data->progressmode = (long)param_long;
+        data->progress.mode = (long)param_long;
         break;
       case URGTAG_REFERER:
         data->referer = (char *)param_obj;
@@ -455,6 +455,8 @@ UrgError curl_urlget(UrgTag tag, ...)
     }
 
     va_end(arg);
+
+    pgrsMode(data, data->progress.mode);
 
     data-> headerbuff=(char*)malloc(HEADERSIZE);
     if(!data->headerbuff)
