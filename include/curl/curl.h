@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.55 2001-02-20 17:35:52 bagder Exp $
+ * $Id: curl.h,v 1.56 2001-03-03 16:28:59 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -467,8 +467,8 @@ struct curl_slist {
 	struct curl_slist	*next;
 };
 
-struct curl_slist *curl_slist_append(struct curl_slist *list, char *data);
-void curl_slist_free_all(struct curl_slist *list);
+struct curl_slist *curl_slist_append(struct curl_slist *, const char *);
+void curl_slist_free_all(struct curl_slist *);
 
 /*
  * NAME curl_getdate()
