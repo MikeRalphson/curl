@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.7 2003-06-12 23:03:08 bagder Exp $
+ * $Id: http_ntlm.c,v 1.8 2003-06-13 07:14:46 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -286,8 +286,8 @@ static void ascii_to_unicode(unsigned char *destunicode,
 CURLcode Curl_output_ntlm(struct connectdata *conn)
 {
   struct SessionHandle *data=conn->data;
-  const char *domain="HEMMA";
-  const char *host="LILLASYSTER";
+  const char *domain="CURL";
+  const char *host="HAXX";
   int domlen=strlen(domain);
   int hostlen = strlen(host);
   int hostoff; /* host name offset */
