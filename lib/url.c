@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.133 2001-08-03 11:52:53 bagder Exp $
+ * $Id: url.c,v 1.134 2001-08-06 08:18:15 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -480,9 +480,9 @@ CURLcode Curl_setopt(CURL *curl, CURLoption option, ...)
     break;
   case CURLOPT_WRITEHEADER:
     /*
-     * Callback function for header data
+     * Custom pointer to pass the header write callback function
      */
-    data->writeheader = (FILE *)va_arg(param, FILE *);
+    data->writeheader = (void *)va_arg(param, void *);
     break;
   case CURLOPT_COOKIE:
     /*
