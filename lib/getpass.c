@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.2 2000-01-10 23:36:14 bagder Exp $
+ * $Id: getpass.c,v 1.3 2000-03-19 19:54:13 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -76,7 +76,9 @@ char *getpass(const char *prompt)
   FILE *outfp;
   static char buf[INPUT_BUFFER];
   RETSIGTYPE (*sigint)();
+#ifndef __EMX__
   RETSIGTYPE (*sigtstp)();
+#endif
   size_t bytes_read;
   int infd;
   int outfd;
@@ -92,7 +94,11 @@ char *getpass(const char *prompt)
 #endif
 
   sigint = signal(SIGINT, SIG_IGN);
+  /* 20000318 mgs
+   * this is needed by the emx system, SIGTSTP is not a supported signal */
+#ifndef __EMX__
   sigtstp = signal(SIGTSTP, SIG_IGN);
+#endif
 
   if( (infp=fopen("/dev/tty", "r")) == NULL )
   {
