@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.137 2002-12-10 13:10:00 bagder Exp $
+ * $Id: urldata.h,v 1.138 2002-12-13 16:15:31 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -243,6 +243,9 @@ struct ConnectBits {
   bool forbidchunk;   /* used only to explicitly forbid chunk-upload for
                          specific upload buffers. See readmoredata() in
                          http.c for details. */
+  bool tcpconnect;    /* the tcp stream (or simimlar) is connected, this
+                         is set the first time on the first connect function
+                         call */
 };
 
 /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.43 2002-12-13 13:47:58 bagder Exp $
+ * $Id: connect.c,v 1.44 2002-12-13 16:15:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -380,8 +380,8 @@ CURLcode Curl_is_connected(struct connectdata *conn,
       return CURLE_OPERATION_TIMEOUTED;
     }
   }
-  if(conn->protocol & PROT_FILE) {
-    /* we are connected, awesome! */
+  if(conn->bits.tcpconnect) {
+    /* we are connected already! */
     *connected = TRUE;
     return CURLE_OK;
   }
