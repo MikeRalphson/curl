@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.31 2004-03-23 16:11:01 bagder Exp $
+# $Id: Makefile.am,v 1.32 2004-03-29 12:38:41 bagder Exp $
 ###########################################################################
 EXTRA_DIST = ftpserver.pl httpserver.pl httpsserver.pl runtests.pl \
 	     ftpsserver.pl getpart.pm FILEFORMAT README \
@@ -33,14 +33,11 @@ CLEANFILES = .http.pid .https.pid .ftp.pid .ftps.pid
 curl:
 	@cd $(top_builddir) && $(MAKE)
 
-test: sws
+test: all
 	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl
 
-quiet-test: sws
+quiet-test: all
 	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl -s -a
 
-full-test: sws
+full-test: all
 	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl -a
-
-sws:
-	@cd server && $(MAKE)
