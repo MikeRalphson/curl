@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.16 2002-11-20 19:04:34 bagder Exp $
+# $Id: curl-config.in,v 1.17 2003-01-16 10:58:49 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -107,8 +107,11 @@ while test $# -gt 0; do
 	;;
 
     --cflags)
-       	#echo -I@includedir@
-        echo ""
+       	if test "X@includedir@" = "X/usr/include"; then
+          echo ""
+        else
+          echo "-I@includedir@"
+        fi
        	;;
 
     --libs)
