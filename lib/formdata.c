@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.28 2001-12-14 12:59:16 bagder Exp $
+ * $Id: formdata.c,v 1.29 2002-01-19 11:08:05 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -1155,10 +1155,13 @@ struct FormData *Curl_getFormData(struct HttpPost *post,
 	  }
           if(fileread != stdin)
             fclose(fileread);
-	} else {
-	  size += AddFormData(&form, "[File wasn't found by client]", 0);
 	}
-      } else {
+        else {
+          /* File wasn't found, add a nothing field! */
+	  size += AddFormData(&form, "", 0);
+	}
+      }
+ else {
 	/* include the contents we got */
 	size += AddFormData(&form, post->contents, post->contentslength);
       }
