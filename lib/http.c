@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.88 2002-02-07 09:32:40 bagder Exp $
+ * $Id: http.c,v 1.89 2002-02-17 14:42:44 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -815,8 +815,6 @@ CURLcode Curl_http(struct connectdata *conn)
     }
 
     if(HTTPREQ_POST_FORM == data->set.httpreq) {
-      char contentType[256];
-      int linelength=0;
       if(Curl_FormInit(&http->form, http->sendit)) {
         failf(data, "Internal HTTP POST error!");
         return CURLE_HTTP_POST_ERROR;
@@ -840,10 +838,19 @@ CURLcode Curl_http(struct connectdata *conn)
         add_bufferf(req_buffer,
                     "Expect: 100-continue\r\n");
         data->set.expect100header = TRUE;
+      }
 
+      if(!checkheaders(data, "Content-Type:")) {
         /* Get Content-Type: line from Curl_FormReadOneLine, which happens
            to always be the first line. We can know this for sure since
-           we always build the formpost linked list the same way! */
+           we always build the formpost linked list the same way!
+
+           The Content-Type header line also contains the MIME boundary
+           string etc why disabling this header is likely to not make things
+           work, but we support it anyway.
+        */
+        char contentType[256];
+        int linelength=0;
         linelength = Curl_FormReadOneLine (contentType,
                                            sizeof(contentType),
                                            1,
@@ -853,10 +860,10 @@ CURLcode Curl_http(struct connectdata *conn)
           return CURLE_HTTP_POST_ERROR;
         }
         add_buffer(req_buffer, contentType, linelength);
-
-        /* make the request end in a true CRLF */
-        add_buffer(req_buffer, "\r\n", 2);
       }
+
+      /* make the request end in a true CRLF */
+      add_buffer(req_buffer, "\r\n", 2);
 
       /* set upload size to the progress meter */
       Curl_pgrsSetUploadSize(data, http->postsize);
