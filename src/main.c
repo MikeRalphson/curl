@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.72 2001-03-12 16:02:29 bagder Exp $
+ * $Id: main.c,v 1.73 2001-03-14 08:55:17 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -29,8 +29,6 @@
 #include <ctype.h>
 
 #include <curl/curl.h>
-#include <curl/types.h> /* new for v7 */
-#include <curl/easy.h> /* new for v7 */
 
 #define _MPRINTF_REPLACE /* we want curl-functions instead of native ones */
 #include <curl/mprintf.h>
