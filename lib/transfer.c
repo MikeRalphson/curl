@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.111 2002-09-16 14:02:08 bagder Exp $
+ * $Id: transfer.c,v 1.112 2002-09-23 12:55:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1242,10 +1242,10 @@ CURLcode Curl_perform(struct SessionHandle *data)
     return res;
 
   /*
-   * It is important that there is NO 'return' from this function any any
-   * other place than falling down the bottom! This is because we have cleanup
-   * stuff that must be done before we get back, and that is only performed
-   * after this do-while loop.
+   * It is important that there is NO 'return' from this function at any other
+   * place than falling down to the end of the function! This is because we
+   * have cleanup stuff that must be done before we get back, and that is only
+   * performed after this do-while loop.
    */
 
   do {
