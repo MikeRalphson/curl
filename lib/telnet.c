@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/telnet.c,v $
- * $Revision: 1.2.2.1 $
- * $Date: 2000-05-02 21:32:13 $
+ * $Revision: 1.2.2.2 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -225,7 +225,7 @@ static void printoption(struct UrlData *data,
    char *fmt;
    char *opt;
    
-   if (data->conf & CONF_VERBOSE)
+   if (data->bits.verbose)
    {
       if (cmd == IAC)
       {
@@ -628,7 +628,7 @@ static void printsub(struct UrlData *data,
 {
    int i = 0;
 
-   if (data->conf & CONF_VERBOSE)
+   if (data->bits.verbose)
    {
       if (direction)
       {
@@ -871,28 +871,29 @@ void telwrite(struct UrlData *data,
    }
 }
 
-UrgError telnet_done(struct UrlData *data)
+UrgError telnet_done(struct connectdata *conn)
 {
   return URG_OK;
 }
 
-UrgError telnet(struct UrlData *data)
+UrgError telnet(struct connectdata *conn)
 {
-   int sockfd = data->firstsocket;
-   fd_set readfd;
-   fd_set keepfd;
+  struct UrlData *data = conn->data;
+  int sockfd = data->firstsocket;
+  fd_set readfd;
+  fd_set keepfd;
 
-   bool keepon = TRUE;
-   char *buf = data->buffer;
-   int nread;
+  bool keepon = TRUE;
+  char *buf = data->buffer;
+  int nread;
 
-   init_telnet(data);
+  init_telnet(data);
    
-   FD_ZERO (&readfd);		/* clear it */
-   FD_SET (sockfd, &readfd);
-   FD_SET (1, &readfd);
+  FD_ZERO (&readfd);		/* clear it */
+  FD_SET (sockfd, &readfd);
+  FD_SET (1, &readfd);
 
-   keepfd = readfd;
+  keepfd = readfd;
 
    while (keepon)
    {

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.1.2.2 $
- * $Date: 2000-05-02 21:35:50 $
+ * $Revision: 1.1.2.3 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -344,8 +344,7 @@ _Transfer (struct connectdata *c_conn)
 
                 /* now, only output this if the header AND body are requested:
                  */
-                if ((data->conf & (CONF_HEADER | CONF_NOBODY)) ==
-                    CONF_HEADER) {
+                if (data->bits.http_include_header) {
                   if((p - data->headerbuff) !=
                      data->fwrite (data->headerbuff, 1,
                                    p - data->headerbuff, data->out)) {
@@ -372,10 +371,10 @@ _Transfer (struct connectdata *c_conn)
                 if (sscanf (p, " HTTP/1.%*c %3d", &code)) {
                   /* 404 -> URL not found! */
                   if (
-                      ( ((data->conf & CONF_FOLLOWLOCATION) && (code >= 400))
+                      ( ((data->bits.http_follow_location) && (code >= 400))
                         ||
-                        !(data->conf & CONF_FOLLOWLOCATION) && (code >= 300))
-                      && (data->conf & CONF_FAILONERROR)) {
+                        !(data->bits.http_follow_location) && (code >= 300))
+                      && (data->bits.http_fail_on_error)) {
                     /* If we have been told to fail hard on HTTP-errors,
                        here is the check for that: */
                     /* serious error, go home! */
@@ -411,7 +410,7 @@ _Transfer (struct connectdata *c_conn)
                 timeofdoc = get_date(p+strlen("Last-Modified:"), &secs);
               }
               else if ((code >= 300 && code < 400) &&
-                       (data->conf & CONF_FOLLOWLOCATION) &&
+                       (data->bits.http_follow_location) &&
                        strnequal("Location", p, 8) &&
                        sscanf (p+8, ": %" URL_MAX_LENGTH_TXT "s",
                                newurl)) {
@@ -420,7 +419,7 @@ _Transfer (struct connectdata *c_conn)
                 data->newurl = strdup (newurl);
               }
               
-              if (data->conf & CONF_HEADER) {
+              if (data->bits.http_include_header) {
                 if(hbuflen != data->fwrite (p, 1, hbuflen, data->out)) {
                   failf (data, "Failed writing output");
                   return URG_WRITE_ERROR;
@@ -463,7 +462,7 @@ _Transfer (struct connectdata *c_conn)
             if(0 == bodywrites) {
               /* These checks are only made the first time we are about to
                  write a chunk of the body */
-              if(data->conf&CONF_HTTP) {
+              if(conn->protocol&PROT_HTTP) {
                 /* HTTP-only checks */
                 if (data->resume_from && !content_range ) {
                   /* we wanted to resume a download, although the server
@@ -588,7 +587,7 @@ _Transfer (struct connectdata *c_conn)
       }
     }
   }
-  if(!(data->conf&CONF_NOBODY) && contentlength &&
+  if(!(data->bits.no_body) && contentlength &&
      (bytecount != contentlength)) {
     failf(data, "transfer closed with %d bytes remaining to read",
           contentlength-bytecount);

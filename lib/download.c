@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.c,v $
- * $Revision: 1.9.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.9.2.2 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -79,8 +79,6 @@
 #include "sendf.h"
 
 #include "externaltypes.h"
-
-#define MAX(x,y) ((x)>(y)?(x):(y))
 
 /* --- download and upload a stream from/to a socket --- */
 

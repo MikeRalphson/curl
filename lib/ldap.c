@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.2.2.2 $
- * $Date: 2000-05-02 21:32:13 $
+ * $Revision: 1.2.2.3 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -165,7 +165,7 @@ UrgError ldap(struct connectdata *conn)
     return URG_LIBRARY_NOT_FOUND;
   }
 
-  ldaptext = data->conf & CONF_FTPASCII; /* This is a dirty hack */
+  ldaptext = data->bits.ftp_ascii; /* This is a dirty hack */
   
   /* The types are needed because ANSI C distinguishes between
    * pointer-to-object (data) and pointer-to-function.

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-03-19 19:54:13 $
+ * $Revision: 1.4.2.1 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -100,7 +100,7 @@
 #include <curl/mprintf.h>
 
 
-UrgError file(struct UrlData *data, char *path, long *bytecountp)
+UrgError file(struct connectdata *conn)
 {
   /* This implementation ignores the host name in conformance with 
      RFC 1738. Only local files (reachable via the standard file system)
@@ -108,15 +108,20 @@ UrgError file(struct UrlData *data, char *path, long *bytecountp)
      (via NFS, Samba, NT sharing) can be accessed through a file:// URL
   */
 
+  char *path = conn->path;
+  long *bytecountp =  &conn->bytecount;
+
   struct stat statbuf;
   size_t expected_size=-1;
   size_t nread;
+  struct UrlData *data = conn->data;
   char *buf = data->buffer;
   int bytecount = 0;
   struct timeval start = tvnow();
   struct timeval now = start;
   int fd;
   char *actual_path = curl_unescape(path);
+
 
 #if defined(WIN32) || defined(__EMX__)
   int i;

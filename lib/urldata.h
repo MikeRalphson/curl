@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.6.2.2 $
- * $Date: 2000-04-26 23:03:04 $
+ * $Revision: 1.6.2.3 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -92,6 +92,8 @@
 
 #include "timeval.h"
 
+
+
 /* Download buffer size, keep it fairly big for speed reasons */
 #define BUFSIZE (1024*50)
 
@@ -99,12 +101,25 @@
    of need. */
 #define HEADERSIZE 256
 
+#ifndef MAX
+#define MAX(x,y) ((x)>(y)?(x):(y))
+#endif
+
 typedef enum {
   STRUCT_NONE,
   STRUCT_OPEN,
   STRUCT_CONNECT,
   STRUCT_LAST,
 } Handle;
+
+typedef enum {
+  CONN_NONE,  /* illegal state */
+  CONN_INIT,  /* curl_connect() has been called */
+  CONN_DO,    /* curl_do() has been called successfully */
+  CONN_DONE,  /* curl_done() has been called successfully */
+  CONN_ERROR, /* and error has occurred */
+  CONN_LAST   /* illegal state */
+} ConnState;
 
 
 /* To better see what kind of struct that is passed as input, *ALL* publicly
@@ -116,6 +131,19 @@ struct connectdata {
   struct UrlData *data; /* link to the root CURL struct */
 
   /**** curl_connect() phase fields */
+  ConnState state; /* for state dependent actions */
+
+  long protocol; /* PROT_* flags concerning the protocol set */
+#define PROT_MISSING (1<<0)
+#define PROT_GOPHER  (1<<1)
+#define PROT_HTTP    (1<<2)
+#define PROT_HTTPS   (1<<3)
+#define PROT_FTP     (1<<4)
+#define PROT_TELNET  (1<<5)
+#define PROT_DICT    (1<<6)
+#define PROT_LDAP    (1<<7)
+#define PROT_FILE    (1<<8)
+
 
   struct hostent *hp;
   struct sockaddr_in serv_addr;
@@ -195,6 +223,30 @@ struct FTP {
   char *realpath;
 };
 
+struct Configbits {
+  bool ftp_append;
+  bool ftp_ascii;
+  bool http_post;
+  bool http_set_referer;
+  bool http_fail_on_error;
+  bool http_formpost;
+  bool http_include_header;
+  bool http_follow_location;
+  bool http_put;
+  bool no_body;
+  bool ftp_list_only;
+  bool use_netrc;
+  bool ftp_use_port;
+  bool set_port;
+  bool set_range;
+  bool mute;
+  bool hide_progress;
+  bool upload;
+  bool user_passwd;
+  bool proxy_user_passwd;
+  bool verbose;
+  bool httpproxy;
+};
 
 /*
  * As of April 11, 2000 we're now trying to split up the urldata struct in
@@ -232,18 +284,24 @@ struct UrlData {
     struct HTTP *gopher; /* alias, just for the sake of being more readable */
     struct HTTP *https;  /* alias, just for the sake of being more readable */
     struct FTP *ftp;
-#if 0
+#if 0 /* no need for special ones for these: */
     struct TELNET *telnet;
     struct FILE *file;
     struct LDAP *ldap;
     struct DICT *dict;
 #endif
+    void *generic;
   } proto;
 
   /* These two functions MUST be set by the curl_connect() function to be
      be protocol dependent */
   UrgError (*curl_do)(struct connectdata *connect);
   UrgError (*curl_done)(struct connectdata *connect);
+
+  /* This function *MAY* be set to a protocol-dependent function that is run
+   * after the connect() and everything is done, as a step in the connection.
+   */ 
+  UrgError (*curl_connect)(struct connectdata *connect);
 
   FILE *out;    /* the fetched file goes here */
   FILE *in;     /* the uploaded file is read from here */
@@ -255,7 +313,12 @@ struct UrlData {
                           CONF_PORT to use this */
   unsigned short remote_port; /* what remote port to connect to, not the proxy
 				 port! */
+#if 0
+  /* old-style */
   long conf;   /* configure flags */
+#endif
+  struct Configbits bits; /* new-style (v7) flag data */
+
   char *userpwd;  /* <user:password>, if used */
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */

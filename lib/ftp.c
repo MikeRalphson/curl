@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.6.2.3 $
- * $Date: 2000-05-02 21:32:13 $
+ * $Revision: 1.6.2.4 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -230,7 +230,7 @@ int GetLastResponse(int sockfd, char *buf,
     }
     *ptr=0; /* zero terminate */
 
-    if(data->conf & CONF_VERBOSE) {
+    if(data->bits.verbose) {
       fputs("< ", data->err);
       fwrite(buf, 1, nread, data->err);
       fputs("\n", data->err);
@@ -310,6 +310,84 @@ static char *URLfix(char *string)
 }
 #endif
 
+/* ftp_connect() should do everything that is to be considered a part
+   of the connection phase. */
+UrgError ftp_connect(struct connectdata *conn)
+{
+  /* this is FTP and no proxy */
+  size_t nread;
+  UrgError result;
+  struct UrlData *data=conn->data;
+  char *buf = data->buffer; /* this is our buffer */
+  struct FTP *ftp;
+
+  ftp = (struct FTP *)malloc(sizeof(struct FTP));
+  if(!ftp)
+    return URG_OUT_OF_MEMORY;
+
+  memset(ftp, 0, sizeof(struct FTP));
+  data->proto.ftp = ftp;
+
+  /* get some initial data into the ftp struct */
+  ftp->bytecountp = &conn->bytecount;
+  ftp->ftpuser = data->user;
+  ftp->ftppasswd =  data->passwd;
+
+  /* The first thing we do is wait for the "220*" line: */
+  nread = GetLastResponse(data->firstsocket, buf, data);
+  if(strncmp(buf, "220", 3)) {
+    failf(data, "This doesn't seem like a nice ftp-server response");
+    return URG_FTP_WEIRD_SERVER_REPLY;
+  }
+
+  /* send USER */
+  sendf(data->firstsocket, data, "USER %s\r\n", ftp->ftpuser);
+
+  /* wait for feedback */
+  nread = GetLastResponse(data->firstsocket, buf, data);
+
+  if(!strncmp(buf, "530", 3)) {
+    /* 530 User ... access denied
+       (the server denies to log the specified user) */
+    failf(data, "Access denied: %s", &buf[4]);
+    return URG_FTP_ACCESS_DENIED;
+  }
+  else if(!strncmp(buf, "331", 3)) {
+    /* 331 Password required for ...
+       (the server requires to send the user's password too) */
+    sendf(data->firstsocket, data, "PASS %s\r\n", ftp->ftppasswd);
+    nread = GetLastResponse(data->firstsocket, buf, data);
+
+    if(!strncmp(buf, "530", 3)) {
+      /* 530 Login incorrect.
+         (the username and/or the password are incorrect) */
+      failf(data, "the username and/or the password are incorrect");
+      return URG_FTP_USER_PASSWORD_INCORRECT;
+    }
+    else if(!strncmp(buf, "230", 3)) {
+      /* 230 User ... logged in.
+         (user successfully logged in) */
+        
+      infof(data, "We have successfully logged in\n");
+    }
+    else {
+      failf(data, "Odd return code after PASS");
+      return URG_FTP_WEIRD_PASS_REPLY;
+    }
+  }
+  else if(! strncmp(buf, "230", 3)) {
+    /* 230 User ... logged in.
+       (the user logged in without password) */
+    infof(data, "We have successfully logged in\n");
+  }
+  else {
+    failf(data, "Odd return code after USER");
+    return URG_FTP_WEIRD_USER_REPLY;
+  }
+  
+}
+
+
 /* argument is already checked for validity */
 UrgError ftp_done(struct connectdata *conn)
 {
@@ -320,7 +398,7 @@ UrgError ftp_done(struct connectdata *conn)
   char *buf = data->buffer; /* this is our buffer */
   struct curl_slist *qitem; /* QUOTE item */
 
-  if(data->conf & CONF_UPLOAD) {
+  if(data->bits.upload) {
     if((-1 != data->infilesize) && (data->infilesize != *ftp->bytecountp)) {
       failf(data, "Wrote only partial file (%d out of %d bytes)",
             *ftp->bytecountp, data->infilesize);
@@ -381,6 +459,7 @@ UrgError ftp_done(struct connectdata *conn)
 }
 
 
+
 static
 UrgError _ftp(struct connectdata *conn,
               long *bytecountp,
@@ -398,58 +477,6 @@ UrgError _ftp(struct connectdata *conn,
   struct sockaddr_in serv_addr;
 
   struct curl_slist *qitem; /* QUOTE item */
-
-  /* The first thing we do is wait for the "220*" line: */
-  nread = GetLastResponse(data->firstsocket, buf, data);
-  if(strncmp(buf, "220", 3)) {
-    failf(data, "This doesn't seem like a nice ftp-server response");
-    return URG_FTP_WEIRD_SERVER_REPLY;
-  }
-
-  /* send USER */
-  sendf(data->firstsocket, data, "USER %s\r\n", ftpuser);
-
-  /* wait for feedback */
-  nread = GetLastResponse(data->firstsocket, buf, data);
-
-  if(!strncmp(buf, "530", 3)) {
-    /* 530 User ... access denied
-       (the server denies to log the specified user) */
-    failf(data, "Access denied: %s", &buf[4]);
-    return URG_FTP_ACCESS_DENIED;
-  }
-  else if(!strncmp(buf, "331", 3)) {
-    /* 331 Password required for ...
-       (the server requires to send the user's password too) */
-    sendf(data->firstsocket, data, "PASS %s\r\n", ftppasswd);
-    nread = GetLastResponse(data->firstsocket, buf, data);
-
-    if(!strncmp(buf, "530", 3)) {
-      /* 530 Login incorrect.
-         (the username and/or the password are incorrect) */
-      failf(data, "the username and/or the password are incorrect");
-      return URG_FTP_USER_PASSWORD_INCORRECT;
-    }
-    else if(!strncmp(buf, "230", 3)) {
-      /* 230 User ... logged in.
-         (user successfully logged in) */
-        
-      infof(data, "We have successfully logged in\n");
-    }
-    else {
-      failf(data, "Odd return code after PASS");
-      return URG_FTP_WEIRD_PASS_REPLY;
-    }
-  }
-  else if(! strncmp(buf, "230", 3)) {
-    /* 230 User ... logged in.
-       (the user logged in without password) */
-    infof(data, "We have successfully logged in\n");
-  }
-  else {
-    failf(data, "Odd return code after USER");
-    return URG_FTP_WEIRD_USER_REPLY;
-  }
 
   /* Send any QUOTE strings? */
   if(data->quote) {
@@ -474,7 +501,7 @@ UrgError _ftp(struct connectdata *conn,
 
   /* If we have selected NOBODY, it means that we only want file information.
      Which in FTP can't be much more than the file size! */
-  if(data->conf & CONF_NOBODY) {
+  if(data->bits.no_body) {
     /* The SIZE command is _not_ RFC 959 specified, and therefor many servers
        may not support it! It is however the only way we have to get a file's
        size! */
@@ -508,7 +535,7 @@ UrgError _ftp(struct connectdata *conn,
   }
 
   /* We have chosen to use the PORT command */
-  if(data->conf & CONF_FTPPORT) {
+  if(data->bits.ftp_use_port) {
     struct sockaddr_in sa;
     struct hostent *h=NULL;
     size_t size;
@@ -651,7 +678,7 @@ UrgError _ftp(struct connectdata *conn,
       serv_addr.sin_family = he->h_addrtype;
       serv_addr.sin_port = htons(newport);
 
-      if(data->conf & CONF_VERBOSE) {
+      if(data->bits.verbose) {
         struct in_addr in;
 #if 1
         struct hostent * answer;
@@ -699,18 +726,18 @@ UrgError _ftp(struct connectdata *conn,
   }
   /* we have the (new) data connection ready */
 
-  if(data->conf & CONF_UPLOAD) {
+  if(data->bits.upload) {
 
     /* Set type to binary (unless specified ASCII) */
     sendf(data->firstsocket, data, "TYPE %s\r\n",
-          (data->conf&CONF_FTPASCII)?"A":"I");
+          (data->bits.ftp_ascii)?"A":"I");
 
     nread = GetLastResponse(data->firstsocket, buf, data);
 
     if(strncmp(buf, "200", 3)) {
       failf(data, "Couldn't set %s mode",
-            (data->conf&CONF_FTPASCII)?"ASCII":"binary");
-      return (data->conf&CONF_FTPASCII)? URG_FTP_COULDNT_SET_ASCII:
+            (data->bits.ftp_ascii)?"ASCII":"binary");
+      return (data->bits.ftp_ascii)? URG_FTP_COULDNT_SET_ASCII:
         URG_FTP_COULDNT_SET_BINARY;
     }
 
@@ -763,7 +790,7 @@ UrgError _ftp(struct connectdata *conn,
         }
 #else
         /* enable append instead */
-        data->conf |= CONF_FTPAPPEND;
+        data->bits.ftp_append = 1;
 #endif
         /* Now, let's read off the proper amount of bytes from the
            input. If we knew it was a proper file we could've just
@@ -801,7 +828,7 @@ UrgError _ftp(struct connectdata *conn,
     }
 
     /* Send everything on data->in to the socket */
-    if(data->conf & CONF_FTPAPPEND)
+    if(data->bits.ftp_append)
       /* we append onto the file instead of rewriting it */
       sendf(data->firstsocket, data, "APPE %s\r\n", ppath);
     else
@@ -815,7 +842,7 @@ UrgError _ftp(struct connectdata *conn,
       return URG_FTP_COULDNT_STOR_FILE;
     }
 
-    if(data->conf & CONF_FTPPORT) {
+    if(data->bits.ftp_use_port) {
       result = AllowServerConnect(data, portsock);
       if( result )
         return result;
@@ -841,7 +868,7 @@ UrgError _ftp(struct connectdata *conn,
     bool dirlist=FALSE;
     long downloadsize=-1;
 
-    if(data->conf&CONF_RANGE && data->range) {
+    if(data->bits.set_range && data->range) {
       int from, to;
       int totalsize=-1;
       char *ptr;
@@ -879,7 +906,7 @@ UrgError _ftp(struct connectdata *conn,
       /* make sure this becomes a valid name */
       ppath="./";
 
-    if((data->conf & CONF_FTPLISTONLY) ||
+    if((data->bits.ftp_list_only) ||
        ('/' == ppath[strlen(ppath)-1] )) {
       /* The specified path ends with a slash, and therefore we think this
          is a directory that is requested, use LIST. But before that we
@@ -902,20 +929,20 @@ UrgError _ftp(struct connectdata *conn,
 
       sendf(data->firstsocket, data, "%s %s\r\n",
             data->customrequest?data->customrequest:
-            (data->conf&CONF_FTPLISTONLY?"NLST":"LIST"),
+            (data->bits.ftp_list_only?"NLST":"LIST"),
             ppath);
     }
     else {
       /* Set type to binary (unless specified ASCII) */
       sendf(data->firstsocket, data, "TYPE %s\r\n",
-            (data->conf&CONF_FTPASCII)?"A":"I");
+            (data->bits.ftp_list_only)?"A":"I");
 
       nread = GetLastResponse(data->firstsocket, buf, data);
 
       if(strncmp(buf, "200", 3)) {
         failf(data, "Couldn't set %s mode",
-              (data->conf&CONF_FTPASCII)?"ASCII":"binary");
-        return (data->conf&CONF_FTPASCII)? URG_FTP_COULDNT_SET_ASCII:
+              (data->bits.ftp_ascii)?"ASCII":"binary");
+        return (data->bits.ftp_ascii)? URG_FTP_COULDNT_SET_ASCII:
           URG_FTP_COULDNT_SET_BINARY;
       }
 
@@ -1040,7 +1067,7 @@ UrgError _ftp(struct connectdata *conn,
       }
 #endif
 
-      if(data->conf & CONF_FTPPORT) {
+      if(data->bits.ftp_use_port) {
         result = AllowServerConnect(data, portsock);
         if( result )
           return result;
@@ -1076,17 +1103,8 @@ UrgError ftp(struct connectdata *conn)
   struct UrlData *data = conn->data;
   struct FTP *ftp;
 
-  ftp = (struct FTP *)malloc(sizeof(struct FTP));
-  if(!ftp)
-    return URG_OUT_OF_MEMORY;
-
-  memset(ftp, 0, sizeof(struct FTP));
-  data->proto.ftp = ftp;
-
-  /* get some data into the ftp struct */
-  ftp->bytecountp = &conn->bytecount;
-  ftp->ftpuser = data->user;
-  ftp->ftppasswd =  data->passwd;
+  /* the ftp struct is already inited in ftp_connect() */
+  ftp = data->proto.ftp;
 
   ftp->urlpath = conn->ppath;
   ftp->realpath = curl_unescape(ftp->urlpath);

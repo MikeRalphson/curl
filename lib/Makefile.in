@@ -11,7 +11,7 @@
 # PARTICULAR PURPOSE.
 
 #
-# $Id: Makefile.in,v 1.6.2.1 2000-04-26 21:37:19 bagder Exp $
+# $Id: Makefile.in,v 1.6.2.2 2000-05-08 22:35:45 bagder Exp $
 #
 
 
@@ -65,7 +65,6 @@ host_alias = @host_alias@
 host_triplet = @host@
 CC = @CC@
 MAKEINFO = @MAKEINFO@
-NROFF = @NROFF@
 PACKAGE = @PACKAGE@
 PERL = @PERL@
 RANLIB = @RANLIB@
@@ -117,7 +116,7 @@ all: all-redirect
 .SUFFIXES:
 .SUFFIXES: .S .c .o .s
 $(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
-	cd $(top_srcdir) && $(AUTOMAKE) --foreign --include-deps lib/Makefile
+	cd $(top_srcdir) && $(AUTOMAKE) --foreign lib/Makefile
 
 Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) \

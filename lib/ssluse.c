@@ -29,14 +29,20 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ssluse.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-03-16 11:41:27 $
+ * $Revision: 1.4.2.1 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+/*
+ * The original SSL code was written by
+ * Linas Vepstas <linas@linas.org> and Sampo Kellomaki <sampo@iki.fi>
+ */
+
 
 #include <string.h>
 #include <stdlib.h>

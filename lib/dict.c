@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/dict.c,v $
- * $Revision: 1.4.2.2 $
- * $Date: 2000-05-02 21:32:13 $
+ * $Revision: 1.4.2.3 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -116,7 +116,7 @@ UrgError dict(struct connectdata *conn)
   char *path = conn->path;
   long *bytecount = &conn->bytecount;
 
-  if(data->conf & CONF_USERPWD) {
+  if(data->bits.user_passwd) {
     /* AUTH is missing */
   }
 

@@ -29,19 +29,14 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.15.2.3 $
- * $Date: 2000-05-02 21:33:05 $
+ * $Revision: 1.15.2.4 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
-
-/*
- * SSL code intially written by
- * Linas Vepstas <linas@linas.org> and Sampo Kellomaki <sampo@iki.fi>
- */
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -333,6 +328,104 @@ UrgError curl_open(CURL **curl, char *url)
   return URG_OUT_OF_MEMORY;
 }
 
+static UrgError
+conf_to_internal(struct UrlData *data, long conf)
+{
+  unsigned long bit;
+  unsigned long mask;
+  bool onoff;
+  
+  for(bit=0; bit<32; bit++) {
+    mask = (unsigned long)1 << bit;
+    onoff = (conf & mask)?TRUE:FALSE; /* converted to true/false */
+    switch(mask) {
+    case CONF_PROXY:
+      data->bits.httpproxy = onoff;
+      break;
+    case CONF_PORT:
+      data->bits.set_port = onoff;
+      break;
+    case CONF_VERBOSE:
+      data->bits.verbose = onoff;
+      break;
+    case CONF_HEADER:
+      data->bits.http_include_header = onoff;
+      break;
+    case CONF_USERPWD:
+      data->bits.user_passwd = onoff;
+      break;
+    case CONF_NOPROGRESS:
+      data->bits.hide_progress = onoff;
+      break;
+    case CONF_NOBODY:
+      data->bits.no_body = onoff;
+      break;
+    case CONF_FAILONERROR:
+      data->bits.http_fail_on_error = onoff;
+      break;
+    case CONF_RANGE:
+      data->bits.set_range = onoff;
+      break;
+    case CONF_UPLOAD:
+      data->bits.upload = onoff;
+      break;
+    case CONF_POST:
+      data->bits.http_post = onoff;
+      break;
+    case CONF_FTPLISTONLY:
+      data->bits.ftp_list_only = onoff;
+      break;
+    case CONF_REFERER:
+      data->bits.http_set_referer = onoff;
+      break;
+    case CONF_PROXYUSERPWD:
+      data->bits.proxy_user_passwd = onoff;
+      break;
+    case CONF_FTPPORT:
+      data->bits.ftp_use_port = onoff;
+      break;
+    case CONF_FTPAPPEND:
+      data->bits.ftp_append = onoff;
+      break;
+    case CONF_NETRC:
+      data->bits.use_netrc = onoff;
+      break;
+    case CONF_FOLLOWLOCATION:
+      data->bits.http_follow_location = onoff;
+      break;
+    case CONF_FTPASCII:
+      data->bits.ftp_ascii = onoff;
+      break;
+    case CONF_HTTPPOST:
+      data->bits.http_formpost = onoff;
+      break;
+    case CONF_PUT:
+      data->bits.http_put = onoff;
+      break;
+    case CONF_MUTE:
+      data->bits.mute = onoff;
+      break;
+#if 0
+      /* these defines don't exist anymore */
+    case CONF_DICT:
+    case CONF_FILE:
+    case CONF_LDAP:
+    case CONF_HTTP:
+    case CONF_HTTPS:
+    case CONF_GOPHER:
+    case CONF_FTP:
+    case CONF_TELNET:
+    case CONF_NOPROT:
+#endif
+    default:
+      /* not a supported user-flag */
+      break;
+    }
+  }
+  return URG_OK;
+}
+
+
 UrgError curl_setopt(CURL *curl, CURLoption option, ...)
 {
   struct UrlData *data = curl;
@@ -417,7 +510,7 @@ UrgError curl_setopt(CURL *curl, CURLoption option, ...)
     data->proxy = va_arg(param, char *);
     break;
   case URGTAG_FLAGS:
-    data->conf = va_arg(param, long);
+    conf_to_internal(data, va_arg(param, long));
     break;
   case URGTAG_TIMEOUT:
     data->timeout = va_arg(param, long);
@@ -476,8 +569,7 @@ UrgError curl_setopt(CURL *curl, CURLoption option, ...)
  * Read everything until a newline.
  */
 
-static int GetLine(int sockfd, char *buf,
-		   struct UrlData *data)
+int GetLine(int sockfd, char *buf, struct UrlData *data)
 {
   int nread;
   int read_rc=1;
@@ -503,7 +595,7 @@ static int GetLine(int sockfd, char *buf,
   }
   *ptr=0; /* zero terminate */
 
-  if(data->conf & CONF_VERBOSE) {
+  if(data->bits.verbose) {
     fputs("< ", data->err);
     fwrite(buf, 1, nread, data->err);
     fputs("\n", data->err);
@@ -607,6 +699,12 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
   struct UrlData *data = curl;
   struct connectdata *conn;
 
+  if(!data || (data->handle != STRUCT_OPEN))
+    return URG_FAILED_INIT; /* TBD: make error codes */
+
+  if(!data->url)
+    return URG_FAILED_INIT; /* TBD: missing URL error code */
+
   conn = (struct connectdata *)malloc(sizeof(struct connectdata));
   if(!conn) {
     *in_connect = NULL; /* clear the pointer */
@@ -618,6 +716,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
   conn->handle = STRUCT_CONNECT;
 
   conn->data = data; /* remember our daddy */
+  conn->state = CONN_INIT;
 
   strcpy(conn->gname, "default.com");
   strcpy(conn->path, "/");
@@ -634,25 +733,19 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
    * to SSL connect through the proxy -- and we don't know if we
    * will need to use SSL until we parse the url ...
    */
-  if((1 == sscanf(data->url, "file://%" URL_MAX_LENGTH_TXT "[^\n]",
-                  conn->path))) {
+  if((2 == sscanf(data->url, "%64[^:]://%" URL_MAX_LENGTH_TXT "[^\n]",
+                  conn->proto,
+                  conn->path)) && strequal(conn->proto, "file")) {
     /* we deal with file://<host>/<path> differently since it
        supports no hostname other than "localhost" and "127.0.0.1",
-       which ist unique among the protocols specified in RFC 1738 */
-    if (strstr(conn->path, "localhost/") ||
-        strstr(conn->path, "127.0.0.1/"))
+       which is unique among the protocols specified in RFC 1738 */
+    if (strnequal(conn->path, "localhost/", 10) ||
+        strnequal(conn->path, "127.0.0.1/", 10))
       /* ... since coincidentally both host strings are of equal length
          otherwise, <host>/ is quietly ommitted */
       strcpy(conn->path, &conn->path[10]);
 
-
-    /* that's it, no more fiddling with proxies, redirections,
-       or SSL for files, go directly to the file reading function */
-    result = file(data, conn->path, &conn->bytecount);
-    if(result)
-      return result;
-  
-    return URG_OK;
+    strcpy(conn->proto, "file");
   }
   else if (2 > sscanf(data->url, "%64[^\n:]://%256[^\n/]%" URL_MAX_LENGTH_TXT "[^\n]",
                  conn->proto, conn->gname, conn->path)) {
@@ -683,11 +776,11 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       strcpy(conn->proto, "http");
     }
 
-    data->conf |= CONF_NOPROT;
+    conn->protocol |= PROT_MISSING; /* not given in URL */
   }
 
 
-  if((data->conf & CONF_USERPWD) && ! (data->conf & CONF_NETRC)) {
+  if(data->bits.user_passwd && !data->bits.use_netrc) {
     if(':' != *data->userpwd) {
       if((1 <= sscanf(data->userpwd, "%127[^:]:%127s",
                       data->user, data->passwd))) {
@@ -704,7 +797,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     }
   }
 
-  if(data->conf & CONF_PROXYUSERPWD) {
+  if(data->bits.proxy_user_passwd) {
     if(':' != *data->proxyuserpwd) {
       if((1 <= sscanf(data->proxyuserpwd, "%127[^:]:%127s",
                       data->proxyuser, data->proxypasswd))) {
@@ -726,7 +819,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
   data->hostname = conn->name;
 
 
-  if(!(data->conf & CONF_PROXY)) {
+  if(!data->bits.httpproxy) {
     /* If proxy was not specified, we check for default proxy environment
        variables, to enable i.e Lynx compliance:
 
@@ -787,13 +880,13 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
         if(proxy && *proxy) {
           /* we have a proxy here to set */
           data->proxy = proxy;
-          data->conf |= CONF_PROXY;
+          data->bits.httpproxy=1;
         }
       } /* if (!nope) - it wasn't specfied non-proxy */
     } /* NO_PROXY wasn't specified or '*' */
   } /* if not using proxy */
 
-  if((data->conf & (CONF_PROXY|CONF_NOPROT)) == (CONF_PROXY|CONF_NOPROT) ) {
+  if((conn->protocol&PROT_MISSING) && data->bits.httpproxy ) {
     /* We're guessing prefixes here and since we're told to use a proxy, we
        need to add the protocol prefix to the URL string before we continue!
        */
@@ -809,7 +902,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       free(data->freethis);
     data->freethis = reurl;
 
-    data->conf &= ~CONF_NOPROT; /* switch that one off again */
+    conn->protocol &= ~PROT_MISSING; /* switch that one off again */
   }
 
   /* RESUME on a HTTP page is a tricky business. First, let's just check that
@@ -820,11 +913,11 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
      server, we just fail since we can't rewind the file writing from within
      this function. */
   if(data->resume_from) {
-    if(!(data->conf & CONF_RANGE)) {
+    if(!data->bits.set_range) {
       /* if it already was in use, we just skip this */
       sprintf(resumerange, "%d-", data->resume_from);
       data->range=resumerange; /* tell ourselves to fetch this range */
-      data->conf |= CONF_RANGE; /* switch on range usage */
+      data->bits.set_range = 1; /* switch on range usage */
     }
   }
 
@@ -846,7 +939,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     if(!data->port)
       data->port = PORT_HTTP;
     data->remote_port = PORT_HTTP;
-    data->conf |= CONF_HTTP;
+    conn->protocol |= PROT_HTTP;
     data->curl_do = http;
     data->curl_done = http_done;
   }
@@ -855,11 +948,13 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     if(!data->port)
       data->port = PORT_HTTPS;
     data->remote_port = PORT_HTTPS;
-    data->conf |= CONF_HTTP;
-    data->conf |= CONF_HTTPS;
+    conn->protocol |= PROT_HTTP;
+    conn->protocol |= PROT_HTTPS;
 
     data->curl_do = http;
     data->curl_done = http_done;
+    data->curl_connect = http_connect;
+
 #else /* USE_SSLEAY */
     failf(data, "SSL is disabled, https: not supported!");
     return URG_UNSUPPORTED_PROTOCOL;
@@ -875,7 +970,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       if (conn->ppath == NULL)
 	conn->ppath = conn->path;
       }
-    data->conf |= CONF_GOPHER;
+    conn->protocol |= PROT_GOPHER;
     data->curl_do = http;
     data->curl_done = http_done;
   }
@@ -884,15 +979,17 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     if(!data->port)
       data->port = PORT_FTP;
     data->remote_port = PORT_FTP;
-    data->conf |= CONF_FTP;
+    conn->protocol |= PROT_FTP;
 
-    if(data->conf&CONF_PROXY) {
+    if(data->bits.httpproxy) {
       data->curl_do = http;
       data->curl_done = http_done;
     }
     else {
       data->curl_do = ftp;
       data->curl_done = ftp_done;
+
+      data->curl_connect = ftp_connect;
     }
 
     conn->ppath++; /* don't include the initial slash */
@@ -909,22 +1006,22 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       command = toupper(type[6]);
       switch(command) {
       case 'A': /* ASCII mode */
-	data->conf |= CONF_FTPASCII;
+	data->bits.ftp_ascii = 1;
 	break;
       case 'D': /* directory mode */
-	data->conf |= CONF_FTPLISTONLY;
+	data->bits.ftp_list_only = 1;
 	break;
       case 'I': /* binary mode */
       default:
 	/* switch off ASCII */
-	data->conf &= ~CONF_FTPASCII; 
+	data->bits.ftp_ascii = 0;
 	break;
       }
     }
   }
   else if(strequal(conn->proto, "TELNET")) {
     /* telnet testing factory */
-    data->conf |= CONF_TELNET;
+    conn->protocol |= PROT_TELNET;
     if(!data->port)
       data->port = PORT_TELNET;
     data->remote_port = PORT_TELNET;
@@ -934,7 +1031,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
 
   }
   else if (strequal(conn->proto, "DICT")) {
-    data->conf |= CONF_DICT;
+    conn->protocol |= PROT_DICT;
     if(!data->port)
       data->port = PORT_DICT;
     data->remote_port = PORT_DICT;
@@ -942,29 +1039,26 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     data->curl_done = dict_done;
   }
   else if (strequal(conn->proto, "LDAP")) {
-    data->conf |= CONF_LDAP;
+    conn->protocol |= PROT_LDAP;
     if(!data->port)
       data->port = PORT_LDAP;
     data->remote_port = PORT_LDAP;
     data->curl_do = ldap;
     data->curl_done = ldap_done;
   }
-  /* file:// is handled above */
-  /*  else if (strequal(proto, "FILE")) {
-    data->conf |= CONF_FILE;
+  else if (strequal(conn->proto, "FILE")) {
+    conn->protocol |= PROT_FILE;
 
-    result = file(data, path, &bytecount);
-    if(result)
-      return result;
+    data->curl_do = file;
+    /* no done() function */
+  }
 
-    return URG_OK;
-    }*/
   else {
     failf(data, "Unsupported protocol: %s", conn->proto);
     return URG_UNSUPPORTED_PROTOCOL;
   }
 
-  if(data->conf & CONF_NETRC) {
+  if(data->bits.use_netrc) {
     if(ParseNetrc(data->hostname, data->user, data->passwd)) {
       infof(data, "Couldn't find host %s in the .netrc file, using defaults",
             data->hostname);
@@ -975,12 +1069,12 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       strcpy(data->user, CURL_DEFAULT_USER);
     if(!data->passwd[0])
       strcpy(data->passwd, CURL_DEFAULT_PASSWORD);
-    if(data->conf & CONF_HTTP) {
-      data->conf |= CONF_USERPWD;
+    if(conn->protocol&PROT_HTTP) {
+      data->bits.user_passwd = 1; /* enable user+password */
     }
   }
-  else if(!(data->conf & CONF_USERPWD) &&
-	  (data->conf & (CONF_FTP|CONF_HTTP)) ) {
+  else if(!(data->bits.user_passwd) &&
+	  (conn->protocol & (PROT_FTP|PROT_HTTP)) ) {
     /* This is a FTP or HTTP URL, and we haven't got the user+password in
        the extra parameter, we will now try to extract the possible
        user+password pair in a string like:
@@ -994,7 +1088,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
 		    data->user, data->passwd)) &&
        (ptr=strchr(conn->name, '@'))) {
       conn->name = ++ptr;
-      data->conf |= CONF_USERPWD;
+      data->bits.user_passwd=1; /* enable user+password */
     }
     else {
       strcpy(data->user, CURL_DEFAULT_USER);
@@ -1002,7 +1096,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     }
   }
 
-  if(!(data->conf & CONF_PROXY)) {
+  if(!data->bits.httpproxy) {
     /* If not connecting via a proxy, extract the port from the URL, if it is
      * there, thus overriding any defaults that might have been set above. */
     tmp = strchr(conn->name, ':');
@@ -1102,7 +1196,7 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     return URG_COULDNT_CONNECT;
   }
 
-  if(data->conf & CONF_PROXYUSERPWD) {
+  if(data->bits.proxy_user_passwd) {
     char authorization[512];
     sprintf(data->buffer, "%s:%s", data->proxyuser, data->proxypasswd);
     base64Encode(data->buffer, authorization);
@@ -1110,64 +1204,17 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     data->ptr_proxyuserpwd = maprintf("Proxy-authorization: Basic %s\015\012",
 				      authorization);
   }
-  if(data->conf & (CONF_HTTPS|CONF_HTTP|CONF_PROXY)) {
+  if((conn->protocol&PROT_HTTP) || data->bits.httpproxy) {
     if(data->useragent) {
       data->ptr_uagent = maprintf("User-Agent: %s\015\012", data->useragent);
     }
   }
 
-
-  /* If we are not using a proxy and we want a secure connection,
-   * perform SSL initialization & connection now.
-   * If using a proxy with https, then we must tell the proxy to CONNECT
-   * us to the host we want to talk to.  Only after the connect
-   * has occured, can we start talking SSL
-   */
-   if (data->conf & CONF_HTTPS) {
-     if (data->conf & CONF_PROXY) {
-
-        /* OK, now send the connect statment */
-        sendf(data->firstsocket, data,
-              "CONNECT %s:%d HTTP/1.0\015\012"
-              "%s"
-	      "%s"
-              "\r\n",
-              data->hostname, data->remote_port,
-              (data->conf&CONF_PROXYUSERPWD)?data->ptr_proxyuserpwd:"",
-	      (data->useragent?data->ptr_uagent:"")
-              );
-
-        /* wait for the proxy to send us a HTTP/1.0 200 OK header */
-	/* Daniel rewrote this part Nov 5 1998 to make it more obvious */
-	{
-	  int httperror=0;
-	  int subversion=0;
-	  while(GetLine(data->firstsocket, data->buffer, data)) {
-	    if('\r' == data->buffer[0])
-	      break; /* end of headers */
-	    if(2 == sscanf(data->buffer, "HTTP/1.%d %d",
-			   &subversion,
-			   &httperror)) {
-	      ;
-	    }
-	  }
-	  if(200 != httperror) {
-	    if(407 == httperror)
-	      /* Added Nov 6 1998 */
-	      failf(data, "Proxy requires authorization!");
-	    else 
-	      failf(data, "Received error code %d from proxy", httperror);
-	    return URG_READ_ERROR;
-	  }
-	}
-        infof (data, "Proxy has replied to CONNECT request\n");
-     }
-
-      /* now, perform the SSL initialization for this socket */
-     if(UrgSSLConnect (data)) {
-       return URG_SSL_CONNECT_ERROR;
-     }
+  if(data->curl_connect) {
+    /* is there a post-connect() procedure? */
+    result = data->curl_connect(conn);
   }
+
   pgrsTime(data, TIMER_CONNECT);
 
   conn->now = tvnow(); /* time this *after* the connect is done */
@@ -1208,12 +1255,21 @@ UrgError curl_done(CURLconnect *c_connect)
   if(!conn || (conn->handle!= STRUCT_CONNECT)) {
     return URG_FAILED_INIT; /* TBD: make a proper return code */
   }
+  if(conn->state != CONN_DO) {
+    /* This can only be called after a curl_do() */
+    return URG_FAILED_INIT; /* TBD: make a proper return code */
+  }
   data = conn->data;
 
   /* this calls the protocol-specific function pointer previously set */
-  result = data->curl_done(conn);
+  if(data->curl_done)
+    result = data->curl_done(conn);
+  else
+    result = URG_OK;
 
   pgrsDone(data); /* done with the operation */
+
+  conn->state = CONN_DONE;
 
   return result;
 }
@@ -1227,18 +1283,21 @@ UrgError curl_do(CURLconnect *in_conn)
   if(!conn || (conn->handle!= STRUCT_CONNECT)) {
     return URG_FAILED_INIT; /* TBD: make a proper return code */
   }
-
-  if(data->conf & CONF_TELNET) {
-    result=telnet(conn);
-    if(result)
-      return result;
+  if(conn->state != CONN_INIT) {
+    return URG_FAILED_INIT; /* TBD: make a proper return code */
   }
-  else {
+
+  if(data->curl_do) {
     /* generic protocol-specific function pointer set in curl_connect() */
     result = data->curl_do(conn);
-    if(result)
+    if(result) {
+      conn->state = CONN_ERROR;
       return result;
+    }
   }
+
+  conn->state = CONN_DO; /* we have entered this state */
+
 #if 0
   if(conn->bytecount) {
     double ittook = tvdiff (tvnow(), conn->now);

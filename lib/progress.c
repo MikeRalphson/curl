@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/progress.c,v $
- * $Revision: 1.10 $
- * $Date: 2000-04-08 19:28:23 $
+ * $Revision: 1.10.2.1 $
+ * $Date: 2000-05-08 22:35:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -118,7 +118,7 @@ void pgrsDone(struct UrlData *data)
 void pgrsMode(struct UrlData *data, int mode)
 {
   /* mode should include a hidden mode as well */
-  if(data->conf&(CONF_NOPROGRESS|CONF_MUTE))
+  if(data->bits.hide_progress || data->bits.mute)
     data->progress.flags |= PGRS_HIDE; /* don't show anything */
   else {
     data->progress.mode = mode; /* store type */
