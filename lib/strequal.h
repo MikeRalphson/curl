@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.h,v 1.10 2002-09-03 11:53:01 bagder Exp $
+ * $Id: strequal.h,v 1.11 2002-10-28 21:52:00 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -31,6 +31,10 @@ int curl_strnequal(const char *first, const char *second, size_t max);
 
 #define strequal(a,b) curl_strequal(a,b)
 #define strnequal(a,b,c) curl_strnequal(a,b,c)
+
+/* checkprefix() is a shorter version of the above, used when the first
+   argument is zero-byte terminated */
+#define checkprefix(a,b)    strnequal(a,b,strlen(a))
 
 #ifndef HAVE_STRLCAT
 #define strlcat(x,y,z) Curl_strlcat(x,y,z)

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.42 2002-10-28 19:21:30 bagder Exp $
+ * $Id: formdata.c,v 1.43 2002-10-28 21:52:00 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1218,7 +1218,7 @@ CURLcode Curl_getFormData(struct FormData **finalform,
        */
       
       if(file->contenttype &&
-         !strnequal("text/", file->contenttype, 5)) {
+         !checkprefix("text/", file->contenttype)) {
         /* this is not a text content, mention our binary encoding */
         size += AddFormData(&form, "\r\nContent-Transfer-Encoding: binary", 0);
       }
