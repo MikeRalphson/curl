@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.169 2003-08-05 14:40:59 bagder Exp $
+ * $Id: urldata.h,v 1.170 2003-08-08 09:13:19 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -818,6 +818,7 @@ struct UserDefined {
   bool ftp_append;
   bool ftp_ascii;
   bool ftp_list_only;
+  bool ftp_create_missing_dirs;
   bool ftp_use_port;
   bool hide_progress;
   bool http_fail_on_error;

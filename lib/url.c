@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.292 2003-08-05 14:40:59 bagder Exp $
+ * $Id: url.c,v 1.293 2003-08-08 09:13:19 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -488,6 +488,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * later (possibly) become available using curl_easy_getinfo().
      */
     data->set.get_filetime = va_arg(param, long)?TRUE:FALSE;
+    break;
+  case CURLOPT_FTP_CREATE_MISSING_DIRS:
+    /*
+     * An FTP option that modifies an upload to create missing directories on
+     * the server.
+     */ 
+    data->set.ftp_create_missing_dirs = va_arg( param , long )?TRUE:FALSE;
     break;
   case CURLOPT_FTPLISTONLY:
     /*
