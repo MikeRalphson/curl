@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.284 2004-12-11 22:18:11 bagder Exp $
+ * $Id: ftp.c,v 1.285 2004-12-15 02:32:04 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -442,10 +442,6 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
   return result;
 }
 
-static const char *ftpauth[]= {
-  "SSL", "TLS", NULL
-};
-
 /*
  * Curl_ftp_connect() should do everything that is to be considered a part of
  * the connection phase.
@@ -459,6 +455,9 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   struct FTP *ftp;
   CURLcode result;
   int ftpcode, trynum;
+  static const char * const ftpauth[]  = {
+    "SSL", "TLS", NULL
+  };
 
   ftp = (struct FTP *)malloc(sizeof(struct FTP));
   if(!ftp)
