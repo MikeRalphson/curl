@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.177 2003-10-14 12:00:45 bagder Exp $
+ * $Id: transfer.c,v 1.178 2003-10-16 14:08:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -86,7 +86,6 @@
 #include "transfer.h"
 #include "sendf.h"
 #include "speedcheck.h"
-#include "getpass.h"
 #include "progress.h"
 #include "getdate.h"
 #include "http.h"
