@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-08-31 12:04:55 $
+ * $Revision: 1.12 $
+ * $Date: 2000-10-02 06:27:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -724,10 +724,12 @@ CURLcode curl_transfer(CURL *curl)
   if(data->newurl)
     free(data->newurl);
 
+#if 0
   if((CURLE_OK == res) && data->writeinfo) {
     /* Time to output some info to stdout */
     WriteOut(data);
   }
+#endif
   return res;
 }
 
