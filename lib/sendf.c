@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.75 2004-01-30 12:08:18 bagder Exp $
+ * $Id: sendf.c,v 1.76 2004-02-02 14:49:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -428,6 +428,8 @@ int Curl_read(struct connectdata *conn,
 #endif
         return -1;
     }
+    else
+      conn->sockerror = 0; /* no error */
 
 #ifdef USE_SSLEAY
   }
