@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.192 2004-01-30 12:08:18 bagder Exp $
+ * $Id: urldata.h,v 1.193 2004-02-02 14:49:54 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -296,6 +296,8 @@ struct ConnectBits {
   bool tcpconnect;    /* the tcp stream (or simimlar) is connected, this
                          is set the first time on the first connect function
                          call */
+  bool retry;         /* this connection is about to get closed and then
+                         re-attempted at another connection. */
 };
 
 /*
