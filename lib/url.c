@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-02-16 00:01:50 $
+ * $Revision: 1.8 $
+ * $Date: 2000-02-21 23:51:09 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -430,6 +430,9 @@ UrgError curl_urlget(UrgTag tag, ...)
       case URGTAG_WRITEFUNCTION:
         data->fwrite = (size_t (*)(char *, size_t, size_t, FILE *))param_func;
         break;
+      case URGTAG_WRITEINFO:
+        data->writeinfo = (char *)param_obj;
+        break;
       case URGTAG_READFUNCTION:
         data->fread = (size_t (*)(char *, size_t, size_t, FILE *))param_func;
         break;
@@ -545,6 +548,12 @@ UrgError curl_urlget(UrgTag tag, ...)
   }
   else
     res = URG_FAILED_INIT; /* failed */
+
+  if((URG_OK == res) && data->writeinfo) {
+    /* Time to output some info to stdout */
+    WriteOut(data);
+  }
+
 
   /* total cleanup */
   urlfree(data, TRUE);
