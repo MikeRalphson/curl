@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.106 2004-06-23 06:14:23 bagder Exp $
+ * $Id: connect.c,v 1.107 2004-06-23 09:08:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -514,8 +514,8 @@ CURLcode Curl_is_connected(struct connectdata *conn,
   return CURLE_OK;
 }
 
-static void Curl_setNoDelay(struct connectdata *conn,
-                            curl_socket_t sockfd)
+static void tcpnodelay(struct connectdata *conn,
+                       curl_socket_t sockfd)
 {
 #ifdef TCP_NODELAY
   struct SessionHandle *data= conn->data;
@@ -648,7 +648,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
     infof(data, "  Trying %s... ", addr_buf);
 
     if(data->set.tcp_nodelay)
-      Curl_setNoDelay(conn, sockfd);
+      tcpnodelay(conn, sockfd);
 
     if(conn->data->set.device) {
       /* user selected to bind the outgoing socket to a specified "device"
