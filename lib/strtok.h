@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtok.h,v 1.2 2001-05-29 19:20:37 bagder Exp $
+ * $Id: strtok.h,v 1.3 2001-05-30 11:06:56 bagder Exp $
  *****************************************************************************/
 
 #ifndef _CURL_STRTOK_R_H
@@ -30,6 +30,8 @@
 #ifndef HAVE_STRTOK_R
 char *Curl_strtok_r(char *s, const char *delim, char **last);
 #define strtok_r Curl_strtok_r
+#else
+extern char *strtok_r(char *s1, const char *s2, char **lasts);
 #endif
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.127 2001-05-29 19:17:39 bagder Exp $
+ * $Id: url.c,v 1.128 2001-05-30 11:06:56 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -91,6 +91,7 @@
 #include "cookie.h"
 #include "strequal.h"
 #include "escape.h"
+#include "strtok.h"
 
 /* And now for the protocols */
 #include "ftp.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.13 2001-05-29 19:17:39 bagder Exp $
+ * $Id: netrc.c,v 1.14 2001-05-30 11:06:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -41,6 +41,7 @@
 #include <curl/curl.h>
 
 #include "strequal.h"
+#include "strtok.h"
 
 /* The last #include file should be: */
 #ifdef MALLOCDEBUG
