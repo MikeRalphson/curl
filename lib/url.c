@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.139 2001-08-15 21:40:09 bagder Exp $
+ * $Id: url.c,v 1.140 2001-08-15 21:54:24 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1989,7 +1989,7 @@ static CURLcode Connect(struct UrlData *data,
    * IPv6-specified addresses in the [0::1] style.
    *************************************************************/
 
-  if((1 == sscanf(conn->name, "[%*39[0-9a-fA-F:]%c", &endbracket)) &&
+  if((1 == sscanf(conn->name, "[%*39[0-9a-fA-F:.]%c", &endbracket)) &&
      (']' == endbracket)) {
     /* this is a IPv6-style specified IP-address */
 #ifndef ENABLE_IPV6
