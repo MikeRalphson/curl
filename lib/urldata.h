@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.153 2003-05-21 08:08:50 bagder Exp $
+ * $Id: urldata.h,v 1.154 2003-05-22 16:09:55 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -152,6 +152,13 @@ struct curl_ssl_session {
   struct ssl_config_data ssl_config; /* setup for this session */
 };
 
+/* Struct used for Digest challenge-response authentication */
+struct digestdata {
+  char *nonce;
+  char *cnonce;
+  char *realm;
+  int algo;
+};
 
 /****************************************************************************
  * HTTP unique setup
@@ -326,7 +333,6 @@ struct Curl_transfer_keeper {
   bool upload_done; /* set to TRUE when doing chunked transfer-encoding upload
                        and we're uploading the last chunk */
 };
-
 
 /*
  * The connectdata struct contains all fields and variables that should be
@@ -619,6 +625,8 @@ struct UrlState {
 #endif
   bool allow_port; /* Is set.use_port allowed to take effect or not. This
                       is always set TRUE when curl_easy_perform() is called. */
+
+  struct digestdata digest;
 };
 
 
