@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.119 2001-04-27 08:02:10 bagder Exp $
+ * $Id: url.c,v 1.120 2001-05-03 10:53:01 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2033,6 +2033,7 @@ static CURLcode Connect(struct UrlData *data,
 
     /* re-use init */
     conn->bits.reuse = TRUE; /* yes, we're re-using here */
+    conn->bits.chunk = FALSE; /* always assume not chunked unless told otherwise */
     conn->maxdownload = -1;  /* might have been used previously! */
 
     free(old_conn);          /* we don't need this anymore */
