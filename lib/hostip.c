@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.153 2004-06-10 11:06:21 bagder Exp $
+ * $Id: hostip.c,v 1.154 2004-06-10 11:55:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -185,9 +185,9 @@ int Curl_num_addresses(const Curl_addrinfo *addr)
 }
 
 /*
- * Curl_printable_address() returns a printable version of the 1st
- * address given in the 2nd argument. The result will be stored in
- * the buf that is bufsize bytes big.
+ * Curl_printable_address() returns a printable version of the 1st address
+ * given in the 'ip' argument. The result will be stored in the buf that is
+ * bufsize bytes big.
  *
  * If the conversion fails, it returns NULL.
  */
