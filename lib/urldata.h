@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.56 2001-03-14 14:11:11 bagder Exp $
+ * $Id: urldata.h,v 1.57 2001-03-15 14:38:30 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -496,8 +496,9 @@ struct UrlData {
   curl_passwd_callback fpasswd;
   void *passwd_client; /* pointer to pass to the passwd callback */
 
-  long timeout; /* in seconds, 0 means no timeout */
-  long infilesize; /* size of file to upload, -1 means unknown */
+  long timeout;        /* in seconds, 0 means no timeout */
+  long connecttimeout; /* in seconds, 0 means no timeout */
+  long infilesize;     /* size of file to upload, -1 means unknown */
 
   char buffer[BUFSIZE+1]; /* buffer with size BUFSIZE */
 
