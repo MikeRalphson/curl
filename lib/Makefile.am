@@ -1,8 +1,8 @@
 #
-# $Id: Makefile.am,v 1.24 2001-08-15 06:50:30 bagder Exp $
+# $Id: Makefile.am,v 1.25 2001-08-20 07:10:28 bagder Exp $
 #
 
-AUTOMAKE_OPTIONS = foreign
+AUTOMAKE_OPTIONS = foreign no-dependencies
 
 EXTRA_DIST = getdate.y \
        Makefile.b32 Makefile.b32.resp Makefile.m32 Makefile.vc6 \
