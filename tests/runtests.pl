@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.63 2002-08-30 10:50:22 bagder Exp $
+# $Id: runtests.pl,v 1.64 2002-11-06 08:29:48 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -506,7 +506,7 @@ sub singletest {
     # name of the test
     my @testname= getpart("client", "name");
 
-    print "test $testnum...";
+    printf("test %03d...", $testnum);
     if(!$short) {
         my $name = $testname[0];
         $name =~ s/\n//g;
