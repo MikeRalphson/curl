@@ -20,13 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.h,v 1.15 2004-01-16 07:15:05 bagder Exp $
+ * $Id: if2ip.h,v 1.16 2004-05-05 13:42:23 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
 #if !defined(WIN32) && !defined(__BEOS__) && !defined(__CYGWIN32__) && \
     !defined(__riscos__) && !defined(__INTERIX)
-extern char *Curl_if2ip(char *interface, char *buf, int buf_size);
+extern char *Curl_if2ip(const char *interface, char *buf, int buf_size);
 #else
 #define Curl_if2ip(a,b,c) NULL
 #endif
