@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.3 2004-01-05 22:29:33 bagder Exp $
+ * $Id: lib505.c,v 1.4 2004-02-05 12:34:17 bagder Exp $
  */
 
 #include "test.h"
@@ -34,7 +34,7 @@
  * Example based on source code provided by Erick Nuwendam. Thanks!
  */
 
-CURLcode test(char *URL)
+int test(char *URL)
 {
   CURL *curl;
   CURLcode res;
