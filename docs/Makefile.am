@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.4 2001-01-08 13:39:21 bagder Exp $
+# $Id: Makefile.am,v 1.5 2001-03-22 11:22:09 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -17,7 +17,9 @@ man_MANS = \
 	curl_getenv.3 \
 	curl_slist_append.3 \
 	curl_slist_free_all.3 \
-	curl_version.3
+	curl_version.3 \
+	curl_escape.3 \
+	curl_unescape.3
 
 EXTRA_DIST = $(man_MANS) \
 	MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS \
