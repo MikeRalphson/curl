@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.58 2004-11-29 12:10:09 bagder Exp $
+ * $Id: sws.c,v 1.59 2004-12-02 17:11:09 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -340,6 +340,8 @@ int ProcessRequest(struct httprequest *req)
           /* if the host name starts with bad, we fake an error here */
           req->testno = DOCNUMBER_BADCONNECT;
         else if(!strncmp(doc, "test", 4)) {
+          /* if the host name starts with test, the port number used in the
+             CONNECT line will be used as test number! */
           char *ptr = strchr(doc, ':');
           if(ptr)
             req->testno = atoi(ptr+1);
