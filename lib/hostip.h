@@ -20,16 +20,28 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.11 2001-10-02 09:40:06 bagder Exp $
+ * $Id: hostip.h,v 1.12 2001-10-04 13:25:12 bagder Exp $
  *****************************************************************************/
 
 struct addrinfo;
 struct hostent;
 struct SessionHandle;
 
+/* Get name info */
 Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
                                 char *hostname,
                                 int port,
                                 char **bufp);
+/* free name info */
+void Curl_freeaddrinfo(void *freethis);
+
+#ifdef MALLOCDEBUG
+void curl_freeaddrinfo(struct addrinfo *freethis,
+                       int line, const char *source);
+int curl_getaddrinfo(char *hostname, char *service,
+                     struct addrinfo *hints,
+                     struct addrinfo **result,
+                     int line, const char *source);
+#endif
 
 #endif
