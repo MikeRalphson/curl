@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.47 2003-04-04 12:24:01 bagder Exp $
+ * $Id: formdata.c,v 1.48 2003-04-15 09:29:39 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -517,7 +517,7 @@ static const char * ContentTypeForFilename (const char *filename,
     {".jpg",  "image/jpeg"},
     {".jpeg", "image/jpeg"},
     {".txt",  "text/plain"},
-    {".html", "text/plain"}
+    {".html", "text/html"}
   };
   
   if(prevtype)
