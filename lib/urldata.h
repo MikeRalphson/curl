@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.194 2004-02-20 08:47:23 bagder Exp $
+ * $Id: urldata.h,v 1.195 2004-02-22 22:31:24 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -376,13 +376,14 @@ struct Curl_transfer_keeper {
   bool ignorebody;  /* we read a response-body but we ignore it! */
 };
 
-#ifdef USE_ARES
+#if defined(USE_ARES) || defined(USE_THREADING_GETHOSTBYNAME)
 struct Curl_async {
   char *hostname;
   int port;
   struct Curl_dns_entry *dns;
   bool done;  /* set TRUE when the lookup is complete */
   int status; /* if done is TRUE, this is the status from the callback */
+  void *os_specific;  /* 'struct thread_data' for Windows */
 };
 #endif
 
@@ -566,7 +567,7 @@ struct connectdata {
 
   int sockerror; /* errno stored by Curl_read() if the underlying layer returns
                     error */
-#ifdef USE_ARES
+#if defined(USE_ARES) || defined(USE_THREADING_GETHOSTBYNAME)
   /* data used for the asynch name resolve callback */
   struct Curl_async async;
 #endif
