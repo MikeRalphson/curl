@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.214 2002-06-11 15:44:27 bagder Exp $
+ * $Id: url.c,v 1.215 2002-06-11 15:47:01 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -143,7 +143,9 @@ static unsigned int ConnectionStore(struct SessionHandle *data,
 #ifndef RETSIGTYPE
 #define RETSIGTYPE void
 #endif
+#ifdef HAVE_SIGSETJMP
 extern sigjmp_buf curl_jmpenv;
+#endif
 static
 RETSIGTYPE alarmfunc(int signal)
 {
