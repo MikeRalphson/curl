@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2003, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.h,v 1.1 2003-10-16 14:09:39 bagder Exp $
+ * $Id: getpass.h,v 1.2 2004-01-07 09:19:36 bagder Exp $
  ***************************************************************************/
 #ifndef HAVE_GETPASS_R
 /* If there's a system-provided function named like this, we trust it is

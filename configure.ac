@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.37 2003-12-15 13:24:16 bagder Exp $
+dnl $Id: configure.ac,v 1.38 2004-01-07 09:19:33 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -7,7 +7,7 @@ dnl We don't know the version number "staticly" so we use a dash here
 AC_INIT(curl, [-], [curl-bug@haxx.se])
 
 dnl configure script copyright
-AC_COPYRIGHT([Copyright (c) 1998 - 2003 Daniel Stenberg, <daniel@haxx.se>
+AC_COPYRIGHT([Copyright (c) 1998 - 2004 Daniel Stenberg, <daniel@haxx.se>
 This configure script may be copied, distributed and modified under the 
 terms of the curl license; see COPYING for more details])
 

@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2003, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.15 2003-11-24 07:15:37 bagder Exp $
+ * $Id: ssluse.h,v 1.16 2004-01-07 09:19:35 bagder Exp $
  ***************************************************************************/
 #include "urldata.h"
 CURLcode Curl_SSLConnect(struct connectdata *conn, int sockfd);
