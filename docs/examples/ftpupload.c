@@ -1,11 +1,11 @@
 /*****************************************************************************
- *                                  _   _ ____  _     
- *  Project                     ___| | | |  _ \| |    
- *                             / __| | | | |_) | |    
- *                            | (__| |_| |  _ <| |___ 
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.4 2004-01-05 22:29:30 bagder Exp $
+ * $Id: ftpupload.c,v 1.5 2004-05-26 08:58:25 bagder Exp $
  */
 
 #include <stdio.h>
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
   close(hd) ;
 
   /* get a FILE * of the same file, could also be made with
-     fdopen() from the previous descriptor, but hey this is just 
+     fdopen() from the previous descriptor, but hey this is just
      an example! */
   hd_src = fopen(LOCAL_FILE, "rb");
 
