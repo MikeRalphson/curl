@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.130 2004-03-17 12:46:46 bagder Exp $
+ * $Id: hostip.c,v 1.131 2004-03-29 21:29:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -478,7 +478,7 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
                           struct Curl_dns_entry **dns)
 {
   fd_set read_fds, write_fds;
-  static const struct timeval tv={0,0};
+  struct timeval tv={0,0};
   int count;
   struct SessionHandle *data = conn->data;
   int nfds;
