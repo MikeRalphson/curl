@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.14 2004-05-04 07:52:53 bagder Exp $
+ * $Id: http_digest.c,v 1.15 2004-05-06 07:21:19 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -239,7 +239,7 @@ CURLcode Curl_output_digest(struct connectdata *conn,
   if(!d->cnonce) {
     /* Generate a cnonce */
     now = Curl_tvnow();
-    snprintf(cnoncebuf, sizeof(cnoncebuf), "%06d", now.tv_sec);
+    snprintf(cnoncebuf, sizeof(cnoncebuf), "%06ld", now.tv_sec);
     Curl_base64_encode(cnoncebuf, strlen(cnoncebuf), &cnonce);
     d->cnonce = cnonce;
   }
