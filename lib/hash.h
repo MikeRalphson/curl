@@ -20,10 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.h,v 1.2 2002-01-07 20:52:32 bumblebury Exp $
+ * $Id: hash.h,v 1.3 2002-01-14 05:36:28 bumblebury Exp $
  *****************************************************************************/
-
-#include "setup.h"
 
 #include "setup.h"
 
