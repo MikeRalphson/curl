@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.248 2004-09-13 20:47:31 bagder Exp $
+ * $Id: transfer.c,v 1.249 2004-09-16 21:28:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1801,8 +1801,15 @@ CURLcode Curl_follow(struct SessionHandle *data,
       /* We got a new absolute path for this server, cut off from the
          first slash */
       pathsep = strchr(protsep, '/');
-      if(pathsep)
+      if(pathsep) {
+        /* When people use badly formatted URLs, such as
+           "http://www.url.com?dir=/home/daniel" we must not use the first
+           slash, if there's a ?-letter before it! */
+        char *sep = strchr(protsep, '?');
+        if(sep && (sep < pathsep))
+          pathsep = sep;
         *pathsep=0;
+      }
       else {
         /* There was no slash. Now, since we might be operating on a badly
            formatted URL, such as "http://www.url.com?id=2380" which doesn't
