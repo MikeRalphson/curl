@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.216 2003-12-03 08:26:31 bagder Exp $
+ * $Id: ftp.c,v 1.217 2003-12-08 13:06:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -306,7 +306,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
       else if(gotbytes <= 0) {
         keepon = FALSE;
         result = CURLE_RECV_ERROR;
-        failf(data, "Connection aborted");
+        failf(data, "FTP response reading failed");
       }
       else {
         /* we got a whole chunk of data, which can be anything from one
