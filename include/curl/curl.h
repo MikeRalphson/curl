@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.216 2003-09-07 23:32:00 bagder Exp $
+ * $Id: curl.h,v 1.217 2003-09-19 12:56:23 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1134,6 +1134,7 @@ typedef struct {
 #define CURL_VERSION_GSSNEGOTIATE (1<<5)
 #define CURL_VERSION_DEBUG     (1<<6) /* built with debug capabilities */
 #define CURL_VERSION_ASYNCHDNS (1<<7)
+#define CURL_VERSION_SPNEGO    (1<<8)
 
 /*
  * NAME curl_version_info()

@@ -21,10 +21,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.h,v 1.2 2003-06-26 11:25:42 bagder Exp $
+ * $Id: http_negotiate.h,v 1.3 2003-09-19 12:56:24 bagder Exp $
  ***************************************************************************/
 
-#ifdef GSSAPI
+#ifdef HAVE_GSSAPI
 
 /* this is for Negotiate header input */
 int Curl_input_negotiate(struct connectdata *conn, char *header);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.27 2003-08-29 08:43:21 bagder Exp $
+ * $Id: version.c,v 1.28 2003-09-19 12:56:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -114,7 +114,7 @@ char *curl_version(void)
   sprintf(ptr, " zlib/%s", zlibVersion());
   ptr += strlen(ptr);
 #endif
-#ifdef GSSAPI
+#ifdef HAVE_GSSAPI
   sprintf(ptr, " GSS");
   ptr += strlen(ptr);
 #endif
@@ -177,7 +177,7 @@ static curl_version_info_data version_info = {
 #ifdef HAVE_LIBZ
   | CURL_VERSION_LIBZ
 #endif
-#ifdef GSSAPI
+#ifdef HAVE_GSSAPI
   | CURL_VERSION_GSSNEGOTIATE
 #endif
 #ifdef CURLDEBUG
@@ -185,6 +185,9 @@ static curl_version_info_data version_info = {
 #endif
 #ifdef USE_ARES
   | CURL_VERSION_ASYNCHDNS
+#endif
+#ifdef HAVE_SPNEGO
+  | CURL_VERSION_SPNEGO
 #endif
   ,
   NULL, /* ssl_version */
