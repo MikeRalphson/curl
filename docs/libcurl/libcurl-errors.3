@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl-errors.3,v 1.6 2003-11-06 12:52:48 bagder Exp $
+.\" $Id: libcurl-errors.3,v 1.7 2003-12-04 12:56:05 bagder Exp $
 .\"
 .TH libcurl-errors 3 "18 Oct 2003" "libcurl 7.10.8" "libcurl errors"
 .SH NAME
@@ -13,9 +13,6 @@ Almost all "easy" interface functions return a CURLcode error code. No matter
 what, using \fICURLOPT_ERRORBUFFER\fP is a good idea as it will give you a
 human readable error string that may offer more details about the error cause
 than just the error code does.
-
-This man page is meant to describe libcurl 7.9.6 and later. Earlier versions
-might have had quirks not mentioned here.
 
 CURLcode is one of the following:
 .RS 0
