@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.50 2004-01-23 08:02:12 bagder Exp $
+ * $Id: progress.c,v 1.51 2004-01-27 12:25:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -57,6 +57,7 @@ static char *max5data(double bytes, char *max5)
 {
 #define ONE_KILOBYTE 1024
 #define ONE_MEGABYTE (1024*1024)
+#define ONE_GIGABYTE (1024*1024*1024)
 
   if(bytes < 100000) {
     sprintf(max5, "%5Od", (curl_off_t)bytes);
@@ -71,7 +72,17 @@ static char *max5data(double bytes, char *max5)
     sprintf(max5, "%4.1fM", bytes/ONE_MEGABYTE);
     return max5;
   }
+#if SIZEOF_CURL_OFF_T > 4
+  if((curl_off_t)bytes < ((curl_off_t)10000*ONE_MEGABYTE)) {
+    sprintf(max5, "%4OdM", (curl_off_t)bytes/ONE_MEGABYTE);
+    return max5;
+  }
+  /* 10000 MB - 8589934587 GB !! */
+  sprintf(max5, "%4.1fG", bytes/ONE_GIGABYTE);
+#else
   sprintf(max5, "%4OdM", (curl_off_t)bytes/ONE_MEGABYTE);
+#endif
+
   return max5;
 }
 
