@@ -1,5 +1,5 @@
 /* ============================================================================
- * Copyright (C) 1998 Angus Mackay. All rights reserved; 
+ * Copyright (C) 1998 - 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * Redistribution and use are freely permitted provided that:
  *
@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.16 2001-12-04 13:03:09 bagder Exp $
+ * $Id: getpass.c,v 1.17 2002-03-19 07:54:55 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
