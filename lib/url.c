@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.12 $
- * $Date: 2000-04-04 17:44:24 $
+ * $Revision: 1.13 $
+ * $Date: 2000-04-04 18:08:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1191,7 +1191,6 @@ static UrgError _urlget(struct UrlData *data)
    * you download to stdout and redirect it to a file). */
 
   if ((data->out)->_handle == NULL) {
-    fprintf(stderr, "_fsetmode\n");
     _fsetmode(stdout, "b");
   }
 #endif
