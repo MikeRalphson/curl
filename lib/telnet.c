@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.9 2001-01-05 10:11:43 bagder Exp $
+ * $Id: telnet.c,v 1.10 2001-01-17 13:23:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -71,7 +71,7 @@
 
 #include "urldata.h"
 #include <curl/curl.h>
-#include "download.h"
+#include "transfer.h"
 #include "sendf.h"
 #include "formdata.h"
 #include "progress.h"

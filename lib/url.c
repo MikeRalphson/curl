@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.70 2001-01-05 10:11:43 bagder Exp $
+ * $Id: url.c,v 1.71 2001-01-17 13:23:01 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -85,7 +85,7 @@
 #include "ssluse.h"
 #include "hostip.h"
 #include "if2ip.h"
-#include "download.h"
+#include "transfer.h"
 #include "sendf.h"
 #include "getpass.h"
 #include "progress.h"
@@ -1063,7 +1063,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
     conn->curl_do = file;
     /* no done() function */
 
-    result = Transfer(conn, -1, -1, FALSE, NULL, /* no download */
+    result = Curl_Transfer(conn, -1, -1, FALSE, NULL, /* no download */
                       -1, NULL); /* no upload */
 
     return CURLE_OK;

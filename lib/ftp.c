@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.43 2001-01-08 16:22:55 bagder Exp $
+ * $Id: ftp.c,v 1.44 2001-01-17 13:23:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -67,7 +67,7 @@
 #include "if2ip.h"
 #include "hostip.h"
 #include "progress.h"
-#include "download.h"
+#include "transfer.h"
 #include "escape.h"
 #include "http.h" /* for HTTP proxy tunnel stuff */
 #include "ftp.h"
@@ -1110,7 +1110,7 @@ CURLcode _ftp(struct connectdata *conn)
 
     Curl_pgrsSetUploadSize(data, data->infilesize);
 
-    result = Transfer(conn, -1, -1, FALSE, NULL, /* no download */
+    result = Curl_Transfer(conn, -1, -1, FALSE, NULL, /* no download */
                       data->secondarysocket, bytecountp);
     if(result)
       return result;
@@ -1339,7 +1339,7 @@ CURLcode _ftp(struct connectdata *conn)
       infof(data, "Getting file with size: %d\n", size);
 
       /* FTP download: */
-      result=Transfer(conn, data->secondarysocket, size, FALSE,
+      result=Curl_Transfer(conn, data->secondarysocket, size, FALSE,
                       bytecountp,
                       -1, NULL); /* no upload here */
       if(result)
