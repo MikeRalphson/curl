@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.288 2004-11-08 19:41:28 bagder Exp $
+ * $Id: main.c,v 1.289 2004-11-08 21:31:57 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1561,9 +1561,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       case 'i': /* --retry-max-time */
         if(str2num(&config->retry_maxtime, nextarg))
           return PARAM_BAD_NUMERIC;
-        break;
-      default:
-        break;
+        /* break */
       }
       break;
     case '#': /* added 19990617 larsa */
