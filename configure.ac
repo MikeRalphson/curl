@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.88 2004-07-22 22:22:29 bagder Exp $
+dnl $Id: configure.ac,v 1.89 2004-07-24 21:29:43 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -87,7 +87,7 @@ dnl check for cygwin stuff
 AC_LIBTOOL_WIN32_DLL
 
 dnl libtool setup
-AM_PROG_LIBTOOL
+AC_PROG_LIBTOOL
 
 AC_MSG_CHECKING([if we need -no-undefined])
 case $host in
