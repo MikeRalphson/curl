@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.249 2004-04-26 14:06:51 bagder Exp $
+ * $Id: curl.h,v 1.250 2004-04-30 10:34:54 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -848,13 +848,8 @@ typedef enum {
 #endif
 
 
-/* These functions are in libcurl, they're here for portable reasons and they
-   are used by the 'curl' client. They really should be moved to some kind of
-   "portability library" since it has nothing to do with file transfers and
-   might be usable to other programs...
-
-   NOTE: they return TRUE if the strings match *case insensitively*.
- */
+/* curl_strequal() and curl_strnequal() are subject for removal in a future
+   libcurl, see lib/README.curlx for details */
 extern int (curl_strequal)(const char *s1, const char *s2);
 extern int (curl_strnequal)(const char *s1, const char *s2, size_t n);
 
@@ -970,7 +965,7 @@ void curl_formfree(struct curl_httppost *form);
  * DESCRIPTION
  *
  * Returns a malloc()'ed string that MUST be curl_free()ed after usage is
- * complete.
+ * complete. DEPRECATED - see lib/README.curlx
  */
 char *curl_getenv(const char *variable);
 
