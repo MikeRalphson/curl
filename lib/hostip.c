@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.14 $
- * $Date: 2000-09-29 06:34:50 $
+ * $Revision: 1.15 $
+ * $Date: 2000-10-08 12:50:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -117,6 +117,7 @@ struct hostent *GetHost(struct UrlData *data,
   char *buf = (char *)malloc(CURL_NAMELOOKUP_SIZE);
   if(!buf)
     return NULL; /* major failure */
+  *bufp = buf;
 
   if ( (in=inet_addr(hostname)) != INADDR_NONE ) {
     struct in_addr *addrentry;
