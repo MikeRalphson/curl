@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.260 2003-02-28 15:50:05 bagder Exp $
+ * $Id: url.c,v 1.261 2003-03-11 18:58:22 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1427,8 +1427,8 @@ static int handleSock5Proxy(
     int sock)
 {
   unsigned char socksreq[600]; /* room for large user/pw (255 max each) */
-  int actualread;
-  int written;
+  ssize_t actualread;
+  ssize_t written;
   CURLcode result;
 
   Curl_nonblock(sock, FALSE);
