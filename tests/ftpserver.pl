@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.46 2004-08-23 14:40:43 bagder Exp $
+# $Id: ftpserver.pl,v 1.47 2004-10-27 14:18:57 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -652,5 +652,6 @@ for ( $waitedpid = 0;
         }
             
     } # while(1)
+    logmsg "client disconnected\n";
     close(Client);
 }
