@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.79 2002-11-26 09:41:54 bagder Exp $
+ * $Id: hostip.c,v 1.80 2002-12-16 11:33:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -631,16 +631,28 @@ static Curl_addrinfo *my_getaddrinfo(struct SessionHandle *data,
 			  &h, /* DIFFERENCE */
 			  &h_errnop);
       /* Redhat 8, using glibc 2.2.93 changed the behavior. Now all of a
-         sudden this function seems to be setting EAGAIN if the given buffer
-         size is too small. Previous versions are known to return ERANGE for
-         the same. */
+         sudden this function returns EAGAIN if the given buffer size is too
+         small. Previous versions are known to return ERANGE for the same
+         problem.
+
+         This wouldn't be such a big problem if older versions wouldn't
+         sometimes return EAGAIN on a common failure case. Alas, we can't
+         assume that EAGAIN *or* ERANGE means ERANGE for any given version of
+         glibc.
+
+         For now, we do that and thus we may call the function repeatedly and
+         fail for older glibc versions that return EAGAIN, until we run out
+         of buffer size (step_size grows beyond CURL_NAMELOOKUP_SIZE).
+
+         If anyone has a better fix, please tell us!
+      */
 
       if((ERANGE == res) || (EAGAIN == res)) {
 	step_size+=200;
 	continue;
       }
       break;
-    } while(1);
+    } while(step_size <= CURL_NAMELOOKUP_SIZE);
 
     if(!h) /* failure */
       res=1;
