@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.30 2001-08-30 22:48:34 bagder Exp $
+ * $Id: ssluse.c,v 1.31 2001-09-06 06:26:24 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -412,13 +412,15 @@ static int Kill_Single_Session(struct curl_ssl_session *session)
 int Curl_SSL_Close_All(struct SessionHandle *data)
 {
   int i;
-  for(i=0; i< data->set.ssl.numsessions; i++)
-    /* the single-killer function handles empty table slots */
-    Kill_Single_Session(&data->set.ssl.session[i]);
 
-  /* free the cache data */
-  free(data->set.ssl.session);
-
+  if(data->set.ssl.session) {    
+    for(i=0; i< data->set.ssl.numsessions; i++)
+      /* the single-killer function handles empty table slots */
+      Kill_Single_Session(&data->set.ssl.session[i]);
+    
+    /* free the cache data */
+    free(data->set.ssl.session);
+  }
   return 0;
 }
 
