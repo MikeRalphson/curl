@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-01-31 22:20:17 $
+ * $Revision: 1.5 $
+ * $Date: 2000-02-01 23:57:54 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -110,7 +110,6 @@
 #include "ssluse.h"
 #include "hostip.h"
 #include "if2ip.h"
-#include "upload.h"
 #include "download.h"
 #include "sendf.h"
 #include "speedcheck.h"
