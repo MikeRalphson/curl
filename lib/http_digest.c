@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.12 2004-04-29 08:18:32 bagder Exp $
+ * $Id: http_digest.c,v 1.13 2004-04-30 05:53:42 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -123,7 +123,7 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
             else if (strequal(token, "auth-int")) {
               foundAuthInt = TRUE;
             }
-            token = strtok (NULL, ",");
+            token = strtok_r(NULL, ",", &tok_buf);
           }
           free(tmp);
           /*select only auth o auth-int. Otherwise, ignore*/
