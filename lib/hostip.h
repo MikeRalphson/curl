@@ -20,16 +20,22 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.9 2001-08-30 22:48:34 bagder Exp $
+ * $Id: hostip.h,v 1.10 2001-09-28 07:05:26 bagder Exp $
  *****************************************************************************/
 
 struct addrinfo;
-struct addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
-                             char *hostname,
-                             int port);
+struct hostent;
+struct SessionHandle;
 
-struct hostent *Curl_gethost(struct SessionHandle *data,
-                             char *hostname,
-                             char **bufp);
+#ifdef ENABLE_IPV6
+typedef struct addrinfo Curl_addrinfo;
+#else
+typedef struct hostent Curl_addrinfo;
+#endif
+
+Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
+                                char *hostname,
+                                int port,
+                                char **bufp);
 
 #endif

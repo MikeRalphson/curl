@@ -20,12 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.78 2001-09-12 12:02:12 bagder Exp $
+ * $Id: urldata.h,v 1.79 2001-09-28 07:05:26 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
 
 #include "setup.h"
+#include "hostip.h"
 
 #define PORT_FTP 21
 #define PORT_TELNET 23
@@ -223,12 +224,12 @@ struct connectdata {
 #define PROT_FILE    (1<<8)
 #define PROT_FTPS    (1<<9)
 
+  Curl_addrinfo *hp; /* IP-protocol independent host info pointer list */
+  char *hostent_buf; /* pointer to allocated memory for name info */
+
 #ifdef ENABLE_IPV6
-  struct addrinfo *hp; /* host info pointer list */
   struct addrinfo *ai; /* the particular host we use */
 #else
-  char *hostent_buf; /* pointer to allocated memory for name info */
-  struct hostent *hp;
   struct sockaddr_in serv_addr;
 #endif
   char protostr[64];  /* store the protocol string in this buffer */
