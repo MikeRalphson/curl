@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.311 2005-03-04 00:12:02 bagder Exp $
+ * $Id: main.c,v 1.312 2005-03-05 00:54:17 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3771,10 +3771,12 @@ operate(struct Configurable *config, int argc, char *argv[])
                           " bytes\n", outs.bytes);
                 fflush(outs.stream);
                 /* truncate file at the position where we started appending */
+#ifdef HAVE_FTRUNCATE
                 ftruncate( fileno(outs.stream), outs.init);
+#endif
                 /* now seek to the end of the file, the position where we
                    just truncated the file */
-                fseek(outs.stream, 0, SEEK_END);
+                fseek(outs.stream, outs.init, SEEK_SET);
                 outs.bytes = 0; /* clear for next round */
               }
               continue;
