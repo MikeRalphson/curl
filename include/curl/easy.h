@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.h,v 1.11 2004-07-29 07:20:19 bagder Exp $
+ * $Id: easy.h,v 1.12 2004-07-29 07:29:56 bagder Exp $
  ***************************************************************************/
 #ifdef  __cplusplus
 extern "C" {
@@ -72,7 +72,7 @@ CURL* curl_easy_duphandle(CURL *curl);
  * It does keep: live connections, the Session ID cache, the DNS cache and the
  * cookies.
  */
-CURL* curl_easy_reset(CURL *curl);
+void curl_easy_reset(CURL *curl);
 
 #ifdef  __cplusplus
 }
