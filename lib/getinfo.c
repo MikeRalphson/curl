@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.12 2001-09-07 04:01:32 bumblebury Exp $
+ * $Id: getinfo.c,v 1.13 2001-09-28 11:04:43 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,7 @@ CURLcode Curl_initinfo(struct SessionHandle *data)
 
   info->httpcode = 0;
   info->httpversion=0;
-  info->filetime=0;
+  info->filetime=-1; /* -1 is an illegal time and thus means unknown */
 
   return CURLE_OK;
 }

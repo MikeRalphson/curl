@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.79 2001-09-28 07:05:26 bagder Exp $
+ * $Id: urldata.h,v 1.80 2001-09-28 11:04:43 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -352,8 +352,8 @@ struct connectdata {
 struct PureInfo {
   int httpcode;
   int httpversion;
-  time_t filetime; /* If requested, this is might get set. It may be 0 if
-                      the time was unretrievable */
+  long filetime; /* If requested, this is might get set. Set to -1 if
+                    the time was unretrievable */
   long header_size;  /* size of read header(s) in bytes */
   long request_size; /* the amount of bytes sent in the request(s) */
 };

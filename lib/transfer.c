@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.56 2001-09-26 07:08:30 bagder Exp $
+ * $Id: transfer.c,v 1.57 2001-09-28 11:04:43 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -627,7 +627,7 @@ Transfer(struct connectdata *c_conn)
                       (data->set.timecondition || data->set.get_filetime) ) {
                 time_t secs=time(NULL);
                 timeofdoc = curl_getdate(p+strlen("Last-Modified:"), &secs);
-                if(data->set.get_filetime)
+                if(data->set.get_filetime>=0)
                   data->info.filetime = timeofdoc;
               }
               else if ((httpcode >= 300 && httpcode < 400) &&
