@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.147 2003-08-06 15:26:24 bagder Exp $
+ * $Id: http.c,v 1.148 2003-08-11 09:55:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1030,7 +1030,7 @@ CURLcode Curl_http(struct connectdata *conn)
       struct Cookie *store=co;
       /* now loop through all cookies that matched */
       while(co) {
-        if(co->value && strlen(co->value)) {
+        if(co->value) {
           if(0 == count) {
             add_bufferf(req_buffer, "Cookie: ");
           }
