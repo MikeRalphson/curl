@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.107 2003-10-28 13:06:17 bagder Exp $
+ * $Id: hostip.c,v 1.108 2003-11-14 11:56:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -280,6 +280,7 @@ int Curl_resolv(struct connectdata *conn,
   ssize_t entry_len;
   int wait;
   struct SessionHandle *data = conn->data;
+  CURLcode result;
 
   /* default to failure */
   int rc = -1;
@@ -327,7 +328,9 @@ int Curl_resolv(struct connectdata *conn,
         /* the response to our resolve call will come asynchronously at 
            a later time, good or bad */
         /* First, check that we haven't received the info by now */
-        (void)Curl_is_resolved(conn, &dns);
+        result = Curl_is_resolved(conn, &dns);
+        if(result) /* error detected */
+          return -1;
         if(dns)
           rc = 0; /* pointer provided */
         else
