@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.401 2004-07-04 21:37:35 bagder Exp $
+ * $Id: url.c,v 1.402 2004-07-10 23:11:22 gknauf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2118,12 +2118,14 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   int rc;
   bool reuse;
 
+#ifdef SIGALRM
 #ifdef HAVE_SIGACTION
   struct sigaction keep_sigact;   /* store the old struct here */
   bool keep_copysig=FALSE;        /* did copy it? */
 #else
 #ifdef HAVE_SIGNAL
   void *keep_sigact;              /* store the old handler here */
+#endif
 #endif
 #endif
 
