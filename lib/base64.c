@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.22 2003-06-11 15:31:06 bagder Exp $
+ * $Id: base64.c,v 1.23 2003-06-26 06:45:15 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -42,7 +42,7 @@
 
 #include "base64.h"
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
