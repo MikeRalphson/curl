@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.15 2003-08-14 22:44:06 bagder Exp $
+dnl $Id: configure.ac,v 1.16 2003-08-19 09:56:39 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -659,7 +659,8 @@ AC_HELP_STRING([--without-ca-bundle], [Don't install the CA bundle]),
 
     AC_CHECK_FUNCS( RAND_status \
                     RAND_screen \
-                    RAND_egd )
+                    RAND_egd \
+                    CRYPTO_cleanup_all_ex_data )
 
   fi
 
