@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.228 2004-01-26 07:55:16 bagder Exp $
+ * $Id: main.c,v 1.229 2004-01-27 12:39:34 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2039,7 +2039,7 @@ static int parseconfig(const char *filename,
       alloced_param=FALSE;
 
       /* lines with # in the fist column is a comment! */
-      while(isspace((int)*line))
+      while(*line && isspace((int)*line))
         line++;
 
       switch(*line) {
@@ -2059,7 +2059,8 @@ static int parseconfig(const char *filename,
         line++;
       /* ... and has ended here */
 
-      *line++=0; /* zero terminate, we have a local copy of the data */
+      if(*line)
+        *line++=0; /* zero terminate, we have a local copy of the data */
 
 #ifdef DEBUG_CONFIG
       fprintf(stderr, "GOT: %s\n", option);
