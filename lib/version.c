@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.20 2002-09-25 15:38:48 bagder Exp $
+ * $Id: version.c,v 1.21 2002-09-26 13:03:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -120,7 +120,7 @@ char *curl_version(void)
 
 /* data for curl_version_info */
 
-static const curl_runtime_protocol_info protocols[] = {
+static const char *protocols[] = {
 #ifndef CURL_DISABLE_FTP
   { "ftp" },
 #endif
@@ -157,12 +157,19 @@ static const curl_runtime_protocol_info protocols[] = {
 static curl_version_info_data version_info = {
   LIBCURL_VERSION,
   LIBCURL_VERSION_NUM,
+  OS, /* as found by configure or set by hand at build-time */
   0 /* features is 0 by default */
 #ifdef ENABLE_IPV6
   | CURL_VERSION_IPV6
 #endif
 #ifdef KRB4
   | CURL_VERSION_KERBEROS4
+#endif
+#ifdef USE_SSLEAY
+  | CURL_VERSION_SSL
+#endif
+#ifdef HAVE_LIBZ
+  | CURL_VERSION_LIBZ
 #endif
   ,
   NULL, /* ssl_version */
@@ -171,7 +178,7 @@ static curl_version_info_data version_info = {
   protocols
 };
 
-const curl_version_info_data *curl_version_info(void)
+curl_version_info_data *curl_version_info(void)
 {
 #ifdef USE_SSLEAY
   static char ssl_buffer[80];
