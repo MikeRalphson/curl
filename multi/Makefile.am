@@ -1,0 +1,21 @@
+#
+# $Id: Makefile.am,v 1.2 2002-01-03 15:03:14 bagder Exp $
+#
+
+INCLUDES = -I$(top_srcdir)/include
+
+bin_PROGRAMS = app single double
+
+app_SOURCES = app.c
+app_LDADD = ../lib/libcurl.la
+app_DEPENDENCIES = ../lib/libcurl.la
+
+single_SOURCES = single.c
+single_LDADD = ../lib/libcurl.la
+single_DEPENDENCIES = ../lib/libcurl.la
+
+double_SOURCES = double.c
+double_LDADD = ../lib/libcurl.la
+double_DEPENDENCIES = ../lib/libcurl.la
+
+AUTOMAKE_OPTIONS = foreign no-dependencies
