@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.314 2003-11-11 14:30:45 bagder Exp $
+ * $Id: url.c,v 1.315 2003-11-19 14:35:40 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3236,9 +3236,15 @@ CURLcode Curl_done(struct connectdata *conn)
      if conn->bits.close is TRUE, it means that the connection should be
      closed in spite of all our efforts to be nice, due to protocol
      restrictions in our or the server's end */
-  if(data->set.reuse_forbid ||
-     ((CURLE_OK == result) && conn->bits.close))
-    result = Curl_disconnect(conn); /* close the connection */
+  if(data->set.reuse_forbid || conn->bits.close) {
+    CURLcode res2;
+    res2 = Curl_disconnect(conn); /* close the connection */
+
+    /* If we had an error already, make sure we return that one. But
+       if we got a new error, return that. */
+    if(!result && res2)
+      result = res2;
+  }
   else
     infof(data, "Connection #%d left intact\n", conn->connectindex);
 
