@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.106 2001-11-12 22:27:05 bagder Exp $
+ * $Id: ftp.c,v 1.107 2001-11-13 12:09:05 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -558,7 +558,7 @@ CURLcode Curl_ftp_done(struct connectdata *conn)
   ssize_t nread;
   char *buf = data->state.buffer; /* this is our buffer */
   int ftpcode;
-  CURLcode result;
+  CURLcode result=CURLE_OK;
 
   if(data->set.upload) {
     if((-1 != data->set.infilesize) && (data->set.infilesize != *ftp->bytecountp)) {
