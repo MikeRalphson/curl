@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.6 2004-07-14 14:20:53 bagder Exp $
+ * $Id: lib505.c,v 1.7 2004-12-01 13:41:22 giva Exp $
  */
 
 #include "test.h"
@@ -13,7 +13,7 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
-#ifdef HAVE_SYS_TYPES_
+#ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
 #ifdef HAVE_SYS_STAT_H
