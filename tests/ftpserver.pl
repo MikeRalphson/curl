@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.25 2001-12-03 13:46:56 bagder Exp $
+# $Id: ftpserver.pl,v 1.26 2002-04-04 12:23:54 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -262,9 +262,9 @@ sub RETR_command {
 sub STOR_command {
     my $testno=$_[0];
 
-    logmsg "STOR test number $testno\n";
-
     my $filename = "log/upload.$testno";
+
+    logmsg "STOR test number $testno in $filename\n";
 
     print "125 Gimme gimme gimme!\r\n";
 
