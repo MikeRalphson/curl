@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.265 2005-01-29 22:31:06 bagder Exp $
+ * $Id: transfer.c,v 1.266 2005-02-04 13:42:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -285,7 +285,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
          read or we get a EWOULDBLOCK */
       do {
         size_t buffersize = data->set.buffer_size?
-          data->set.buffer_size:BUFSIZE -1;
+          data->set.buffer_size:BUFSIZE;
 
         /* receive data from the network! */
         int readrc = Curl_read(conn, conn->sockfd, k->buf, buffersize, &nread);
