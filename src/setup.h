@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2000, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2001, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * In order to be useful for every potential user, curl and libcurl are
  * dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.7 2001-09-17 14:10:38 bagder Exp $
+ * $Id: setup.h,v 1.8 2001-11-29 12:47:41 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -37,6 +37,10 @@
 #ifdef WIN32
 /* include the hand-modified win32 adjusted config.h! */
 #include "config-win32.h"
+#endif
+#ifdef macintosh
+/* this is not the same as Mac OS X */
+#include "config-mac.h"
 #endif
 #endif
 
