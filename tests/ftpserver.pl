@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.36 2003-08-08 10:21:47 bagder Exp $
+# $Id: ftpserver.pl,v 1.37 2004-01-16 06:50:41 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -11,7 +11,6 @@
 #
 
 use Socket;
-use Carp;
 use FileHandle;
 
 use strict;
@@ -572,5 +571,4 @@ for ( $waitedpid = 0;
             
     } # while(1)
     close(Client);
-    close(Client2);
 }
