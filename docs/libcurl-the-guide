@@ -1,4 +1,4 @@
-$Id: libcurl-the-guide,v 1.19 2002-12-09 14:39:01 bagder Exp $
+$Id: libcurl-the-guide,v 1.20 2002-12-19 15:22:36 bagder Exp $
                                   _   _ ____  _     
                               ___| | | |  _ \| |    
                              / __| | | | |_) | |    
@@ -232,6 +232,7 @@ Multi-threading issues
  For SIGPIPE info see the UNIX Socket FAQ at
  http://www.unixguide.net/network/socketfaq/2.22.shtml
 
+ Also, note that CURLOPT_DNS_USE_GLOBAL_CACHE is not thread-safe.
 
 When It Doesn't Work
 
