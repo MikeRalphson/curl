@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_slist_append.3,v 1.3 2003-06-26 11:41:08 bagder Exp $
+.\" $Id: curl_slist_append.3,v 1.4 2004-02-27 15:34:06 bagder Exp $
 .\"
 .TH curl_slist_append 3 "19 Jun 2003" "libcurl 7.10.4" "libcurl Manual"
 .SH NAME
@@ -18,7 +18,8 @@ the new list is returned from this function. The specified \fIstring\fP has
 been appended when this function returns. curl_slist_append() copies the
 string.
 
-The list should be freed again (after usage) with \fBcurl_slist_free_all()\fP.
+The list should be freed again (after usage) with
+\fBcurl_slist_free_all(3)\fP.
 .SH RETURN VALUE
 A null pointer is returned if anything went wrong, otherwise the new list
 pointer is returned.
@@ -34,6 +35,3 @@ pointer is returned.
  curl_slist_free_all(slist); /* free the list again */
 .SH "SEE ALSO"
 .BR curl_slist_free_all "(3), "
-.SH BUGS
-None.
-
