@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.38 2004-05-11 11:30:23 bagder Exp $
+ * $Id: ldap.c,v 1.39 2004-05-13 10:38:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -104,7 +104,9 @@ typedef void * (*dynafunc)(void *input);
 /***********************************************************************
  */
 static void *libldap = NULL;
+#ifndef WIN32
 static void *liblber = NULL;
+#endif
 
 static int DynaOpen(const char **mod_name)
 {
@@ -500,7 +502,7 @@ static int _ldap_url_parse2 (const struct connectdata *conn, LDAPURLDesc *ludp)
      return LDAP_NO_MEMORY;
 
   p = strchr(ludp->lud_dn, '?');
-  LDAP_TRACE (("DN '%.*s'\n", p ? (p-ludp->lud_dn) : strlen(ludp->lud_dn),
+  LDAP_TRACE (("DN '%.*s'\n", p ? (size_t)(p-ludp->lud_dn) : strlen(ludp->lud_dn),
                ludp->lud_dn));
 
   if (!p)
