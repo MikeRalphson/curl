@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.66 2001-08-14 08:28:15 bagder Exp $
+ * $Id: http.c,v 1.67 2001-08-15 13:38:36 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -763,6 +763,17 @@ CURLcode Curl_http(struct connectdata *conn)
     else {
       if(HTTPREQ_POST == data->httpreq) {
         /* this is the simple POST, using x-www-form-urlencoded style */
+
+        if(!data->postfields) {
+          /*
+           * This is an attempt to do a POST without having anything to
+           * actually send. Let's make a NULL pointer equal "" here. Good/bad
+           * ?
+           */
+          data->postfields = "";
+          data->postfieldsize = 0; /* it might been set to something illegal,
+                                      anything > 0 would be! */
+        }
 
         if(!checkheaders(data, "Content-Length:"))
           /* we allow replacing this header, although it isn't very wise to
