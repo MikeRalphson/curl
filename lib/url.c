@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.27 $
- * $Date: 2000-07-25 21:17:45 $
+ * $Revision: 1.28 $
+ * $Date: 2000-07-28 07:56:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -172,11 +172,15 @@ void urlfree(struct UrlData *data, bool totally)
   }
 
   if(data->bits.proxystringalloc) {
-    data->bits.proxystringalloc=0;
+    data->bits.proxystringalloc=FALSE;;
     free(data->proxy);
     data->proxy=NULL;
+
+    /* Since we allocated the string the previous round, it means that we
+       "discovered" the proxy in the environment variables and thus we must
+       switch off that knowledge again... */
+    data->bits.httpproxy=FALSE;
   }
-  
 
   if(data->ptr_proxyuserpwd) {
     free(data->ptr_proxyuserpwd);
