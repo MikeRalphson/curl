@@ -20,14 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.h,v 1.12 2003-01-16 21:08:13 bagder Exp $
+ * $Id: timeval.h,v 1.13 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <time.h>
-#include <winsock.h>
 #else
 #include <sys/time.h>
 #endif

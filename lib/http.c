@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.162 2003-10-07 14:39:32 bagder Exp $
+ * $Id: http.c,v 1.163 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,7 +36,6 @@
 #include <errno.h>
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
 #include <time.h>
 #include <io.h>
 #else

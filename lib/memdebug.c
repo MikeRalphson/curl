@@ -19,19 +19,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.30 2003-08-14 14:19:36 bagder Exp $
+ * $Id: memdebug.c,v 1.31 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <curl/curl.h>
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
-#else /* some kind of unix */
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
-#endif
 #endif
 
 #define _MPRINTF_REPLACE

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.25 2003-07-25 08:30:58 bagder Exp $
+ * $Id: dict.c,v 1.26 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -35,7 +35,6 @@
 #include <errno.h>
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
 #include <time.h>
 #include <io.h>
 #else

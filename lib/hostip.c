@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.103 2003-10-12 13:57:41 bagder Exp $
+ * $Id: hostip.c,v 1.104 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -29,7 +29,7 @@
 #define _REENTRANT
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
+#include <malloc.h>
 #else
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>

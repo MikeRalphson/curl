@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.200 2003-10-04 15:25:02 bagder Exp $
+ * $Id: ftp.c,v 1.201 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -39,7 +39,7 @@
 #endif
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
+
 #else /* some kind of unix */
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>

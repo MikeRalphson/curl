@@ -18,17 +18,16 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.17 2003-01-29 10:14:24 bagder Exp $
+ * $Id: timeval.c,v 1.18 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
-#ifdef WIN32
-#include <windows.h>
-#endif
 #include "timeval.h"
 
 #ifndef HAVE_GETTIMEOFDAY
 
 #ifdef WIN32
+#include <mmsystem.h>
+
 int
 gettimeofday (struct timeval *tp, void *nothing)
 {

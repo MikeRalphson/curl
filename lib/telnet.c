@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.43 2003-07-25 08:30:58 bagder Exp $
+ * $Id: telnet.c,v 1.44 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -35,8 +35,7 @@
 
 #include <errno.h>
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock2.h>
+#if defined(WIN32)
 #include <time.h>
 #include <io.h>
 #else

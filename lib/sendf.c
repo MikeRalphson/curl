@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.67 2003-08-11 09:56:06 bagder Exp $
+ * $Id: sendf.c,v 1.68 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -38,9 +38,6 @@
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#endif
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
 #endif
 
 #include <curl/curl.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.61 2003-10-08 13:32:44 bagder Exp $
+ * $Id: connect.c,v 1.62 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -66,11 +66,11 @@
 #ifdef WIN32
 #define HAVE_IOCTLSOCKET
 #include <windows.h>
-#include <winsock.h>
 #define EINPROGRESS WSAEINPROGRESS
 #define EWOULDBLOCK WSAEWOULDBLOCK
 #define EISCONN     WSAEISCONN
 #define ENOTSOCK    WSAENOTSOCK
+#define ECONNREFUSED WSAECONNREFUSED
 #endif
 
 #include "urldata.h"

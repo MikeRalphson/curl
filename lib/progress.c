@@ -18,19 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.45 2003-05-14 06:31:00 bagder Exp $
+ * $Id: progress.c,v 1.46 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
-
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#if defined(__MINGW32__)
-#include <winsock.h>
-#endif
 #include <time.h>
-#endif
 
 /* 20000318 mgs
  * later we use _scrsize to determine the screen width, this emx library

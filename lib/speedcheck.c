@@ -18,16 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: speedcheck.c,v 1.17 2003-01-29 10:14:23 bagder Exp $
+ * $Id: speedcheck.c,v 1.18 2003-10-14 12:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <stdio.h>
 #include <string.h>
-#if defined(__MINGW32__)
-#include <winsock.h>
-#endif
 
 #include <curl/curl.h>
 #include "urldata.h"
