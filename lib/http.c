@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.253 2004-12-02 22:52:14 bagder Exp $
+ * $Id: http.c,v 1.254 2004-12-02 23:30:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1024,14 +1024,13 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
   struct Curl_transfer_keeper *k = &conn->keep;
   CURLcode result;
   int res;
-
   size_t nread;   /* total size read */
   int perline; /* count bytes per line */
   bool keepon=TRUE;
   ssize_t gotbytes;
   char *ptr;
-  long timeout = 3600; /* default timeout in seconds */
-
+  long timeout =
+    data->set.timeout?data->set.timeout:3600; /* in seconds */
   char *line_start;
   char *host_port;
   curl_socket_t tunnelsocket = conn->sock[sockindex];
@@ -1088,15 +1087,13 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
 
     while((nread<BUFSIZE) && (keepon && !error)) {
 
-      if(data->set.timeout) {
-        /* if timeout is requested, find out how much remaining time we have */
-        timeout = data->set.timeout - /* timeout time */
-          Curl_tvdiff(Curl_tvnow(), conn->now)/1000; /* spent time */
-        if(timeout <=0 ) {
-          failf(data, "Proxy connection aborted due to timeout");
-          error = SELECT_TIMEOUT; /* already too little time */
-          break;
-        }
+      /* if timeout is requested, find out how much remaining time we have */
+      long check = timeout - /* timeout time */
+        Curl_tvdiff(Curl_tvnow(), conn->now)/1000; /* spent time */
+      if(check <=0 ) {
+        failf(data, "Proxy CONNECT aborted due to timeout");
+        error = SELECT_TIMEOUT; /* already too little time */
+        break;
       }
 
       /* timeout each second and check the timeout */
