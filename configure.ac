@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.5 2003-05-04 16:07:19 bagder Exp $
+dnl $Id: configure.ac,v 1.6 2003-05-21 08:12:52 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -914,6 +914,7 @@ AC_CONFIG_FILES([Makefile \
 	   packages/Linux/RPM/curl.spec \
 	   packages/Linux/RPM/curl-ssl.spec \
            packages/Solaris/Makefile \
+           packages/DOS/Makefile \
            packages/EPM/curl.list \
            packages/EPM/Makefile \
            curl-config
