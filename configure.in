@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.82 2001-10-11 07:41:52 bagder Exp $
+dnl $Id: configure.in,v 1.83 2001-10-16 07:58:41 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -38,6 +38,10 @@ AC_PROG_CC
 dnl check for how to do large files
 AC_SYS_LARGEFILE
 
+dnl check for cygwin stuff
+AC_LIBTOOL_WIN32_DLL
+
+dnl libtool setup
 AM_PROG_LIBTOOL
 
 dnl The install stuff has already been taken care of by the automake stuff
