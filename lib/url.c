@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.197 2002-04-10 13:44:43 bagder Exp $
+ * $Id: url.c,v 1.198 2002-04-10 14:07:03 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -262,6 +262,8 @@ CURLcode Curl_open(struct SessionHandle **curl)
 
   /* Set the default size of the SSL session ID cache */
   data->set.ssl.numsessions = 5;
+
+  data->set.proxyport = 1080;
   
   /* create an array with connection data struct pointers */
   data->state.numconnects = 5; /* hard-coded right now */
