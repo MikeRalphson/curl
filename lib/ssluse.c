@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.46 2002-01-09 09:38:37 bagder Exp $
+ * $Id: ssluse.c,v 1.47 2002-01-17 10:40:13 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -41,6 +41,12 @@
 /* The last #include file should be: */
 #ifdef MALLOCDEBUG
 #include "memdebug.h"
+#endif
+
+#if OPENSSL_VERSION_NUMBER >= 0x0090581fL
+#define HAVE_SSL_GET1_SESSION 1
+#else
+#undef HAVE_SSL_GET1_SESSION
 #endif
 
 #if OPENSSL_VERSION_NUMBER >= 0x00904100L
@@ -558,11 +564,26 @@ static int Store_SSL_Session(struct connectdata *conn)
   int oldest_age=data->state.session[0].age; /* zero if unused */
 
   /* ask OpenSSL, say please */
+
+#ifdef HAVE_SSL_GET1_SESSION
   ssl_sessionid = SSL_get1_session(conn->ssl.handle);
 
   /* SSL_get1_session() will increment the reference
      count and the session will stay in memory until explicitly freed with
-     SSL_SESSION_free(3), regardless of its state. */
+     SSL_SESSION_free(3), regardless of its state. 
+     This function was introduced in openssl 0.9.5a. */
+#else
+  ssl_sessionid = SSL_get_session(conn->ssl.handle);
+
+  /* if SSL_get1_session() is unavailable, use SSL_get_session().
+     This is an inferior option because the session can be flushed
+     at any time by openssl. It is included only so curl compiles
+     under versions of openssl < 0.9.5a.
+     
+     WARNING: How curl behaves if it's session is flushed is
+     untested. 
+  */
+#endif
 
   /* Now we should add the session ID and the host name to the cache, (remove
      the oldest if necessary) */
