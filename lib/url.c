@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.38 $
- * $Date: 2000-09-21 08:50:05 $
+ * $Revision: 1.39 $
+ * $Date: 2000-09-25 22:16:36 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -586,7 +586,7 @@ CURLcode curl_write(CURLconnect *c_conn, char *buf, size_t amount,
 #endif
 #ifdef KRB4
     if(conn->sec_complete)
-      bytes_written = sec_write(conn, conn->sockfd, buf, amount);
+      bytes_written = sec_write(conn, conn->writesockfd, buf, amount);
     else
 #endif
       bytes_written = swrite(conn->writesockfd, buf, amount);
