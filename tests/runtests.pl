@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.48 2002-02-19 01:04:31 bagder Exp $
+# $Id: runtests.pl,v 1.49 2002-02-22 10:50:36 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -601,6 +601,15 @@ sub singletest {
         my @strip = getpart("verify", "strip");
 
         my @protstrip=@protocol;
+
+        # check if there's any attributes on the verify/protocol section
+        my %hash = getpartattr("verify", "protocol");
+
+        if($hash{'nonewline'}) {
+            # Yes, we must cut off the final newline from the final line
+            # of the protocol data
+            chomp($protstrip[$#protstrip]);
+        }
 
         for(@strip) {
             # strip all patterns from both arrays
