@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.21 2001-02-20 13:58:39 bagder Exp $
+# $Id: runtests.pl,v 1.22 2001-03-05 14:03:48 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -154,6 +154,10 @@ sub runftpserver {
 
     if ($RUNNING != 1) {
         my $flag=$debugprotocol?"-v ":"";
+        if($debugprotocol) {
+            print "* Starts ftp server verbose:\n";
+            print "perl $srcdir/ftpserver.pl $flag $FTPPORT &\n";
+        }
         system("perl $srcdir/ftpserver.pl $flag $FTPPORT &");
         sleep 1; # give it a little time to start
     }
