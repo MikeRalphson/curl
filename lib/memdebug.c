@@ -30,8 +30,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/memdebug.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-12-19 13:23:54 $
+ * $Revision: 1.9 $
+ * $Date: 2000-12-19 13:35:23 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -57,6 +57,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
 
 /* DONT include memdebug.h here! */
 
