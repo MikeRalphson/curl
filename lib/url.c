@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.40 $
- * $Date: 2000-09-28 10:27:43 $
+ * $Revision: 1.41 $
+ * $Date: 2000-10-03 11:03:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -691,6 +691,9 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
 
   conn->data = data; /* remember our daddy */
   conn->state = CONN_INIT;
+
+  conn->upload_bufsize = UPLOAD_BUFSIZE; /* the smallest upload buffer size
+                                            we use */
 
   buf = data->buffer; /* this is our buffer */
 
