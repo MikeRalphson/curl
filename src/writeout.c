@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.21 2004-02-25 15:41:36 bagder Exp $
+ * $Id: writeout.c,v 1.22 2004-05-05 09:20:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -182,9 +182,7 @@ void ourWriteOut(CURL *curl, char *writeinfo)
                     curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &stringp))
                    && stringp)
                   fputs(stringp, stream);
-                break;
               default:
-                /* -Wunreachable-code wrongly complains on this */
                 break;
               }
               break;
