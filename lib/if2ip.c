@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.36 2004-06-30 11:48:19 bagder Exp $
+ * $Id: if2ip.c,v 1.37 2004-10-06 06:58:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -68,7 +68,7 @@
 #include "inet_ntoa_r.h"
 #endif
 
-#ifdef	VMS
+#ifdef VMS
 #include <inet.h>
 #endif
 
@@ -100,7 +100,7 @@ char *Curl_if2ip(const char *interface, char *buf, int buf_size)
       return NULL; /* this can't be a fine interface name */
     memcpy(req.ifr_name, interface, len+1);
     req.ifr_addr.sa_family = AF_INET;
-#ifdef	IOCTL_3_ARGS
+#ifdef IOCTL_3_ARGS
     if (SYS_ERROR == ioctl(dummy, SIOCGIFADDR, &req)) {
 #else
     if (SYS_ERROR == ioctl(dummy, SIOCGIFADDR, &req, sizeof(req))) {
