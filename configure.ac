@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.89 2004-07-24 21:29:43 bagder Exp $
+dnl $Id: configure.ac,v 1.90 2004-08-09 10:06:15 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -560,7 +560,7 @@ then
       AC_CHECK_HEADERS(krb.h)
 
       dnl we found the required libraries, add to LIBS
-      LIBS="-lkrb -ldes $LIBS"
+      LIBS="-lkrb -lcom_err -ldes $LIBS"
 
       dnl Check for function krb_get_our_ip_for_realm
       dnl this is needed for NAT networks
