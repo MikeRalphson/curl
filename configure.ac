@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.94 2004-08-12 06:30:17 bagder Exp $
+dnl $Id: configure.ac,v 1.95 2004-08-17 09:00:30 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1045,6 +1045,8 @@ if test "x$RECENTAIX" = "xyes"; then
   CURL_CHECK_STRERROR_R()
 
   AC_CHECK_FUNCS( gmtime_r )
+
+  AC_DEFINE(_THREAD_SAFE, 1, [define this if you need it to compile thread-safe code])
 fi
 
 
