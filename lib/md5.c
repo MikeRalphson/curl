@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: md5.c,v 1.2 2003-06-26 11:27:22 bagder Exp $
+ * $Id: md5.c,v 1.3 2003-09-07 15:00:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -53,7 +53,7 @@ documentation and/or software.
 #include <string.h>
 
 /* UINT4 defines a four byte word */
-typedef unsigned long int UINT4;
+typedef unsigned int UINT4;
 
 /* MD5 context. */
 struct md5_ctx {
