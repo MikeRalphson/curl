@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.39 2004-10-19 15:30:08 bagder Exp $
+ * $Id: getinfo.c,v 1.40 2004-12-13 16:37:27 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -33,6 +33,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "memory.h"
+#include "ssluse.h"
 
 /* Make this the last #include */
 #include "memdebug.h"
@@ -73,6 +74,7 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
   long *param_longp=NULL;
   double *param_doublep=NULL;
   char **param_charp=NULL;
+  struct curl_slist **param_slistp=NULL;
   va_start(arg, info);
 
   switch(info&CURLINFO_TYPEMASK) {
@@ -91,6 +93,11 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
   case CURLINFO_DOUBLE:
     param_doublep = va_arg(arg, double *);
     if(NULL == param_doublep)
+      return CURLE_BAD_FUNCTION_ARGUMENT;
+    break;
+  case CURLINFO_SLIST:
+    param_slistp = va_arg(arg, struct curl_slist **);
+    if(NULL == param_slistp)
       return CURLE_BAD_FUNCTION_ARGUMENT;
     break;
   }
@@ -173,6 +180,10 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     break;
   case CURLINFO_NUM_CONNECTS:
     *param_longp = data->info.numconnects;
+    break;
+  case CURLINFO_SSL_ENGINES:
+    Curl_SSL_engines_list(data);
+    *param_slistp = data->engine_list;
     break;
   default:
     return CURLE_BAD_FUNCTION_ARGUMENT;
