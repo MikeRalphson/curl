@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.104 2004-11-29 21:25:07 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.105 2004-12-03 11:25:06 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "29 Nov 2004" "libcurl 7.12.3" "libcurl Manual"
@@ -743,7 +743,7 @@ Require SSL for all communication or fail with \fICURLE_FTP_SSL_FAILED\fP.
 .IP CURLOPT_FTPSSLAUTH
 Pass a long using one of the values from below, to alter how libcurl issues
 \&"AUTH TLS" or "AUTH SSL" when FTP over SSL is activated (see
-\fICURLOPT_FTP_SSL\fP).
+\fICURLOPT_FTP_SSL\fP). (Added in 7.12.2)
 .RS
 .IP CURLFTPAUTH_DEFAULT
 Allow libcurl to decide
