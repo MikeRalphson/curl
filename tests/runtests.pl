@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.155 2004-12-17 10:09:06 bagder Exp $
+# $Id: runtests.pl,v 1.156 2004-12-21 10:10:40 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1599,7 +1599,7 @@ do {
     }
     elsif ($ARGV[0] eq "-c") {
         # use this path to curl instead of default
-        $CURL=$ARGV[1];
+        $DBGCURL=$CURL=$ARGV[1];
         shift @ARGV;
     }
     elsif ($ARGV[0] eq "-d") {
