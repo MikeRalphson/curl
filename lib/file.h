@@ -8,7 +8,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2003, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.h,v 1.9 2002-09-03 11:53:00 bagder Exp $
+ * $Id: file.h,v 1.10 2003-01-16 21:08:13 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_FILE
 CURLcode Curl_file(struct connectdata *conn);
