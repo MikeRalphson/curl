@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.138 2004-12-13 20:14:04 giva Exp $
+.\" * $Id: curl.1,v 1.139 2004-12-21 19:59:35 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "7 Dec 2004" "Curl 7.12.3" "Curl Manual"
@@ -930,6 +930,10 @@ to follow location: headers.
 .TP
 .B http_code
 The numerical code that was found in the last retrieved HTTP(S) page.
+.TP
+.B http_connect
+The numerical code that was found in the last response (from a proxy) to a
+curl CONNECT request. (Added in 7.12.4)
 .TP
 .B time_total
 The total time, in seconds, that the full operation lasted. The time will be
