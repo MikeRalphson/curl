@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.256 2004-11-24 16:11:36 bagder Exp $
+ * $Id: transfer.c,v 1.257 2004-11-26 14:33:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1656,6 +1656,11 @@ CURLcode Curl_posttransfer(struct SessionHandle *data)
 #else
   (void)data; /* unused parameter */
 #endif
+
+  if(!(data->progress.flags & PGRS_HIDE) &&
+     !data->progress.callback)
+    /* only output if we don't use a progress callback and we're not hidden */
+    fprintf(data->set.err, "\n");
 
   return CURLE_OK;
 }

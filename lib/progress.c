@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.76 2004-10-08 08:16:02 bagder Exp $
+ * $Id: progress.c,v 1.77 2004-11-26 14:33:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -139,10 +139,8 @@ void Curl_pgrsDone(struct connectdata *conn)
   struct SessionHandle *data = conn->data;
   data->progress.lastshow=0;
   Curl_pgrsUpdate(conn); /* the final (forced) update */
-  if(!(data->progress.flags & PGRS_HIDE) &&
-     !data->progress.callback)
-    /* only output if we don't use a progress callback and we're not hidden */
-    fprintf(data->set.err, "\n");
+
+  data->progress.speeder_c = 0; /* reset the progress meter display */
 }
 
 /* reset all times except redirect */
