@@ -1,5 +1,5 @@
 ;;;; Emacs Lisp help for writing curl code. ;;;;
-;;;; $Id: curl-style.el,v 1.1 2003-01-23 06:00:02 bagder Exp $
+;;;; $Id: curl-style.el,v 1.2 2003-01-28 08:03:13 bagder Exp $
 
 ;;; The curl hacker's C conventions.
 
@@ -37,15 +37,11 @@
   (setq tab-width 8
 	indent-tabs-mode nil		; Use spaces. Not tabs.
 	comment-column 40
-	c-font-lock-extra-types (append '("bool"))
+	c-font-lock-extra-types (append '("bool" "CURL" "CURLcode" "ssize_t"))
 	)
-  ;; We like auto-newline and hungry-delete
-  (c-toggle-auto-hungry-state 1)
   ;; keybindings for C, C++, and Objective-C.  We can put these in
   ;; c-mode-base-map because of inheritance ...
   (define-key c-mode-base-map "\M-q" 'c-fill-paragraph)
-  ;; Cleanups
-  (setq c-cleanup-list '(list-close-comma defun-close-semi empty-defun-braces brace-else-brace brace-elseif-brace scope-operator))
   (setq c-recognize-knr-p nil)
   )
 
