@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.6 2004-12-21 10:11:07 bagder Exp $
+ * $Id: select.c,v 1.7 2004-12-22 22:28:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -38,6 +38,11 @@
 #endif
 
 #include "select.h"
+
+#ifdef __BEOS__
+/* BeOS has FD_SET defined in socket.h */
+#include <socket.h>
+#endif
 
 #ifdef WIN32
 #define VALID_SOCK(s) (1)  /* Win-sockets are not in range [0..FD_SETSIZE> */

@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.125 2004-12-19 09:36:54 bagder Exp $
+dnl $Id: configure.ac,v 1.126 2004-12-22 22:28:10 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -313,6 +313,16 @@ then
                AC_MSG_RESULT(no)]
              )
 fi
+
+if test "$HAVE_GETHOSTBYNAME" != "1"
+then
+  dnl gethostbyname in the net lib - for BeOS
+  AC_CHECK_LIB(net, gethostbyname,
+               [HAVE_GETHOSTBYNAME="1"
+               LIBS="$LIBS -lnet"
+               ])
+fi
+
 
 if test "$HAVE_GETHOSTBYNAME" = "1"; then
   AC_DEFINE(HAVE_GETHOSTBYNAME, 1, [If you have gethostbyname])
