@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.164 2005-02-10 08:50:33 bagder Exp $
+# $Id: runtests.pl,v 1.165 2005-03-16 22:02:09 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -477,20 +477,24 @@ sub runhttpsserver {
     if($verbose) {
         print "CMD: $cmd\n";
     }
-    sleep(1);
 
     for(1 .. 30) {
-        $pid=checkserver($HTTPSPIDFILE);
-
-        if($pid <= 0) {
-            if($verbose) {
-                print STDERR "RUN: waiting one sec for HTTPS server\n";
-            }
-            sleep(1);
+        # verify that our HTTPS server is up and running:
+        $cmd="$CURL --silent --insecure \"https://$HOSTIP:$HTTPSPORT/verifiedserver\" 2>/dev/null";
+        if($verbose) {
+            print "CMD: $cmd\n";
         }
-        else {
+
+        my $data=`$cmd`;
+
+        if ( $data =~ /WE ROOLZ: (\d+)/ ) {
+            $pid = 0+$1;
             last;
         }
+        if($verbose) {
+            print STDERR "RUN: waiting one sec for HTTPS server\n";
+        }
+        sleep(1);
     }
 
     return $pid;
