@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.1 2002-03-19 10:34:34 bagder Exp $
+ * $Id: multi.h,v 1.2 2002-07-31 23:18:27 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -47,11 +47,12 @@
   Example sources using this interface is here: ../multi/
 
 */
-#ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
+
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>
+#else
+#include <sys/socket.h>
+#include <sys/time.h>
 #endif
 
 #include <curl/curl.h>
