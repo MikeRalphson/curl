@@ -1,4 +1,4 @@
-.\" $Id: ares_timeout.3,v 1.1 2003-10-07 21:54:04 bagder Exp $
+.\" $Id: ares_timeout.3,v 1.2 2004-04-02 09:50:42 bagder Exp $
 .\"
 .\" Copyright 1998 by the Massachusetts Institute of Technology.
 .\"
@@ -27,10 +27,8 @@ ares_fds \- Get file descriptors to select on for name service
 .SH DESCRIPTION
 The
 .B ares_timeout
-function determines the maximum time for which the caller should wait
-before invoking 
-.BR ares_process (3)
-to process timeouts.  The parameter
+function determines the maximum time for which the caller should wait before
+invoking \fIares_process(3)\fP to process timeouts.  The parameter
 .I maxtv
 specifies a existing maximum timeout, or
 .B NULL
