@@ -24,13 +24,13 @@
  *
  * ------------------------------------------------------------
  * Main author:
- * - Daniel Stenberg <Daniel.Stenberg@haxx.nu>
+ * - Daniel Stenberg <daniel@haxx.se>
  *
- * 	http://curl.haxx.nu
+ * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.12 $
- * $Date: 2000-06-14 17:15:07 $
+ * $Revision: 1.13 $
+ * $Date: 2000-06-20 15:31:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $

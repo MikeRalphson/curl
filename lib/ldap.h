@@ -27,13 +27,13 @@
  *
  * ------------------------------------------------------------
  * Main author:
- * - Daniel Stenberg <Daniel.Stenberg@haxx.nu>
+ * - Daniel Stenberg <daniel@haxx.se>
  *
  * 	http://www.fts.frontec.se/~dast/curl/
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/ldap.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.4 $
+ * $Date: 2000-06-20 15:31:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $

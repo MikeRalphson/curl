@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.4 2000-03-23 10:41:39 bagder Exp $
+ * $Id: getpass.c,v 1.5 2000-06-20 15:31:26 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -31,7 +31,7 @@
  *   Angus Mackay <amackay@gus.ml.org>
  *
  * Contributor(s):
- *   Daniel Stenberg <Daniel.Stenberg@haxx.nu>
+ *   Daniel Stenberg <daniel@haxx.se>
  */
 
 #ifndef WIN32

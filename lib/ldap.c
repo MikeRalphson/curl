@@ -26,11 +26,11 @@
  * Contributor(s):
  *  Bjørn Reese <breese@mail1.stofanet.dk>
  *
- * 	http://curl.haxx.nu
+ * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-05-22 19:09:31 $
+ * $Revision: 1.7 $
+ * $Date: 2000-06-20 15:31:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $

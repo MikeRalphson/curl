@@ -24,13 +24,13 @@
  *
  * ------------------------------------------------------------
  * Main author:
- * - Daniel Stenberg <Daniel.Stenberg@haxx.nu>
+ * - Daniel Stenberg <daniel@haxx.se>
  *
- * 	http://curl.haxx.nu
+ * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.23 $
- * $Date: 2000-06-20 09:28:09 $
+ * $Revision: 1.24 $
+ * $Date: 2000-06-20 15:31:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -691,7 +691,7 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
   }
   else {
     /* Set default host and default path */
-    strcpy(conn->gname, "curl.haxx.nu");
+    strcpy(conn->gname, "curl.haxx.se");
     strcpy(conn->path, "/");
 
     if (2 > sscanf(data->url,

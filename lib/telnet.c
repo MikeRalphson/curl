@@ -24,13 +24,13 @@
  *
  * ------------------------------------------------------------
  * Main author:
- * - Daniel Stenberg <Daniel.Stenberg@haxx.nu>
+ * - Daniel Stenberg <daniel@haxx.se>
  *
- * 	http://curl.haxx.nu
+ * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/telnet.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.4 $
+ * $Date: 2000-06-20 15:31:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,7 +38,7 @@
  * ------------------------------------------------------------
  *
  * This implementation of the TELNET protocol is written by
- * Linus Nielsen <Linus.Nielsen@haxx.nu>,
+ * Linus Nielsen <Linus.Nielsen@haxx.se>,
  * with some code snippets stolen from the BSD Telnet client.
  *
  * The negotiation is performed according to RFC 1143 (D. Bernstein,
