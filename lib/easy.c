@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.20 2001-08-30 22:48:34 bagder Exp $
+ * $Id: easy.c,v 1.21 2001-09-05 07:24:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -249,4 +249,31 @@ CURLcode curl_easy_getinfo(CURL *curl, CURLINFO info, ...)
   paramp = va_arg(arg, void *);
 
   return Curl_getinfo(data, info, paramp);
+}
+
+CURL *curl_easy_duphandle(CURL *incurl)
+{
+  struct SessionHandle *data=(struct SessionHandle *)incurl;
+
+  struct SessionHandle *outcurl = malloc(sizeof(struct SessionHandle));
+
+  if(NULL == outcurl)
+    return NULL; /* failure */
+
+  /* start with clearing the entire new struct */
+  memset(outcurl, 0, sizeof(struct SessionHandle));
+
+  /* copy all userdefined values */
+  outcurl->set = data->set;
+
+  /* duplicate all values in 'change' */
+  outcurl->change.url = strdup(data->change.url);
+  outcurl->change.proxy = strdup(data->change.proxy);
+  outcurl->change.referer = strdup(data->change.referer);
+  /* set all the alloc-bits */
+  outcurl->change.url_alloc =
+    outcurl->change.proxy_alloc =
+    outcurl->change.referer_alloc = TRUE;
+
+  return outcurl;
 }
