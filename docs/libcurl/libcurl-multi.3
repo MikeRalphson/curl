@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl-multi.3,v 1.7 2004-03-15 11:26:53 bagder Exp $
+.\" $Id: libcurl-multi.3,v 1.8 2004-03-15 11:37:38 bagder Exp $
 .\"
 .TH libcurl-multi 3 "13 Oct 2001" "libcurl 7.10.1" "libcurl multi interface"
 .SH NAME
@@ -32,7 +32,7 @@ complicated for the application.
 file descriptors simultaneous easily.
 .SH "ONE MULTI HANDLE MANY EASY HANDLES"
 To use the multi interface, you must first create a 'multi handle' with
-\fIcurl_multi_init\fP. This handle is then used as input to all further
+\fIcurl_multi_init(3)\fP. This handle is then used as input to all further
 curl_multi_* functions.
 
 Each single transfer is built up with an easy handle. You must create them,

@@ -1,4 +1,4 @@
-.\" $Id: curl_multi_perform.3,v 1.3 2002-12-03 12:40:13 bagder Exp $
+.\" $Id: curl_multi_perform.3,v 1.4 2004-03-15 11:37:38 bagder Exp $
 .\"
 .TH curl_multi_perform 3 "1 March 2002" "libcurl 7.9.5" "libcurl Manual"
 .SH NAME
@@ -29,8 +29,9 @@ NOTE that this only returns errors etc regarding the whole multi stack. There
 might still have occurred problems on invidual transfers even when this
 function returns OK.
 .SH "TYPICAL USAGE"
-Most application will use \fIcurl_multi_fdset\fP to get the multi_handle's
+Most application will use \fIcurl_multi_fdset(3)\fP to get the multi_handle's
 file descriptors, then it'll wait for action on them using select() and as
-soon as one or more of them are ready, \fIcurl_multi_perform\fP gets called.
+soon as one or more of them are ready, \fIcurl_multi_perform(3)\fP gets
+called.
 .SH "SEE ALSO"
-.BR curl_multi_cleanup "(3)," curl_multi_init "(3)"
+.BR curl_multi_cleanup "(3)," curl_multi_init "(3)," curl_multi_fdset "(3)"
