@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.130 2002-02-28 23:31:23 bagder Exp $
+ * $Id: ftp.c,v 1.131 2002-03-13 13:13:19 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1504,7 +1504,7 @@ CURLcode ftp_perform(struct connectdata *conn)
 {
   /* this is FTP and no proxy */
   ssize_t nread;
-  CURLcode result;
+  CURLcode result=CURLE_OK;
   struct SessionHandle *data=conn->data;
   char *buf = data->state.buffer; /* this is our buffer */
 
@@ -1544,7 +1544,7 @@ CURLcode ftp_perform(struct connectdata *conn)
   /* If we have selected NOBODY and HEADER, it means that we only want file
      information. Which in FTP can't be much more than the file size and
      date. */
-  if(data->set.no_body && data->set.include_header) {
+  if(data->set.no_body && data->set.include_header && ftp->file) {
     /* The SIZE command is _not_ RFC 959 specified, and therefor many servers
        may not support it! It is however the only way we have to get a file's
        size! */
