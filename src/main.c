@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.80 2001-05-29 18:30:47 bagder Exp $
+ * $Id: main.c,v 1.81 2001-05-30 08:01:09 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -179,7 +179,7 @@ static CURLcode win32_init(void) { return CURLE_OK; }
  */
 CURLcode main_init(void)
 {
-  curl_global_init(0);
+  curl_global_init(CURL_GLOBAL_DEFAULT);
   return win32_init();
 }
 
