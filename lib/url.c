@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.186 2002-01-08 04:26:47 bumblebury Exp $
+ * $Id: url.c,v 1.187 2002-01-28 19:31:26 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -559,8 +559,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set a custom string to use as request
      */
     data->set.customrequest = va_arg(param, char *);
-    if(data->set.customrequest)
-      data->set.httpreq = HTTPREQ_CUSTOM;
+
+    /* we don't set
+       data->set.httpreq = HTTPREQ_CUSTOM;
+       here, we continue as if we were using the already set type
+       and this just changes the actual request keyword */
     break;
   case CURLOPT_HTTPPOST:
     /*
