@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.31 2004-02-02 16:24:41 bagder Exp $
+ * $Id: version.c,v 1.32 2004-02-03 06:39:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -204,6 +204,7 @@ static curl_version_info_data version_info = {
   NULL, /* zlib_version */
   protocols,
   NULL, /* c-ares version */
+  0,    /* c-ares version numerical */
 };
 
 curl_version_info_data *curl_version_info(CURLversion stamp)
