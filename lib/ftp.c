@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.12 $
+ * $Date: 2000-07-25 07:26:29 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -423,8 +423,8 @@ CURLcode ftp_done(struct connectdata *conn)
      just performed: */
   nread = GetLastResponse(data->firstsocket, buf, data);
 
-  /* 226 Transfer complete */
-  if(strncmp(buf, "226", 3)) {
+  /* 226 Transfer complete, 250 Requested file action okay, completed. */
+  if(!strncmp(buf, "226", 3) && !strncmp(buf, "250", 3)) {
     failf(data, "%s", buf+4);
     return CURLE_FTP_WRITE_ERROR;
   }
