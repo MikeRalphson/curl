@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.72 2004-01-29 15:37:21 bagder Exp $
+ * $Id: connect.c,v 1.73 2004-01-30 07:51:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -176,11 +176,12 @@ int waitconnect(int sockfd, /* socket */
   fd_set errfd;
   struct timeval interval;
   int rc;
-
+#ifdef mpeix
   /* Call this function once now, and ignore the results. We do this to
      "clear" the error state on the socket so that we can later read it
      reliably. This is reported necessary on the MPE/iX operating system. */
   verifyconnect(sockfd);
+#endif
 
   /* now select() until we get connect or timeout */
   FD_ZERO(&fd);
