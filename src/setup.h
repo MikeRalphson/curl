@@ -20,10 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.16 2003-01-16 21:08:13 bagder Exp $
+ * $Id: setup.h,v 1.17 2003-04-15 14:01:57 bagder Exp $
  ***************************************************************************/
-
-#include <stdio.h>
 
 #if !defined(WIN32) && defined(__WIN32__)
 /* Borland fix */
@@ -49,6 +47,15 @@
 #include "config-riscos.h"
 #endif
 #endif
+
+#ifdef MALLOCDEBUG
+/* This is an ugly hack for MALLOCDEBUG conditions only. We need to include
+   the file here, since it might set the _FILE_OFFSET_BITS define, which must
+   be set BEFORE all normal system headers. */
+#include "../lib/setup.h"
+#endif
+
+#include <stdio.h>
 
 #ifndef OS
 #define OS "unknown"
