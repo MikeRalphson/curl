@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.137 2003-06-11 13:38:56 bagder Exp $
+ * $Id: http.c,v 1.138 2003-06-12 17:34:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -709,7 +709,7 @@ CURLcode Curl_http(struct connectdata *conn)
     if(result)
       return result;
   }
-  else if(!data->set.httpdigest && /* not if Digest is enabled */
+  else if((data->set.httpauth == CURLAUTH_BASIC) && /* if Basic is desired */
           conn->bits.user_passwd &&
           !checkheaders(data, "Authorization:")) {
     char *authorization;

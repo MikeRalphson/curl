@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.200 2003-06-10 12:49:18 bagder Exp $
+ * $Id: curl.h,v 1.201 2003-06-12 17:34:29 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -214,11 +214,11 @@ typedef enum {
 } curl_proxytype;
 
 typedef enum {
-  CURLHTTP_BASIC  =    0, /* default */
-  CURLHTTP_DIGEST =    1, /* Digest */
-  CURLHTTP_NEGOTIATE = 2, /* Negotiate */
-  CURLHTTP_NTLM =      3, /* NTLM */
-  CURLHTTP_LAST           /* never to be used */
+  CURLAUTH_BASIC  =       0, /* default */
+  CURLAUTH_DIGEST =       1, /* Digest */
+  CURLAUTH_GSSNEGOTIATE = 2, /* GSS-Negotiate */
+  CURLAUTH_NTLM =         3, /* NTLM */
+  CURLAUTH_LASTKNOWN      /* never to be used */
 } curl_httpauth;
 
 /* this was the error code 50 in 7.7.3 and a few earlier versions, this
