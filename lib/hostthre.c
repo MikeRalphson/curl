@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.15 2004-11-02 10:12:23 bagder Exp $
+ * $Id: hostthre.c,v 1.16 2004-11-25 16:49:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -379,7 +379,9 @@ static bool init_resolve_thread (struct connectdata *conn,
   td->stderr_file = stderr;
 
 #ifdef _WIN32_WCE
-  td->thread_hnd=(HANDLE) CreateThread(NULL,0,(LPTHREAD_START_ROUTINE) THREAD_FUNC,conn,0,&td->thread_id);
+  td->thread_hnd = (HANDLE) CreateThread(NULL, 0,
+                                         (LPTHREAD_START_ROUTINE) THREAD_FUNC,
+                                         conn, 0, &td->thread_id);
 #else
 
   td->thread_hnd = (HANDLE) _beginthreadex(NULL, 0, THREAD_FUNC,
@@ -459,8 +461,9 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
       TRACE(("%s() thread stuck?!, ", THREAD_NAME));
     }
     else {
-      /* Thread finished before timeout; propagate Winsock error to this thread.
-       * 'conn->async.done = TRUE' is set in Curl_addrinfo4/6_callback().
+      /* Thread finished before timeout; propagate Winsock error to this
+       * thread.  'conn->async.done = TRUE' is set in
+       * Curl_addrinfo4/6_callback().
        */
       WSASetLastError(conn->async.status);
       GetExitCodeThread(td->thread_hnd, &td->thread_status);
