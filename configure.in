@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.68 2001-05-28 14:58:07 bagder Exp $
+dnl $Id: configure.in,v 1.69 2001-05-29 19:25:28 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -768,6 +768,7 @@ AC_CHECK_FUNCS( socket \
                 select \
                 strdup \
                 strstr \
+                strtok_r \
                 strftime \
                 uname \
                 strcasecmp \
