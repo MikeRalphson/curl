@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.15 2001-03-07 23:51:41 bagder Exp $
+ * $Id: transfer.c,v 1.16 2001-03-08 10:32:27 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -338,6 +338,18 @@ _Transfer(struct connectdata *c_conn)
                   return urg;
 
                 data->header_size += p - data->headerbuff;
+
+
+                /*
+                 * end-of-headers.
+                 *
+                 * If we requested a "no body" and this isn't a "close"
+                 * connection, this is a good time to get out and return
+                 * home.
+                 */
+                if(!conn->bits.close && data->bits.no_body)
+                  return CURLE_OK;
+
                 break;		/* exit header line loop */
               }
               
@@ -473,11 +485,6 @@ _Transfer(struct connectdata *c_conn)
              is non-headers. */
           if (str && !header && ((signed int)nread > 0)) {
             
-            /*
-             * If we requested a HTTP header, this might be a good time to get
-             * out and return home.
-             */
-
             if(0 == bodywrites) {
               /* These checks are only made the first time we are about to
                  write a piece of the body */
@@ -539,7 +546,7 @@ _Transfer(struct connectdata *c_conn)
 
             if(conn->bits.chunk) {
               /*
-               * Bless me father for I have sinned. Here come a chunked
+               * Bless me father for I have sinned. Here comes a chunked
                * transfer flying and we need to decode this properly.  While
                * the name says read, this function both reads and writes away
                * the data. The returned 'nread' holds the number of actual
@@ -553,7 +560,7 @@ _Transfer(struct connectdata *c_conn)
                 /* we're done reading chunks! */
                 keepon &= ~KEEP_READ; /* read no more */
 
-                /* There are now (~res) bytes at the end of the str buffer
+                /* There are now possibly bytes at the end of the str buffer
                    that weren't written to the client, but we don't care
                    about them right now. */
               }
