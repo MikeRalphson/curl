@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.131 2001-06-07 05:59:20 bagder Exp $
+ * $Id: url.c,v 1.132 2001-06-12 09:21:37 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2079,6 +2079,12 @@ static CURLcode Connect(struct UrlData *data,
         conn->range = strdup(resumerange);
         conn->bits.use_range = TRUE;        /* enable range download */
         conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
+    }
+    else if (data->set_range) {
+      /* There is a range, but is not a resume, useful for random ftp access */
+      conn->range = strdup(data->set_range);
+      conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
+      conn->bits.use_range = TRUE;        /* enable range download */
     }
     
     *in_connect = conn;      /* return this instead! */
