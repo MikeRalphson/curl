@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.235 2004-01-07 09:19:34 bagder Exp $
+ * $Id: curl.h,v 1.236 2004-01-21 08:39:54 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -804,17 +804,6 @@ typedef enum {
 
   CURL_TIMECOND_LAST
 } curl_TimeCond;
-
-/* for backwards compatibility */
-#ifndef TIMECOND_IFMODSINCE
-#define TIMECOND_IFMODSINCE CURL_TIMECOND_IFMODSINCE
-#endif
-#ifndef TIMECOND_IFUNMODSINCE
-#define TIMECOND_IFUNMODSINCE CURL_TIMECOND_IFUNMODSINCE
-#endif
-#ifndef TIMECOND_LASTMOD
-#define TIMECOND_LASTMOD CURL_TIMECOND_LASTMOD
-#endif
 
 #ifdef __BEOS__
 #include <support/SupportDefs.h>
