@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.16 2001-08-23 14:05:25 bagder Exp $
+ * $Id: cookie.c,v 1.17 2001-08-26 14:28:05 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -644,10 +644,8 @@ int main(int argc, char **argv)
   struct CookieInfo *c=NULL;
   if(argc>1) {
     c = Curl_cookie_init(argv[1], c);
-    c = Curl_cookie_init(argv[1], c);
-    c = Curl_cookie_init(argv[1], c);
-
     Curl_cookie_add(c, TRUE, "PERSONALIZE=none;expires=Monday, 13-Jun-1988 03:04:55 GMT; domain=.fidelity.com; path=/ftgw; secure");
+    c = Curl_cookie_init(argv[1], c);
 
     Curl_cookie_output(c);
     Curl_cookie_cleanup(c);
