@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.12 2003-01-16 21:08:13 bagder Exp $
+ * $Id: cookie.h,v 1.13 2003-04-30 17:03:44 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -40,8 +40,7 @@ struct Cookie {
   char *domain;      /* domain = <this> */
   long expires;    /* expires = <this> */
   char *expirestr;   /* the plain text version */
-
-  char field1;       /* read from a cookie file, 1 => FALSE, 2=> TRUE */
+  bool tailmatch;    /* weather we do tail-matchning of the domain name */
   
   /* RFC 2109 keywords. Version=1 means 2109-compliant cookie sending */
   char *version;     /* Version = <value> */
@@ -70,11 +69,11 @@ struct CookieInfo {
 #define MAX_NAME_TXT "255"
 
 /*
- * Add a cookie to the internal list of cookies. The domain argument is only
- * used if the header boolean is TRUE.
+ * Add a cookie to the internal list of cookies. The domain and path arguments
+ * are only used if the header boolean is TRUE.
  */
 struct Cookie *Curl_cookie_add(struct CookieInfo *, bool header, char *line,
-                               char *domain);
+                               char *domain, char *path);
 
 struct CookieInfo *Curl_cookie_init(char *, struct CookieInfo *, bool);
 struct Cookie *Curl_cookie_getlist(struct CookieInfo *, char *, char *, bool);
