@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.11 2004-12-25 22:08:03 bagder Exp $
+ * $Id: getpass.c,v 1.12 2004-12-26 09:17:38 bagder Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -37,18 +37,6 @@
 #endif
 
 #include "getpass.h"
-
-#ifdef HAVE_GETPASS
-char *getpass_r(const char *prompt, char *password, size_t passlen)
-{
-  char *ptr = getpass(prompt);
-  strncpy(password, ptr, passlen);
-  password[passlen-1]=0;
-  return password;
-}
-#define DONE
-#else
-/* the rest of this file is only for systems without getpass() */
 
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
@@ -223,8 +211,6 @@ char *getpass_r(const char *prompt, /* prompt to display */
 
   return password; /* return pointer to buffer */
 }
-
-#endif /* DONE */
 
 #endif /* HAVE_GETPASS */
 #endif /* HAVE_GETPASS_R */
