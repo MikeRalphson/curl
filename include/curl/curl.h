@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.9 $
- * $Date: 2000-06-14 12:50:38 $
+ * $Revision: 1.10 $
+ * $Date: 2000-06-16 13:19:30 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -321,10 +321,11 @@ typedef enum {
   /* HTTP request, for odd commands like DELETE, TRACE and others */
   T(STDERR, OBJECTPOINT, 37),
 
-  /* Progress mode sets alternative progress mode displays, the only
-     one defined today is 1 which makes the #-style progress bar. */
+#if 0
+  /* Progress mode set alternative progress mode displays. Alternative
+     ones should now be made by the client, not the lib! */     
   T(PROGRESSMODE, LONG, 38),
-
+#endif
   /* send linked-list of post-transfer QUOTE commands */
   T(POSTQUOTE, OBJECTPOINT, 39),
 
@@ -404,8 +405,8 @@ char *curl_getenv(char *variable);
 char *curl_version(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.0.4beta"
-#define LIBCURL_VERSION_NUM 0x070004
+#define LIBCURL_VERSION "7.0.6beta"
+#define LIBCURL_VERSION_NUM 0x070006
 
 /* linked-list structure for the CURLOPT_QUOTE option */
 struct curl_slist {
