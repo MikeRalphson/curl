@@ -29,14 +29,16 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/strequal.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-06-14 14:26:20 $
+ * $Revision: 1.4 $
+ * $Date: 2000-06-14 17:23:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include <string.h>
 
 #include "setup.h"
 
