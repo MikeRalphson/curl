@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_getinfo.3,v 1.14 2004-10-01 06:43:48 bagder Exp $
+.\" $Id: curl_easy_getinfo.3,v 1.15 2004-10-19 15:30:08 bagder Exp $
 .\"
 .TH curl_easy_getinfo 3 "20 Aug 2003" "libcurl 7.10.8" "libcurl Manual"
 .SH NAME
@@ -113,6 +113,13 @@ method(s) available for your proxy authentication.  (Added in 7.10.8)
 .IP CURLINFO_OS_ERRNO
 Pass a pointer to a long to receive the errno variable from a connect failure.
 (Added in 7.12.2)
+.IP CURLINFO_NUM_CONNECTS
+Pass a pointer to a long to receive how many new connections libcurl had to
+create to achieve the previous transfer (only the successful connects are
+counted).  Combined with \fICURLINFO_REDIRECT_COUNT\fP you are able to know
+how many times libcurl successfully reused existing connection(s) or not.  See
+the Connection Options of \fIcurl_easy_setopt(3)\fP to see how libcurl tries
+to make persistent connections to save time.  (Added in 7.12.3)
 .SH RETURN VALUE
 If the operation was successful, CURLE_OK is returned. Otherwise an
 appropriate error code will be returned.

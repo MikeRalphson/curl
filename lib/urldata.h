@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.240 2004-10-06 07:50:18 bagder Exp $
+ * $Id: urldata.h,v 1.241 2004-10-19 15:30:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -623,6 +623,8 @@ struct PureInfo {
 
   long proxyauthavail;
   long httpauthavail;
+
+  long numconnects; /* how many new connection did libcurl created */
 
   char *contenttype; /* the content type of the object */
 };

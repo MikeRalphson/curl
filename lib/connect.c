@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.118 2004-10-11 17:23:41 bagder Exp $
+ * $Id: connect.c,v 1.119 2004-10-19 15:30:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -783,6 +783,8 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
   /* allow NULL-pointers to get passed in */
   if(sockconn)
     *sockconn = sockfd;    /* the socket descriptor we've connected */
+
+  data->info.numconnects++; /* to track the number of connections made */
 
   return CURLE_OK;
 }
