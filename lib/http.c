@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.205 2004-03-30 06:40:01 bagder Exp $
+ * $Id: http.c,v 1.206 2004-03-30 08:21:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -501,9 +501,11 @@ int Curl_http_should_fail(struct connectdata *conn)
   ** the client needs to reauthenticate.  Once that info is
   ** available, use it here.
   */
+#if 0 /* set to 1 when debugging this functionality */
   infof(data,"%s: authstage = %d\n",__FUNCTION__,data->state.authstage);
   infof(data,"%s: httpcode = %d\n",__FUNCTION__,k->httpcode);
   infof(data,"%s: authdone = %d\n",__FUNCTION__,data->state.authdone);
+#endif
 
   if (data->state.authstage &&
       (data->state.authstage == k->httpcode))
