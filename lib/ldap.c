@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.26 2003-07-01 10:12:52 bagder Exp $
+ * $Id: ldap.c,v 1.27 2003-07-19 23:56:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -178,8 +178,8 @@ CURLcode Curl_ldap(struct connectdata *conn)
     status = CURLE_COULDNT_CONNECT;
   } else {
     rc = ldap_simple_bind_s(server,
-                            conn->bits.user_passwd?data->state.user:NULL,
-                            conn->bits.user_passwd?data->state.passwd:NULL);
+                            conn->bits.user_passwd?conn->user:NULL,
+                            conn->bits.user_passwd?conn->passwd:NULL);
     if (rc != 0) {
       failf(data, "LDAP: %s", ldap_err2string(rc));
       status = CURLE_LDAP_CANNOT_BIND;

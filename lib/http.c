@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.140 2003-07-04 16:29:23 bagder Exp $
+ * $Id: http.c,v 1.141 2003-07-19 23:56:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -650,8 +650,7 @@ static CURLcode Curl_output_basic(struct connectdata *conn)
   char *authorization;
   struct SessionHandle *data=conn->data;
 
-  sprintf(data->state.buffer, "%s:%s",
-          data->state.user, data->state.passwd);
+  sprintf(data->state.buffer, "%s:%s", conn->user, conn->passwd);
   if(Curl_base64_encode(data->state.buffer, strlen(data->state.buffer),
                         &authorization) >= 0) {
     if(conn->allocptr.userpwd)

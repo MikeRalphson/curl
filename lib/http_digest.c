@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.4 2003-06-26 11:22:12 bagder Exp $
+ * $Id: http_digest.c,v 1.5 2003-07-19 23:56:33 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -154,18 +154,18 @@ CURLcode Curl_output_digest(struct connectdata *conn,
   if(data->state.digest.algo == CURLDIGESTALGO_MD5SESS) {
     md5this = (unsigned char *)
       aprintf("%s:%s:%s:%s:%s",
-              data->state.user,
+              conn->user,
               data->state.digest.realm,
-              data->state.passwd,
+              conn->passwd,
               data->state.digest.nonce,
               data->state.digest.cnonce);
   }
   else {
     md5this = (unsigned char *)
       aprintf("%s:%s:%s",
-              data->state.user,
+              conn->user,
               data->state.digest.realm,
-              data->state.passwd);
+              conn->passwd);
   }
   Curl_md5it(md5buf, md5this);
   free(md5this); /* free this again */
@@ -202,7 +202,7 @@ CURLcode Curl_output_digest(struct connectdata *conn,
              "nonce=\"%s\", "
              "uri=\"%s\", "
              "response=\"%s\"\r\n",
-             data->state.user,
+             conn->user,
              data->state.digest.realm,
              data->state.digest.nonce,
              uripath, /* this is the PATH part of the URL */ 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.183 2003-06-26 06:52:48 bagder Exp $
+ * $Id: ftp.c,v 1.184 2003-07-19 23:56:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -409,9 +409,9 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   /* get some initial data into the ftp struct */
   ftp->bytecountp = &conn->bytecount;
 
-  /* no need to duplicate them, the data struct won't change */
-  ftp->user = data->state.user;
-  ftp->passwd = data->state.passwd;
+  /* no need to duplicate them, this connectdata struct won't change */
+  ftp->user = conn->user;
+  ftp->passwd = conn->passwd;
   ftp->response_time = 3600; /* set default response time-out */
 
   if (data->set.tunnel_thru_httpproxy) {
