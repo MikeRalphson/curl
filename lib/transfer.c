@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.8 2001-01-31 15:06:56 bagder Exp $
+ * $Id: transfer.c,v 1.9 2001-02-07 08:36:23 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -82,7 +82,6 @@
 #include <curl/types.h>
 #include "netrc.h"
 
-#include "getenv.h"
 #include "hostip.h"
 #include "transfer.h"
 #include "sendf.h"

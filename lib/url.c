@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.79 2001-02-05 23:04:44 bagder Exp $
+ * $Id: url.c,v 1.80 2001-02-07 08:36:23 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -80,7 +80,6 @@
 #include "netrc.h"
 
 #include "formdata.h"
-#include "getenv.h"
 #include "base64.h"
 #include "ssluse.h"
 #include "hostip.h"

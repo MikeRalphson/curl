@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.8 2001-01-05 10:11:42 bagder Exp $
+ * $Id: netrc.c,v 1.9 2001-02-07 08:36:23 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -27,7 +27,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "getenv.h"
+#include <curl/curl.h>
+
 #include "strequal.h"
 
 /* Debug this single source file with:
