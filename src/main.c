@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.255 2004-04-23 08:44:27 bagder Exp $
+ * $Id: main.c,v 1.256 2004-04-26 07:14:47 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1917,16 +1917,17 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           int bitmask;
         };
         struct feat feats[] = {
-          {"IPv6", CURL_VERSION_IPV6},
-          {"krb4", CURL_VERSION_KERBEROS4},
-          {"SSL",  CURL_VERSION_SSL},
-          {"libz", CURL_VERSION_LIBZ},
-          {"NTLM", CURL_VERSION_NTLM},
-          {"GSS-Negotiate", CURL_VERSION_GSSNEGOTIATE},
-          {"Debug", CURL_VERSION_DEBUG},
           {"AsynchDNS", CURL_VERSION_ASYNCHDNS},
+          {"Debug", CURL_VERSION_DEBUG},
+          {"GSS-Negotiate", CURL_VERSION_GSSNEGOTIATE},
+          {"IDN", CURL_VERSION_IDN},
+          {"IPv6", CURL_VERSION_IPV6},
+          {"Largefile", CURL_VERSION_LARGEFILE},
+          {"NTLM", CURL_VERSION_NTLM},
           {"SPNEGO", CURL_VERSION_SPNEGO},
-          {"Largefile", CURL_VERSION_LARGEFILE}
+          {"SSL",  CURL_VERSION_SSL},
+          {"krb4", CURL_VERSION_KERBEROS4},
+          {"libz", CURL_VERSION_LIBZ}
         };
         printf("Features: ");
         for(i=0; i<sizeof(feats)/sizeof(feats[0]); i++) {
