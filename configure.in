@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.121 2003-03-03 22:31:58 bagder Exp $
+dnl $Id: configure.in,v 1.122 2003-03-07 13:36:32 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -735,6 +735,9 @@ fi
 AC_PATH_PROG( PERL, perl, , 
   $PATH:/usr/local/bin/perl:/usr/bin/:/usr/local/bin )
 AC_SUBST(PERL)
+
+AC_PATH_PROG( SED, sed, , $PATH:/usr/bin:/usr/local/bin)
+AC_SUBST(SED)
 
 AC_PATH_PROGS( NROFF, gnroff nroff, , 
   $PATH:/usr/bin/:/usr/local/bin )
