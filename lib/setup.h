@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.12 2001-08-06 12:27:28 bagder Exp $
+ * $Id: setup.h,v 1.13 2001-08-24 07:24:34 bagder Exp $
  *****************************************************************************/
 
 
@@ -93,24 +93,6 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #else
 #ifdef _AIX
 #include "curl/stdcheaders.h"
-#endif
-#endif
-
-#if 0 /* zlib experiments are halted 17th october, 1999 (Daniel) */
-#if defined(HAVE_ZLIB_H) && defined(HAVE_LIBZ)
-     /* Both lib and header file exist, we have libz! */
-#define USE_ZLIB
-#endif
-#endif
-
-#if 0
-#ifdef HAVE_STRCASECMP
-#define strnequal(x,y,z) !(strncasecmp)(x,y,z)
-#define strequal(x,y) !(strcasecmp)(x,y)
-
-#else
-#define strnequal(x,y,z) !strnicmp(x,y,z)
-#define strequal(x,y) !stricmp(x,y)
 #endif
 #endif
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.13 2001-05-18 10:02:44 bagder Exp $
+ * $Id: strequal.c,v 1.14 2001-08-24 07:24:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -28,11 +28,11 @@
 int curl_strequal(const char *first, const char *second)
 {
 #if defined(HAVE_STRCASECMP)
-  return !strcasecmp(first, second);
+  return !(strcasecmp)(first, second);
 #elif defined(HAVE_STRCMPI)
-  return !strcmpi(first, second);
+  return !(strcmpi)(first, second);
 #elif defined(HAVE_STRICMP)
-  return !stricmp(first, second);
+  return !(stricmp)(first, second);
 #else
   while (*first && *second) {
     if (toupper(*first) != toupper(*second)) {
