@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.42 2003-05-27 08:51:09 bagder Exp $
+# $Id: Makefile.am,v 1.43 2003-06-27 14:37:38 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -78,3 +78,8 @@ pkgadd:
 # resulting .tar.bz2 file will end up at packages/Win32/cygwin
 cygwinbin:
 	$(MAKE) -C packages/Win32/cygwin cygwinbin
+
+# We extend the standard install with a custom hook:
+install-data-hook:
+	cd include && $(MAKE) install
+	cd docs && $(MAKE) install
