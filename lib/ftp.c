@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.170 2003-02-04 23:48:46 jpbl Exp $
+ * $Id: ftp.c,v 1.171 2003-02-27 12:50:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1854,9 +1854,19 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
 
       int size=-1; /* default unknown size */
 
+
+      /*
+       * It appears that there are FTP-servers that return size 0 for files
+       * when SIZE is used on the file while being in BINARY mode. To work
+       * around that (stupid) behavior, we attempt to parse the RETR response
+       * even if the SIZE returned size zero.
+       *
+       * Debugging help from Salvatore Sorrentino on February 26, 2003.
+       */
+
       if(!dirlist &&
          !data->set.ftp_ascii &&
-         (-1 == downloadsize)) {
+         (downloadsize < 1)) {
         /*
          * It seems directory listings either don't show the size or very
          * often uses size 0 anyway. ASCII transfers may very well turn out
