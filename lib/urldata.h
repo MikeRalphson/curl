@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.54 2001-03-12 15:47:41 bagder Exp $
+ * $Id: urldata.h,v 1.55 2001-03-13 07:53:59 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -227,7 +227,8 @@ struct connectdata {
 
   char *proxyhost; /* name of the http proxy host */
 
-  struct timeval now; /* current time */
+  struct timeval now;     /* "current" time */
+  struct timeval created; /* creation time */
   int firstsocket;     /* the main socket to use */
   int secondarysocket; /* for i.e ftp transfers */
 
