@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.273 2004-06-27 21:51:54 bagder Exp $
+ * $Id: main.c,v 1.274 2004-07-01 06:19:19 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -3558,14 +3558,14 @@ operate(struct Configurable *config, int argc, char *argv[])
   if(config->headerfile && !headerfilep && heads.stream)
     fclose(heads.stream);
 
-  if(config->trace_fopened && config->trace_stream)
-    fclose(config->trace_stream);
-
   if(allocuseragent)
     free(config->useragent);
 
   /* cleanup the curl handle! */
   curl_easy_cleanup(curl);
+
+  if(config->trace_fopened && config->trace_stream)
+    fclose(config->trace_stream);
 
   if(config->errors_fopened)
     fclose(config->errors);
