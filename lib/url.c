@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.287 2003-07-21 13:16:30 bagder Exp $
+ * $Id: url.c,v 1.288 2003-07-22 11:15:46 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -853,7 +853,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
 #ifndef USE_SSLEAY
     auth &= ~CURLAUTH_NTLM; /* no NTLM without SSL */
 #endif
-#ifdef GSSAPI
+#ifndef GSSAPI
     auth &= ~CURLAUTH_GSSNEGOTIATE; /* no GSS-Negotiate without GSSAPI */
 #endif
     if(!auth)
