@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.19 2003-09-04 13:31:49 bagder Exp $
+ * $Id: http_ntlm.c,v 1.20 2003-09-15 21:11:22 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -277,7 +277,8 @@ static void mkhash(char *password,
 
 /* this is for creating ntlm header output */
 CURLcode Curl_output_ntlm(struct connectdata *conn,
-                          bool proxy)
+                          bool proxy,
+                          bool *ready)
 {
   const char *domain=""; /* empty */
   const char *host=""; /* empty */
@@ -298,6 +299,8 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
   char *passwdp;
   /* point to the correct struct with this */
   struct ntlmdata *ntlm;
+
+  *ready = FALSE;
 
   if(proxy) {
     allocuserpwd = &conn->allocptr.proxyuserpwd;
@@ -556,6 +559,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
       return CURLE_OUT_OF_MEMORY; /* FIX TODO */
 
     ntlm->state = NTLMSTATE_TYPE3; /* we sent a type-3 */
+    *ready = TRUE;
 
     /* Switch to web authentication after proxy authentication is done */
     if (proxy)
@@ -570,6 +574,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
       free(*allocuserpwd);
       *allocuserpwd=NULL;
     }
+    *ready = TRUE;
     break;
   }
 
