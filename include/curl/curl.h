@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.208 2003-08-11 11:48:01 bagder Exp $
+ * $Id: curl.h,v 1.209 2003-08-11 23:12:46 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -992,22 +992,17 @@ typedef enum {
   CURLINFO_REQUEST_SIZE     = CURLINFO_LONG   + 12,
   CURLINFO_SSL_VERIFYRESULT = CURLINFO_LONG   + 13,
   CURLINFO_FILETIME         = CURLINFO_LONG   + 14,
-
   CURLINFO_CONTENT_LENGTH_DOWNLOAD   = CURLINFO_DOUBLE + 15,
   CURLINFO_CONTENT_LENGTH_UPLOAD     = CURLINFO_DOUBLE + 16,
-
   CURLINFO_STARTTRANSFER_TIME = CURLINFO_DOUBLE + 17,
+  CURLINFO_CONTENT_TYPE     = CURLINFO_STRING + 18,
+  CURLINFO_REDIRECT_TIME    = CURLINFO_DOUBLE + 19,
+  CURLINFO_REDIRECT_COUNT   = CURLINFO_LONG + 20,
+  CURLINFO_PRIVATE          = CURLINFO_STRING + 21,
+  CURLINFO_HTTP_CONNECTCODE = CURLINFO_LONG   + 22,
+  /* Fill in new entries below here! */
 
-  CURLINFO_CONTENT_TYPE = CURLINFO_STRING + 18,
-
-  CURLINFO_REDIRECT_TIME   = CURLINFO_DOUBLE + 19,
-  CURLINFO_REDIRECT_COUNT  = CURLINFO_LONG + 20,
-
-  CURLINFO_PRIVATE = CURLINFO_STRING + 21,
-
-  /* Fill in new entries here! */
-
-  CURLINFO_LASTONE          = 22
+  CURLINFO_LASTONE          = 23
 } CURLINFO;
 
 typedef enum {
@@ -1125,6 +1120,7 @@ typedef struct {
 #define CURL_VERSION_NTLM      (1<<4)
 #define CURL_VERSION_GSSNEGOTIATE (1<<5)
 #define CURL_VERSION_DEBUG     (1<<6) /* built with debug capabilities */
+#define CURL_VERSION_ASYNCHDNS (1<<7)
 
 /*
  * NAME curl_version_info()
