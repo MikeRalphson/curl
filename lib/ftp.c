@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.306 2005-03-08 08:09:14 bagder Exp $
+ * $Id: ftp.c,v 1.307 2005-03-14 00:00:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,7 +82,6 @@
 #include "ftp.h"
 
 #ifdef HAVE_KRB4
-#include "security.h"
 #include "krb4.h"
 #endif
 
