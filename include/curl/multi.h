@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.11 2003-05-26 07:57:53 bagder Exp $
+ * $Id: multi.h,v 1.12 2003-05-26 12:32:22 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -46,8 +46,8 @@
   
 */
 #if defined(_WIN32) && !defined(WIN32)
-/* Chris Lewis mentioned that he doesn't get WIN32 defined, only _WIN32
-   so we make this like adjustment to catch this. */
+/* Chris Lewis mentioned that he doesn't get WIN32 defined, only _WIN32 so we
+   make this adjustment to catch this. */
 #define WIN32 1
 #endif
 
