@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.23 2004-01-07 09:19:36 bagder Exp $
+ * $Id: setup.h,v 1.24 2004-01-13 08:35:58 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -45,6 +45,9 @@
 #endif
 #ifdef __riscos__
 #include "config-riscos.h"
+#endif
+#ifdef __amigaos__
+#include "config-amigaos.h"
 #endif
 #endif
 

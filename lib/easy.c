@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.45 2004-01-07 09:19:35 bagder Exp $
+ * $Id: easy.c,v 1.46 2004-01-13 08:35:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -151,6 +151,11 @@ CURLcode curl_global_init(long flags)
     if (win32_init() != CURLE_OK)
       return CURLE_FAILED_INIT;
 
+#ifdef _AMIGASF
+  if(!amiga_init())
+    return CURLE_FAILED_INIT;
+#endif
+
   initialized = 1;
   init_flags  = flags;
   
@@ -173,6 +178,10 @@ void curl_global_cleanup(void)
 
   if (init_flags & CURL_GLOBAL_WIN32)
     win32_cleanup();
+
+#ifdef _AMIGASF
+  amiga_cleanup();
+#endif
 
   initialized = 0;
   init_flags  = 0;

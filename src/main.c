@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.220 2004-01-07 09:19:36 bagder Exp $
+ * $Id: main.c,v 1.221 2004-01-13 08:35:58 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1995,6 +1995,7 @@ static int parseconfig(const char *filename,
 
 #define CURLRC DOT_CHAR "curlrc"
 
+#ifndef AMIGA
     filename = CURLRC;   /* sensible default */
     home = homedir();    /* portable homedir finder */
     if(home) {
@@ -2006,6 +2007,13 @@ static int parseconfig(const char *filename,
       }
       free(home); /* we've used it, now free it */
     }
+    
+# else /* AmigaOS */
+  /* On AmigaOS all the config files are into env:
+   */
+  filename = "ENV:" CURLRC;
+
+#endif
   }
 
   if(strcmp(filename,"-"))
@@ -3299,6 +3307,14 @@ operate(struct Configurable *config, int argc, char *argv[])
             utime(outs.filename, &times); /* set the time we got */
           }
         }
+#endif
+#ifdef AMIGA
+        /* Set the url as comment for the file. (up to 80 chars are allowed)
+         */
+        if( strlen(url) > 78 )
+          url[79] = '\0';
+        
+        SetComment( outs.filename, url);
 #endif
 
         if(headerfilep)

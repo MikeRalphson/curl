@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.39 2004-01-07 09:19:35 bagder Exp $
+ * $Id: setup.h,v 1.40 2004-01-13 08:35:57 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -53,6 +53,9 @@
 #ifdef macintosh
 /* hand-modified MacOS config.h! */
 #include "config-mac.h"
+#endif
+#ifdef AMIGA
+#include "amigaos.h"
 #endif
 
 #endif
@@ -202,6 +205,12 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 
 #define HAVE_ALARM
 
+#endif
+
+#ifdef _AMIGASF
+#undef HAVE_ALARM
+#undef sclose
+#define sclose(x) CloseSocket(x)
 #endif
 
 #define DIR_CHAR      "/"
