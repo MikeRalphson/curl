@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.7 2000-08-02 08:08:09 bagder Exp $
+# $Id: Makefile.am,v 1.8 2000-10-02 06:32:05 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -10,7 +10,7 @@ INCLUDES = -I$(top_srcdir)/include
 
 bin_PROGRAMS = curl
 
-curl_SOURCES = main.c hugehelp.c urlglob.c
+curl_SOURCES = main.c hugehelp.c urlglob.c writeout.c
 curl_LDADD = $(top_srcdir)/lib/libcurl.la
 curl_DEPENDENCIES = $(top_srcdir)/lib/libcurl.la
 BUILT_SOURCES = hugehelp.c
