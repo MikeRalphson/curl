@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.50 2004-02-12 15:05:38 bagder Exp $
+dnl $Id: configure.ac,v 1.51 2004-02-15 22:34:58 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -325,6 +325,25 @@ AC_HELP_STRING([--enable-libgcc],[use libgcc when linking]),
   esac ],
        AC_MSG_RESULT(no)
 )
+
+dnl **********************************************************************
+dnl Check for the presence of the winmm library.
+dnl **********************************************************************
+
+AC_MSG_CHECKING([for timeGetTime in winmm])
+my_ac_save_LIBS=$LIBS
+LIBS="-lwinmm $LIBS"
+AC_TRY_LINK([#include <windef.h>
+             #include <mmsystem.h>
+             ],
+             [timeGetTime();],
+             [ dnl worked!
+             AC_MSG_RESULT([yes])
+             ],
+             [ dnl failed, restore LIBS
+             LIBS=$my_ac_save_LIBS
+             AC_MSG_RESULT(no)]
+           )
 
 dnl **********************************************************************
 dnl Checks for IPv6
