@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.404 2004-07-29 08:06:33 bagder Exp $
+ * $Id: url.c,v 1.405 2004-08-10 13:21:32 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -639,6 +639,8 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
        callback! */
     if(va_arg(param, long))
       data->set.httpreq = HTTPREQ_POST;
+    else
+      data->set.httpreq = HTTPREQ_GET;
     break;
 
   case CURLOPT_POSTFIELDS:
