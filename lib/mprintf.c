@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.31 2004-02-20 15:16:31 bagder Exp $
+ * $Id: mprintf.c,v 1.32 2004-02-21 15:05:46 bagder Exp $
  *
  *************************************************************************
  *
@@ -939,15 +939,15 @@ static int dprintf_formatf(
       /* Answer the count of characters written.  */
 #ifdef HAVE_LONGLONG
       if (p->flags & FLAGS_LONGLONG)
-	*(long long int *) p->data.ptr = done;
+	*(long long *) p->data.ptr = (long long)done;
       else
 #endif
 	if (p->flags & FLAGS_LONG)
-	  *(long int *) p->data.ptr = done;
+	  *(long *) p->data.ptr = (long)done;
       else if (!(p->flags & FLAGS_SHORT))
-	*(int *) p->data.ptr = done;
+	*(int *) p->data.ptr = (int)done;
       else
-	*(short int *) p->data.ptr = done;
+	*(short *) p->data.ptr = (short)done;
       break;
 
     default:
