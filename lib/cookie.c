@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.27 2002-01-07 14:56:15 bagder Exp $
+ * $Id: cookie.c,v 1.28 2002-01-07 23:05:36 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -194,6 +194,11 @@ Curl_cookie_add(struct CookieInfo *c,
       while(ptr && *ptr && isspace((int)*ptr))
         ptr++;
       semiptr=strchr(ptr, ';'); /* now, find the next semicolon */
+
+      if(!semiptr && *ptr)
+        /* There are no more semicolons, but there's a final name=value pair
+           coming up */
+        semiptr=ptr;
     } while(semiptr);
 
     if(NULL == co->domain)
