@@ -21,18 +21,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.h,v 1.3 2003-01-08 15:50:52 bagder Exp $
+ * $Id: share.h,v 1.4 2003-01-09 10:21:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include <curl/curl.h>
-
-typedef enum {
-  SHARE_ERROR_OK = 0,
-  SHARE_ERROR_INVALID, 
-  SHARE_ERROR_NOT_REGISTERED,
-  SHARE_ERROR_LAST
-} Curl_share_error;
 
 /* this struct is libcurl-private, don't export details */
 struct Curl_share {
@@ -45,8 +38,8 @@ struct Curl_share {
   void *clientdata;
 };
 
-Curl_share_error Curl_share_aquire_lock (CURL *, curl_lock_data);
-Curl_share_error Curl_share_release_lock (CURL *, curl_lock_data);
+CURLSHcode Curl_share_aquire_lock (struct SessionHandle *, curl_lock_data);
+CURLSHcode Curl_share_release_lock (struct SessionHandle *, curl_lock_data);
 
 #endif /* __CURL_SHARE_H */
 
