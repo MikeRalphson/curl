@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.38 2004-01-07 09:19:33 bagder Exp $
+dnl $Id: configure.ac,v 1.39 2004-01-08 22:58:21 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -500,7 +500,7 @@ if test x"$want_spnego" = xyes; then
      AC_MSG_RESULT(no)
   else
      if test -z "$SPNEGO_LIB_DIR"; then
-        LDFLAGS="$LDFLAGS -L$SPNEGO_ROOT ${wl}-R$SPNEGO_ROOT -lfbopenssl"
+        LDFLAGS="$LDFLAGS -L$SPNEGO_ROOT -lfbopenssl"
      else
         LDFLAGS="$LDFLAGS $SPNEGO_LIB_DIR"
      fi
