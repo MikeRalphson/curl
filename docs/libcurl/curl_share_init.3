@@ -1,4 +1,4 @@
-.\" $Id: curl_share_init.3,v 1.1 2003-08-11 07:25:02 bagder Exp $
+.\" $Id: curl_share_init.3,v 1.2 2004-02-09 09:07:26 bagder Exp $
 .\"
 .TH curl_share_init 3 "8 Aug 2003" "libcurl 7.10.7" "libcurl Manual"
 .SH NAME
@@ -14,8 +14,8 @@ share-functions, sometimes refered to as a share handle on some places in the
 documentation. This init call MUST have a corresponding call to
 \fIcurl_share_cleanup\fP when all operations using the share are complete.
 .SH RETURN VALUE
-If this function returns NULL, something went wrong and you got no share
-object to use.
+If this function returns NULL, something went wrong (out of memory, etc.)
+and therefore the share object was not created.
 .SH "SEE ALSO"
 .BR curl_share_cleanup "(3), " curl_share_setopt "(3)"
 
