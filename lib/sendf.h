@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.17 2002-03-19 07:54:55 bagder Exp $
+ * $Id: sendf.h,v 1.18 2002-04-12 07:21:11 bagder Exp $
  *****************************************************************************/
 
 CURLcode Curl_sendf(int fd, struct connectdata *, const char *fmt, ...);
@@ -52,5 +52,10 @@ int Curl_read(struct connectdata *conn, int sockfd,
 CURLcode Curl_write(struct connectdata *conn, int sockfd,
                     void *mem, size_t len,
                     ssize_t *written);
+
+/* the function used to output verbose information */
+int Curl_debug(struct SessionHandle *handle, curl_infotype type,
+               char *data, size_t size);
+
 
 #endif
