@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.98 2002-01-08 04:26:47 bumblebury Exp $
+ * $Id: urldata.h,v 1.99 2002-01-08 04:30:59 bumblebury Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -617,6 +617,8 @@ struct UserDefined {
   char *krb4_level; /* what security level */
   struct ssl_config_data ssl;  /* user defined SSL stuff */
 
+  int dns_cache_timeout; /* DNS cache timeout */
+  
 /* Here follows boolean settings that define how to behave during
    this session. They are STATIC, set by libcurl users or at least initially
    and they don't change during operations. */
@@ -647,7 +649,6 @@ struct UserDefined {
   bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
 
   bool global_dns_cache;
-  bool dns_cache_timeout;
 };
 
 /*

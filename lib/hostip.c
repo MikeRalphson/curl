@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.41 2002-01-08 04:26:47 bumblebury Exp $
+ * $Id: hostip.c,v 1.42 2002-01-08 04:30:59 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -95,7 +95,7 @@ void Curl_global_host_cache_dtor(void)
 
 struct curl_dns_cache_entry {
   Curl_addrinfo *addr;
-  int            timestamp;
+  time_t timestamp;
 };
 
 Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
