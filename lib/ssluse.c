@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.122 2004-12-14 20:25:23 danf Exp $
+ * $Id: ssluse.c,v 1.123 2004-12-14 22:06:25 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -534,6 +534,7 @@ CURLcode Curl_SSL_set_engine(struct SessionHandle *data, const char *engine)
   data->state.engine = e;
   return (CURLE_OK);
 #else
+  (void)engine;
   failf(data, "SSL Engine not supported");
   return (CURLE_SSL_ENGINE_NOTFOUND);
 #endif
