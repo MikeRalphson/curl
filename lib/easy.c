@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.47 2004-01-22 12:45:50 bagder Exp $
+ * $Id: easy.c,v 1.48 2004-03-03 13:32:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -98,7 +98,12 @@ static CURLcode win32_init(void)
   WORD wVersionRequested;  
   WSADATA wsaData; 
   int err; 
-  wVersionRequested = MAKEWORD(2, 0); 
+
+#ifdef ENABLE_IPV6
+  wVersionRequested = MAKEWORD(2, 0);
+#else
+  wVersionRequested = MAKEWORD(1, 1);
+#endif
     
   err = WSAStartup(wVersionRequested, &wsaData); 
     
@@ -107,14 +112,14 @@ static CURLcode win32_init(void)
     /* winsock.dll.     */ 
     return CURLE_FAILED_INIT; 
     
-  /* Confirm that the Windows Sockets DLL supports 2.0.*/ 
+  /* Confirm that the Windows Sockets DLL supports what we need.*/ 
   /* Note that if the DLL supports versions greater */ 
-  /* than 2.0 in addition to 2.0, it will still return */ 
-  /* 2.0 in wVersion since that is the version we */ 
-  /* requested. */ 
-    
-  if ( LOBYTE( wsaData.wVersion ) != 2 || 
-       HIBYTE( wsaData.wVersion ) != 0 ) { 
+  /* than wVersionRequested, it will still return */ 
+  /* wVersionRequested in wVersion. wHighVersion contains the */
+  /* highest supported version. */
+
+  if ( LOBYTE( wsaData.wVersion ) != LOBYTE(wVersionRequested) || 
+       HIBYTE( wsaData.wVersion ) != HIBYTE(wVersionRequested) ) { 
     /* Tell the user that we couldn't find a useable */ 
 
     /* winsock.dll. */ 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.241 2004-03-02 09:11:52 bagder Exp $
+ * $Id: main.c,v 1.242 2004-03-03 13:32:58 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2647,8 +2647,11 @@ operate(struct Configurable *config, int argc, char *argv[])
 
   errorbuffer[0]=0; /* prevent junk from being output */
 
-  main_init(); /* inits */
-
+  /* inits */
+  if (main_init() != CURLE_OK) {
+    helpf("error initializing curl library\n");
+    return CURLE_FAILED_INIT;
+  }
   config->showerror=TRUE;
   config->conf=CONF_DEFAULT;
   config->use_httpget=FALSE;

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.8 2004-02-23 14:24:49 bagder Exp $
+ * $Id: strtoofft.h,v 1.9 2004-03-03 13:32:57 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -45,7 +45,7 @@
 
 /* For MSVC7 we can use _strtoi64() which seems to be a strtoll() clone */
 #if defined(_MSC_VER) && (_MSC_VER >= 1300)
-#define strtoll _strtoi64
+#define strtoofft _strtoi64
 #else /* MSVC7 or later */
 curl_off_t curlx_strtoll(const char *nptr, char **endptr, int base);
 #define strtoofft curlx_strtoll
