@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.75 2004-10-01 06:36:11 bagder Exp $
+ * $Id: formdata.c,v 1.76 2004-10-01 11:20:38 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -944,9 +944,10 @@ char *basename(char *path)
   if(s1 && s2) {
     path = (s1 > s2? s1 : s2)+1;
   }
-  else {
-    path = (s1 ? s1 : s2)+1;
-  }
+  else if(s1)
+    path = s1 + 1;
+  else if(s2)
+    path = s1 + 1;
 
   return path;
 }
