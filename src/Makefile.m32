@@ -1,4 +1,6 @@
 #############################################################
+# $Id: Makefile.m32,v 1.5 2001-08-09 09:10:36 bagder Exp $
+#
 ## Makefile for building curl.exe with MingW32 (GCC-2.95) and
 ## optionally OpenSSL (0.9.6)
 ##
