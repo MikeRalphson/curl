@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.121 2004-04-30 10:37:40 bagder Exp $
+# $Id: runtests.pl,v 1.122 2004-05-05 06:11:13 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -160,7 +160,8 @@ sub torture {
     my $c;
 
     my @test=('http://%HOSTIP:%HOSTPORT/1',
-              'ftp://%HOSTIP:%FTPPORT/');
+              'ftp://%HOSTIP:%FTPPORT/1',
+              'http://%HOSTIP:%HOSTPORT/3 -d "poo"');
     
     # loop over the different tests commands
     for(@test) {
