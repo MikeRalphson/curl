@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.66 2004-03-25 16:03:41 bagder Exp $
+dnl $Id: configure.ac,v 1.67 2004-03-26 07:10:15 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1001,6 +1001,7 @@ AC_CHECK_HEADERS(
         arpa/inet.h \
         net/if.h \
         netinet/in.h \
+        netinet/tcp.h \
         netdb.h \
         sys/sockio.h \
         sys/stat.h \
