@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.20 2004-04-23 10:37:52 bagder Exp $
+ * $Id: formdata.h,v 1.21 2004-05-11 14:48:53 bagder Exp $
  ***************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -39,8 +39,10 @@ struct Form {
 /* used by FormAdd for temporary storage */
 typedef struct FormInfo {
   char *name;
+  bool name_alloc;
   size_t namelength;
   char *value;
+  bool value_alloc;
   size_t contentslength;
   char *contenttype;
   long flags;
