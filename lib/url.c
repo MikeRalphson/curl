@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.77 2001-01-27 17:58:15 bagder Exp $
+ * $Id: url.c,v 1.78 2001-01-29 07:23:11 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -339,6 +339,9 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
     break;
   case CURLOPT_UPLOAD:
     data->bits.upload = va_arg(param, long)?TRUE:FALSE;
+    if(data->bits.upload)
+      /* If this is HTTP, PUT is what's needed to "upload" */
+      data->httpreq = HTTPREQ_PUT;
     break;
   case CURLOPT_POST:
     data->bits.http_post = va_arg(param, long)?TRUE:FALSE;
