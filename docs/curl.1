@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.146 2005-02-17 07:47:32 bagder Exp $
+.\" * $Id: curl.1,v 1.147 2005-03-12 19:39:27 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "25 Jan 2005" "Curl 7.13.0" "Curl Manual"
@@ -388,6 +388,12 @@ setting filename=, like this:
 See further examples and details in the MANUAL.
 
 This option can be used multiple times.
+.IP "--form-string <name=string>"
+(HTTP) Similar to \fI--form\fP except that the value string for the named
+parameter is used literally. Leading \&'@' and \&'<' characters, and the
+\&';type=' string in the value have no special meaning. Use this in
+preference to \fI--form\fP if there's any possibility that the string value
+may accidentally trigger the \&'@' or \&'<' features of \fI--form\f{.
 .IP "-g/--globoff"
 This option switches off the "URL globbing parser". When you set this option,
 you can specify URLs that contain the letters {}[] without having them being
