@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.118 2001-12-20 11:22:01 bagder Exp $
+ * $Id: ftp.c,v 1.119 2002-01-02 10:06:47 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1211,10 +1211,10 @@ CURLcode ftp_use_port(struct connectdata *conn)
       if(bind(portsock, (struct sockaddr *)&sa, size) >= 0) {
         /* we succeeded to bind */
         struct sockaddr_in add;
-        size = sizeof(add);
+        socklen_t socksize = sizeof(add);
 
         if(getsockname(portsock, (struct sockaddr *) &add,
-                       (socklen_t *)&size)<0) {
+                       &socksize)<0) {
           failf(data, "getsockname() failed");
           return CURLE_FTP_PORT_FAILED;
         }

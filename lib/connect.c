@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.20 2001-12-11 13:13:01 bagder Exp $
+ * $Id: connect.c,v 1.21 2002-01-02 10:06:47 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -193,7 +193,7 @@ static CURLcode bindlocal(struct connectdata *conn,
 #ifdef HAVE_INET_NTOA
 
 #ifndef INADDR_NONE
-#define INADDR_NONE (unsigned long) ~0
+#define INADDR_NONE (in_addr_t) ~0
 #endif
 
   struct SessionHandle *data = conn->data;
@@ -207,7 +207,7 @@ static CURLcode bindlocal(struct connectdata *conn,
     char *hostdataptr=NULL;
     size_t size;
     char myhost[256] = "";
-    unsigned long in;
+    in_addr_t in;
 
     if(Curl_if2ip(data->set.device, myhost, sizeof(myhost))) {
       h = Curl_getaddrinfo(data, myhost, 0, &hostdataptr);
@@ -236,7 +236,8 @@ static CURLcode bindlocal(struct connectdata *conn,
 
     infof(data, "We bind local end to %s\n", myhost);
 
-    if ( (in=inet_addr(myhost)) != INADDR_NONE ) {
+    in=inet_addr(myhost);
+    if (INADDR_NONE != in) {
 
       if ( h ) {
         memset((char *)&sa, 0, sizeof(sa));
