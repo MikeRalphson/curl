@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.80 2001-10-01 08:58:03 bagder Exp $
+dnl $Id: configure.in,v 1.81 2001-10-04 14:05:12 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -445,9 +445,6 @@ then
   AC_DEFINE(DISABLED_THREADSAFE, 1, \
 Set to explicitly specify we don't want to use thread-safe functions)
 else
-
-  dnl check that 'localhost' resolves first
-  CURL_CHECK_WORKING_RESOLVER
 
   dnl dig around for gethostbyname_r()
   CURL_CHECK_GETHOSTBYNAME_R()
