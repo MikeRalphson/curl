@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.18 2002-09-03 11:53:01 bagder Exp $
+ * $Id: version.c,v 1.19 2002-09-25 07:08:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -103,6 +103,53 @@ char *curl_version(void)
 #endif
 
   return version;
+}
+
+/* data for curl_version_info */
+
+static const curl_runtime_protocol_info protocols[] = {
+#ifndef CURL_DISABLE_FTP
+  { "ftp" },
+#endif
+#ifndef CURL_DISABLE_GOPHER
+  { "gopher" },
+#endif
+#ifndef CURL_DISABLE_TELNET
+  { "telnet" },
+#endif
+#ifndef CURL_DISABLE_DICT
+  { "dict" },
+#endif
+#ifndef CURL_DISABLE_LDAP
+  { "ldap" },
+#endif
+#ifndef CURL_DISABLE_HTTP
+  { "http" },
+#endif
+#ifndef CURL_DISABLE_FILE
+  { "file" },
+#endif
+
+#ifdef USE_SSLEAY
+#ifndef CURL_DISABLE_HTTP
+  { "https" },
+#endif
+#ifndef CURL_DISABLE_FTP
+  { "ftps" },
+#endif
+#endif
+  { NULL }
+};
+
+static const curl_version_info_data version_info = {
+  LIBCURL_VERSION,
+  LIBCURL_VERSION_NUM,
+  &protocols
+};
+
+const curl_version_info_data *curl_version_info(void)
+{
+  return &version_info;
 }
 
 /*

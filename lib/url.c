@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.230 2002-09-11 10:32:37 bagder Exp $
+ * $Id: url.c,v 1.231 2002-09-25 07:08:42 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1831,6 +1831,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
        * Since there was no protocol part specified, we guess what protocol it
        * is based on the first letters of the server name.
        */
+
+      /* Note: if you add a new protocol, please update the list in
+       * lib/version.c too! */
 
       if(strnequal(conn->gname, "FTP", 3)) {
         strcpy(conn->protostr, "ftp");
