@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.91 2002-04-10 13:44:42 bagder Exp $
+ * $Id: transfer.c,v 1.92 2002-04-15 13:47:06 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1291,8 +1291,11 @@ CURLcode Curl_perform(struct SessionHandle *data)
         case 303: /* See Other */
           /* Disable both types of POSTs, since doing a second POST when
            * following isn't what anyone would want! */
-          data->set.httpreq = HTTPREQ_GET; /* enforce GET request */
-          infof(data, "Disables POST, goes with GET\n");
+          if(data->set.httpreq != HTTPREQ_GET) {
+            data->set.httpreq = HTTPREQ_GET; /* enforce GET request */
+            infof(data, "Disables POST, goes with %s\n",
+                  data->set.no_body?"HEAD":"GET");
+          }
           break;
         case 304: /* Not Modified */
           /* 304 means we did a conditional request and it was "Not modified".
