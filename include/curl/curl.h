@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.129 2002-03-11 15:14:09 bagder Exp $
+ * $Id: curl.h,v 1.130 2002-03-13 12:09:52 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -576,13 +576,13 @@ typedef enum {
   CFINIT(CONTENTSLENGTH),
   CFINIT(FILECONTENT),
   CFINIT(ARRAY),
-  CFINIT(ARRAY_START), /* below are the options allowed within a array */
+  CFINIT(OBSOLETE),
   CFINIT(FILE),
   CFINIT(CONTENTTYPE),
   CFINIT(CONTENTHEADER),
   CFINIT(FILENAME),
   CFINIT(END),
-  CFINIT(ARRAY_END),   /* up are the options allowed within a array */
+  CFINIT(OBSOLETE2),
 
   CURLFORM_LASTENTRY /* the last unusued */
 } CURLformoption;
@@ -624,7 +624,7 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.9.5"
+#define LIBCURL_VERSION "7.9.5-cvs"
 #define LIBCURL_VERSION_NUM 0x070905
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
