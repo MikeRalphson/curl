@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.289 2004-12-17 09:00:19 bagder Exp $
+ * $Id: ftp.c,v 1.290 2004-12-17 10:09:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -778,19 +778,16 @@ CURLcode Curl_ftp_done(struct connectdata *conn, CURLcode status)
   flen = ftp->file?strlen(ftp->file):0; /* file is "raw" already */
   dlen = strlen(path)-flen;
   if(dlen) {
-    ftp->prevpath = malloc(dlen + 1);
-    if(!ftp->prevpath) {
-      free(path);
-      return CURLE_OUT_OF_MEMORY;
-    }
-    memcpy(ftp->prevpath, path, dlen);
-    ftp->prevpath[dlen]=0; /* terminate */
+    ftp->prevpath = path;
+    if(flen)
+      /* if 'path' is not the whole string */
+      ftp->prevpath[dlen]=0; /* terminate */
     infof(data, "Remembering we are in dir %s\n", ftp->prevpath);
   }
-  else
+  else {
     ftp->prevpath = NULL; /* no path */
-  free(path);
-
+    free(path);
+  }
   /* free the dir tree and file parts */
   freedirs(ftp);
 
