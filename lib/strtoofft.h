@@ -1,3 +1,5 @@
+#ifndef _CURL_STRTOOFFT_H
+#define _CURL_STRTOOFFT_H
 /***************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -18,11 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.5 2004-01-23 07:44:02 bagder Exp $
+ * $Id: strtoofft.h,v 1.6 2004-02-19 08:12:13 bagder Exp $
  ***************************************************************************/
 
-#ifndef _CURL_STRTOOFFT_R_H
-#define _CURL_STRTOOFFT_R_H
+/*
+ * CAUTION: this header is designed to work when included by the app-side
+ * as well as the library. Do not mix with library internals!
+ */
 
 #include "setup.h"
 #include <stddef.h>
@@ -38,7 +42,7 @@
 #if HAVE_STRTOLL
 #define strtoofft strtoll
 #else
-curl_off_t Curl_strtoll(const char *nptr, char **endptr, int base);
+curl_off_t curlx_strtoll(const char *nptr, char **endptr, int base);
 #define strtoofft Curl_strtoll
 #define NEED_CURL_STRTOLL
 #endif

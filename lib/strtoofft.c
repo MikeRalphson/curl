@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.c,v 1.4 2004-01-22 14:37:06 bagder Exp $
+ * $Id: strtoofft.c,v 1.5 2004-02-19 08:12:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,7 +36,7 @@ static int get_char(char c, int base);
  * value from the given input string and returns it.
  */
 curl_off_t
-Curl_strtoll(const char *nptr, char **endptr, int base)
+curlx_strtoll(const char *nptr, char **endptr, int base)
 {
   char *end;
   int is_negative = 0;
