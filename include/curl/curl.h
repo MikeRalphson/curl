@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.233 2004-01-05 22:29:31 bagder Exp $
+ * $Id: curl.h,v 1.234 2004-01-05 22:34:37 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -736,14 +736,14 @@ typedef enum {
      to parse (using the CURLOPT_NETRC option). If not set, libcurl will do
      a poor attempt to find the user's home directory and check for a .netrc
      file in there. */
-  CINIT(NETRC_FILE, OBJECTPOINT, 115),
+  CINIT(NETRC_FILE, OBJECTPOINT, 118),
 
   /* Enable SSL/TLS for FTP, pick one of:
      CURLFTPSSL_TRY     - try using SSL, proceed anyway otherwise
      CURLFTPSSL_CONTROL - SSL for the control connection or fail
      CURLFTPSSL_ALL     - SSL for all communication or fail
   */
-  CINIT(FTP_SSL, LONG, 116),
+  CINIT(FTP_SSL, LONG, 119),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
