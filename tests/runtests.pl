@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.166 2005-03-17 08:17:48 bagder Exp $
+# $Id: runtests.pl,v 1.167 2005-03-21 08:14:32 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -115,6 +115,7 @@ my $http_ipv6;   # set if HTTP server has IPv6 support
 my $has_ipv6;    # set if libcurl is built with IPv6 support
 my $has_libz;    # set if libcurl is built with libz support
 my $has_getrlimit;  # set if system has getrlimit()
+my $has_ntlm;    # set if libcurl is built with NTLM support
 
 my $skipped=0;  # number of tests skipped; reported in main loop
 my %skipped;    # skipped{reason}=counter, reasons for skip
@@ -819,6 +820,10 @@ sub checkcurl {
             if($feat =~ /libz/i) {
                 $has_libz = 1;
             }
+            if($feat =~ /NTLM/i) {
+                # NTLM enabled
+                $has_ntlm=1;
+            }
         }
     }
     if(!$curl) {
@@ -960,6 +965,11 @@ sub singletest {
         }
         elsif($f eq "libz") {
             if($has_libz) {
+                next;
+            }
+        }
+        elsif($f eq "NTLM") {
+            if($has_ntlm) {
                 next;
             }
         }
