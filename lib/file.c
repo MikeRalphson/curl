@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.61 2004-06-24 15:06:25 bagder Exp $
+ * $Id: file.c,v 1.62 2004-07-06 15:16:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -180,10 +180,16 @@ CURLcode Curl_file_done(struct connectdata *conn,
   return CURLE_OK;
 }
 
+#if defined(WIN32) || defined(__EMX__)
+#define DIRSEP '\\'
+#else
+#define DIRSEP '/'
+#endif
+
 static CURLcode file_upload(struct connectdata *conn)
 {
   struct FILEPROTO *file = conn->proto.file;
-  char *dir = strchr(file->path, '/');
+  char *dir = strchr(file->path, DIRSEP);
   FILE *fp;
   CURLcode res=CURLE_OK;
   struct SessionHandle *data = conn->data;
