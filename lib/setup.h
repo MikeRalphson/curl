@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.32 2003-10-05 15:04:09 bagder Exp $
+ * $Id: setup.h,v 1.33 2003-10-08 19:56:44 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -179,12 +179,16 @@ int fileno( FILE *stream);
 
 #endif
 
+#if defined(ENABLE_IPV6) && defined(USE_ARES)
+#error "ares does not yet support IPv6. Disable IPv6 or ares and rebuild"
+#endif
+
 /*
  * Curl_addrinfo MUST be used for name resolving information.
  * Information regarding a single IP witin a Curl_addrinfo MUST be stored in
  * a Curl_ipconnect struct.
  */
-#if defined(ENABLE_IPV6) && !defined(USE_ARES)
+#ifdef ENABLE_IPV6
 typedef struct addrinfo Curl_addrinfo;
 typedef struct addrinfo Curl_ipconnect;
 #else
