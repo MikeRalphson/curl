@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.283 2004-12-07 10:00:20 bagder Exp $
+ * $Id: ftp.c,v 1.284 2004-12-11 22:18:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1966,7 +1966,7 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
               failf(data, "Offset (%" FORMAT_OFF_T
                     ") was beyond file size (%" FORMAT_OFF_T ")",
                     conn->resume_from, foundsize);
-              return CURLE_FTP_BAD_DOWNLOAD_RESUME;
+              return CURLE_BAD_DOWNLOAD_RESUME;
             }
             /* convert to size to download */
             downloadsize = -conn->resume_from;
@@ -1978,7 +1978,7 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
               failf(data, "Offset (%" FORMAT_OFF_T
                     ") was beyond file size (%" FORMAT_OFF_T ")",
                     conn->resume_from, foundsize);
-              return CURLE_FTP_BAD_DOWNLOAD_RESUME;
+              return CURLE_BAD_DOWNLOAD_RESUME;
             }
             /* Now store the number of bytes we are expected to download */
             downloadsize = foundsize-conn->resume_from;
