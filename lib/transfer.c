@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.71.2.4 2001-12-18 14:43:15 bagder Exp $
+ * $Id: transfer.c,v 1.71.2.5 2002-01-02 23:22:02 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -789,7 +789,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
      */
 
     if(!(data->set.no_body) && k->contentlength &&
-       (k->bytecount != k->contentlength)) {
+       (k->bytecount != k->contentlength) &&
+       !conn->newurl) {
       failf(data, "transfer closed with %d bytes remaining to read",
             k->contentlength-k->bytecount);
       return CURLE_PARTIAL_FILE;
