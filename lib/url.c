@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.425 2004-11-19 08:52:33 bagder Exp $
+ * $Id: url.c,v 1.426 2004-11-24 16:11:36 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1098,6 +1098,18 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     if(!data->set.fread)
       /* When set to NULL, reset to our internal default function */
       data->set.fread = (curl_read_callback)fread;
+    break;
+  case CURLOPT_IOCTLFUNCTION:
+    /*
+     * I/O control callback. Might be NULL.
+     */
+    data->set.ioctl = va_arg(param, curl_ioctl_callback);
+    break;
+  case CURLOPT_IOCTLDATA:
+    /*
+     * I/O control data pointer. Might be NULL.
+     */
+    data->set.ioctl_client = va_arg(param, void *);
     break;
   case CURLOPT_SSLCERT:
     /*

@@ -1,11 +1,11 @@
 /*****************************************************************************
- *                                  _   _ ____  _     
- *  Project                     ___| | | |  _ \| |    
- *                             / __| | | | |_) | |    
- *                            | (__| |_| |  _ <| |___ 
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: multi-post.c,v 1.1 2002-05-06 13:38:28 bagder Exp $
+ * $Id: multi-post.c,v 1.2 2004-11-24 16:11:35 bagder Exp $
  *
  * This is an example application source code using the multi interface
  * to do a multipart formpost without "blocking".
