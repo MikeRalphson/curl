@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.41 2001-10-17 11:51:02 bagder Exp $
+# $Id: runtests.pl,v 1.42 2001-11-29 20:15:59 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -515,6 +515,9 @@ sub singletest {
         $res = system("$CMDLINE");
         $res /= 256;
     }
+
+    # remove the special FTP command file after each test!
+    unlink($FTPDCMD);
 
     my @err = getpart("verify", "errorcode");
     my $errorcode = $err[0];
