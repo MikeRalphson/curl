@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.22 2001-05-30 08:00:29 bagder Exp $
+ * $Id: ssluse.c,v 1.23 2001-06-12 18:22:52 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -316,7 +316,7 @@ Curl_SSLConnect(struct connectdata *conn)
     
   if(data->cert) {
     if (!cert_stuff(conn, data->cert, data->cert)) {
-      failf(data, "couldn't use certificate!\n");
+      /* failf() is already done in cert_stuff() */
       return CURLE_SSL_CONNECT_ERROR;
     }
   }
