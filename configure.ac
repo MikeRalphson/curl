@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.20 2003-09-21 22:13:23 bagder Exp $
+dnl $Id: configure.ac,v 1.21 2003-10-02 19:04:32 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -193,49 +193,6 @@ AC_HELP_STRING([--disable-telnet],[Disable TELNET support]),
        AC_MSG_RESULT(yes)
 )
 
-
-dnl **********************************************************************
-dnl Checks for IPv6
-dnl **********************************************************************
-
-AC_MSG_CHECKING([whether to enable ipv6])
-AC_ARG_ENABLE(ipv6,
-AC_HELP_STRING([--enable-ipv6],[Enable ipv6 (with ipv4) support])
-AC_HELP_STRING([--disable-ipv6],[Disable ipv6 support]),
-[ case "$enableval" in
-  no)
-       AC_MSG_RESULT(no)
-       ipv6=no
-       ;;
-  *)   AC_MSG_RESULT(yes)
-       ipv6=yes
-       ;;
-  esac ],
-
-  AC_TRY_RUN([ /* is AF_INET6 available? */
-#include <sys/types.h>
-#include <sys/socket.h>
-main()
-{
- if (socket(AF_INET6, SOCK_STREAM, 0) < 0)
-   exit(1);
- else
-   exit(0);
-}
-],
-  AC_MSG_RESULT(yes)
-  ipv6=yes,
-  AC_MSG_RESULT(no)
-  ipv6=no,
-  AC_MSG_RESULT(no)
-  ipv6=no
-))
-
-if test "$ipv6" = "yes"; then
-  CURL_CHECK_WORKING_GETADDRINFO
-fi
-
-
 dnl **********************************************************************
 dnl Checks for libraries.
 dnl **********************************************************************
@@ -250,7 +207,7 @@ fi
 
 dnl At least one system has been identified to require BOTH nsl and
 dnl socket libs to link properly.
-if test "$ac_cv_lib_nsl_gethostbyname" = "$ac_cv_func_gethostbyname"; then
+if test "$ac_cv_lib_nsl_gethostbyname" != "yes" -a "$ac_cv_lib_socket_gethostbyname" != "yes" -a "$ac_cv_func_gethostbyname" != "yes"; then
   AC_MSG_CHECKING([trying both nsl and socket libs])
   my_ac_save_LIBS=$LIBS
   LIBS="-lnsl -lsocket $LIBS"
@@ -298,6 +255,47 @@ AC_HELP_STRING([--enable-libgcc],[use libgcc when linking]),
   esac ],
        AC_MSG_RESULT(no)
 )
+
+dnl **********************************************************************
+dnl Checks for IPv6
+dnl **********************************************************************
+
+AC_MSG_CHECKING([whether to enable ipv6])
+AC_ARG_ENABLE(ipv6,
+AC_HELP_STRING([--enable-ipv6],[Enable ipv6 (with ipv4) support])
+AC_HELP_STRING([--disable-ipv6],[Disable ipv6 support]),
+[ case "$enableval" in
+  no)
+       AC_MSG_RESULT(no)
+       ipv6=no
+       ;;
+  *)   AC_MSG_RESULT(yes)
+       ipv6=yes
+       ;;
+  esac ],
+
+  AC_TRY_RUN([ /* is AF_INET6 available? */
+#include <sys/types.h>
+#include <sys/socket.h>
+main()
+{
+ if (socket(AF_INET6, SOCK_STREAM, 0) < 0)
+   exit(1);
+ else
+   exit(0);
+}
+],
+  AC_MSG_RESULT(yes)
+  ipv6=yes,
+  AC_MSG_RESULT(no)
+  ipv6=no,
+  AC_MSG_RESULT(no)
+  ipv6=no
+))
+
+if test "$ipv6" = "yes"; then
+  CURL_CHECK_WORKING_GETADDRINFO
+fi
 
 dnl **********************************************************************
 dnl Check how non-blocking sockets are set
