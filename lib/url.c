@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.62 $
- * $Date: 2000-11-21 09:31:55 $
+ * $Revision: 1.63 $
+ * $Date: 2000-11-21 15:36:38 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1312,7 +1312,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
   if (data->device && (strlen(data->device)<255)) {
     struct sockaddr_in sa;
     struct hostent *h=NULL;
-    char *hostdataptr;
+    char *hostdataptr=NULL;
     size_t size;
     char myhost[256] = "";
     unsigned long in;
@@ -1425,7 +1425,8 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
       return CURLE_HTTP_PORT_FAILED;
     }
 
-    free(hostdataptr); /* allocated by GetHost() */
+    if(hostdataptr)
+      free(hostdataptr); /* allocated by GetHost() */
 
   } /* end of device selection support */
 #endif  /* end of HAVE_INET_NTOA */
