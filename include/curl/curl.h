@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.253 2004-05-11 14:22:51 bagder Exp $
+ * $Id: curl.h,v 1.254 2004-05-14 09:30:31 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1193,6 +1193,7 @@ typedef enum {
   CURLSHE_BAD_OPTION, /* 1 */
   CURLSHE_IN_USE,     /* 2 */
   CURLSHE_INVALID,    /* 3 */
+  CURLSHE_NOMEM,      /* out of memory */
   CURLSHE_LAST /* never use */
 } CURLSHcode;
 
