@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.226 2004-01-22 12:46:07 bagder Exp $
+ * $Id: main.c,v 1.227 2004-01-23 12:50:53 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1010,8 +1010,8 @@ static int str2offset(curl_off_t *val, char *str)
 #ifdef HAVE_STRTOLL
   *val = strtoll(str, NULL, 0);
 #else
-  /* TODO:  Handle strtoll stuff...sigh... */
-#error "lack of strtoll() needs fixing"
+  /* this is a duplicate of the function that is also used in libcurl */
+  *val = Curl_strtoll(str, NULL, 0;
 #endif
 
   if ((*val == LLONG_MAX || *val == LLONG_MIN) && errno == ERANGE)
@@ -2068,7 +2068,7 @@ static int parseconfig(const char *filename,
 #endif
 
       /* pass spaces and separator(s) */
-      while(isspace((int)*line) || isseparator(*line))
+      while(*line && (isspace((int)*line) || isseparator(*line)))
         line++;
       
       /* the parameter starts here (unless quoted) */
