@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.27 $
- * $Date: 2000-07-25 07:34:04 $
+ * $Revision: 1.28 $
+ * $Date: 2000-07-28 07:56:50 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -266,7 +266,7 @@ static void help(void)
        " -v/--verbose       Makes the operation more talkative\n"
        " -V/--version       Outputs version number then quits\n"
        " -w/--write-out [format] What to output after completion\n"
-       " -x/--proxy <host>  Use proxy. (Default port is 1080)\n"
+       " -x/--proxy <host[:port]>  Use proxy. (Default port is 1080)\n"
        " -X/--request <command> Specific request command to use\n"
        " -y/--speed-time    Time needed to trig speed-limit abort. Defaults to 30\n"
        " -Y/--speed-limit   Stop transfer if below speed-limit for 'speed-time' secs\n"
