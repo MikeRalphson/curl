@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.2.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.2.2.2 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -123,14 +123,19 @@ static void * DynaGetFunction(char *name)
 static int WriteProc(void *param, char *text, int len)
 {
   struct UrlData *data = (struct UrlData *)param;
-  
-  printf("%s\n", text);
+
+  data->fwrite(text, 1, strlen(text), data->out);
   return 0;
+}
+
+UrgError ldap_done(struct connectdata *conn)
+{
+  return URG_OK;
 }
 
 /***********************************************************************
  */
-UrgError ldap(struct connectdata *conn, char *path, long *bytecount)
+UrgError ldap(struct connectdata *conn)
 {
   UrgError status = URG_OK;
   int rc;
@@ -146,14 +151,10 @@ UrgError ldap(struct connectdata *conn, char *path, long *bytecount)
   void *server;
   void *result;
   void *entryIterator;
-#if 0
-  char *dn;
-  char **attrArray;
-  char *attrIterator;
-  char *attrString;
-  void *dummy;
-#endif
+
   int ldaptext;
+  char *path = conn->path;
+  long *bytecount = &conn->bytecount;
   struct UrlData *data=conn->data;
   
   infof(data, "LDAP: %s %s\n", data->url);

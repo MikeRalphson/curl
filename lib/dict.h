@@ -32,14 +32,15 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/dict.h,v $
- * $Revision: 1.2.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.2.2.2 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
-UrgError dict(struct connectdata *conn, char *path, long *bytecountp);
+UrgError dict(struct connectdata *conn);
+UrgError dict_done(struct connectdata *conn);
 
 #endif

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.9.2.2 $
- * $Date: 2000-04-26 23:03:04 $
+ * $Revision: 1.9.2.3 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -135,7 +135,6 @@ UrgError http_done(struct connectdata *conn)
   else if(data->conf&CONF_PUT) {
     *bytecount = http->readbytecount + http->writebytecount;
   }
-  pgrsDone(data);
 
   /* TBD: the HTTP struct remains allocated here */
 

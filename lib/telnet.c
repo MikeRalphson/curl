@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/telnet.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.2.2.1 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -869,6 +869,11 @@ void telwrite(struct UrlData *data,
       }
 #endif /* USE_SSLEAY */
    }
+}
+
+UrgError telnet_done(struct UrlData *data)
+{
+  return URG_OK;
 }
 
 UrgError telnet(struct UrlData *data)

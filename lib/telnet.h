@@ -32,8 +32,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/telnet.h,v $
- * $Revision: 1.2.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.2.2.2 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -41,5 +41,6 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 UrgError telnet(struct connectdata *conn);
+UrgError telnet_done(struct connectdata *conn);
 
 #endif

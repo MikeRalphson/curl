@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/dict.c,v $
- * $Revision: 1.4.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.4.2.2 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -96,8 +96,12 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
+UrgError dict_done(struct connectdata *conn)
+{
+  return URG_OK;
+}
 
-UrgError dict(struct connectdata *conn, char *path, long *bytecount)
+UrgError dict(struct connectdata *conn)
 {
   int nth;
   char *word;
@@ -108,7 +112,10 @@ UrgError dict(struct connectdata *conn, char *path, long *bytecount)
                           by RFC 2229 */
   UrgError result=URG_OK;
   struct UrlData *data=conn->data;
-    
+
+  char *path = conn->path;
+  long *bytecount = &conn->bytecount;
+
   if(data->conf & CONF_USERPWD) {
     /* AUTH is missing */
   }
@@ -243,11 +250,6 @@ UrgError dict(struct connectdata *conn, char *path, long *bytecount)
       
     }
   }
-
-#if 0
-  ProgressEnd(data);
-#endif
-  pgrsDone(data);
 
   return URG_OK;
 }

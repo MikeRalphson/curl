@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.6.2.2 $
- * $Date: 2000-04-26 23:03:04 $
+ * $Revision: 1.6.2.3 $
+ * $Date: 2000-05-02 21:32:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -374,8 +374,6 @@ UrgError ftp_done(struct connectdata *conn)
 
   if(ftp->realpath)
     free(ftp->realpath);
-
-  pgrsDone(data); /* done with the operation */
 
   /* TBD: the ftp struct is still allocated here */
 
@@ -1083,6 +1081,7 @@ UrgError ftp(struct connectdata *conn)
     return URG_OUT_OF_MEMORY;
 
   memset(ftp, 0, sizeof(struct FTP));
+  data->proto.ftp = ftp;
 
   /* get some data into the ftp struct */
   ftp->bytecountp = &conn->bytecount;
