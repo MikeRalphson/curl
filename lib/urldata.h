@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.47 2001-03-05 13:39:01 bagder Exp $
+ * $Id: urldata.h,v 1.48 2001-03-05 13:59:43 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -326,8 +326,8 @@ struct connectdata {
     struct HTTP *https;  /* alias, just for the sake of being more readable */
     struct FTP *ftp;
     struct FILE *file;
+    void *telnet;        /* private for telnet.c-eyes only */
 #if 0 /* no need for special ones for these: */
-    struct TELNET *telnet;
     struct LDAP *ldap;
     struct DICT *dict;
 #endif
