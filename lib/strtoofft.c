@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.c,v 1.6 2004-10-08 09:39:37 bagder Exp $
+ * $Id: strtoofft.c,v 1.7 2004-10-10 03:28:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -112,9 +112,9 @@ curlx_strtoll(const char *nptr, char **endptr, int base)
   }
   else {
     if (is_negative)
-      value = 0x8000000000000000L;
+      value = CURL_LLONG_MIN;
     else
-      value = 0x7FFFFFFFFFFFFFFFL;
+      value = CURL_LLONG_MAX;
 
     errno = ERANGE;
   }
