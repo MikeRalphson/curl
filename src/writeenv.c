@@ -18,13 +18,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
+ * $Id: writeenv.c,v 1.2 2002-04-08 22:46:32 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
-
 #include <curl/curl.h>
-
-#include "writeout.h"
 
 #ifdef __riscos__
 #include <kernel.h>
