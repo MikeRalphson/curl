@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.75 2004-10-06 07:50:18 bagder Exp $
+ * $Id: progress.c,v 1.76 2004-10-08 08:16:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -328,7 +328,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
       curl_off_t amount = data->progress.speeder[nowindex]-
         data->progress.speeder[checkindex];
 
-      if(amount > 0xffffffff/1000)
+      if(amount > 4294967 /* 0xffffffff/1000 */)
         /* the 'amount' value is bigger than would fit in 32 bits if
            multiplied with 1000, so we use the double math for this */
         data->progress.current_speed = (curl_off_t)
