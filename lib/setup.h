@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/setup.h,v $
- * $Revision: 1.7 $
- * $Date: 2000-10-09 21:36:38 $
+ * $Revision: 1.8 $
+ * $Date: 2000-10-26 21:59:54 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -160,15 +160,6 @@ int fileno( FILE *stream);
 #endif
 #endif
 
-#endif
-
-/*
- * FIXME: code for getting a passwd in windows/non termcap/signal systems?
- */
-#ifndef WIN32
-#define get_password(x) getpass(x)
-#else
-#define get_password(x) 
 #endif
 
 #endif /* __CONFIG_H */
