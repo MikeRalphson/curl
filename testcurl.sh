@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.36 2004-02-26 07:58:49 bagder Exp $
+# $Id: testcurl.sh,v 1.37 2004-02-26 13:59:10 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.36 $'
+version='$Revision: 1.37 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -145,6 +145,10 @@ pwd=`echo $ipwd | sed -e 's/$//g'`
 if [ -d "$CURLDIR" ]; then
   if [ $CVS -eq 1 -a -d $CURLDIR/CVS ]; then
     log "curl is verified to be a fine source dir"
+    # remove the generated sources to force them to be re-generated each
+    # time we run this test
+    rm -f $CURLDIR/lib/getdate.c
+    rm -f $CURLDIR/src/hugehelp.c
   elif [ $CVS -eq 0 -a -f $CURLDIR/testcurl.sh ]; then
     log "curl is verified to be a fine daily source dir"
   else
