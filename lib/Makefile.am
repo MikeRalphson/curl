@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.5.2.3 2000-05-14 13:22:47 bagder Exp $
+# $Id: Makefile.am,v 1.5.2.4 2000-05-15 23:09:31 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -7,7 +7,7 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
 noinst_LIBRARIES = libcurl.a
 
 # Some flags needed when trying to cause warnings ;-)
-CFLAGS = -g -Wall -pedantic
+CFLAGS = -g -Wall #-pedantic
 
 INCLUDES = -I$(top_srcdir)/include
 
@@ -23,7 +23,7 @@ download.c     getdate.h      ldap.c         ssluse.c       version.c \
 download.h     getenv.c       ldap.h         ssluse.h       \
 escape.c       getenv.h       mprintf.c      telnet.c       \
 escape.h       getpass.c      netrc.c        telnet.h       \
-writeout.c writeout.h highlevel.c strequal.c strequal.h
+writeout.c writeout.h highlevel.c strequal.c strequal.h easy.c
 
 # Say $(srcdir), so GNU make does not report an ambiguity with the .y.c rule.
 $(srcdir)/getdate.c: getdate.y

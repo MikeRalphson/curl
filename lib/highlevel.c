@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.1.2.4 $
- * $Date: 2000-05-14 13:22:48 $
+ * $Revision: 1.1.2.5 $
+ * $Date: 2000-05-15 23:09:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -55,6 +55,7 @@
 #include <errno.h>
 
 #include "setup.h"
+#include "strequal.h"
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>
@@ -603,8 +604,117 @@ _Transfer (struct connectdata *c_conn)
   return URG_OK;
 }
 
-
 typedef int (*func_T)(void);
+
+UrgError curl_transfer(CURL *curl)
+{
+  UrgError res;
+  struct UrlData *data = curl;
+  struct connectdata *c_connect;
+
+  do {
+    res = curl_connect(data, &c_connect);
+    if(res == URG_OK) {
+      res = curl_do(c_connect);
+      if(res == URG_OK) {
+        res = _Transfer(c_connect); /* now fetch that URL please */
+        if(res == URG_OK)
+          res = curl_done(c_connect);
+      }
+
+      if((res == URG_OK) && data->newurl) {
+        /* Location: redirect */
+        char prot[16];
+        char path[URL_MAX_LENGTH];
+
+        if(2 != sscanf(data->newurl, "%15[^:]://%" URL_MAX_LENGTH_TXT
+                       "s", prot, path)) {
+          /***
+           *DANG* this is an RFC 2068 violation. The URL is supposed
+           to be absolute and this doesn't seem to be that!
+           ***
+           Instead, we have to TRY to append this new path to the old URL
+           to the right of the host part. Oh crap, this is doomed to cause
+           problems in the future...
+          */
+          char *protsep;
+          char *pathsep;
+          char *newest;
+
+          /* protsep points to the start of the host name */
+          protsep=strstr(data->url, "//");
+          if(!protsep)
+            protsep=data->url;
+          else {
+            /* TBD: set the port with curl_setopt() */
+            data->port=0; /* we got a full URL and then we should reset the
+                             port number here to re-initiate it later */
+            protsep+=2; /* pass the slashes */
+          }
+
+          if('/' != data->newurl[0]) {
+            /* First we need to find out if there's a ?-letter in the URL,
+               and cut it and the right-side of that off */
+            pathsep = strrchr(protsep, '?');
+            if(pathsep)
+              *pathsep=0;
+
+            /* we have a relative path to append to the last slash if
+               there's one available */
+            pathsep = strrchr(protsep, '/');
+            if(pathsep)
+              *pathsep=0;
+          }
+          else {
+            /* We got a new absolute path for this server, cut off from the
+               first slash */
+            pathsep = strchr(protsep, '/');
+            if(pathsep)
+              *pathsep=0;
+          }
+
+          newest=(char *)malloc( strlen(data->url) +
+                                 1 + /* possible slash */
+                                 strlen(data->newurl) + 1/* zero byte */);
+
+          if(!newest)
+            return URG_OUT_OF_MEMORY;
+          sprintf(newest, "%s%s%s", data->url, ('/' == data->newurl[0])?"":"/",
+                  data->newurl);
+          free(data->newurl);
+          data->newurl = newest;
+        }
+        else {
+          /* This was an absolute URL, clear the port number! */
+          /* TBD: set the port with curl_setopt() */
+          data->port = 0;
+        }
+      
+        /* TBD: set the URL with curl_setopt() */
+        data->url = data->newurl;
+        data->newurl = NULL; /* don't show! */
+
+        infof(data, "Follows Location: to new URL: '%s'\n", data->url);
+
+        curl_disconnect(c_connect);
+        continue;
+      }
+
+      curl_disconnect(c_connect);
+    }
+    break; /* it only reaches here when this shouldn't loop */
+
+  } while(1); /* loop if Location: */
+
+  if(data->newurl)
+    free(data->newurl);
+
+  if((URG_OK == res) && data->writeinfo) {
+    /* Time to output some info to stdout */
+    WriteOut(data);
+  }
+  return res;
+}
 
 UrgError curl_urlget(UrgTag tag, ...)
 {
@@ -613,7 +723,6 @@ UrgError curl_urlget(UrgTag tag, ...)
   long param_long = 0;
   void *param_obj = NULL;
   UrgError res;
-  struct connectdata *c_connect;
 
   struct UrlData *data;
 
@@ -623,150 +732,48 @@ UrgError curl_urlget(UrgTag tag, ...)
 
   /* We use curl_open() with undefined URL so far */
   res = curl_open(&data, NULL);
-  if(res == URG_OK) {
-    /* data is now filled with good-looking zeroes */
+  if(res != URG_OK)
+    return URG_FAILED_INIT;
 
-    va_start(arg, tag);
+  /* data is now filled with good-looking zeroes */
 
-    while(tag != URGTAG_DONE) {
-      /* PORTING NOTE:
-	 Object pointers can't necessarily be casted to function pointers and
-	 therefore we need to know what type it is and read the correct type
-	 at once. This should also correct problems with different sizes of
-	 the types.
-         */
+  va_start(arg, tag);
 
-      if(tag < URGTYPE_OBJECTPOINT) {
-	/* This is a LONG type */
-	param_long = va_arg(arg, long);
-        curl_setopt(data, tag, param_long);
-      }
-      else if(tag < URGTYPE_FUNCTIONPOINT) {
-	/* This is a object pointer type */
-	param_obj = va_arg(arg, void *);
-        curl_setopt(data, tag, param_obj);
-      }
-      else {
-	param_func = va_arg(arg, func_T );
-        curl_setopt(data, tag, param_func);
-      }
-
-      /* printf("tag: %d\n", tag); */
-      tag = va_arg(arg, UrgTag);
+  while(tag != URGTAG_DONE) {
+    /* PORTING NOTE:
+       Object pointers can't necessarily be casted to function pointers and
+       therefore we need to know what type it is and read the correct type
+       at once. This should also correct problems with different sizes of
+       the types.
+    */
+    
+    if(tag < URGTYPE_OBJECTPOINT) {
+      /* This is a LONG type */
+      param_long = va_arg(arg, long);
+      curl_setopt(data, tag, param_long);
+    }
+    else if(tag < URGTYPE_FUNCTIONPOINT) {
+      /* This is a object pointer type */
+      param_obj = va_arg(arg, void *);
+      curl_setopt(data, tag, param_obj);
+    }
+    else {
+      param_func = va_arg(arg, func_T );
+      curl_setopt(data, tag, param_func);
     }
 
-    va_end(arg);
-
-    pgrsMode(data, data->progress.mode);
-    pgrsStartNow(data);
-
-    /********* Now, connect to the remote site **********/
-
-    do {
-      res = curl_connect(data, &c_connect);
-      if(res == URG_OK) {
-        res = curl_do(c_connect);
-        if(res == URG_OK) {
-          res = _Transfer(c_connect); /* now fetch that URL please */
-          if(res == URG_OK)
-            res = curl_done(c_connect);
-        }
-
-        if((res == URG_OK) && data->newurl) {
-          /* Location: redirect */
-          char prot[16];
-          char path[URL_MAX_LENGTH];
-
-          if(2 != sscanf(data->newurl, "%15[^:]://%" URL_MAX_LENGTH_TXT
-                         "s", prot, path)) {
-            /***
-             *DANG* this is an RFC 2068 violation. The URL is supposed
-             to be absolute and this doesn't seem to be that!
-             ***
-             Instead, we have to TRY to append this new path to the old URL
-             to the right of the host part. Oh crap, this is doomed to cause
-             problems in the future...
-            */
-            char *protsep;
-            char *pathsep;
-            char *newest;
-
-            /* protsep points to the start of the host name */
-            protsep=strstr(data->url, "//");
-            if(!protsep)
-              protsep=data->url;
-            else {
-              /* TBD: set the port with curl_setopt() */
-              data->port=0; /* we got a full URL and then we should reset the
-                               port number here to re-initiate it later */
-              protsep+=2; /* pass the slashes */
-            }
-
-            if('/' != data->newurl[0]) {
-              /* First we need to find out if there's a ?-letter in the URL,
-                 and cut it and the right-side of that off */
-              pathsep = strrchr(protsep, '?');
-              if(pathsep)
-                *pathsep=0;
-
-              /* we have a relative path to append to the last slash if
-                 there's one available */
-              pathsep = strrchr(protsep, '/');
-              if(pathsep)
-                *pathsep=0;
-            }
-            else {
-              /* We got a new absolute path for this server, cut off from the
-                 first slash */
-              pathsep = strchr(protsep, '/');
-              if(pathsep)
-                *pathsep=0;
-            }
-
-            newest=(char *)malloc( strlen(data->url) +
-                                   1 + /* possible slash */
-                                   strlen(data->newurl) + 1/* zero byte */);
-
-            if(!newest)
-              return URG_OUT_OF_MEMORY;
-            sprintf(newest, "%s%s%s", data->url, ('/' == data->newurl[0])?"":"/",
-                    data->newurl);
-            free(data->newurl);
-            data->newurl = newest;
-          }
-          else {
-            /* This was an absolute URL, clear the port number! */
-            /* TBD: set the port with curl_setopt() */
-            data->port = 0;
-          }
-      
-          /* TBD: set the URL with curl_setopt() */
-          data->url = data->newurl;
-          data->newurl = NULL; /* don't show! */
-
-          infof(data, "Follows Location: to new URL: '%s'\n", data->url);
-
-          curl_disconnect(c_connect);
-          continue;
-        }
-
-        curl_disconnect(c_connect);
-      }
-      break; /* it only reaches here when this shouldn't loop */
-
-    } while(1); /* loop if Location: */
-
-    if(data->newurl)
-      free(data->newurl);
-  }
-  else
-    res = URG_FAILED_INIT; /* failed */
-
-  if((URG_OK == res) && data->writeinfo) {
-    /* Time to output some info to stdout */
-    WriteOut(data);
+    /* printf("tag: %d\n", tag); */
+    tag = va_arg(arg, UrgTag);
   }
 
+  va_end(arg);
+
+  pgrsMode(data, data->progress.mode);
+  pgrsStartNow(data);
+
+  /********* Now, connect to the remote site **********/
+
+  res = curl_transfer(data);
   curl_close(data);
 
   return res;
