@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.13 2003-08-05 13:37:29 bagder Exp $
+dnl $Id: configure.ac,v 1.14 2003-08-11 13:18:06 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -970,7 +970,8 @@ AC_HELP_STRING([--disable-ares],[Disable using ares for name lookups]),
          AC_MSG_ERROR([ares doesn't work with ipv6, disable ipv6 to use ares])
        fi
 
-       CPPFLAGS="$CPPFLAGS -DUSE_ARES"
+       AC_DEFINE(USE_ARES, 1, [Define if you want to enable ares support])
+
        ares="yes"
        ;;
   esac ],
