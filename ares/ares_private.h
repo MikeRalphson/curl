@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.7 2004-07-04 21:36:32 gknauf Exp $ */
+/* $Id: ares_private.h,v 1.8 2004-07-22 22:18:45 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -82,8 +82,8 @@ struct send_request {
 
 struct server_state {
   struct in_addr addr;
-  int udp_socket;
-  int tcp_socket;
+  ares_socket_t udp_socket;
+  ares_socket_t tcp_socket;
 
   /* Mini-buffer for reading the length word */
   unsigned char tcp_lenbuf[2];
