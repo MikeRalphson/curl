@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.12 $
- * $Date: 2000-06-13 23:04:44 $
+ * $Revision: 1.13 $
+ * $Date: 2000-06-16 13:17:44 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -195,7 +195,7 @@ struct Progress {
 
   double current_speed; /* uses the currently fastest transfer */
 
-  int mode;  /* what kind of progress meter to display */
+  bool callback;  /* set when progress callback is used */
   int width; /* screen width at download start */
   int flags; /* see progress.h */
   double timespent;
