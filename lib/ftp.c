@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.222 2004-01-29 13:56:45 bagder Exp $
+ * $Id: ftp.c,v 1.223 2004-02-03 09:52:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2421,7 +2421,7 @@ CURLcode Curl_ftpsendf(struct connectdata *conn,
  */
 CURLcode Curl_ftp_quit(struct connectdata *conn)
 {
-  int nread;
+  ssize_t nread;
   int ftpcode;
   CURLcode ret;
 
