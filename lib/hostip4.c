@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.13 2005-03-16 22:01:39 bagder Exp $
+ * $Id: hostip4.c,v 1.14 2005-03-17 07:40:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -203,7 +203,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
 
   *waitp = 0; /* don't wait, we act synchronously */
 
-  if(1 == inet_pton(AF_INET, hostname, &in))
+  if(1 == Curl_inet_pton(AF_INET, hostname, &in))
     /* This is a dotted IP address 123.123.123.123-style */
     return Curl_ip2addr(in, hostname, port);
 

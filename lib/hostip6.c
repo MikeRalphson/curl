@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.11 2005-02-09 13:06:40 bagder Exp $
+ * $Id: hostip6.c,v 1.12 2005-03-17 07:40:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -242,8 +242,8 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
     }
   }
 
-  if((1 == inet_pton(AF_INET, hostname, addrbuf)) ||
-     (1 == inet_pton(AF_INET6, hostname, addrbuf))) {
+  if((1 == Curl_inet_pton(AF_INET, hostname, addrbuf)) ||
+     (1 == Curl_inet_pton(AF_INET6, hostname, addrbuf))) {
     /* the given address is numerical only, prevent a reverse lookup */
     ai_flags = AI_NUMERICHOST;
   }
