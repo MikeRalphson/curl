@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: httpsserver.pl,v 1.3 2002-10-23 14:07:34 bagder Exp $
+# $Id: httpsserver.pl,v 1.4 2003-01-21 10:14:25 bagder Exp $
 # This is the HTTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -25,6 +25,12 @@ my $verbose=0; # set to 1 for debugging
 
 my $port = 8433; # just our default, weird enough
 my $target_port = 8999; # test http-server port
+
+my $path = `pwd`;
+chomp $path;
+
+my $srcdir=$path;
+
 do {
     if($ARGV[0] eq "-v") {
         $verbose=1;
@@ -36,16 +42,17 @@ do {
         $target_port=$ARGV[1];
         shift @ARGV;
     }
+    elsif($ARGV[0] eq "-d") {
+        $srcdir=$ARGV[1];
+        shift @ARGV;
+    }
     elsif($ARGV[0] =~ /^(\d+)$/) {
         $port = $1;
     }
 } while(shift @ARGV);
 
-my $path = `pwd`;
-chomp $path;
-
 my $conffile="$path/stunnel.conf";	# stunnel configuration data
-my $certfile="$path/stunnel.pem";	# stunnel server certificate
+my $certfile="$srcdir/stunnel.pem";	# stunnel server certificate
 my $pidfile="$path/.https.pid";		# stunnel process pid file
 
 open(CONF, ">$conffile") || return 1;
@@ -62,7 +69,7 @@ print CONF "
 	connect = $target_port
 ";
 close CONF; 
-system("chmod go-rwx $conffile $path/stunnel.pem");	# secure permissions
+system("chmod go-rwx $conffile $certfile");	# secure permissions
 
 		# works only with stunnel versions < 4.00
 my $cmd="$stunnel -p $certfile -P $pidfile -d $port -r $target_port 2>/dev/null";

@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.70 2003-01-20 15:43:50 bagder Exp $
+# $Id: runtests.pl,v 1.71 2003-01-21 10:14:25 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -222,7 +222,7 @@ sub runhttpsserver {
     }
 
     my $flag=$debugprotocol?"-v ":"";
-    my $cmd="$perl $srcdir/httpsserver.pl $flag -r $HOSTPORT $HTTPSPORT &";
+    my $cmd="$perl $srcdir/httpsserver.pl $flag -d $srcdir -r $HOSTPORT $HTTPSPORT &";
     system($cmd);
     if($verbose) {
         print "CMD: $cmd\n";
