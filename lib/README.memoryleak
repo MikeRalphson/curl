@@ -1,4 +1,4 @@
-$Id: README.memoryleak,v 1.1 2002-10-13 10:34:33 bagder Exp $
+$Id: README.memoryleak,v 1.2 2002-10-28 21:05:14 bagder Exp $
                                   _   _ ____  _     
                               ___| | | |  _ \| |    
                              / __| | | | |_) | |    
@@ -7,6 +7,13 @@ $Id: README.memoryleak,v 1.1 2002-10-13 10:34:33 bagder Exp $
 
              How To Track Down Suspected Memory Leaks in libcurl
              ===================================================
+
+Single-threaded
+
+  Please note that this memory leak system is not adjusted to work in more
+  than one thread. If you want/need to use it in a multi-threaded app. Please
+  adjust accordingly.
+
 
 Build
 
