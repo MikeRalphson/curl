@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.122 2002-01-04 09:03:11 bagder Exp $
+ * $Id: ftp.c,v 1.123 2002-01-04 09:17:52 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -861,13 +861,17 @@ ftp_pasv_verbose(struct connectdata *conn,
 #ifdef HAVE_INET_NTOA_R
   char ntoa_buf[64];
 #endif
-  char hostent_buf[9000];
+  /* The array size trick below is to make this a large chunk of memory
+     suitably 8-byte aligned on 64-bit platforms. This was thoughtfully
+     suggested by Philip Gladstone. */
+  long bigbuf[9000 / sizeof(long)];
 
 #if defined(HAVE_INET_ADDR)
   in_addr_t address;
 # if defined(HAVE_GETHOSTBYADDR_R)
   int h_errnop;
 # endif
+  char *hostent_buf = (char *)bigbuf; /* get a char * to the buffer */
 
   address = inet_addr(newhost);
 # ifdef HAVE_GETHOSTBYADDR_R
