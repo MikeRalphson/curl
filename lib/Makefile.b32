@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.7 2001-11-19 20:09:02 bagder Exp $
+# $Id: Makefile.b32,v 1.8 2002-12-03 09:32:57 bagder Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -59,7 +59,11 @@ SOURCES	   = \
 	easy.c \
 	strequal.c \
 	strtok.c \
-	connect.c
+	connect.c \
+        hash.c \
+        llist.c \
+        multi.c \
+        content_encoding.c
 
 OBJECTS = $(SOURCES:.c=.obj)
 
