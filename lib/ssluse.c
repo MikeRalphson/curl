@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.97 2004-04-27 13:56:23 bagder Exp $
+ * $Id: ssluse.c,v 1.98 2004-04-29 07:36:40 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -73,6 +73,10 @@
 #else
 /* ENGINE_load_private_key() takes three arguments */
 #undef HAVE_ENGINE_LOAD_FOUR_ARGS
+#endif
+
+#if OPENSSL_VERSION_NUMBER >= 0x00906001L
+#define HAVE_ERR_ERROR_STRING_N 1
 #endif
 
 
@@ -383,21 +387,17 @@ int cert_verify_callback(int ok, X509_STORE_CTX *ctx)
   char buf[256];
 
   err_cert=X509_STORE_CTX_get_current_cert(ctx);
-  X509_NAME_oneline(X509_get_subject_name(err_cert),buf,256);
-
+  X509_NAME_oneline(X509_get_subject_name(err_cert), buf, sizeof(buf));
   return ok;
 }
 
-#endif
-
-#ifdef USE_SSLEAY
 /* "global" init done? */
 static int init_ssl=0;
 
 /* we have the "SSL is seeded" boolean global for the application to
    prevent multiple time-consuming seedings in vain */
 static bool ssl_seeded = FALSE;
-#endif
+#endif /* USE_SSLEAY */
 
 /* Global init */
 void Curl_SSL_init(void)
@@ -1141,11 +1141,16 @@ Curl_SSLConnect(struct connectdata *conn,
           return CURLE_SSL_CACERT;
         default:
           /* detail is already set to the SSL error above */
-          failf(data, "SSL: %s", ERR_error_string(errdetail, error_buffer));
+#ifdef HAVE_ERR_ERROR_STRING_N
           /* OpenSSL 0.9.6 and later has a function named
-             ERRO_error_string_n() that takes the size of the buffer as a third
-             argument, and we should possibly switch to using that one in the
-             future. */
+             ERRO_error_string_n() that takes the size of the buffer as a
+             third argument */
+          ERR_error_string_n(errdetail, error_buffer, sizeof(error_buffer));
+#else
+          ERR_error_string(errdetail, error_buffer);
+#endif
+
+          failf(data, "SSL: %s", error_buffer);
           return CURLE_SSL_CONNECT_ERROR;
         }
       }
