@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.6 2004-06-24 10:43:50 bagder Exp $
+ * $Id: hostip4.c,v 1.7 2004-06-24 11:58:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -355,13 +355,10 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
       infof(data, "gethostbyname(2) failed for %s\n", hostname);
     else {
       /*
-       * Copy the hostent struct right here, as the static one we got a
-       * pointer to might get removed when we don't want/expect that. Windows
-       * (other platforms?) also doesn't allow passing of the returned data
-       * between threads, which thus the copying here them allows the app to
-       * do.
+       * Translate the hostent to Curl_addrinfo and return the allocated
+       * data.
        */
-      return Curl_addrinfo_copy(h);
+      return Curl_addrinfo_copy(h, port);
     }
 #endif /*HAVE_GETHOSTBYNAME_R */
   }
