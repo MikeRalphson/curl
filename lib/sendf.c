@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.26 2001-08-14 08:34:09 bagder Exp $
+ * $Id: sendf.c,v 1.27 2001-08-17 10:14:06 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -201,7 +201,7 @@ CURLcode Curl_write(struct connectdata *conn, int sockfd,
 #endif
 #ifdef KRB4
     if(conn->sec_complete) {
-      bytes_written = sec_write(conn, sockfd, mem, len);
+      bytes_written = Curl_sec_write(conn, sockfd, mem, len);
     }
     else
 #endif /* KRB4 */
@@ -280,7 +280,7 @@ CURLcode Curl_read(struct connectdata *conn, int sockfd,
 #endif
 #ifdef KRB4
     if(conn->sec_complete)
-      nread = sec_read(conn, sockfd, buf, buffersize);
+      nread = Curl_sec_read(conn, sockfd, buf, buffersize);
     else
 #endif
       nread = sread (sockfd, buf, buffersize);

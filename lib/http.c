@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.67 2001-08-15 13:38:36 bagder Exp $
+ * $Id: http.c,v 1.68 2001-08-17 10:14:06 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -770,7 +770,7 @@ CURLcode Curl_http(struct connectdata *conn)
            * actually send. Let's make a NULL pointer equal "" here. Good/bad
            * ?
            */
-          data->postfields = "";
+          data->postfields = (char *)"";
           data->postfieldsize = 0; /* it might been set to something illegal,
                                       anything > 0 would be! */
         }
