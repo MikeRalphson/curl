@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.39 2004-01-22 12:45:50 bagder Exp $
+ * $Id: file.c,v 1.40 2004-01-22 13:11:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -152,6 +152,10 @@ CURLcode Curl_file_connect(struct connectdata *conn)
   return CURLE_OK;
 }
 
+#if defined(WIN32) && (SIZEOF_CURL_OFF_T > 4)
+#define lseek(x,y,z) _lseeki64(x, y, z)
+#endif
+
 /* This is the do-phase, separated from the connect-phase above */
 
 CURLcode Curl_file(struct connectdata *conn)
@@ -234,7 +238,6 @@ CURLcode Curl_file(struct connectdata *conn)
     Curl_pgrsSetDownloadSize(data, (double)expected_size);
 
   if(conn->resume_from)
-    /* Added by Dolbneff A.V & Spiridonoff A.V */
     lseek(fd, conn->resume_from, SEEK_SET);
 
   while (res == CURLE_OK) {
