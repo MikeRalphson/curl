@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.9 2004-02-20 07:19:18 bagder Exp $
+ * $Id: getpart.c,v 1.10 2004-03-10 08:12:09 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -39,14 +39,15 @@
 static
 char *appendstring(char *string, /* original string */
                    char *buffer, /* to append */
-                   int *stringlen, int *stralloc)
+                   size_t *stringlen, /* length of string */
+                   size_t *stralloc)  /* allocated size */
 {
-  int len = strlen(buffer);
-  int needed_len = len + *stringlen;
+  size_t len = strlen(buffer);
+  size_t needed_len = len + *stringlen;
 
   if(needed_len >= *stralloc) {
     char *newptr;
-    long newsize = needed_len*2; /* get twice the needed size */
+    size_t newsize = needed_len*2; /* get twice the needed size */
 
     newptr = realloc(string, newsize);
     if(newptr) {
@@ -74,8 +75,8 @@ const char *spitout(FILE *stream,
   char display = 0;
 
   char *string;
-  int stringlen=0;
-  int stralloc=256;
+  size_t stringlen=0;
+  size_t stralloc=256;
 
   enum {
     STATE_OUTSIDE,
