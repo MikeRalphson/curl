@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.81 2004-04-21 08:49:14 bagder Exp $
+ * $Id: sendf.c,v 1.82 2004-05-05 07:01:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -238,7 +238,7 @@ CURLcode Curl_write(struct connectdata *conn,
     int err;
     char error_buffer[120]; /* OpenSSL documents that this must be at least
                                120 bytes long. */
-    int sslerror;
+    unsigned long sslerror;
     int rc = SSL_write(conn->ssl[num].handle, mem, len);
 
     if(rc < 0) {
@@ -394,7 +394,7 @@ int Curl_read(struct connectdata *conn, /* connection data */
         {
           char error_buffer[120]; /* OpenSSL documents that this must be at
                                      least 120 bytes long. */
-          int sslerror = ERR_get_error();
+          unsigned long sslerror = ERR_get_error();
           failf(conn->data, "SSL read: %s, errno %d",
                 ERR_error_string(sslerror, error_buffer),
                 Curl_ourerrno() );
