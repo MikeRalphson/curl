@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.135 2004-03-31 13:19:41 bagder Exp $
+ * $Id: hostip.c,v 1.136 2004-03-31 20:50:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -587,8 +587,9 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
   count = select(nfds, &read_fds, &write_fds, NULL,
                  (struct timeval *)&tv);
 
-  if(count)
-    ares_process(data->state.areschannel, &read_fds, &write_fds);
+  /* Call ares_process() unconditonally here, even if we simply timed out
+     above, as otherwise the ares name resolve won't timeout! */
+  ares_process(data->state.areschannel, &read_fds, &write_fds);
 
   *dns = NULL;
 
