@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.183 2003-11-06 07:55:45 bagder Exp $
+ * $Id: transfer.c,v 1.184 2003-11-20 14:16:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1394,9 +1394,6 @@ Transfer(struct connectdata *conn)
         done = TRUE; /* no more read or write */
       continue;
     case 0:  /* timeout */
-      result = Curl_readwrite(conn, &done);
-      break;
-
     default: /* readable descriptors */
       result = Curl_readwrite(conn, &done);
       break;
