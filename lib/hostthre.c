@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.4 2004-04-27 13:56:23 bagder Exp $
+ * $Id: hostthre.c,v 1.5 2004-04-27 15:13:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -278,10 +278,6 @@ static bool init_resolve_thread (struct connectdata *conn,
 
   Curl_safefree(conn->async.hostname);
   conn->async.hostname = strdup(hostname);
-#ifdef USE_LIBIDN
-  if (conn->ace_hostname)
-    TRACE(("ACE name '%s'\n", conn->ace_hostname));
-#endif
   if (!conn->async.hostname) {
     free(td);
     SetLastError(ENOMEM);
