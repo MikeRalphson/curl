@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.50 2002-01-31 07:51:06 bagder Exp $
+ * $Id: hostip.c,v 1.51 2002-02-18 22:59:26 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -409,7 +409,7 @@ static char *MakeIP(unsigned long num,char *addr, int addr_len)
    considerably. */
 
 #ifndef INADDR_NONE
-#define INADDR_NONE (unsigned long) ~0
+#define INADDR_NONE (in_addr_t) ~0
 #endif
 
 Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
