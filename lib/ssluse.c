@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.121 2004-12-14 14:20:21 giva Exp $
+ * $Id: ssluse.c,v 1.122 2004-12-14 20:25:23 danf Exp $
  ***************************************************************************/
 
 /*
@@ -52,8 +52,14 @@
 #include <curl/mprintf.h>
 
 #ifdef USE_SSLEAY
+
+#ifdef USE_OPENSSL
 #include <openssl/rand.h>
 #include <openssl/x509v3.h>
+#else
+#include <rand.h>
+#include <x509v3.h>
+#endif
 
 #include "memory.h"
 
