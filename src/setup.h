@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.12 2002-03-19 07:54:55 bagder Exp $
+ * $Id: setup.h,v 1.13 2002-04-08 22:44:33 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -45,6 +45,9 @@
 #ifdef macintosh
 /* this is not the same as Mac OS X */
 #include "config-mac.h"
+#endif
+#ifdef __riscos__
+#include "config-riscos.h"
 #endif
 #endif
 
@@ -75,6 +78,10 @@ int fileno( FILE *stream);
 #define DOT_CHAR      "."
 
 #endif
+#endif
+
+#ifdef __riscos__
+#define USE_ENVIRONMENT
 #endif
 
 #endif /* __SETUP_H */
