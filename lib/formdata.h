@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.11 2002-03-19 07:54:55 bagder Exp $
+ * $Id: formdata.h,v 1.12 2002-04-15 11:19:03 bagder Exp $
  *****************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -53,8 +53,10 @@ typedef struct FormInfo {
 
 int Curl_FormInit(struct Form *form, struct FormData *formdata );
 
-struct FormData *Curl_getFormData(struct HttpPost *post,
-                                  int *size);
+CURLcode
+Curl_getFormData(struct FormData **,
+                 struct HttpPost *post,
+                 int *size);
 
 /* fread() emulation */
 int Curl_FormReader(char *buffer,
