@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.7 2004-01-07 09:19:35 bagder Exp $
+ * $Id: http_digest.c,v 1.8 2004-03-08 12:37:11 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -71,7 +71,7 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
     while(more) {
       char value[32];
       char content[128];
-      int totlen=0;
+      size_t totlen=0;
 
       while(*header && isspace((int)*header))
         header++;
