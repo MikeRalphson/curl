@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.139 2005-03-15 07:49:47 bagder Exp $
+dnl $Id: configure.ac,v 1.140 2005-03-30 20:55:44 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -810,6 +810,20 @@ else
     fi
   fi
 
+  dnl This is for Msys/Mingw
+  AC_MSG_CHECKING([for gdi32])
+  my_ac_save_LIBS=$LIBS
+  LIBS="-lgdi32 $LIBS"
+  AC_TRY_LINK([#include <windef.h>
+               #include <wingdi.h>],
+               [GdiFlush();],
+               [ dnl worked!
+               AC_MSG_RESULT([yes])],
+               [ dnl failed, restore LIBS
+               LIBS=$my_ac_save_LIBS
+               AC_MSG_RESULT(no)]
+              )
+
   AC_CHECK_LIB(crypto, CRYPTO_lock,[
      HAVECRYPTO="yes"
      LIBS="-lcrypto $LIBS"
@@ -832,20 +846,6 @@ else
   else
     dnl This is only reasonable to do if crypto actually is there: check for
     dnl SSL libs NOTE: it is important to do this AFTER the crypto lib
-
-    dnl This is for Msys/Mingw
-    AC_MSG_CHECKING([for gdi32])
-    my_ac_save_LIBS=$LIBS
-    LIBS="-lgdi32 $LIBS"
-    AC_TRY_LINK([#include <windef.h>
-                 #include <wingdi.h>],
-               [GdiFlush();],
-               [ dnl worked!
-               AC_MSG_RESULT([yes])],
-               [ dnl failed, restore LIBS
-               LIBS=$my_ac_save_LIBS
-               AC_MSG_RESULT(no)]
-              )
 
     AC_CHECK_LIB(ssl, SSL_connect)
 
