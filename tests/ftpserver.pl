@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.34 2003-04-09 11:52:24 bagder Exp $
+# $Id: ftpserver.pl,v 1.35 2003-04-09 12:02:06 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -17,10 +17,6 @@ use FileHandle;
 use strict;
 
 require "getpart.pm";
-
-if($] >= 5.8) {
-    require 'open'; import( 'open', OUT => ':raw' );
-}
 
 open(FTPLOG, ">log/ftpd.log") ||
     print STDERR "failed to open log file, runs without logging\n";
