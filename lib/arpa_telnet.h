@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: arpa_telnet.h,v 1.4 2001-08-14 08:16:53 bagder Exp $
+ * $Id: arpa_telnet.h,v 1.5 2001-11-22 09:39:03 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -42,7 +42,7 @@
 static const char *telnetoptions[]=
 {
   "BINARY",      "ECHO",           "RCP",           "SUPPRESS GO AHEAD",
-  "NAME",        "STATUS"          "TIMING MARK",   "RCTE",
+  "NAME",        "STATUS",         "TIMING MARK",   "RCTE",
   "NAOL",        "NAOP",           "NAOCRD",        "NAOHTS",
   "NAOHTD",      "NAOFFD",         "NAOVTS",        "NAOVTD",
   "NAOLFD",      "EXTEND ASCII",   "LOGOUT",        "BYTE MACRO",
