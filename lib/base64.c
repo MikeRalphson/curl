@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.29 2004-05-11 11:30:23 bagder Exp $
+ * $Id: base64.c,v 1.30 2004-05-12 13:23:17 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -131,6 +131,8 @@ size_t Curl_base64_encode(const char *inp, size_t insize, char **outptr)
   char *base64data;
 
   char *indata = (char *)inp;
+
+  *outptr = NULL; /* set to NULL in case of failure before we reach the end */
 
   if(0 == insize)
     insize = strlen(indata);
