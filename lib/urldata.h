@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.58 2001-03-29 08:16:55 bagder Exp $
+ * $Id: urldata.h,v 1.59 2001-04-10 06:49:33 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -484,6 +484,9 @@ struct UrlData {
 
   /* function that stores the output:*/
   curl_write_callback fwrite;
+
+  /* optional function that stores the header output:*/
+  curl_write_callback fwrite_header;
 
   /* function that reads the input:*/
   curl_read_callback fread;

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.72 2001-04-04 06:23:43 bagder Exp $
+ * $Id: curl.h,v 1.73 2001-04-10 06:49:32 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -429,6 +429,10 @@ typedef enum {
      are OK within this time, then fine... This only aborts the connect
      phase. [Only works on unix-style/SIGALRM operating systems] */
   CINIT(CONNECTTIMEOUT, LONG, 78),
+
+  /* Function that will be called to store headers (instead of fwrite). The
+   * parameters will use fwrite() syntax, make sure to follow them. */
+  CINIT(HEADERFUNCTION, FUNCTIONPOINT, 79),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;

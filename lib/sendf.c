@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.22 2001-03-13 13:22:58 bagder Exp $
+ * $Id: sendf.c,v 1.23 2001-04-10 06:49:33 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -236,7 +236,14 @@ CURLcode Curl_client_write(struct UrlData *data,
     }
   }
   if((type & CLIENTWRITE_HEADER) && data->writeheader) {
-    wrote = data->fwrite(ptr, 1, len, data->writeheader);
+    /*
+     * Write headers to the same callback or to the especially setup
+     * header callback function (added after version 7.7.1).
+     */
+    curl_write_callback writeit=
+      data->fwrite_header?data->fwrite_header:data->fwrite;
+
+    wrote = writeit(ptr, 1, len, data->writeheader);
     if(wrote != len) {
       failf (data, "Failed writing header");
       return CURLE_WRITE_ERROR;
