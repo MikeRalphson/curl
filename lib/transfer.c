@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.211 2004-03-11 13:13:35 bagder Exp $
+ * $Id: transfer.c,v 1.212 2004-03-16 09:16:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -109,10 +109,6 @@
 /* The last #include file should be: */
 #ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
-
-#ifndef min
-#define min(a, b)   ((a) < (b) ? (a) : (b))
 #endif
 
 #define CURL_TIMEOUT_EXPECT_100 1000 /* counting ms here */
