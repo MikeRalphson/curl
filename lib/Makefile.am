@@ -1,16 +1,10 @@
 #
-# $Id: Makefile.am,v 1.8 2000-07-26 09:28:29 bagder Exp $
+# $Id: Makefile.am,v 1.9 2000-07-31 22:41:27 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
 lib_LTLIBRARIES = libcurl.la
-include_HEADERS = \
-	$(top_srcdir)/include/curl/curl.h \
-	$(top_srcdir)/include/curl/easy.h \
-	$(top_srcdir)/include/curl/mprintf.h \
-	$(top_srcdir)/include/curl/stdcheaders.h \
-	$(top_srcdir)/include/curl/types.h
 
 # Some flags needed when trying to cause warnings ;-)
 # CFLAGS = -g -Wall #-pedantic
