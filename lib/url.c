@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.47 $
- * $Date: 2000-10-12 08:22:16 $
+ * $Revision: 1.48 $
+ * $Date: 2000-10-20 13:48:38 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -961,7 +961,7 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
     conn->curl_close = http_close;
 
 #else /* USE_SSLEAY */
-    failf(data, "SSL is disabled, https: not supported!");
+    failf(data, "libcurl was built with SSL disabled, https: not supported!");
     return CURLE_UNSUPPORTED_PROTOCOL;
 #endif /* !USE_SSLEAY */
   }
@@ -1137,7 +1137,8 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
       *tmp++ = '\0';
       data->port = atoi(tmp);
     }
-    
+    data->remote_port = data->port; /* it is the same port */
+
     /* Connect to target host right on */
     conn->hp = GetHost(data, conn->name, &conn->hostent_buf);
     if(!conn->hp) {
