@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.447 2005-02-09 22:47:57 bagder Exp $
+ * $Id: url.c,v 1.448 2005-03-09 22:13:52 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1831,7 +1831,7 @@ static int handleSock5Proxy(const char *proxy_name,
       return 1;
     }
     else if (socksreq[1] == 255) {
-      if (proxy_name[0] == 0) {
+      if (!proxy_name || !*proxy_name) {
         failf(conn->data,
               "No authentication method was acceptable. (It is quite likely"
               " that the SOCKS5 server wanted a username/password, since none"
