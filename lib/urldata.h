@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.52 2001-03-09 15:58:36 bagder Exp $
+ * $Id: urldata.h,v 1.53 2001-03-12 15:05:54 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -400,6 +400,10 @@ struct Configbits {
   bool proxystringalloc; /* the http proxy string is malloc()'ed */
   bool rangestringalloc; /* the range string is malloc()'ed */
   bool urlstringalloc;   /* the URL string is malloc()'ed */
+  bool reuse_forbid;     /* if this is forbidden to be reused, close 
+                            after use */
+  bool reuse_fresh;      /* do not re-use an existing connection for this
+                            transfer */
 };
 
 /*
