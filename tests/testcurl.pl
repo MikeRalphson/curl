@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.14 2004-07-06 02:37:52 gknauf Exp $
+# $Id: testcurl.pl,v 1.15 2004-07-15 02:34:58 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.14 $';
+$version='$Revision: 1.15 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -89,10 +89,10 @@ if ($^O eq 'MSWin32' || $targetos ne '') {
     # If no target defined on Win32 lets assume vc
     $targetos = 'vc';
   }
-  if ($targetos =~ /vc/ || $targetos =~ /mingw32/) {
+  if ($targetos =~ /vc/ || $targetos =~ /mingw32/ || $targetos =~ /borland/) {
     $confsuffix = '-win32';
     $binext = '.exe';
-    $libext = '.lib' if ($targetos =~ /vc/);
+    $libext = '.lib' if ($targetos =~ /vc/ || $targetos =~ /borland/);
   } elsif ($targetos =~ /netware/) {
     $binext = '.nlm';
     $libext = '.lib';
