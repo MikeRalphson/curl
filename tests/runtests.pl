@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.89 2003-08-06 23:10:36 bagder Exp $
+# $Id: runtests.pl,v 1.90 2003-08-12 21:18:39 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -452,6 +452,22 @@ sub checkcurl {
 
             $curl =~ s/^(.*)(libcurl.*)/$1/g;
             $libcurl = $2;
+
+           if ($curl =~ /win32/)
+           {
+               # Native Windows builds don't understand the
+               # output of cygwin's pwd.  It will be
+               # something like /cygdrive/c/<some path>.
+               #
+               # Use the cygpath utility to convert the
+               # working directory to a Windows friendly
+               # path.  The -m option converts to use drive
+               # letter:, but it uses / instead \.  Forward
+               # slashes (/) are easier for us.  We don't
+               # have to escape them to get them to curl
+               # through a shell.
+               chomp($pwd = `cygpath -m $pwd`);
+           }
         }
         elsif($_ =~ /^Protocols: (.*)/i) {
             # these are the supported protocols, we don't use this knowledge
