@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.4 2004-02-05 12:34:17 bagder Exp $
+ * $Id: lib505.c,v 1.5 2004-05-14 09:22:12 bagder Exp $
  */
 
 #include "test.h"
@@ -72,9 +72,14 @@ int test(char *URL)
   /* get a curl handle */
   curl = curl_easy_init();
   if(curl) {
+    struct curl_slist *hl;
     /* build a list of commands to pass to libcurl */
-    headerlist = curl_slist_append(headerlist, buf_1);
-    headerlist = curl_slist_append(headerlist, buf_2);
+    hl = curl_slist_append(headerlist, buf_1);
+    if(hl) {
+      headerlist = curl_slist_append(hl, buf_2);
+      if(hl)
+        headerlist = hl;
+    }
 
     /* enable uploading */
     curl_easy_setopt(curl, CURLOPT_UPLOAD, TRUE) ;
