@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.61 2001-01-08 15:02:58 bagder Exp $
+ * $Id: main.c,v 1.62 2001-01-09 12:25:14 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -1532,8 +1532,20 @@ operate(struct Configurable *config, int argc, char *argv[])
   /* loop through the list of given URLs */
   while(urlnode) {
 
-    /* get the full URL */
+    /* get the full URL (it might be NULL) */
     url=urlnode->url;
+
+    if(NULL == url) {
+      /* This node had no URL, skip it and continue to the next */
+      if(urlnode->outfile)
+        free(urlnode->outfile);
+    
+      /* move on to the next URL */
+      nextnode=urlnode->next;
+      free(urlnode); /* free the node */
+      urlnode = nextnode;
+      continue; /* next please */
+    }
 
     /* default output stream is stdout */
     outs.stream = stdout;
