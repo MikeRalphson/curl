@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.21 2003-10-05 15:05:04 bagder Exp $
+ * $Id: setup.h,v 1.22 2003-11-07 07:02:35 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -56,6 +56,13 @@
 #endif
 
 #include <stdio.h>
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
 
 #ifndef OS
 #define OS "unknown"
