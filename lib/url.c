@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.330 2004-01-23 08:36:03 bagder Exp $
+ * $Id: url.c,v 1.331 2004-01-26 16:16:44 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -216,7 +216,8 @@ CURLcode Curl_close(struct SessionHandle *data)
   if(data->set.cookiejar) {
     /* we have a "destination" for all the cookies to get dumped to */
     if(Curl_cookie_output(data->cookies, data->set.cookiejar))
-      infof(data, "WARNING: failed to save cookies in given jar\n");
+      infof(data, "WARNING: failed to save cookies in %s\n",
+            data->set.cookiejar);
   }
 
   if( !data->share || (data->cookies != data->share->cookies) ) {
