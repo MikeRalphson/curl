@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtok.h,v 1.3 2001-05-30 11:06:56 bagder Exp $
+ * $Id: strtok.h,v 1.4 2001-05-31 06:05:32 bagder Exp $
  *****************************************************************************/
 
 #ifndef _CURL_STRTOK_R_H
@@ -31,7 +31,14 @@
 char *Curl_strtok_r(char *s, const char *delim, char **last);
 #define strtok_r Curl_strtok_r
 #else
-extern char *strtok_r(char *s1, const char *s2, char **lasts);
+#include <string.h>
+/* If your system, such as Solaris 2.7, lacks the strtok_r() prototype in
+   string.h, then you'll face a bunch of warnings on all instances
+   where strtok_r() is used.
+
+   There's not much we can do about it. Adding a prototype here screws
+   everything up on other platforms! :-(
+*/
 #endif
 
 #endif
