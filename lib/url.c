@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.162 2001-10-09 06:52:37 bagder Exp $
+ * $Id: url.c,v 1.163 2001-10-10 12:48:33 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -503,7 +503,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Set cookie file name to dump all cookies to when we're done.
      */
-    data->set.cookiejar = cookiefile = (char *)va_arg(param, void *);
+    data->set.cookiejar = (char *)va_arg(param, void *);
+
+    /*
+     * Activate the cookie parser. This may or may not already
+     * have been made.
+     */
+    data->cookies = Curl_cookie_init(NULL, data->cookies);
     break;
   case CURLOPT_WRITEHEADER:
     /*
