@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.15 2002-12-19 16:02:51 bagder Exp $
+ * $Id: base64.c,v 1.16 2003-01-06 12:41:33 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -61,8 +61,8 @@ static void decodeQuantum(unsigned char *dest, char *src)
       x = (x << 6) + 62;
     else if(src[i] == '/')
       x = (x << 6) + 63;
-       else if(src[i] == '=')
-         x = (x << 6);
+    else if(src[i] == '=')
+      x = (x << 6);
   }
 
   dest[2] = (unsigned char)(x & 255); x >>= 8;
