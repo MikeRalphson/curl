@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.97 2003-10-29 09:12:47 bagder Exp $
+# $Id: runtests.pl,v 1.98 2003-10-29 09:13:36 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -11,7 +11,6 @@ use strict;
 
 @INC=(@INC, $ENV{'srcdir'}, ".");
 
-require "stunnel.pm"; # stunnel functions
 require "getpart.pm"; # array functions
 
 my $srcdir = $ENV{'srcdir'} || '.';
