@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.42 2003-07-19 23:56:33 bagder Exp $
+ * $Id: telnet.c,v 1.43 2003-07-25 08:30:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,6 @@
 #endif
 #include <netinet/in.h>
 #include <sys/time.h>
-#include <sys/resource.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.142 2003-07-21 13:16:30 bagder Exp $
+ * $Id: http.c,v 1.143 2003-07-25 08:30:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -54,7 +54,6 @@
 #endif
 #endif
 
-#include <sys/resource.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

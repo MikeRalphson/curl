@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.289 2003-07-23 17:06:21 bagder Exp $
+ * $Id: url.c,v 1.290 2003-07-25 08:30:58 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -45,7 +45,6 @@
 #endif
 #include <netinet/in.h>
 #include <sys/time.h>
-#include <sys/resource.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

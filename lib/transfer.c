@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.166 2003-07-22 09:58:57 bagder Exp $
+ * $Id: transfer.c,v 1.167 2003-07-25 08:30:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,6 @@
 #endif
 #include <netinet/in.h>
 #include <sys/time.h>
-#include <sys/resource.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
