@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.38 2002-04-16 07:59:20 bagder Exp $
+ * $Id: progress.c,v 1.39 2002-05-03 12:06:04 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -44,6 +44,10 @@
 #include "sendf.h"
 
 #include "progress.h"
+
+#define _MPRINTF_REPLACE /* use our functions only */
+#include <curl/mprintf.h>
+
 
 static void time2str(char *r, int t)
 {
