@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.247 2004-12-13 16:43:00 giva Exp $
+ * $Id: urldata.h,v 1.248 2004-12-14 09:36:22 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -777,6 +777,12 @@ struct UrlState {
 #ifdef USE_ARES
   ares_channel areschannel; /* for name resolves */
 #endif
+
+#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
+  ENGINE *engine;
+#endif /* USE_SSLEAY */
+  struct curl_slist *engine_list; /* list of names from ENGINE_get_id() */
+
 };
 
 
@@ -973,10 +979,6 @@ struct SessionHandle {
   struct UrlState state;       /* struct for fields used for state info and
                                   other dynamic purposes */
   struct PureInfo info;        /* stats, reports and info data */
-#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
-  ENGINE *engine;
-  struct curl_slist *engine_list; /* list of names from ENGINE_get_id() */
-#endif /* USE_SSLEAY */
 };
 
 #define LIBCURL_NAME "libcurl"
