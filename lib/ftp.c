@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.270 2004-09-16 21:45:16 bagder Exp $
+ * $Id: ftp.c,v 1.271 2004-09-29 07:21:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2472,7 +2472,7 @@ static CURLcode ftp_cwd_and_mkd(struct connectdata *conn, char *path)
       result = ftp_cwd(conn, path);
     }
     if(result)
-      failf(conn->data, "Couldn't cd to %s", path);
+      failf(conn->data, "Couldn't CWD to %s", path);
   }
   return result;
 }
