@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.271 2004-06-18 06:20:43 bagder Exp $
+ * $Id: main.c,v 1.272 2004-06-24 14:40:16 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2623,6 +2623,10 @@ static void free_config_fields(struct Configurable *config)
     free(config->random_file);
   if(config->egd_file)
     free(config->egd_file);
+  if(config->trace_dump)
+    free(config->trace_dump);
+  if(config->cipher_list)
+    free(config->cipher_list);
   if(config->userpwd)
     free(config->userpwd);
   if(config->postfields)
