@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.194 2004-01-22 12:45:50 bagder Exp $
+ * $Id: transfer.c,v 1.195 2004-01-28 17:07:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -152,16 +152,16 @@ static int fillbuffer(struct connectdata *conn,
 
     /* copy the prefix to the buffer */
     memcpy(conn->upload_fromhere, hexbuffer, hexlen);
-    if(nread>hexlen) {
-      /* append CRLF to the data */
-      memcpy(conn->upload_fromhere +
-             nread, "\r\n", 2);
-      nread+=2;
-    }
-    else {
+
+    /* always append CRLF to the data */
+    memcpy(conn->upload_fromhere + nread, "\r\n", 2);
+
+    if((nread - hexlen) == 0) {
       /* mark this as done once this chunk is transfered */
       conn->keep.upload_done = TRUE;
     }
+
+    nread+=2; /* for the added CRLF */
   }
   return nread;
 }
