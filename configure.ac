@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.25 2003-10-30 07:31:02 bagder Exp $
+dnl $Id: configure.ac,v 1.26 2003-11-17 05:23:06 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -365,18 +365,30 @@ dnl Check if the operating system allows programs to write to their own argv[]
 dnl **********************************************************************
 
 AC_MSG_CHECKING([if argv can be written to])
+AC_CACHE_VAL(curl_cv_writable_argv, [
 AC_RUN_IFELSE([[
 int main(int argc, char ** argv) {
 	argv[0][0] = ' ';
 	return (argv[0][0] == ' ')?0:1;
 }
 	]],
+	curl_cv_writable_argv=yes,
+	curl_cv_writable_argv=no,
+	curl_cv_writable_argv=cross)
+])
+case $curl_cv_writable_argv in
+yes)
 	AC_DEFINE(HAVE_WRITABLE_ARGV, 1, [Define this symbol if your OS supports changing the contents of argv])
-	AC_MSG_RESULT(yes),
-	AC_MSG_RESULT(no),
+	AC_MSG_RESULT(yes)
+	;;
+no)
+	AC_MSG_RESULT(no)
+	;;
+*)
         AC_MSG_RESULT(no)
         AC_MSG_WARN([the previous check could not be made default was used])
-)
+	;;
+esac
 
 dnl **********************************************************************
 dnl Check for the presence of Kerberos4 libraries and headers
