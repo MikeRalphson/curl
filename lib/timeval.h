@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.h,v 1.16 2004-04-06 10:15:10 bagder Exp $
+ * $Id: timeval.h,v 1.17 2004-04-09 09:36:31 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -54,11 +54,20 @@ struct timeval curlx_tvnow(void);
  * Returns: the time difference in number of milliseconds.
  */
 long curlx_tvdiff(struct timeval t1, struct timeval t2);
+
+/*
+ * Same as curlx_tvdiff but with full usec resolution.
+ *
+ * Returns: the time difference in seconds with subsecond resolution.
+ */
+double curlx_tvdiff_secs(struct timeval t1, struct timeval t2);
+
 long Curl_tvlong(struct timeval t1);
 
 /* These two defines below exist to provide the older API for library
    internals only. */
 #define Curl_tvnow() curlx_tvnow()
 #define Curl_tvdiff(x,y) curlx_tvdiff(x,y)
+#define Curl_tvdiff_secs(x,y) curlx_tvdiff_secs(x,y)
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.62 2004-04-02 07:32:03 bagder Exp $
+ * $Id: progress.c,v 1.63 2004-04-09 09:36:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -148,26 +148,26 @@ void Curl_pgrsTime(struct SessionHandle *data, timerid timer)
 
   case TIMER_NAMELOOKUP:
     data->progress.t_nslookup =
-      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000.0;
+      Curl_tvdiff_secs(Curl_tvnow(), data->progress.t_startsingle);
     break;
   case TIMER_CONNECT:
     data->progress.t_connect =
-      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000.0;
+      Curl_tvdiff_secs(Curl_tvnow(), data->progress.t_startsingle);
     break;
   case TIMER_PRETRANSFER:
     data->progress.t_pretransfer =
-      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000.0;
+      Curl_tvdiff_secs(Curl_tvnow(), data->progress.t_startsingle);
     break;
   case TIMER_STARTTRANSFER:
     data->progress.t_starttransfer =
-      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000.0;
+      Curl_tvdiff_secs(Curl_tvnow(), data->progress.t_startsingle);
     break;
   case TIMER_POSTRANSFER:
     /* this is the normal end-of-transfer thing */
     break;
   case TIMER_REDIRECT:
     data->progress.t_redirect =
-      (double)Curl_tvdiff(Curl_tvnow(), data->progress.start)/1000.0;
+      Curl_tvdiff_secs(Curl_tvnow(), data->progress.start);
     break;
   }
 }
@@ -249,8 +249,8 @@ int Curl_pgrsUpdate(struct connectdata *conn)
   now = Curl_tvnow(); /* what time is it */
 
   /* The time spent so far (from the start) */
-  data->progress.timespent = Curl_tvdiff(now, data->progress.start)/1000.0;
-  timespent = (long)data->progress.timespent;
+  data->progress.timespent = Curl_tvdiff_secs(now, data->progress.start);
+  timespent = (long)data->progress.timespent*1000.0;
 
   /* The average download speed this far */
   data->progress.dlspeed =
