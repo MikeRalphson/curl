@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.148 2001-09-11 22:23:16 bagder Exp $
+ * $Id: url.c,v 1.149 2001-09-12 08:00:30 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1097,10 +1097,14 @@ ConnectionStore(struct SessionHandle *data,
     infof(data, "Connection (#%d) was killed to make room\n", i);
   }
 
-  data->state.connects[i] = conn; /* fill in this */
-  conn->connectindex = i; /* make the child know where the pointer to this
-                             particular data is stored */
-
+  if(-1 != i) {
+    /* only do this if a true index was returned, if -1 was returned there
+       is no room in the cache for an unknown reason and we cannot store
+       this there. */
+    data->state.connects[i] = conn; /* fill in this */
+    conn->connectindex = i; /* make the child know where the pointer to this
+                               particular data is stored */
+  }
   return i;
 }
 
