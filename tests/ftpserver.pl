@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.50 2005-01-20 22:47:31 bagder Exp $
+# $Id: ftpserver.pl,v 1.51 2005-01-25 21:45:03 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -125,6 +125,7 @@ my %commandok = (
                  'STOR' => 'twosock',
                  'APPE' => 'twosock',
                  'REST' => 'twosock',
+                 'ACCT' => 'loggedin',
                  'CWD'  => 'loggedin|twosock',
                  'SYST' => 'loggedin',
                  'SIZE' => 'loggedin|twosock',
