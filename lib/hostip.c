@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.16 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.17 $
+ * $Date: 2000-11-21 09:29:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -111,7 +111,7 @@ struct hostent *GetHost(struct UrlData *data,
 {
   struct hostent *h = NULL;
   unsigned long in;
-  int ret;
+  int ret; /* this variable is unused on several platforms but used on some */
 
 #define CURL_NAMELOOKUP_SIZE 9000
 
