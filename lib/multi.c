@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.28 2003-03-13 21:41:02 bagder Exp $
+ * $Id: multi.c,v 1.29 2003-04-29 18:03:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -38,6 +38,7 @@
 #include "transfer.h"
 #include "url.h"
 #include "connect.h"
+#include "progress.h"
 
 /* The last #include file should be: */
 #ifdef MALLOCDEBUG
@@ -328,6 +329,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       }
 
       /* Connect. We get a connection identifier filled in. */
+      Curl_pgrsTime(easy->easy_handle, TIMER_STARTSINGLE);
       easy->result = Curl_connect(easy->easy_handle, &easy->easy_conn);
 
       /* after the connect has been sent off, go WAITCONNECT */
@@ -468,11 +470,12 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
     }
 
     if(CURLM_STATE_COMPLETED != easy->state) {
-      if(CURLE_OK != easy->result)
+      if(CURLE_OK != easy->result) {
         /*
          * If an error was returned, and we aren't in completed state now,
          * then we go to completed and consider this transfer aborted.  */
         easy->state = CURLM_STATE_COMPLETED;
+      }
       else
         /* this one still lives! */
         (*running_handles)++;
