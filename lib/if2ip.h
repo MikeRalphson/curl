@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/if2ip.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-29 22:51:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -42,9 +42,9 @@
 #include "setup.h"
 
 #if ! defined(WIN32) && ! defined(__BEOS__)
-char *if2ip(char *interface);
+extern char *if2ip(char *interface, char *buf, int buf_size);
 #else
-#define if2ip(x) NULL
+#define if2ip(a,b,c) NULL
 #endif
 
 #endif
