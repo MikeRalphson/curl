@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.65 2004-03-25 15:48:54 bagder Exp $
+dnl $Id: configure.ac,v 1.66 2004-03-25 16:03:41 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -24,14 +24,14 @@ AC_PATH_PROG( AR, ar, , $PATH:/usr/bin:/usr/local/bin:/usr/ccs/bin)
 AC_SUBST(AR)
 
 dnl figure out the libcurl version
-VERSION=`$SED -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curl.h`
+VERSION=`$SED -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curlver.h`
 AM_INIT_AUTOMAKE(curl,$VERSION)
 AC_MSG_CHECKING([curl version])
 AC_MSG_RESULT($VERSION)
 
 dnl
 dnl we extract the numerical version for curl-config only
-VERSIONNUM=`$SED -ne 's/^#define LIBCURL_VERSION_NUM 0x\(.*\)/\1/p' ${srcdir}/include/curl/curl.h`
+VERSIONNUM=`$SED -ne 's/^#define LIBCURL_VERSION_NUM 0x\(.*\)/\1/p' ${srcdir}/include/curl/curlver.h`
 AC_SUBST(VERSIONNUM)
 
 dnl Solaris pkgadd support definitions
