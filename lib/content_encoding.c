@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.18 2004-10-27 21:46:11 bagder Exp $
+ * $Id: content_encoding.c,v 1.19 2004-11-30 09:44:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -210,6 +210,7 @@ static enum {
       return GZIP_UNDERFLOW;
 
     len -= (extra_len + 2);
+    data += (extra_len + 2);
   }
 
   if (flags & ORIG_NAME) {
