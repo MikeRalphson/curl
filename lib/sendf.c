@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.56 2002-12-29 16:27:31 bagder Exp $
+ * $Id: sendf.c,v 1.57 2003-01-07 11:23:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -154,9 +154,19 @@ void Curl_failf(struct SessionHandle *data, const char *fmt, ...)
     vsnprintf(data->set.errorbuffer, CURL_ERROR_SIZE, fmt, ap);
     data->state.errorbuf = TRUE; /* wrote error string */
 
-    if(data->set.verbose)
-      Curl_debug(data, CURLINFO_TEXT, data->set.errorbuffer,
-                 strlen(data->set.errorbuffer));
+    if(data->set.verbose) {
+      int len = strlen(data->set.errorbuffer);
+      bool doneit=FALSE;
+      if(len < CURL_ERROR_SIZE) {
+        doneit = TRUE;
+        data->set.errorbuffer[len] = '\n';
+        data->set.errorbuffer[++len] = '\0';
+      }
+      Curl_debug(data, CURLINFO_TEXT, data->set.errorbuffer, len);
+      if(doneit)
+        /* cut off the newline again */
+        data->set.errorbuffer[--len]=0;
+    }
   }
   va_end(ap);
 }
