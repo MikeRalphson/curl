@@ -1,6 +1,6 @@
 /*************************************************************************
  *
- * $Id: mprintf.h,v 1.5 2001-01-05 12:19:43 bagder Exp $
+ * $Id: mprintf.h,v 1.6 2001-08-15 18:17:14 bagder Exp $
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -54,6 +54,7 @@
 #define H_MPRINTF
 
 #include <stdarg.h>
+#include <stdio.h> /* needed for FILE */
 
 int curl_mprintf(const char *format, ...);
 int curl_mfprintf(FILE *fd, const char *format, ...);
