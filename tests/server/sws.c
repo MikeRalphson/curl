@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.26 2003-03-15 16:39:45 bagder Exp $
+ * $Id: sws.c,v 1.27 2003-03-16 10:46:52 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -339,7 +339,7 @@ static int send_doc(int sock, int doc, int part_no)
       /* we got a "friends?" question, reply back that we sure are */
       logmsg("Identifying ourselves as friends");
       sprintf(weare, "HTTP/1.1 200 OK\r\n\r\nWE ROOLZ: %d\r\n",
-              getpid());
+              (int)getpid());
       buffer = weare;
       break;
     case DOCNUMBER_INTERNAL:
