@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.4.2.1 2001-12-13 12:58:41 bagder Exp $
+ * $Id: multi.h,v 1.4.2.2 2001-12-18 14:52:47 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -60,6 +60,7 @@ typedef enum {
   CURLM_BAD_HANDLE,      /* the passed-in handle is not a valid CURLM handle */
   CURLM_BAD_EASY_HANDLE, /* an easy handle was not good/valid */
   CURLM_OUT_OF_MEMORY,   /* if you ever get this, you're in deep sh*t */
+  CURLM_INTERNAL_ERROR,  /* this is a libcurl bug */
   CURLM_LAST
 } CURLMcode;
 

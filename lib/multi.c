@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.6.2.3 2001-12-18 14:43:15 bagder Exp $
+ * $Id: multi.c,v 1.6.2.4 2001-12-18 14:52:47 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -208,12 +208,7 @@ CURLMcode curl_multi_fdset(CURLM *multi_handle,
   easy=multi->easy.next;
   while(easy) {
     switch(easy->state) {
-    case CURLM_STATE_INIT:
-    case CURLM_STATE_CONNECT:
-    case CURLM_STATE_DO:
-    case CURLM_STATE_DONE:
-      /* we want curl_multi_perform() to get called, but we don't have any
-         file descriptors to set */
+    default:
       break;
     case CURLM_STATE_PERFORM:
       /* This should have a set of file descriptors for us to set.  */
@@ -275,8 +270,10 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       easy->result = Curl_do(&easy->easy_conn);
       /* after do, go PERFORM */
       if(CURLE_OK == easy->result) {
-        if(CURLE_OK == Curl_readwrite_init(easy->easy_conn))
+        if(CURLE_OK == Curl_readwrite_init(easy->easy_conn)) {
           easy->state = CURLM_STATE_PERFORM;
+          result = CURLM_CALL_MULTI_PERFORM; 
+        }
       }
       break;
     case CURLM_STATE_PERFORM:
@@ -289,6 +286,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
         /* call this even if the readwrite function returned error */
         easy->result = Curl_posttransfer(easy->easy_handle);
         easy->state = CURLM_STATE_DONE;
+        result = CURLM_CALL_MULTI_PERFORM; 
       }
       break;
     case CURLM_STATE_DONE:
@@ -304,7 +302,10 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       /* This node should be delinked from the list now and we should post
          an information message that we are complete. */
       break;
+    default:
+      return CURLM_INTERNAL_ERROR;
     }
+
     if((CURLM_STATE_COMPLETED != easy->state) &&
        (CURLE_OK != easy->result)) {
       /*
