@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.276 2003-05-21 08:08:50 bagder Exp $
+ * $Id: url.c,v 1.277 2003-05-22 22:38:46 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -225,6 +225,8 @@ CURLcode Curl_close(struct SessionHandle *data)
 
   if(data->info.contenttype)
     free(data->info.contenttype);
+
+  Curl_digest_cleanup(data);
 
   free(data);
   return CURLE_OK;
@@ -838,6 +840,12 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
       data->set.encoding = (char*)ALL_CONTENT_ENCODINGS;
     break;
 
+  case CURLOPT_HTTPDIGEST:
+    /*
+     * Enable HTTP Digest Authentication
+     */
+    data->set.httpdigest = va_arg(param, long);
+    break;
   case CURLOPT_USERPWD:
     /*
      * user:password to use in the operation
@@ -1535,7 +1543,7 @@ static int handleSock5Proxy(
       return 1;
     }
 
-    if ((socksreq[0] != 5) || /* version */
+    if ((socksreq[0] != 1) || /* version */
         (socksreq[1] != 0)) { /* status */
       failf(conn->data, "User was rejected by the SOCKS5 server (%d %d).",
             socksreq[0], socksreq[1]);
