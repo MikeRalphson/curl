@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.10 2001-08-14 08:32:03 bagder Exp $
+ * $Id: mprintf.c,v 1.11 2001-08-24 07:39:15 bagder Exp $
  *
  *************************************************************************
  *
@@ -92,7 +92,7 @@
  *
  ****************************************************************************/
 
-static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.10 2001-08-14 08:32:03 bagder Exp $";
+static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.11 2001-08-24 07:39:15 bagder Exp $";
 
 /*
  * To test:
@@ -1151,7 +1151,9 @@ int curl_msprintf(char *buffer, const char *format, ...)
   return retcode;
 }
 
+#ifndef WIN32 /* not needed on win32 */
 extern int fputc(int, FILE *);
+#endif
 
 int curl_mprintf(const char *format, ...)
 {
