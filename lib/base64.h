@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/base64.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.4 $
+ * $Date: 2000-09-21 08:46:44 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -40,5 +40,5 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
-void base64Encode(char *intext, char *output);
+int base64Encode(char *indata, int insize, char **output);
 #endif
