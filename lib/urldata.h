@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.116 2002-08-08 22:52:50 bagder Exp $
+ * $Id: urldata.h,v 1.117 2002-08-12 09:43:22 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -328,6 +328,12 @@ struct connectdata {
   CURLcode (*curl_do)(struct connectdata *connect);
   CURLcode (*curl_done)(struct connectdata *connect);
 
+  /* If the curl_do() function is better made in two halves, this
+   * curl_do_more() function will be called afterwards, if set. For example
+   * for doing the FTP stuff after the PASV/PORT command.
+   */
+  CURLcode (*curl_do_more)(struct connectdata *connect);
+
   /* This function *MAY* be set to a protocol-dependent function that is run
    * after the connect() and everything is done, as a step in the connection.
    */ 
@@ -414,7 +420,10 @@ struct connectdata {
       buffer, so the next read should read from where this pointer points to,
       and the 'upload_present' contains the number of bytes available at this
       position */
-  char *upload_fromhere;                                   
+  char *upload_fromhere;
+
+  bool do_more; /* this is set TRUE if the ->curl_do_more() function is
+                   supposed to be called, after ->curl_do() */
 };
 
 /*
