@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.16 2001-07-12 01:57:28 bumblebury Exp $
+ * $Id: easy.c,v 1.17 2001-08-14 08:19:40 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -119,8 +119,9 @@ static CURLcode win32_init(void)
 }
 /* The Windows Sockets DLL is acceptable. Proceed. */ 
 #else
+/* These functions exist merely to prevent compiler warnings */
 static CURLcode win32_init(void) { return CURLE_OK; }
-#define win32_cleanup()
+static void win32_cleanup(void) { }
 #endif
 
 
@@ -179,7 +180,7 @@ CURL *curl_easy_init(void)
     curl_global_init(CURL_GLOBAL_DEFAULT);
 
   /* We use curl_open() with undefined URL so far */
-  res = Curl_open((CURL **)&data, NULL);
+  res = Curl_open((CURL **)&data);
   if(res != CURLE_OK)
     return NULL;
 
