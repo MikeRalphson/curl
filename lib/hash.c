@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.22 2004-05-10 08:57:18 bagder Exp $
+ * $Id: hash.c,v 1.23 2004-05-10 09:17:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -169,8 +169,14 @@ Curl_hash_add(curl_hash *h, char *key, size_t key_len, void *p)
       ++h->size;
       return p; /* return the new entry */
     }
-    /* couldn't insert it, destroy the 'he' element again */
-    hash_element_dtor(h, he);
+    /*
+     * Couldn't insert it, destroy the 'he' element and the key again. We
+     * don't call hash_element_dtor() since that would also call the
+     * "destructor" for the actual data 'p'. When we fail, we shall not touch
+     * that data.
+     */
+    free(he->key);
+    free(he);
   }
 
   return NULL; /* failure */
