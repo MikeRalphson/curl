@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.167 2003-07-22 09:58:18 bagder Exp $
+ * $Id: urldata.h,v 1.168 2003-07-30 07:22:28 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -548,8 +548,10 @@ struct connectdata {
 struct PureInfo {
   int httpcode;
   int httpversion;
-  time_t filetime; /* If requested, this is might get set. Set to -1 if
-                      the time was unretrievable */
+  long filetime; /* If requested, this is might get set. Set to -1 if the time
+                    was unretrievable. We cannot have this of type time_t,
+                    since time_t is unsigned on several platforms such as
+                    OpenVMS. */
   long header_size;  /* size of read header(s) in bytes */
   long request_size; /* the amount of bytes sent in the request(s) */
 
