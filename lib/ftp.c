@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.97 2001-10-01 11:35:29 bagder Exp $
+ * $Id: ftp.c,v 1.98 2001-10-01 22:31:43 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1263,7 +1263,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn)
        * proxy again here. We already have the name info for it since the
        * previous lookup.
        */
-      addr = conn->hp;
+      addr = conn->hostaddr;
       connectport =
         (unsigned short)conn->port; /* we connect to the proxy's port */
     }
