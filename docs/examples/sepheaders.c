@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: sepheaders.c,v 1.2 2001-02-20 13:56:39 bagder Exp $
+ * $Id: sepheaders.c,v 1.3 2001-05-15 12:55:35 bagder Exp $
  */
 
 /* to make this work under windows, use the win32-functions from the
@@ -19,9 +19,9 @@
 #include <curl/types.h>
 #include <curl/easy.h>
 
-size_t  write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
+size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-  written = fwrite(ptr,size,nmemb,outfile);
+  written = fwrite(ptr, size, nmemb, (FILE *)stream);
   return written;
 }
 
