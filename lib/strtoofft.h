@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.4 2004-01-22 14:31:46 bagder Exp $
+ * $Id: strtoofft.h,v 1.5 2004-01-23 07:44:02 bagder Exp $
  ***************************************************************************/
 
 #ifndef _CURL_STRTOOFFT_R_H
@@ -26,6 +26,7 @@
 
 #include "setup.h"
 #include <stddef.h>
+#include <curl/curl.h> /* for the curl_off_t type */
 
 /* Determine what type of file offset conversion handling we wish to use.  For
  * systems with a 32-bit curl_off_t type, we should use strtol.  For systems
