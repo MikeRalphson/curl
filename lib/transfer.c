@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.153 2003-05-23 09:47:57 bagder Exp $
+ * $Id: transfer.c,v 1.154 2003-06-02 13:14:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -531,7 +531,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                   /* If we have been told to fail hard on HTTP-errors,
                      here is the check for that: */
                   /* serious error, go home! */
-                  failf (data, "The requested file was not found");
+                  failf (data, "The requested URL returned error: %d",
+                         k->httpcode);
                   return CURLE_HTTP_RETURNED_ERROR;
                 }
 
