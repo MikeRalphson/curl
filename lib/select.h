@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.2 2004-11-19 14:03:19 bagder Exp $
+ * $Id: select.h,v 1.3 2004-11-19 14:38:02 giva Exp $
  ***************************************************************************/
 
 #ifdef HAVE_SYS_POLL_H
@@ -36,7 +36,7 @@
 
 struct pollfd
 {
-    int     fd;
+    curl_socket_t fd;
     short   events;
     short   revents;
 };
