@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.155 2003-09-04 10:55:20 bagder Exp $
+ * $Id: http.c,v 1.156 2003-09-04 11:34:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -162,6 +162,8 @@ void Curl_http_auth_act(struct connectdata *conn)
 {
   struct SessionHandle *data = conn->data;
 
+  data->state.authwant = CURLAUTH_NONE; /* clear it first */
+
   if(data->state.authavail) {
     if(data->state.authavail & CURLAUTH_GSSNEGOTIATE)
       data->state.authwant = CURLAUTH_GSSNEGOTIATE;
@@ -171,13 +173,11 @@ void Curl_http_auth_act(struct connectdata *conn)
       data->state.authwant = CURLAUTH_NTLM;
     else if(data->state.authavail & CURLAUTH_BASIC)
       data->state.authwant = CURLAUTH_BASIC;
-    else
-      data->state.authwant = CURLAUTH_NONE; /* none */
 
     if(data->state.authwant)
       conn->newurl = strdup(data->change.url); /* clone URL */
+    data->state.authavail = CURLAUTH_NONE; /* clear it here */
   }
-  data->state.authavail = CURLAUTH_NONE; /* clear it here */
 }
 
 /*
