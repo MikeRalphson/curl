@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.104 2004-10-07 07:41:14 bagder Exp $
+dnl $Id: configure.ac,v 1.105 2004-10-08 08:18:08 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1233,6 +1233,16 @@ if test "$ac_cv_func_sigsetjmp" != "yes"; then
                AC_MSG_RESULT(no)
                )
 fi
+
+AC_CHECK_DECL(basename, ,
+              AC_DEFINE(NEED_BASENAME_PROTO, 1, [If you lack a fine basename() prototype]),
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+#ifdef HAVE_LIBGEN_H
+#include <libgen.h>
+#endif
+)
 
 dnl poll() might be badly emulated, as in Mac OS X 10.3 (and other BSDs?) and
 dnl to find out we make an extra check here!

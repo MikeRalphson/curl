@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.80 2004-10-06 07:50:18 bagder Exp $
+ * $Id: formdata.c,v 1.81 2004-10-08 08:18:08 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -125,6 +125,11 @@ Content-Disposition: form-data; name="FILECONTENT"
 
 /* The last #include file should be: */
 #include "memdebug.h"
+
+#if defined(HAVE_BASENAME) && defined(NEED_BASENAME_PROTO)
+/* This system has a basename() but no prototype for it! */
+char *basename(char *path);
+#endif
 
 /* What kind of Content-Type to use on un-specified files with unrecognized
    extensions. */
