@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.362 2004-04-26 14:18:00 bagder Exp $
+ * $Id: url.c,v 1.363 2004-04-26 15:14:19 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1893,7 +1893,7 @@ static void verboseconnect(struct connectdata *conn)
 {
   struct SessionHandle *data = conn->data;
   const char *host=NULL;
-  char addrbuf[NI_MAXHOST];
+  char addrbuf[256];
 
   /* Get a printable version of the network address. */
 #ifdef ENABLE_IPV6
