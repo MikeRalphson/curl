@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.13 2000-11-27 12:53:32 bagder Exp $
+# $Id: ftpserver.pl,v 1.14 2001-01-22 16:16:18 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to excersive curl, it is not meant to become a fully working
@@ -76,6 +76,7 @@ my %commandok = (
                  'SIZE' => 'loggedin|twosock',
                  'PWD'  => 'loggedin|twosock',
                  'QUIT'  => 'loggedin|twosock',
+                 'DELE' => 'loggedin|twosock'
                  );
 
 # initially, we're in 'fresh' state
@@ -97,6 +98,7 @@ my %displaytext = ('USER' => '331 We are happy you popped in!',
                    'QUIT' => '221 bye bye baby', # just reply something
                    'PWD'  => '257 "/nowhere/anywhere" is current directory',
                    'REST' => '350 Yeah yeah we set it there for you',
+                   'DELE' => '200 OK OK OK whatever you say'
                    );
 
 # callback functions for certain commands
@@ -300,6 +302,7 @@ $SIG{CHLD} = \&REAPER;
 
 my %customreply;
 sub customize {
+    undef %customreply;
     open(CUSTOM, "<log/ftpserver.cmd") ||
         return 1;
 
@@ -307,7 +310,6 @@ sub customize {
         print STDERR "FTPD: Getting commands from log/ftpserver.cmd\n";
     }
 
-    undef %customreply;
     while(<CUSTOM>) {
         if($_ =~ /REPLY ([A-Z]+) (.*)/) {
             $customreply{$1}=$2;
