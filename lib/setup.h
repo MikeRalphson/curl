@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/setup.h,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:22:23 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $

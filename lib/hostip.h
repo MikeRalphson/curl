@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.h,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:31 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:14 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $

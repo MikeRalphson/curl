@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:42 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -176,7 +176,8 @@ struct UrlData {
   X509*    server_cert;
 #endif /* USE_SSLEAY */
   long crlf;
-  struct curl_slist *quote;
+  struct curl_slist *quote;     /* before the transfer */
+  struct curl_slist *postquote; /* after the transfer */
 
   TimeCond timecondition;
   time_t timevalue;

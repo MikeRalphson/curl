@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:22:30 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -180,6 +180,7 @@ struct Configurable {
   FILE *errors; /* if stderr redirect is requested */
 
   struct curl_slist *quote;
+  struct curl_slist *postquote;
 
   long ssl_version;
   TimeCond timecond;
@@ -595,7 +596,14 @@ static int getparameter(char *flag, /* f or -long-flag */
       break;
     case 'Q':
       /* QUOTE command to send to FTP server */
-      config->quote = curl_slist_append(config->quote, nextarg);
+      if(nextarg[0] == '-') {
+        /* prefixed with a dash makes it a POST TRANSFER one */
+        nextarg++;
+        config->postquote = curl_slist_append(config->postquote, nextarg);
+      }
+      else {
+        config->quote = curl_slist_append(config->quote, nextarg);
+      }
       break;
     case 'r':
       /* byte range requested */
@@ -850,8 +858,10 @@ int main(int argc, char *argv[])
                              "%s", curl_version());
   config.showerror=TRUE;
   config.conf=CONF_DEFAULT;
+#if 0
   config.crlf=FALSE;
   config.quote=NULL;
+#endif
 
   if(argc>1 &&
      (!strnequal("--", argv[1], 2) && (argv[1][0] == '-')) &&
@@ -1108,6 +1118,7 @@ int main(int argc, char *argv[])
                     URGTAG_SSLCERTPASSWD, config.cert_passwd,
                     URGTAG_CRLF, config.crlf,
                     URGTAG_QUOTE, config.quote,
+                    URGTAG_POSTQUOTE, config.postquote,
                     URGTAG_WRITEHEADER, headerfilep,
                     URGTAG_COOKIEFILE, config.cookiefile,
                     URGTAG_SSLVERSION, config.ssl_version,

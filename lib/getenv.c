@@ -41,16 +41,16 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/getenv.c,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:29 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:14 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  * $Log: getenv.c,v $
- * Revision 1.1  1999-12-29 14:21:29  bagder
- * Initial revision
+ * Revision 1.2  2000-01-10 23:36:14  bagder
+ * syncing with local edit
  *
  * Revision 1.4  1999/09/06 06:59:40  dast
  * Changed email info

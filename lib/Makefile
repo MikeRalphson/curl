@@ -12,7 +12,7 @@
 # PARTICULAR PURPOSE.
 
 #
-# $Id: Makefile,v 1.1 1999-12-29 14:21:42 bagder Exp $
+# $Id: Makefile,v 1.2 2000-01-10 23:36:14 bagder Exp $
 #
 
 

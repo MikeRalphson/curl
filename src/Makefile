@@ -12,7 +12,7 @@
 # PARTICULAR PURPOSE.
 
 #
-# $Id: Makefile,v 1.1 1999-12-29 14:22:27 bagder Exp $
+# $Id: Makefile,v 1.2 2000-01-10 23:36:15 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -85,7 +85,7 @@ curl_LDADD = ../lib/libcurl.a
 curl_DEPENDENCIES = ../lib/libcurl.a
 BUILT_SOURCES = hugehelp.c
 CLEANFILES = hugehelp.c
-NROFF = /bin/nroff
+NROFF = gnroff
 
 EXTRA_DIST = mkhelp.pl Makefile.vc6
 

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.1 1999-12-29 14:21:16 bagder Exp $
+# $Id: Makefile.am,v 1.2 2000-01-10 23:36:14 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies

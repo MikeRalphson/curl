@@ -32,8 +32,8 @@
  * 	http://www.fts.frontec.se/~dast/curl/
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/ldap.h,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:33 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $

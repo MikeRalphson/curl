@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:41 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -412,6 +412,9 @@ UrgError curl_urlget(UrgTag tag, ...)
         break;
       case URGTAG_USERPWD:
         data->userpwd = (char *)param_obj;
+        break;
+      case URGTAG_POSTQUOTE:
+        data->postquote = (struct curl_slist *)param_obj;
         break;
       case URGTAG_PROXYUSERPWD:
         data->proxyuserpwd = (char *)param_obj;

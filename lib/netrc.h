@@ -43,16 +43,16 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/netrc.h,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:35 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:36:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  * $Log: netrc.h,v $
- * Revision 1.1  1999-12-29 14:21:35  bagder
- * Initial revision
+ * Revision 1.2  2000-01-10 23:36:15  bagder
+ * syncing with local edit
  *
  * Revision 1.3  1999/09/06 06:59:41  dast
  * Changed email info
