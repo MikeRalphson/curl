@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.47 2005-02-09 13:06:40 bagder Exp $
+ * $Id: ldap.c,v 1.48 2005-02-09 14:28:35 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -380,6 +380,7 @@ quit:
 
   /* no data to transfer */
   Curl_Transfer(conn, -1, -1, FALSE, NULL, -1, NULL);
+  conn->bits.close = TRUE;
 
   return status;
 }
@@ -474,9 +475,9 @@ static bool unescape_elements (LDAPURLDesc *ludp)
     char *new_dn = curl_unescape(dn, 0);
 
     free(dn);
+    ludp->lud_dn = new_dn;
     if (!new_dn)
        return (FALSE);
-    ludp->lud_dn = new_dn;
   }
   return (TRUE);
 }
