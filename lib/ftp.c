@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.234 2004-03-03 13:24:14 bagder Exp $
+ * $Id: ftp.c,v 1.235 2004-03-05 09:37:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -266,7 +266,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
         Curl_tvdiff(Curl_tvnow(), now)/1000; /* spent time */
 
     if(timeout <=0 ) {
-      failf(data, "Transfer aborted due to timeout");
+      failf(data, "FTP response timeout");
       return CURLE_OPERATION_TIMEDOUT; /* already too little time */
     }
 
@@ -278,7 +278,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
       switch (select (sockfd+1, &readfd, NULL, NULL, &interval)) {
       case -1: /* select() error, stop reading */
         result = CURLE_RECV_ERROR;
-        failf(data, "Transfer aborted due to select() error: %d", errno);
+        failf(data, "FTP response aborted due to select() error: %d", errno);
         break;
       case 0: /* timeout */
         if(Curl_pgrsUpdate(conn))
