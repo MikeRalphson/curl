@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.49 2003-02-04 23:48:46 jpbl Exp $
+ * $Id: connect.c,v 1.50 2003-02-14 08:02:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -80,6 +80,10 @@
 #ifdef MALLOCDEBUG
 #include "memdebug.h"
 #endif
+
+/* The AIX 3.2.5 system headers define a function called geterrno() which
+   we won't need but that interferes with our function */
+#undef geterrno
 
 static
 int geterrno(void)
@@ -409,6 +413,8 @@ CURLcode Curl_is_connected(struct connectdata *conn,
     if(err)
       return CURLE_COULDNT_CONNECT;
   }
+  else if(2 == rc)
+    return CURLE_COULDNT_CONNECT;
 
   /*
    * If the connection phase is "done" here, we should attempt to connect
@@ -558,6 +564,9 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
         failf(data, "socket error: %d", err);
         /* we are _not_ connected, it was a false alert, continue please */
       }
+      else if(2 == rc)
+        /* waitconnect() returned error */
+        ;
       else if(data->state.used_interface == Curl_if_multi) {
         /* When running the multi interface, we bail out here */
         rc = 0;
