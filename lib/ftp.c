@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.37 $
- * $Date: 2000-12-16 10:36:08 $
+ * $Revision: 1.38 $
+ * $Date: 2000-12-18 16:13:37 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -196,6 +196,8 @@ static CURLcode AllowServerConnect(struct UrlData *data,
 
       getsockname(sock, (struct sockaddr *) &add, (int *)&size);
       s=accept(sock, (struct sockaddr *) &add, (int *)&size);
+
+      sclose(sock); /* close the first socket */
 
       if( -1 == s) {
 	/* DIE! */

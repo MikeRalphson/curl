@@ -30,8 +30,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/memdebug.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-12-14 15:57:04 $
+ * $Revision: 1.7 $
+ * $Date: 2000-12-18 16:13:37 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -129,6 +129,15 @@ int curl_socket(int domain, int type, int protocol, int line, char *source)
 {
   int sockfd=(socket)(domain, type, protocol);
   fprintf(logfile?logfile:stderr, "FD %s:%d socket() = %d\n",
+          source, line, sockfd);
+  return sockfd;
+}
+
+int curl_accept(int s, struct sockaddr *addr, int *addrlen,
+                int line, char *source)
+{
+  int sockfd=(accept)(s, addr, addrlen);
+  fprintf(logfile?logfile:stderr, "FD %s:%d accept() = %d\n",
           source, line, sockfd);
   return sockfd;
 }
