@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.33 2004-02-05 09:37:46 bagder Exp $
+ * $Id: version.c,v 1.34 2004-03-01 16:24:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -197,6 +197,9 @@ static curl_version_info_data version_info = {
 #endif
 #ifdef HAVE_SPNEGO
   | CURL_VERSION_SPNEGO
+#endif
+#ifdef ENABLE_64BIT
+  | CURL_VERSION_LARGEFILE
 #endif
   ,
   NULL, /* ssl_version */
