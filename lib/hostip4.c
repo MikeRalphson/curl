@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.12 2004-10-06 07:52:20 bagder Exp $
+ * $Id: hostip4.c,v 1.13 2005-03-16 22:01:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -79,6 +79,7 @@
 #include "share.h"
 #include "strerror.h"
 #include "url.h"
+#include "inet_pton.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -202,11 +203,9 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
 
   *waitp = 0; /* don't wait, we act synchronously */
 
-  in=inet_addr(hostname);
-  if (in != CURL_INADDR_NONE) {
+  if(1 == inet_pton(AF_INET, hostname, &in))
     /* This is a dotted IP address 123.123.123.123-style */
     return Curl_ip2addr(in, hostname, port);
-  }
 
 #if defined(HAVE_GETHOSTBYNAME_R)
   /*
