@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.15 2002-03-19 07:54:55 bagder Exp $
+ * $Id: hostip.h,v 1.16 2002-04-25 19:00:59 bagder Exp $
  *****************************************************************************/
 
 #include "hash.h"
@@ -37,8 +37,7 @@ curl_hash *Curl_global_host_cache_get(void);
 
 Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
 			   char *hostname,
-			   int port,
-			   char **bufp);
+			   int port);
 
 /* Get name info */
 Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
