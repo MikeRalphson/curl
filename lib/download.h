@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-02-01 23:51:01 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -40,11 +40,14 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 UrgError 
-Download (struct UrlData *data,
-	  int sockfd,		/* socket to read from */
+Transfer (struct UrlData *data,
+	  int sockfd,		/* socket to read from or -1 */
 	  int size,		/* -1 if unknown at this point */
 	  bool getheader,	/* TRUE if header parsing is wanted */
-	  long *bytecountp	/* return number of bytes read */
+	  long *bytecountp,	/* return number of bytes read */
+          int writesockfd,      /* socket to write to, it may very well be
+                                   the same we read from. -1 disables */
+          long *writebytecountp /* return number of bytes written */
 );
 
 #endif
