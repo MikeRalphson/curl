@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.33 $
- * $Date: 2000-09-25 22:20:02 $
+ * $Revision: 1.34 $
+ * $Date: 2000-10-02 06:36:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1529,6 +1529,10 @@ int main(int argc, char *argv[])
     }
 
     res = curl_easy_perform(curl);
+
+    if(config.writeout) {
+      ourWriteOut(curl, config.writeout);
+    }
 
     /* always cleanup */
     curl_easy_cleanup(curl);
