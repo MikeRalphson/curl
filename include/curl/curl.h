@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.14 $
- * $Date: 2000-07-31 22:42:34 $
+ * $Revision: 1.15 $
+ * $Date: 2000-08-02 07:16:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -395,11 +395,16 @@ typedef char bool;
 #endif                     /* (rabe) */
 #endif
 
-#if 0
-/* At last, I stand here in front of you today and can officially proclaim
-   this function prototype as history... 17th of May, 2000 */
-UrgError curl_urlget(UrgTag, ...);
-#endif
+
+/* These functions are in the libcurl, they're here for portable reasons and
+   they are used by the 'curl' client. They really should be moved to some kind
+   of "portability library" since it has nothing to do with file transfers and
+   might be usable to other programs...
+
+   NOTE: they return TRUE if the strings match *case insensitively*.
+ */
+extern int (strequal)(const char *s1, const char *s2);
+extern int (strnequal)(const char *s1, const char *s2, size_t n);
 
 /* external form function */
 int curl_formparse(char *string,
@@ -414,8 +419,8 @@ char *curl_getenv(char *variable);
 char *curl_version(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.0.11test"
-#define LIBCURL_VERSION_NUM 0x07000b
+#define LIBCURL_VERSION "7.0.12test"
+#define LIBCURL_VERSION_NUM 0x07000c
 
 /* linked-list structure for the CURLOPT_QUOTE option */
 struct curl_slist {
