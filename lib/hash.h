@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.h,v 1.12 2003-01-29 10:14:22 bagder Exp $
+ * $Id: hash.h,v 1.13 2003-08-14 15:05:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,7 @@ typedef struct _curl_hash_element {
 } curl_hash_element;
 
 
-void Curl_hash_init(curl_hash *, int, curl_hash_dtor);
+int Curl_hash_init(curl_hash *, int, curl_hash_dtor);
 curl_hash *Curl_hash_alloc(int, curl_hash_dtor);
 int Curl_hash_add(curl_hash *, char *, size_t, const void *);
 int Curl_hash_delete(curl_hash *h, char *key, size_t key_len);
