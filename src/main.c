@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.214 2003-11-13 07:14:23 bagder Exp $
+ * $Id: main.c,v 1.215 2003-11-19 15:59:23 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -3229,11 +3229,11 @@ operate(struct Configurable *config, int argc, char *argv[])
         curl_easy_setopt(curl, CURLOPT_INTERFACE, config->iface);
         curl_easy_setopt(curl, CURLOPT_KRB4LEVEL, config->krb4level);
       
+        progressbarinit(&progressbar, config);
         if((config->progressmode == CURL_PROGRESS_BAR) &&
            !(config->conf&(CONF_NOPROGRESS|CONF_MUTE))) {
           /* we want the alternative style, then we have to implement it
              ourselves! */
-          progressbarinit(&progressbar, config);
           curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, myprogress);
           curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, &progressbar);
         }
