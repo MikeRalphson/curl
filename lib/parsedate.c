@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.10 2004-11-11 09:26:09 bagder Exp $
+ * $Id: parsedate.c,v 1.11 2004-11-29 08:10:10 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -381,6 +381,8 @@ static time_t Curl_parsedate(const char *date)
 #else
     gmt = gmtime(&t); /* use gmtime_r() if available */
 #endif
+    if(!gmt)
+      return -1; /* illegal date/time */
 
     t2 = mktime(gmt);
 
