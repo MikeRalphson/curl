@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.9 2004-09-20 13:21:48 bagder Exp $
+ * $Id: parsedate.c,v 1.10 2004-11-11 09:26:09 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -349,6 +349,12 @@ static time_t Curl_parsedate(const char *date)
      (-1 == yearnum))
     /* lacks vital info, fail */
     return -1;
+
+#if SIZEOF_TIME_T < 5
+  /* 32 bit time_t can only hold dates to the beginning of 2038 */
+  if(yearnum > 2037)
+    return 0x7fffffff;
+#endif
 
   tm.tm_sec = secnum;
   tm.tm_min = minnum;

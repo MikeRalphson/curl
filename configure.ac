@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.112 2004-11-10 21:43:41 bagder Exp $
+dnl $Id: configure.ac,v 1.113 2004-11-11 09:26:09 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1171,6 +1171,7 @@ AC_CHECK_SIZEOF(curl_off_t, ,[
 ])
 AC_CHECK_SIZEOF(size_t)
 AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(time_t)
 
 AC_CHECK_TYPE(long long,
    [AC_DEFINE(HAVE_LONGLONG, 1, [if your compiler supports long long])]

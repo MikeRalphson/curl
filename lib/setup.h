@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.73 2004-11-08 07:47:08 bagder Exp $
+ * $Id: setup.h,v 1.74 2004-11-11 09:26:09 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -285,6 +285,11 @@ typedef int curl_socket_t;
 /* The lib was present and the tld.h header (which is missing in libidn 0.3.X
    but we only work with libidn 0.4.1 or later) */
 #define USE_LIBIDN
+#endif
+
+#ifndef SIZEOF_TIME_T
+/* assume default size of time_t to be 32 bit */
+#define SIZEOF_TIME_T 4
 #endif
 
 #define LIBIDN_REQUIRED_VERSION "0.4.1"
