@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.20 $
- * $Date: 2000-11-13 18:23:21 $
+ * $Revision: 1.21 $
+ * $Date: 2000-11-17 14:05:11 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -620,7 +620,7 @@ CURLcode curl_transfer(CURL *curl)
 {
   CURLcode res;
   struct UrlData *data = curl;
-  struct connectdata *c_connect;
+  struct connectdata *c_connect=NULL;
 
   pgrsStartNow(data);
 
