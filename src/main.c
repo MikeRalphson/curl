@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.227 2004-01-23 12:50:53 bagder Exp $
+ * $Id: main.c,v 1.228 2004-01-26 07:55:16 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -111,8 +111,6 @@ void *xmalloc(size_t);
 char *msdosify(char *);
 char *rename_if_dos_device_name(char *);
 void xfree(void *);
-#include <limits.h>
-#include <fcntl.h>
 struct pollfd {
        int fd;
        int events;     /* in param: what to poll for */
