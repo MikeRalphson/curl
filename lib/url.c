@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.192 2002-03-08 15:06:42 bagder Exp $
+ * $Id: url.c,v 1.193 2002-03-13 13:10:52 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -752,7 +752,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Progress callback function
      */
     data->set.fprogress = va_arg(param, curl_progress_callback);
-    data->progress.callback = TRUE; /* no longer internal */
+    if(data->set.fprogress)
+      data->progress.callback = TRUE; /* no longer internal */
+    else
+      data->progress.callback = FALSE; /* NULL enforces internal */
+
     break;
   case CURLOPT_PROGRESSDATA:
     /*
