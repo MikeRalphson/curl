@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.61 $
- * $Date: 2000-11-20 08:53:21 $
+ * $Revision: 1.62 $
+ * $Date: 2000-11-21 09:31:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1160,7 +1160,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
       return CURLE_URL_MALFORMAT_USER;
     }
 #endif
-    if(ptr=strchr(conn->name, '@')) {
+    if((ptr=strchr(conn->name, '@'))) {
       /* there's a user+password given here, to the left of the @ */
 
       data->user[0] =0;
@@ -1310,12 +1310,10 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
 #endif
 
   if (data->device && (strlen(data->device)<255)) {
-    struct ifreq ifr;
     struct sockaddr_in sa;
     struct hostent *h=NULL;
     char *hostdataptr;
     size_t size;
-    unsigned short porttouse;
     char myhost[256] = "";
     unsigned long in;
 
