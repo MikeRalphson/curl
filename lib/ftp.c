@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.29 $
- * $Date: 2000-11-10 13:42:45 $
+ * $Revision: 1.30 $
+ * $Date: 2000-11-21 09:30:07 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -85,6 +85,7 @@
 #include "progress.h"
 #include "download.h"
 #include "escape.h"
+#include "http.h" /* for HTTP proxy tunnel stuff */
 
 #ifdef KRB4
 #include "security.h"
