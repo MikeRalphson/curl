@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.77 2003-03-19 09:26:29 bagder Exp $
+# $Id: runtests.pl,v 1.78 2003-04-01 08:41:49 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -82,6 +82,8 @@ my $keepoutfiles; # keep stdout and stderr files after tests
 my $listonly;     # only list the tests
 
 my $pwd;          # current working directory
+
+my %run;	  # running server
 
 chomp($pwd = `pwd`);
 
@@ -202,7 +204,7 @@ sub runhttpserver {
         # verify that our server is up and running:
         my $data=`$CURL --silent -i $HOSTIP:$HOSTPORT/verifiedserver 2>/dev/null`;
 
-        if ( $data !~ /WE ROOLZ/ ) {
+        if ( $data !~ /WE ROOLZ: (\d+)/ ) {
             sleep(1);
             next;
         }
@@ -308,7 +310,10 @@ sub runftpserver {
         # verify that our server is up and running:
         my $data=`$CURL --silent -i ftp://$HOSTIP:$FTPPORT/verifiedserver 2>/dev/null`;
 
-        if ( $data !~ /WE ROOLZ/ ) {
+        if ( $data !~ /WE ROOLZ: (\d+)/ ) {
+            if($verbose) {
+                print STDERR "RUN: Retrying FTP server existance in 1 sec\n";
+            }
             sleep(1);
             next;
         }
@@ -839,6 +844,19 @@ sub singletest {
 
     unlink($FTPDCMD); # remove the instructions for this test
 
+    my @what = getpart("client", "killserver");
+    for(@what) {
+        my $serv = $_;
+        chomp $serv;
+        if($run{$serv}) {
+            stopserver($run{$serv}); # the pid file is in the hash table
+            $run{$serv}=""; # clear it
+        }
+        else {
+            print STDERR "RUN: The $serv server is not running\n";
+        }
+    }
+
     if($memory_debug) {
         if(! -f $memdump) {
             print "\n** ALERT! memory debuggin without any output file?\n";
@@ -872,8 +890,6 @@ sub singletest {
 
     return 0;
 }
-
-my %run;
 
 ##############################################################################
 # This function makes sure the right set of server is running for the
