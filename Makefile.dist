@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.29 2005-01-18 10:17:34 bagder Exp $
+# $Id: Makefile.dist,v 1.30 2005-03-11 15:10:08 bagder Exp $
 ###########################################################################
 
 all:
@@ -173,6 +173,12 @@ vc-zlib-dll:
 	nmake /f Makefile.vc6 cfg=release-zlib-dll
 	cd ..\src
 	nmake /f Makefile.vc6 cfg=release-zlib-dll
+
+vc-sspi:
+	cd lib
+	nmake /f Makefile.vc6 cfg=release WINDOWS_SSPI=1
+	cd ..\src
+	nmake /f Makefile.vc6 cfg=release WINDOWS_SSPI=1
 
 djgpp:
 	$(MAKE) -C lib -f Makefile.dj
