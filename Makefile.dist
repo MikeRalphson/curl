@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.14 2003-10-22 11:26:58 bagder Exp $
+# $Id: Makefile.dist,v 1.15 2003-12-10 13:51:42 bagder Exp $
 #############################################################################
 
 all:
@@ -76,6 +76,12 @@ cygwin:
 cygwin-ssl:
 	./configure --with-ssl
 	make
+
+amiga:
+	cd ./lib && make -f makefile.amiga
+	cd ./src && make -f makefile.amiga
+
+
 
 unix: all
 
