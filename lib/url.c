@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.102 2001-03-12 15:05:54 bagder Exp $
+ * $Id: url.c,v 1.103 2001-03-12 15:47:17 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -250,6 +250,19 @@ CURLcode Curl_setopt(CURL *curl, CURLoption option, ...)
   va_start(param, option);
 
   switch(option) {
+  case CURLOPT_RANDOM_FILE:
+    /*
+     * This is the path name to a file that contains random data to seed
+     * the random SSL stuff with. The file is only used for reading.
+     */
+    data->ssl.random_file = va_arg(param, char *);
+    break;
+  case CURLOPT_EGDSOCKET:
+    /*
+     * The Entropy Gathering Daemon socket pathname
+     */
+    data->ssl.egdsocket = va_arg(param, char *);
+    break;
   case CURLOPT_MAXCONNECTS:
     /*
      * Set the absolute number of maximum simultaneous alive connection that

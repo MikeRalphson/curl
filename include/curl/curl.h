@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.61 2001-03-12 15:06:29 bagder Exp $
+ * $Id: curl.h,v 1.62 2001-03-12 15:47:17 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -417,6 +417,13 @@ typedef enum {
      when done. Do not use this unless you're absolutely sure of this, as it
      makes the operation slower and is less friendly for the network. */
   CINIT(FORBID_REUSE, LONG, 75),
+
+  /* Set to a file name that contains random data for libcurl to use to
+     seed the random engine when doing SSL connects. */
+  CINIT(RANDOM_FILE, OBJECTPOINT, 76),
+
+  /* Set to the Entropy Gathering Daemon socket pathname */
+  CINIT(EGDSOCKET, OBJECTPOINT, 77),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
