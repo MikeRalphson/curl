@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.29 2003-01-29 10:14:20 bagder Exp $
+ * $Id: file.c,v 1.30 2003-06-26 11:16:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -88,7 +88,7 @@
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
