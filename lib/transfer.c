@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.66 2001-11-01 12:18:53 bagder Exp $
+ * $Id: transfer.c,v 1.67 2001-11-02 22:30:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -863,7 +863,7 @@ Transfer(struct connectdata *c_conn)
       }
 
       if (data->set.timeout &&
-          ((Curl_tvdiff(now, start)/1000) > data->set.timeout)) {
+          ((Curl_tvdiff(now, start)/1000) >= data->set.timeout)) {
 	failf (data, "Operation timed out with %d out of %d bytes received",
 	       bytecount, conn->size);
 	return CURLE_OPERATION_TIMEOUTED;
@@ -914,6 +914,7 @@ CURLcode Curl_perform(struct SessionHandle *data)
 
   data->set.followlocation=0; /* reset the location-follow counter */
   data->state.this_is_a_follow = FALSE; /* reset this */
+  data->state.errorbuf = FALSE; /* no error has occurred */
 
   Curl_initinfo(data); /* reset session-specific information "variables" */
 
