@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.h,v 1.9 2004-11-09 14:02:58 giva Exp $
+ * $Id: mprintf.h,v 1.10 2004-11-11 08:03:43 bagder Exp $
  ***************************************************************************/
 
 #ifndef H_MPRINTF
@@ -26,7 +26,8 @@
 
 #include <stdarg.h>
 #include <stdio.h> /* needed for FILE */
-#include <curl/curl.h>
+
+#include "curl.h"
 
 CURL_EXTERN int curl_mprintf(const char *format, ...);
 CURL_EXTERN int curl_mfprintf(FILE *fd, const char *format, ...);
