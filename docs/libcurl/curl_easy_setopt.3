@@ -1,5 +1,5 @@
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.34 2003-02-28 07:53:31 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.35 2003-03-31 04:04:40 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "3 Dec 2002" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -315,8 +315,16 @@ user.
 .TP
 .B CURLOPT_USERPWD
 Pass a char * as parameter, which should be [user name]:[password] to use for
-the connection. If the password is left out, you will be prompted for it.
-\fICURLOPT_PASSWDFUNCTION\fP can be used to set your own prompt function.
+the connection. If both the colon and password is left out, you will be
+prompted for it while using a colon with no password will make libcurl use an
+empty password. \fICURLOPT_PASSWDFUNCTION\fP can be used to set your own
+prompt function.
+
+When using HTTP and CURLOPT_FOLLOWLOCATION, libcurl might perform several
+requests to possibly different hosts. libcurl will only send this user and
+password information to hosts using the initial host name, so if libcurl
+follows locations to other hosts it will not send the user and password to
+those. This is enforced to prevent accidental information leakage.
 .TP
 .B CURLOPT_PROXYUSERPWD
 Pass a char * as parameter, which should be [user name]:[password] to use for
