@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.12 2004-01-07 09:19:35 bagder Exp $
+ * $Id: llist.c,v 1.13 2004-05-10 08:57:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -55,24 +55,31 @@ Curl_llist_alloc(curl_llist_dtor dtor)
   return list;
 }
 
+/*
+ * Curl_llist_insert_next() returns 1 on success and 0 on failure.
+ */
 int
 Curl_llist_insert_next(curl_llist *list, curl_llist_element *e, const void *p)
 {
-  curl_llist_element  *ne;
+  curl_llist_element *ne =
+    (curl_llist_element *) malloc(sizeof(curl_llist_element));
+  if(!ne)
+    return 0;
 
-  ne = (curl_llist_element *) malloc(sizeof(curl_llist_element));
   ne->ptr = (void *) p;
   if (list->size == 0) {
     list->head = ne;
     list->head->prev = NULL;
     list->head->next = NULL;
     list->tail = ne;
-  } else {
+  }
+  else {
     ne->next = e->next;
     ne->prev = e;
     if (e->next) {
       e->next->prev = ne;
-    } else {
+    }
+    else {
       list->tail = ne;
     }
     e->next = ne;
