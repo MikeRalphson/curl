@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.44 2002-12-13 16:15:19 bagder Exp $
+ * $Id: connect.c,v 1.45 2002-12-17 10:05:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -663,12 +663,6 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
     }
 
     if(0 != rc) {
-      if(data->state.used_interface == Curl_if_multi) {
-        /* When running the multi interface, we bail out here */
-        rc = 0;
-        break;
-      }
-
       /* get a new timeout for next attempt */
       after = Curl_tvnow();
       timeout_ms -= Curl_tvdiff(after, before);
