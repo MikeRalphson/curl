@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.5 $
- * $Date: 2000-02-21 23:51:38 $
+ * $Revision: 1.6 $
+ * $Date: 2000-03-01 22:06:57 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -109,10 +109,16 @@ struct Progress {
   int mode;  /* what kind of progress meter to display */
   int width; /* screen width at download start */
   int flags; /* see progress.h */
-  struct timeval start;
   double timespent;
   double dlspeed;
   double ulspeed;
+
+  struct timeval start;
+  /* various data stored for possible later report */
+  struct timeval t_nslookup;
+  struct timeval t_connect;
+  struct timeval t_pretransfer;
+  int httpcode;
 };
 
 struct UrlData {
