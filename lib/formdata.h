@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.7 2001-08-21 13:18:07 bagder Exp $
+ * $Id: formdata.h,v 1.8 2001-08-28 08:54:33 bagder Exp $
  *****************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -35,6 +35,17 @@ struct Form {
   int sent; /* number of bytes of the current line that has already
 	       been sent in a previous invoke */
 };
+
+/* used by FormAdd for temporary storage */
+typedef struct FormInfo {
+  char *name;
+  long namelength;
+  char *value;
+  long contentslength;
+  char *contenttype;
+  long flags;
+  struct FormInfo *more;
+} FormInfo;
 
 int Curl_FormInit(struct Form *form, struct FormData *formdata );
 
