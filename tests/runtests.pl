@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.6 2000-11-15 07:09:37 bagder Exp $
+# $Id: runtests.pl,v 1.7 2000-11-15 08:21:14 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -398,10 +398,14 @@ if ( $TESTCASES eq "all") {
     my @cmds = grep { /^command/ && -f "$TESTDIR/$_" } readdir(DIR);
     closedir DIR;
 
-    $TESTCASES="";
+    $TESTCASES=""; # start with no test cases
+
+    # cut off everything but the digits 
     for(@cmds) {
-        # cut off everything but the digits 
         $_ =~ s/[a-z\/\.]*//g;
+    }
+    # the the numbers from low to high
+    for(sort { $a <=> $b } @cmds) {
         $TESTCASES .= " $_";
     }
 }
