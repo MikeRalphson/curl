@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.205 2003-07-22 08:23:16 bagder Exp $
+ * $Id: curl.h,v 1.206 2003-07-28 12:13:49 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -29,7 +29,7 @@
 
 /* This is the version number of the libcurl package from which this header
    file origins: */
-#define LIBCURL_VERSION "7.10.6-pre4"
+#define LIBCURL_VERSION "7.10.6"
 
 /* This is the numeric version of the libcurl version number, meant for easier
    parsing and comparions by programs. The LIBCURL_VERSION_NUM define will
