@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.146 2003-03-19 21:28:39 bagder Exp $
+ * $Id: urldata.h,v 1.147 2003-03-24 23:10:39 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -380,6 +380,7 @@ struct connectdata {
                        means unlimited */
   
   struct ssl_connect_data ssl; /* this is for ssl-stuff */
+  struct ssl_config_data ssl_config;
 
   struct ConnectBits bits;    /* various state-flags for this connection */
 
