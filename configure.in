@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.126 2003-03-13 17:06:55 bagder Exp $
+dnl $Id: configure.in,v 1.127 2003-03-13 23:02:33 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -778,15 +778,6 @@ if test "$ac_cv_func_sigsetjmp" != "yes"; then
                )
 fi
 
-dnl removed 'getpass' check on October 26, 2000
-
-if test "$ac_cv_func_select" != "yes"; then
-  AC_MSG_ERROR(Can't work without an existing select() function)
-fi
-if test "$ac_cv_func_socket" != "yes"; then
-  AC_MSG_ERROR(Can't work without an existing socket() function)
-fi
-
 AC_PATH_PROG( PERL, perl, , 
   $PATH:/usr/local/bin/perl:/usr/bin/:/usr/local/bin )
 AC_SUBST(PERL)
@@ -794,7 +785,6 @@ AC_SUBST(PERL)
 AC_PATH_PROGS( NROFF, gnroff nroff, , 
   $PATH:/usr/bin/:/usr/local/bin )
 AC_SUBST(NROFF)
-
 
 AC_MSG_CHECKING([CA cert bundle install path])
 
