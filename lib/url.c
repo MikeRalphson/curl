@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.39 $
- * $Date: 2000-09-25 22:16:36 $
+ * $Revision: 1.40 $
+ * $Date: 2000-09-28 10:27:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1392,7 +1392,8 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
   if(data->bits.proxy_user_passwd) {
     char *authorization;
     sprintf(data->buffer, "%s:%s", data->proxyuser, data->proxypasswd);
-    if(base64Encode(data->buffer, 0, &authorization) >= 0) {
+    if(base64_encode(data->buffer, strlen(data->buffer),
+                    &authorization) >= 0) {
       data->ptr_proxyuserpwd =
         maprintf("Proxy-authorization: Basic %s\015\012", authorization);
       free(authorization);

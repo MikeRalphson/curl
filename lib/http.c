@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.27 $
- * $Date: 2000-09-21 08:48:48 $
+ * $Revision: 1.28 $
+ * $Date: 2000-09-28 10:27:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -295,7 +295,7 @@ CURLcode http(struct connectdata *conn)
        !data->auth_host ||
        strequal(data->auth_host, data->hostname)) {
       sprintf(data->buffer, "%s:%s", data->user, data->passwd);
-      if(base64Encode(data->buffer, 0, /* size zero makes it do strlen() */
+      if(base64_encode(data->buffer, strlen(data->buffer),
                       &authorization) >= 0) {
         data->ptr_userpwd = maprintf( "Authorization: Basic %s\015\012",
                                       authorization);
