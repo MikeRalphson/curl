@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.18 $
- * $Date: 2000-08-24 12:33:17 $
+ * $Revision: 1.19 $
+ * $Date: 2000-09-14 14:05:01 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -245,6 +245,7 @@ struct FTP {
 };
 
 struct Configbits {
+  bool tunnel_thru_httpproxy;
   bool ftp_append;
   bool ftp_ascii;
   bool ftp_list_only;
