@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.38 2004-03-01 13:14:26 bagder Exp $
+# $Id: testcurl.sh,v 1.39 2004-03-02 09:50:37 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.38 $'
+version='$Revision: 1.39 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -245,6 +245,9 @@ fi
 
 log "display lib/config.h"
 grep "^ *#" lib/config.h
+
+log "display src/config.h"
+grep "^ *#" src/config.h
 
 if { grep "define USE_ARES" lib/config.h; } then
   log "setup to build ares"
