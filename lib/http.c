@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.200 2004-03-12 13:06:01 bagder Exp $
+ * $Id: http.c,v 1.201 2004-03-12 14:22:16 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -457,8 +457,8 @@ static size_t readmoredata(char *buffer,
   conn->bits.forbidchunk= (http->sending == HTTPSEND_REQUEST)?TRUE:FALSE;
 
   if(http->postsize <= fullsize) {
-    memcpy(buffer, http->postdata, http->postsize);
-    fullsize = http->postsize;
+    memcpy(buffer, http->postdata, (size_t)http->postsize);
+    fullsize = (size_t)http->postsize;
 
     if(http->backup.postsize) {
       /* move backup data into focus and continue on that */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.55 2004-03-03 13:11:28 bagder Exp $
+ * $Id: formdata.c,v 1.56 2004-03-12 14:22:16 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1100,7 +1100,7 @@ void curl_formfree(struct curl_httppost *form)
 
 CURLcode Curl_getFormData(struct FormData **finalform,
                           struct curl_httppost *post,
-                          size_t *sizep)
+                          curl_off_t *sizep)
 {
   struct FormData *form = NULL;
   struct FormData *firstform;
