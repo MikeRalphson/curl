@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.58 $
- * $Date: 2000-11-17 14:05:11 $
+ * $Revision: 1.59 $
+ * $Date: 2000-11-18 16:31:27 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1190,7 +1190,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
     /* Connect to target host right on */
     conn->hp = GetHost(data, conn->name, &conn->hostent_buf);
     if(!conn->hp) {
-      failf(data, "Couldn't resolv host '%s'", conn->name);
+      failf(data, "Couldn't resolve host '%s'", conn->name);
       return CURLE_COULDNT_RESOLVE_HOST;
     }
   }
@@ -1246,7 +1246,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
     /* connect to proxy */
     conn->hp = GetHost(data, proxyptr, &conn->hostent_buf);
     if(!conn->hp) {
-      failf(data, "Couldn't resolv proxy '%s'", proxyptr);
+      failf(data, "Couldn't resolve proxy '%s'", proxyptr);
       return CURLE_COULDNT_RESOLVE_PROXY;
     }
 
