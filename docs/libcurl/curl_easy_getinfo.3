@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_getinfo.3,v 1.12 2004-08-24 20:36:38 bagder Exp $
+.\" $Id: curl_easy_getinfo.3,v 1.13 2004-09-30 21:01:23 bagder Exp $
 .\"
 .TH curl_easy_getinfo 3 "20 Aug 2003" "libcurl 7.10.8" "libcurl Manual"
 .SH NAME
@@ -110,6 +110,8 @@ CURLOPT_HTTPAUTH option for \fIcurl_easy_setopt(3)\fP.  (Added in 7.10.8)
 .IP CURLINFO_PROXYAUTH_AVAIL
 Pass a pointer to a long to receive a bitmask indicating the authentication
 method(s) available for your proxy authentication.  (Added in 7.10.8)
+.IP CURLINFO_OS_ERRNO
+Pass a pointer to a long to receive the errno variable from a connect failure.
 .SH RETURN VALUE
 If the operation was successful, CURLE_OK is returned. Otherwise an
 appropriate error code will be returned.

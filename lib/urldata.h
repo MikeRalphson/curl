@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.238 2004-09-16 21:45:16 bagder Exp $
+ * $Id: urldata.h,v 1.239 2004-09-30 21:01:23 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -733,7 +733,7 @@ struct UrlState {
   bool errorbuf; /* Set to TRUE if the error buffer is already filled in.
                     This must be set to FALSE every time _easy_perform() is
                     called. */
-
+  int os_errno;  /* filled in with errno whenever an error occurs */
 #ifdef HAVE_SIGNAL
   /* storage for the previous bag^H^H^HSIGPIPE signal handler :-) */
   void (*prev_signal)(int sig);

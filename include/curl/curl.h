@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.263 2004-09-16 21:45:16 bagder Exp $
+ * $Id: curl.h,v 1.264 2004-09-30 21:01:23 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1178,9 +1178,10 @@ typedef enum {
   CURLINFO_HTTP_CONNECTCODE = CURLINFO_LONG   + 22,
   CURLINFO_HTTPAUTH_AVAIL   = CURLINFO_LONG   + 23,
   CURLINFO_PROXYAUTH_AVAIL  = CURLINFO_LONG   + 24,
+  CURLINFO_OS_ERRNO	    = CURLINFO_LONG   + 25,
   /* Fill in new entries below here! */
 
-  CURLINFO_LASTONE          = 23
+  CURLINFO_LASTONE          = 26
 } CURLINFO;
 
 /* CURLINFO_RESPONSE_CODE is the new name for the option previously known as
