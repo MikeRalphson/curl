@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.82 2004-05-06 15:04:04 bagder Exp $
+dnl $Id: configure.ac,v 1.83 2004-05-06 15:05:23 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -957,7 +957,6 @@ case "$LIBIDN" in
                       CPPFLAGS="$CPPFLAGS -I$LIBIDN/include"
                       AC_CHECK_LIB(idn, idna_to_ascii_4i, ,
                                    nolibidn="true"
-                                   AC_MSG_WARN([no libidn found in $LIBIDN])
                                    LDFLAGS=$oldLDFLAGS
                                    CPPFLAGS=$oldCPPFLAGS)
                     fi
