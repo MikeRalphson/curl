@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.40 $
- * $Date: 2000-11-09 12:51:43 $
+ * $Revision: 1.41 $
+ * $Date: 2000-11-13 11:59:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1308,10 +1308,12 @@ int main(int argc, char *argv[])
     if (outfiles)
       config.outfile = strdup(outfiles);
 
+#if 0
   if(config.outfile && config.infile) {
     helpf("you can't both upload and download!\n");
     return CURLE_FAILED_INIT;
   }
+#endif
  
   if (config.outfile || config.remotefile) {
     /* 
