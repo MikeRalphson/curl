@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.4 2004-02-23 07:52:20 bagder Exp $ */
+/* $Id: ares.h,v 1.5 2004-02-23 16:20:31 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -19,6 +19,10 @@
 #define ARES__H
 
 #include <sys/types.h>
+
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>
+#endif
 
 #ifdef WIN32
 #include <winsock.h>
