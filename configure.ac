@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.60 2004-03-03 09:16:36 bagder Exp $
+dnl $Id: configure.ac,v 1.61 2004-03-15 10:10:24 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1268,6 +1268,7 @@ AC_CONFIG_FILES([Makefile \
            packages/DOS/Makefile \
            packages/EPM/curl.list \
            packages/EPM/Makefile \
+           packages/vms/Makefile \
            curl-config
 ])
 AC_OUTPUT
