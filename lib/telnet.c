@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.39 2003-03-12 08:40:46 bagder Exp $
+ * $Id: telnet.c,v 1.40 2003-03-12 08:44:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -449,7 +449,8 @@ void rec_wont(struct connectdata *conn, int option)
   }
 }
    
-void set_local_option(struct connectdata *conn, int option, int newstate)
+static void
+set_local_option(struct connectdata *conn, int option, int newstate)
 {
   struct TELNET *tn = (struct TELNET *)conn->proto.telnet;
   if(newstate == CURL_YES)
