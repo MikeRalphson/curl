@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.17 2003-08-19 15:38:20 bagder Exp $
+dnl $Id: configure.ac,v 1.18 2003-09-05 09:53:00 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -737,9 +737,17 @@ printf("just fine");
 )
 
 AC_ARG_ENABLE(thread,dnl
-AC_HELP_STRING([--disable-thread],[don't look for thread-safe functions]),
-  OPT_THREAD=off
-  AC_MSG_WARN(libcurl will not get built using thread-safe functions)
+AC_HELP_STRING([--disable-thread],[don't look for thread-safe functions])
+AC_HELP_STRING([--enable-thread],[look for thread-safe functions]),
+[ case "$enableval" in
+  no)
+    OPT_THREAD=off
+    AC_MSG_WARN(libcurl will not get built using thread-safe functions)
+    ;;
+  *)
+    ;;
+  esac
+]
 )
 
 if test X"$OPT_THREAD" = Xoff
