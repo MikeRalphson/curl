@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.59 2001-03-16 13:35:45 bagder Exp $
+dnl $Id: configure.in,v 1.60 2001-03-22 08:51:24 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -294,6 +294,14 @@ exit (rc != 0 ? 1 : 0); }],[
 	  [ac_cv_gethostbyname_args=0])],
 	[ac_cv_gethostbyname_args=0])],
       [ac_cv_gethostbyname_args=0])])
+
+if test "$ac_cv_func_gethostbyname_r" = "yes"; then
+  if test "$ac_cv_gethostbyname_args" = "0"; then
+    dnl there's a gethostbyname_r() function, but we don't know how
+    dnl many arguments it wants!
+    AC_MSG_ERROR([couldn't figure out how to use gethostbyname_r()])
+  fi
+fi
 
 ])
 
