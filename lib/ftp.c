@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.292 2005-01-21 09:32:33 bagder Exp $
+ * $Id: ftp.c,v 1.293 2005-01-25 22:13:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -620,6 +620,23 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
          Apparently, proftpd with SSL returns 232 here at times. */
 
       infof(data, "We have successfully logged in\n");
+    }
+    else if(ftpcode == 332) {
+      /* 332 Please provide account info */
+      if(data->set.ftp_account) {
+        FTPSENDF(conn, "ACCT %s", data->set.ftp_account);
+        result = Curl_GetFTPResponse(&nread, conn, &ftpcode);
+        if(!result && (ftpcode != 230)) {
+          failf(data, "ACCT rejected by server: %03d", ftpcode);
+          result = CURLE_FTP_WEIRD_PASS_REPLY; /* FIX */
+        }
+      }
+      else {
+        failf(data, "ACCT requested by none available");
+        result = CURLE_FTP_WEIRD_PASS_REPLY;
+      }
+      if(result)
+        return result;
     }
     else {
       failf(data, "Odd return code after PASS");

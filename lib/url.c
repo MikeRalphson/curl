@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.441 2005-01-21 09:32:33 bagder Exp $
+ * $Id: url.c,v 1.442 2005-01-25 22:13:12 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1394,6 +1394,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * List of RAW FTP commands to use after a transfer on the source host
      */
     data->set.source_postquote = va_arg(param, struct curl_slist *);
+    break;
+
+  case CURLOPT_FTP_ACCOUNT:
+    data->set.ftp_account = va_arg(param, char *);
     break;
 
   default:

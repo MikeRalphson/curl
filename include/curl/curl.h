@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.276 2005-01-21 09:32:33 bagder Exp $
+ * $Id: curl.h,v 1.277 2005-01-25 22:13:12 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -881,6 +881,10 @@ typedef enum {
   /* When doing 3rd party transfer, set the source quote linked list of
      commands with this */
   CINIT(SOURCE_QUOTE, OBJECTPOINT, 133),
+
+  /* zero terminated string for pass on to the FTP server when asked for
+     "account" info */
+  CINIT(FTP_ACCOUNT, OBJECTPOINT, 134),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

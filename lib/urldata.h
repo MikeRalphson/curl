@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.256 2005-01-25 00:06:29 bagder Exp $
+ * $Id: urldata.h,v 1.257 2005-01-25 22:13:12 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -862,6 +862,7 @@ struct UserDefined {
   char *cookiejar;      /* dump all cookies to this file */
   bool cookiesession;   /* new cookie session? */
   bool crlf;            /* convert crlf on ftp upload(?) */
+  char *ftp_account;    /* ftp account data */
   struct curl_slist *quote;     /* after connection is established */
   struct curl_slist *postquote; /* after the transfer */
   struct curl_slist *prequote; /* before the transfer, after type */
