@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.4 2000-11-15 15:36:41 bagder Exp $
+ * $Id: mprintf.c,v 1.5 2000-11-21 13:18:30 bagder Exp $
  *
  *************************************************************************
  *
@@ -83,7 +83,7 @@
  *
  ****************************************************************************/
 
-static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.4 2000-11-15 15:36:41 bagder Exp $";
+static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.5 2000-11-21 13:18:30 bagder Exp $";
 
 /*
  * To test:
@@ -999,33 +999,6 @@ static int dprintf_formatf(
 
   }
   return done;
-}
-
-static int StoreNonPrintable(int output, struct nsprintf *infop)
-{
-  /* If the character isn't printable then we convert it */
-  char work[64], *w;
-  int num = output;
-
-  w = &work[sizeof(work)];
-  *(--w) = (char)0;
-  for(; num > 0; num /= 10) {
-    *(--w) = lower_digits[num % 10];
-  }
-  if (infop->length + strlen(w) + 1 < infop->max)
-    {
-      infop->buffer[0] = '\\';
-      infop->buffer++;
-      infop->length++;
-      for (; *w; w++)
-	{
-	  infop->buffer[0] = *w;
-	  infop->buffer++;
-	  infop->length++;
-	}
-      return output;
-    }
-  return -1;
 }
 
 /* fputc() look-alike */
