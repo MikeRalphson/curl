@@ -18,10 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.36 2004-11-02 10:12:22 bagder Exp $
+ * $Id: dict.c,v 1.37 2004-11-11 23:13:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
+
+#ifndef CURL_DISABLE_DICT
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -222,3 +224,4 @@ CURLcode Curl_dict(struct connectdata *conn)
 
   return CURLE_OK;
 }
+#endif /*CURL_DISABLE_DICT*/
