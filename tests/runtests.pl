@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.37 2001-08-06 12:10:00 bagder Exp $
+# $Id: runtests.pl,v 1.38 2001-08-08 07:51:00 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -517,7 +517,7 @@ sub singletest {
         }
         else {
             if(!$short) {
-                print "curl returned $res\n";
+                print "curl returned $res, ".(0+$errorcode)." was expected\n";
             }
             print " error FAILED\n";
             return 1;
