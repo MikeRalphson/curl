@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.15 $
- * $Date: 2000-08-17 21:08:09 $
+ * $Revision: 1.16 $
+ * $Date: 2000-08-18 15:09:50 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -538,7 +538,7 @@ CURLcode _ftp(struct connectdata *conn)
   /* for the ftp PORT mode */
   int portsock=-1;
   struct sockaddr_in serv_addr;
-  char hostent_buf[512];
+  char hostent_buf[8192];
 #if defined (HAVE_INET_NTOA_R)
   char ntoa_buf[64];
 #endif
