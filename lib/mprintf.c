@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.46 2004-11-02 10:12:23 bagder Exp $
+ * $Id: mprintf.c,v 1.47 2004-11-02 14:02:29 bagder Exp $
  *
  *************************************************************************
  *
@@ -590,7 +590,7 @@ static int dprintf_formatf(
                  the second argument */
   /* function pointer called for each output character */
 
-#if _WIN32_WCE
+#ifdef _WIN32_WCE
   int (__cdecl *stream) (int, FILE *),
 #else
   int (*stream)(int, FILE *),
