@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.64 2003-02-14 09:03:03 bagder Exp $
+ * $Id: ssluse.c,v 1.65 2003-02-27 23:10:38 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -791,7 +791,7 @@ Curl_SSLConnect(struct connectdata *conn)
         !SSL_CTX_load_verify_locations(conn->ssl.ctx,
                                        data->set.ssl.CAfile,
                                        data->set.ssl.CApath)) {
-      failf(data,"error setting cerficate verify locations");
+      failf(data,"error setting certificate verify locations");
       return CURLE_SSL_CACERT;
     }
   }
