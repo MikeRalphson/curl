@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.45 2001-03-02 07:42:35 bagder Exp $
+ * $Id: urldata.h,v 1.46 2001-03-02 15:34:15 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -468,9 +468,7 @@ struct UrlData {
   FILE *writeheader; /* write the header to this is non-NULL */
   char *url;   /* what to get */
   char *freethis; /* if non-NULL, an allocated string for the URL */
-  long port; /* which port to use (if non-protocol bind) */
-  unsigned short remote_port; /* what remote port to connect to, not the proxy
-				 port! */
+  long use_port;  /* which port to use (when not using default) */
   struct Configbits bits; /* new-style (v7) flag data */
   struct ssl_config_data ssl; /* this is for ssl-stuff */
 
@@ -697,15 +695,19 @@ CURLcode curl_write(CURLconnect *c_conn, char *buf, size_t amount,
  * this connect. This allows multiple connects from the same handle returned
  * by curl_open().
  *
+ * By setting 'allow_port' to FALSE, the data->use_port will *NOT* be
+ * respected.
+ *
  * EXAMPLE
  *
  * CURLCode result;
  * CURL curl;
  * CURLconnect connect;
- * result = curl_connect(curl, &connect);
- */
+ * result = curl_connect(curl, &connect); */
 
-CURLcode curl_connect(CURL *curl, CURLconnect **in_connect);
+CURLcode curl_connect(CURL *curl,
+                      CURLconnect **in_connect,
+                      bool allow_port);
 
 /*
  * NAME curl_do()

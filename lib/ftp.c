@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.57 2001-03-02 07:44:05 bagder Exp $
+ * $Id: ftp.c,v 1.58 2001-03-02 15:34:15 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1065,7 +1065,7 @@ again:;
         he = conn->hp;
 #endif
         connectport =
-          (unsigned short)data->port; /* we connect to the proxy's port */
+          (unsigned short)conn->port; /* we connect to the proxy's port */
       }
       else {
         /* normal, direct, ftp connection */
