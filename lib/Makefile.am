@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.94 2004-05-13 09:01:15 bagder Exp $
+# $Id: Makefile.am,v 1.95 2004-06-09 06:54:12 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -106,7 +106,7 @@ CSOURCES = file.c timeval.c base64.c hostip.c progress.c formdata.c	\
 
 libcurl_la_SOURCES = $(CSOURCES) $(HHEADERS)
 
-WIN32SOURCES = $(CSOURCES)
+WIN32SOURCES = $(CSOURCES) libcurl.def
 WIN32HEADERS = $(HHEADERS) config-win32.h
 
 BUILT_SOURCES = $(srcdir)/getdate.c $(top_builddir)/lib/ca-bundle.h
