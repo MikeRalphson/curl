@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.94 2002-04-17 07:16:49 bagder Exp $
+ * $Id: transfer.c,v 1.95 2002-05-02 08:52:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -912,6 +912,9 @@ CURLcode Curl_readwrite_init(struct connectdata *conn)
 
   Curl_pgrsTime(data, TIMER_PRETRANSFER);
   Curl_speedinit(data);
+
+  Curl_pgrsSetUploadCounter(data, 0);
+  Curl_pgrsSetDownloadCounter(data, 0);
 
   if (!conn->getheader) {
     k->header = FALSE;
