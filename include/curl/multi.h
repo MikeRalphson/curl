@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.6 2003-01-22 18:30:58 bagder Exp $
+ * $Id: multi.h,v 1.7 2003-01-22 18:50:51 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -190,7 +190,7 @@ CURLMsg *curl_multi_info_read(CURLM *multi_handle,
                               int *msgs_in_queue);
 
 #ifdef __cplusplus
-} /* end of extern "C"
+} /* end of extern "C" */
 #endif
   
 #endif
