@@ -1,5 +1,5 @@
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.35 2003-03-31 04:04:40 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.36 2003-03-31 04:41:05 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "3 Dec 2002" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -348,6 +348,11 @@ server sends as part of a HTTP header.
 new location and follow new Location: headers all the way until no more such
 headers are returned. \fICURLOPT_MAXREDIRS\fP can be used to limit the number
 of redirects libcurl will follow.
+.TP
+.B CURLOPT_UNRESTRICTED_AUTH
+A non-zero parameter tells the library it can continue to send authentication
+(user+password) when following locations, even when hostname changed. Note
+that this is meaningful only when setting \fICURLOPT_FOLLOWLOCATION\fP.
 .TP
 .B CURLOPT_MAXREDIRS
 Pass a long. The set number will be the redirection limit. If that many

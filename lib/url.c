@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.265 2003-03-31 03:42:01 bagder Exp $
+ * $Id: url.c,v 1.266 2003-03-31 04:41:06 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -502,6 +502,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Follow Location: header hints on a HTTP-server.
      */
     data->set.http_follow_location = va_arg(param, long)?TRUE:FALSE;
+    break;
+  case CURLOPT_UNRESTRICTED_AUTH:
+    /*
+     * Send authentication (user+password) when following locations, even when
+     * hostname changed.
+     */
+    data->set.http_disable_hostname_check_before_authentication =
+      va_arg(param, long)?TRUE:FALSE;
     break;
   case CURLOPT_HTTP_VERSION:
     /*

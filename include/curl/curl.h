@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.190 2003-02-28 12:17:56 bagder Exp $
+ * $Id: curl.h,v 1.191 2003-03-31 04:41:06 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -619,6 +619,11 @@ typedef enum {
   /* Set aliases for HTTP 200 in the HTTP Response header */
   CINIT(HTTP200ALIASES, OBJECTPOINT, 104),
 
+  /* Continue to send authentication (user+password) when following locations,
+     even when hostname changed. This can potentionally send off the name
+     and password to whatever host the server decides. */
+  CINIT(UNRESTRICTED_AUTH, LONG, 105),
+
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
 
@@ -809,7 +814,7 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.10.4-pre2"
+#define LIBCURL_VERSION "7.10.4-pre5"
 #define LIBCURL_VERSION_NUM 0x070a04
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.147 2003-03-24 23:10:39 bagder Exp $
+ * $Id: urldata.h,v 1.148 2003-03-31 04:41:06 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -736,6 +736,7 @@ struct UserDefined {
   bool hide_progress;
   bool http_fail_on_error;
   bool http_follow_location;
+  bool http_disable_hostname_check_before_authentication;
   bool include_header;
 #define http_include_header include_header /* former name */
 
