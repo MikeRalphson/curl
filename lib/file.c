@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.57 2004-05-25 21:47:29 bagder Exp $
+ * $Id: file.c,v 1.58 2004-06-10 07:17:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -175,7 +175,7 @@ CURLcode Curl_file_done(struct connectdata *conn,
 {
   struct FILEPROTO *file = conn->proto.file;
   (void)status; /* not used */
-  Curl_safefree(file->path);
+  Curl_safefree(file->freepath);
 
   return CURLE_OK;
 }
