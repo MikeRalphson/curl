@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.16 2001-05-31 07:03:04 bagder Exp $
+ * $Id: if2ip.c,v 1.17 2001-08-06 12:22:48 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -66,6 +66,11 @@
 #include "inet_ntoa_r.h"
 #endif
 
+#ifdef	VMS
+#define	IOCTL_3_ARGS
+#include <inet.h>
+#endif
+
 /* The last #include file should be: */
 #ifdef MALLOCDEBUG
 #include "memdebug.h"
@@ -90,7 +95,11 @@ char *Curl_if2ip(char *interface, char *buf, int buf_size)
     memset(&req, 0, sizeof(req));
     strcpy(req.ifr_name, interface);
     req.ifr_addr.sa_family = AF_INET;
+#ifdef	IOCTL_3_ARGS
+    if (SYS_ERROR == ioctl(dummy, SIOCGIFADDR, &req)) {
+#else
     if (SYS_ERROR == ioctl(dummy, SIOCGIFADDR, &req, sizeof(req))) {
+#endif
       sclose(dummy);
       return NULL;
     }
