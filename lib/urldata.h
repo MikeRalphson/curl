@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.71 2001-08-28 08:37:54 bagder Exp $
+ * $Id: urldata.h,v 1.72 2001-08-29 09:32:18 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -541,6 +541,7 @@ struct UrlData {
   char *cert_passwd; /* plain text certificate password */
 
   struct CookieInfo *cookies;
+  char *cookiejar; /* dump all cookies to this file */
 
   long crlf;
   struct curl_slist *quote;     /* before the transfer */
