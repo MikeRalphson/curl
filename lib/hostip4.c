@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.5 2004-06-24 08:30:39 bagder Exp $
+ * $Id: hostip4.c,v 1.6 2004-06-24 10:43:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -404,7 +404,7 @@ struct hostent {
 
 */
 
-Curl_addrinfo *Curl_he2ai(struct hostent *he, unsigned short port)
+Curl_addrinfo *Curl_he2ai(struct hostent *he, int port)
 {
   Curl_addrinfo *ai;
   Curl_addrinfo *prevai = NULL;

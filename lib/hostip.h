@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.36 2004-06-24 07:43:49 bagder Exp $
+ * $Id: hostip.h,v 1.37 2004-06-24 10:43:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -215,7 +215,7 @@ Curl_addrinfo *Curl_ip2addr(in_addr_t num, char *hostname, int port);
 
 /* [ipv4 only] Curl_he2ai() converts a struct hostent to a Curl_addrinfo chain
    and returns it */
-Curl_addrinfo *Curl_he2ai(struct hostent *, unsigned short port);
+Curl_addrinfo *Curl_he2ai(struct hostent *, int port);
 
 /* relocate a hostent struct */
 void Curl_hostent_relocate(struct hostent *h, long offset);
