@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.24 2002-10-14 07:39:50 bagder Exp $
+# $Id: Makefile.am,v 1.25 2003-02-26 13:46:38 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -10,7 +10,8 @@ man_MANS = \
 
 HTMLPAGES = \
 	curl.html \
-	curl-config.html
+	curl-config.html \
+	index.html
 
 PDFPAGES = \
 	curl.pdf \
