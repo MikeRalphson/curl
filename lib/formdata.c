@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.13 2001-01-05 10:11:42 bagder Exp $
+ * $Id: formdata.c,v 1.14 2001-04-06 05:52:23 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -371,6 +371,7 @@ char *Curl_FormBoundary(void)
 void Curl_FormFree(struct FormData *form)
 {
   struct FormData *next;
+
   do {
     next=form->next;  /* the following form line */
     free(form->line); /* free the line */
@@ -383,6 +384,11 @@ void Curl_FormFree(struct FormData *form)
 void curl_formfree(struct HttpPost *form)
 {
   struct HttpPost *next;
+
+  if(!form)
+    /* no form to free, just get out of this */
+    return;
+
   do {
     next=form->next;  /* the following form line */
 
