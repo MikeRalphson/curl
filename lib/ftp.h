@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.h,v 1.19 2004-01-22 11:53:43 bagder Exp $
+ * $Id: ftp.h,v 1.20 2004-04-22 13:15:17 bagder Exp $
  ***************************************************************************/
 
 #ifndef CURL_DISABLE_FTP
@@ -32,7 +32,6 @@ CURLcode Curl_ftpsendf(struct connectdata *, const char *fmt, ...);
 CURLcode Curl_GetFTPResponse(ssize_t *nread, struct connectdata *conn,
                              int *ftpcode);
 CURLcode Curl_ftp_nextconnect(struct connectdata *conn);
-CURLcode Curl_ftp_quit(struct connectdata *conn);
 #endif
 
 #endif
