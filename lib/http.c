@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.107 2002-09-23 12:47:18 bagder Exp $
+ * $Id: http.c,v 1.108 2002-09-25 12:47:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -669,6 +669,9 @@ CURLcode Curl_http(struct connectdata *conn)
      */
     if((data->set.httpreq == HTTPREQ_GET) &&
        !checkheaders(data, "Range:")) {
+      /* if a line like this was already allocated, free the previous one */
+      if(conn->allocptr.rangeline)
+        free(conn->allocptr.rangeline);
       conn->allocptr.rangeline = aprintf("Range: bytes=%s\r\n", conn->range);
     }
     else if((data->set.httpreq != HTTPREQ_GET) &&
