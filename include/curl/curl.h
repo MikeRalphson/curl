@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.90 2001-08-06 08:43:37 bagder Exp $
+ * $Id: curl.h,v 1.91 2001-08-08 07:15:00 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -448,6 +448,11 @@ typedef enum {
    */
   CINIT(HTTPGET, LONG, 80),
 
+  /* Set if we should verify the Common name from the peer certificate in ssl
+   * handshake, set 1 to check existence, 2 to ensure that it matches the
+   * provided hostname. */
+  CINIT(SSL_VERIFYHOST, LONG, 81),
+  
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
 

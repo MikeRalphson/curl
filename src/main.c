@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.84 2001-08-06 13:19:43 bagder Exp $
+ * $Id: main.c,v 1.85 2001-08-08 07:15:33 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1881,7 +1881,10 @@ operate(struct Configurable *config, int argc, char *argv[])
         /* available from libcurl 7.5: */
         curl_easy_setopt(curl, CURLOPT_CAINFO, config->cacert);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, TRUE);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2);
       }
+      else
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 1);
       
       if(config->conf&(CONF_NOBODY|CONF_USEREMOTETIME)) {
         /* no body or use remote time */
