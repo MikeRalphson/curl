@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.201 2002-04-12 10:03:59 bagder Exp $
+ * $Id: url.c,v 1.202 2002-04-23 13:34:28 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1611,9 +1611,16 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
       nope=no_proxy?strtok_r(no_proxy, ", ", &no_proxy_tok_buf):NULL;
       while(nope) {
-        if(strlen(nope) <= strlen(conn->name)) {
+        int namelen;
+        char *endptr = strchr(conn->name, ':');
+        if(endptr)
+          namelen=endptr-conn->name;
+        else
+          namelen=strlen(conn->name);
+
+        if(strlen(nope) <= namelen) {
           char *checkn=
-            conn->name + strlen(conn->name) - strlen(nope);
+            conn->name + namelen - strlen(nope);
           if(strnequal(nope, checkn, strlen(nope))) {
             /* no proxy for this host! */
             break;
