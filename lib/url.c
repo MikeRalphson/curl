@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.371 2004-05-05 07:17:37 bagder Exp $
+ * $Id: url.c,v 1.372 2004-05-06 15:17:10 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2551,7 +2551,6 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   else if(strequal(conn->protostr, "FTP") ||
           strequal(conn->protostr, "FTPS")) {
 
-/* MN 06/07/02 */
 #ifndef CURL_DISABLE_FTP
     char *type;
     int port = PORT_FTP;
@@ -2626,8 +2625,6 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 	break;
       }
     }
-
-/* MN 06/07/02 */
 #else /* CURL_DISABLE_FTP */
     failf(data, LIBCURL_NAME
           " was built with FTP disabled, ftp/ftps: not supported!");
