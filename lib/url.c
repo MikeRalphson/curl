@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.16 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.17 $
+ * $Date: 2000-05-22 17:18:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -249,7 +249,7 @@ CURLcode curl_open(CURL **curl, char *url)
   if(data) {
     memset(data, 0, sizeof(struct UrlData));
     data->handle = STRUCT_OPEN;
-    data->interface = CURLI_NORMAL; /* normal interface by default */
+    data->interf = CURLI_NORMAL; /* normal interface by default */
 
     /* We do some initial setup here, all those fields that can't be just 0 */
 

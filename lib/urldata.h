@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.7 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.8 $
+ * $Date: 2000-05-22 17:18:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -306,7 +306,7 @@ typedef enum {
 
 struct UrlData {
   Handle handle; /* struct identifier */
-  CurlInterface interface;
+  CurlInterface interf; /* created by WHAT interface? */
 
   /*************** Global - specific items  ************/
   FILE *err;    /* the stderr writes goes here */
