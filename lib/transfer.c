@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.145 2003-04-11 08:49:21 bagder Exp $
+ * $Id: transfer.c,v 1.146 2003-04-22 22:33:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -915,7 +915,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               case COMPRESS:          /* FIXME 08/27/02 jhrg */
               default:
                 failf (data, "Unrecognized content encoding type. "
-                       "libcurl understands `identity' and `deflate' "
+                       "libcurl understands `identity', `deflate' and `gzip' "
                        "content encodings.");
                 result = CURLE_BAD_CONTENT_ENCODING;
                 break;

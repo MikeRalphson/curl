@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.17 2003-04-11 16:23:43 bagder Exp $
+ * $Id: http_chunks.c,v 1.18 2003-04-22 22:33:39 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -201,7 +201,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
         default:
           failf (conn->data,
                  "Unrecognized content encoding type. "
-                 "libcurl understands `identity' and `deflate' "
+                 "libcurl understands `identity', `deflate' and `gzip' "
                  "content encodings.");
           return CHUNKE_BAD_ENCODING;
       }
