@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.265 2005-03-10 23:15:30 bagder Exp $
+ * $Id: http.c,v 1.266 2005-03-28 22:19:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -407,7 +407,7 @@ Curl_http_output_auth(struct connectdata *conn,
   if (conn->bits.httpproxy &&
       (conn->bits.tunnel_proxy == proxytunnel)) {
 #if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
-    if(authproxy->want == CURLAUTH_NTLM) {
+    if(authproxy->picked == CURLAUTH_NTLM) {
       auth=(char *)"NTLM";
       result = Curl_output_ntlm(conn, TRUE);
       if(result)
@@ -415,7 +415,7 @@ Curl_http_output_auth(struct connectdata *conn,
     }
     else
 #endif
-      if(authproxy->want == CURLAUTH_BASIC) {
+      if(authproxy->picked == CURLAUTH_BASIC) {
         /* Basic */
         if(conn->bits.proxy_user_passwd &&
            !checkheaders(data, "Proxy-authorization:")) {
@@ -429,7 +429,7 @@ Curl_http_output_auth(struct connectdata *conn,
         authproxy->done = TRUE;
       }
 #ifndef CURL_DISABLE_CRYPTO_AUTH
-      else if(authproxy->want == CURLAUTH_DIGEST) {
+      else if(authproxy->picked == CURLAUTH_DIGEST) {
         auth=(char *)"Digest";
         result = Curl_output_digest(conn,
                                     TRUE, /* proxy */
@@ -463,7 +463,7 @@ Curl_http_output_auth(struct connectdata *conn,
     {
       auth = NULL;
 #ifdef HAVE_GSSAPI
-      if((authhost->want == CURLAUTH_GSSNEGOTIATE) &&
+      if((authhost->picked == CURLAUTH_GSSNEGOTIATE) &&
          data->state.negotiate.context &&
          !GSS_ERROR(data->state.negotiate.status)) {
         auth=(char *)"GSS-Negotiate";
