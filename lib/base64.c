@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.9 2001-08-14 09:25:15 bagder Exp $
+ * $Id: base64.c,v 1.10 2001-08-24 07:39:50 bagder Exp $
  *****************************************************************************/
 
 /* Base64 encoding/decoding
@@ -32,9 +32,8 @@
  * This code will break if int is smaller than 32 bits
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "setup.h"
+
 #include <stdlib.h>
 #include <string.h>
 
