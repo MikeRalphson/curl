@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-05-30 22:27:39 $
+ * $Revision: 1.10 $
+ * $Date: 2000-06-20 07:45:53 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -617,7 +617,7 @@ CURLcode _ftp(struct connectdata *conn)
       sscanf( inet_ntoa(in), "%hu.%hu.%hu.%hu",
               &ip[0], &ip[1], &ip[2], &ip[3]);
 #endif
-      sendf(data->firstsocket, data, "PORT %d,%d,%d,%d,%d,%d\n",
+      sendf(data->firstsocket, data, "PORT %d,%d,%d,%d,%d,%d\r\n",
             ip[0], ip[1], ip[2], ip[3],
             porttouse >> 8,
             porttouse & 255);
