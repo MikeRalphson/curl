@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.266 2005-02-04 13:42:41 bagder Exp $
+ * $Id: transfer.c,v 1.267 2005-02-08 07:36:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2038,6 +2038,8 @@ Curl_connect_host(struct SessionHandle *data,
       if(CURLE_OK == res)
         /* Resolved, continue with the connection */
         res = Curl_async_resolved(*conn);
+      else
+        (void)Curl_disconnect(*conn);
     }
     if(res)
       break;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.9 2004-10-06 07:50:18 bagder Exp $
+ * $Id: hostares.c,v 1.10 2005-02-08 07:36:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -249,7 +249,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
 
     /* close the connection, since we can't return failure here without
        cleaning up this connection properly */
-    Curl_disconnect(conn);
+    conn->bits.close = TRUE;
   }
 
   return rc;
