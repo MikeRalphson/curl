@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.72 2004-04-25 15:23:23 bagder Exp $
+dnl $Id: configure.ac,v 1.73 2004-04-26 07:08:36 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1226,6 +1226,35 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
  ],
        AC_MSG_RESULT(no)
 )
+
+AC_MSG_CHECKING([whether to build with libidn])
+AC_ARG_WITH(idn,
+AC_HELP_STRING([--with-libidn=PATH],[Enable libidn usage])
+AC_HELP_STRING([--without-libidn],[Disable libidn usage]),
+  [LIBIDN="$withval" ])
+
+case "$LIBIDN" in
+  no)
+       AC_MSG_RESULT(no)
+       ;;
+  *)   AC_MSG_RESULT(yes)
+       AC_CHECK_LIB(idn, idna_to_ascii_lz, ,
+                    [
+                    dnl if there was a given path, try it
+                    if test "x$LIBIDN" != "xyes"; then
+                      oldLDFLAGS=$LDFLAGS
+                      oldCPPFLAGS=$CPPFLAGS
+                      LDFLAGS="$LDFLAGS -L$LIBIDN/lib"
+                      CPPFLAGS="$CPPFLAGS -I$LIBIDN/include"
+                      AC_CHECK_LIB(idn, idna_to_ascii_4i, ,
+                                   AC_MSG_WARN([no libidn found in $LIBIDN])
+                                   LDFLAGS=$oldLDFLAGS
+                                   CPPFLAGS=$oldCPPFLAGS)
+                    fi
+                    ])
+                    
+       ;; 
+esac
 
 AC_MSG_CHECKING([whether to enable ares])
 AC_ARG_ENABLE(ares,
