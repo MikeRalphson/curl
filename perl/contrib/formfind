@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: formfind,v 1.5 2003-04-28 13:48:16 bagder Exp $
+# $Id: formfind,v 1.6 2004-10-19 18:36:17 bagder Exp $
 #
 # formfind.pl
 #
@@ -26,10 +26,10 @@ sub namevalue {
     my ($tag)=@_;
     my $name=$tag;
     if($name =~ /name *=/i) {
-        if($name =~ /name *= *([^\"\']([^ \">]*))/) {
+        if($name =~ /name *= *([^\"\']([^ \">]*))/i) {
             $name = $1;
         }
-        elsif($name =~ /name *= *(\"|\')([^\"\']*)(\"|\')/) {
+        elsif($name =~ /name *= *(\"|\')([^\"\']*)(\"|\')/i) {
             $name=$2;
         }
         else {
@@ -45,10 +45,10 @@ sub namevalue {
     # get value tag
     my $value= $tag;
     if($value =~ /[^\.a-zA-Z0-9]value *=/i) {
-        if($value =~ /[^\.a-zA-Z0-9]value *= *([^\"\']([^ \">]*))/) {
+        if($value =~ /[^\.a-zA-Z0-9]value *= *([^\"\']([^ \">]*))/i) {
             $value = $1;
         }
-        elsif($value =~ /[^\.a-zA-Z0-9]value *= *(\"|\')([^\"\']*)(\"|\')/) {
+        elsif($value =~ /[^\.a-zA-Z0-9]value *= *(\"|\')([^\"\']*)(\"|\')/i) {
             $value=$2;
         }
         else {
