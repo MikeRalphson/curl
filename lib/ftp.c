@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.90 2001-09-14 12:18:46 bagder Exp $
+ * $Id: ftp.c,v 1.91 2001-09-23 12:47:07 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1005,6 +1005,10 @@ CURLcode _ftp(struct connectdata *conn)
       freeaddrinfo(res);
       return CURLE_FTP_PORT_FAILED;
     }
+    /* we set the secondary socket variable to this for now, it
+       is only so that the cleanup function will close it in case
+       we fail before the true secondary stuff is made */
+    conn->secondarysocket = portsock;
 
 #else
     struct sockaddr_in sa;
