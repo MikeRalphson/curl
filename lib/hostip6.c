@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.12 2005-03-17 07:40:15 bagder Exp $
+ * $Id: hostip6.c,v 1.13 2005-03-17 19:12:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -74,6 +74,7 @@
 #include "share.h"
 #include "strerror.h"
 #include "url.h"
+#include "inet_pton.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
