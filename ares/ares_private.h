@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.6 2004-07-01 13:55:13 bagder Exp $ */
+/* $Id: ares_private.h,v 1.7 2004-07-04 21:36:32 gknauf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -54,6 +54,11 @@
 #elif defined(WATT32)
 
 #define PATH_RESOLV_CONF "/dev/ENV/etc/resolv.conf"
+
+#elif defined(NETWARE)
+
+#define PATH_RESOLV_CONF "sys:/etc/resolv.cfg"
+#define PATH_HOSTS		"sys:/etc/hosts"
 
 #else
 
