@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.68 2001-05-11 11:38:13 bagder Exp $
+ * $Id: ftp.c,v 1.69 2001-05-12 09:30:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -481,8 +481,9 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   if(conn->protocol & PROT_FTPS) {
     /* FTPS is simply ftp with SSL for the control channel */
     /* now, perform the SSL initialization for this socket */
-    if(Curl_SSLConnect(conn))
-      return CURLE_SSL_CONNECT_ERROR;
+    result = Curl_SSLConnect(conn);
+    if(result)
+      return result;
   }
 
 
