@@ -1,8 +1,8 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_global_init.3,v 1.6 2001-08-02 17:29:08 bumblebury Exp $
+.\" $Id: curl_global_init.3,v 1.7 2001-08-14 11:04:40 bagder Exp $
 .\"
-.TH curl_global_init 3 "31 May 2001" "libcurl 7.8" "libcurl Manual"
+.TH curl_global_init 3 "14 August 2001" "libcurl 7.8.1" "libcurl Manual"
 .SH NAME
 curl_global_init - Global libcurl initialisation
 .SH SYNOPSIS
@@ -33,7 +33,7 @@ Initialize everything possible. This sets all known bits.
 Initialize SSL
 .TP
 .B CURL_GLOBAL_WIN32
-Initialize the Win32 socket libraries.
+Initialize the Win32 socket libraries. (added in libcurl 7.8.1)
 .TP
 .B CURL_GLOBAL_NOTHING
 Initialise nothing extra. This sets no bit.
