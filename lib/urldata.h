@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.222 2004-05-04 07:52:53 bagder Exp $
+ * $Id: urldata.h,v 1.223 2004-05-07 18:46:28 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -438,7 +438,7 @@ struct connectdata {
 #else
   struct sockaddr_in serv_addr;
 #endif
-  char protostr[64];  /* store the protocol string in this buffer */
+  char protostr[16];  /* store the protocol string in this buffer */
 
   struct hostname host;
   struct hostname proxy;

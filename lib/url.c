@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.372 2004-05-06 15:17:10 bagder Exp $
+ * $Id: url.c,v 1.373 2004-05-07 18:46:28 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2148,7 +2148,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
    * proxy -- and we don't know if we will need to use SSL until we parse the
    * url ...
    ************************************************************/
-  if((2 == sscanf(data->change.url, "%64[^:]:%[^\n]",
+  if((2 == sscanf(data->change.url, "%15[^:]:%[^\n]",
                   conn->protostr,
                   conn->path)) && strequal(conn->protostr, "file")) {
     if(conn->path[0] == '/' && conn->path[1] == '/') {
@@ -2208,7 +2208,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      * that missing slash at the beginning of the path.
      */
     if (2 > sscanf(data->change.url,
-                   "%64[^\n:]://%[^\n/?]%[^\n]",
+                   "%15[^\n:]://%[^\n/?]%[^\n]",
                    conn->protostr,
                    conn->host.name, conn->path)) {
 
