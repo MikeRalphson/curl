@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.136 2003-01-21 16:03:38 bagder Exp $
+ * $Id: transfer.c,v 1.137 2003-01-24 11:13:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -573,6 +573,9 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                   end++, len++);
 
               /* allocate memory of a cloned copy */
+              if(data->info.contenttype)
+                free(data->info.contenttype);
+              
               data->info.contenttype = malloc(len + 1);
               if (NULL == data->info.contenttype)
                 return CURLE_OUT_OF_MEMORY;
