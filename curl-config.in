@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.9 2001-08-16 13:02:46 bagder Exp $
+# $Id: curl-config.in,v 1.10 2001-08-16 13:05:00 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -19,7 +19,6 @@ Available values for OPTION include:
   --cflags    pre-processor and compiler flags
   --feature   newline separated list of enabled features
   --help      display this help and exit
-  --include   display compiler flag(s) to set curl\'s include path
   --libs      library linking information
   --prefix    curl install prefix
   --version   output version information
@@ -74,11 +73,7 @@ while test $# -gt 0; do
 	;;
 
     --cflags)
-       	echo @CPPFLAGS@
-       	;;
-
-    --include)
-       	echo -I@includedir@
+       	echo -I@includedir@ @CPPFLAGS@
        	;;
 
     --libs)
@@ -86,6 +81,7 @@ while test $# -gt 0; do
        	;;
 
     *)
+        echo "unknown option: $1"
 	usage
 	exit 1
 	;;
