@@ -1,3 +1,5 @@
+#ifndef __HTTP_DIGEST_H
+#define __HTTP_DIGEST_H
 /***************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -18,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.h,v 1.1 2003-05-22 16:09:55 bagder Exp $
+ * $Id: http_digest.h,v 1.2 2003-05-22 16:23:27 bagder Exp $
  ***************************************************************************/
 
 typedef enum {
@@ -41,3 +43,4 @@ CURLdigest Curl_input_digest(struct connectdata *conn, char *header);
 CURLcode Curl_output_digest(struct connectdata *conn,
                             unsigned char *request,
                             unsigned char *uripath);
+#endif
