@@ -13,7 +13,7 @@
  * without express or implied warranty.
  */
 
-static const char rcsid[] = "$Id: ares_process.c,v 1.1 2003-10-07 21:54:04 bagder Exp $";
+static const char rcsid[] = "$Id: ares_process.c,v 1.2 2004-01-29 11:23:36 bagder Exp $";
 
 #include <sys/types.h>
 
@@ -464,12 +464,14 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
   flags = 1;
   ioctlsocket(s, FIONBIO, &flags);
 #else
-  if (fcntl(s, F_GETFL, &flags) == -1)
+  flags = fcntl(s, F_GETFL, 0);
+
+  if (flags == -1)
     {
       close(s);
       return -1;
     }
-  flags &= O_NONBLOCK;
+  flags |= O_NONBLOCK;
   if (fcntl(s, F_SETFL, flags) == -1)
     {
       close(s);
