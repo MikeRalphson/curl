@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.182 2003-10-24 21:54:34 bagder Exp $
+ * $Id: transfer.c,v 1.183 2003-11-06 07:55:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1854,10 +1854,9 @@ CURLcode Curl_perform(struct SessionHandle *data)
          to the new URL */
       urlchanged = data->change.url_changed;
       if ((CURLE_OK == res) && urlchanged) {
-        char *gotourl;
         res = Curl_done(conn);
         if(CURLE_OK == res) {
-          newurl = strdup(data->change.url);
+          char *gotourl = strdup(data->change.url);
           res = Curl_follow(data, gotourl);
           if(res)
             free(gotourl);
