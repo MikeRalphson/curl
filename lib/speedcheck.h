@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/speedcheck.h,v $
- * $Revision: 1.4 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.5 $
+ * $Date: 2000-10-17 14:53:03 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -44,6 +44,7 @@
 
 #include "timeval.h"
 
+void speedinit(struct UrlData *data);
 CURLcode speedcheck(struct UrlData *data,
                     struct timeval now);
 

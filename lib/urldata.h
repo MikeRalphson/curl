@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.26 $
- * $Date: 2000-10-11 10:29:25 $
+ * $Revision: 1.27 $
+ * $Date: 2000-10-17 14:53:03 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -503,6 +503,8 @@ struct UrlData {
 #ifdef KRB4
   FILE *cmdchannel;
 #endif
+
+  struct timeval keeps_speed; /* this should be request-specific */
 };
 
 #define LIBCURL_NAME "libcurl"

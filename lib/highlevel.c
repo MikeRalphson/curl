@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.17 $
- * $Date: 2000-10-11 10:29:25 $
+ * $Revision: 1.18 $
+ * $Date: 2000-10-17 14:53:03 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -174,6 +174,7 @@ _Transfer(struct connectdata *c_conn)
 #define KEEP_WRITE 2
 
   pgrsTime(data, TIMER_PRETRANSFER);
+  speedinit(data);
 
   if (!conn->getheader) {
     header = FALSE;
