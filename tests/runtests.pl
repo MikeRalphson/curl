@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.76 2003-03-15 17:26:59 bagder Exp $
+# $Id: runtests.pl,v 1.77 2003-03-19 09:26:29 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -637,7 +637,8 @@ sub singletest {
         subVariables \$fileContent;
 #        print "DEBUG: writing file " . $filename . "\n";
         open OUTFILE, ">$filename";
-        print OUTFILE   $fileContent;
+        binmode OUTFILE; # for crapage systems, use binary       
+        print OUTFILE $fileContent;
         close OUTFILE;
     }
 
