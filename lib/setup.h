@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.52 2004-03-04 15:32:18 bagder Exp $
+ * $Id: setup.h,v 1.53 2004-03-09 21:25:59 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -134,11 +134,6 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #ifdef	VMS
 #include "../include/curl/stdcheaders.h"
 #else
-#include <curl/stdcheaders.h>
-#endif
-
-#else
-#ifdef _AIX
 #include <curl/stdcheaders.h>
 #endif
 #endif
