@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-10-03 11:01:32 $
+ * $Revision: 1.9 $
+ * $Date: 2000-10-03 16:53:41 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -194,17 +194,20 @@ send_buffer *add_buffer_init(void)
  */
 size_t add_buffer_send(int sockfd, struct connectdata *conn, send_buffer *in)
 {
-  if(in->buffer)
-    free(in->buffer);
-  free(in);
-
+  size_t amount;
   if(conn->data->bits.verbose) {
     fputs("> ", conn->data->err);
     /* this data _may_ contain binary stuff */
     fwrite(in->buffer, in->size_used, 1, conn->data->err);
   }
 
-  return ssend(sockfd, conn, in->buffer, in->size_used);
+  amount = ssend(sockfd, conn, in->buffer, in->size_used);
+
+  if(in->buffer)
+    free(in->buffer);
+  free(in);
+
+  return amount;
 }
 
 
