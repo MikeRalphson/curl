@@ -30,8 +30,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/memdebug.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-11-17 15:31:45 $
+ * $Revision: 1.5 $
+ * $Date: 2000-11-21 19:05:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -42,6 +42,9 @@
 #include "setup.h"
 
 #include <curl/curl.h>
+
+#define _MPRINTF_REPLACE
+#include <curl/mprintf.h>
 #include "urldata.h"
 #include <stdio.h>
 #include <string.h>
