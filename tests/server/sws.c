@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.50 2004-04-30 05:51:37 bagder Exp $
+ * $Id: sws.c,v 1.51 2004-05-06 12:44:08 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -226,7 +226,7 @@ static void win32_perror (const char *msg)
 }
 #endif
 
-static char *test2file(int testno)
+static char *test2file(long testno)
 {
   static char filename[256];
   sprintf(filename, TEST_DATA_PATH, path, testno);
