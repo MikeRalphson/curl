@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.26 2002-04-04 12:23:54 bagder Exp $
+# $Id: ftpserver.pl,v 1.27 2002-12-12 18:07:10 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -439,7 +439,8 @@ for ( $waitedpid = 0;
 
         unless (m/^([A-Z]{3,4})\s?(.*)/i) {
             print "500 '$_': command not understood.\r\n";
-            next;
+            logmsg "unknown crap received, bailing out hard\n";
+            last;
         }
         my $FTPCMD=$1;
         my $FTPARG=$2;
