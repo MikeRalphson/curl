@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.82 2003-05-19 13:08:48 bagder Exp $
+# $Id: runtests.pl,v 1.83 2003-06-12 16:22:52 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -930,6 +930,27 @@ sub serverfortest {
         }
         return 100;
     }
+
+    my @what = getpart("client", "features");
+
+    for(@what) {
+        my $f = $_;
+
+        $f =~ s/\s//g;
+
+        print STDERR "CHECK FOR $f\n";
+
+        if($f eq "SSL") {
+            if($ssl_version) {
+                last;
+            }
+        }
+
+        warn "Test case $testnum requires the missing feature: $_";
+        return 100;
+    }
+
+
     my @what = getpart("client", "server");
 
     if(!$what[0]) {
