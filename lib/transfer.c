@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.85 2002-03-14 14:37:41 bagder Exp $
+ * $Id: transfer.c,v 1.86 2002-03-15 12:42:41 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -693,7 +693,11 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             Curl_httpchunk_read(conn, k->str, nread, &nread);
 
           if(CHUNKE_OK < res) {
-            failf(data, "Receeived problem in the chunky parser");
+            if(CHUNKE_WRITE_ERROR == res) {
+              failf(data, "Failed writing data");
+              return CURLE_WRITE_ERROR;
+            }
+            failf(data, "Received problem in the chunky parser");
             return CURLE_READ_ERROR;
           }
           else if(CHUNKE_STOP == res) {
