@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.194 2003-08-10 17:11:41 bagder Exp $
+ * $Id: ftp.c,v 1.195 2003-08-20 15:41:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -390,6 +390,9 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
 
   if(ftpcode)
     *ftpcode=code; /* return the initial number like this */
+
+  /* store the latest code for later retrieval */
+  conn->data->info.httpcode=code;
 
   return result;
 }
