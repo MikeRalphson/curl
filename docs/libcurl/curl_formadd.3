@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_formadd.3,v 1.11 2004-08-23 14:46:43 bagder Exp $
+.\" $Id: curl_formadd.3,v 1.12 2004-09-02 20:42:44 bagder Exp $
 .\"
 .TH curl_formadd 3 "24 June 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -129,8 +129,8 @@ defines.
 .SH EXAMPLE
 .nf
 
- struct HttpPost* post = NULL;
- struct HttpPost* last = NULL;
+ struct curl_httppost* post = NULL;
+ struct curl_httppost* last = NULL;
  char namebuffer[] = "name buffer";
  long namelength = strlen(namebuffer);
  char buffer[] = "test buffer";
