@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.311 2003-10-21 06:34:15 bagder Exp $
+ * $Id: url.c,v 1.312 2003-10-28 09:17:15 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2035,7 +2035,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
              used truly as a separator */
           ptr++;
 
-        strcpy(conn->path, ptr);
+        /* This cannot be made with strcpy, as the memory chunks overlap! */
+        memmove(conn->path, ptr, strlen(ptr)+1);
       }
     }
 
