@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.26 2002-02-20 13:46:53 bagder Exp $
+ * $Id: connect.c,v 1.27 2002-02-22 15:44:37 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -364,8 +364,13 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
 #endif
 
     /* get the most strict timeout of the ones converted to milliseconds */
-    if(data->set.timeout &&
-       (data->set.timeout < data->set.connecttimeout))
+    if(data->set.timeout && data->set.connecttimeout) {
+      if (data->set.timeout < data->set.connecttimeout)
+        timeout_ms = data->set.timeout*1000;
+      else 
+        timeout_ms = data->set.connecttimeout*1000;
+    }
+    else if(data->set.timeout)
       timeout_ms = data->set.timeout*1000;
     else
       timeout_ms = data->set.connecttimeout*1000;
