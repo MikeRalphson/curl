@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.141 2001-08-22 11:24:57 bagder Exp $
+ * $Id: url.c,v 1.142 2001-08-23 14:06:38 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -483,9 +483,8 @@ CURLcode Curl_setopt(struct UrlData *data, CURLoption option, ...)
      * Set cookie file to read and parse.
      */
     cookiefile = (char *)va_arg(param, void *);
-    if(cookiefile) {
-      data->cookies = Curl_cookie_init(cookiefile);
-    }
+    if(cookiefile)
+      data->cookies = Curl_cookie_init(cookiefile, data->cookies);
     break;
   case CURLOPT_WRITEHEADER:
     /*
@@ -582,6 +581,11 @@ CURLcode Curl_setopt(struct UrlData *data, CURLoption option, ...)
     /*
      * The URL to fetch.
      */
+    if(data->bits.urlstringalloc) {
+      /* the already set URL is allocated, free it first! */
+      free(data->url);
+      data->bits.urlstringalloc=FALSE;
+    }
     data->url = va_arg(param, char *);
     break;
   case CURLOPT_PORT:
@@ -628,6 +632,13 @@ CURLcode Curl_setopt(struct UrlData *data, CURLoption option, ...)
     /*
      * Set proxy server:port to use as HTTP proxy
      */
+    if(data->bits.proxystringalloc) {
+      /*
+       * The already set string is allocated, free that first
+       */
+      data->bits.proxystringalloc=FALSE;;
+      free(data->proxy);
+    }
     data->proxy = va_arg(param, char *);
     data->bits.httpproxy = data->proxy?1:0;
     break;
