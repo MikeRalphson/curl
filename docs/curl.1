@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.140 2005-01-16 08:34:18 bagder Exp $
+.\" * $Id: curl.1,v 1.141 2005-01-17 09:18:04 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "7 Dec 2004" "Curl 7.12.3" "Curl Manual"
@@ -120,9 +120,9 @@ using \fI-D/--dump-header\fP!
 If this option is set more than once, the last one will be the one that's
 used.
 .IP "-B/--use-ascii"
-Use ASCII transfer when getting an FTP file or LDAP info. For FTP, this can
-also be enforced by using an URL that ends with ";type=A". This option causes
-data sent to stdout to be in text mode for win32 systems.
+Enable ASCII transfer when using FTP or LDAP. For FTP, this can also be
+enforced by using an URL that ends with ";type=A". This option causes data
+sent to stdout to be in text mode for win32 systems.
 
 If this option is used twice, the second one will disable ASCII usage.
 .IP "--basic"
