@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.22 2002-02-28 12:37:05 bagder Exp $
+ * $Id: memdebug.c,v 1.23 2002-03-08 15:31:44 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -200,7 +200,15 @@ FILE *curl_fopen(const char *file, const char *mode,
 
 int curl_fclose(FILE *file, int line, const char *source)
 {
-  int res=(fclose)(file);
+  int res;
+
+  if(NULL == file) {
+    fprintf(stderr, "ILLEGAL flose() on NULL at %s:%d\n",
+            source, line);
+    exit(2);
+  }
+
+  res=(fclose)(file);
   if(logfile)
     fprintf(logfile, "FILE %s:%d fclose(%p)\n",
             source, line, file);
