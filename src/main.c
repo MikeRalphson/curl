@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.93 2001-09-03 12:00:08 bagder Exp $
+ * $Id: main.c,v 1.94 2001-09-07 09:53:21 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -61,7 +61,11 @@
 #endif
 
 #ifdef HAVE_UTIME_H
-#include <utime.h>
+ #include <utime.h>
+#else
+ #ifdef HAVE_SYS_UTIME_H
+ #include <sys/utime.h>
+ #endif
 #endif
 
 /* The last #include file should be: */
