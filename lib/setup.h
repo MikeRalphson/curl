@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.54 2004-03-09 22:52:50 bagder Exp $
+ * $Id: setup.h,v 1.55 2004-03-10 07:03:13 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -111,14 +111,6 @@ typedef unsigned char bool;
 #else
 #define OS "unknown"
 #endif
-#endif
-
-#ifdef WIN32
-typedef SOCKET curl_socket_t;
-#define CURL_SOCKET_BAD INVALID_SOCKET
-#else
-typedef int curl_socket_t;
-#define CURL_SOCKET_BAD -1
 #endif
 
 #if defined(HAVE_X509_H) && defined(HAVE_SSL_H) && defined(HAVE_RSA_H) && \
@@ -249,6 +241,15 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 int fileno( FILE *stream);
 #endif
 
+#endif
+
+/* now typedef our socket type */
+#ifdef WIN32
+typedef SOCKET curl_socket_t;
+#define CURL_SOCKET_BAD INVALID_SOCKET
+#else
+typedef int curl_socket_t;
+#define CURL_SOCKET_BAD -1
 #endif
 
 #if defined(ENABLE_IPV6) && defined(USE_ARES)
