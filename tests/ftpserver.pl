@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.22 2001-09-14 12:01:21 bagder Exp $
+# $Id: ftpserver.pl,v 1.23 2001-11-02 23:09:25 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -326,6 +326,7 @@ sub PORT_command {
 $SIG{CHLD} = \&REAPER;
 
 my %customreply;
+my %delayreply;
 sub customize {
     undef %customreply;
     open(CUSTOM, "<log/ftpserver.cmd") ||
@@ -336,6 +337,9 @@ sub customize {
     while(<CUSTOM>) {
         if($_ =~ /REPLY ([A-Z]+) (.*)/) {
             $customreply{$1}=$2;
+        }
+        elsif($_ =~ /DELAY ([A-Z]+) (\d*)/) {
+            $delayreply{$1}=$2;
         }
     }
     close(CUSTOM);
@@ -414,6 +418,12 @@ for ( $waitedpid = 0;
         }
         else {
             $state = $newstate;
+        }
+
+        my $delay = $delayreply{$FTPCMD};
+        if($delay) {
+            # just go sleep this many seconds!
+            sleep($delay);
         }
 
         my $text;
