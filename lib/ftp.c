@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.258 2004-06-03 11:41:05 bagder Exp $
+ * $Id: ftp.c,v 1.259 2004-06-09 08:23:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -491,6 +491,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   ftp->passwd = conn->passwd;
   ftp->response_time = 3600; /* set default response time-out */
 
+#ifndef CURL_DISABLE_HTTP
   if (conn->bits.tunnel_proxy) {
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
     result = Curl_ConnectHTTPProxyTunnel(conn, FIRSTSOCKET,
@@ -498,6 +499,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
     if(CURLE_OK != result)
       return result;
   }
+#endif   /* CURL_DISABLE_HTTP */
 
   if(conn->protocol & PROT_FTPS) {
     /* FTPS is simply ftp with SSL for the control channel */
@@ -1711,6 +1713,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
     /* this just dumps information about this second connection */
     ftp_pasv_verbose(conn, conninfo, newhostp, connectport);
 
+#ifndef CURL_DISABLE_HTTP
   if(conn->bits.tunnel_proxy) {
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
     result = Curl_ConnectHTTPProxyTunnel(conn, SECONDARYSOCKET,
@@ -1718,6 +1721,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
     if(CURLE_OK != result)
       return result;
   }
+#endif   /* CURL_DISABLE_HTTP */
 
   return CURLE_OK;
 }
