@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.23 2003-10-09 08:09:07 bagder Exp $
+dnl $Id: configure.ac,v 1.24 2003-10-24 21:26:04 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -66,6 +66,7 @@ AC_LIBTOOL_WIN32_DLL
 dnl libtool setup
 AM_PROG_LIBTOOL
 
+AC_MSG_CHECKING([if we need -no-undefined])
 case $host in
   *-*-cygwin | *-*-mingw* | *-*-pw32*)
     need_no_undefined=yes
@@ -74,8 +75,22 @@ case $host in
     need_no_undefined=no
     ;;
 esac
-
+AC_MSG_RESULT($need_no_undefined)
 AM_CONDITIONAL(NO_UNDEFINED, test x$need_no_undefined = xyes)
+
+AC_MSG_CHECKING([if we need -mimpure-text])
+case $host in
+  *-*-solaris2*)
+    if test "$GCC" = "yes"; then
+      mimpure="yes"
+    fi
+    ;;
+  *)
+    mimpure=no
+    ;;
+esac
+AC_MSG_RESULT($mimpure)
+AM_CONDITIONAL(MIMPURE, test x$mimpure = xyes)
 
 dnl The install stuff has already been taken care of by the automake stuff
 dnl AC_PROG_INSTALL
