@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.11 2004-10-06 07:50:18 bagder Exp $ */
+/* $Id: ares.h,v 1.12 2004-11-11 12:25:40 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -35,6 +35,10 @@
   #include <windows.h>
 #else
   #include <netinet/in.h>
+#endif
+
+#ifdef  __cplusplus
+extern "C" {
 #endif
 
 #define ARES_SUCCESS            0
@@ -139,5 +143,9 @@ void ares_free_string(void *str);
 void ares_free_hostent(struct hostent *host);
 const char *ares_strerror(int code);
 void ares_free_errmem(char *mem);
+
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* ARES__H */
