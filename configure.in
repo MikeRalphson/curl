@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.118 2003-01-27 14:26:06 bagder Exp $
+dnl $Id: configure.in,v 1.119 2003-01-29 13:16:03 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -317,6 +317,22 @@ if test -n "$RANDOM_FILE" ; then
 	AC_DEFINE_UNQUOTED(RANDOM_FILE, "$RANDOM_FILE",
         [a suitable file to read random data from])
 fi
+
+dnl **********************************************************************
+dnl Check if the operating system allows programs to write to their own argv[]
+dnl **********************************************************************
+
+AC_MSG_CHECKING([if argv can be written to])
+AC_TRY_RUN([
+int main(int argc, char ** argv) {
+	argv[0][0] = ' ';
+	return (argv[0][0] == ' ')?0:1;
+}
+	],
+	AC_DEFINE(HAVE_WRITABLE_ARGV, 1, [Define this symbol if your OS supports changing the contents of argv])
+	AC_MSG_RESULT(yes),
+	AC_MSG_RESULT(no)
+)
 
 dnl **********************************************************************
 dnl Check for the presence of Kerberos4 libraries and headers
