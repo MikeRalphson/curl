@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.19 2004-01-29 13:54:08 bagder Exp $
+ * $Id: writeout.c,v 1.20 2004-02-09 08:29:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -80,7 +80,7 @@ static struct variable replacements[]={
   {"speed_download", VAR_SPEED_DOWNLOAD},
   {"speed_upload", VAR_SPEED_UPLOAD},
   {"content_type", VAR_CONTENT_TYPE},
-  {NULL, 0}
+  {NULL, VAR_NONE}
 };
 
 void ourWriteOut(CURL *curl, char *writeinfo)
