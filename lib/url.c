@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-01-19 21:57:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -533,6 +533,8 @@ UrgError curl_urlget(UrgTag tag, ...)
 
       infof(data, "Follows Location: to new URL: '%s'\n", data->url);
 
+      data->port = 0; /* clear the port number so that we don't make any silly
+                         assumptions for the new URL! */
       /* clean up the sockets and SSL stuff from the previous "round" */
       urlfree(data, FALSE);
 
