@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.67 2003-09-12 20:45:39 bagder Exp $
+# $Id: Makefile.am,v 1.68 2003-09-14 21:24:20 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -65,10 +65,6 @@ ARESLIB = -lares -L$(top_builddir)/ares
 endif
 
 libcurl_la_LDFLAGS = $(UNDEF) $(VERSION) $(ARESLIB)
-
-# We don't need the libs when we build the lib, they are needed when linking
-# the app later.
-LIBS =
 
 libcurl_la_SOURCES = arpa_telnet.h file.c getpass.h netrc.h timeval.c	\
 base64.c file.h hostip.c progress.c timeval.h base64.h formdata.c	\
