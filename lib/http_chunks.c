@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.6 2001-08-14 08:29:09 bagder Exp $
+ * $Id: http_chunks.c,v 1.7 2001-09-03 12:51:23 bagder Exp $
  *****************************************************************************/
 #include "setup.h"
 
@@ -44,7 +44,7 @@
  * Chunk format (simplified):
  *
  * <HEX SIZE>[ chunk extension ] CRLF
- * <DATA>
+ * <DATA> CRLF
  *
  * Highlights from RFC2616 section 3.6 say:
 
