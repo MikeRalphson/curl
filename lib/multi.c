@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.57 2004-06-29 11:20:07 bagder Exp $
+ * $Id: multi.c,v 1.58 2004-08-31 06:04:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -177,7 +177,7 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
   /* increase the node-counter */
   multi->num_easy++;
 
-  return CURLM_CALL_MULTI_PERFORM;
+  return CURLM_OK;
 }
 
 CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
