@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.34 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.35 $
+ * $Date: 2000-09-14 10:41:07 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1018,6 +1018,11 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
 
     conn->curl_do = file;
     /* no done() function */
+
+    result = Transfer(conn, -1, -1, FALSE, NULL, /* no download */
+                      -1, NULL); /* no upload */
+
+    return CURLE_OK;
   }
 
   else {
