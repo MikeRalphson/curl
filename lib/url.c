@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.270 2003-04-11 07:39:16 bagder Exp $
+ * $Id: url.c,v 1.271 2003-04-11 16:08:41 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1935,7 +1935,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
        * The URL was badly formatted, let's try the browser-style _without_
        * protocol specified like 'http://'.
        */
-      if((1 > sscanf(data->change.url, "%512[^\n/]%[^\n]",
+      if((1 > sscanf(data->change.url, "%512[^\n/?]%[^\n]",
                      conn->gname, conn->path)) ) {
         /*
          * We couldn't even get this format.
