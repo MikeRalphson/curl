@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.19 $
- * $Date: 2000-11-06 15:31:10 $
+ * $Revision: 1.20 $
+ * $Date: 2000-11-13 18:23:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -646,7 +646,7 @@ CURLcode curl_transfer(CURL *curl)
         /* mark the next request as a followed location: */
         data->bits.this_is_a_follow = TRUE;
 
-        data->proto.http->followlocation++; /* count location-followers */
+        data->followlocation++; /* count location-followers */
 
         if(data->bits.http_auto_referer) {
           /* We are asked to automatically set the previous URL as the

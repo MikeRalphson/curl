@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.30 $
- * $Date: 2000-11-06 22:53:51 $
+ * $Revision: 1.31 $
+ * $Date: 2000-11-13 18:23:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -272,8 +272,6 @@ struct HTTP {
   struct Form form;
   size_t (*storefread)(char *, size_t , size_t , FILE *);
   FILE *in;
-
-  long followlocation;
 };
 
 /****************************************************************************
@@ -412,17 +410,23 @@ struct UrlData {
   char *userpwd;  /* <user:password>, if used */
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */
+
+  /* stuff related to HTTP */
+
+  long followlocation;
+  char *referer;
+  bool free_referer; /* set TRUE if 'referer' points to a string we
+                        allocated */
+  char *useragent;   /* User-Agent string */
   char *postfields; /* if POST, set the fields' values here */
   long postfieldsize; /* if POST, this might have a size to use instead of
                          strlen(), and then the data *may* be binary (contain
                          zero bytes) */
 
-  bool free_referer; /* set TRUE if 'referer' points to a string we
-                        allocated */
-  char *referer;
-  char *useragent;   /* User-Agent string */
-
+  /* stuff related to FTP */
   char *ftpport; /* port to send with the PORT command */
+
+  /* general things */
   char *device;  /* Interface to use */
 
   /* function that stores the output:*/
