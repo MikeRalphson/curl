@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.14 2001-11-29 12:42:50 bagder Exp $
+# $Id: Makefile.am,v 1.15 2001-12-04 08:48:37 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -28,7 +28,11 @@ CLEANFILES = hugehelp.c
 NROFF=@NROFF@
 
 EXTRA_DIST = mkhelp.pl curlmsg.msg \
-	Makefile.vc6 Makefile.b32 Makefile.m32 config.h.in
+	Makefile.vc6 Makefile.b32 Makefile.m32 config.h.in \
+	macos/curl.mcp.xml.sit.hqx \
+	macos/MACINSTALL.TXT \
+	macos/src/curl_GUSIConfig.cpp \
+	macos/src/macos_main.cpp
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
