@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.54 2001-02-20 17:35:52 bagder Exp $
+ * $Id: ftp.c,v 1.55 2001-02-21 17:15:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1058,7 +1058,7 @@ again:;
          * previous lookup.
          */
 #ifdef ENABLE_IPV6
-        res = conn->res;
+        res = conn->hp;
 #else
         he = conn->hp;
 #endif
