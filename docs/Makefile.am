@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.15 2001-09-17 22:24:35 bagder Exp $
+# $Id: Makefile.am,v 1.16 2001-11-07 08:26:51 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -61,7 +61,7 @@ HTMLPAGES = \
 EXTRA_DIST = $(man_MANS) \
 	MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS \
 	README.win32 RESOURCES TODO TheArtOfHttpScripting THANKS \
-	$(HTMLPAGES)
+	VERSIONS $(HTMLPAGES)
 
 MAN2HTML= gnroff -man $< | man2html >$@
 
