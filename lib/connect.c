@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.83 2004-03-23 14:43:42 bagder Exp $
+ * $Id: connect.c,v 1.84 2004-03-23 15:48:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -354,7 +354,7 @@ static CURLcode bindlocal(struct connectdata *conn,
 #endif
         if(!bindworked) {
           int err = Curl_ourerrno();
-          switch(errno) {
+          switch(err) {
           case EBADF:
             failf(data, "Invalid descriptor: %d", err);
             break;
