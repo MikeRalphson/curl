@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.84 2003-06-12 16:38:14 bagder Exp $
+# $Id: runtests.pl,v 1.85 2003-06-12 23:05:12 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -434,7 +434,8 @@ sub displaydata {
 
     unlink($memdump); # remove this if there was one left
 
-    my $version=`$CURL -V`;
+    my @version=`$CURL -V`;
+    my $version=$version[0];
     chomp $version;
 
     my $curl = $version;
