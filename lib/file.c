@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.46 2004-03-02 09:31:18 bagder Exp $
+ * $Id: file.c,v 1.47 2004-03-03 09:25:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -95,18 +95,17 @@
 CURLcode Curl_file_connect(struct connectdata *conn)
 {
   char *real_path = curl_unescape(conn->path, 0);
-  struct FILE *file;
+  struct FILEPROTO *file;
   int fd;
 #if defined(WIN32) || defined(__EMX__)
   int i;
   char *actual_path;
 #endif
 
-  file = (struct FILE *)malloc(sizeof(struct FILE));
+  file = (struct FILEPROTO *)calloc(sizeof(struct FILEPROTO), 1);
   if(!file)
     return CURLE_OUT_OF_MEMORY;
 
-  memset(file, 0, sizeof(struct FILE));
   conn->proto.file = file;
 
 #if defined(WIN32) || defined(__EMX__)
