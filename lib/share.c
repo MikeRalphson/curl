@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.15 2004-01-29 13:56:45 bagder Exp $
+ * $Id: share.c,v 1.16 2004-02-26 11:39:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -186,7 +186,8 @@ Curl_share_lock(struct SessionHandle *data, curl_lock_data type,
     return CURLSHE_INVALID;
 
   if(share->specifier & (1<<type)) {
-    share->lockfunc(data, type, accesstype, share->clientdata);
+    if(share->lockfunc) /* only call this if set! */
+      share->lockfunc(data, type, accesstype, share->clientdata);
   }
   /* else if we don't share this, pretend successful lock */
 
@@ -202,7 +203,8 @@ Curl_share_unlock(struct SessionHandle *data, curl_lock_data type)
     return CURLSHE_INVALID;
 
   if(share->specifier & (1<<type)) {
-    share->unlockfunc (data, type, share->clientdata);
+    if(share->unlockfunc) /* only call this if set! */
+      share->unlockfunc (data, type, share->clientdata);
   }
 
   return CURLSHE_OK;
