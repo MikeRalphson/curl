@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.238 2004-02-26 16:23:30 bagder Exp $
+ * $Id: main.c,v 1.239 2004-03-01 12:45:12 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2427,11 +2427,11 @@ void dump(const char *text,
     /* without the hex output, we can fit more on screen */
     width = 0x40;
 
-  fprintf(stream, "%s, %d bytes (0x%x)\n", text, size, size);
+  fprintf(stream, "%s, %zd bytes (0x%zx)\n", text, size, size);
 
   for(i=0; i<size; i+= width) {
 
-    fprintf(stream, "%04x: ", i);
+    fprintf(stream, "%04zx: ", i);
 
     if(!nohex) {
       /* hex not disabled, show it */
