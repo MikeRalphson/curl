@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: htmltitle.cc,v 1.2 2005-01-31 20:03:01 bagder Exp $
+ * $Id: htmltitle.cc,v 1.3 2005-02-09 15:15:01 giva Exp $
  */
 
 // Get a web page, parse it with libxml.
@@ -131,7 +131,7 @@ static bool init(CURL *&conn, char *url)
 //  libxml start element callback function
 //
 
-static void startElement(void *voidContext,
+static void StartElement(void *voidContext,
                          const xmlChar *name,
                          const xmlChar **attributes)
 {
@@ -148,7 +148,7 @@ static void startElement(void *voidContext,
 //  libxml end element callback function
 //
 
-static void endElement(void *voidContext,
+static void EndElement(void *voidContext,
                        const xmlChar *name)
 {
   Context *context = (Context *)voidContext;
@@ -173,7 +173,7 @@ static void handleCharacters(Context *context,
 //  libxml PCDATA callback function
 //
 
-static void characters(void *voidContext,
+static void Characters(void *voidContext,
                        const xmlChar *chars,
                        int length)
 {
@@ -215,10 +215,10 @@ static htmlSAXHandler saxHandler =
   NULL,
   NULL,
   NULL,
-  startElement,
-  endElement,
+  StartElement,
+  EndElement,
   NULL,
-  characters,
+  Characters,
   NULL,
   NULL,
   NULL,
