@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.164 2003-07-04 16:29:23 bagder Exp $
+ * $Id: transfer.c,v 1.165 2003-07-15 23:06:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -794,7 +794,15 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                   }
               }
               else if(checkprefix("Basic", start)) {
-                if(data->state.authwant & CURLAUTH_BASIC) {
+                if((data->state.authwant == CURLAUTH_BASIC) &&
+                   (k->httpcode == 401)) {
+                  /* We asked for Basic authentication but got a 401 back
+                     anyway, which basicly means our name+password isn't
+                     valid. */
+                  data->state.authavail = CURLAUTH_NONE;
+                  infof(data, "Authentication problem. Ignoring this.\n");
+                }
+                else if(data->state.authwant & CURLAUTH_BASIC) {
                   data->state.authavail |= CURLAUTH_BASIC;
                 }
               }
