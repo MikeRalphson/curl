@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.39 2002-01-07 20:52:32 bumblebury Exp $
+ * $Id: hostip.c,v 1.40 2002-01-07 20:55:35 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -89,6 +89,7 @@ void Curl_global_host_cache_dtor(void)
 {
   if (host_cache_initialized) {
     curl_hash_clean(&hostname_cache);
+    host_cache_initialized = 0;
   }
 }
 
