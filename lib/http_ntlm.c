@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.34 2004-06-21 08:37:53 bagder Exp $
+ * $Id: http_ntlm.c,v 1.35 2004-07-04 21:54:49 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -547,8 +547,8 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
     }
 #endif
 
-    ntlmbuf[56] = size & 0xff;
-    ntlmbuf[57] = size >> 8;
+    ntlmbuf[56] = (unsigned char)(size & 0xff);
+    ntlmbuf[57] = (unsigned char)(size >> 8);
 
     /* convert the binary blob into base64 */
     size = Curl_base64_encode((char *)ntlmbuf, size, &base64);
