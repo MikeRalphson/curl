@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.98 2003-09-11 21:27:19 bagder Exp $
+ * $Id: hostip.c,v 1.99 2003-09-14 21:17:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -231,15 +231,22 @@ cache_resolv_response(struct SessionHandle *data,
     return NULL;
   }
 
-  dns->inuse = 0;
-  dns->addr = addr;
+  dns->inuse = 0;   /* init to not used */
+  dns->addr = addr; /* this is the address(es) */
 
-  /* Store it in our dns cache */
-  Curl_hash_add(data->hostcache, entry_id, entry_len+1,
-                (const void *) dns);
+  /* Store the resolved data in our DNS cache. This function may return a
+     pointer to an existing struct already present in the hash, and it may
+     return the same argument we pass in. Make no assumptions. */
+  dns = Curl_hash_add(data->hostcache, entry_id, entry_len+1, (void *) dns);
+  if(!dns) {
+    /* major badness, run away! */
+    Curl_freeaddrinfo(addr);
+    free(entry_id);
+    return NULL;
+  }
   time(&now);
 
-  dns->timestamp = now;
+  dns->timestamp = now; /* used now */
   dns->inuse++;         /* mark entry as in-use */
 
     
