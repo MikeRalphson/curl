@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.168 2001-10-30 15:21:45 bagder Exp $
+ * $Id: url.c,v 1.169 2001-10-31 08:44:11 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -955,8 +955,27 @@ static bool SocketIsDead(struct connectdata *conn, int sock)
 #ifdef USE_SSLEAY
     /* the socket seems fine, but is the SSL later fine too? */
     if(conn->ssl.use) {
-      if(SSL_get_shutdown(conn->ssl.handle))
-        return TRUE; /* this connection is dead! */
+      int peek;
+      int error;
+      Curl_nonblock(sock, TRUE);
+
+      peek = SSL_peek(conn->ssl.handle,
+                      conn->data->state.buffer, BUFSIZE);
+
+      infof(conn->data, "SSL_peek returned %d\n", peek);
+
+      if(-1 == peek) {
+        error = SSL_get_error(conn->ssl.handle, peek);
+        infof(conn->data, "SSL_error returned %d\n", error);
+        
+        if(SSL_ERROR_WANT_READ != error)
+          ret_val = TRUE;
+      }
+      else
+        /* peek did not return -1 */
+        ret_val = TRUE;
+      
+      Curl_nonblock(sock, FALSE);      
     }
 #endif
   }
