@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.16 $
- * $Date: 2000-08-21 21:57:06 $
+ * $Revision: 1.17 $
+ * $Date: 2000-08-24 16:27:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -370,6 +370,9 @@ typedef enum {
   /* Port of the proxy, can be set in the proxy string as well with:
      "[host]:[port]" */
   T(PROXYPORT, LONG, 59),
+
+  /* size of the POST input data, if strlen() is not good to use */
+  T(POSTFIELDSIZE, LONG, 60),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
