@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.110 2002-05-07 09:58:14 bagder Exp $
+ * $Id: urldata.h,v 1.111 2002-05-21 22:17:19 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -650,7 +650,8 @@ struct UserDefined {
   bool no_body;
   bool set_port;
   bool upload;
-  bool use_netrc;
+  enum CURL_NETRC_OPTION
+       use_netrc;        /* defined in include/curl.h */
   bool verbose;
   bool krb4;             /* kerberos4 connection requested */
   bool reuse_forbid;     /* forbidden to be reused, close after use */

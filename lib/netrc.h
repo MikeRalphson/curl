@@ -20,9 +20,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.h,v 1.6 2002-03-19 07:54:55 bagder Exp $
+ * $Id: netrc.h,v 1.7 2002-05-21 22:17:19 bagder Exp $
  *****************************************************************************/
 int Curl_parsenetrc(char *host,
                     char *login,
                     char *password);
+  /* Assume: password[0]=0, host[0] != 0.
+   * If login[0] = 0, search for login and password within a machine section
+   * in the netrc.
+   * If login[0] != 0, search for password within machine and login.
+   */
 #endif
