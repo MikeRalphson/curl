@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.102 2002-08-30 09:20:12 bagder Exp $
+ * $Id: http.c,v 1.103 2002-09-02 22:31:19 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -707,6 +707,7 @@ CURLcode Curl_http(struct connectdata *conn)
                 "%s" /* host */
                 "%s" /* pragma */
                 "%s" /* accept */
+                "%s" /* accept-encoding */
                 "%s", /* referer */
 
                 data->set.customrequest?data->set.customrequest:
@@ -727,6 +728,8 @@ CURLcode Curl_http(struct connectdata *conn)
                 (conn->allocptr.host?conn->allocptr.host:""), /* Host: host */
                 http->p_pragma?http->p_pragma:"",
                 http->p_accept?http->p_accept:"",
+                (data->set.encoding && *data->set.encoding && conn->allocptr.accept_encoding)?
+                conn->allocptr.accept_encoding:"", /* 08/28/02 jhrg */
                 (data->change.referer && conn->allocptr.ref)?conn->allocptr.ref:"" /* Referer: <data> <CRLF> */
                 );
 

@@ -1,11 +1,10 @@
 #
-# $Id: Makefile.am,v 1.31 2002-03-04 10:15:12 bagder Exp $
+# $Id: Makefile.am,v 1.32 2002-09-02 22:31:19 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
 
-EXTRA_DIST =						\
-	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt	\
+EXTRA_DIST = CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt UPGRADE		\
 	reconf Makefile.dist curl-config.in build_vms.com curl-mode.el
 
 bin_SCRIPTS = curl-config

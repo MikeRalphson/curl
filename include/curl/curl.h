@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.161 2002-08-30 11:09:50 bagder Exp $
+ * $Id: curl.h,v 1.162 2002-09-02 22:31:19 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -200,6 +200,7 @@ typedef enum {
   CURLE_SSL_CERTPROBLEM,         /* 58 - problem with the local certificate */
   CURLE_SSL_CIPHER,              /* 59 - couldn't use specified cipher */
   CURLE_SSL_CACERT,              /* 60 - problem with the CA cert (path?) */
+  CURLE_BAD_CONTENT_ENCODING,    /* 61 - Unrecognized transfer encoding */
 
   CURL_LAST /* never use! */
 } CURLcode;
@@ -584,6 +585,11 @@ typedef enum {
   /* indicates type of proxy. accepted values are CURLPROXY_HTTP (default),
      CURLPROXY_SOCKS4 and CURLPROXY_SOCKS5. */
   CINIT(PROXYTYPE, LONG, 101),
+
+  /* Set the Accept-Encoding string. Use this to tell a server you would like
+     the response to be compressed. */
+  CINIT(ENCODING, OBJECTPOINT, 102),
+ 
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

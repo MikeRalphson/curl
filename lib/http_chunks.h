@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.h,v 1.5 2002-03-19 07:54:55 bagder Exp $
+ * $Id: http_chunks.h,v 1.6 2002-09-02 22:31:19 bagder Exp $
  *****************************************************************************/
 /*
  * The longest possible hexadecimal number we support in a chunked transfer.
@@ -73,6 +73,7 @@ typedef enum {
   CHUNKE_BAD_CHUNK,
   CHUNKE_WRITE_ERROR,
   CHUNKE_STATE_ERROR,
+  CHUNKE_BAD_ENCODING,
   CHUNKE_LAST
 } CHUNKcode;
 
