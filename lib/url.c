@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.49 $
- * $Date: 2000-10-26 10:32:04 $
+ * $Revision: 1.50 $
+ * $Date: 2000-10-26 21:57:12 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -686,6 +686,9 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
   char resumerange[12]="";
   struct UrlData *data = curl;
   struct connectdata *conn;
+#ifdef HAVE_SIGACTION
+  struct sigaction sigact;
+#endif
 
   if(!data || (data->handle != STRUCT_OPEN))
     return CURLE_BAD_FUNCTION_ARGUMENT; /* TBD: make error codes */
@@ -711,8 +714,11 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
 
   buf = data->buffer; /* this is our buffer */
 
-#if 0
-  signal(SIGALRM, alarmfunc);
+#ifdef HAVE_SIGACTION
+  sigaction(SIGALRM, NULL, &sigact);
+  sigact.sa_handler = alarmfunc;
+  sigact.sa_flags &= ~SA_RESTART;
+  sigaction(SIGALRM, &sigact, NULL);
 #endif
 
   /* Parse <url> */
@@ -1393,11 +1399,9 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
       failf(data, "Attempt to connect to broadcast address without socket broadcast flag or local firewall rule violated: %d",errno);
       break;
 #endif
-#ifdef EINTR
     case EINTR:
       failf(data, "Connection timeouted");
       break;
-#endif
 #if 0
     case EAFNOSUPPORT:
       failf(data, "Incorrect address family: %d",errno);
