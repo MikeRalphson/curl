@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.15 2002-05-28 14:45:50 bagder Exp $
+ * $Id: multi.c,v 1.16 2002-06-05 21:29:20 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -179,6 +179,9 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
     /* If the 'state' is not INIT or COMPLETED, we might need to do something
        nice to put the easy_handle in a good known state when this returns. */
 
+    /* clear out the usage of the shared DNS cache */
+    easy->easy_handle->hostcache = NULL;
+    
     /* make the previous node point to our next */
     if(easy->prev)
       easy->prev->next = easy->next;
