@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.11 2004-07-05 22:35:00 gknauf Exp $
+# $Id: testcurl.pl,v 1.12 2004-07-05 23:07:59 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.11 $';
+$version='$Revision: 1.12 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -432,9 +432,8 @@ if ($targetos ne '' && $targetos =~ /netware/) {
     system('../../curlver');
   }
 } else {
-logit "display curl$binext --version output";
-
-system("./src/curl$binext --version");
+  logit "display curl$binext --version output";
+  system("./src/curl$binext --version");
 }
 
 if ($gnulikebuild) {
@@ -465,7 +464,7 @@ if ($gnulikebuild) {
 }
 
 # create a tarball if we got that option.
-if ($mktarball ne '') {
+if (($mktarball ne '') && (-f $mktarball)) {
   system($mktarball);
 }
 
