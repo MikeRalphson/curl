@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.22 2003-01-16 21:08:13 bagder Exp $
+ * $Id: sws.c,v 1.23 2003-02-24 18:14:55 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -226,6 +226,7 @@ static int get_request(int sock, int *part)
     if (got <= 0) {
       if (got < 0) {
         perror("recv");
+        logmsg("recv() returned error");
         return DOCNUMBER_INTERNAL;
       }
       logmsg("Connection closed by client");
@@ -312,7 +313,7 @@ static int get_request(int sock, int *part)
   
   logmsg("Got illegal request");
   fprintf(stderr, "Got illegal request\n");
-  return -1;
+  return DOCNUMBER_404;
 }
 
 
