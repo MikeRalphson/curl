@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.6.2.4 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.6.2.5 $
+ * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -316,7 +316,6 @@ UrgError ftp_connect(struct connectdata *conn)
 {
   /* this is FTP and no proxy */
   size_t nread;
-  UrgError result;
   struct UrlData *data=conn->data;
   char *buf = data->buffer; /* this is our buffer */
   struct FTP *ftp;
@@ -330,8 +329,8 @@ UrgError ftp_connect(struct connectdata *conn)
 
   /* get some initial data into the ftp struct */
   ftp->bytecountp = &conn->bytecount;
-  ftp->ftpuser = data->user;
-  ftp->ftppasswd =  data->passwd;
+  ftp->user = data->user;
+  ftp->passwd = data->passwd;
 
   /* The first thing we do is wait for the "220*" line: */
   nread = GetLastResponse(data->firstsocket, buf, data);
@@ -341,7 +340,7 @@ UrgError ftp_connect(struct connectdata *conn)
   }
 
   /* send USER */
-  sendf(data->firstsocket, data, "USER %s\r\n", ftp->ftpuser);
+  sendf(data->firstsocket, data, "USER %s\r\n", ftp->user);
 
   /* wait for feedback */
   nread = GetLastResponse(data->firstsocket, buf, data);
@@ -355,7 +354,7 @@ UrgError ftp_connect(struct connectdata *conn)
   else if(!strncmp(buf, "331", 3)) {
     /* 331 Password required for ...
        (the server requires to send the user's password too) */
-    sendf(data->firstsocket, data, "PASS %s\r\n", ftp->ftppasswd);
+    sendf(data->firstsocket, data, "PASS %s\r\n", ftp->passwd);
     nread = GetLastResponse(data->firstsocket, buf, data);
 
     if(!strncmp(buf, "530", 3)) {
@@ -384,7 +383,8 @@ UrgError ftp_connect(struct connectdata *conn)
     failf(data, "Odd return code after USER");
     return URG_FTP_WEIRD_USER_REPLY;
   }
-  
+
+  return URG_OK;
 }
 
 
@@ -394,7 +394,6 @@ UrgError ftp_done(struct connectdata *conn)
   struct UrlData *data = conn->data;
   struct FTP *ftp = data->proto.ftp;
   size_t nread;
-  UrgError result;
   char *buf = data->buffer; /* this is our buffer */
   struct curl_slist *qitem; /* QUOTE item */
 
@@ -450,8 +449,10 @@ UrgError ftp_done(struct connectdata *conn)
     }
   }
 
-  if(ftp->realpath)
-    free(ftp->realpath);
+  if(ftp->file)
+    free(ftp->file);
+  if(ftp->dir)
+    free(ftp->dir);
 
   /* TBD: the ftp struct is still allocated here */
 
@@ -461,11 +462,7 @@ UrgError ftp_done(struct connectdata *conn)
 
 
 static
-UrgError _ftp(struct connectdata *conn,
-              long *bytecountp,
-              char *ftpuser,
-              char *ftppasswd,
-              char *ppath)
+UrgError _ftp(struct connectdata *conn)
 {
   /* this is FTP and no proxy */
   size_t nread;
@@ -477,6 +474,10 @@ UrgError _ftp(struct connectdata *conn,
   struct sockaddr_in serv_addr;
 
   struct curl_slist *qitem; /* QUOTE item */
+  /* the ftp struct is already inited in ftp_connect() */
+  struct FTP *ftp = data->proto.ftp;
+
+  long *bytecountp = ftp->bytecountp;
 
   /* Send any QUOTE strings? */
   if(data->quote) {
@@ -506,7 +507,7 @@ UrgError _ftp(struct connectdata *conn,
        may not support it! It is however the only way we have to get a file's
        size! */
     int filesize;
-    sendf(data->firstsocket, data, "SIZE %s\r\n", ppath);
+    sendf(data->firstsocket, data, "SIZE %s\r\n", ftp->file);
 
     nread = GetLastResponse(data->firstsocket, buf, data);
 
@@ -726,6 +727,18 @@ UrgError _ftp(struct connectdata *conn,
   }
   /* we have the (new) data connection ready */
 
+  /* change directory first */
+
+  if(ftp->dir && ftp->dir[0]) {
+    sendf(data->firstsocket, data, "CWD %s\r\n", ftp->dir);
+    nread = GetLastResponse(data->firstsocket, buf, data);
+
+    if(strncmp(buf, "250", 3)) {
+      failf(data, "Couldn't change to directory %s", ftp->dir);
+      return URG_FTP_ACCESS_DENIED;
+    }
+  }
+
   if(data->bits.upload) {
 
     /* Set type to binary (unless specified ASCII) */
@@ -759,7 +772,7 @@ UrgError _ftp(struct connectdata *conn,
         /* we could've got a specified offset from the command line,
            but now we know we didn't */
 
-        sendf(data->firstsocket, data, "SIZE %s\r\n", ppath);
+        sendf(data->firstsocket, data, "SIZE %s\r\n", ftp->file);
 
         nread = GetLastResponse(data->firstsocket, buf, data);
 
@@ -830,9 +843,9 @@ UrgError _ftp(struct connectdata *conn,
     /* Send everything on data->in to the socket */
     if(data->bits.ftp_append)
       /* we append onto the file instead of rewriting it */
-      sendf(data->firstsocket, data, "APPE %s\r\n", ppath);
+      sendf(data->firstsocket, data, "APPE %s\r\n", ftp->file);
     else
-      sendf(data->firstsocket, data, "STOR %s\r\n", ppath);
+      sendf(data->firstsocket, data, "STOR %s\r\n", ftp->file);
 
     nread = GetLastResponse(data->firstsocket, buf, data);
 
@@ -901,13 +914,12 @@ UrgError _ftp(struct connectdata *conn,
       infof(data, "range-download from %d to %d, totally %d bytes\n",
             from, to, totalsize);
     }
-
+#if 0
     if(!ppath[0])
       /* make sure this becomes a valid name */
       ppath="./";
-
-    if((data->bits.ftp_list_only) ||
-       ('/' == ppath[strlen(ppath)-1] )) {
+#endif
+    if((data->bits.ftp_list_only) || !ftp->file) {
       /* The specified path ends with a slash, and therefore we think this
          is a directory that is requested, use LIST. But before that we
          need to set ASCII transfer mode. */
@@ -927,10 +939,9 @@ UrgError _ftp(struct connectdata *conn,
          better used since the LIST command output is not specified or
          standard in any way */
 
-      sendf(data->firstsocket, data, "%s %s\r\n",
+      sendf(data->firstsocket, data, "%s\r\n",
             data->customrequest?data->customrequest:
-            (data->bits.ftp_list_only?"NLST":"LIST"),
-            ppath);
+            (data->bits.ftp_list_only?"NLST":"LIST"));
     }
     else {
       /* Set type to binary (unless specified ASCII) */
@@ -954,7 +965,7 @@ UrgError _ftp(struct connectdata *conn,
          * of the file we're gonna get. If we can get the size, this is by far
          * the best way to know if we're trying to resume beyond the EOF.  */
 
-        sendf(data->firstsocket, data, "SIZE %s\r\n", ppath);
+        sendf(data->firstsocket, data, "SIZE %s\r\n", ftp->file);
 
         nread = GetLastResponse(data->firstsocket, buf, data);
 
@@ -992,7 +1003,7 @@ UrgError _ftp(struct connectdata *conn,
         }
       }
 
-      sendf(data->firstsocket, data, "RETR %s\r\n", ppath);
+      sendf(data->firstsocket, data, "RETR %s\r\n", ftp->file);
     }
 
     nread = GetLastResponse(data->firstsocket, buf, data);
@@ -1102,19 +1113,48 @@ UrgError ftp(struct connectdata *conn)
 
   struct UrlData *data = conn->data;
   struct FTP *ftp;
+  int dirlength=0; /* 0 forces strlen() */
 
   /* the ftp struct is already inited in ftp_connect() */
   ftp = data->proto.ftp;
 
-  ftp->urlpath = conn->ppath;
-  ftp->realpath = curl_unescape(ftp->urlpath);
+  /* We split the path into dir and file parts *before* we URLdecode
+     it */
+  ftp->file = strrchr(conn->ppath, '/');
+  if(ftp->file) {
+    ftp->file++; /* point to the first letter in the file name part or
+                    remain NULL */
+  }
+  else {
+    ftp->file = conn->ppath; /* there's only a file part */
+  }
+  dirlength=ftp->file-conn->ppath;
 
-  if(ftp->realpath) {
-    retcode = _ftp(conn, ftp->bytecountp, ftp->ftpuser, ftp->ftppasswd, ftp->realpath);
+  if(*ftp->file) {
+    ftp->file = curl_unescape(ftp->file, 0);
+    if(NULL == ftp->file) {
+      failf(data, "no memory");
+      return URG_OUT_OF_MEMORY;
+    }
   }
   else
-    /* then we try the original path */
-    retcode = _ftp(conn, ftp->bytecountp, ftp->ftpuser, ftp->ftppasswd, ftp->urlpath);
+    ftp->file=NULL; /* instead of point to a zero byte, we make it a NULL
+                       pointer */
+
+  ftp->urlpath = conn->ppath;
+  if(dirlength) {
+    ftp->dir = curl_unescape(ftp->urlpath, dirlength);
+    if(NULL == ftp->dir) {
+      if(ftp->file)
+        free(ftp->file);
+      failf(data, "no memory");
+      return URG_OUT_OF_MEMORY; /* failure */
+    }
+  }
+  else
+    ftp->dir = NULL;
+
+  retcode = _ftp(conn);
 
   return retcode;
 }

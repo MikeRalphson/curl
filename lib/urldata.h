@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.6.2.4 $
- * $Date: 2000-05-09 22:48:47 $
+ * $Revision: 1.6.2.5 $
+ * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -109,7 +109,7 @@ typedef enum {
   STRUCT_NONE,
   STRUCT_OPEN,
   STRUCT_CONNECT,
-  STRUCT_LAST,
+  STRUCT_LAST
 } Handle;
 
 typedef enum {
@@ -230,10 +230,11 @@ struct HTTP {
  ***************************************************************************/
 struct FTP {
   long *bytecountp;
-  char *ftpuser;
-  char *ftppasswd;
-  char *urlpath;
-  char *realpath;
+  char *user;
+  char *passwd;
+  char *urlpath; /* the originally given path part of the URL */
+  char *dir;     /* decoded directory */
+  char *file;    /* decoded file */
 };
 
 struct Configbits {
@@ -260,6 +261,16 @@ struct Configbits {
   bool verbose;
   bool httpproxy;
 };
+
+typedef size_t (*write_callback)(char *buffer,
+                                 size_t size,
+                                 size_t nitems,
+                                 FILE *outstream);
+
+typedef size_t (*read_callback)(char *buffer,
+                                 size_t size,
+                                 size_t nitems,
+                                 FILE *instream);
 
 /*
  * As of April 11, 2000 we're now trying to split up the urldata struct in
@@ -331,17 +342,11 @@ struct UrlData {
 
   char *ftpport; /* port to send with the PORT command */
 
- /* function that stores the output:*/
-  size_t (*fwrite)(char *buffer,
-                   size_t size,
-                   size_t nitems,
-                   FILE *outstream);
+  /* function that stores the output:*/
+  write_callback fwrite;
 
   /* function that reads the input:*/
-  size_t (*fread)(char *buffer,
-                  size_t size,
-                  size_t nitems,
-                  FILE *outstream);
+  read_callback fread;
 
   long timeout; /* in seconds, 0 means no timeout */
   long infilesize; /* size of file to upload, -1 means unknown */

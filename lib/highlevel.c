@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.1.2.3 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.1.2.4 $
+ * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -746,8 +746,6 @@ UrgError curl_urlget(UrgTag tag, ...)
 
           infof(data, "Follows Location: to new URL: '%s'\n", data->url);
 
-          /* clean up the sockets and SSL stuff from the previous "round" */
-          urlfree(data, FALSE);
           curl_disconnect(c_connect);
           continue;
         }
@@ -769,9 +767,7 @@ UrgError curl_urlget(UrgTag tag, ...)
     WriteOut(data);
   }
 
-
-  /* total cleanup */
-  urlfree(data, TRUE);
+  curl_close(data);
 
   return res;
 }

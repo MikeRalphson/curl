@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.2.2.4 $
- * $Date: 2000-05-09 22:25:14 $
+ * $Revision: 1.2.2.5 $
+ * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -159,8 +159,6 @@ UrgError ldap(struct connectdata *conn)
   void *entryIterator;
 
   int ldaptext;
-  char *path = conn->path;
-  long *bytecount = &conn->bytecount;
   struct UrlData *data=conn->data;
   
   infof(data, "LDAP: %s %s\n", data->url);

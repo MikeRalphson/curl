@@ -62,6 +62,7 @@ Example set of cookies:
 #include "cookie.h"
 #include "setup.h"
 #include "getdate.h"
+#include "strequal.h"
 
 /****************************************************************************
  *
@@ -173,9 +174,11 @@ struct Cookie *cookie_add(struct CookieInfo *c,
       return NULL;
     }
     /* strip off the possible end-of-line characters */
-    if(ptr=strchr(lineptr, '\r'))
+    ptr=strchr(lineptr, '\r');
+    if(ptr)
       *ptr=0; /* clear it */
-    if(ptr=strchr(lineptr, '\n'))
+    ptr=strchr(lineptr, '\n');
+    if(ptr)
       *ptr=0; /* clear it */
 
     firstptr=strtok(lineptr, "\t"); /* first tokenize it on the TAB */

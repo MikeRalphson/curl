@@ -1,5 +1,5 @@
-#ifndef __PROGRESS_H
-#define __PROGRESS_H
+#ifndef __STREQUAL_H
+#define __STREQUAL_H
 /*****************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -21,7 +21,7 @@
  *
  *  The Initial Developer of the Original Code is Daniel Stenberg.
  *
- *  Portions created by the Initial Developer are Copyright (C) 1998.
+ *  Portions created by the Initial Developer are Copyright (C) 2000.
  *  All Rights Reserved.
  *
  * ------------------------------------------------------------
@@ -30,8 +30,8 @@
  *
  * 	http://curl.haxx.nu
  *
- * $Source: /cvsroot/curl/curl/lib/progress.h,v $
- * $Revision: 1.5.2.1 $
+ * $Source: /cvsroot/curl/curl/lib/strequal.h,v $
+ * $Revision: 1.1.2.1 $
  * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
@@ -39,46 +39,7 @@
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+int strequal(const char *first, const char *second);
+int strnequal(const char *first, const char *second, size_t max);
 
-#include "timeval.h"
-
-
-typedef enum {
-  TIMER_NONE,
-  TIMER_NAMELOOKUP,
-  TIMER_CONNECT,
-  TIMER_PRETRANSFER,
-  TIMER_POSTRANSFER,
-  TIMER_LAST /* must be last */
-} timerid;
-  
-void pgrsDone(struct UrlData *data);
-void pgrsMode(struct UrlData *data, int mode);
-void pgrsStartNow(struct UrlData *data);
-void pgrsSetDownloadSize(struct UrlData *data, double size);
-void pgrsSetUploadSize(struct UrlData *data, double size);
-void pgrsSetDownloadCounter(struct UrlData *data, double size);
-     void pgrsSetUploadCounter(struct UrlData *data, double size);
-void pgrsUpdate(struct UrlData *data);
-void pgrsTime(struct UrlData *data, timerid timer);
-
-
-/* Don't show progress for sizes smaller than: */
-#define LEAST_SIZE_PROGRESS BUFSIZE
-
-#define PROGRESS_DOWNLOAD (1<<0)
-#define PROGRESS_UPLOAD   (1<<1)
-#define PROGRESS_DOWN_AND_UP (PROGRESS_UPLOAD | PROGRESS_DOWNLOAD)
-
-#define PGRS_SHOW_DL (1<<0)
-#define PGRS_SHOW_UL (1<<1)
-#define PGRS_DONE_DL (1<<2)
-#define PGRS_DONE_UL (1<<3)
-#define PGRS_HIDE    (1<<4)
-#define PGRS_UL_SIZE_KNOWN (1<<5)
-#define PGRS_DL_SIZE_KNOWN (1<<6)
-
-#define PGRS_HEADERS_OUT (1<<7) /* set when the headers have been written */
-
-
-#endif /* __PROGRESS_H */
+#endif

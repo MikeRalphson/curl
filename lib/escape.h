@@ -32,8 +32,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/escape.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.2.2.1 $
+ * $Date: 2000-05-14 13:22:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -44,6 +44,6 @@
  * allocated string or NULL if an error occurred.  */
 
 char *curl_escape(char *string);
-char *curl_unescape(char *string);
+char *curl_unescape(char *string, int length);
 
 #endif

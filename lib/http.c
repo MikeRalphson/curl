@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.9.2.4 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.9.2.5 $
+ * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -94,6 +94,9 @@
 #include "progress.h"
 #include "base64.h"
 #include "cookie.h"
+#include "strequal.h"
+#include "url.h"
+#include "ssluse.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -173,6 +176,7 @@ UrgError http_connect(struct connectdata *conn)
      }
   }
 
+   return URG_OK;
 }
 UrgError http_done(struct connectdata *conn)
 {
@@ -207,7 +211,7 @@ UrgError http(struct connectdata *conn)
   char *buf = data->buffer; /* this is a short cut to the buffer */
   UrgError result;
   struct HTTP *http;
-  struct Cookie *co;
+  struct Cookie *co=NULL; /* no cookies from start */
   char *ppath = conn->ppath; /* three previous function arguments */
   char *host = conn->name;
   long *bytecount = &conn->bytecount;
@@ -409,7 +413,6 @@ UrgError http(struct connectdata *conn)
     }
     else if(data->bits.http_put) {
       /* Let's PUT the data to the server! */
-      long conf;
 
       if(data->infilesize>0) {
         sendf(data->firstsocket, data,

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/dict.c,v $
- * $Revision: 1.4.2.3 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.4.2.4 $
+ * $Date: 2000-05-14 13:22:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -92,6 +92,7 @@
 #include "sendf.h"
 
 #include "progress.h"
+#include "strequal.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>

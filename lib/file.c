@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.4.2.1 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.4.2.2 $
+ * $Date: 2000-05-14 13:22:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -109,8 +109,6 @@ UrgError file(struct connectdata *conn)
   */
 
   char *path = conn->path;
-  long *bytecountp =  &conn->bytecount;
-
   struct stat statbuf;
   size_t expected_size=-1;
   size_t nread;
@@ -120,8 +118,7 @@ UrgError file(struct connectdata *conn)
   struct timeval start = tvnow();
   struct timeval now = start;
   int fd;
-  char *actual_path = curl_unescape(path);
-
+  char *actual_path = curl_unescape(path, 0);
 
 #if defined(WIN32) || defined(__EMX__)
   int i;
@@ -186,6 +183,8 @@ UrgError file(struct connectdata *conn)
   pgrsUpdate(data);
 
   close(fd);
+
+  free(actual_path);
 
   return URG_OK;
 }

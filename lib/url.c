@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.15.2.5 $
- * $Date: 2000-05-09 22:48:47 $
+ * $Revision: 1.15.2.6 $
+ * $Date: 2000-05-14 13:22:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -111,6 +111,8 @@
 #include "getpass.h"
 #include "progress.h"
 #include "cookie.h"
+#include "strequal.h"
+#include "writeout.h"
 
 /* And now for the protocols */
 #include "ftp.h"
@@ -119,7 +121,6 @@
 #include "http.h"
 #include "file.h"
 #include "ldap.h"
-#include "writeout.h"
 
 #include "externaltypes.h"
 
@@ -273,6 +274,23 @@ void urlfree(struct UrlData *data, bool totally)
     /* global cleanup */
     curl_free();
   }
+}
+
+UrgError curl_close(CURL *curl)
+{
+  struct UrlData *data=(struct UrlData *)curl;
+  
+  void *protocol = data->proto.generic;
+
+  /* total session cleanup */
+  urlfree(data, TRUE);
+
+  if(protocol)
+    free(protocol);
+
+  free(data);
+
+  return URG_OK;
 }
 
 UrgError curl_open(CURL **curl, char *url)
@@ -537,13 +555,13 @@ UrgError curl_setopt(CURL *curl, CURLoption option, ...)
     data->err = va_arg(param, FILE *);
     break;
   case URGTAG_WRITEFUNCTION:
-    data->fwrite = va_arg(param, void *);
+    data->fwrite = va_arg(param, write_callback);
     break;
   case URGTAG_WRITEINFO:
     data->writeinfo = va_arg(param, char *);
     break;
   case URGTAG_READFUNCTION:
-    data->fread = va_arg(param, void *);
+    data->fread = va_arg(param, read_callback);
     break;
   case URGTAG_SSLCERT:
     data->cert = va_arg(param, char *);
@@ -669,6 +687,13 @@ UrgError curl_read(CURLconnect *c_conn, char *buf, size_t buffersize,
 
 UrgError curl_disconnect(CURLconnect *c_connect)
 {
+  struct connectdata *conn = c_connect;
+
+  struct UrlData *data = conn->data;
+
+  /* clean up the sockets and SSL stuff from the previous "round" */
+  urlfree(data, FALSE);
+
   return URG_OK;
 }
 
@@ -1279,7 +1304,6 @@ UrgError curl_done(CURLconnect *c_connect)
 UrgError curl_do(CURLconnect *in_conn)
 {
   struct connectdata *conn = in_conn;
-  struct UrlData *data = conn->data;
   UrgError result;
 
   if(!conn || (conn->handle!= STRUCT_CONNECT)) {
