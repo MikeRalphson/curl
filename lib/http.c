@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.244 2004-10-06 07:50:18 bagder Exp $
+ * $Id: http.c,v 1.245 2004-10-25 11:28:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -552,6 +552,14 @@ int Curl_http_should_fail(struct connectdata *conn)
   */
   if (k->httpcode < 400)
     return 0;
+
+  if (conn->resume_from &&
+      (data->set.httpreq==HTTPREQ_GET) &&
+      (k->httpcode == 416)) {
+    /* "Requested Range Not Satisfiable", just proceed and
+       pretend this is no error */
+    return 0;
+  }
 
   /*
   ** Any code >= 400 that's not 401 or 407 is always
