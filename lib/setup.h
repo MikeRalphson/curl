@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.11 2001-05-31 07:01:08 bagder Exp $
+ * $Id: setup.h,v 1.12 2001-08-06 12:27:28 bagder Exp $
  *****************************************************************************/
 
 
@@ -32,7 +32,13 @@
 #endif
 
 #ifdef HAVE_CONFIG_H
+
+#ifdef VMS
+#include "config-vms.h"
+#else
 #include "config.h" /* the configure script results */
+#endif
+
 #else
 #ifdef WIN32
 /* include the hand-modified win32 adjusted config.h! */
@@ -79,7 +85,11 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #endif
 
 #ifndef STDC_HEADERS /* no standard C headers! */
+#ifdef	VMS
+#include "../include/curl/stdcheaders.h"
+#else
 #include "curl/stdcheaders.h"
+#endif
 #else
 #ifdef _AIX
 #include "curl/stdcheaders.h"
