@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.32 2002-09-03 11:53:00 bagder Exp $
+ * $Id: easy.c,v 1.33 2002-11-26 09:41:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -238,7 +238,7 @@ CURLcode curl_easy_perform(CURL *curl)
       data->hostcache = Curl_global_host_cache_get();
     }
     else {
-      data->hostcache = Curl_hash_alloc(7, Curl_freeaddrinfo);
+      data->hostcache = Curl_hash_alloc(7, Curl_freednsinfo);
     }
   }
 
