@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.26 2001-10-29 13:21:25 bagder Exp $
+ * $Id: formdata.c,v 1.27 2001-11-08 15:06:58 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -923,7 +923,7 @@ static int AddFormData(struct FormData **formp,
     length = strlen((char *)line);
 
   newform->line = (char *)malloc(length+1);
-  memcpy(newform->line, line, length+1);
+  memcpy(newform->line, line, length);
   newform->length = length;
   newform->line[length]=0; /* zero terminate for easier debugging */
   
