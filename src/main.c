@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.85 2001-08-08 07:15:33 bagder Exp $
+ * $Id: main.c,v 1.86 2001-08-08 07:35:57 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -899,7 +899,23 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       }
       else {
 	char *ptr = strchr(nextarg, ':');
-	if(ptr) {
+        /* Since we live in a world of weirdness and confusion, the win32
+           dudes can use : when using drive letters and thus
+           c:\file:password needs to work. In order not to break
+           compatibility, we still use : as separator, but we try to detect
+           when it is used for a file name! On windows. */
+#ifdef WIN32
+        if(ptr &&
+           (ptr == &nextarg[1]) &&
+           (nextarg[2] == '\\') &&
+           (isalpha((int)nextarg[0])) )
+          /* colon in the second column, followed by a backslash, and the
+             first character is an alphabetic letter:
+
+             this is a drive letter colon */
+          ptr = strchr(&nextarg[3], ':'); /* find the next one instead */
+#endif
+        if(ptr) {
 	  /* we have a password too */
 	  *ptr=0;
 	  ptr++;
