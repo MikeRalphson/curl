@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.193 2004-02-02 14:49:54 bagder Exp $
+ * $Id: urldata.h,v 1.194 2004-02-20 08:47:23 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -110,10 +110,9 @@
 /* Maximum number of dirs supported by libcurl in a FTP dir hierarchy */
 #define CURL_MAX_FTP_DIRDEPTH 100
 
-/* Just a convenience macro to get the larger value out of two given */
-#ifndef MAX
-#define MAX(x,y) ((x)>(y)?(x):(y))
-#endif
+/* Just a convenience macro to get the larger value out of two given.
+   We prefix with CURL to prevent name collisions. */
+#define CURLMAX(x,y) ((x)>(y)?(x):(y))
 
 #ifdef HAVE_KRB4
 /* Types needed for krb4-ftp connections */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.202 2004-02-18 15:28:56 bagder Exp $
+ * $Id: transfer.c,v 1.203 2004-02-20 08:47:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -313,8 +313,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               if (k->hbuflen + nread >= data->state.headersize) {
                 /* We enlarge the header buffer as it is too small */
                 char *newbuff;
-                long newsize=MAX((k->hbuflen+nread)*3/2,
-                                 data->state.headersize*2);
+                long newsize=CURLMAX((k->hbuflen+nread)*3/2,
+                                     data->state.headersize*2);
                 hbufp_index = k->hbufp - data->state.headerbuff;
                 newbuff = (char *)realloc(data->state.headerbuff, newsize);
                 if(!newbuff) {
@@ -358,8 +358,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             if (k->hbuflen + full_length >=
                 data->state.headersize) {
               char *newbuff;
-              long newsize=MAX((k->hbuflen+full_length)*3/2,
-                               data->state.headersize*2);
+              long newsize=CURLMAX((k->hbuflen+full_length)*3/2,
+                                   data->state.headersize*2);
               hbufp_index = k->hbufp - data->state.headerbuff;
               newbuff = (char *)realloc(data->state.headerbuff, newsize);
               if(!newbuff) {
