@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.8 2004-07-15 18:17:15 gknauf Exp $
+# $Id: Makefile.b32,v 1.9 2004-07-15 19:36:30 gknauf Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -35,7 +35,7 @@ TOPDIR   = ..
 CURNTDIR = .
 
 CXXFLAGS = -q -5 -O2 -w-aus -w-ccc -w-csu -w-par -w-pia -w-rch -w-inl -w-ngu -w-pro -tWM
-LDFLAGS  = -lq -lap
+LDFLAGS  = -q -lq -lap
 
 INCDIRS  = -I$(CURNTDIR);$(TOPDIR)/include;$(TOPDIR)/lib
 LINKLIB  = $(BCCDIR)/lib/cw32mt.lib
