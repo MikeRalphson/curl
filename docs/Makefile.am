@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.8 2001-04-23 08:30:22 bagder Exp $
+# $Id: Makefile.am,v 1.9 2001-05-28 14:11:02 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -24,6 +24,8 @@ man_MANS = \
 	curl_strequal.3 \
 	curl_strnequal.3 \
 	curl_mprintf.3 \
+	curl_global_init.3 \
+	curl_global_cleanup.3 \
 	libcurl.5
 
 EXTRA_DIST = $(man_MANS) \
