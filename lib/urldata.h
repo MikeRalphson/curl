@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.97 2002-01-07 20:52:32 bumblebury Exp $
+ * $Id: urldata.h,v 1.98 2002-01-08 04:26:47 bumblebury Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -647,6 +647,7 @@ struct UserDefined {
   bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
 
   bool global_dns_cache;
+  bool dns_cache_timeout;
 };
 
 /*
