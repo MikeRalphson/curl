@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.59 2003-01-29 10:14:23 bagder Exp $
+ * $Id: sendf.c,v 1.60 2003-03-11 19:07:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -270,7 +270,11 @@ CURLcode Curl_write(struct connectdata *conn, int sockfd,
 #ifdef WIN32
       if(WSAEWOULDBLOCK == GetLastError())
 #else
-      if(EWOULDBLOCK == errno)
+      /* As pointed out by Christophe Demory on March 11 2003, errno
+         may be EWOULDBLOCK or on some systems EAGAIN when it returned
+         due to its inability to send off data without blocking. We
+         therefor treat both error codes the same here */
+      if((EWOULDBLOCK == errno) || ((EAGAIN == errno))
 #endif
       {
         /* this is just a case of EWOULDBLOCK */
