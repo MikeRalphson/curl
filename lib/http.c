@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.39 2001-01-05 10:11:42 bagder Exp $
+ * $Id: http.c,v 1.40 2001-01-05 12:19:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -161,7 +161,7 @@ CURLcode add_bufferf(send_buffer *in, char *fmt, ...)
   char *s;
   va_list ap;
   va_start(ap, fmt);
-  s = Curl_mvaprintf(fmt, ap); /* this allocs a new string to append */
+  s = vaprintf(fmt, ap); /* this allocs a new string to append */
   va_end(ap);
 
   if(s) {
