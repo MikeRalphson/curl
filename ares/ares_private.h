@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.9 2004-08-20 13:45:26 giva Exp $ */
+/* $Id: ares_private.h,v 1.10 2004-09-26 18:20:58 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -46,8 +46,8 @@
 #define WIN_NS_NT_KEY  "System\\CurrentControlSet\\Services\\Tcpip\\Parameters"
 #define NAMESERVER     "NameServer"
 #define DHCPNAMESERVER "DhcpNameServer"
-#define PATH_HOSTS_NT  "\\drivers\\etc\\hosts"
-#define PATH_HOSTS_9X  "\\hosts"
+#define DATABASEPATH   "DatabasePath"
+#define WIN_PATH_HOSTS  "\\hosts"
 
 #elif defined(WATT32)
 
