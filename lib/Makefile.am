@@ -1,17 +1,23 @@
 #
-# $Id: Makefile.am,v 1.7 2000-06-14 14:29:39 bagder Exp $
+# $Id: Makefile.am,v 1.8 2000-07-26 09:28:29 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
-noinst_LIBRARIES = libcurl.a
+lib_LTLIBRARIES = libcurl.la
+include_HEADERS = \
+	$(top_srcdir)/include/curl/curl.h \
+	$(top_srcdir)/include/curl/easy.h \
+	$(top_srcdir)/include/curl/mprintf.h \
+	$(top_srcdir)/include/curl/stdcheaders.h \
+	$(top_srcdir)/include/curl/types.h
 
 # Some flags needed when trying to cause warnings ;-)
 # CFLAGS = -g -Wall #-pedantic
 
 INCLUDES = -I$(top_srcdir)/include
 
-libcurl_a_SOURCES = \
+libcurl_la_SOURCES = \
 arpa_telnet.h  file.c         getpass.h      netrc.h        timeval.c \
 base64.c       file.h         hostip.c       progress.c     timeval.h \
 base64.h       formdata.c     hostip.h       progress.h     \

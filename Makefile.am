@@ -1,13 +1,10 @@
 #
-# $Id: Makefile.am,v 1.3 2000-05-24 22:56:00 bagder Exp $
+# $Id: Makefile.am,v 1.4 2000-07-26 09:30:55 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
-man_MANS = docs/curl.1
+EXTRA_DIST = curl.spec curl-ssl.spec
 
-EXTRA_DIST = $(man_MANS)
-
-SUBDIRS = lib src
-
+SUBDIRS = docs lib src
 
