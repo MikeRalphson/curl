@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.49 2002-01-28 19:23:18 bagder Exp $
+ * $Id: hostip.c,v 1.50 2002-01-31 07:51:06 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -117,7 +117,7 @@ static int _num_chars(int i)
     chars++;
 
     i = (int) i / 10;
-  } while (i > 1);
+  } while (i >= 1);
 
   return chars;
 }
