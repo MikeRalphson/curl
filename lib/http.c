@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.97 2002-04-22 23:53:15 bagder Exp $
+ * $Id: http.c,v 1.98 2002-06-03 12:47:08 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -161,7 +161,7 @@ CURLcode add_buffer_send(int sockfd, struct connectdata *conn, send_buffer *in,
     free(in->buffer);
   free(in);
 
-  *bytes_written = amount;
+  *bytes_written += amount;
 
   return res;
 }
