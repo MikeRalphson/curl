@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.72 2004-11-02 10:12:23 bagder Exp $
+ * $Id: setup.h,v 1.73 2004-11-08 07:47:08 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -281,11 +281,12 @@ typedef int curl_socket_t;
 #undef HAVE_ALARM
 #endif
 
-#ifdef HAVE_LIBIDN
-/* This could benefit from additional checks that some of the used/important
-   header files are present as well before we define the USE_* define. */
+#if defined(HAVE_LIBIDN) && defined(HAVE_TLD_H)
+/* The lib was present and the tld.h header (which is missing in libidn 0.3.X
+   but we only work with libidn 0.4.1 or later) */
 #define USE_LIBIDN
-#define LIBIDN_REQUIRED_VERSION "0.4.1"
 #endif
+
+#define LIBIDN_REQUIRED_VERSION "0.4.1"
 
 #endif /* __CONFIG_H */
