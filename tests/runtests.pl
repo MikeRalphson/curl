@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.62 2002-08-12 09:41:56 bagder Exp $
+# $Id: runtests.pl,v 1.63 2002-08-30 10:50:22 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -621,7 +621,11 @@ sub singletest {
 
     if($errorcode || $res) {
         if($errorcode == $res) {
-            if(!$short) {
+            $errorcode =~ s/\n//;
+            if($verbose) {
+                print " received errorcode $errorcode OK";
+            }
+            elsif(!$short) {
                 print " error OK";
             }
         }
