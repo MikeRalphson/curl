@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.133 2002-04-04 10:07:01 bagder Exp $
+ * $Id: curl.h,v 1.134 2002-04-08 22:53:22 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -637,7 +637,7 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.9.6-pre2"
+#define LIBCURL_VERSION "7.9.6-pre3"
 #define LIBCURL_VERSION_NUM 0x070906
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
