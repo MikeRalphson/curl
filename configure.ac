@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.102 2004-10-05 08:45:13 bagder Exp $
+dnl $Id: configure.ac,v 1.103 2004-10-06 07:33:03 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -287,7 +287,7 @@ then
   AC_TRY_LINK( ,
              [gethostbyname();],
              [ dnl found it!
-             HAVE_GETHOSTBYNAME="1",
+             HAVE_GETHOSTBYNAME="1"
              AC_MSG_RESULT([yes])],
              [ dnl failed!
              AC_MSG_RESULT([no])
