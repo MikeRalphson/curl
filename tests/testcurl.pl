@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.27 2005-03-18 09:21:25 bagder Exp $
+# $Id: testcurl.pl,v 1.28 2005-03-18 18:03:38 danf Exp $
 ###########################################################################
 
 ###########################
@@ -46,7 +46,7 @@
 # --mktarball=[command]    Command to run after completed test
 # --name=[name]            Set name to report as
 # --nocvsup                Don't update from CVS even though it is a CVS tree
-# --runtestsopts=[options] Options to pass to runtests.pl
+# --runtestopts=[options]  Options to pass to runtests.pl
 # --setup=[file name]      File name to read setup from (deprecated)
 # --target=[your os]       Specify your target environment.
 #
@@ -67,7 +67,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $crosscompile);
 
 # version of this script
-$version='$Revision: 1.27 $';
+$version='$Revision: 1.28 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -130,6 +130,7 @@ if ($^O eq 'MSWin32' || $targetos) {
     $libext = '.a' if ($targetos =~ /mingw32/);
   }
   elsif ($targetos =~ /netware/) {
+    $configurebuild = 0;
     $binext = '.nlm';
     $libext = '.lib';
   }
