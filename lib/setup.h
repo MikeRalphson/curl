@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.51 2004-03-03 09:27:19 bagder Exp $
+ * $Id: setup.h,v 1.52 2004-03-04 15:32:18 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -39,15 +39,16 @@
 
 #ifdef HAVE_CONFIG_H
 #include "config.h" /* the configure script results */
+#else
+#ifdef WIN32
+/* hand-modified win32 config.h! */
+#include "config-win32.h"
+#endif
 #endif
 
 #ifdef VMS
 /* hand-modified VMS config.h! */
 #include "config-vms.h"
-#endif
-#ifdef WIN32
-/* hand-modified win32 config.h! */
-#include "config-win32.h"
 #endif
 #ifdef macintosh
 /* hand-modified MacOS config.h! */

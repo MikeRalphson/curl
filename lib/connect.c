@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.77 2004-02-15 13:55:24 bagder Exp $
+ * $Id: connect.c,v 1.78 2004-03-04 15:32:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -68,7 +68,6 @@
 #endif
 
 #ifdef WIN32
-#define HAVE_IOCTLSOCKET
 #include <windows.h>
 #define EINPROGRESS WSAEINPROGRESS
 #define EWOULDBLOCK WSAEWOULDBLOCK
