@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.108 2004-11-01 22:50:59 bagder Exp $
+dnl $Id: configure.ac,v 1.109 2004-11-04 14:19:22 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1120,6 +1120,7 @@ AC_CHECK_HEADERS(
         dlfcn.h \
         alloca.h \
         winsock.h \
+        winsock2.h \
         time.h \
         io.h \
         pwd.h \
@@ -1225,6 +1226,7 @@ AC_CHECK_FUNCS( strtoll \
                 sigsetjmp \
                 basename \
                 setlocale \
+                ftruncate \
                 poll,
 dnl if found
 [],
