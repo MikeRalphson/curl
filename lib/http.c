@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.17 $
- * $Date: 2000-07-29 22:21:10 $
+ * $Revision: 1.18 $
+ * $Date: 2000-07-31 21:30:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -399,9 +399,22 @@ CURLcode http(struct connectdata *conn)
     }
 
     while(headers) {
-      sendf(data->firstsocket, data,
-            "%s\015\012",
-            headers->data);
+      char *ptr = strchr(headers->data, ':');
+      if(ptr) {
+        /* we require a colon for this to be a true header */
+
+        ptr++; /* pass the colon */
+        while(*ptr && isspace(*ptr))
+          ptr++;
+
+        if(*ptr) {
+          /* only send this if the contents was non-blank */
+
+          sendf(data->firstsocket, data,
+                "%s\015\012",
+                headers->data);
+        }
+      }
       headers = headers->next;
     }
 
