@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.223 2004-05-10 10:49:35 bagder Exp $
+ * $Id: http.c,v 1.224 2004-05-10 10:52:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1886,7 +1886,7 @@ CURLcode Curl_http(struct connectdata *conn)
              This limit is no magic limit but only set to prevent really huge
              POSTs to get the data duplicated with malloc() and family. */
 
-          result == add_buffer(req_buffer, "\r\n", 2); /* end of headers! */
+          result = add_buffer(req_buffer, "\r\n", 2); /* end of headers! */
           if(result)
             return result;
 
