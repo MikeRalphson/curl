@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.22 2003-10-17 09:29:06 bagder Exp $
+ * $Id: http_ntlm.c,v 1.23 2003-10-17 12:44:54 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -317,10 +317,10 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
 
   /* not set means empty */
   if(!userp)
-    userp="";
+    userp=(char *)"";
 
   if(!passwdp)
-    passwdp="";
+    passwdp=(char *)"";
   
   switch(ntlm->state) {
   case NTLMSTATE_TYPE1:
