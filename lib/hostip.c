@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.97 2003-09-01 08:21:08 bagder Exp $
+ * $Id: hostip.c,v 1.98 2003-09-11 21:27:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -400,7 +400,11 @@ CURLcode Curl_is_resolved(struct connectdata *conn, bool *done)
   static const struct timeval tv={0,0};
   int count;
   struct SessionHandle *data = conn->data;
-  int nfds = ares_fds(data->state.areschannel, &read_fds, &write_fds);
+  int nfds;
+
+  FD_ZERO(&read_fds);
+  FD_ZERO(&write_fds);
+  nfds = ares_fds(data->state.areschannel, &read_fds, &write_fds);
 
   count = select(nfds, &read_fds, &write_fds, NULL,
                  (struct timeval *)&tv);
