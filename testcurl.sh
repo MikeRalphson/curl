@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.37 2004-02-26 13:59:10 bagder Exp $
+# $Id: testcurl.sh,v 1.38 2004-03-01 13:14:26 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.37 $'
+version='$Revision: 1.38 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -214,7 +214,8 @@ if [ $CVS -eq 1 ]; then
   rm -rf autom4te.cache
 
   # generate the build files
-  ./buildconf 2>&1 | tee $buildlog
+  log "invoke buildconf, but filter off the silly aclocal warnings"
+  ./buildconf 2>&1 | grep -v "warning: underquoted definition of" | tee $buildlog
 
   if { grep "^buildconf: OK" $buildlog >/dev/null 2>&1; } then
      log "buildconf was successful"
