@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.27 2004-11-13 16:57:56 giva Exp $
+# $Id: Makefile.dist,v 1.28 2005-01-08 16:12:27 giva Exp $
 ###########################################################################
 
 all:
@@ -52,6 +52,18 @@ borland-clean:
 	make -f Makefile.b32 clean
 	cd ..\src
 	make -f Makefile.b32 clean
+
+watcom:
+	cd lib
+	wmake -f Makefile.Watcom
+	cd ..\src
+	wmake -f Makefile.Watcom
+
+watcom-clean:
+	cd lib
+	wmake -f Makefile.Watcom clean
+	cd ..\src
+	wmake -f Makefile.Watcom clean
 
 mingw32:
 	$(MAKE) -C lib -f Makefile.m32 ZLIB=1
