@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.9 $
+ * $Date: 2000-11-13 07:51:23 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -183,8 +183,6 @@ CURLcode file(struct connectdata *conn)
     res = CURLE_ABORTED_BY_CALLBACK;
 
   close(fd);
-
-  free(actual_path);
 
   return res;
 }
