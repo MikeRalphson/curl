@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.23 2001-03-12 12:58:30 bagder Exp $
+# $Id: runtests.pl,v 1.24 2001-03-12 13:46:23 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -679,6 +679,7 @@ open(CMDLOG, ">$CURLLOG") ||
 # The main test-loop
 #
 
+my $failed;
 my $testnum;
 my $ok=0;
 my $total=0;
@@ -689,10 +690,13 @@ foreach $testnum (split(" ", $TESTCASES)) {
         # valid test case number
         $total++;
     }
-    if(($error>0) && !$anyway) {
-        # a test failed, abort
-        print "\n - abort tests\n";
-        last;
+    if($error>0) {
+        if(!$anyway) {
+            # a test failed, abort
+            print "\n - abort tests\n";
+            last;
+        }
+        $failed.= "$testnum ";
     }
     elsif(!$error) {
         $ok++;
@@ -715,6 +719,10 @@ stopserver($PIDFILE);
 
 if($total) {
     print "$ok tests out of $total reported OK\n";
+
+    if($ok != $total) {
+        print "These test cases failed: $failed\n";
+    }
 }
 else {
     print "No tests were performed!\n";
