@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.22 2001-01-25 12:32:40 bagder Exp $
+ * $Id: progress.c,v 1.23 2001-01-27 18:23:59 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -203,6 +203,9 @@ int Curl_pgrsUpdate(struct UrlData *data)
          even when not displayed! */
   else if(!(data->progress.flags & PGRS_HEADERS_OUT)) {
     if (!data->progress.callback) {
+      if(data->resume_from)
+        fprintf(data->err, "** Resuming transfer from byte position %d\n",
+                data->resume_from);
       fprintf(data->err,
               "  %% Total    %% Received %% Xferd  Average Speed          Time             Curr.\n"
               "                                 Dload  Upload Total    Current  Left    Speed\n");
