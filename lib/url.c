@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.135 2001-08-06 12:14:53 bagder Exp $
+ * $Id: url.c,v 1.136 2001-08-08 07:16:47 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -791,6 +791,12 @@ CURLcode Curl_setopt(CURL *curl, CURLoption option, ...)
      * Enable peer SSL verifying.
      */
     data->ssl.verifypeer = va_arg(param, long);
+    break;
+  case CURLOPT_SSL_VERIFYHOST:
+    /*
+     * Enable verification of the CN contained in the peer certificate
+     */
+    data->ssl.verifyhost = va_arg(param, long);
     break;
   case CURLOPT_CAINFO:
     /*
