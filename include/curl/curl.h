@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.140 2002-04-16 07:59:20 bagder Exp $
+ * $Id: curl.h,v 1.141 2002-04-22 13:33:56 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -561,14 +561,25 @@ enum {
 
 
 typedef enum {
-  TIMECOND_NONE,
+  CURL_TIMECOND_NONE,
 
-  TIMECOND_IFMODSINCE,
-  TIMECOND_IFUNMODSINCE,
-  TIMECOND_LASTMOD,
+  CURL_TIMECOND_IFMODSINCE,
+  CURL_TIMECOND_IFUNMODSINCE,
+  CURL_TIMECOND_LASTMOD,
 
-  TIMECOND_LAST
+  CURL_TIMECOND_LAST
 } curl_TimeCond;
+
+/* for backwards compatibility */
+#ifndef TIMECOND_IFMODSINCE
+#define TIMECOND_IFMODSINCE CURL_TIMECOND_IFMODSINCE
+#endif
+#ifndef TIMECOND_IFUNMODSINCE
+#define TIMECOND_IFUNMODSINCE CURL_TIMECOND_IFUNMODSINCE
+#endif
+#ifndef TIMECOND_LASTMOD
+#define TIMECOND_LASTMOD CURL_TIMECOND_LASTMOD
+#endif
 
 #ifdef __BEOS__
 #include <support/SupportDefs.h>
