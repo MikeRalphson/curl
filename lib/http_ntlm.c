@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.33 2004-05-25 11:13:49 bagder Exp $
+ * $Id: http_ntlm.c,v 1.34 2004-06-21 08:37:53 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -427,12 +427,12 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
 
     if (user) {
       domain = userp;
-      domlen = user - domain;
+      domlen = (int)(user - domain);
       user++;
     }
     else
       user = userp;
-    userlen = strlen(user);
+    userlen = (int)strlen(user);
 
     mkhash(passwdp, &ntlm->nonce[0], lmresp
 #ifdef USE_NTRESPONSES
