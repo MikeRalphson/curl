@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.9 2000-10-09 11:24:49 bagder Exp $
+# $Id: Makefile.am,v 1.10 2000-11-30 08:08:49 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -25,7 +25,7 @@ EXTRA_DIST = mkhelp.pl Makefile.vc6
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
 MANPAGE=$(top_srcdir)/docs/curl.1
-README=$(top_srcdir)/docs/README.curl
+README=$(top_srcdir)/docs/MANUAL
 MKHELP=$(top_srcdir)/src/mkhelp.pl
 
 # This generates the hugehelp.c file
