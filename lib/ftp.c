@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.228 2004-02-27 07:08:37 bagder Exp $
+ * $Id: ftp.c,v 1.229 2004-03-01 07:59:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2485,10 +2485,11 @@ CURLcode Curl_ftp_disconnect(struct connectdata *conn)
      Curl_ftp_quit() will check the state of ftp->ctl_valid. If it's ok it
      will try to send the QUIT command, otherwise it will just return.
   */
-  (void)Curl_ftp_quit(conn); /* ignore errors on the QUIT */
 
   /* The FTP session may or may not have been allocated/setup at this point! */
   if(ftp) {
+    (void)Curl_ftp_quit(conn); /* ignore errors on the QUIT */
+
     if(ftp->entrypath)
       free(ftp->entrypath);
     if(ftp->cache) {
