@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.h,v 1.2 2001-03-09 15:17:09 bagder Exp $
+ * $Id: transfer.h,v 1.3 2001-05-11 11:38:42 bagder Exp $
  *****************************************************************************/
 CURLcode Curl_perform(CURL *curl);
 
@@ -35,11 +35,4 @@ Curl_Transfer (struct connectdata *data,
                                         the same we read from. -1 disables */
                long *writebytecountp /* return number of bytes written */
 );
-
-#ifdef _OLDCURL
-/* "hackish" define to make sources compile without too much human editing.
-   Don't use "Tranfer()" anymore! */
-#define Transfer(a,b,c,d,e,f,g) Curl_Transfer(a,b,c,d,e,f,g)
-#endif
-
 #endif
