@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.195 2004-03-09 22:52:50 bagder Exp $
+ * $Id: http.c,v 1.196 2004-03-10 09:44:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -739,7 +739,7 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
   CURLcode result;
   int res;
 
-  int nread;   /* total size read */
+  size_t nread;   /* total size read */
   int perline; /* count bytes per line */
   bool keepon=TRUE;
   ssize_t gotbytes;
