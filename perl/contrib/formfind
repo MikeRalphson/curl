@@ -1,12 +1,10 @@
 #!/usr/bin/env perl
-# $Id: formfind,v 1.4 2002-12-12 11:43:59 bagder Exp $
+# $Id: formfind,v 1.5 2003-04-28 13:48:16 bagder Exp $
 #
 # formfind.pl
 #
-# This script gets a HTML page from the specified URL and presents form
-# information you may need in order to machine-make a respond to the form.
-#
-# Written to use 'curl' for URL fetching.
+# This script gets a HTML page on stdin and presents form information on
+# stdout.
 #
 # Author: Daniel Stenberg <daniel@haxx.se>
 # Version: 0.2 Nov 18, 2002
