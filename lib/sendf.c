@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.87 2004-06-07 10:28:14 bagder Exp $
+ * $Id: sendf.c,v 1.88 2004-06-18 06:20:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -204,7 +204,8 @@ CURLcode Curl_sendf(curl_socket_t sockfd, struct connectdata *conn,
       break;
 
     if(data->set.verbose)
-      Curl_debug(data, CURLINFO_DATA_OUT, sptr, bytes_written, conn->host.dispname);
+      Curl_debug(data, CURLINFO_DATA_OUT, sptr, bytes_written,
+                 conn->host.dispname);
 
     if((size_t)bytes_written != write_len) {
       /* if not all was written at once, we must advance the pointer, decrease
@@ -444,7 +445,7 @@ static int showit(struct SessionHandle *data, curl_infotype type,
                   char *ptr, size_t size)
 {
   static const char * const s_infotype[CURLINFO_END] = {
-    "* ", "< ", "> ", "{ ", "} " };
+    "* ", "< ", "> ", "{ ", "} ", "{ ", "} " };
 
   if(data->set.fdebug)
     return (*data->set.fdebug)(data, type, ptr, size,

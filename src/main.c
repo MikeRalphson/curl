@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.270 2004-06-08 21:56:30 bagder Exp $
+ * $Id: main.c,v 1.271 2004-06-18 06:20:43 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2572,7 +2572,6 @@ int my_trace(CURL *handle, curl_infotype type,
   struct Configurable *config = (struct Configurable *)userp;
   FILE *output=config->errors;
   const char *text;
-
   (void)handle; /* prevent compiler warning */
 
   if(!config->trace_stream) {
@@ -2605,6 +2604,12 @@ int my_trace(CURL *handle, curl_infotype type,
     break;
   case CURLINFO_DATA_IN:
     text = "<= Recv data";
+    break;
+  case CURLINFO_SSL_DATA_IN:
+    text = "<= Recv SSL data";
+    break;
+  case CURLINFO_SSL_DATA_OUT:
+    text = "<= Send SSL data";
     break;
   }
 
