@@ -20,13 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.4 2001-10-02 09:40:06 bagder Exp $
+ * $Id: connect.h,v 1.5 2001-10-05 06:05:56 bagder Exp $
  *****************************************************************************/
 
 CURLcode Curl_connecthost(struct connectdata *conn,
                           Curl_addrinfo *host, /* connect to this */
-                          long port,    /* connect to this port number */
-                          int *socket,  /* not set if error is returned */
+                          long port,      /* connect to this port number */
+                          int *sockconn,  /* not set if error is returned */
                           Curl_ipconnect **addr /* the one we used */
                           ); /*  index we used */
 #endif
