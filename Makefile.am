@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.13 2001-01-09 10:09:13 bagder Exp $
+# $Id: Makefile.am,v 1.14 2001-03-16 15:22:51 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -8,7 +8,7 @@ EXTRA_DIST = \
 	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt \
 	config-win32.h reconf packages/README Makefile.dist
 
-SUBDIRS = docs lib src include tests packages
+SUBDIRS = docs lib src include tests packages perl php
 
 # create a root makefile in the distribution:
 dist-hook:
