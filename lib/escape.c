@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/escape.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.8 $
+ * $Date: 2000-11-21 19:01:53 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -100,7 +100,7 @@ char *curl_unescape(char *string, int length)
                             the "query part" where '+' should become ' '.
                             RFC 2316, section 3.10 */
   
-   while(--alloc) {
+   while(--alloc > 0) {
       in = *string;
       if(querypart && ('+' == in))
          in = ' ';
@@ -113,6 +113,7 @@ char *curl_unescape(char *string, int length)
         if(sscanf(string+1, "%02X", &hex)) {
           in = hex;
           string+=2;
+          alloc-=2;
         }
       }
 
