@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.115 2004-04-15 13:37:19 bagder Exp $
+# $Id: runtests.pl,v 1.116 2004-04-16 07:02:17 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1548,8 +1548,8 @@ sub displaylogs {
 
     print "== Contents of files in the log/ dir after test $testnum\n";
     foreach $log (sort @logs) {
-        # the log file contains more than zero bytes
-        if(-s "$LOGDIR/$log") {
+        # the log file is not "." or ".." and contains more than zero bytes
+        if(($log !~ /\.(\.|)$/) && -s "$LOGDIR/$log") {
             print "== Start of file $log\n";
             displaylogcontent("$LOGDIR/$log");
             print "== End of file $log\n";
