@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.12 2004-11-09 18:10:51 bagder Exp $ */
+/* $Id: ares_private.h,v 1.13 2004-11-10 14:30:25 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -41,7 +41,7 @@
 
 #if defined(WIN32) && !defined(WATT32)
 
-#define IsNT ((int)GetVersion()>0)
+#define IS_NT()        ((int)GetVersion() > 0)
 #define WIN_NS_9X      "System\\CurrentControlSet\\Services\\VxD\\MSTCP"
 #define WIN_NS_NT_KEY  "System\\CurrentControlSet\\Services\\Tcpip\\Parameters"
 #define NAMESERVER     "NameServer"
