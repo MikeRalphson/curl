@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.61 2004-03-23 15:06:14 bagder Exp $
+ * $Id: progress.c,v 1.62 2004-04-02 07:32:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -117,13 +117,12 @@ static char *max5data(curl_off_t bytes, char *max5)
 void Curl_pgrsDone(struct connectdata *conn)
 {
   struct SessionHandle *data = conn->data;
-  if(!(data->progress.flags & PGRS_HIDE)) {
-    data->progress.lastshow=0;
-    Curl_pgrsUpdate(conn); /* the final (forced) update */
-    if(!data->progress.callback)
-      /* only output if we don't use progress callback */
-      fprintf(data->set.err, "\n");
-  }
+  data->progress.lastshow=0;
+  Curl_pgrsUpdate(conn); /* the final (forced) update */
+  if(!(data->progress.flags & PGRS_HIDE) &&
+     !data->progress.callback)
+    /* only output if we don't use a progress callback and we're not hidden */
+    fprintf(data->set.err, "\n");
 }
 
 /* reset all times except redirect */
@@ -250,9 +249,8 @@ int Curl_pgrsUpdate(struct connectdata *conn)
   now = Curl_tvnow(); /* what time is it */
 
   /* The time spent so far (from the start) */
-  timespent = Curl_tvdiff(now, data->progress.start)/1000;
-
-  data->progress.timespent = (double)timespent;
+  data->progress.timespent = Curl_tvdiff(now, data->progress.start)/1000.0;
+  timespent = (long)data->progress.timespent;
 
   /* The average download speed this far */
   data->progress.dlspeed =
