@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.16 $
- * $Date: 2000-08-18 15:09:50 $
+ * $Revision: 1.17 $
+ * $Date: 2000-08-23 07:24:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -60,20 +60,20 @@
 #include <sys/socket.h>
 #endif
 #include <sys/types.h>
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
 #include <sys/utsname.h>
+#ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
 #endif
 
 #if defined(WIN32) && defined(__GNUC__) || defined(__MINGW32__)
 #include <errno.h>
-#endif
-
-#ifdef HAVE_INET_NTOA_R
-#include "inet_ntoa_r.h"
 #endif
 
 #include <curl/curl.h>

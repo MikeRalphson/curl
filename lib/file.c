@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.7 $
+ * $Date: 2000-08-23 07:24:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -60,13 +60,17 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
 #include <sys/time.h>
 #include <sys/resource.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.20 $
- * $Date: 2000-08-11 06:39:53 $
+ * $Revision: 1.21 $
+ * $Date: 2000-08-23 07:24:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,9 +38,11 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
+#ifdef NEED_REENTRANT
 #define _REENTRANT /* Necessary to use in Solaris, since the silly guys at Sun
                       made the localtime_r() prototype dependent on it (or
                       _POSIX_C_SOURCE or _POSIX_PTHREAD_SEMANTICS). */
+#endif
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -63,7 +65,9 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
 #include <sys/time.h>
 
 #ifdef HAVE_TIME_H
