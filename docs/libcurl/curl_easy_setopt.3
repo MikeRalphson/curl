@@ -1,5 +1,5 @@
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.32 2003-01-09 15:04:55 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.33 2003-02-17 23:23:11 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "3 Dec 2002" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -502,6 +502,9 @@ tells the remote server to connect to our specified IP address. The string may
 be a plain IP address, a host name, an network interface name (under Unix) or
 just a '-' letter to let the library use your systems default IP
 address. Default FTP operations are passive, and thus won't use PORT.
+
+You disable PORT again and go back to using the passive version by setting
+this option to NULL.
 .TP
 .B CURLOPT_QUOTE
 Pass a pointer to a linked list of FTP commands to pass to the server prior to
