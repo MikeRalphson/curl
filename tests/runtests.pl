@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.133 2004-06-14 08:25:54 bagder Exp $
+# $Id: runtests.pl,v 1.134 2004-06-17 08:06:03 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1052,6 +1052,17 @@ sub singletest {
     my $dumped_core;
     my $cmdres;
 
+    my @precommand= getpart("client", "precommand");
+    if($precommand[0]) {
+        # this is pure perl to eval!
+        my $code = join("", @precommand);
+        eval $code;
+        if($@) {
+            print "perl: $code\n";
+            print "precommand: $@";
+            exit;
+        }
+    }
 
     if($gdbthis) {
         open(GDBCMD, ">log/gdbcmd");
