@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.1 2001-11-28 11:09:18 bagder Exp $
+ * $Id: multi.c,v 1.2 2001-11-28 15:25:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -237,8 +237,5 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
 
 CURLMcode curl_multi_cleanup(CURLM *multi_handle);
 
-int curl_multi_info_open(CURLM *multi_handle, CURLMinfo *info_handle);
+CURLMsg *curl_multi_info_read(CURLM *multi_handle, int *msgs_in_queue);
 
-CURLMsg *curl_multi_info_read(CURLMinfo *info_handle);
-
-void curl_multi_info_close(CURLMinfo *info_handle);
