@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.198 2003-09-03 22:02:41 bagder Exp $
+ * $Id: ftp.c,v 1.199 2003-09-11 22:05:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1488,7 +1488,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
   else
     return CURLE_FTP_CANT_RECONNECT;
 
-  if(data->change.proxy) {
+  if(data->change.proxy && *data->change.proxy) {
     /*
      * This is a tunnel through a http proxy and we need to connect to the
      * proxy again here.
