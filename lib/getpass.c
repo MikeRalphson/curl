@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.15 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: getpass.c,v 1.16 2001-12-04 13:03:09 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -35,9 +35,7 @@
  *   Daniel Stenberg <daniel@haxx.se>
  */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
+#include "setup.h" /* setup.h is required for read() prototype */
 
 #ifndef HAVE_GETPASS_R
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.18 2001-11-23 09:04:56 bagder Exp $
+ * $Id: connect.c,v 1.19 2001-12-04 13:03:08 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -43,6 +43,10 @@
 #endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h> /* required for free() prototype, without it, this crashes
+                       on macos 68K */
 #endif
 
 #endif

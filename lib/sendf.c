@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.32 2001-11-02 22:30:34 bagder Exp $
+ * $Id: sendf.c,v 1.33 2001-12-04 13:03:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -26,6 +26,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+
+#ifdef HAVE_SYS_SOCKET_H
+#include <sys/socket.h>	/* required for send() & recv() prototypes */
+#endif
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
