@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.125 2002-02-26 07:59:43 bagder Exp $
+ * $Id: curl.h,v 1.126 2002-02-28 23:31:23 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -493,6 +493,9 @@ typedef enum {
 
   /* DNS cache timeout */
   CINIT(DNS_CACHE_TIMEOUT, LONG, 92),
+
+  /* send linked-list of pre-transfer QUOTE commands (Wesley Laxton)*/
+  CINIT(PREQUOTE, OBJECTPOINT, 93),
   
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;

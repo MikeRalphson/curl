@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.190 2002-02-17 11:17:37 bagder Exp $
+ * $Id: url.c,v 1.191 2002-02-28 23:31:23 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -734,6 +734,12 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * List of RAW FTP commands to use after a transfer 
      */
     data->set.postquote = va_arg(param, struct curl_slist *);
+    break;
+  case CURLOPT_PREQUOTE:
+    /*
+     * List of RAW FTP commands to use prior to RETR (Wesley Laxton)
+     */
+    data->set.prequote = va_arg(param, struct curl_slist *);
     break;
   case CURLOPT_QUOTE:
     /*
@@ -1983,8 +1989,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn = conn_temp;        /* use this connection from now on */
 
     /* we need these pointers if we speak over a proxy */
-    conn->hostname = old_conn->gname;
-    conn->name = old_conn->name;
+    conn->hostname = conn->gname;
+    conn->name = &conn->gname[old_conn->name - old_conn->gname];
 
     free(conn->path);    /* free the previously allocated path pointer */
 

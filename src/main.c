@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.110 2002-02-28 12:35:09 bagder Exp $
+ * $Id: main.c,v 1.111 2002-02-28 23:31:23 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -448,6 +448,7 @@ struct Configurable {
 
   struct curl_slist *quote;
   struct curl_slist *postquote;
+  struct curl_slist *prequote;
 
   long ssl_version;
   curl_TimeCond timecond;
@@ -1376,12 +1377,18 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       break;
     case 'Q':
       /* QUOTE command to send to FTP server */
-      if(nextarg[0] == '-') {
+      switch(nextarg[0]) {
+      case '-':
         /* prefixed with a dash makes it a POST TRANSFER one */
         nextarg++;
         config->postquote = curl_slist_append(config->postquote, nextarg);
-      }
-      else {
+        break;
+      case '+':
+        /* prefixed with a plus makes it a just-before-transfer one */
+        nextarg++;
+        config->prequote = curl_slist_append(config->prequote, nextarg);
+        break;
+      default:
         config->quote = curl_slist_append(config->quote, nextarg);
       }
       break;

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.102 2002-01-29 20:28:26 bagder Exp $
+ * $Id: urldata.h,v 1.103 2002-02-28 23:31:23 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -604,8 +604,9 @@ struct UserDefined {
   char *crypto_engine;  /* name of the crypto engine to use */
   char *cookiejar;      /* dump all cookies to this file */
   bool crlf;            /* convert crlf on ftp upload(?) */
-  struct curl_slist *quote;     /* before the transfer */
+  struct curl_slist *quote;     /* after connection is established */
   struct curl_slist *postquote; /* after the transfer */
+  struct curl_slist *prequote; /* before the transfer, after type (Wesley Laxton)*/
   struct curl_slist *telnet_options; /* linked list of telnet options */
   curl_TimeCond timecondition; /* kind of time/date comparison */
   time_t timevalue;       /* what time to compare with */
