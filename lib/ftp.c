@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.152 2002-08-12 09:43:21 bagder Exp $
+ * $Id: ftp.c,v 1.153 2002-08-26 22:00:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1928,7 +1928,7 @@ CURLcode ftp_perform(struct connectdata *conn,
   /* This is a re-used connection. Since we change directory to where the
      transfer is taking place, we must now get back to the original dir
      where we ended up after login: */
-  if (conn->bits.reuse) {
+  if (conn->bits.reuse && ftp->entrypath) {
     if ((result = ftp_cwd(conn, ftp->entrypath)) != CURLE_OK)
       return result;
   }
