@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.56 $
- * $Date: 2000-11-10 09:19:09 $
+ * $Revision: 1.57 $
+ * $Date: 2000-11-17 09:48:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -446,9 +446,7 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
     data->url = va_arg(param, char *);
     break;
   case CURLOPT_PORT:
-    /* this typecast is used to fool the compiler to NOT warn for a
-       "cast from pointer to integer of different size" */
-    data->port = (unsigned short)(va_arg(param, long));
+    data->port = va_arg(param, long);
     break;
   case CURLOPT_POSTFIELDS:
     data->postfields = va_arg(param, char *);
