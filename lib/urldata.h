@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.145 2003-03-15 16:51:43 bagder Exp $
+ * $Id: urldata.h,v 1.146 2003-03-19 21:28:39 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -778,7 +778,7 @@ struct SessionHandle {
   struct UrlState state;       /* struct for fields used for state info and
                                   other dynamic purposes */
   struct PureInfo info;        /* stats, reports and info data */
-#ifdef HAVE_OPENSSL_ENGINE_H
+#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
   ENGINE*  engine;
 #endif /* USE_SSLEAY */
 };
