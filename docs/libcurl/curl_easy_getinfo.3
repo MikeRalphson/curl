@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_getinfo.3,v 1.4 2002-11-20 19:11:22 bagder Exp $
+.\" $Id: curl_easy_getinfo.3,v 1.5 2003-04-11 16:52:30 bagder Exp $
 .\"
 .TH curl_easy_init 3 "25 Apr 2002" "libcurl 7.9.7" "libcurl Manual"
 .SH NAME
@@ -78,7 +78,8 @@ uploaded.
 .TP
 .B CURLINFO_SIZE_DOWNLOAD
 Pass a pointer to a double to receive the total amount of bytes that were
-downloaded.
+downloaded. The amount is only for the latest transfer and will be reset again
+for each new transfer.
 .TP
 .B CURLINFO_SPEED_DOWNLOAD
 Pass a pointer to a double to receive the average download speed that curl
