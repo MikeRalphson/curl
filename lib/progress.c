@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.63 2004-04-09 09:36:31 bagder Exp $
+ * $Id: progress.c,v 1.64 2004-04-19 07:18:26 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -250,7 +250,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
 
   /* The time spent so far (from the start) */
   data->progress.timespent = Curl_tvdiff_secs(now, data->progress.start);
-  timespent = (long)data->progress.timespent*1000.0;
+  timespent = (long)data->progress.timespent;
 
   /* The average download speed this far */
   data->progress.dlspeed =
