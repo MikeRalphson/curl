@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.51 2004-05-06 12:44:08 bagder Exp $
+ * $Id: sws.c,v 1.52 2004-05-06 13:21:32 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -120,7 +120,7 @@ void storerequest(char *reqbuf);
 #define REQUEST_DUMP  "log/server.input"
 #define RESPONSE_DUMP "log/server.response"
 
-#define TEST_DATA_PATH "%s/data/test%d"
+#define TEST_DATA_PATH "%s/data/test%ld"
 
 /* very-big-path support */
 #define MAXDOCNAMELEN 140000
