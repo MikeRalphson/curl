@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.13 2004-10-10 14:08:05 giva Exp $
+ * $Id: strtoofft.h,v 1.14 2004-12-17 18:33:09 giva Exp $
  ***************************************************************************/
 
 /*
@@ -58,7 +58,7 @@ curl_off_t curlx_strtoll(const char *nptr, char **endptr, int base);
 #define curlx_strtoofft strtol
 #endif
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) || defined(__WATCOMC__)
 #define CURL_LLONG_MIN 0x8000000000000000i64
 #define CURL_LLONG_MAX 0x7FFFFFFFFFFFFFFFi64
 #elif defined(HAVE_LL)
