@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.9 $
- * $Date: 2000-05-29 23:07:22 $
+ * $Revision: 1.10 $
+ * $Date: 2000-06-05 08:23:50 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -390,7 +390,7 @@ struct UrlData {
   char *newurl; /* This can only be set if a Location: was in the
 		   document headers */
 
-  struct HttpHeader *headers; /* linked list of extra headers */
+  struct curl_slist *headers; /* linked list of extra headers */
   struct HttpPost *httppost;  /* linked list of POST data */
 
   char *cert; /* PEM-formatted certificate */
