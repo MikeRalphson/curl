@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.108 2004-02-20 06:59:17 bagder Exp $
+# $Id: runtests.pl,v 1.109 2004-02-20 07:14:58 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -723,6 +723,7 @@ sub subVariables {
   my ($thing) = @_;
   $$thing =~ s/%HOSTIP/$HOSTIP/g;
   $$thing =~ s/%HOSTPORT/$HOSTPORT/g;
+  $$thing =~ s/%HTTPPORT/$HOSTPORT/g;
   $$thing =~ s/%HTTPSPORT/$HTTPSPORT/g;
   $$thing =~ s/%FTPPORT/$FTPPORT/g;
   $$thing =~ s/%FTPSPORT/$FTPSPORT/g;
