@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.4 2004-01-29 13:54:08 bagder Exp $
+ * $Id: getpass.c,v 1.5 2004-02-02 07:24:30 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -197,7 +197,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 #else /* WIN32 */
 #include <stdio.h>
 #include <conio.h>
-char *getpass_r(const char *prompt, char *buffer, int buflen)
+char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 {
   int i;
   printf("%s", prompt);
