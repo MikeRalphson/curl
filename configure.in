@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.96 2002-03-04 08:00:25 bagder Exp $
+dnl $Id: configure.in,v 1.97 2002-03-04 10:28:02 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -594,10 +594,10 @@ dnl AC_SUBST(RANLIB)
 AC_CONFIG_FILES([Makefile \
 	   docs/Makefile \
            docs/examples/Makefile \
+           docs/libcurl/Makefile \
 	   include/Makefile \
 	   include/curl/Makefile \
 	   src/Makefile \
-	   multi/Makefile \
            lib/Makefile \
            tests/Makefile \
            tests/data/Makefile \
