@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.265 2004-05-12 08:22:04 bagder Exp $
+ * $Id: main.c,v 1.266 2004-05-24 13:27:48 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -3461,7 +3461,8 @@ operate(struct Configurable *config, int argc, char *argv[])
                     CURL_CA_CERT_ERRORMSG2 );
           }
           else
-            fprintf(config->errors, "curl: (%d) %s\n", res, errorbuffer);
+            fprintf(config->errors, "curl: (%d) %s\n", res,
+                    errorbuffer[0]? errorbuffer: curl_easy_strerror(res));
         }
 #endif
 
