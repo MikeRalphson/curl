@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.32 2003-07-19 23:44:22 bagder Exp $
+ * $Id: sws.c,v 1.33 2003-07-19 23:54:15 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -604,7 +604,7 @@ int main(int argc, char *argv[])
       if(open)
         logmsg("persistant connection, awaits new request");
       /* if we got a CONNECT, loop and get another request as well! */
-    } while(open);
+    } while(open || (doc == DOCNUMBER_CONNECT));
 
     logmsg("Closing client connection");
     close(msgsock);
