@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.21 2004-01-29 13:56:45 bagder Exp $
+ * $Id: memdebug.h,v 1.22 2004-02-02 21:34:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -70,6 +70,7 @@ int curl_fclose(FILE *file, int line, const char *source);
 
 #define socket(domain,type,protocol)\
  curl_socket(domain,type,protocol,__LINE__,__FILE__)
+#undef accept /* for those with accept as a macro */
 #define accept(sock,addr,len)\
  curl_accept(sock,addr,len,__LINE__,__FILE__)
 
