@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.244 2002-11-11 23:03:05 bagder Exp $
+ * $Id: url.c,v 1.245 2002-11-20 19:11:23 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1086,6 +1086,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set proxy type. HTTP/SOCKS4/SOCKS5
      */
     data->set.proxytype = va_arg(param, long);
+    break;
+
+  case CURLOPT_PRIVATE:
+    /*
+     * Set private data pointer.
+     */
+    data->set.private = va_arg(param, char *);
     break;
 
   default:
