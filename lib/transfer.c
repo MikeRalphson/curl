@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.51 2001-08-28 08:37:54 bagder Exp $
+ * $Id: transfer.c,v 1.52 2001-08-28 08:54:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -431,8 +431,20 @@ Transfer(struct connectdata *c_conn)
                     wkeepfd = writefd;
                   }
                 }
-                else
+		else
                   header = FALSE;	/* no more header to parse! */
+
+		if (417 == httpcode) {
+		  /*
+		   * we got: "417 Expectation Failed" this means:
+		   * we have made a HTTP call and our Expect Header
+		   * seems to cause a problem => abort the write operations
+		   * (or prevent them from starting
+		   */
+		  write_after_100_header = FALSE;
+		  keepon &= ~KEEP_WRITE;
+		  FD_ZERO(&wkeepfd);
+		}
 
                 /* now, only output this if the header AND body are requested:
                  */
