@@ -1,5 +1,5 @@
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.39 2003-05-12 12:47:35 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.40 2003-05-14 09:03:51 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "3 Dec 2002" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -574,6 +574,13 @@ and symbolic links.
 .B CURLOPT_FTPAPPEND
 A non-zero parameter tells the library to append to the remote file instead of
 overwrite it. This is only useful when uploading to a ftp site.
+.TP
+.B CURLOPT_FTP_USE_EPRT
+Pass a long. If the value is non-zero, it tells curl to use the EPRT (and
+LPRT) command when doing active FTP downloads (which is enabled by
+CURLOPT_FTPPORT). Using EPRT means that it will first attempt to use EPRT and
+then LPRT before using PORT, but if you pass FALSE (zero) to this option, it
+will not try using EPRT or LPRT, only plain PORT. (Added in 7.10.5)
 .TP
 .B CURLOPT_FTP_USE_EPSV
 Pass a long. If the value is non-zero, it tells curl to use the EPSV command
