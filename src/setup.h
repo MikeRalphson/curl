@@ -20,8 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.26 2004-01-23 07:41:05 bagder Exp $
+ * $Id: setup.h,v 1.27 2004-03-02 09:13:28 bagder Exp $
  ***************************************************************************/
+
+#define CURL_NO_OLDIES
 
 #if !defined(WIN32) && defined(__WIN32__)
 /* Borland fix */
