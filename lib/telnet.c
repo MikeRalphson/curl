@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.16 2001-03-05 14:01:13 bagder Exp $
+ * $Id: telnet.c,v 1.17 2001-03-05 14:52:23 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -798,7 +798,6 @@ static int check_telnet_options(struct connectdata *conn)
  *
  * Look at the sub-option buffer, and try to be helpful to the other
  * side.
- * No suboptions are supported yet.
  */
 
 static void suboption(struct connectdata *conn)
