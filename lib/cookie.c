@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.55 2004-05-12 12:04:38 bagder Exp $
+ * $Id: cookie.c,v 1.56 2004-05-21 20:40:15 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -260,6 +260,9 @@ Curl_cookie_add(struct SessionHandle *data,
             else {
               /* Now, we make sure that our host is within the given domain,
                  or the given domain is not valid and thus cannot be set. */
+
+              if('.' == whatptr[0])
+                whatptr++; /* ignore preceeding dot */
 
               if(!domain || tailmatch(whatptr, domain)) {
                 const char *tailptr=whatptr;
