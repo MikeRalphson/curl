@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.150 2002-11-15 14:15:28 bagder Exp $
+ * $Id: main.c,v 1.151 2002-11-26 17:13:30 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2186,7 +2186,7 @@ int my_trace(CURL *handle, curl_infotype type,
     text = "=> Send header";
     break;
   case CURLINFO_DATA_OUT:
-    text = "=> Send data ";
+    text = "=> Send data";
     break;
   case CURLINFO_HEADER_IN:
     text = "<= Recv header";
