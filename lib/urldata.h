@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.148 2003-03-31 04:41:06 bagder Exp $
+ * $Id: urldata.h,v 1.149 2003-03-31 05:13:26 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -125,14 +125,6 @@ struct ssl_connect_data {
 #endif /* USE_SSLEAY */
 };
 
-/* information about one single SSL session */
-struct curl_ssl_session {
-  char *name;       /* host name for which this ID was used */
-  void *sessionid;  /* as returned from the SSL layer */
-  long age;         /* just a number, the higher the more recent */
-  unsigned short remote_port; /* remote port to connect to */
-};
-
 struct ssl_config_data {
   long version;          /* what version the client wants to use */
   long certverifyresult; /* result from the certificate verification */
@@ -147,6 +139,16 @@ struct ssl_config_data {
   char *cipher_list;     /* list of ciphers to use */
   long numsessions;      /* SSL session id cache size */
 };
+
+/* information stored about one single SSL session */
+struct curl_ssl_session {
+  char *name;       /* host name for which this ID was used */
+  void *sessionid;  /* as returned from the SSL layer */
+  long age;         /* just a number, the higher the more recent */
+  unsigned short remote_port; /* remote port to connect to */
+  struct ssl_config_data ssl_config; /* setup for this session */
+};
+
 
 /****************************************************************************
  * HTTP unique setup
