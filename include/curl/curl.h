@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.212 2003-08-20 15:42:24 bagder Exp $
+ * $Id: curl.h,v 1.213 2003-09-01 08:22:21 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -216,6 +216,7 @@ typedef enum {
   CURLE_SSL_CIPHER,              /* 59 - couldn't use specified cipher */
   CURLE_SSL_CACERT,              /* 60 - problem with the CA cert (path?) */
   CURLE_BAD_CONTENT_ENCODING,    /* 61 - Unrecognized transfer encoding */
+  CURLE_LDAP_INVALID_URL,        /* 62 - Invalid LDAP URL */
 
   CURL_LAST /* never use! */
 } CURLcode;
