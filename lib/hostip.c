@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.109 2003-11-15 10:29:43 bagder Exp $
+ * $Id: hostip.c,v 1.110 2003-12-03 07:55:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -352,6 +352,8 @@ int Curl_resolv(struct connectdata *conn,
         /* returned failure, bail out nicely */
         Curl_freeaddrinfo(addr);
       }
+      else
+        rc = 0;
     }
   }
 
