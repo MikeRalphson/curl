@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.44 2004-02-03 13:58:38 bagder Exp $
+dnl $Id: configure.ac,v 1.45 2004-02-05 10:38:32 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1031,7 +1031,7 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
     CPPFLAGS="$CPPFLAGS -DCURLDEBUG"
     CFLAGS="$CFLAGS -g" 
     if test "$GCC" = "yes"; then
-       CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wundef -Wpointer-arith -Wnested-externs"
+       CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wno-format-nonliteral -Wundef -Wpointer-arith -Wnested-externs"
 
        dnl here's a more aggressive set to use:
        dnl CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wundef -Wpointer-arith -Wnested-externs -Wcast-align -Winline -Wstrict-prototypes -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wfloat-equal -Wsign-compare -Wunreachable-code"
