@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.161 2005-01-27 15:51:03 bagder Exp $
+# $Id: runtests.pl,v 1.162 2005-01-29 13:06:31 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1146,7 +1146,7 @@ sub singletest {
     }
 
     if($valgrind) {
-        $CMDLINE = "valgrind ".$valgrind_tool."--leak-check=yes --logfile=log/valgrind$testnum $CMDLINE";
+        $CMDLINE = "valgrind ".$valgrind_tool."--leak-check=yes --num-callers=16 --logfile=log/valgrind$testnum $CMDLINE";
     }
 
     $CMDLINE .= "$cmdargs >>$STDOUT 2>>$STDERR";
