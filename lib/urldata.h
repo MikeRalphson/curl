@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-02-14 23:13:15 $
+ * $Revision: 1.4 $
+ * $Date: 2000-02-16 00:02:40 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -87,6 +87,7 @@
 #endif
 #endif
 
+#include "timeval.h"
 
 /* Download buffer size, keep it fairly big for speed reasons */
 #define BUFSIZE (1024*50)
@@ -96,6 +97,8 @@
 #define HEADERSIZE 256
 
 struct Progress {
+  long lastshow; /* time() of the last displayed progress meter or NULL to
+                    force redraw at next call */
   double size_dl;
   double size_ul;
   double downloaded;
