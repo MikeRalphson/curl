@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.5 2001-01-05 10:11:43 bagder Exp $
+ * $Id: timeval.c,v 1.6 2001-03-13 07:53:06 bagder Exp $
  *****************************************************************************/
 
 #ifdef WIN32
@@ -53,7 +53,7 @@ gettimeofday (struct timeval *tp, void *nothing)
 #endif
 #endif
 
-struct timeval Curl_tvnow ()
+struct timeval Curl_tvnow (void)
 {
  struct timeval now;
 #ifdef HAVE_GETTIMEOFDAY
