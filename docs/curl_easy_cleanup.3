@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_cleanup.3,v 1.4 2001-05-31 08:41:42 bagder Exp $
+.\" $Id: curl_easy_cleanup.3,v 1.5 2001-06-21 09:39:19 bagder Exp $
 .\"
 .TH curl_easy_cleanup 3 "5 March 2001" "libcurl 7.7" "libcurl Manual"
 .SH NAME
@@ -8,7 +8,7 @@ curl_easy_cleanup - End a libcurl session
 .SH SYNOPSIS
 .B #include <curl/curl.h>
 .sp
-.BI "curl_easy_cleanup(CURL *" handle ");"
+.BI "void curl_easy_cleanup(CURL *" handle ");"
 .ad
 .SH DESCRIPTION
 This function must be the last function to call for a curl session. It is the
