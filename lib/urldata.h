@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.174 2003-09-03 22:02:41 bagder Exp $
+ * $Id: urldata.h,v 1.175 2003-09-04 10:55:20 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -574,6 +574,9 @@ struct PureInfo {
                     OpenVMS. */
   long header_size;  /* size of read header(s) in bytes */
   long request_size; /* the amount of bytes sent in the request(s) */
+
+  long proxyauthavail;
+  long httpauthavail;
 
   char *contenttype; /* the content type of the object */
 };
