@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.35 2004-06-03 14:38:07 bagder Exp $
+# $Id: Makefile.am,v 1.36 2005-03-06 22:33:05 bagder Exp $
 ###########################################################################
-EXTRA_DIST = ftpserver.pl httpserver.pl httpsserver.pl runtests.pl \
-	     ftpsserver.pl getpart.pm FILEFORMAT README \
-	     stunnel.pem memanalyze.pl testcurl.pl
+EXTRA_DIST = ftpserver.pl httpserver.pl httpsserver.pl runtests.pl	\
+ ftpsserver.pl getpart.pm FILEFORMAT README stunnel.pem memanalyze.pl	\
+ testcurl.pl valgrind.pm
 
 SUBDIRS = data server libtest
 
