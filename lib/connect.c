@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.76 2004-02-13 09:50:23 bagder Exp $
+ * $Id: connect.c,v 1.77 2004-02-15 13:55:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -244,23 +244,20 @@ static CURLcode bindlocal(struct connectdata *conn,
 
       if(h)
         was_iface = TRUE;
-
     }
-    else {
-      if(strlen(data->set.device)>1) {
-        /*
-         * This was not an interface, resolve the name as a host name
-         * or IP number
-         */
-        rc = Curl_resolv(conn, data->set.device, 0, &h);
-        if(rc == 1)
-          (void)Curl_wait_for_resolv(conn, &h);
 
-        if(h)
-          /* we know data->set.device is shorter than the myhost array */
-          strcpy(myhost, data->set.device);
+    if(!was_iface) {
+      /*
+       * This was not an interface, resolve the name as a host name
+       * or IP number
+       */
+      rc = Curl_resolv(conn, data->set.device, 0, &h);
+      if(rc == 1)
+        (void)Curl_wait_for_resolv(conn, &h);
 
-      }
+      if(h)
+        /* we know data->set.device is shorter than the myhost array */
+        strcpy(myhost, data->set.device);
     }
 
     if(! *myhost) {
