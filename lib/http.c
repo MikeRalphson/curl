@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.111 2002-11-11 23:03:04 bagder Exp $
+ * $Id: http.c,v 1.112 2002-11-26 17:32:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -440,6 +440,10 @@ CURLcode Curl_http_connect(struct connectdata *conn)
   if(conn->bits.user_passwd && !data->state.this_is_a_follow) {
     /* Authorization: is requested, this is not a followed location, get the
        original host name */
+    if (data->state.auth_host)
+      /* Free to avoid leaking memory on multiple requests*/
+      free(data->state.auth_host);
+
     data->state.auth_host = strdup(conn->hostname);
   }
 
