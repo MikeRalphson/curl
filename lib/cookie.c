@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.65 2004-12-05 23:59:32 bagder Exp $
+ * $Id: cookie.c,v 1.66 2004-12-22 22:33:31 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -113,6 +113,8 @@ static void freecookie(struct Cookie *co)
     free(co->value);
   if(co->maxage)
     free(co->maxage);
+  if(co->version)
+    free(co->version);
 
   free(co);
 }
