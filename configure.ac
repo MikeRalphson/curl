@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.3 2003-03-26 19:05:24 bagder Exp $
+dnl $Id: configure.ac,v 1.4 2003-04-06 12:29:45 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -833,6 +833,11 @@ AC_HELP_STRING([--without-ca-bundle], [Don't install the CA bundle]),
     ca="$ac_default_prefix/share/curl/curl-ca-bundle.crt"
   fi
    ] )
+
+if test X"$OPT_SSL" = Xno
+then
+  ca="no"
+fi
 
 if test "x$ca" = "xno"; then
   dnl let's not keep "no" as path name, blank it instead
