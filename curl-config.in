@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.11 2001-08-16 13:09:20 bagder Exp $
+# $Id: curl-config.in,v 1.12 2002-01-16 14:20:06 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -16,6 +16,7 @@ Usage: curl-config [OPTION]
 
 Available values for OPTION include:
 
+  --cc        compiler
   --cflags    pre-processor and compiler flags
   --feature   newline separated list of enabled features
   --help      display this help and exit
@@ -42,6 +43,10 @@ while test $# -gt 0; do
     esac
 
     case "$1" in
+    --cc)
+	echo @CC@
+	;;
+
     --prefix)
 	echo $prefix
 	;;
