@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.22 2004-11-09 14:02:58 giva Exp $
+ * $Id: multi.h,v 1.23 2005-01-18 15:13:23 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -67,7 +67,9 @@
 #include <sys/select.h>
 #endif
 
+#ifndef _WIN32_WCE
 #include <sys/socket.h>
+#endif
 #include <sys/time.h>
 #include <sys/types.h>
 #endif
