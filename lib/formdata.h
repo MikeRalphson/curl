@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.19 2004-03-12 14:22:16 bagder Exp $
+ * $Id: formdata.h,v 1.20 2004-04-23 10:37:52 bagder Exp $
  ***************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -65,11 +65,12 @@ size_t Curl_FormReader(char *buffer,
                        size_t nitems,
                        FILE *mydata);
 
-/* possible (old) fread() emulation that copies at most one line */
-size_t Curl_FormReadOneLine(char *buffer,
-                            size_t size,
-                            size_t nitems,
-                            FILE *mydata);
+/*
+ * Curl_formpostheader() returns the first line of the formpost, the
+ * request-header part (which is not part of the request-body like the rest of
+ * the post).
+ */
+char *Curl_formpostheader(void *formp, size_t *len);
 
 char *Curl_FormBoundary(void);
 
