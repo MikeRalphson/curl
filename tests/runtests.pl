@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.50 2002-02-22 15:17:41 bagder Exp $
+# $Id: runtests.pl,v 1.51 2002-02-22 15:40:17 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -145,11 +145,18 @@ sub runhttpserver {
 
     if ( $data =~ /WE ROOLZ(: |)(\d*)/ ) {
         $pid = 0+$2;
+
+        if(!$pid) {
+            print "Test server already running with unkown pid! Use it...\n";
+            return;
+        }
+
         if($verbose) {
             print "Test server already running with pid $pid, killing it...\n";
         }
     }
     elsif($data ne "") {
+        print "GOT: $data\n";
         print "An alien HTTP server is running on port $HOSTPORT\n",
         "Edit runtests.pl to use another port and rerun the test script\n";
         exit;
