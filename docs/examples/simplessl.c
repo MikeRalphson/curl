@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: simplessl.c,v 1.3 2002-01-17 13:45:19 bagder Exp $
+ * $Id: simplessl.c,v 1.4 2002-11-22 07:39:15 bagder Exp $
  */
 
 #include <stdio.h>
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
   curl = curl_easy_init();
   if(curl) {
     /* what call to write: */
-    curl_easy_setopt(curl, CURLOPT_URL, "HTTPS://curl.haxx.se");
+    curl_easy_setopt(curl, CURLOPT_URL, "HTTPS://your.favourite.ssl.site");
     curl_easy_setopt(curl, CURLOPT_WRITEHEADER, headerfile);
 
     while(1)                    /* do some ugly short cut... */
