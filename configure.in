@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.99 2002-06-11 15:10:18 bagder Exp $
+dnl $Id: configure.in,v 1.100 2002-07-29 23:00:16 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -604,6 +604,7 @@ AC_CHECK_HEADERS( \
         pwd.h \
         utime.h \
         sys/utime.h \
+        sys/poll.h \
         setjmp.h
 )
 
