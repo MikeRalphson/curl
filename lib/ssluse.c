@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.81 2003-10-08 13:06:50 bagder Exp $
+ * $Id: ssluse.c,v 1.82 2003-10-15 14:42:11 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -743,6 +743,16 @@ cert_hostcheck(const char *certname, const char *hostname)
   }
   return 0;
 }
+
+/* this subjectAltName patch is code originating from OpenLDAP, which uses
+   a license as described here: 
+   http://www.openldap.org/software/release/license.html
+
+   It is not GPL-compatible, so we cannot have this situation in a release-
+   version of libcurl.
+
+   This needs to be addressed!
+*/
 
 static CURLcode verifyhost(struct connectdata *conn)
 {
