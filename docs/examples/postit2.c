@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: postit2.c,v 1.1 2001-08-23 08:45:20 bagder Exp $
+ * $Id: postit2.c,v 1.2 2003-11-19 08:21:34 bagder Exp $
  *
  * Example code that uploads a file name 'foo' to a remote script that accepts
  * "HTML form based" (as described in RFC1738) uploads using HTTP POST.
@@ -21,19 +21,12 @@
  * This exact source code has not been verified to work.
  */
 
-/* to make this work under windows, use the win32-functions from the
-   win32socket.c file as well */
-
 #include <stdio.h>
 #include <string.h>
 
 #include <curl/curl.h>
 #include <curl/types.h>
 #include <curl/easy.h>
-
-#if LIBCURL_VERSION_NUM < 0x070900
-#error "curl_formadd() is not introduced until libcurl 7.9 and later"
-#endif
 
 int main(int argc, char *argv[])
 {
@@ -44,6 +37,8 @@ int main(int argc, char *argv[])
   struct HttpPost *lastptr=NULL;
   struct curl_slist *headerlist=NULL;
   char buf[] = "Expect:";
+
+  curl_global_init(CURL_GLOBAL_ALL);
 
   /* Fill in the file upload field */
   curl_formadd(&formpost,
