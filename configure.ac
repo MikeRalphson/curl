@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.21 2003-10-02 19:04:32 bagder Exp $
+dnl $Id: configure.ac,v 1.22 2003-10-07 22:00:02 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -900,6 +900,7 @@ AC_CHECK_FUNCS( socket \
                 gettimeofday \
                 inet_addr \
                 inet_ntoa \
+                inet_pton \
                 tcsetattr \
                 tcgetattr \
                 perror \
