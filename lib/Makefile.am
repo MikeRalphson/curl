@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.63 2003-08-06 23:59:15 bagder Exp $
+# $Id: Makefile.am,v 1.64 2003-08-07 06:43:11 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -107,5 +107,5 @@ install-data-hook:
 # this hook is mainly for non-unix systems to build even if configure
 # isn't run
 dist-hook:
-	chmod 0666 $(distdir)/ca-bundle.h
+	chmod 0644 $(distdir)/ca-bundle.h
 	echo "/* ca bundle path set in here*/" > $(distdir)/ca-bundle.h
