@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.52 2004-05-12 12:06:39 bagder Exp $
+ * $Id: multi.c,v 1.53 2004-05-13 15:17:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -120,6 +120,8 @@ CURLM *curl_multi_init(void)
     memset(multi, 0, sizeof(struct Curl_multi));
     multi->type = CURL_MULTI_HANDLE;
   }
+  else
+    return NULL;
 
   multi->hostcache = Curl_mk_dnscache();
   if(!multi->hostcache) {
