@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.86 2001-08-08 07:35:57 bagder Exp $
+ * $Id: main.c,v 1.87 2001-08-09 09:47:53 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1963,11 +1963,6 @@ operate(struct Configurable *config, int argc, char *argv[])
         fprintf(config->errors, "curl: (%d) %s\n", res, errorbuffer);
 #endif
 
-      if((config->errors != stderr) &&
-         (config->errors != stdout))
-        /* it wasn't directed to stdout or stderr so close the file! */
-        fclose(config->errors);
-    
       if(config->headerfile && !headerfilep && heads.stream)
         fclose(heads.stream);
 
@@ -2011,6 +2006,11 @@ operate(struct Configurable *config, int argc, char *argv[])
 
   /* cleanup the curl handle! */
   curl_easy_cleanup(curl);
+
+  if((config->errors != stderr) &&
+     (config->errors != stdout))
+    /* it wasn't directed to stdout or stderr so close the file! */
+    fclose(config->errors);
 
   main_free(); /* cleanup */
 
