@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.17 2001-10-25 08:28:29 bagder Exp $
+ * $Id: ldap.c,v 1.18 2001-11-05 14:04:57 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -95,9 +95,11 @@ static void DynaClose(void)
 #if defined(HAVE_DLOPEN) || defined(HAVE_LIBDL)
   if (libldap) {
     dlclose(libldap);
+    libldap=NULL;
   }
   if (liblber) {
     dlclose(liblber);
+    liblber=NULL;
   }
 #endif
 }
@@ -174,7 +176,9 @@ CURLcode Curl_ldap(struct connectdata *conn)
 	  conn->hostname, conn->port);
     status = CURLE_COULDNT_CONNECT;
   } else {
-    rc = ldap_simple_bind_s(server, data->state.user, data->state.passwd);
+    rc = ldap_simple_bind_s(server,
+                            data->state.user[0]?data->state.user:NULL,
+                            data->state.passwd[0]?data->state.passwd:NULL);
     if (rc != 0) {
       failf(data, "LDAP: %s", ldap_err2string(rc));
       status = CURLE_LDAP_CANNOT_BIND;
