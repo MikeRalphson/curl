@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.255 2004-05-12 12:06:39 bagder Exp $
+ * $Id: ftp.c,v 1.256 2004-05-26 08:54:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -487,7 +487,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   ftp->passwd = conn->passwd;
   ftp->response_time = 3600; /* set default response time-out */
 
-  if (data->set.tunnel_thru_httpproxy) {
+  if (conn->bits.tunnel_proxy) {
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
     result = Curl_ConnectHTTPProxyTunnel(conn, FIRSTSOCKET,
                                          conn->host.name, conn->remote_port);
@@ -1702,7 +1702,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
     /* this just dumps information about this second connection */
     ftp_pasv_verbose(conn, conninfo, newhostp, connectport);
   
-  if(data->set.tunnel_thru_httpproxy) {
+  if(conn->bits.tunnel_proxy) {
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
     result = Curl_ConnectHTTPProxyTunnel(conn, SECONDARYSOCKET,
                                          newhostp, newport);

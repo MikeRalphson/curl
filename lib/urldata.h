@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.228 2004-05-25 21:47:29 bagder Exp $
+ * $Id: urldata.h,v 1.229 2004-05-26 08:54:36 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -309,6 +309,10 @@ struct ConnectBits {
   bool retry;         /* this connection is about to get closed and then
                          re-attempted at another connection. */
   bool no_body;       /* CURLOPT_NO_BODY (or similar) was set */
+  bool tunnel_proxy;  /* if CONNECT is used to "tunnel" through the proxy.
+                         This is implicit when SSL-protocols are used through
+                         proxies, but can also be enabled explicitly by
+                         apps */
 };
 
 struct hostname {
