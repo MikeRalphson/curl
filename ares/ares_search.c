@@ -13,8 +13,6 @@
  * without express or implied warranty.
  */
 
-static const char rcsid[] = "$Id: ares_search.c,v 1.1 2003-10-07 21:54:04 bagder Exp $";
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

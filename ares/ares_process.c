@@ -13,8 +13,6 @@
  * without express or implied warranty.
  */
 
-static const char rcsid[] = "$Id: ares_process.c,v 1.2 2004-01-29 11:23:36 bagder Exp $";
-
 #include <sys/types.h>
 
 #ifdef WIN32
