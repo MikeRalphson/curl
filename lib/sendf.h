@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.h,v $
- * $Revision: 1.5 $
- * $Date: 2000-09-21 08:49:16 $
+ * $Revision: 1.6 $
+ * $Date: 2000-10-03 11:01:32 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -45,5 +45,19 @@ size_t sendf(int fd, struct UrlData *, char *fmt, ...);
 size_t ssend(int fd, struct connectdata *, void *fmt, size_t len);
 void infof(struct UrlData *, char *fmt, ...);
 void failf(struct UrlData *, char *fmt, ...);
+
+struct send_buffer {
+  char *buffer;
+  long size_max;
+  long size_used;
+};
+typedef struct send_buffer send_buffer;
+
+
+send_buffer *add_buffer_init(void);
+CURLcode add_buffer(send_buffer *in, void *inptr, size_t size);
+CURLcode add_bufferf(send_buffer *in, char *fmt, ...);
+size_t add_buffer_send(int sockfd, struct connectdata *conn, send_buffer *in);
+
 
 #endif
