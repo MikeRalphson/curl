@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.25 2004-02-18 12:22:56 bagder Exp $
+ * $Id: memdebug.h,v 1.26 2004-02-26 14:52:51 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -49,6 +49,7 @@ extern FILE *logfile;
 
 /* memory functions */
 void *curl_domalloc(size_t size, int line, const char *source);
+void *curl_docalloc(size_t elements, size_t size, int line, const char *source);
 void *curl_dorealloc(void *ptr, size_t size, int line, const char *source);
 void curl_dofree(void *ptr, int line, const char *source);
 char *curl_dostrdup(const char *str, int line, const char *source);
@@ -72,6 +73,7 @@ int curl_fclose(FILE *file, int line, const char *source);
 #undef strdup
 #define strdup(ptr) curl_dostrdup(ptr, __LINE__, __FILE__)
 #define malloc(size) curl_domalloc(size, __LINE__, __FILE__)
+#define calloc(nbelem,size) curl_docalloc(nbelem, size, __LINE__, __FILE__)
 #define realloc(ptr,size) curl_dorealloc(ptr, size, __LINE__, __FILE__)
 #define free(ptr) curl_dofree(ptr, __LINE__, __FILE__)
 
