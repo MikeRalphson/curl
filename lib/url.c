@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.45 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.46 $
+ * $Date: 2000-10-11 10:58:37 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -234,6 +234,10 @@ void static urlfree(struct UrlData *data, bool totally)
 
     if(data->free_referer)
       free(data->referer);
+
+    if(data->bits.urlstringalloc)
+      /* the URL is allocated, free it! */
+      free(data->url);
 
     cookie_cleanup(data->cookies);
 
