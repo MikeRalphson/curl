@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-03-01 21:56:23 $
+ * $Revision: 1.7 $
+ * $Date: 2000-03-02 23:00:54 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -43,6 +43,10 @@
 #include <string.h>
 
 #include "setup.h"
+
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
