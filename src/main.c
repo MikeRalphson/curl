@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-03-19 19:55:02 $
+ * $Revision: 1.12 $
+ * $Date: 2000-03-21 15:37:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1153,7 +1153,7 @@ int main(int argc, char *argv[])
                     URGTAG_CRLF, config.crlf,
                     URGTAG_QUOTE, config.quote,
                     URGTAG_POSTQUOTE, config.postquote,
-                    URGTAG_WRITEHEADER, &heads,
+                    URGTAG_WRITEHEADER, config.headerfile?&heads:NULL,
                     URGTAG_COOKIEFILE, config.cookiefile,
                     URGTAG_SSLVERSION, config.ssl_version,
                     URGTAG_TIMECONDITION, config.timecond,
@@ -1171,7 +1171,7 @@ int main(int argc, char *argv[])
     /* it wasn't directed to stdout or stderr so close the file! */
     fclose(config.errors);
 
-  if(!headerfilep && heads.stream)
+  if(config.headerfile && !headerfilep && heads.stream)
     fclose(heads.stream);
 
   if(urlbuffer)
