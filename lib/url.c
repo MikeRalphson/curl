@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.116 2001-04-22 16:47:55 bagder Exp $
+ * $Id: url.c,v 1.117 2001-04-23 06:11:08 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2022,7 +2022,6 @@ static CURLcode Connect(struct UrlData *data,
     free(conn->path);        /* free the previous path pointer */
 
     /* we need these pointers if we speak over a proxy */
-    strcpy(conn->gname, old_conn->gname); /* copy the name */
     conn->name = conn->gname;
     conn->hostname = old_conn->gname;
 
