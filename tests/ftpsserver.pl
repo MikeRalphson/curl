@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpsserver.pl,v 1.1 2001-04-24 21:09:53 bagder Exp $
+# $Id: ftpsserver.pl,v 1.2 2001-09-17 08:55:32 bagder Exp $
 # This is the HTTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -40,7 +40,7 @@ do {
 
 my $path = `pwd`;
 chomp $path;
-my $cmd = "$stunnel -p $path/data/stunnel.pem -P $path/.ftps.pid -d $port -r $ftp";
+my $cmd = "$stunnel -p $path/stunnel.pem -P $path/.ftps.pid -d $port -r $ftp";
 
 if($verbose) {
     print "FTPS server: $cmd\n";
