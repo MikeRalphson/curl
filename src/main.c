@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.101 2001-11-19 19:21:06 bagder Exp $
+ * $Id: main.c,v 1.102 2001-11-21 23:01:01 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1838,6 +1838,8 @@ operate(struct Configurable *config, int argc, char *argv[])
   CURL *curl;
   int res = 0;
   int i;
+
+  errorbuffer[0]=0; /* prevent junk from being output */
 
 #ifdef MALLOCDEBUG
   /* this sends all memory debug messages to a logfile named memdump */
