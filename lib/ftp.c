@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-03-16 11:39:31 $
+ * $Revision: 1.6.2.1 $
+ * $Date: 2000-04-26 21:37:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -202,7 +202,7 @@ static UrgError AllowServerConnect(struct UrlData *data,
 #define lastline(line) (isdigit((int)line[0]) && isdigit((int)line[1]) && \
 			isdigit((int)line[2]) && (' ' == line[3]))
 
-static int GetLastResponse(int sockfd, char *buf,
+int GetLastResponse(int sockfd, char *buf,
 			   struct UrlData *data)
 {
   int nread;
@@ -311,7 +311,7 @@ static char *URLfix(char *string)
 #endif
 
 static
-UrgError _ftp(struct UrlData *data,
+UrgError _ftp(struct connectdata *conn,
               long *bytecountp,
               char *ftpuser,
               char *ftppasswd,
@@ -320,6 +320,7 @@ UrgError _ftp(struct UrlData *data,
   /* this is FTP and no proxy */
   size_t nread;
   UrgError result;
+  struct UrlData *data=conn->data;
   char *buf = data->buffer; /* this is our buffer */
   /* for the ftp PORT mode */
   int portsock=-1;
@@ -758,7 +759,7 @@ UrgError _ftp(struct UrlData *data,
 #if 0
     ProgressInit(data, data->infilesize);
 #endif
-    result = Transfer(data, -1, -1, FALSE, NULL, /* no download */
+    result = Transfer(conn, -1, -1, FALSE, NULL, /* no download */
                       data->secondarysocket, bytecountp);
     if(result)
       return result;
@@ -982,7 +983,7 @@ UrgError _ftp(struct UrlData *data,
       infof(data, "Getting file with size: %d\n", size);
 
       /* FTP download: */
-      result=Transfer(data, data->secondarysocket, size, FALSE,
+      result=Transfer(conn, data->secondarysocket, size, FALSE,
                       bytecountp,
                       -1, NULL); /* no upload here */
       if(result)
@@ -1050,7 +1051,7 @@ UrgError _ftp(struct UrlData *data,
 
 /* -- deal with the ftp server!  -- */
 
-UrgError ftp(struct UrlData *data,
+UrgError ftp(struct connectdata *conn,
              long *bytecountp,
              char *ftpuser,
              char *ftppasswd,
@@ -1065,12 +1066,12 @@ UrgError ftp(struct UrlData *data,
   realpath = curl_unescape(urlpath);
 #endif
   if(realpath) {
-    retcode = _ftp(data, bytecountp, ftpuser, ftppasswd, realpath);
+    retcode = _ftp(conn, bytecountp, ftpuser, ftppasswd, realpath);
     free(realpath);
   }
   else
     /* then we try the original path */
-    retcode = _ftp(data, bytecountp, ftpuser, ftppasswd, urlpath);
+    retcode = _ftp(conn, bytecountp, ftpuser, ftppasswd, urlpath);
 
   return retcode;
 }

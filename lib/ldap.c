@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.2.2.1 $
+ * $Date: 2000-04-26 21:37:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -130,7 +130,7 @@ static int WriteProc(void *param, char *text, int len)
 
 /***********************************************************************
  */
-UrgError ldap(struct UrlData *data, char *path, long *bytecount)
+UrgError ldap(struct connectdata *conn, char *path, long *bytecount)
 {
   UrgError status = URG_OK;
   int rc;
@@ -154,6 +154,7 @@ UrgError ldap(struct UrlData *data, char *path, long *bytecount)
   void *dummy;
 #endif
   int ldaptext;
+  struct UrlData *data=conn->data;
   
   infof(data, "LDAP: %s %s\n", data->url);
 

@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-02-01 23:51:01 $
+ * $Revision: 1.3.2.1 $
+ * $Date: 2000-04-26 21:37:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -40,7 +40,7 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 UrgError 
-Transfer (struct UrlData *data,
+Transfer (struct connectdata *data,
 	  int sockfd,		/* socket to read from or -1 */
 	  int size,		/* -1 if unknown at this point */
 	  bool getheader,	/* TRUE if header parsing is wanted */

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/dict.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-02-14 22:57:42 $
+ * $Revision: 1.4.2.1 $
+ * $Date: 2000-04-26 21:37:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -97,7 +97,7 @@
 #include <curl/mprintf.h>
 
 
-UrgError dict(struct UrlData *data, char *path, long *bytecount)
+UrgError dict(struct connectdata *conn, char *path, long *bytecount)
 {
   int nth;
   char *word;
@@ -107,6 +107,7 @@ UrgError dict(struct UrlData *data, char *path, long *bytecount)
   char *nthdef = NULL; /* This is not part of the protocol, but required
                           by RFC 2229 */
   UrgError result=URG_OK;
+  struct UrlData *data=conn->data;
     
   if(data->conf & CONF_USERPWD) {
     /* AUTH is missing */
@@ -162,7 +163,7 @@ UrgError dict(struct UrlData *data, char *path, long *bytecount)
           word
           );
     
-    result = Transfer(data, data->firstsocket, -1, FALSE, bytecount,
+    result = Transfer(conn, data->firstsocket, -1, FALSE, bytecount,
                       -1, NULL); /* no upload */
       
     if(result)
@@ -210,7 +211,7 @@ UrgError dict(struct UrlData *data, char *path, long *bytecount)
           word
           );
     
-    result = Transfer(data, data->firstsocket, -1, FALSE, bytecount,
+    result = Transfer(conn, data->firstsocket, -1, FALSE, bytecount,
                       -1, NULL); /* no upload */
       
     if(result)
@@ -234,7 +235,7 @@ UrgError dict(struct UrlData *data, char *path, long *bytecount)
             "QUIT\n",
             ppath);
       
-      result = Transfer(data, data->firstsocket, -1, FALSE, bytecount,
+      result = Transfer(conn, data->firstsocket, -1, FALSE, bytecount,
                         -1, NULL);
       
       if(result)

@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.6 $
- * $Date: 2000-03-01 22:06:57 $
+ * $Revision: 1.6.2.1 $
+ * $Date: 2000-04-26 21:37:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -87,6 +87,8 @@
 #endif
 #endif
 
+#include <netinet/in.h>
+
 #include "timeval.h"
 
 /* Download buffer size, keep it fairly big for speed reasons */
@@ -95,6 +97,49 @@
 /* Initial size of the buffer to store headers in, it'll be enlarged in case
    of need. */
 #define HEADERSIZE 256
+
+typedef enum {
+  STRUCT_NONE,
+  STRUCT_OPEN,
+  STRUCT_CONNECT,
+  STRUCT_LAST,
+} Handle;
+
+
+/* To better see what kind of struct that is passed as input, *ALL* publicly
+   returned handles MUST have this initial 'Handle'. */
+struct connectdata {
+  /**** Fields set when inited and not modified again */
+
+  Handle handle; /* struct identifier */
+  struct UrlData *data; /* link to the root CURL struct */
+
+  /**** curl_connect() phase fields */
+
+  struct hostent *hp;
+  struct sockaddr_in serv_addr;
+  char proto[64];
+  char gname[256];
+  char *name;
+  char path[URL_MAX_LENGTH];
+  char *ppath;
+  long bytecount;
+  struct timeval now;
+
+  /**** curl_get() phase fields */
+
+  /* READ stuff */
+  int sockfd;		 /* socket to read from or -1 */
+  int size;		 /* -1 if unknown at this point */
+  bool getheader;	 /* TRUE if header parsing is wanted */
+  long *bytecountp;	 /* return number of bytes read or NULL */
+          
+  /* WRITE stuff */
+  int writesockfd;       /* socket to write to, it may very well be
+                            the same we read from. -1 disables */
+  long *writebytecountp; /* return number of bytes written or NULL */
+
+};
 
 struct Progress {
   long lastshow; /* time() of the last displayed progress meter or NULL to
@@ -121,10 +166,77 @@ struct Progress {
   int httpcode;
 };
 
+/****************************************************************************
+ * HTTP unique setup
+ ***************************************************************************/
+struct HTTP {
+  struct FormData *sendit;
+  int postsize;
+  char *p_pragma;
+  char *p_accept;
+  long readbytecount;
+  long writebytecount;
+
+  /* For FORM posting */
+  struct Form form;
+  size_t (*storefread)(char *, size_t , size_t , FILE *);
+  FILE *in;
+  long conf;
+};
+
+
+
+/*
+ * As of April 11, 2000 we're now trying to split up the urldata struct in
+ * three different parts:
+ *
+ * (Global)
+ * 1 - No matter how many hosts and requests that are being performed, this
+ *     goes for all of them.
+ *
+ * (Session)
+ * 2 - Host and protocol-specific. No matter if we do several transfers to and
+ *     from this host, these variables stay the same.
+ *
+ * (Request)
+ * 3 - Request-specific. Variables that are of interest for this particular
+ *     transfer being made right now.
+ *
+ */
+
 struct UrlData {
+  Handle handle; /* struct identifier */
+
+  /*************** Global - specific items  ************/
+  FILE *err;    /* the stderr writes goes here */
+  char *errorbuffer; /* store failure messages in here */
+
+  /*************** Session - specific items ************/
+  char *proxy; /* if proxy, set it here, set CONF_PROXY to use this */
+  char *proxyuserpwd;  /* Proxy <user:password>, if used */
+
+  /*************** Request - specific items ************/
+
+  union {
+    struct HTTP *http;
+    struct HTTP *gopher; /* alias, just for the sake of being more readable */
+    struct HTTP *https;  /* alias, just for the sake of being more readable */
+#if 0
+    struct FTP *ftp;
+    struct TELNET *telnet;
+    struct FILE *file;
+    struct LDAP *ldap;
+    struct DICT *dict;
+#endif
+  } proto;
+
+  /* These two functions MUST be set by the curl_connect() function to be
+     be protocol dependent */
+  int (*curl_do)(CURLconnect *connect);
+  int (*curl_done)(CURLconnect *connect);
+
   FILE *out;    /* the fetched file goes here */
   FILE *in;     /* the uploaded file is read from here */
-  FILE *err;    /* the stderr writes goes here */
   FILE *writeheader; /* write the header to this is non-NULL */
   char *url;   /* what to get */
   char *freethis; /* if non-NULL, an allocated string for the URL */
@@ -133,15 +245,12 @@ struct UrlData {
                           CONF_PORT to use this */
   unsigned short remote_port; /* what remote port to connect to, not the proxy
 				 port! */
-  char *proxy; /* if proxy, set it here, set CONF_PROXY to use this */
   long conf;   /* configure flags */
   char *userpwd;  /* <user:password>, if used */
-  char *proxyuserpwd;  /* Proxy <user:password>, if used */
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */
   char *postfields; /* if POST, set the fields' values here */
   char *referer;
-  char *errorbuffer; /* store failure messages in here */
   char *useragent;   /* User-Agent string */
 
   char *ftpport; /* port to send with the PORT command */

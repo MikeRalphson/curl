@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-03-16 11:40:48 $
+ * $Revision: 1.9.2.1 $
+ * $Date: 2000-04-26 21:37:19 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -115,33 +115,65 @@ bool static checkheaders(struct UrlData *data, char *thisheader)
   return FALSE;
 }
 
-UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
+UrgError http_done(struct connectdata *conn)
 {
-  /* Send the GET line to the HTTP server */
+  struct UrlData *data=conn->data;
+  long *bytecount = &conn->bytecount;
 
-  struct FormData *sendit=NULL;
-  int postsize=0;
+  if(!conn || (conn->handle != STRUCT_CONNECT))
+    return URG_FAILED_INIT; /* TBD: correct return code */
+
+  if(data->conf&(CONF_POST|CONF_HTTPPOST)) {
+    if(data->conf & CONF_POST) {
+    }
+    else {
+      *bytecount = http->readbytecount + http->writebytecount;
+      
+      FormFree(http->sendit); /* Now free that whole lot */
+
+      data->fread = storefread; /* restore */
+      data->in = in; /* restore */
+
+      sendf(data->firstsocket, data,
+            "\r\n\r\n");
+    }
+  }
+  else if(data->conf&CONF_PUT) {
+    *bytecount = http->readbytecount + http->writebytecount;
+  }
+  else {
+    sendf(data->firstsocket, data, "\r\n");
+  }
+  pgrsDone(data);
+
+  return URG_OK;
+}
+
+
+UrgError http(struct connectdata *conn)
+{
+  struct UrlData *data=conn->data;
+  char *buf = data->buffer; /* this is a short cut to the buffer */
   UrgError result;
-  char *buf;
-  struct Cookie *co = NULL;
-  char *p_pragma = NULL;
-  char *p_accept = NULL;
-  long readbytecount;
-  long writebytecount;
+  struct HTTP *http;
+  struct Cookie *co;
+  char *ppath = conn->ppath; /* three previous function arguments */
+  char *host = conn->name;
+  long *bytecount = &conn->bytecount;
 
-  buf = data->buffer; /* this is our buffer */
+  if(!conn || (conn->handle != STRUCT_CONNECT))
+    return URG_FAILED_INIT; /* TBD: correct return code */
+
+  http = (struct HTTP *)malloc(sizeof(struct HTTP));
+  if(!http)
+    return URG_OUT_OF_MEMORY;
+  memset(http, 0, sizeof(struct HTTP));
+  data->proto.http = http;
 
   if ( (data->conf&(CONF_HTTP|CONF_FTP)) &&
        (data->conf&CONF_UPLOAD)) {
     data->conf |= CONF_PUT;
   }
-#if 0 /* old version */
-  if((data->conf&(CONF_HTTP|CONF_UPLOAD)) ==
-     (CONF_HTTP|CONF_UPLOAD)) {
-    /* enable PUT! */
-    data->conf |= CONF_PUT;
-  }
-#endif
   
   /* The User-Agent string has been built in url.c already, because it might
      have been used in the proxy connect, but if we have got a header with
@@ -182,7 +214,7 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
   if(data->conf & CONF_HTTPPOST) {
     /* we must build the whole darned post sequence first, so that we have
        a size of the whole shebang before we start to send it */
-    sendit = getFormData(data->httppost, &postsize);
+    http->sendit = getFormData(data->httppost, &http->postsize);
   }
 
   if(!checkheaders(data, "Host:"))
@@ -190,10 +222,10 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
 
 
   if(!checkheaders(data, "Pragma:"))
-    p_pragma = "Pragma: no-cache\r\n";
+    http->p_pragma = "Pragma: no-cache\r\n";
 
   if(!checkheaders(data, "Accept:"))
-    p_accept = "Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*\r\n";
+    http->p_accept = "Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*\r\n";
 
   do {
     sendf(data->firstsocket, data,
@@ -220,8 +252,8 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
           (data->useragent && *data->useragent && data->ptr_uagent)?data->ptr_uagent:"",
           (data->ptr_cookie?data->ptr_cookie:""), /* Cookie: <data> */
           (data->ptr_host?data->ptr_host:""), /* Host: host */
-          p_pragma?p_pragma:"",
-          p_accept?p_accept:"",
+          http->p_pragma?http->p_pragma:"",
+          http->p_accept?http->p_accept:"",
           (data->conf&CONF_REFERER && data->ptr_ref)?data->ptr_ref:"" /* Referer: <data> <CRLF> */
           );
 
@@ -234,9 +266,10 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
             sendf(data->firstsocket, data,
                   "Cookie:");
           }
-          count++;
           sendf(data->firstsocket, data,
-                " %s=%s;", co->name, co->value);
+                "%s%s=%s", count?"; ":"", co->name,
+                co->value);
+          count++;
         }
         co = co->next; /* next cookie please */
       }
@@ -295,18 +328,14 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
               data->postfields );
       }
       else {
-        struct Form form;
-        size_t (*storefread)(char *, size_t , size_t , FILE *);
-        FILE *in;
-        long conf;
 
-        if(FormInit(&form, sendit)) {
+        if(FormInit(&http->form, http->sendit)) {
           failf(data, "Internal HTTP POST error!\n");
           return URG_HTTP_POST_ERROR;
         }
 
-        storefread = data->fread; /* backup */
-        in = data->in; /* backup */
+        http->storefread = data->fread; /* backup */
+        http->in = data->in; /* backup */
           
         data->fread =
           (size_t (*)(char *, size_t, size_t, FILE *))
@@ -316,27 +345,18 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
 
         sendf(data->firstsocket, data,
               "Content-Length: %d\r\n",
-              postsize-2);
+              http->postsize-2);
 
-	pgrsSetUploadSize(data, postsize);
-#if 0
-        ProgressInit(data, postsize);
-#endif
+	pgrsSetUploadSize(data, http->postsize);
 
-        result = Transfer(data, data->firstsocket, -1, TRUE, &readbytecount,
-                          data->firstsocket, &writebytecount);
-        *bytecount = readbytecount + writebytecount;
-
-        FormFree(sendit); /* Now free that whole lot */
-
-        if(result)
+        result = Transfer(conn, data->firstsocket, -1, TRUE,
+                          &http->readbytecount,
+                          data->firstsocket,
+                          &http->writebytecount);
+        if(result) {
+          FormFree(http->sendit); /* free that whole lot */
           return result;
-	
-        data->fread = storefread; /* restore */
-        data->in = in; /* restore */
-
-	sendf(data->firstsocket, data,
-	      "\r\n\r\n");
+        }
       }
     }
     else if(data->conf&CONF_PUT) {
@@ -352,36 +372,23 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
         sendf(data->firstsocket, data,
               "\015\012");
 
-#if 0        
-      ProgressInit(data, data->infilesize);
-#endif
       pgrsSetUploadSize(data, data->infilesize);
 
-      result = Transfer(data, data->firstsocket, -1, TRUE, &readbytecount,
-                        data->firstsocket, &writebytecount);
-      
-      *bytecount = readbytecount + writebytecount;
-
+      result = Transfer(conn, data->firstsocket, -1, TRUE,
+                        &http->readbytecount,
+                        data->firstsocket,
+                        &http->writebytecount);
       if(result)
         return result;
 
     }
     else {
-      sendf(data->firstsocket, data, "\r\n");
-    }
-    if(0 == *bytecount) {
       /* HTTP GET/HEAD download: */
-      result = Transfer(data, data->firstsocket, -1, TRUE, bytecount,
+      result = Transfer(conn, data->firstsocket, -1, TRUE, bytecount,
                         -1, NULL); /* nothing to upload */
     }
     if(result)
       return result;
-
-#if 0      
-    ProgressEnd(data);
-#endif
-    pgrsDone(data);
-
   } while (0); /* this is just a left-over from the multiple document download
                   attempts */
 
