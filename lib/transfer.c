@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.83 2002-02-20 13:38:34 bagder Exp $
+ * $Id: transfer.c,v 1.84 2002-02-28 15:13:35 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -603,6 +603,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             return result;
 
           data->info.header_size += k->hbuflen;
+          conn->headerbytecount += k->hbuflen;
               
           /* reset hbufp pointer && hbuflen */
           k->hbufp = data->state.headerbuff;
