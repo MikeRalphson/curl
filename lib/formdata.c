@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.35 2002-03-19 07:54:55 bagder Exp $
+ * $Id: formdata.c,v 1.36 2002-04-03 11:11:01 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -982,8 +982,8 @@ char *Curl_FormBoundary(void)
 			      the same form won't be identical */
   int i;
 
-  static char table64[]=
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  static char table62[]=
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
   retstring = (char *)malloc(BOUNDARY_LENGTH);
 
@@ -995,7 +995,7 @@ char *Curl_FormBoundary(void)
   strcpy(retstring, "curl"); /* bonus commercials 8*) */
 
   for(i=4; i<(BOUNDARY_LENGTH-1); i++) {
-    retstring[i] = table64[rand()%64];
+    retstring[i] = table62[rand()%62];
   }
   retstring[BOUNDARY_LENGTH-1]=0; /* zero terminate */
 
