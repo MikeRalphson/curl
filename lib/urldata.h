@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.24 $
- * $Date: 2000-10-04 13:07:43 $
+ * $Revision: 1.25 $
+ * $Date: 2000-10-06 06:28:39 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -307,6 +307,7 @@ struct Configbits {
   bool proxystringalloc; /* the http proxy string is malloc()'ed */
   bool set_port;
   bool set_range;
+  bool rangestringalloc; /* the range string is malloc()'ed */
   bool upload;
   bool use_netrc;
   bool user_passwd;

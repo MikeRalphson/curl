@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.42 $
- * $Date: 2000-10-03 22:04:04 $
+ * $Revision: 1.43 $
+ * $Date: 2000-10-06 06:28:39 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -182,6 +182,11 @@ void static urlfree(struct UrlData *data, bool totally)
        "discovered" the proxy in the environment variables and thus we must
        switch off that knowledge again... */
     data->bits.httpproxy=FALSE;
+  }
+  
+  if(data->bits.rangestringalloc) {
+    free(data->range);
+    data->range=NULL;
   }
 
   if(data->ptr_proxyuserpwd) {
@@ -906,7 +911,8 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
     if(!data->bits.set_range) {
       /* if it already was in use, we just skip this */
       sprintf(resumerange, "%d-", data->resume_from);
-      data->range=resumerange; /* tell ourselves to fetch this range */
+      data->range=strdup(resumerange); /* tell ourselves to fetch this range */
+      data->bits.rangestringalloc = TRUE; /* mark as allocated */
       data->bits.set_range = 1; /* switch on range usage */
     }
   }
