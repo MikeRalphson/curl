@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.43 2005-03-10 23:15:30 bagder Exp $
+ * $Id: version.c,v 1.44 2005-03-11 15:10:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -196,7 +196,10 @@ static curl_version_info_data version_info = {
   | CURL_VERSION_SSL
 #endif
 #if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
-  | CURL_VERSION_NTLM /* since this requires OpenSSL */
+  | CURL_VERSION_NTLM
+#endif
+#ifdef USE_WINDOWS_SSPI
+  | CURL_VERSION_SSPI
 #endif
 #ifdef HAVE_LIBZ
   | CURL_VERSION_LIBZ

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.278 2005-02-09 13:06:40 bagder Exp $
+ * $Id: curl.h,v 1.279 2005-03-11 15:10:36 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1382,6 +1382,7 @@ typedef struct {
 #define CURL_VERSION_SPNEGO    (1<<8)  /* SPNEGO auth */
 #define CURL_VERSION_LARGEFILE (1<<9)  /* supports files bigger than 2GB */
 #define CURL_VERSION_IDN       (1<<10) /* International Domain Names support */
+#define CURL_VERSION_SSPI      (1<<11) /* SSPI is supported */
 
 /*
  * NAME curl_version_info()

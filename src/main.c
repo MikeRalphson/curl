@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.313 2005-03-07 18:59:04 danf Exp $
+ * $Id: main.c,v 1.314 2005-03-11 15:10:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2098,6 +2098,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           {"NTLM", CURL_VERSION_NTLM},
           {"SPNEGO", CURL_VERSION_SPNEGO},
           {"SSL",  CURL_VERSION_SSL},
+          {"SSPI",  CURL_VERSION_SSPI},
           {"krb4", CURL_VERSION_KERBEROS4},
           {"libz", CURL_VERSION_LIBZ}
         };
