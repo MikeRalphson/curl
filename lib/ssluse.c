@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.111 2004-07-04 21:42:32 bagder Exp $
+ * $Id: ssluse.c,v 1.112 2004-07-29 07:34:17 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -333,11 +333,13 @@ int cert_stuff(struct connectdata *conn,
             failf(data, "no key set to load from crypto engine\n");
             return 0;
           }
-          priv_key = ENGINE_load_private_key(conn->data->engine,key_file,
+          /* the typecast below was added to please mingw32 */
+          priv_key = (EVP_PKEY *)
+            ENGINE_load_private_key(conn->data->engine,key_file,
 #ifdef HAVE_ENGINE_LOAD_FOUR_ARGS
-                                             ui_method,
+                                    ui_method,
 #endif
-                                             data->set.key_passwd);
+                                    data->set.key_passwd);
           if(!priv_key) {
             failf(data, "failed to load private key from crypto engine\n");
             return 0;
