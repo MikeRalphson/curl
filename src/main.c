@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.296 2004-12-15 01:38:25 danf Exp $
+ * $Id: main.c,v 1.297 2004-12-15 03:03:45 danf Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -309,7 +309,7 @@ struct getout {
 static void help(void)
 {
   int i;
-  static const char *helptext[]={
+  static const char * const helptext[]={
     "Usage: curl [options...] <url>",
     "Options: (H) means HTTP/HTTPS only, (F) means FTP only",
     " -a/--append        Append to target file when uploading (F)",
@@ -3662,10 +3662,10 @@ operate(struct Configurable *config, int argc, char *argv[])
 
             if(retry) {
               if(!(config->conf&CONF_MUTE)) {
-                static const char *m[]={NULL,
-                                        "timeout",
-                                        "HTTP error",
-                                        "FTP error"
+                static const char * const m[]={NULL,
+                                              "timeout",
+                                              "HTTP error",
+                                              "FTP error"
                 };
                 fprintf(stderr, "Transient problem: %s\n"
                         "Will retry in %ld seconds. "
