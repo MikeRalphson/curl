@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.47 2004-03-03 09:25:59 bagder Exp $
+ * $Id: file.c,v 1.48 2004-03-04 15:12:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -174,6 +174,7 @@ CURLcode Curl_file(struct connectdata *conn)
   char *buf = data->state.buffer;
   curl_off_t bytecount = 0;
   int fd;
+  struct timeval now = Curl_tvnow();
 
   /* get the fd from the connection phase */
   fd = conn->proto.file->fd;
@@ -239,6 +240,8 @@ CURLcode Curl_file(struct connectdata *conn)
   if(conn->resume_from)
     lseek(fd, conn->resume_from, SEEK_SET);
 
+  Curl_pgrsTime(data, TIMER_STARTTRANSFER);
+
   while (res == CURLE_OK) {
     nread = read(fd, buf, BUFSIZE-1);
 
@@ -258,8 +261,12 @@ CURLcode Curl_file(struct connectdata *conn)
     if(res)
       return res;
 
+    Curl_pgrsSetDownloadCounter(data, (double)bytecount);
+
     if(Curl_pgrsUpdate(conn))
       res = CURLE_ABORTED_BY_CALLBACK;
+    else
+      res = Curl_speedcheck (data, now);
   }
   if(Curl_pgrsUpdate(conn))
     res = CURLE_ABORTED_BY_CALLBACK;
