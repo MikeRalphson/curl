@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.174 2003-04-09 11:56:31 bagder Exp $
+ * $Id: ftp.c,v 1.175 2003-04-11 08:10:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -726,7 +726,10 @@ CURLcode ftp_cwd(struct connectdata *conn, char *path)
   if (result)
     return result;
 
-  if (ftpcode != 250) {
+  /* According to RFC959, CWD is supposed to return 250 on success, but
+     there seem to be non-compliant FTP servers out there that return 200,
+     so we accept any '2xy' code here. */
+  if (ftpcode/100 != 2) {
     failf(conn->data, "Couldn't cd to %s", path);
     return CURLE_FTP_ACCESS_DENIED;
   }
