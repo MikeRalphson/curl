@@ -1,5 +1,5 @@
-#!/usr/bin/perl
-# $Id: runtests.pl,v 1.54 2002-02-25 12:45:20 bagder Exp $
+#!/usr/bin/env perl
+# $Id: runtests.pl,v 1.55 2002-02-25 14:08:51 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
