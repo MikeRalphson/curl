@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.175 2003-11-24 16:17:55 bagder Exp $
+ * $Id: http.c,v 1.176 2003-11-25 09:05:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -227,13 +227,15 @@ CURLcode http_auth_headers(struct connectdata *conn,
       }
       else
 #endif
-      if((data->state.authwant == CURLAUTH_BASIC) && /* Basic */
-         conn->bits.proxy_user_passwd &&
-         !checkheaders(data, "Proxy-authorization:")) {
-        auth=(char *)"Basic";
-        result = Curl_output_basic_proxy(conn);
-        if(result)
-          return result;
+      if(data->state.authwant == CURLAUTH_BASIC) {
+        /* Basic */
+        if(conn->bits.proxy_user_passwd &&
+           !checkheaders(data, "Proxy-authorization:")) {
+          auth=(char *)"Basic";
+          result = Curl_output_basic_proxy(conn);
+          if(result)
+            return result;
+        }
         *ready = TRUE;
         /* Switch to web authentication after proxy authentication is done */
         Curl_http_auth_stage(data, 401);
@@ -276,13 +278,15 @@ CURLcode http_auth_headers(struct connectdata *conn,
             return result;
           *ready = TRUE;
         }
-        else if((data->state.authwant == CURLAUTH_BASIC) && /* Basic */
-                conn->bits.user_passwd &&
-                !checkheaders(data, "Authorization:")) {
-          auth=(char *)"Basic";
-          result = Curl_output_basic(conn);
-          if(result)
-            return result;
+        else if(data->state.authwant == CURLAUTH_BASIC) {/* Basic */
+          if(conn->bits.user_passwd &&
+             !checkheaders(data, "Authorization:")) {
+            auth=(char *)"Basic";
+            result = Curl_output_basic(conn);
+            if(result)
+              return result;
+          }
+          /* basic is always ready */
           *ready = TRUE;
         }
       }
