@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.67 2005-02-09 13:06:40 bagder Exp $
+ * $Id: multi.c,v 1.68 2005-03-08 22:21:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -494,7 +494,6 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
                and then we continue to 'STATE_PROTOCONNECT'. If protocol
                connect is TRUE, we move on to STATE_DO. */
             multistate(easy, CURLM_STATE_PROTOCONNECT);
-            fprintf(stderr, "WAITCONNECT => PROTOCONNECT\n");
           }
           else {
             /* after the connect has completed, go DO */
