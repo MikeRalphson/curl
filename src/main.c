@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.205 2003-10-24 12:56:27 bagder Exp $
+ * $Id: main.c,v 1.206 2003-10-28 09:28:11 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2834,6 +2834,8 @@ operate(struct Configurable *config, int argc, char *argv[])
           break;
         }
       }
+      else
+        urlnum = 1; /* without globbing, this is a single URL */
 
       /* if multiple files extracted to stdout, insert separators! */
       separator= ((!outfiles || curl_strequal(outfiles, "-")) && urlnum > 1);
