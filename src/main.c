@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.158 2003-01-07 09:35:57 bagder Exp $
+ * $Id: main.c,v 1.159 2003-01-08 15:04:42 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -144,6 +144,12 @@ char *strdup(char *str)
 
 }
 #endif 
+
+#ifdef WIN32
+#include <direct.h>
+#define F_OK 0
+#define mkdir(x,y) (mkdir)(x)
+#endif
 
 #ifdef	VMS
 int	vms_show = 0;
@@ -3073,7 +3079,7 @@ static int create_dir_hierarchy(char *outfile)
         else
           sprintf(dirbuildup,"%s%s", DIR_CHAR, tempdir);
       }
-      if (access(dirbuildup,F_OK) == -1) {
+      if (access(dirbuildup, F_OK) == -1) {
         result = mkdir(dirbuildup,(mode_t)0000750);
         if (-1 == result) {
           switch (errno) {
