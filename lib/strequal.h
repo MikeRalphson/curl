@@ -20,14 +20,18 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.h,v 1.14 2004-06-13 08:32:57 bagder Exp $
+ * $Id: strequal.h,v 1.15 2004-11-09 14:00:56 giva Exp $
  ***************************************************************************/
 
+#include <curl/curl.h>
+
+#if 0
 /*
- * These two actually are public functions.
+ * These two actually are public functions, which are in <curl/curl.h>
  */
 int curl_strequal(const char *first, const char *second);
 int curl_strnequal(const char *first, const char *second, size_t max);
+#endif
 
 #define strequal(a,b) curl_strequal(a,b)
 #define strnequal(a,b,c) curl_strnequal(a,b,c)
