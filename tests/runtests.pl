@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.57 2002-03-01 09:20:03 bagder Exp $
+# $Id: runtests.pl,v 1.58 2002-04-09 14:28:16 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -76,6 +76,7 @@ chomp($pwd = `pwd`);
 
 # enable memory debugging if curl is compiled with it
 $ENV{'CURL_MEMDEBUG'} = 1;
+$ENV{'HOME'}=$pwd;
 
 #######################################################################
 # Return the pid of the server as found in the given pid file
