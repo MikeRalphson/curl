@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-01-16 18:52:24 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -254,7 +254,7 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
       strftime(buf, BUFSIZE-1, "%a, %d %b %Y %H:%M:%S %Z", thistime);
 #else
-      /* Right, we *could* write a replacement here */
+      /* TODO: Right, we *could* write a replacement here */
       strcpy(buf, "no strftime() support");
 #endif
       switch(data->timecondition) {
