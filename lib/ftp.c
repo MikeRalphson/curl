@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.103 2001-10-31 20:59:24 bagder Exp $
+ * $Id: ftp.c,v 1.104 2001-11-01 12:17:51 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -194,7 +194,7 @@ int Curl_GetFTPResponse(char *buf,
   if(data->set.timeout) {
     /* if timeout is requested, find out how much remaining time we have */
     timeout = data->set.timeout - /* timeout time */
-      (Curl_tvlong(Curl_tvnow()) - Curl_tvlong(conn->now)); /* spent time */
+      Curl_tvdiff(Curl_tvnow(), conn->now)/1000; /* spent time */
     if(timeout <=0 ) {
       failf(data, "Transfer aborted due to timeout");
       return -SELECT_TIMEOUT; /* already too little time */
