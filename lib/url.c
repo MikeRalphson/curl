@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.272 2003-04-11 16:23:06 bagder Exp $
+ * $Id: url.c,v 1.273 2003-04-30 19:58:36 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1217,6 +1217,8 @@ CURLcode Curl_disconnect(struct connectdata *conn)
     free(conn->allocptr.cookie);
   if(conn->allocptr.host)
     free(conn->allocptr.host);
+  if(conn->allocptr.cookiehost)
+    free(conn->allocptr.cookiehost);
 
   if(conn->proxyhost)
     free(conn->proxyhost);
