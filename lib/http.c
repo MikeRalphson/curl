@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.210 2004-04-13 07:37:28 bagder Exp $
+ * $Id: http.c,v 1.211 2004-04-20 07:53:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1150,8 +1150,8 @@ CURLcode Curl_http(struct connectdata *conn)
   CURLcode result=CURLE_OK;
   struct HTTP *http;
   struct Cookie *co=NULL; /* no cookies from start */
-  char *ppath = conn->ppath; /* three previous function arguments */
-  char *host = conn->name;
+  char *ppath = conn->path;
+  char *host = conn->hostname;
   const char *te = ""; /* tranfer-encoding */
   char *ptr;
   char *request;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.248 2004-04-15 10:43:40 bagder Exp $
+ * $Id: ftp.c,v 1.249 2004-04-20 07:53:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1611,7 +1611,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
           newport = num;
 
           /* we should use the same host we already are connected to */
-          newhostp = conn->name;
+          newhostp = conn->hostname;
         }
       }                      
       else
@@ -2320,8 +2320,8 @@ CURLcode Curl_ftp(struct connectdata *conn)
   struct FTP *ftp;
 
   char *slash_pos;  /* position of the first '/' char in curpos */
-  char *cur_pos=conn->ppath; /* current position in ppath. point at the begin
-                                of next path component */
+  char *cur_pos=conn->path; /* current position in ppath. point at the begin
+                               of next path component */
 
   /* the ftp struct is already inited in ftp_connect() */
   ftp = conn->proto.ftp;
@@ -2343,7 +2343,7 @@ CURLcode Curl_ftp(struct connectdata *conn)
   /* parse the URL path into separate path components */
   while((slash_pos=strchr(cur_pos, '/'))) {
     /* 1 or 0 to indicate absolute directory */
-    bool absolute_dir = (cur_pos - conn->ppath > 0) && (ftp->dirdepth == 0);
+    bool absolute_dir = (cur_pos - conn->path > 0) && (ftp->dirdepth == 0);
 
     /* seek out the next path component */
     if (slash_pos-cur_pos) {
