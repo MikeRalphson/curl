@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.2 2001-11-28 15:25:01 bagder Exp $
+ * $Id: multi.h,v 1.3 2001-11-28 16:00:18 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -62,13 +62,22 @@ typedef enum {
   CURLM_LAST
 } CURLMcode;
 
+typedef enum {
+  CURLMSG_NONE, /* first, not used */
+  CURLMSG_DONE, /* This easy handle has completed. 'whatever' points to
+                   the CURLcode of the transfer */
+  CURLMSG_LAST /* last, not used */
+} CURLMSG;
+
 struct CURLMsg {
-  CURL *easy_handle;
-  void *whatever;
+  CURLMSG msg;       /* what this message means */
+  CURL *easy_handle; /* the handle it concerns */
+  union {
+    void *whatever;    /* message-specific data */
+    CURLcode result;   /* return code for transfer */
+  } data;
 };
 typedef struct CURLMsg CURLMsg;
-
-typedef void * CURLMinfo;
 
 /*
  * Name:    curl_multi_init()
