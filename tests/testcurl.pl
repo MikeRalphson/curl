@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.16 2004-07-24 21:24:03 bagder Exp $
+# $Id: testcurl.pl,v 1.17 2004-07-25 06:03:10 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.16 $';
+$version='$Revision: 1.17 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -82,7 +82,7 @@ while ($ARGV[0]) {
 $gnulikebuild = 1;
 $confsuffix = '';
 $binext = '';
-$libext = '.a';
+$libext = '.la'; # .la since both libcurl and libcares are made with libtool
 if ($^O eq 'MSWin32' || $targetos ne '') {
   $gnulikebuild = 0;
   if ($targetos eq '') {
