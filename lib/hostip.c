@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.104 2003-10-14 12:00:45 bagder Exp $
+ * $Id: hostip.c,v 1.105 2003-10-20 08:45:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -527,8 +527,16 @@ static void host_callback(void *arg, /* "struct connectdata *" */
       /* pack_hostent() copies to and shrinks the target buffer */
       struct hostent *he = pack_hostent(&bufp, hostent);
 
-      dns = cache_resolv_response(conn->data, he,
+      struct SessionHandle *data = conn->data;
+
+      if(data->share)
+        Curl_share_lock(data, CURL_LOCK_DATA_DNS, CURL_LOCK_ACCESS_SINGLE);
+
+      dns = cache_resolv_response(data, he,
                                   conn->async.hostname, conn->async.port);
+
+      if(data->share)
+        Curl_share_unlock(data, CURL_LOCK_DATA_DNS);
     }
   }
 
