@@ -1,11 +1,11 @@
 /*****************************************************************************
- *                                  _   _ ____  _     
- *  Project                     ___| | | |  _ \| |    
- *                             / __| | | | |_) | |    
- *                            | (__| |_| |  _ <| |___ 
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: postit2.c,v 1.3 2004-03-28 21:41:10 bagder Exp $
+ * $Id: postit2.c,v 1.4 2004-08-23 14:22:52 bagder Exp $
  *
  * Example code that uploads a file name 'foo' to a remote script that accepts
  * "HTML form based" (as described in RFC1738) uploads using HTTP POST.
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
                CURLFORM_COPYNAME, "filename",
                CURLFORM_COPYCONTENTS, "postit2.c",
                CURLFORM_END);
-  
+
 
   /* Fill in the submit field too, even if this is rarely needed */
   curl_formadd(&formpost,
