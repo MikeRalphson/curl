@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-04-02 12:08:12 $
+ * $Revision: 1.12 $
+ * $Date: 2000-04-04 17:44:24 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1181,6 +1181,19 @@ static UrgError _urlget(struct UrlData *data)
 
 #if 0 /* Kerberos experiements! Beware! Take cover! */
   kerberos_connect(data, name);
+#endif
+
+#ifdef __EMX__
+  /* 20000330 mgs
+   * the check is quite a hack...
+   * we're calling _fsetmode to fix the problem with fwrite converting newline
+   * characters (you get mangled text files, and corrupted binary files when
+   * you download to stdout and redirect it to a file). */
+
+  if ((data->out)->_handle == NULL) {
+    fprintf(stderr, "_fsetmode\n");
+    _fsetmode(stdout, "b");
+  }
 #endif
 
   if((data->conf&(CONF_FTP|CONF_PROXY)) == CONF_FTP) {
