@@ -20,11 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.h,v 1.2 2001-03-07 23:51:41 bagder Exp $
+ * $Id: http_chunks.h,v 1.3 2001-03-12 15:20:02 bagder Exp $
  *****************************************************************************/
 /*
  * The longest possible hexadecimal number we support in a chunked transfer.
- * Weird enoug, RFC2616 doesn't set a maximum size! Since we use strtoul()
+ * Weird enough, RFC2616 doesn't set a maximum size! Since we use strtoul()
  * to convert it, we "only" support 2^32 bytes chunk data.
  */
 #define MAXNUM_SIZE 16
@@ -62,6 +62,7 @@ typedef enum {
   CHUNKE_STOP = -1,
   CHUNKE_OK = 0,
   CHUNKE_TOO_LONG_HEX = 1,
+  CHUNKE_ILLEGAL_HEX,
   CHUNKE_WRITE_ERROR,
   CHUNKE_STATE_ERROR,
   CHUNKE_LAST
