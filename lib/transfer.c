@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.81 2002-01-29 20:28:59 bagder Exp $
+ * $Id: transfer.c,v 1.82 2002-02-06 07:02:13 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -478,7 +478,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                 start++);
 
             /* count all non-space letters following */
-            for(end=start+1, len=0;
+            for(end=start, len=0;
                 *end && !isspace((int)*end);
                 end++, len++);
 
