@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.181 2002-12-20 09:03:38 bagder Exp $
+ * $Id: curl.h,v 1.182 2003-01-07 16:15:53 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -615,6 +615,9 @@ typedef enum {
  
   /* Set pointer to private data */
   CINIT(PRIVATE, OBJECTPOINT, 103),
+
+  /* Set aliases for HTTP 200 in the HTTP Response header */
+  CINIT(HTTP200ALIASES, OBJECTPOINT, 104),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

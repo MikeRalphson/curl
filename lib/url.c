@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.248 2002-12-13 16:15:23 bagder Exp $
+ * $Id: url.c,v 1.249 2003-01-07 16:16:06 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1095,6 +1095,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     data->set.private = va_arg(param, char *);
     break;
 
+  case CURLOPT_HTTP200ALIASES:
+    /*
+     * Set a list of aliases for HTTP 200 in response header
+     */
+    data->set.http200aliases = va_arg(param, struct curl_slist *);
+    break;
+      
   default:
     /* unknown tag and its companion, just ignore: */
     return CURLE_FAILED_INIT; /* correct this */

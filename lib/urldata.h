@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.138 2002-12-13 16:15:31 bagder Exp $
+ * $Id: urldata.h,v 1.139 2003-01-07 16:16:20 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -715,6 +715,8 @@ struct UserDefined {
   long buffer_size;      /* size of receive buffer to use */
 
   char *private; /* Private data */
+
+  struct curl_slist *http200aliases; /* linked list of aliases for http200 */
   
 /* Here follows boolean settings that define how to behave during
    this session. They are STATIC, set by libcurl users or at least initially
