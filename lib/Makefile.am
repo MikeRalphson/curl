@@ -18,14 +18,14 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.106 2005-01-14 13:43:29 bagder Exp $
+# $Id: Makefile.am,v 1.107 2005-03-16 23:09:39 danf Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
 DSP = curllib.dsp
 
 EXTRA_DIST = Makefile.b32 Makefile.m32 Makefile.vc6 Makefile.riscos $(DSP)    \
- curllib.dsw config-vms.h config-win32.h config-win32ce.h config-riscos.h     \
+ curllib.dsw config-win32.h config-win32ce.h config-riscos.h     \
  config-mac.h config.h.in ca-bundle.crt README.encoding README.memoryleak     \
  README.ares README.curlx makefile.dj config.dj libcurl.framework.make	      \
  libcurl.plist libcurl.rc config-amigaos.h amigaos.c amigaos.h makefile.amiga \
