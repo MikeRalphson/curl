@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.196 2003-08-22 12:35:18 bagder Exp $
+ * $Id: ftp.c,v 1.197 2003-09-03 21:44:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1518,20 +1518,19 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
 
   Curl_resolv_unlock(data, addr); /* we're done using this address */
 
+  if(result)
+    return result;
+
   /*
    * When this is used from the multi interface, this might've returned with
    * the 'connected' set to FALSE and thus we are now awaiting a non-blocking
    * connect to connect and we should not be "hanging" here waiting.
    */
   
-  if((CURLE_OK == result) &&       
-     data->set.verbose)
+  if(data->set.verbose)
     /* this just dumps information about this second connection */
     ftp_pasv_verbose(conn, conninfo, newhostp, connectport);
   
-  if(CURLE_OK != result)
-    return result;
-
   if (data->set.tunnel_thru_httpproxy) {
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
     result = Curl_ConnectHTTPProxyTunnel(conn, conn->secondarysocket,
