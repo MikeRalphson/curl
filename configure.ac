@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.86 2004-06-27 21:51:54 bagder Exp $
+dnl $Id: configure.ac,v 1.87 2004-06-29 11:22:39 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1014,7 +1014,7 @@ else
     CURL_CHECK_GETHOSTBYNAME_R()
 
     dnl dig around for gethostbyaddr_r()
-    CURL_CHECK_GETHOSTBYADDR_R()
+    dnl CURL_CHECK_GETHOSTBYADDR_R()
   fi
 
   dnl poke around for inet_ntoa_r()
