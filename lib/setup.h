@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.10 2001-01-25 12:21:10 bagder Exp $
+ * $Id: setup.h,v 1.11 2001-05-31 07:01:08 bagder Exp $
  *****************************************************************************/
 
 
@@ -43,6 +43,14 @@
 #ifndef __cplusplus        /* (rabe) */
 typedef char bool;
 #endif                     /* (rabe) */
+
+#ifdef NEED_REENTRANT
+/* Solaris machines needs _REENTRANT set for a few function prototypes and
+   things to appear in the #include files. We need to #define it before all
+   #include files */
+#define _REENTRANT
+#endif
+
 
 #include <stdio.h>
 #ifndef OS
