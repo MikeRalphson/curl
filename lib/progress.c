@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.58 2004-03-23 11:43:34 bagder Exp $
+ * $Id: progress.c,v 1.59 2004-03-23 11:46:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -56,8 +56,8 @@ static void time2str(char *r, long t)
   else {
     /* this equals to more than 99 hours, switch to a more suitable output
        format to fit within the limits. */
-    if(h/24 <= 99)
-      sprintf(r, " %2dd %02dh", h/24, h-(h/24)*24);
+    if(h/24 <= 999)
+      sprintf(r, "%3dd %02dh", h/24, h-(h/24)*24);
     else
       sprintf(r, "%7dd", h/24);
   }
