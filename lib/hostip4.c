@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.7 2004-06-24 11:58:43 bagder Exp $
+ * $Id: hostip4.c,v 1.8 2004-06-24 12:01:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -353,13 +353,6 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
     h = gethostbyname(hostname);
     if (!h)
       infof(data, "gethostbyname(2) failed for %s\n", hostname);
-    else {
-      /*
-       * Translate the hostent to Curl_addrinfo and return the allocated
-       * data.
-       */
-      return Curl_addrinfo_copy(h, port);
-    }
 #endif /*HAVE_GETHOSTBYNAME_R */
   }
 
