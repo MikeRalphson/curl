@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.78 2001-05-12 09:37:51 bagder Exp $
+ * $Id: curl.h,v 1.79 2001-05-16 14:45:50 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -151,6 +151,11 @@ typedef enum {
   
   CURL_LAST /* never use! */
 } CURLcode;
+
+/* this was the error code 50 in 7.7.3 and a few earlier versions, this
+   is no longer used by libcurl but is instead #defined here only to not
+   make programs break */
+#define CURLE_ALREADY_COMPLETE 99999
 
 /* This is just to make older programs not break: */
 #define CURLE_FTP_PARTIAL_FILE CURLE_PARTIAL_FILE
@@ -488,8 +493,8 @@ char *curl_escape(char *string, int length);
 char *curl_unescape(char *string, int length);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.7.3"
-#define LIBCURL_VERSION_NUM 0x070703
+#define LIBCURL_VERSION "7.7.4-pre1"
+#define LIBCURL_VERSION_NUM 0x070704
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
 struct curl_slist {
