@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.8 2001-11-20 15:00:50 bagder Exp $
+ * $Id: writeout.c,v 1.9 2002-02-25 07:40:49 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -46,6 +46,7 @@ typedef enum {
   VAR_HEADER_SIZE,
   VAR_REQUEST_SIZE,
   VAR_EFFECTIVE_URL,
+  VAR_CONTENT_TYPE,
   VAR_NUM_OF_VARS /* must be the last */
 } replaceid;
 
@@ -69,6 +70,7 @@ static struct variable replacements[]={
   {"size_upload", VAR_SIZE_UPLOAD},
   {"speed_download", VAR_SPEED_DOWNLOAD},
   {"speed_upload", VAR_SPEED_UPLOAD},
+  {"content_type", VAR_CONTENT_TYPE},
   {NULL, 0}
 };
 
@@ -165,6 +167,11 @@ void ourWriteOut(CURL *curl, char *writeinfo)
                    curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD, &doubleinfo))
                   fprintf(stream, "%.3f", doubleinfo);
                 break;
+              case VAR_CONTENT_TYPE:
+                if(CURLE_OK ==
+                   curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &stringp))
+                   fputs(stringp, stream);
+               break;
               default:
                 break;
               }
