@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/version.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.6 $
+ * $Date: 2000-09-21 08:51:15 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -79,8 +79,14 @@ char *curl_version(void)
   ptr=strchr(ptr, '\0');
 #endif
 
+#ifdef KRB4
+  sprintf(ptr, " (krb4 enabled)");
+  ptr += strlen(ptr);
+#endif
+
 #ifdef USE_ZLIB
   sprintf(ptr, " (zlib %s)", zlibVersion());
+  ptr += strlen(ptr);
 #endif
 
   return version;
