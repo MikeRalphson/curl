@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.53 2004-02-19 15:58:58 bagder Exp $
+dnl $Id: configure.ac,v 1.54 2004-02-19 19:25:11 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1214,7 +1214,19 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
        
        fi
 
-       CFLAGS="$CFLAGS $WARN"
+       NEWFLAGS=""
+       for flag in $CPPFLAGS; do
+         case "$flag" in
+          -I*)
+            dnl include path
+            add=`echo $flag | sed 's/^-I/-isystem /g'`
+            NEWFLAGS="$NEWFLAGS $add"
+            ;;
+         esac
+       done
+
+       CFLAGS="$CFLAGS $WARN $NEWFLAGS"
+
     fi
     dnl strip off optimizer flags
     NEWFLAGS=""
