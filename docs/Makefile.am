@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.21 2002-06-25 09:21:45 bagder Exp $
+# $Id: Makefile.am,v 1.22 2002-10-03 12:50:48 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -17,7 +17,7 @@ SUBDIRS = examples libcurl
 EXTRA_DIST = MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS		\
 	     README.win32 RESOURCES TODO TheArtOfHttpScripting THANKS	\
 	     VERSIONS KNOWN_BUGS BINDINGS $(man_MANS) $(HTMLPAGES) \
-	     HISTORY
+	     HISTORY INSTALL
 
 MAN2HTML= gnroff -man $< | man2html >$@
 
