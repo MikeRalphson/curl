@@ -1,19 +1,14 @@
 #
-# $Id: Makefile.am,v 1.9 2001-01-08 13:39:21 bagder Exp $
+# $Id: Makefile.am,v 1.10 2001-01-08 16:31:29 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
 EXTRA_DIST = \
 	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt \
-	config-win32.h reconf packages/README \
-	packages/Linux/RPM/README \
-	packages/Linux/RPM/curl-ssl.spec.in \
-	packages/Linux/RPM/curl.spec.in \
-	packages/Linux/RPM/make_curl_rpm \
-	packages/Win32/README
+	config-win32.h reconf packages/README
 
-SUBDIRS = docs lib src include tests
+SUBDIRS = docs lib src include tests packages
 
 test:
 	@(cd tests; make quiet-test)

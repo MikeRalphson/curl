@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.45 2001-01-08 13:39:21 bagder Exp $
+dnl $Id: configure.in,v 1.46 2001-01-08 16:31:29 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -615,6 +615,10 @@ AC_OUTPUT( Makefile \
 	   src/Makefile \
            lib/Makefile \
            tests/Makefile \
+	   packages/Makefile \
+	   packages/Win32/Makefile \
+	   packages/Linux/Makefile \
+	   packages/Linux/RPM/Makefile \
 	   packages/Linux/RPM/curl.spec \
 	   packages/Linux/RPM/curl-ssl.spec )
 
