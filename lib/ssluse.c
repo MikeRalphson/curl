@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.129 2005-02-10 07:45:08 bagder Exp $
+ * $Id: ssluse.c,v 1.130 2005-03-04 20:10:29 danf Exp $
  ***************************************************************************/
 
 /*
@@ -169,7 +169,7 @@ int random_the_seed(struct SessionHandle *data)
     /* let the option override the define */
     nread += RAND_load_file((data->set.ssl.random_file?
                              data->set.ssl.random_file:RANDOM_FILE),
-                            -1); /* -1 to read the entire file */
+                            16384); /* bounded size in case it's /dev/urandom */
     if(seed_enough(nread))
       return nread;
   }
@@ -231,7 +231,7 @@ int random_the_seed(struct SessionHandle *data)
   RAND_file_name(buf, BUFSIZE);
   if(buf[0]) {
     /* we got a file name to try */
-    nread += RAND_load_file(buf, -1);
+    nread += RAND_load_file(buf, 16384);
     if(seed_enough(nread))
       return nread;
   }
