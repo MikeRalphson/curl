@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.81 2004-05-05 10:26:51 bagder Exp $
+dnl $Id: configure.ac,v 1.82 2004-05-06 15:04:04 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -281,7 +281,7 @@ dnl At least one system has been identified to require BOTH nsl and socket
 dnl libs at the same time to link properly.
 if test "$HAVE_GETHOSTBYNAME" != "1"
 then
-  AC_MSG_CHECKING([trying gethostbyname with both nsl and socket libs])
+  AC_MSG_CHECKING([for gethostbyname with both nsl and socket libs])
   my_ac_save_LIBS=$LIBS
   LIBS="-lnsl -lsocket $LIBS"
   AC_TRY_LINK( ,
