@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.5 $
+ * $Date: 2000-05-22 19:04:18 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -93,7 +93,11 @@ static void DynaOpen(void)
 #ifdef RTLD_LAZY_GLOBAL /* It turns out some systems use this: */
            RTLD_LAZY_GLOBAL
 #else
+#ifdef RTLD_GLOBAL
            RTLD_LAZY | RTLD_GLOBAL
+#else
+           /* and some systems don't have the RTLD_GLOBAL symbol */
+           RTLD_LAZY
 #endif
            );
     libldap = dlopen("libldap.so", RTLD_LAZY);
