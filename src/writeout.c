@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.5 2001-03-14 10:27:13 bagder Exp $
+ * $Id: writeout.c,v 1.6 2001-04-19 11:24:29 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -141,12 +141,12 @@ void ourWriteOut(CURL *curl, char *writeinfo)
               case VAR_SIZE_UPLOAD:
                 if(CURLE_OK ==
                    curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD, &doubleinfo))
-                  fprintf(stream, "%.3f", doubleinfo);
+                  fprintf(stream, "%.0f", doubleinfo);
                 break;
               case VAR_SIZE_DOWNLOAD:
                 if(CURLE_OK ==
                    curl_easy_getinfo(curl, CURLINFO_SIZE_DOWNLOAD, &doubleinfo))
-                  fprintf(stream, "%.3f", doubleinfo);
+                  fprintf(stream, "%.0f", doubleinfo);
                 break;
               case VAR_SPEED_DOWNLOAD:
                 if(CURLE_OK ==
