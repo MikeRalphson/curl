@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.108 2002-01-28 19:22:40 bagder Exp $
+ * $Id: main.c,v 1.109 2002-02-25 09:08:28 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1176,8 +1176,8 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           config->postfields=postdata;
       }
 
-/*      if(SetHTTPrequest(HTTPREQ_SIMPLEPOST, &config->httpreq))
-        return PARAM_BAD_USE;*/
+      if(SetHTTPrequest(HTTPREQ_SIMPLEPOST, &config->httpreq))
+        return PARAM_BAD_USE;
       break;
     case 'D':
       /* dump-header to given file name */
