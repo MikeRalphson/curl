@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.29 $
- * $Date: 2000-11-06 15:31:10 $
+ * $Revision: 1.30 $
+ * $Date: 2000-11-06 22:53:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -434,6 +434,10 @@ struct UrlData {
   /* function that wants progress information */
   curl_progress_callback fprogress;
   void *progress_client; /* pointer to pass to the progress callback */
+
+  /* function to call instead of the internal for password */
+  curl_passwd_callback fpasswd;
+  void *passwd_client; /* pointer to pass to the passwd callback */
 
   long timeout; /* in seconds, 0 means no timeout */
   long infilesize; /* size of file to upload, -1 means unknown */
