@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.26 2003-11-17 05:23:06 bagder Exp $
+dnl $Id: configure.ac,v 1.27 2003-11-27 09:52:13 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -494,15 +494,20 @@ AC_ARG_WITH(spnego,
 )
 AC_MSG_CHECKING([if SPNEGO support is requested])
 if test x"$want_spnego" = xyes; then
- 
-  if test -z "$SPNEGO_LIB_DIR"; then
-     LDFLAGS="$LDFLAGS -L$SPNEGO_ROOT $(wl)-R$SPNEGO_ROOT -lfbopenssl"
+
+  if test X"$SPNEGO_ROOT" = Xyes; then
+     AC_MSG_ERROR([FBOpenSSL libs and/or directories were not found where specified!])
+     AC_MSG_RESULT(no)
   else
-     LDFLAGS="$LDFLAGS $SPNEGO_LIB_DIR"
-  fi
+     if test -z "$SPNEGO_LIB_DIR"; then
+        LDFLAGS="$LDFLAGS -L$SPNEGO_ROOT ${wl}-R$SPNEGO_ROOT -lfbopenssl"
+     else
+        LDFLAGS="$LDFLAGS $SPNEGO_LIB_DIR"
+     fi
  
-  AC_DEFINE(HAVE_SPNEGO, 1, [Define this if you have the SPNEGO library fbopenssl])
-  AC_MSG_RESULT(yes)
+     AC_MSG_RESULT(yes)
+     AC_DEFINE(HAVE_SPNEGO, 1, [Define this if you have the SPNEGO library fbopenssl])
+  fi
 else
   AC_MSG_RESULT(no)
 fi
