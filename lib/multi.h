@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.6 2002-02-19 11:00:34 bagder Exp $
+ * $Id: multi.h,v 1.7 2002-02-19 11:02:01 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -44,7 +44,7 @@
   o Enable the application to select() on its own file descriptors and curl's
     file descriptors simultaneous easily.
   
-  Example source using this interface: http://curl.haxx.se/dev/multi-app.c
+  Example sources using this interface is here: ../multi/
 
 */
 #ifdef HAVE_SYS_SOCKET_H
