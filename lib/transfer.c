@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.12 2001-03-02 15:34:15 bagder Exp $
+ * $Id: transfer.c,v 1.13 2001-03-05 13:40:31 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -365,8 +365,10 @@ _Transfer(struct connectdata *c_conn)
               }
               /* check for Content-Length: header lines to get size */
               if (strnequal("Content-Length", p, 14) &&
-                  sscanf (p+14, ": %ld", &contentlength))
+                  sscanf (p+14, ": %ld", &contentlength)) {
                 conn->size = contentlength;
+                Curl_pgrsSetDownloadSize(data, contentlength);
+              }
               else if (strnequal("Connection: close", p,
                                  strlen("Connection: close"))) {
                 /*
@@ -624,8 +626,6 @@ _Transfer(struct connectdata *c_conn)
 
   return CURLE_OK;
 }
-
-typedef int (*func_T)(void);
 
 CURLcode curl_transfer(CURL *curl)
 {
