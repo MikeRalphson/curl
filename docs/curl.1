@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.148 2005-03-28 22:17:49 bagder Exp $
+.\" * $Id: curl.1,v 1.149 2005-03-30 06:31:32 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "29 Mar 2005" "Curl 7.13.2" "Curl Manual"
@@ -391,9 +391,9 @@ This option can be used multiple times.
 .IP "--form-string <name=string>"
 (HTTP) Similar to \fI--form\fP except that the value string for the named
 parameter is used literally. Leading \&'@' and \&'<' characters, and the
-\&';type=' string in the value have no special meaning. Use this in
-preference to \fI--form\fP if there's any possibility that the string value
-may accidentally trigger the \&'@' or \&'<' features of \fI--form\f{.
+\&';type=' string in the value have no special meaning. Use this in preference
+to \fI--form\fP if there's any possibility that the string value may
+accidentally trigger the \&'@' or \&'<' features of \fI--form\fP.
 .IP "-g/--globoff"
 This option switches off the "URL globbing parser". When you set this option,
 you can specify URLs that contain the letters {}[] without having them being
