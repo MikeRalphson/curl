@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.130 2002-12-10 13:10:00 bagder Exp $
+ * $Id: transfer.c,v 1.131 2002-12-18 16:52:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -481,7 +481,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                      here is the check for that: */
                   /* serious error, go home! */
                   failf (data, "The requested file was not found");
-                  return CURLE_HTTP_NOT_FOUND;
+                  return CURLE_HTTP_RETURNED_ERROR;
                 }
 
                 if(k->httpversion == 10)
