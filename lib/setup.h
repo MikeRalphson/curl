@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.26 2003-01-16 21:08:13 bagder Exp $
+ * $Id: setup.h,v 1.27 2003-05-21 08:08:49 bagder Exp $
  ***************************************************************************/
 
 /* MN 06/07/02 */
@@ -135,19 +135,32 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #define HAVE_ALARM
 #endif
 
-#define PATH_CHAR     ";"
 #define DIR_CHAR      "\\"
 #define DOT_CHAR      "_"
 
 #else
+
+#ifdef DJGPP
+#define sclose(x)         close_s(x)
+#define sread(x,y,z)      read_s(x,y,z)
+#define swrite(x,y,z)     write_s(x,y,z)
+#define select(n,r,w,x,t) select_s(n,r,w,x,t)
+#else
+
 #define sclose(x) close(x)
 #define sread(x,y,z) recv(x,y,z,0)
 #define swrite(x,y,z) send(x,y,z,0)
 #define HAVE_ALARM
 
-#define PATH_CHAR     ":"
+#endif
+
 #define DIR_CHAR      "/"
 #define DOT_CHAR      "."
+
+#ifdef DJGPP
+#undef DOT_CHAR
+#define DOT_CHAR      "_"
+#endif
 
 #ifdef HAVE_STRCASECMP
 /* this is for "-ansi -Wall -pedantic" to stop complaining! */

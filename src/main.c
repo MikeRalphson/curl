@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.173 2003-05-12 12:45:57 bagder Exp $
+ * $Id: main.c,v 1.174 2003-05-21 08:08:51 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -411,6 +411,9 @@ static void help(void)
        "                    Overrides -n and --netrc-optional\n"
        " -U/--proxy-user <user[:password]> Specify Proxy authentication\n"
        " -v/--verbose       Makes the operation more talkative\n"
+#ifdef DJGPP
+       "                    Also enables Watt-32 debugging\n"
+#endif
        " -V/--version       Outputs version number then quits");
   puts(" -w/--write-out [format] What to output after completion\n"
        " -x/--proxy <host[:port]>  Use proxy. (Default port is 1080)\n"
@@ -1670,6 +1673,9 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       cleanarg(nextarg);
       break;
     case 'v':
+#ifdef DJGPP
+      dbug_init();
+#endif
       config->conf ^= CONF_VERBOSE; /* talk a lot */
       break;
     case 'V':

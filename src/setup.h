@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.17 2003-04-15 14:01:57 bagder Exp $
+ * $Id: setup.h,v 1.18 2003-05-21 08:08:51 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -66,7 +66,6 @@ int fileno( FILE *stream);
 #endif
 
 #ifdef WIN32
-#define PATH_CHAR     ";"
 #define DIR_CHAR      "\\"
 #define DOT_CHAR      "_"
 #else
@@ -74,17 +73,21 @@ int fileno( FILE *stream);
 /* 20000318 mgs
  * OS/2 supports leading dots in filenames if the volume is formatted
  * with JFS or HPFS. */
-#define PATH_CHAR     ";"
 #define DIR_CHAR      "\\"
 #define DOT_CHAR      "."
 #else
 
-#define PATH_CHAR     ":"
+#ifdef DJGPP
+#define DIR_CHAR      "/"
+#define DOT_CHAR      "_"
+#else
+
 #define DIR_CHAR      "/"
 #define DOT_CHAR      "."
 
-#endif
-#endif
+#endif /* !DJGPP */
+#endif /* !__EMX__ */
+#endif /* !WIN32 */
 
 #ifdef __riscos__
 #define USE_ENVIRONMENT

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.52 2003-02-04 23:48:46 jpbl Exp $
+# $Id: Makefile.am,v 1.53 2003-05-21 08:08:49 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -7,7 +7,8 @@ AUTOMAKE_OPTIONS = foreign nostdinc
 EXTRA_DIST = getdate.y Makefile.b32 Makefile.b32.resp Makefile.m32	    \
        Makefile.vc6 Makefile.riscos libcurl.def curllib.dsp	    \
        curllib.dsw config-vms.h config-win32.h config-riscos.h config-mac.h \
-       config.h.in ca-bundle.crt README.encoding README.memoryleak
+       config.h.in ca-bundle.crt README.encoding README.memoryleak \
+       makefile.dj config.dj
 
 lib_LTLIBRARIES = libcurl.la
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.275 2003-05-12 12:45:14 bagder Exp $
+ * $Id: url.c,v 1.276 2003-05-21 08:08:50 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2149,6 +2149,33 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
         if(proxy && *proxy) {
           /* we have a proxy here to set */
+          char *ptr;
+          char user[MAX_CURL_USER_LENGTH];
+          char passwd[MAX_CURL_PASSWORD_LENGTH];
+
+          /* skip the possible protocol piece */
+          ptr=strstr(proxy, "://");
+          if(ptr)
+            ptr += 3;
+          else
+            ptr = proxy;
+
+          /* check for an @-letter */
+          ptr = strchr(ptr, '@');
+          if(ptr && (2 == sscanf(proxy, "%" MAX_CURL_USER_LENGTH_TXT"[^:]:"
+                                 "%" MAX_CURL_PASSWORD_LENGTH_TXT "[^@]",
+                                 user, passwd))) {
+            /* found user and password, rip them out */
+            strcpy(data->state.proxyuser, user);
+            strcpy(data->state.proxypasswd, passwd);
+            conn->bits.proxy_user_passwd = TRUE; /* enable it */
+
+            ptr = strdup(ptr+1);
+            free(proxy); /* free the former data */
+            proxy = ptr; /* now use this instead */
+          }
+
+
           data->change.proxy = proxy;
           data->change.proxy_alloc=TRUE; /* this needs to be freed later */
           conn->bits.httpproxy = TRUE;

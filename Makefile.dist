@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.12 2002-09-07 21:44:02 hartroth Exp $
+# $Id: Makefile.dist,v 1.13 2003-05-21 08:08:49 bagder Exp $
 #############################################################################
 
 all:
@@ -58,6 +58,10 @@ vc-ssl-dll:
 	nmake -f Makefile.vc6 cfg=release-ssl-dll
 	cd ..\src
 	nmake -f Makefile.vc6
+
+djgpp:
+	make -C lib -f Makefile.dj
+	make -C src -f Makefile.dj
 
 cygwin:
 	./configure

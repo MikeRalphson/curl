@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.19 2003-01-29 10:14:22 bagder Exp $
+ * $Id: getpass.c,v 1.20 2003-05-21 08:08:49 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -99,7 +99,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
   char infp_fclose = 0;
   FILE *outfp;
   RETSIGTYPE (*sigint)();
-#ifndef __EMX__
+#if !defined(__EMX__) && !defined(__DJGPP__)
   RETSIGTYPE (*sigtstp)();
 #endif
   size_t bytes_read;
@@ -119,7 +119,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
   sigint = signal(SIGINT, SIG_IGN);
   /* 20000318 mgs
    * this is needed by the emx system, SIGTSTP is not a supported signal */
-#ifndef __EMX__
+#if !defined(__EMX__) && !defined(__DJGPP__)
   sigtstp = signal(SIGTSTP, SIG_IGN);
 #endif
 
@@ -181,7 +181,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 #endif
   
   signal(SIGINT, sigint);
-#ifndef __EMX__
+#if !defined(__EMX__) && !defined(__DJGPP__)
   signal(SIGTSTP, sigtstp);
 #endif
 

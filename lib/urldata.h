@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.152 2003-05-09 07:39:29 bagder Exp $
+ * $Id: urldata.h,v 1.153 2003-05-21 08:08:50 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -564,6 +564,8 @@ typedef enum {
  * Session-data MUST be put in the connectdata struct and here.  */
 #define MAX_CURL_USER_LENGTH 256
 #define MAX_CURL_PASSWORD_LENGTH 256
+#define MAX_CURL_USER_LENGTH_TXT "255"
+#define MAX_CURL_PASSWORD_LENGTH_TXT "255"
 
 struct UrlState {
   enum {

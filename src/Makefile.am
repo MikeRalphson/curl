@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.24 2002-09-04 13:10:37 bagder Exp $
+# $Id: Makefile.am,v 1.25 2003-05-21 08:08:51 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -24,7 +24,7 @@ BUILT_SOURCES = hugehelp.c
 CLEANFILES = hugehelp.c
 NROFF=@NROFF@
 
-EXTRA_DIST = mkhelp.pl curlmsg.msg \
+EXTRA_DIST = mkhelp.pl curlmsg.msg makefile.dj \
 	Makefile.vc6 Makefile.b32 Makefile.m32 Makefile.riscos config.h.in \
 	macos/curl.mcp.xml.sit.hqx \
 	macos/MACINSTALL.TXT \
