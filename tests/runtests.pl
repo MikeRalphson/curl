@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.81 2003-05-19 13:06:10 bagder Exp $
+# $Id: runtests.pl,v 1.82 2003-05-19 13:08:48 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -620,15 +620,9 @@ sub singletest {
 
         subVariables \$s;
 
-        print "MOO: $s\n";
-        
         if($s =~ /([^=]*)=(.*)/) {
             my ($var, $content)=($1, $2);
-            
             $ENV{$var}=$content;
-
-            print "setenv $var to $content\n";
-
             # remember which, so that we can clear them afterwards!
             push @envs, $var;
         }
