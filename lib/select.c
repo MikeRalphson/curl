@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.10 2005-03-21 22:34:07 bagder Exp $
+ * $Id: select.c,v 1.11 2005-03-22 01:24:27 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -146,7 +146,7 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms)
     VERIFY_SOCK(writefd);
     FD_SET(writefd, &fds_write);
     FD_SET(writefd, &fds_err);
-    if (writefd > maxfd)s
+    if (writefd > maxfd)
       maxfd = writefd;
   }
 
