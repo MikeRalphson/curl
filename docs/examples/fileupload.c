@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: fileupload.c,v 1.1 2004-05-26 09:00:03 bagder Exp $
+ * $Id: fileupload.c,v 1.2 2004-10-16 13:17:15 giva Exp $
  */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@ int main(void)
   double speed_upload, total_time;
   FILE *fd;
 
-  fd = fopen("debugit", "r"); /* open file to upload */
+  fd = fopen("debugit", "rb"); /* open file to upload */
   if(!fd) {
 
     return 1; /* can't continue */
