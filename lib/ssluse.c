@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.35 2001-09-11 10:00:49 bagder Exp $
+ * $Id: ssluse.c,v 1.36 2001-09-11 22:21:02 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -563,6 +563,14 @@ Curl_SSLConnect(struct connectdata *conn)
   if(data->set.cert) {
     if (!cert_stuff(conn, data->set.cert, data->set.cert)) {
       /* failf() is already done in cert_stuff() */
+      return CURLE_SSL_CONNECT_ERROR;
+    }
+  }
+
+  if(data->set.ssl.cipher_list) {
+    if (!SSL_CTX_set_cipher_list(conn->ssl.ctx,
+                                 data->set.ssl.cipher_list)) {
+      failf(data, "failed setting cipher list\n");
       return CURLE_SSL_CONNECT_ERROR;
     }
   }
