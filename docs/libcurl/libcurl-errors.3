@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl-errors.3,v 1.14 2004-04-27 07:05:40 bagder Exp $
+.\" $Id: libcurl-errors.3,v 1.15 2004-08-11 08:44:36 bagder Exp $
 .\"
 .TH libcurl-errors 3 "27 Apr 2004" "libcurl 7.12" "libcurl errors"
 .SH NAME
@@ -45,8 +45,9 @@ server is probably not an OK FTP server.
 We were denied access when trying to login to an FTP server or when trying to
 change working directory to the one given in the URL.
 .IP "CURLE_FTP_USER_PASSWORD_INCORRECT (10)"
-The username and/or the password were incorrect when trying to login to an FTP
-server.
+The FTP server rejected access to the server after the password was sent to
+it. It might be because the username and/or the password were incorrect or
+just that the server is not allowing you access for the moment etc.
 .IP "CURLE_FTP_WEIRD_PASS_REPLY (11)"
 After having sent the FTP password to the server, libcurl expects a proper
 reply. This error code indicates that an unexpected code was returned.
