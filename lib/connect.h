@@ -20,10 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.13 2003-05-01 13:37:05 bagder Exp $
+ * $Id: connect.h,v 1.14 2003-10-18 20:14:33 bagder Exp $
  ***************************************************************************/
 
-int Curl_nonblock(int socket,    /* operate on this */
+int Curl_nonblock(int sockfd,    /* operate on this */
                   int nonblock   /* TRUE or FALSE */);
 
 CURLcode Curl_is_connected(struct connectdata *conn,
