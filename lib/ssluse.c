@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.40 2001-11-05 14:06:42 bagder Exp $
+ * $Id: ssluse.c,v 1.41 2001-11-14 07:11:39 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -292,6 +292,8 @@ void Curl_SSL_cleanup(void)
     /* EVP_cleanup() removes all ciphers and digests from the
        table. */
     EVP_cleanup();
+
+    init_ssl=0; /* not inited any more */
   }
 #else
   /* SSL disabled, do nothing */
