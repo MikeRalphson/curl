@@ -18,12 +18,8 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.8 2004-11-29 12:10:09 bagder Exp $
+# $Id: Makefile.am,v 1.9 2004-11-29 21:44:40 bagder Exp $
 ###########################################################################
-# sws is the Silly Web Server
-#
-# Original http server code contributed by Georg Horn. Heavily modified since.
-#
 
 AUTOMAKE_OPTIONS = foreign
 
