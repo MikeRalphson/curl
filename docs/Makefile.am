@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.1 2000-07-29 15:34:32 bagder Exp $
+# $Id: Makefile.am,v 1.2 2000-10-02 06:49:51 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -7,6 +7,7 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
 man_MANS = \
 	curl.1 \
 	curl_easy_cleanup.3 \
+	curl_easy_getinfo.3 \
 	curl_easy_init.3 \
 	curl_easy_perform.3 \
 	curl_easy_setopt.3 \
