@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.26 2001-08-14 08:36:30 bagder Exp $
+ * $Id: ssluse.c,v 1.27 2001-08-24 06:20:47 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -407,7 +407,7 @@ Curl_SSLConnect(struct connectdata *conn)
       return CURLE_SSL_PEER_CERTIFICATE;
     }
 
-    if (strcasecmp(peer_CN, conn->hostname) != 0) {
+    if (!strequal(peer_CN, conn->hostname)) {
       if (data->ssl.verifyhost > 1) {
         failf(data, "SSL: certificate subject name '%s' does not match target host name '%s'",
             peer_CN, conn->hostname);
