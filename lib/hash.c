@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.20 2004-01-07 09:19:35 bagder Exp $
+ * $Id: hash.c,v 1.21 2004-05-04 13:40:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -164,7 +164,7 @@ Curl_hash_add(curl_hash *h, char *key, size_t key_len, void *p)
     /* couldn't insert it, destroy the 'he' element again */
     hash_element_dtor(h, he);
   }
-  h->dtor(p); /* remove the NEW entry */
+
   return NULL; /* failure */
 }
 
