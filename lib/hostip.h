@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.18 2002-11-05 10:51:44 bagder Exp $
+ * $Id: hostip.h,v 1.19 2002-11-11 22:36:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,9 +46,20 @@ struct Curl_dns_entry {
 #endif
 };
 
+/*
+ * Curl_resolv() returns an entry with the info for the specified host
+ * and port.
+ *
+ * The returned data *MUST* be "unlocked" with Curl_resolv_unlock() after
+ * use, or we'll leak memory!
+ */
+
 struct Curl_dns_entry *Curl_resolv(struct SessionHandle *data,
                                    char *hostname,
                                    int port);
+
+/* unlock a previously resolved dns entry */
+#define Curl_resolv_unlock(dns) dns->inuse--
 
 /* for debugging purposes only: */
 void Curl_scan_cache_used(void *user, void *ptr);

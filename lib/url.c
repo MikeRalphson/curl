@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.241 2002-11-11 08:40:38 bagder Exp $
+ * $Id: url.c,v 1.242 2002-11-11 22:36:00 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1500,7 +1500,7 @@ static int handleSock5Proxy(
       socksreq[6] = ((char*)hp->h_addr_list[0])[2];
       socksreq[7] = ((char*)hp->h_addr_list[0])[3];
 
-      dns->inuse--; /* not used anymore from now on */
+      Curl_resolv_unlock(dns); /* not used anymore from now on */
     }
     else {
       failf(conn->data, "Failed to resolve \"%s\" for SOCKS5 connect.",
@@ -2852,7 +2852,7 @@ CURLcode Curl_done(struct connectdata *conn)
   }
 
   if(conn->connect_addr)
-    conn->connect_addr->inuse--; /* done with this */
+    Curl_resolv_unlock(conn->connect_addr); /* done with this */
 
 #ifdef MALLOCDEBUG
   /* scan for DNS cache entries still marked as in use */
