@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.109 2001-11-15 14:16:13 bumblebury Exp $
+ * $Id: ftp.c,v 1.110 2001-11-22 09:40:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -282,7 +282,7 @@ int Curl_GetFTPResponse(char *buf,
               int i;
               for(meow=line_start, i=0; meow<ptr; meow++, i++)
                 buf[i] = *meow;
-              meow[i]=0; /* zero terminate */
+              *meow=0; /* zero terminate */
               keepon=FALSE;
               break;
             }
