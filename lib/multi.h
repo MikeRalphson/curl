@@ -20,8 +20,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.12 2005-01-10 10:07:07 bagder Exp $
+ * $Id: multi.h,v 1.13 2005-01-11 14:32:09 giva Exp $
  ***************************************************************************/
+
+ /* This file shadows for <curl/multi.h> in some compilers
+ */
+#include <curl/multi.h>
 
 /*
  * Prototypes for library-wide functions provided by multi.c
