@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.178 2001-12-02 14:16:34 bagder Exp $
+ * $Id: url.c,v 1.179 2001-12-05 06:47:01 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -556,8 +556,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Set to force us do HTTP GET
      */
-    if(va_arg(param, long))
+    if(va_arg(param, long)) {
       data->set.httpreq = HTTPREQ_GET;
+      data->set.upload = FALSE; /* switch off upload */
+    }
     break;
 
   case CURLOPT_INFILE:
