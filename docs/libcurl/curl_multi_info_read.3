@@ -1,4 +1,4 @@
-.\" $Id: curl_multi_info_read.3,v 1.3 2004-03-15 11:30:29 bagder Exp $
+.\" $Id: curl_multi_info_read.3,v 1.4 2004-03-24 21:40:45 bagder Exp $
 .\"
 .TH curl_multi_info_read 3 "27 Feb 2002" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -23,7 +23,7 @@ remaining messages after this function was called.
 The data the returned pointer points to will not survive calling
 \fIcurl_multi_cleanup(3)\fP.
 
-The 'CURLMsg' struct is very simple and only contain very basic informations.
+The 'CURLMsg' struct is very simple and only contain very basic information.
 If more involved information is wanted, the particular "easy handle" in
 present in that struct and can thus be used in subsequent regular
 \fIcurl_easy_getinfo(3)\fP calls (or similar):

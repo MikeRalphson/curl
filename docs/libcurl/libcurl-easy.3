@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl-easy.3,v 1.2 2004-03-15 12:42:19 bagder Exp $
+.\" $Id: libcurl-easy.3,v 1.3 2004-03-24 21:40:45 bagder Exp $
 .\"
 .TH libcurl 3 "12 Aug 2003" "libcurl 7.10.7" "libcurl easy interface"
 .SH NAME
@@ -23,7 +23,7 @@ return until it is done (successfully or not).
 
 After the transfer has been made, you can set new options and make another
 transfer, or if you're done, cleanup the session by calling
-\fIcurl_easy_cleanup(3)\fP. If you want persistant connections, you don't
+\fIcurl_easy_cleanup(3)\fP. If you want persistent connections, you don't
 cleanup immediately, but instead run ahead and perform other transfers using
 the same easy handle.
 
