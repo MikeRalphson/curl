@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.12 $
- * $Date: 2000-03-21 15:37:13 $
+ * $Revision: 1.13 $
+ * $Date: 2000-04-04 17:42:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -879,13 +879,6 @@ int main(int argc, char *argv[])
   int i;
 
   outs.stream = stdout;
-#ifdef __EMX__
-  /* 20000318 mgs
-   * we call _fsetmode to fix the problem with fwrite converting newline
-   * characters (you get mangled text files, and corrupted binary files when
-   * you download to stdout and redirect it to a file). */
-  _fsetmode(stdout, "b");
-#endif
 
   memset(&config, 0, sizeof(struct Configurable));
   
