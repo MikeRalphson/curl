@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.21 2001-02-05 23:04:44 bagder Exp $
+ * $Id: hostip.c,v 1.22 2001-05-30 11:06:33 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -123,7 +123,6 @@ struct hostent *Curl_gethost(struct UrlData *data,
   int ret; /* this variable is unused on several platforms but used on some */
 
 #define CURL_NAMELOOKUP_SIZE 9000
-
   /* Allocate enough memory to hold the full name information structs and
    * everything. OSF1 is known to require at least 8872 bytes. The buffer
    * required for storing all possible aliases and IP numbers is according to
@@ -132,6 +131,8 @@ struct hostent *Curl_gethost(struct UrlData *data,
   if(!buf)
     return NULL; /* major failure */
   *bufp = buf;
+
+  ret = 0; /* to prevent the compiler warning */
 
   if ( (in=inet_addr(hostname)) != INADDR_NONE ) {
     struct in_addr *addrentry;
