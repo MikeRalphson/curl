@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/progress.h,v $
- * $Revision: 1.6 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.7 $
+ * $Date: 2000-06-16 13:16:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -53,7 +53,6 @@ typedef enum {
 } timerid;
   
 void pgrsDone(struct UrlData *data);
-void pgrsMode(struct UrlData *data, int mode);
 void pgrsStartNow(struct UrlData *data);
 void pgrsSetDownloadSize(struct UrlData *data, double size);
 void pgrsSetUploadSize(struct UrlData *data, double size);
