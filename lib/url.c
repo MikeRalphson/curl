@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.345 2004-03-02 09:31:20 bagder Exp $
+ * $Id: url.c,v 1.346 2004-03-02 14:00:44 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2875,7 +2875,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      we only acknowledge this option if this is not a re-used connection
      already (which happens due to follow-location or during a HTTP
      authentication phase). */
-  if(data->set.reuse_fresh && !conn->bits.reuse)
+  if(data->set.reuse_fresh && !data->state.this_is_a_follow)
     reuse = FALSE;
   else 
     reuse = ConnectionExists(data, conn, &conn_temp);
