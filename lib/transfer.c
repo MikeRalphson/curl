@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.63 2001-10-19 11:58:32 bagder Exp $
+ * $Id: transfer.c,v 1.64 2001-10-22 06:34:14 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -939,6 +939,11 @@ CURLcode Curl_perform(struct SessionHandle *data)
            * may be free()ed in the Curl_done() function.
            */
           newurl = conn->newurl?strdup(conn->newurl):NULL;
+        else
+          /* The transfer phase returned error, we mark the connection to get
+           * closed to prevent being re-used. This is becasue we can't
+           * possibly know if the connection is in a good shape or not now. */
+          conn->bits.close = TRUE;
 
         /* Always run Curl_done(), even if some of the previous calls
            failed, but return the previous (original) error code */
