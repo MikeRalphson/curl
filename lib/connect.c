@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.5 2001-10-01 22:50:03 bagder Exp $
+ * $Id: connect.c,v 1.6 2001-10-01 23:25:26 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -206,6 +206,8 @@ CURLcode Curl_connecthost(struct connectdata *conn,
       /* get a new timeout for next attempt */
       after = Curl_tvnow();
       timeout_ms -= (long)(Curl_tvdiff(after, before)*1000);
+      if(timeout_ms < 0)
+        break;
       before = after;
       continue;
     }
@@ -285,6 +287,8 @@ CURLcode Curl_connecthost(struct connectdata *conn,
       /* get a new timeout for next attempt */
       after = Curl_tvnow();
       timeout_ms -= (long)(Curl_tvdiff(after, before)*1000);
+      if(timeout_ms < 0)
+        break;
       before = after;
       continue; /* try next address */
     }
