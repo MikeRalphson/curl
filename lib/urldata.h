@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.165 2003-07-19 23:55:15 bagder Exp $
+ * $Id: urldata.h,v 1.166 2003-07-21 13:16:30 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -416,6 +416,9 @@ struct connectdata {
   char *user;    /* user name string, allocated */
   char *passwd;  /* password string, allocated */
 
+  char *proxyuser;    /* proxy user name string, allocated */
+  char *proxypasswd;  /* proxy password string, allocated */
+  
   struct timeval now;     /* "current" time */
   struct timeval created; /* creation time */
   int firstsocket;     /* the main socket to use */
@@ -618,8 +621,6 @@ struct UrlState {
   } used_interface;
 
   /* buffers to store authentication data in, as parsed from input options */
-  char proxyuser[MAX_CURL_USER_LENGTH];
-  char proxypasswd[MAX_CURL_PASSWORD_LENGTH];
   struct timeval keeps_speed; /* for the progress meter really */
 
   /* 'connects' will be an allocated array with pointers. If the pointer is

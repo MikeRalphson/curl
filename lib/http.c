@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.141 2003-07-19 23:56:33 bagder Exp $
+ * $Id: http.c,v 1.142 2003-07-21 13:16:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -732,7 +732,7 @@ CURLcode Curl_http(struct connectdata *conn)
 #endif
 #ifdef USE_SSLEAY
     if(data->state.authwant == CURLAUTH_NTLM) {
-      result = Curl_output_ntlm(conn);
+      result = Curl_output_ntlm(conn, FALSE);
       if(result)
         return result;
     }

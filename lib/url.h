@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.14 2003-03-31 05:13:26 bagder Exp $
+ * $Id: url.h,v 1.15 2003-07-21 13:16:30 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -42,4 +42,5 @@ bool Curl_ssl_config_matches(struct ssl_config_data* data,
 bool Curl_clone_ssl_config(struct ssl_config_data* source,
                            struct ssl_config_data* dest);
 void Curl_free_ssl_config(struct ssl_config_data* sslc);
+void Curl_safefree(void *ptr);
 #endif
