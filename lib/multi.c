@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.22 2002-10-18 15:27:49 bagder Exp $
+ * $Id: multi.c,v 1.23 2002-11-11 23:03:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -360,7 +360,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       if(CURLE_OK == easy->result) {
 
         /* after do, go PERFORM... or DO_MORE */
-        if(easy->easy_conn->do_more) {
+        if(easy->easy_conn->bits.do_more) {
           /* we're supposed to do more, but we need to sit down, relax
              and wait a little while first */
           easy->state = CURLM_STATE_DO_MORE;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.110 2002-11-11 08:40:37 bagder Exp $
+ * $Id: http.c,v 1.111 2002-11-11 23:03:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -547,7 +547,7 @@ CURLcode Curl_http(struct connectdata *conn)
     conn->allocptr.cookie = aprintf("Cookie: %s\015\012", data->set.cookie);
   }
 
-  if(conn->upload_chunky) {
+  if(conn->bits.upload_chunky) {
     if(!checkheaders(data, "Transfer-Encoding:")) {
       te = "Transfer-Encoding: chunked\r\n";
     }
