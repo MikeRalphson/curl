@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.47 2004-04-06 12:06:06 bagder Exp $
+# $Id: Makefile.am,v 1.48 2004-04-25 08:13:07 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -74,7 +74,10 @@ $(HUGE): $(README) $(MANPAGE)  mkhelp.pl
 else # HAVE_LIBZ
 # This generates the hugehelp.c file uncompressed only
 $(HUGE): $(README) $(MANPAGE)  mkhelp.pl
-	$(NROFF) $(MANPAGE) | $(PERL) $(MKHELP) $(README) > $(HUGE)
+	echo '#ifdef HAVE_CONFIG_H' > $(HUGE)
+	echo '#include "config.h"' >> $(HUGE)
+	echo '#endif' >> $(HUGE)
+	$(NROFF) $(MANPAGE) | $(PERL) $(MKHELP) $(README) >> $(HUGE)
 endif
 
 else # USE_MANUAL
