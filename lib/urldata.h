@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.196 2004-02-26 13:40:43 bagder Exp $
+ * $Id: urldata.h,v 1.197 2004-02-27 07:08:37 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -258,6 +258,10 @@ struct FTP {
   long response_time; /* When no timeout is given, this is the amount of
                          seconds we await for an FTP response. Initialized
                          in Curl_ftp_connect() */
+  bool ctl_valid;     /* Tells Curl_ftp_quit() whether or not to do 
+                         anything. If the connection has timed out or
+                         been closed, this should be FALSE when it gets
+                         to Curl_ftp_quit() */
 };
 
 /****************************************************************************
