@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.239 2002-11-05 11:07:49 bagder Exp $
+ * $Id: url.c,v 1.240 2002-11-07 08:45:10 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1764,6 +1764,10 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   /* Store creation time to help future close decision making */
   conn->created = Curl_tvnow();
 
+  /* Set the start time temporary to this creation time to allow easier
+     timeout checks before the transfer has started for real. The start time
+     is later set "for real" using Curl_pgrsStartNow(). */
+  conn->data->progress.start = conn->created; 
 
   /***********************************************************
    * We need to allocate memory to store the path in. We get the size of the
