@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.446 2005-02-09 13:06:40 bagder Exp $
+ * $Id: url.c,v 1.447 2005-02-09 22:47:57 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3599,6 +3599,7 @@ CURLcode Curl_async_resolved(struct connectdata *conn,
   return code;
 #else
   (void)conn;
+  (void)protocol_done;
   return CURLE_OK;
 #endif
 }
