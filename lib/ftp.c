@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.134 2002-03-20 10:52:24 bagder Exp $
+ * $Id: ftp.c,v 1.135 2002-04-04 06:07:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -907,8 +907,10 @@ ftp_pasv_verbose(struct connectdata *conn,
   if(gethostbyaddr_r((char *) &address,
                      sizeof(address), AF_INET,
                      (struct hostent *)hostent_buf,
-                     hostent_buf + sizeof(*answer)))
+                     (struct hostent_data *)(hostent_buf + sizeof(*answer))))
     answer=NULL;
+  else
+    answer=(struct hostent *)hostent_buf;
                            
 #  endif
 #  ifdef HAVE_GETHOSTBYADDR_R_7
