@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.10 2001-01-25 12:24:34 bagder Exp $
+ * $Id: http.h,v 1.11 2001-03-07 23:51:41 bagder Exp $
  *****************************************************************************/
 
 /* ftp can use this as well */
@@ -34,5 +34,10 @@ CURLcode Curl_http(struct connectdata *conn);
 CURLcode Curl_http_done(struct connectdata *conn);
 CURLcode Curl_http_connect(struct connectdata *conn);
 CURLcode Curl_http_close(struct connectdata *conn);
+
+/* The following functions are defined in http_chunks.c */
+void Curl_httpchunk_init(struct connectdata *conn);
+CHUNKcode Curl_httpchunk_read(struct connectdata *conn, char *datap,
+                              ssize_t length, ssize_t *wrote);
 
 #endif

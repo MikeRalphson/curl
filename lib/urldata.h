@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.49 2001-03-07 17:12:12 bagder Exp $
+ * $Id: urldata.h,v 1.50 2001-03-07 23:51:41 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -78,6 +78,8 @@
 #include "timeval.h"
 
 #include <curl/curl.h>
+
+#include "http_chunks.h" /* for the structs and enum stuff */
 
 /* Download buffer size, keep it fairly big for speed reasons */
 #define BUFSIZE (1024*50)
@@ -167,6 +169,8 @@ struct HTTP {
   struct Form form;
   size_t (*storefread)(char *, size_t , size_t , FILE *);
   FILE *in;
+
+  struct Curl_chunker chunk;
 };
 
 /****************************************************************************

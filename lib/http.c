@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.55 2001-03-05 13:40:08 bagder Exp $
+ * $Id: http.c,v 1.56 2001-03-07 23:51:41 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -104,6 +104,7 @@
 #include "memdebug.h"
 #endif
 
+/* ------------------------------------------------------------------------- */
 /*
  * The add_buffer series of functions are used to build one large memory chunk
  * from repeated function invokes. Used so that the entire HTTP request can
@@ -205,7 +206,7 @@ CURLcode add_buffer(send_buffer *in, void *inptr, size_t size)
 }
 
 /* end of the add_buffer functions */
-/*****************************************************************************/
+/* ------------------------------------------------------------------------- */
 
 /*
  * Read everything until a newline.
@@ -309,6 +310,9 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
   return CURLE_OK;
 }
 
+/*
+ * HTTP stuff to do at connect-time.
+ */
 CURLcode Curl_http_connect(struct connectdata *conn)
 {
   struct UrlData *data;
