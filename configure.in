@@ -1,8 +1,8 @@
-dnl $Id: configure.in,v 1.19 2000-07-29 22:21:10 bagder Exp $
+dnl $Id: configure.in,v 1.20 2000-07-31 22:42:34 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
-AM_INIT_AUTOMAKE(curl,"7.0.10beta")
+AM_INIT_AUTOMAKE(curl,"7.0.11test")
 AM_PROG_LIBTOOL
 
 dnl
@@ -339,6 +339,8 @@ AC_OUTPUT( Makefile \
            curl.spec \
            curl-ssl.spec \
 	   docs/Makefile \
+	   include/Makefile \
+	   include/curl/Makefile \
 	   src/Makefile \
            lib/Makefile )
 dnl	   perl/checklinks.pl \

@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.13 $
- * $Date: 2000-07-25 12:21:22 $
+ * $Revision: 1.14 $
+ * $Date: 2000-07-31 22:42:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -414,8 +414,8 @@ char *curl_getenv(char *variable);
 char *curl_version(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.0.8beta"
-#define LIBCURL_VERSION_NUM 0x070008
+#define LIBCURL_VERSION "7.0.11test"
+#define LIBCURL_VERSION_NUM 0x07000b
 
 /* linked-list structure for the CURLOPT_QUOTE option */
 struct curl_slist {
