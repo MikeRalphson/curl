@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.8 2001-01-05 12:19:42 bagder Exp $
+ * $Id: mprintf.c,v 1.9 2001-08-14 06:06:15 bagder Exp $
  *
  *************************************************************************
  *
@@ -92,7 +92,7 @@
  *
  ****************************************************************************/
 
-static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.8 2001-01-05 12:19:42 bagder Exp $";
+static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.9 2001-08-14 06:06:15 bagder Exp $";
 
 /*
  * To test:
@@ -446,7 +446,7 @@ static int dprintf_Pass1(char *format, va_stack_t *vto, char **endpos, va_list a
 	case '1': case '2': case '3': case '4':
 	case '5': case '6': case '7': case '8': case '9':
 	  flags |= FLAGS_WIDTH;
-	  width = strtol(--fmt, &fmt, 10);
+	  width = strtol(fmt-1, &fmt, 10);
 	  break;
 	case '*':  /* Special case */
 	  flags |= FLAGS_WIDTHPARAM;
