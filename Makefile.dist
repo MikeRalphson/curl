@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.9 2001-11-21 22:59:29 bagder Exp $
+# $Id: Makefile.dist,v 1.10 2002-02-06 16:04:03 bagder Exp $
 #############################################################################
 
 all:
@@ -50,6 +50,12 @@ vc:
 vc-ssl:
 	cd lib
 	nmake -f Makefile.vc6 cfg=release-ssl
+	cd ..\src
+	nmake -f Makefile.vc6 cfg=release-ssl
+
+vc-ssl-dll:
+	cd lib
+	nmake -f Makefile.vc6 cfg=release-ssl-dll
 	cd ..\src
 	nmake -f Makefile.vc6
 
