@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.174 2002-10-23 14:15:29 bagder Exp $
+ * $Id: curl.h,v 1.175 2002-11-18 21:58:46 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -204,6 +204,9 @@ typedef enum {
 
   CURL_LAST /* never use! */
 } CURLcode;
+
+/* Make a spelling correction for the operation timed-out define */
+#define CURLE_OPERATION_TIMEDOUT CURLE_OPERATION_TIMEOUTED
 
 typedef enum {
   CURLPROXY_HTTP = 0,
@@ -800,7 +803,7 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.10.2-test"
+#define LIBCURL_VERSION "7.10.2-pre4"
 #define LIBCURL_VERSION_NUM 0x070a02
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
