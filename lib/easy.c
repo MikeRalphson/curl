@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.66 2004-12-22 20:12:15 danf Exp $
+ * $Id: easy.c,v 1.67 2005-01-10 10:07:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,6 +82,7 @@
 #include "share.h"
 #include "memory.h"
 #include "progress.h"
+#include "easy.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -401,6 +402,15 @@ void curl_easy_cleanup(CURL *curl)
     return;
 
   Curl_close(data);
+}
+
+/*
+ * Store a pointed to the multi handle within the easy handle's data struct.
+ */
+void Curl_easy_addmulti(struct SessionHandle *data,
+                        void *multi)
+{
+  data->multi = multi;
 }
 
 /*
