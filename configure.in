@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.122 2003-03-07 13:36:32 bagder Exp $
+dnl $Id: configure.in,v 1.123 2003-03-11 17:16:02 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -632,7 +632,6 @@ AC_CHECK_HEADERS( \
         arpa/inet.h \
         net/if.h \
         netinet/in.h \
-	netinet/if_ether.h \
         netdb.h \
         sys/select.h \
         sys/socket.h \
