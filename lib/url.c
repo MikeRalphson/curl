@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.389 2004-05-28 09:56:59 bagder Exp $
+ * $Id: url.c,v 1.390 2004-06-02 13:57:38 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -499,8 +499,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     data->set.http_fail_on_error = va_arg(param, long)?TRUE:FALSE;
     break;
   case CURLOPT_UPLOAD:
+  case CURLOPT_PUT:
     /*
-     * We want to sent data to the remote host
+     * We want to sent data to the remote host. If this is HTTP, that equals
+     * using the PUT request.
      */
     data->set.upload = va_arg(param, long)?TRUE:FALSE;
     if(data->set.upload)
@@ -582,14 +584,6 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Transfer using ASCII (instead of BINARY).
      */
     data->set.ftp_ascii = va_arg(param, long)?TRUE:FALSE;
-    break;
-  case CURLOPT_PUT:
-    /*
-     * Use the HTTP PUT request to transfer data if this is TRUE.  If this is
-     * FALSE, don't set the httpreq. We can't know what to revert it to!
-     */
-    if(va_arg(param, long))
-      data->set.httpreq = HTTPREQ_PUT;
     break;
   case CURLOPT_TIMECONDITION:
     /*
