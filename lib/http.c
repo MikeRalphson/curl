@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.78 2001-11-12 14:08:41 bagder Exp $
+ * $Id: http.c,v 1.79 2001-11-13 08:34:24 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -407,13 +407,13 @@ CURLcode Curl_http_connect(struct connectdata *conn)
                                          conn->hostname, conn->remote_port);
     if(CURLE_OK != result)
       return result;
-    
-    if(conn->protocol & PROT_HTTPS) {
-      /* now, perform the SSL initialization for this socket */
-      result = Curl_SSLConnect(conn);
-      if(result)
-        return result;
-    }
+  }    
+
+  if(conn->protocol & PROT_HTTPS) {
+    /* now, perform the SSL initialization for this socket */
+    result = Curl_SSLConnect(conn);
+    if(result)
+      return result;
   }
 
   if(conn->bits.user_passwd && !data->state.this_is_a_follow) {
