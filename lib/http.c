@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.53 2001-03-02 15:34:15 bagder Exp $
+ * $Id: http.c,v 1.54 2001-03-04 15:25:54 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -399,6 +399,8 @@ CURLcode Curl_http(struct connectdata *conn)
     memset(http, 0, sizeof(struct HTTP));
     conn->proto.http = http;
   }
+  else
+    http = conn->proto.http;
 
   if ( (conn->protocol&(PROT_HTTP|PROT_FTP)) &&
        data->bits.upload) {
