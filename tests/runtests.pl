@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.151 2004-12-14 21:52:16 bagder Exp $
+# $Id: runtests.pl,v 1.152 2004-12-16 09:52:36 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -357,10 +357,15 @@ sub runhttpserver {
     my $data;
 
     if($res && $verbose) {
-        print "RUN: curl command returned $res\nRUN: ";
         open(ERR, "<log/verifystderr");
-        print <ERR>;
+        my @e = <ERR>;
         close(ERR);
+        print "RUN: curl command returned $res\n";
+        for(@e) {
+            if($_ !~ /^([ \t]*)$/) {
+                print "RUN: $_";
+            }
+        }
     }
     open(FILE, "<log/verifiedserver");
     my @file=<FILE>;
