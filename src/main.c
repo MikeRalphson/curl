@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.95 2001-09-11 22:36:03 bagder Exp $
+ * $Id: main.c,v 1.96 2001-09-26 07:12:07 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1532,6 +1532,8 @@ void free_config_fields(struct Configurable *config)
     curl_formfree(config->httppost);
   if(config->cacert)
     free(config->cacert);
+  if(config->cookiejar)
+    free(config->cookiejar);
 
   curl_slist_free_all(config->quote); /* checks for config->quote == NULL */
   curl_slist_free_all(config->postquote); /*  */
