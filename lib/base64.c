@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.10 2001-08-24 07:39:50 bagder Exp $
+ * $Id: base64.c,v 1.11 2001-09-07 04:01:32 bumblebury Exp $
  *****************************************************************************/
 
 /* Base64 encoding/decoding
@@ -260,3 +260,11 @@ void *suck(int *lenptr) {
 }
 #endif
 
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.53 2001-08-30 22:48:34 bagder Exp $
+ * $Id: transfer.c,v 1.54 2001-09-07 04:01:33 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1164,3 +1164,10 @@ Curl_Transfer(struct connectdata *c_conn, /* connection data */
 
 }
           
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

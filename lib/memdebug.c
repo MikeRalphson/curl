@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.15 2001-08-14 09:24:48 bagder Exp $
+ * $Id: memdebug.c,v 1.16 2001-09-07 04:01:32 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -156,3 +156,11 @@ int curl_fclose(FILE *file, int line, const char *source)
 }
 
 #endif /* MALLOCDEBUG */
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

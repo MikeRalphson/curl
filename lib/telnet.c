@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.21 2001-08-30 22:48:34 bagder Exp $
+ * $Id: telnet.c,v 1.22 2001-09-07 04:01:33 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1111,3 +1111,11 @@ CURLcode Curl_telnet(struct connectdata *conn)
   /* mark this as "no further transfer wanted" */
   return Curl_Transfer(conn, -1, -1, FALSE, NULL, -1, NULL);
 }
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

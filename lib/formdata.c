@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.21 2001-08-28 08:54:33 bagder Exp $
+ * $Id: formdata.c,v 1.22 2001-09-07 04:01:32 bumblebury Exp $
  *****************************************************************************/
 
 /*
@@ -1322,3 +1322,11 @@ int main(int argc, char **argv)
 }
 
 #endif
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

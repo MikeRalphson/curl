@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.20 2001-08-30 22:48:34 bagder Exp $
+ * $Id: file.c,v 1.21 2001-09-07 04:01:32 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -196,3 +196,11 @@ CURLcode Curl_file(struct connectdata *conn)
 
   return res;
 }
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

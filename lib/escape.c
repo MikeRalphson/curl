@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.16 2001-08-21 13:18:07 bagder Exp $
+ * $Id: escape.c,v 1.17 2001-09-07 04:01:32 bumblebury Exp $
  *****************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -110,3 +110,11 @@ char *curl_unescape(const char *string, int length)
   return ns;
   
 }
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.32 2001-09-06 08:32:01 bagder Exp $
+ * $Id: ssluse.c,v 1.33 2001-09-07 04:01:32 bumblebury Exp $
  *****************************************************************************/
 
 /*
@@ -642,3 +642,11 @@ Curl_SSLConnect(struct connectdata *conn)
 #endif
   return retcode;
 }
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */

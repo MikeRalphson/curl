@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.11 2001-08-24 07:39:15 bagder Exp $
+ * $Id: mprintf.c,v 1.12 2001-09-07 04:01:32 bumblebury Exp $
  *
  *************************************************************************
  *
@@ -92,7 +92,7 @@
  *
  ****************************************************************************/
 
-static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.11 2001-08-24 07:39:15 bagder Exp $";
+static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.12 2001-09-07 04:01:32 bumblebury Exp $";
 
 /*
  * To test:
@@ -1232,3 +1232,11 @@ int main()
 }
 
 #endif
+
+/*
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
+ * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
+ * vim<600: et sw=2 ts=2 sts=2 tw=78
+ */
