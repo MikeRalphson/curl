@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.19 2001-03-16 15:19:36 bagder Exp $
+ * $Id: telnet.c,v 1.20 2001-08-14 08:38:08 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -218,8 +218,8 @@ static void negotiate(struct connectdata *conn)
 static void printoption(struct UrlData *data,
 			const char *direction, int cmd, int option)
 {
-  char *fmt;
-  char *opt;
+  const char *fmt;
+  const char *opt;
    
   if (data->bits.verbose)
   {
@@ -843,7 +843,7 @@ static void suboption(struct connectdata *conn)
       for(v = tn->telnet_vars;v;v = v->next) {
         tmplen = (strlen(v->data) + 1);
         /* Add the variable only if it fits */
-        if(len + tmplen < sizeof(temp)-6) {
+        if(len + tmplen < (int)sizeof(temp)-6) {
           sscanf(v->data, "%127[^,],%s", varname, varval);
           snprintf((char *)&temp[len], sizeof(temp) - len,
                    "%c%s%c%s", NEW_ENV_VAR, varname,
