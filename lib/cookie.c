@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.10 2001-01-05 10:11:42 bagder Exp $
+ * $Id: cookie.c,v 1.11 2001-05-23 09:26:45 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -233,8 +233,18 @@ Curl_cookie_add(struct CookieInfo *c,
         /* what _is_ this field for? */
         break;
       case 2:
-        co->path = strdup(ptr);
-        break;
+        /* It turns out, that sometimes the file format allows the path
+           field to remain not filled in, we try to detect this and work
+           around it! Andrés García made us aware of this... */
+        if (strcmp("TRUE", ptr) && strcmp("FALSE", ptr)) {
+          /* only if the path doesn't look like a boolean option! */
+          co->path = strdup(ptr);
+          break;
+        }
+        /* this doesn't look like a path, make one up! */
+        co->path = strdup("/");
+        fields++; /* add a field and fall down to secure */
+        /* FALLTHROUGH */
       case 3:
         co->secure = strequal(ptr, "TRUE");
         break;
