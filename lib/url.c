@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.147 2001-09-07 04:01:33 bumblebury Exp $
+ * $Id: url.c,v 1.148 2001-09-11 22:23:16 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -289,6 +289,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
   va_start(param, option);
 
   switch(option) {
+  case CURLOPT_SSL_CIPHER_LIST:
+    /* set a list of cipher we want to use in the SSL connection */
+    data->set.ssl.cipher_list = va_arg(param, char *);
+    break;
+
   case CURLOPT_RANDOM_FILE:
     /*
      * This is the path name to a file that contains random data to seed
