@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.34 2004-02-23 07:32:45 bagder Exp $
+# $Id: testcurl.sh,v 1.35 2004-02-25 09:03:09 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.34 $'
+version='$Revision: 1.35 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -132,6 +132,8 @@ log "NAME = $name"
 log "EMAIL = $email"
 log "DESC = $desc"
 log "CONFOPTS = $confopts"
+log "CFLAGS = $CFLAGS"
+log "CC = $CC"
 log "version = $version"
 log "date = `date -u`"
 
