@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.6 2001-08-06 12:36:18 bagder Exp $
+ * $Id: formdata.h,v 1.7 2001-08-21 13:18:07 bagder Exp $
  *****************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -47,8 +47,15 @@ int Curl_FormReader(char *buffer,
                     size_t nitems,
                     FILE *mydata);
 
+/* possible (old) fread() emulation that copies at most one line */
+int Curl_FormReadOneLine(char *buffer,
+                         size_t size,
+                         size_t nitems,
+                         FILE *mydata);
+
 char *Curl_FormBoundary(void);
 
 void Curl_formclean(struct FormData *);
 
 #endif
+

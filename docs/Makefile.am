@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.12 2001-08-21 09:16:09 bagder Exp $
+# $Id: Makefile.am,v 1.13 2001-08-21 13:18:07 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -13,6 +13,7 @@ man_MANS = \
 	curl_easy_perform.3 \
 	curl_easy_setopt.3 \
 	curl_formparse.3 \
+	curl_formadd.3 \
 	curl_formfree.3 \
 	curl_getdate.3 \
 	curl_getenv.3 \
@@ -38,6 +39,7 @@ HTMLPAGES = \
 	curl_easy_init.html \
 	curl_easy_perform.html \
 	curl_easy_setopt.html \
+	curl_formadd.html \
 	curl_formparse.html \
 	curl_formfree.html \
 	curl_getdate.html \
@@ -56,7 +58,7 @@ HTMLPAGES = \
 
 EXTRA_DIST = $(man_MANS) \
 	MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS \
-	LIBCURL README.win32 RESOURCES TODO TheArtOfHttpScripting THANKS \
+	README.win32 RESOURCES TODO TheArtOfHttpScripting THANKS \
 	$(HTMLPAGES)
 
 MAN2HTML= gnroff -man $< | man2html >$@

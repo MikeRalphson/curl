@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.40 2001-08-20 07:36:57 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.41 2001-08-21 13:18:07 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "20 August 2001" "libcurl 7.8.1" "libcurl Manual"
 .SH NAME
@@ -275,7 +275,7 @@ instruct what data to pass on to the server.  Pass a pointer to a linked list
 of HTTP post structs as parameter.  The linked list should be a fully valid
 list of 'struct HttpPost' structs properly filled in. The best and most
 elegant way to do this, is to use
-.I curl_formparse(3)
+.I curl_formadd(3)
 as documented. The data in this list must remained intact until you close this
 curl handle again with curl_easy_cleanup().
 .TP

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.69 2001-08-17 10:13:32 bagder Exp $
+ * $Id: urldata.h,v 1.70 2001-08-21 13:18:07 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -413,6 +413,8 @@ struct Configbits {
                             after use */
   bool reuse_fresh;      /* do not re-use an existing connection for this
                             transfer */
+  bool expect100header;  /* TRUE if we added Expect: 100-continue to the
+                            HTTP header */
 };
 
 /*

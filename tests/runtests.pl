@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.38 2001-08-08 07:51:00 bagder Exp $
+# $Id: runtests.pl,v 1.39 2001-08-21 13:18:08 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -740,6 +740,11 @@ do {
     if ($ARGV[0] eq "-v") {
         # verbose output
         $verbose=1;
+    }
+    elsif ($ARGV[0] eq "-c") {
+        # use this path to curl instead of default        
+        $CURL=$ARGV[1];
+        shift @ARGV;
     }
     elsif ($ARGV[0] eq "-d") {
         # have the servers display protocol output 
