@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.126 2002-02-28 23:31:23 bagder Exp $
+ * $Id: curl.h,v 1.127 2002-03-05 10:15:38 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -75,10 +75,10 @@ struct HttpPost {
 };
 
 typedef int (*curl_progress_callback)(void *clientp,
-                                      size_t dltotal,
-                                      size_t dlnow,
-                                      size_t ultotal,
-                                      size_t ulnow);
+                                      double dltotal,
+                                      double dlnow,
+                                      double ultotal,
+                                      double ulnow);
 
 typedef size_t (*curl_write_callback)(char *buffer,
                                       size_t size,
@@ -616,7 +616,7 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.9.5-pre4"
+#define LIBCURL_VERSION "7.9.5-pre6"
 #define LIBCURL_VERSION_NUM 0x070905
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
