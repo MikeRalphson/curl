@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.89 2001-12-17 23:01:54 bagder Exp $
+dnl $Id: configure.in,v 1.90 2002-01-03 15:03:58 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -597,6 +597,7 @@ AC_CONFIG_FILES([Makefile \
 	   include/Makefile \
 	   include/curl/Makefile \
 	   src/Makefile \
+	   multi/Makefile \
            lib/Makefile \
            tests/Makefile \
            tests/data/Makefile \
