@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.290 2004-11-11 23:11:04 bagder Exp $
+ * $Id: main.c,v 1.291 2004-11-14 13:50:21 giva Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -216,8 +216,13 @@ char *strdup(char *str)
 
 #if !defined(HAVE_FTRUNCATE) && defined(WIN32)
 /*
- * Truncate a file handle at a 64-bit position 'where'
+ * Truncate a file handle at a 64-bit position 'where'.
+ * Borland doesn't even support 64-bit types.
  */
+#ifdef __BORLANDC__
+#define _lseeki64(hnd,ofs,whence) lseek(hnd,ofs,whence)
+#endif
+
 static int ftruncate (int fd, curl_off_t where)
 {
   curl_off_t curr;
