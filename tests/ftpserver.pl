@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.10 2000-11-21 13:36:55 bagder Exp $
+# $Id: ftpserver.pl,v 1.11 2000-11-21 15:49:34 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to excersive curl, it is not meant to become a fully working
@@ -37,15 +37,13 @@ do {
 
 my $proto = getprotobyname('tcp') || 6;
 
-my $ftp_sendfile=""; # set to a file name when the file should be sent
-
 socket(Server, PF_INET, SOCK_STREAM, $proto)|| die "socket: $!";
 setsockopt(Server, SOL_SOCKET, SO_REUSEADDR,
            pack("l", 1)) || die "setsockopt: $!";
 bind(Server, sockaddr_in($port, INADDR_ANY))|| die "bind: $!";
 listen(Server,SOMAXCONN) || die "listen: $!";
 
-print "FTP server started on port $port\n";
+#print "FTP server started on port $port\n";
 
 open(PID, ">.ftpserver.pid");
 print PID $$;
@@ -155,6 +153,16 @@ sub RETR_command {
     my $testno = $_[0];
 
     logmsg "RETR test number $testno\n";
+
+    if($testno =~ /^verifiedserver$/) {
+        # this is the secret command that verifies that this actually is
+        # the curl test server
+        print "150 Binary junk (10 bytes).\r\n";
+        print SOCK "WE ROOLZ\r\n";
+        close(SOCK);
+        print "226 File transfer complete\r\n";
+        return 0;
+    }
 
     my $filename = "data/reply$testno.txt";
 
