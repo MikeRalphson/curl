@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/formdata.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.4 $
+ * $Date: 2000-06-05 08:24:18 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -102,7 +102,7 @@ static void GetStr(char **string,
  *
  ***************************************************************************/
 
-int curl_FormParse(char *input,
+int curl_formparse(char *input,
                    struct HttpPost **httppost,
                    struct HttpPost **last_post)
 {
