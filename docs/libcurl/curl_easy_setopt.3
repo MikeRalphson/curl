@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.101 2004-11-11 23:11:32 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.102 2004-11-12 06:42:30 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "12 Mar 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -485,7 +485,7 @@ Optionally, you can provide data to POST using the \fICURLOPT_READFUNCTION\fP
 and \fICURLOPT_READDATA\fP options but then you must make sure to not set
 \fICURLOPT_POSTFIELDS\fP to anything but NULL. When providing data with a
 callback, you must transmit it using chunked transfer-encoding or you must set
-the size of the data with the \fICURLOPT_POSTFIELDSIZE\f option.
+the size of the data with the \fICURLOPT_POSTFIELDSIZE\fP option.
 
 You can override the default POST Content-Type: header by setting your own
 with \fICURLOPT_HTTPHEADER\fP.
