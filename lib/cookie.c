@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.59 2004-07-26 15:42:07 bagder Exp $
+ * $Id: cookie.c,v 1.60 2004-08-04 12:26:27 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -223,14 +223,9 @@ Curl_cookie_add(struct SessionHandle *data,
 
             const char *domptr=whatptr;
             int dotcount=1;
-            unsigned int i;
 
-            static const char *seventhree[]= {
-              "com", "edu", "net", "org", "gov", "mil", "int"
-            };
-
-            /* Count the dots, we need to make sure that there are THREE dots
-               in the normal domains, or TWO in the seventhree-domains. */
+            /* Count the dots, we need to make sure that there are enough
+               of them. */
 
             if('.' == whatptr[0])
               /* don't count the initial dot, assume it */
@@ -244,13 +239,6 @@ Curl_cookie_add(struct SessionHandle *data,
               }
             } while(domptr);
 
-            for(i=0;
-                i<sizeof(seventhree)/sizeof(seventhree[0]); i++) {
-              if(tailmatch(seventhree[i], whatptr)) {
-                dotcount++; /* we allow one dot less for these */
-                break;
-              }
-            }
             /* The original Netscape cookie spec defined that this domain name
                MUST have three dots (or two if one of the seven holy TLDs),
                but it seems that these kinds of cookies are in use "out there"
