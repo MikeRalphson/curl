@@ -1,10 +1,10 @@
 #
-# $Id: Makefile.am,v 1.2 2002-01-03 15:03:14 bagder Exp $
+# $Id: Makefile.am,v 1.3 2002-01-24 07:38:01 bagder Exp $
 #
 
 INCLUDES = -I$(top_srcdir)/include
 
-bin_PROGRAMS = app single double
+noinst_PROGRAMS = app single double
 
 app_SOURCES = app.c
 app_LDADD = ../lib/libcurl.la
