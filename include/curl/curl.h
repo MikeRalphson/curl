@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.252 2004-05-11 11:30:23 bagder Exp $
+ * $Id: curl.h,v 1.253 2004-05-11 14:22:51 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1246,7 +1246,7 @@ typedef struct {
   int ares_num;
 
   /* This field was aded in CURLVERSION_THIRD */
-  char *libidn;
+  const char *libidn;
 } curl_version_info_data;
 
 #define CURL_VERSION_IPV6      (1<<0)  /* IPv6-enabled */
