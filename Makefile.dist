@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.19 2004-03-17 12:46:42 bagder Exp $
+# $Id: Makefile.dist,v 1.20 2004-03-21 15:32:15 bagder Exp $
 ###########################################################################
 
 all:
@@ -82,8 +82,8 @@ amiga:
 	cd ./src && make -f makefile.amiga
 
 netware:
-        cd lib && make -f Makefile.netware
-        cd src && make -f Makefile.netware
+	cd lib && make -f Makefile.netware
+	cd src && make -f Makefile.netware
 
 unix: all
 
