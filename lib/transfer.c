@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.180 2003-10-18 20:28:53 bagder Exp $
+ * $Id: transfer.c,v 1.181 2003-10-22 11:15:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -450,6 +450,11 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               data->info.header_size += headerlen;
               conn->headerbytecount += headerlen;
 
+              /* *auth_act() checks what authentication methods that are
+                 available and decides which one (if any) to use. It will
+                 set 'newurl' if an auth metod was picked. */
+              Curl_http_auth_act(conn);
+              
               if(!k->header) {
                 /*
                  * really end-of-headers.
@@ -824,11 +829,6 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             if(conn->protocol&PROT_HTTP) {
               /* HTTP-only checks */
 
-              /* *auth_act() checks what authentication methods that are
-                 available and decides which one (if any) to use. It will
-                 set 'newurl' if an auth metod was picked. */
-              Curl_http_auth_act(conn);
-              
               if (conn->newurl) {
                 if(conn->bits.close) {
                   /* Abort after the headers if "follow Location" is set
