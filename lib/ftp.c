@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.62 2001-03-29 08:16:55 bagder Exp $
+ * $Id: ftp.c,v 1.63 2001-04-03 10:20:23 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1720,12 +1720,14 @@ CURLcode Curl_ftp_disconnect(struct connectdata *conn)
 {
   struct FTP *ftp= conn->proto.ftp;
 
-  if(ftp->user)
-    free(ftp->user);
-  if(ftp->passwd)
-    free(ftp->passwd);
-  if(ftp->entrypath)
-    free(ftp->entrypath);
-
+  /* The FTP session may or may not have been allocated/setup at this point! */
+  if(ftp) {
+    if(ftp->user)
+      free(ftp->user);
+    if(ftp->passwd)
+      free(ftp->passwd);
+    if(ftp->entrypath)
+      free(ftp->entrypath);
+  }
   return CURLE_OK;
 }
