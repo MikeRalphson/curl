@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.61 2001-10-17 12:24:51 bagder Exp $
+ * $Id: transfer.c,v 1.62 2001-10-19 06:27:24 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -518,13 +518,8 @@ Transfer(struct connectdata *c_conn)
                   data->info.httpversion = httpversion;
 
                   /* 404 -> URL not found! */
-                  if (
-                      ( ((data->set.http_follow_location) &&
-                         (httpcode >= 400))
-                        ||
-                        (!data->set.http_follow_location &&
-                         (httpcode >= 300)))
-                      && (data->set.http_fail_on_error)) {
+                  if (data->set.http_fail_on_error &&
+                      (httpcode >= 400)) {
                     /* If we have been told to fail hard on HTTP-errors,
                        here is the check for that: */
                     /* serious error, go home! */
