@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.26 2001-04-24 21:09:53 bagder Exp $
+# $Id: runtests.pl,v 1.27 2001-04-24 21:46:37 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -442,7 +442,7 @@ sub singletest {
 
     # name of the test
     open(N, "<$TESTDIR/name$NUMBER.txt") ||
-        print "** Couldn't read name on test $NUMBER\n";
+        return -1; # not a test
     my $DESC=<N>;
     close(N);
     $DESC =~ s/[\r\n]//g;
