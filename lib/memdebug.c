@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.31 2003-10-14 12:00:45 bagder Exp $
+ * $Id: memdebug.c,v 1.32 2003-11-13 07:33:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -204,7 +204,7 @@ void curl_dofree(void *ptr, int line, const char *source)
 int curl_socket(int domain, int type, int protocol, int line, char *source)
 {
   int sockfd=(socket)(domain, type, protocol);
-  if(logfile)
+  if(logfile && (sockfd!=-1))
     fprintf(logfile, "FD %s:%d socket() = %d\n",
             source, line, sockfd);
   return sockfd;
