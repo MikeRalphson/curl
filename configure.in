@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.69 2001-05-29 19:25:28 bagder Exp $
+dnl $Id: configure.in,v 1.70 2001-05-30 04:31:32 crisb Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -11,6 +11,15 @@ dnl
 dnl we extract the numerical version for curl-config only
 VERSIONNUM=`sed -ne 's/^#define LIBCURL_VERSION_NUM 0x\(.*\)/\1/p' ${srcdir}/include/curl/curl.h`
 AC_SUBST(VERSIONNUM)
+
+dnl Solaris pkgadd support definitions
+PKGADD_PKG="HAXXcurl"
+PKGADD_NAME="cURL - a client that groks URLs"
+PKGADD_VENDOR="curl.haxx.se"
+AC_SUBST(PKGADD_PKG)
+AC_SUBST(PKGADD_NAME)
+AC_SUBST(PKGADD_VENDOR)
+
 
 dnl
 dnl Detect the canonical host and target build environment
@@ -831,6 +840,7 @@ AC_CONFIG_FILES([Makefile \
 	   packages/Linux/RPM/Makefile \
 	   packages/Linux/RPM/curl.spec \
 	   packages/Linux/RPM/curl-ssl.spec \
+           packages/Solaris/Makefile \
            perl/Makefile \
            perl/Curl_easy/Makefile \
            php/Makefile \

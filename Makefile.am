@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.18 2001-05-28 21:49:01 bagder Exp $
+# $Id: Makefile.am,v 1.19 2001-05-30 04:31:32 crisb Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -48,3 +48,18 @@ rpm:
 	rpm -ba --clean --rmsource $$RPM_TOPDIR/SPECS/$(RPMDIST).spec ; \
 	mv $$RPM_TOPDIR/RPMS/i386/$(RPMDIST)-*.rpm . ; \
 	mv $$RPM_TOPDIR/SRPMS/$(RPMDIST)-*.src.rpm .
+
+#
+# Build a Solaris pkkgadd format file
+# run 'make pkgadd' once you've done './configure' and 'make' to make a Solaris pkgadd format
+# file (which ends up back in this directory).
+# The pkgadd file is in 'pkgtrans' format, so to install on Solaris, do
+# pkgadd -d ./HAXXcurl-*
+#
+
+# gak - libtool requires an absoulte directory, hence the pwd below...
+pkgadd:
+	umask 022 ; \
+	make install DESTDIR=`/bin/pwd`/packages/Solaris/root ; \
+	cat LEGAL MITX.txt MPL-1.1.txt > $(srcdir)/packages/Solaris/copyright ; \
+	cd $(srcdir)/packages/Solaris && $(MAKE) package
