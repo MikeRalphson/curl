@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.1 2003-10-07 21:54:04 bagder Exp $ */
+/* $Id: ares.h,v 1.2 2004-02-02 15:59:12 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -124,7 +124,7 @@ int ares_parse_ptr_reply(const unsigned char *abuf, int alen, const void *addr,
 			 int addrlen, int family, struct hostent **host);
 void ares_free_string(char *str);
 void ares_free_hostent(struct hostent *host);
-const char *ares_strerror(int code, char **memptr);
+const char *ares_strerror(int code);
 void ares_free_errmem(char *mem);
 
 #endif /* ARES__H */
