@@ -1,4 +1,4 @@
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 /***************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.16 2003-03-15 21:02:20 bagder Exp $
+ * $Id: memdebug.h,v 1.17 2003-06-26 11:27:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
