@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.39 2001-08-21 13:18:08 bagder Exp $
+# $Id: runtests.pl,v 1.40 2001-10-10 22:04:42 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -114,7 +114,7 @@ sub checkserver {
 
     # check for pidfile
     if ( -f $pidfile ) {
-        my $PID=serverpid($pidfile);
+        $PID=serverpid($pidfile);
         if ($PID ne "" && kill(0, $PID)) {
             $RUNNING=1;
         }
