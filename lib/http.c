@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.19 $
- * $Date: 2000-07-31 22:42:34 $
+ * $Revision: 1.20 $
+ * $Date: 2000-08-11 06:39:53 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -481,12 +481,23 @@ CURLcode http(struct connectdata *conn)
     }
     else {
       if(data->bits.http_post) {
-        /* this is the simple x-www-form-urlencoded style */
+        /* this is the simple POST, using x-www-form-urlencoded style */
+
+        if(!checkheaders(data, "Content-Length:"))
+          /* we allow replacing this header, although it isn't very wise to
+             actually set your own */
+          sendf(data->firstsocket, data,
+                "Content-Length: %d\r\n",
+                strlen(data->postfields));
+
+        if(!checkheaders(data, "Content-Type:"))
+          sendf(data->firstsocket, data,
+                "Content-Type: application/x-www-form-urlencoded\r\n");
+
+        /* and here comes the actual data */
         sendf(data->firstsocket, data,
-              "Content-Length: %d\015\012"
-              "Content-Type: application/x-www-form-urlencoded\r\n\r\n"
+              "\r\n"
               "%s\r\n",
-              strlen(data->postfields),
               data->postfields );
       }
       else
