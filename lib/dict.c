@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.19 2001-10-31 14:48:10 bagder Exp $
+ * $Id: dict.c,v 1.20 2001-12-11 13:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -121,7 +121,7 @@ CURLcode Curl_dict(struct connectdata *conn)
     }
       
     if ((word == NULL) || (*word == (char)0)) {
-      failf(data, "lookup word is missing\n");
+      failf(data, "lookup word is missing");
     }
     if ((database == NULL) || (*database == (char)0)) {
       database = (char *)"!";
@@ -174,7 +174,7 @@ CURLcode Curl_dict(struct connectdata *conn)
     }
       
     if ((word == NULL) || (*word == (char)0)) {
-      failf(data, "lookup word is missing\n");
+      failf(data, "lookup word is missing");
     }
     if ((database == NULL) || (*database == (char)0)) {
       database = (char *)"!";

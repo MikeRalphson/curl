@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.82 2001-12-07 15:56:57 bagder Exp $
+ * $Id: http.c,v 1.83 2001-12-11 13:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -449,7 +449,7 @@ CURLcode Curl_http_done(struct connectdata *conn)
   if(0 == (http->readbytecount + conn->headerbytecount)) {
     /* nothing was read from the HTTP server, this can't be right
        so we return an error here */
-    failf(data, "Empty reply from server\n");
+    failf(data, "Empty reply from server");
     return CURLE_GOT_NOTHING;
   }
 
@@ -610,7 +610,7 @@ CURLcode Curl_http(struct connectdata *conn)
 
         passed += actuallyread;
         if(actuallyread != readthisamountnow) {
-          failf(data, "Could only read %d bytes from the input\n",
+          failf(data, "Could only read %d bytes from the input",
                 passed);
           return CURLE_READ_ERROR;
         }
@@ -621,7 +621,7 @@ CURLcode Curl_http(struct connectdata *conn)
         data->set.infilesize -= conn->resume_from;
 
         if(data->set.infilesize <= 0) {
-          failf(data, "File already completely uploaded\n");
+          failf(data, "File already completely uploaded");
           return CURLE_PARTIAL_FILE;
         }
       }
@@ -793,7 +793,7 @@ CURLcode Curl_http(struct connectdata *conn)
       char contentType[256];
       int linelength=0;
       if(Curl_FormInit(&http->form, http->sendit)) {
-        failf(data, "Internal HTTP POST error!\n");
+        failf(data, "Internal HTTP POST error!");
         return CURLE_HTTP_POST_ERROR;
       }
 
@@ -824,7 +824,7 @@ CURLcode Curl_http(struct connectdata *conn)
                                            1,
                                            (FILE *)&http->form);
         if(linelength == -1) {
-          failf(data, "Could not get Content-Type header line!\n");
+          failf(data, "Could not get Content-Type header line!");
           return CURLE_HTTP_POST_ERROR;
         }
         add_buffer(req_buffer, contentType, linelength);

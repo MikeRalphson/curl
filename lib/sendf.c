@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.33 2001-12-04 13:03:09 bagder Exp $
+ * $Id: sendf.c,v 1.34 2001-12-11 13:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -137,8 +137,9 @@ void Curl_infof(struct SessionHandle *data, const char *fmt, ...)
   }
 }
 
-/* Curl_failf() is for messages stating why we failed, the LAST one will be
-   returned for the user (if requested) */
+/* Curl_failf() is for messages stating why we failed.
+ * The message SHALL NOT include any LF or CR.
+ */
 
 void Curl_failf(struct SessionHandle *data, const char *fmt, ...)
 {

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.116 2001-12-03 13:48:59 bagder Exp $
+ * $Id: ftp.c,v 1.117 2001-12-11 13:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1634,7 +1634,7 @@ CURLcode ftp_perform(struct connectdata *conn)
 
           passed += actuallyread;
           if(actuallyread != readthisamountnow) {
-            failf(data, "Could only read %d bytes from the input\n", passed);
+            failf(data, "Could only read %d bytes from the input", passed);
             return CURLE_FTP_COULDNT_USE_REST;
           }
         }

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.19 2001-12-04 13:03:08 bagder Exp $
+ * $Id: connect.c,v 1.20 2001-12-11 13:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -284,7 +284,7 @@ static CURLcode bindlocal(struct connectdata *conn,
             failf(data, "Insufficient kernel memory was available: %d", errno);
             break;
           default:
-            failf(data, "errno %d\n", errno);
+            failf(data, "errno %d", errno);
             break;
           } /* end of switch(errno) */
 	
