@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.201 2004-03-12 14:22:16 bagder Exp $
+ * $Id: http.c,v 1.202 2004-03-13 17:03:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1487,7 +1487,7 @@ CURLcode Curl_http(struct connectdata *conn)
       if(!conn->bits.upload_chunky)
         /* only add Content-Length if not uploading chunked */
         add_bufferf(req_buffer,
-                    "Content-Length: %d\r\n", http->postsize);
+                    "Content-Length: %" FORMAT_OFF_T "\r\n", http->postsize);
 
       if(!checkheaders(data, "Expect:")) {
         /* if not disabled explicitly we add a Expect: 100-continue
