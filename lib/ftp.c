@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-02-01 23:52:11 $
+ * $Revision: 1.4 $
+ * $Date: 2000-02-01 23:56:28 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -77,7 +77,6 @@
 #include "if2ip.h"
 #include "hostip.h"
 #include "progress.h"
-#include "upload.h"
 #include "download.h"
 #include "escape.h"
 

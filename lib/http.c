@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-02-01 23:52:11 $
+ * $Revision: 1.5 $
+ * $Date: 2000-02-01 23:56:28 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -93,7 +93,6 @@
 #include "formdata.h"
 #include "progress.h"
 #include "base64.h"
-#include "upload.h"
 #include "cookie.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
@@ -320,7 +319,7 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
         ProgressInit(data, postsize);
 
         result = Transfer(data, data->firstsocket, -1, TRUE, &readbytecount,
-                          data->firstsocket, writebytecount);
+                          data->firstsocket, &writebytecount);
         *bytecount = readbytecount + writebytecount;
 
         FormFree(sendit); /* Now free that whole lot */
