@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.261 2004-06-24 11:54:11 bagder Exp $
+ * $Id: ftp.c,v 1.262 2004-06-30 12:04:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1066,7 +1066,7 @@ CURLcode ftp_use_port(struct connectdata *conn)
   struct sockaddr *sa=(struct sockaddr *)&ss;
   unsigned char *ap;
   unsigned char *pp;
-  char portmsgbuf[4096], tmp[4096];
+  char portmsgbuf[1024], tmp[1024];
 
   const char *mode[] = { "EPRT", "LPRT", "PORT", NULL };
   char **modep;
