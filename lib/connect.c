@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.93 2004-03-30 13:05:45 bagder Exp $
+ * $Id: connect.c,v 1.94 2004-03-31 10:34:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -147,7 +147,7 @@ int Curl_nonblock(curl_socket_t sockfd,    /* operate on this */
 
 #ifdef HAVE_IOCTLSOCKET
   /* Windows? */
-  int flags;
+  unsigned long flags;
   flags = nonblock;
   return ioctlsocket(sockfd, FIONBIO, &flags);
 #define SETBLOCK 3
