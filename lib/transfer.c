@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.28 2001-03-26 06:19:11 bagder Exp $
+ * $Id: transfer.c,v 1.29 2001-03-27 21:24:46 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -959,6 +959,10 @@ CURLcode Curl_perform(CURL *curl)
     free(conn->newurl);
     conn->newurl = NULL;
   }
+
+  /* make sure the alarm is switched off! */
+  if(data->timeout || data->connecttimeout)
+    myalarm(0);
 
   return res;
 }
