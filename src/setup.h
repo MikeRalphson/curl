@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.20 2003-07-29 11:07:38 bagder Exp $
+ * $Id: setup.h,v 1.21 2003-10-05 15:05:04 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -95,6 +95,10 @@ int fileno( FILE *stream);
 
 #ifdef __riscos__
 #define USE_ENVIRONMENT
+#endif
+
+#ifdef __BEOS__
+#define typedef_bool
 #endif
 
 #endif /* __SETUP_H */
