@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.363 2004-04-26 15:14:19 bagder Exp $
+ * $Id: url.c,v 1.364 2004-04-26 15:19:55 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1906,7 +1906,8 @@ static void verboseconnect(struct connectdata *conn)
   host = Curl_inet_ntop(AF_INET, &in, addrbuf, sizeof(addrbuf));
 #endif
   infof(data, "Connected to %s (%s) port %d\n",
-        conn->hostname, host?host:"", conn->port);
+        conn->bits.httpproxy?conn->proxyhost:conn->hostname,
+        host?host:"", conn->port);
 }
 
 /*
