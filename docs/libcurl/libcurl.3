@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl.3,v 1.5 2003-08-12 08:46:02 bagder Exp $
+.\" $Id: libcurl.3,v 1.6 2003-11-04 13:30:27 bagder Exp $
 .\"
 .TH libcurl 3 "19 March 2002" "libcurl 7.9.6" "libcurl overview"
 .SH NAME
@@ -27,7 +27,8 @@ option of using the "easy" interface, or the "multi" interface.
 The easy interface is a synchronous interface with which you call
 \fIcurl_easy_perform\fP and let it perform the transfer. When it is completed,
 the function return and you can continue. More details are found in the
-\fIlibcurl-easy\fP man page.
+.BR "libcurl-easy (3)"
+man page.
 
 The multi interface on the other hand is an asynchronous interface, that you
 call and that performs only a little piece of the tranfer on each invoke. It
