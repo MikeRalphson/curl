@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.262 2005-03-12 17:31:15 giva Exp $
+ * $Id: urldata.h,v 1.263 2005-03-14 00:01:30 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -193,7 +193,7 @@ typedef enum {
  * or SECURITY_KERNEL, indicating who is compiling the code.
  */
 #define SECURITY_WIN32 1
-#include <Security.h>
+#include <security.h>
 #include <sspi.h>
 #include <rpc.h>
 #endif
