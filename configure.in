@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.86 2001-10-29 10:32:39 bagder Exp $
+dnl $Id: configure.in,v 1.87 2001-11-28 13:16:56 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -492,7 +492,6 @@ AC_CHECK_HEADERS( \
         sys/stat.h \
         sys/types.h \
         sys/time.h \
-        getopt.h \
         sys/param.h \
         termios.h \
         termio.h \
@@ -527,6 +526,7 @@ AC_CHECK_SIZEOF(long long, 4)
 AC_CHECK_TYPE(ssize_t, int)
 
 TYPE_SOCKLEN_T
+TYPE_IN_ADDR_T
 
 dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL
