@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.39 2000-11-09 12:35:45 bagder Exp $
+dnl $Id: configure.in,v 1.40 2000-11-10 09:19:47 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -582,7 +582,8 @@ AC_CHECK_FUNCS( socket \
                 closesocket \
                 setvbuf \
                 sigaction \
-                signal
+                signal \
+                getpass_r
 )
 
 dnl removed 'getpass' check on October 26, 2000
