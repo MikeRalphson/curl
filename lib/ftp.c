@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.312 2005-04-05 20:59:12 bagder Exp $
+ * $Id: ftp.c,v 1.313 2005-04-05 21:14:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2821,7 +2821,7 @@ CURLcode Curl_ftp_done(struct connectdata *conn, CURLcode status)
     if((-1 != data->set.infilesize) &&
        (data->set.infilesize != *ftp->bytecountp) &&
        !data->set.crlf &&
-       !ftp->no_transfer)) {
+       !ftp->no_transfer) {
       failf(data, "Uploaded unaligned file size (%" FORMAT_OFF_T
             " out of %" FORMAT_OFF_T " bytes)",
             *ftp->bytecountp, data->set.infilesize);
