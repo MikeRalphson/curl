@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.90 2002-04-08 07:27:22 bagder Exp $
+ * $Id: transfer.c,v 1.91 2002-04-10 13:44:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -244,7 +244,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               newbuff = (char *)realloc(data->state.headerbuff, newsize);
               if(!newbuff) {
                 failf (data, "Failed to alloc memory for big header!");
-                return CURLE_READ_ERROR;
+                return CURLE_OUT_OF_MEMORY;
               }
               data->state.headersize=newsize;
               data->state.headerbuff = newbuff;
@@ -274,7 +274,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             newbuff = (char *)realloc(data->state.headerbuff, newsize);
             if(!newbuff) {
               failf (data, "Failed to alloc memory for big header!");
-              return CURLE_READ_ERROR;
+              return CURLE_OUT_OF_MEMORY;
             }
             data->state.headersize= newsize;
             data->state.headerbuff = newbuff;
@@ -696,7 +696,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               return CURLE_WRITE_ERROR;
             }
             failf(data, "Received problem in the chunky parser");
-            return CURLE_READ_ERROR;
+            return CURLE_RECV_ERROR;
           }
           else if(CHUNKE_STOP == res) {
             /* we're done reading chunks! */
