@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.158 2001-10-02 11:26:53 bagder Exp $
+ * $Id: url.c,v 1.159 2001-10-02 12:51:15 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2047,9 +2047,10 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       snprintf(hbuf, sizeof(hbuf), "?");
     }
     if (ai->ai_canonname) {
-      infof(data, "Connected to %s (%s)\n", ai->ai_canonname, hbuf);
+      infof(data, "Connected to %s (%s) port %d\n", ai->ai_canonname, hbuf,
+            conn->port);
     } else {
-      infof(data, "Connected to %s\n", hbuf);
+      infof(data, "Connected to %s port %d\n", hbuf, conn->port);
     }
   }
 #else
