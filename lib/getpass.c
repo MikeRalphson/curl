@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.3 2000-03-19 19:54:13 bagder Exp $
+ * $Id: getpass.c,v 1.4 2000-03-23 10:41:39 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -175,7 +175,9 @@ char *getpass(const char *prompt)
 #endif
   
   signal(SIGINT, sigint);
+#ifndef __EMX__
   signal(SIGTSTP, sigtstp);
+#endif
 
   return(buf);
 }
