@@ -21,11 +21,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.h,v 1.7 2003-02-04 23:48:47 jpbl Exp $
+ * $Id: share.h,v 1.8 2003-08-04 15:02:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include <curl/curl.h>
+#include "cookie.h"
 
 /* this struct is libcurl-private, don't export details */
 struct Curl_share {
@@ -37,6 +38,7 @@ struct Curl_share {
   void *clientdata;
 
   curl_hash *hostcache;
+  struct CookieInfo *cookies;
 };
 
 CURLSHcode Curl_share_lock (

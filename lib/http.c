@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.145 2003-08-02 23:36:35 bagder Exp $
+ * $Id: http.c,v 1.146 2003-08-04 15:02:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -853,10 +853,12 @@ CURLcode Curl_http(struct connectdata *conn)
   }
 
   if(data->cookies) {
+    Curl_share_lock(data, CURL_LOCK_DATA_COOKIE, CURL_LOCK_ACCESS_SINGLE);
     co = Curl_cookie_getlist(data->cookies,
                              conn->allocptr.cookiehost?
                              conn->allocptr.cookiehost:host, ppath,
                              (bool)(conn->protocol&PROT_HTTPS?TRUE:FALSE));
+    Curl_share_unlock(data, CURL_LOCK_DATA_COOKIE);
   }
 
   if (conn->bits.httpproxy &&
