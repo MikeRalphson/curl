@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.23 2001-01-27 18:23:59 bagder Exp $
+ * $Id: progress.c,v 1.24 2001-04-17 15:00:17 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -134,6 +134,7 @@ void Curl_pgrsTime(struct UrlData *data, timerid timer)
 
 void Curl_pgrsStartNow(struct UrlData *data)
 {
+  data->progress.speeder_c = 0; /* reset the progress meter display */
   data->progress.start = Curl_tvnow();
 }
 
