@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.99 2004-07-16 09:23:29 gknauf Exp $
+# $Id: Makefile.am,v 1.100 2004-08-24 11:48:02 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -97,9 +97,8 @@ BUILT_SOURCES = $(srcdir)/getdate.c $(top_builddir)/lib/ca-bundle.h
 
 # Say $(srcdir), so GNU make does not report an ambiguity with the .y.c rule.
 $(srcdir)/getdate.c: getdate.y
-	cd $(srcdir) && \
-	  $(YACC) $(YFLAGS) getdate.y; \
-	  mv -f y.tab.c getdate.c
+	cd $(srcdir) && $(YACC) $(YFLAGS) getdate.y && \
+	sed -e 's:YYSTYPE yylval;:YYSTYPE yylval = {0}; /* post-bison fix */:' < y.tab.c > getdate.c && rm -f y.tab.c
 
 $(top_builddir)/lib/ca-bundle.h: Makefile.in Makefile
 	@if test -f $@; then \
