@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.14 2000-05-25 15:18:02 bagder Exp $
+dnl $Id: configure.in,v 1.15 2000-05-30 16:31:46 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -178,11 +178,14 @@ AC_CHECK_FUNCS( socket \
                 stricmp \
                 strcmpi \
                 gethostname \
+                gethostbyname_r \
                 gethostbyaddr \
+                gethostbyaddr_r \
                 getservbyname \
                 gettimeofday \
                 inet_addr \
                 inet_ntoa \
+                inet_ntoa_r \
                 tcsetattr \
                 tcgetattr \
                 perror \
