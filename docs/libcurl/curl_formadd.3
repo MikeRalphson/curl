@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_formadd.3,v 1.6 2002-11-15 14:13:46 bagder Exp $
+.\" $Id: curl_formadd.3,v 1.7 2004-02-23 09:01:08 bagder Exp $
 .\"
 .TH curl_formadd 3 "24 June 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -8,8 +8,8 @@ curl_formadd - add a section to a multipart/formdata HTTP POST
 .SH SYNOPSIS
 .B #include <curl/curl.h>
 .sp
-.BI "CURLFORMcode curl_formadd(struct HttpPost ** " firstitem,
-.BI "struct HttpPost ** " lastitem, " ...);"
+.BI "CURLFORMcode curl_formadd(struct curl_httppost ** " firstitem,
+.BI "struct curl_httppost ** " lastitem, " ...);"
 .ad
 .SH DESCRIPTION
 curl_formadd() is used to append sections when building a multipart/formdata
