@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.94 2002-04-12 07:21:11 bagder Exp $
+ * $Id: http.c,v 1.95 2002-04-12 07:53:12 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -146,7 +146,7 @@ CURLcode add_buffer_send(int sockfd, struct connectdata *conn, send_buffer *in,
 
     if(conn->data->set.verbose)
       /* this data _may_ contain binary stuff */
-      Curl_debug(conn->data, CURLINFO_DATA_OUT, ptr, amount);
+      Curl_debug(conn->data, CURLINFO_HEADER_OUT, ptr, amount);
 
     if(amount != size) {
       size -= amount;
