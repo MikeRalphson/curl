@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.258 2003-02-04 23:48:47 jpbl Exp $
+ * $Id: url.c,v 1.259 2003-02-24 14:50:20 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -378,12 +378,19 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
           Curl_disconnect(data->state.connects[i]);
       }
       if(newconnects) {
+        int i;
         newptr= (struct connectdata **)
           realloc(data->state.connects,
                   sizeof(struct connectdata *) * newconnects);
         if(!newptr)
           /* we closed a few connections in vain, but so what? */
           return CURLE_OUT_OF_MEMORY;
+
+        /* nullify the newly added pointers */
+        for(i=data->state.numconnects; i<newconnects; i++) {
+          newptr[i] = NULL;
+        }
+
         data->state.connects = newptr;
         data->state.numconnects = newconnects;
       }
