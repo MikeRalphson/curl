@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.115 2002-12-16 10:31:25 bagder Exp $
+dnl $Id: configure.in,v 1.116 2002-12-20 15:54:24 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -9,6 +9,7 @@ dnl First some basic init macros
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
 AM_CONFIG_HEADER(lib/config.h src/config.h tests/server/config.h lib/ca-bundle.h)
+AM_MAINTAINER_MODE
 
 dnl figure out the libcurl version
 VERSION=`sed -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curl.h`
