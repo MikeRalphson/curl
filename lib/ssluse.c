@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ssluse.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-03-02 23:01:35 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -43,6 +43,7 @@
 
 #include "urldata.h"
 #include "sendf.h"
+#include "formdata.h" /* for the boundary function */
 
 #ifdef USE_SSLEAY
 
@@ -162,6 +163,29 @@ UrgSSLConnect (struct UrlData *data)
     /* Lets get nice error messages */
     SSL_load_error_strings();
 
+#ifdef HAVE_RAND_STATUS
+    /* RAND_status() was introduced in OpenSSL 0.9.5 */
+    if(0 == RAND_status())
+#endif
+    {
+      /* We need to seed the PRNG properly! */
+#ifdef WIN32
+      /* This one gets a random value by reading the currently shown screen */
+      RAND_screen();
+#else
+      int len;
+      char *area = MakeFormBoundary();
+      if(!area)
+	return 3; /* out of memory */
+	
+      len = strlen(area);
+
+      RAND_seed(area, len);
+
+      free(area); /* now remove the random junk */
+#endif
+    }
+    
     /* Setup all the global SSL stuff */
     SSLeay_add_ssl_algorithms();
 
