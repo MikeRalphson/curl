@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.42 2001-05-21 13:30:01 bagder Exp $
+ * $Id: transfer.c,v 1.43 2001-05-22 21:09:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -466,6 +466,9 @@ Transfer(struct connectdata *c_conn)
                    or else we consiser this to be the body right away! */
                 if (2 == sscanf (p, " HTTP/1.%d %3d", &httpversion,
                                  &httpcode)) {
+                  data->progress.httpcode = httpcode;
+                  data->progress.httpversion = httpversion;
+
                   /* 404 -> URL not found! */
                   if (
                       ( ((data->bits.http_follow_location) &&
@@ -480,8 +483,6 @@ Transfer(struct connectdata *c_conn)
                     failf (data, "The requested file was not found");
                     return CURLE_HTTP_NOT_FOUND;
                   }
-                  data->progress.httpcode = httpcode;
-                  data->progress.httpversion = httpversion;
 
                   if(httpversion == 0)
                     /* Default action for HTTP/1.0 must be to close, unless
