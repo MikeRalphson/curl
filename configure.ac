@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.52 2004-02-19 09:01:13 bagder Exp $
+dnl $Id: configure.ac,v 1.53 2004-02-19 15:58:58 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1143,6 +1143,20 @@ then
 fi
 
 AC_PROG_YACC
+
+if test -z "$YACC"
+then
+  AC_MSG_CHECKING([if OK to build without bison/yacc])
+  dnl no yacc is a big deal if we have no pre-fixed getdate.y
+  if test -r "$srcdir/lib/getdate.c"
+  then
+    dnl all is well, we don't have to generate it!
+    AC_MSG_RESULT(yes)
+  else
+    AC_MSG_RESULT(no)
+    AC_MSG_ERROR([no yacc or bison found, can't build libcurl!])
+  fi
+fi
 
 dnl *************************************************************************
 dnl If the manual variable still is set, then we go with providing a built-in
