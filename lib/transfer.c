@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.70 2001-11-20 15:00:50 bagder Exp $
+ * $Id: transfer.c,v 1.71 2001-12-04 09:14:41 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -903,7 +903,7 @@ CURLcode Curl_perform(struct SessionHandle *data)
   bool port=TRUE; /* allow data->set.use_port to set port to use */
   char *newurl = NULL; /* possibly a new URL to follow to! */
 #ifdef HAVE_SIGNAL
-  /* storage for the previous signal handler */
+  /* storage for the previous bag^H^H^HSIGPIPE signal handler :-) */
   void (*prev_signal)(int sig);
 #endif
 
