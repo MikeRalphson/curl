@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.35 2004-07-02 12:28:57 bagder Exp $
+ * $Id: urlglob.c,v 1.36 2004-07-26 09:11:10 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -449,10 +449,9 @@ char *glob_match_url(char *filename, URLGlob *glob)
 
   while (*filename) {
     if (*filename == '#' && isdigit((int)filename[1])) {
-      /* only '#1' ... '#9' allowed */
       unsigned long i;
+      char *ptr = filename;
       unsigned long num = strtoul(&filename[1], &filename, 10);
-
       i = num-1;
 
       if (num && (i <= glob->size / 2)) {
@@ -481,6 +480,12 @@ char *glob_match_url(char *filename, URLGlob *glob)
           free(target);
           return NULL;
         }
+      }
+      else {
+        /* #[num] out of range, use the #[num] in the output */
+        filename = ptr;
+        appendthis=filename++;
+        appendlen=1;
       }
     }
     else {
