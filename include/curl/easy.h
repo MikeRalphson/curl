@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.h,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: easy.h,v 1.5 2001-09-13 14:50:04 bagder Exp $
  *****************************************************************************/
 #ifdef  __cplusplus
 extern "C" {
@@ -45,6 +45,21 @@ void curl_easy_cleanup(CURL *curl);
  * transfer is completed.
  */
 CURLcode curl_easy_getinfo(CURL *curl, CURLINFO info, ...);
+
+
+/*
+ * NAME curl_easy_duphandle()
+ *
+ * DESCRIPTION
+ *
+ * Creates a new curl session handle with the same options set for the handle
+ * passed in. Duplicating a handle could only be a matter of cloning data and
+ * options, internal state info and things like persistant connections cannot
+ * be transfered. It is useful in multithreaded applications when you can run
+ * curl_easy_duphandle() for each new thread to avoid a series of identical
+ * curl_easy_setopt() invokes in every thread.
+ */
+CURL* curl_easy_duphandle(CURL *curl);
 
 #ifdef  __cplusplus
 }
