@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.15.2.2 $
- * $Date: 2000-04-26 23:03:04 $
+ * $Revision: 1.15.2.3 $
+ * $Date: 2000-05-02 21:33:05 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -928,18 +928,26 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     if(!data->port)
       data->port = PORT_TELNET;
     data->remote_port = PORT_TELNET;
+
+    data->curl_do = telnet;
+    data->curl_done = telnet_done;
+
   }
   else if (strequal(conn->proto, "DICT")) {
     data->conf |= CONF_DICT;
     if(!data->port)
       data->port = PORT_DICT;
     data->remote_port = PORT_DICT;
+    data->curl_do = dict;
+    data->curl_done = dict_done;
   }
   else if (strequal(conn->proto, "LDAP")) {
     data->conf |= CONF_LDAP;
     if(!data->port)
       data->port = PORT_LDAP;
     data->remote_port = PORT_LDAP;
+    data->curl_do = ldap;
+    data->curl_done = ldap_done;
   }
   /* file:// is handled above */
   /*  else if (strequal(proto, "FILE")) {
@@ -1205,6 +1213,8 @@ UrgError curl_done(CURLconnect *c_connect)
   /* this calls the protocol-specific function pointer previously set */
   result = data->curl_done(conn);
 
+  pgrsDone(data); /* done with the operation */
+
   return result;
 }
 
@@ -1220,16 +1230,6 @@ UrgError curl_do(CURLconnect *in_conn)
 
   if(data->conf & CONF_TELNET) {
     result=telnet(conn);
-    if(result)
-      return result;
-  }
-  else if (data->conf & CONF_LDAP) {
-    result = ldap(conn, conn->path, &conn->bytecount);
-    if (result)
-      return result;
-  }
-  else if (data->conf & CONF_DICT) {
-    result = dict(conn, conn->path, &conn->bytecount);
     if(result)
       return result;
   }
