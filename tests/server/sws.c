@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.48 2004-04-17 11:38:41 bagder Exp $
+ * $Id: sws.c,v 1.49 2004-04-21 06:56:54 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -639,8 +639,10 @@ static int send_doc(int sock, struct httprequest *req)
     char *ptr=cmd;
     do {
       if(2 == sscanf(ptr, "%31s %d", command, &num)) {
-        if(!strcmp("wait", command))
+        if(!strcmp("wait", command)) {
+          logmsg("Told to sleep for %d seconds", num);
           sleep(num); /* wait this many seconds */
+        }
         else
           logmsg("Unknown command in reply command section");
       }
