@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.60 2003-08-05 14:54:15 bagder Exp $
+# $Id: Makefile.am,v 1.61 2003-08-05 15:22:15 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -21,7 +21,7 @@ endif
 # we use srcdir/lib for the lib-private header files
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/lib -I$(top_srcdir)/lib $(ARESINC)
 
-LDFLAGS = -L$(top_srcdir)/lib
+LDFLAGS += -L$(top_srcdir)/lib
 
 VERSION=-version-info 2:2:0
 
