@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.34 2001-06-14 12:16:07 bagder Exp $
+# $Id: runtests.pl,v 1.35 2001-06-27 22:01:08 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -567,9 +567,14 @@ sub singletest {
 
         # what to cut off from the live protocol sent by curl
         my @strip = getpart("verify", "strip");
-        @out = striparray( $strip[0], \@out);
 
-        my @protstrip= striparray($strip[0], \@protocol);
+        my @protstrip=@protocol;
+
+        for(@strip) {
+            # strip all patterns from both arrays
+            @out = striparray( $_, \@out);
+            @protstrip= striparray( $_, \@protstrip);
+        }
 
         $res = compare(\@out, \@protstrip);
         if($res) {
