@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.162 2005-01-29 13:06:31 bagder Exp $
+# $Id: runtests.pl,v 1.163 2005-01-30 12:56:36 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -899,6 +899,7 @@ sub singletest {
 
     my @what;
     my $why;
+    my %feature;
 
     # load the test case file definition
     if(loadtest("${TESTDIR}/test${testnum}")) {
@@ -915,6 +916,8 @@ sub singletest {
     for(@what) {
         my $f = $_;
         $f =~ s/\s//g;
+
+        $feature{$f}=$f; # we require this feature
 
         if($f eq "SSL") {
             if($ssl_version) {
@@ -1435,7 +1438,9 @@ sub singletest {
             }
             my $leak;
             my $invalidread;
+            my $uninitedvar;
             my $error;
+            my $partial;
 
             open(VAL, "<log/$l");
             while(<VAL>) {
@@ -1446,10 +1451,25 @@ sub singletest {
                     }
                     last;
                 }
-                if($_ =~ /Invalid read of size (\d+)/) {
+                elsif($_ =~ /Invalid read of size (\d+)/) {
                     $invalidread = $1;
                     $error++;
                     last;
+                }
+                elsif($_ =~ /Conditional jump or move/) {
+                    # If we require SSL, this test case most probaly makes
+                    # us use OpenSSL. OpenSSL produces numerous valgrind
+                    # errors of this kind, rendering it impossible for us to
+                    # detect (valid) reports on actual curl or libcurl code.
+
+                    if(!$feature{'SSL'}) {
+                        $uninitedvar = 1;
+                        $error++;
+                        last;
+                    }
+                    else {
+                        $partial=1;
+                    }
                 }
             }
             close(VAL);
@@ -1461,10 +1481,13 @@ sub singletest {
                 if($invalidread) {
                     print "\n Read $invalidread invalid bytes\n";
                 }
+                if($uninitedvar) {
+                    print "\n Conditional jump or move depends on uninitialised value(s)\n";
+                }
                 return 1;
             }
             elsif(!$short) {
-                print " valgrind OK";
+                printf " valgrind %s", $partial?"PARTIAL":"OK";
             }
         }
         else {
