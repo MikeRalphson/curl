@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.24 2004-01-07 09:19:35 bagder Exp $
+ * $Id: http_ntlm.c,v 1.25 2004-02-23 08:07:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -286,7 +286,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
   int hostlen = strlen(host);
   int hostoff; /* host name offset */
   int domoff;  /* domain name offset */
-  int size;
+  size_t size;
   char *base64=NULL;
   unsigned char ntlmbuf[256]; /* enough, unless the host/domain is very long */
 
