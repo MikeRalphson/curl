@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.22 2004-02-02 21:34:01 bagder Exp $
+ * $Id: memdebug.h,v 1.23 2004-02-16 16:24:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,6 +82,9 @@ int curl_fclose(FILE *file, int line, const char *source);
 /* sclose is probably already defined, redefine it! */
 #undef sclose
 #define sclose(sockfd) curl_sclose(sockfd,__LINE__,__FILE__)
+/* ares-adjusted define: */
+#undef closesocket
+#define closesocket(sockfd) curl_sclose(sockfd,__LINE__,__FILE__)
 
 #undef fopen
 #define fopen(file,mode) curl_fopen(file,mode,__LINE__,__FILE__)
