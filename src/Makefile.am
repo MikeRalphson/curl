@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.12 2001-05-22 21:17:58 bagder Exp $
+# $Id: Makefile.am,v 1.13 2001-08-06 13:18:34 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -26,7 +26,7 @@ BUILT_SOURCES = hugehelp.c
 CLEANFILES = hugehelp.c
 NROFF=@NROFF@
 
-EXTRA_DIST = mkhelp.pl config-win32.h \
+EXTRA_DIST = mkhelp.pl config-win32.h curlmsg.msg\
 	Makefile.vc6 Makefile.b32 Makefile.m32 config.h.in
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
