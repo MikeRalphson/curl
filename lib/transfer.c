@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.143 2003-02-26 12:42:25 bagder Exp $
+ * $Id: transfer.c,v 1.144 2003-04-08 14:48:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -568,7 +568,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               int len;
               
               /* Find the first non-space letter */
-              for(start=k->p+14;
+              for(start=k->p+13;
                   *start && isspace((int)*start);
                   start++);
 
