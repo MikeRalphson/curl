@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.57 2001-03-15 14:38:30 bagder Exp $
+ * $Id: urldata.h,v 1.58 2001-03-29 08:16:55 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -207,6 +207,7 @@ struct connectdata {
 #define PROT_DICT    (1<<6)
 #define PROT_LDAP    (1<<7)
 #define PROT_FILE    (1<<8)
+#define PROT_FTPS    (1<<9)
 
 #ifdef ENABLE_IPV6
   struct addrinfo *hp; /* host info pointer list */
@@ -293,7 +294,6 @@ struct connectdata {
 		   document headers */
 
 #ifdef KRB4
-
   enum protection_level command_prot;
   enum protection_level data_prot;
   enum protection_level request_data_prot;
@@ -553,10 +553,6 @@ struct UrlData {
   char proxypasswd[MAX_CURL_PASSWORD_LENGTH];
 
   char *krb4_level; /* what security level */
-#ifdef KRB4
-  FILE *cmdchannel;
-#endif
-
   struct timeval keeps_speed; /* this should be request-specific */
 
   /* 'connects' will be an allocated array with pointers. If the pointer is
