@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.15 2004-07-15 02:34:58 gknauf Exp $
+# $Id: testcurl.pl,v 1.16 2004-07-24 21:24:03 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.15 $';
+$version='$Revision: 1.16 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -316,10 +316,25 @@ if ($CVS) {
     } else {
       mydie "buildconf was NOT successful";
     }
-  } else {
-    logit "buildconf was successful (dummy message)";
-  }
 
+    if($confopts =~ /--enable-ares/) {
+        logit "run buildconf for ares";
+        chdir "ares";
+        open(F, "./buildconf 2>&1 |") or die;
+        open(LOG, ">$buildlog") or die;
+        while (<F>) {
+            next if /warning: underquoted definition of/;
+            print;
+            print LOG;
+        }
+        close(F);
+        close(LOG);
+        chdir "..";
+    }
+
+  } else {
+      logit "buildconf was successful (dummy message)";
+  }
 }
 
 if ($gnulikebuild) {
@@ -375,10 +390,11 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
 
   logit "build ares";
   chdir "ares";
+
   if ($targetos ne '') {
-    open(F, "make -f Makefile.$targetos 2>&1 |") or die;
+      open(F, "make -f Makefile.$targetos 2>&1 |") or die;
   } else {
-    open(F, "make 2>&1 |") or die;
+      open(F, "make 2>&1 |") or die;
   }
   while (<F>) {
     s/$pwd//g;
