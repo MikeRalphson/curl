@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.48 2001-03-05 13:59:43 bagder Exp $
+ * $Id: urldata.h,v 1.49 2001-03-07 17:12:12 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -196,6 +196,7 @@ struct FILE {
 struct ConnectBits {
   bool close; /* if set, we close the connection after this request */
   bool reuse; /* if set, this is a re-used connection */
+  bool chunk; /* if set, this is a chunked transfer-encoding */
 };
 
 /*
