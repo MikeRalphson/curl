@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.36 2000-10-27 10:52:08 bagder Exp $
+dnl $Id: configure.in,v 1.37 2000-11-01 08:19:10 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -529,7 +529,8 @@ AC_CHECK_FUNCS( socket \
                 perror \
                 closesocket \
                 setvbuf \
-                sigaction
+                sigaction \
+                signal
 )
 
 dnl removed 'getpass' check on October 26, 2000
@@ -553,8 +554,6 @@ dnl   $PATH:/usr/bin/:/usr/local/bin )
 dnl AC_SUBST(RANLIB)
 
 AC_OUTPUT( Makefile \
-           curl.spec \
-           curl-ssl.spec \
 	   docs/Makefile \
 	   include/Makefile \
 	   include/curl/Makefile \

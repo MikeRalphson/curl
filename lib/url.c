@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.51 $
- * $Date: 2000-10-30 11:53:40 $
+ * $Revision: 1.52 $
+ * $Date: 2000-11-01 08:19:10 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -726,6 +726,12 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
   sigact.sa_handler = alarmfunc;
   sigact.sa_flags &= ~SA_RESTART;
   sigaction(SIGALRM, &sigact, NULL);
+#else
+  /* no sigaction(), revert to the much lamer signal() */
+#ifdef HAVE_SIGNAL
+  signal(SIGALRM, alarmfunc);
+#endif
+
 #endif
 
   /* Parse <url> */
