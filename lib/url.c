@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.46 $
- * $Date: 2000-10-11 10:58:37 $
+ * $Revision: 1.47 $
+ * $Date: 2000-10-12 08:22:16 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -917,7 +917,7 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
   if(data->resume_from) {
     if(!data->bits.set_range) {
       /* if it already was in use, we just skip this */
-      sprintf(resumerange, "%d-", data->resume_from);
+      snprintf(resumerange, sizeof(resumerange), "%d-", data->resume_from);
       data->range=strdup(resumerange); /* tell ourselves to fetch this range */
       data->bits.rangestringalloc = TRUE; /* mark as allocated */
       data->bits.set_range = 1; /* switch on range usage */
@@ -1415,7 +1415,8 @@ CURLcode curl_connect(CURL *curl, CURLconnect **in_connect)
 
   if(data->bits.proxy_user_passwd) {
     char *authorization;
-    sprintf(data->buffer, "%s:%s", data->proxyuser, data->proxypasswd);
+    snprintf(data->buffer, BUFSIZE, "%s:%s",
+             data->proxyuser, data->proxypasswd);
     if(base64_encode(data->buffer, strlen(data->buffer),
                     &authorization) >= 0) {
       data->ptr_proxyuserpwd =

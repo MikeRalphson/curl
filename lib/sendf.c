@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.c,v $
- * $Revision: 1.10 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.11 $
+ * $Date: 2000-10-12 08:22:16 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -55,6 +55,7 @@
 #include "urldata.h"
 #include "sendf.h"
 
+#define _MPRINTF_REPLACE /* use the internal *printf() functions */
 #include <curl/mprintf.h>
 
 #ifdef KRB4
@@ -87,7 +88,7 @@ void failf(struct UrlData *data, char *fmt, ...)
   va_list ap;
   va_start(ap, fmt);
   if(data->errorbuffer)
-    vsprintf(data->errorbuffer, fmt, ap);
+    vsnprintf(data->errorbuffer, CURL_ERROR_SIZE, fmt, ap);
   else /* no errorbuffer receives this, write to data->err instead */
     vfprintf(data->err, fmt, ap);
   va_end(ap);
