@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.40 2005-03-11 05:49:04 danf Exp $
+ * $Id: http_ntlm.c,v 1.41 2005-03-14 09:37:08 giva Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -330,10 +330,12 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
 {
   const char *domain=""; /* empty */
   const char *host=""; /* empty */
+#ifndef USE_WINDOWS_SSPI
   int domlen=(int)strlen(domain);
   int hostlen = (int)strlen(host);
   int hostoff; /* host name offset */
   int domoff;  /* domain name offset */
+#endif
   size_t size;
   char *base64=NULL;
   unsigned char ntlmbuf[256]; /* enough, unless the host/domain is very long */
