@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.218 2004-04-26 07:20:11 bagder Exp $
+ * $Id: urldata.h,v 1.219 2004-04-26 14:03:25 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -433,6 +433,10 @@ struct connectdata {
                       somewhere within the namebuffer[] area */
 #ifdef USE_LIBIDN
   char *ace_hostname; /* hostname possibly converted to ACE form */
+#define TRUE_HOSTNAME(conn) \
+ (conn->ace_hostname ? conn->ace_hostname : conn->hostname)
+#else
+#define TRUE_HOSTNAME(conn) conn->hostname
 #endif
   char *pathbuffer;/* allocated buffer to store the URL's path part in */
   char *path;      /* path to use, points to somewhere within the pathbuffer
