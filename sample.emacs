@@ -1,4 +1,4 @@
-;; $Id: sample.emacs,v 1.1 2003-01-29 12:14:37 bagder Exp $ -*- emacs-lisp -*-
+;; $Id: sample.emacs,v 1.2 2004-06-04 07:21:12 bagder Exp $ -*- emacs-lisp -*-
 
 ;; This file was contributed by Mats Lidell
 
@@ -7,9 +7,9 @@
 ;; First comes a setup that is ideal when you are only working with curl. Just
 ;; select the next few lines, paste it into your .emacs and change the path to
 ;; the tools folder. (If you are using more than one style. Look further down
-;; the this file.)
+;; this file.)
 
-(load-file "<YOUR-PATH-TO-CURL>/tools/curl-style.el")
+(load-file "<YOUR-PATH-TO-CURL>/curl-style.el")
 (add-hook 'c-mode-common-hook 'curl-c-mode-common-hook)
 
 ;; If you are using more than one style in maybe more than one project the
