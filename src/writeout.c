@@ -18,15 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: writeout.c,v 1.5 2001-03-14 10:27:13 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
 #include <string.h>
 
 #include <curl/curl.h>
-#include <curl/types.h>
-#include <curl/easy.h>
 
 #define _MPRINTF_REPLACE /* we want curl-functions instead of native ones */
 #include <curl/mprintf.h>
