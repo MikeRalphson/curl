@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.315 2003-11-19 14:35:40 bagder Exp $
+ * $Id: url.c,v 1.316 2003-11-24 07:10:02 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2852,6 +2852,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     Curl_safefree(old_conn->proxyuser);
     Curl_safefree(old_conn->proxypasswd);
 
+    if(old_conn->bits.rangestringalloc)
+      free(old_conn->range);
+
     free(old_conn);          /* we don't need this anymore */
 
     /*
@@ -2860,14 +2863,14 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      */
     conn->resume_from = data->set.set_resume_from;
     if (conn->resume_from) {
-        snprintf(resumerange, sizeof(resumerange), "%d-", conn->resume_from);
-        if (conn->bits.rangestringalloc == TRUE)
-            free(conn->range);
+      snprintf(resumerange, sizeof(resumerange), "%d-", conn->resume_from);
+      if (conn->bits.rangestringalloc == TRUE)
+        free(conn->range);
 
-        /* tell ourselves to fetch this range */
-        conn->range = strdup(resumerange);
-        conn->bits.use_range = TRUE;        /* enable range download */
-        conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
+      /* tell ourselves to fetch this range */
+      conn->range = strdup(resumerange);
+      conn->bits.use_range = TRUE;        /* enable range download */
+      conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
     }
     else if (data->set.set_range) {
       /* There is a range, but is not a resume, useful for random ftp access */
