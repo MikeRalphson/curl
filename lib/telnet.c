@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.59 2004-04-26 07:50:51 bagder Exp $
+ * $Id: telnet.c,v 1.60 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -81,11 +81,10 @@
 #define  TELCMDS
 
 #include "arpa_telnet.h"
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 #define SUBBUFSIZE 512
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.33 2004-05-05 13:42:23 bagder Exp $
+ * $Id: if2ip.c,v 1.34 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -73,11 +73,10 @@
 #endif
 
 #include "if2ip.h"
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 #define SYS_ERROR -1
 

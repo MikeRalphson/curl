@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.253 2004-04-27 13:56:23 bagder Exp $
+ * $Id: ftp.c,v 1.254 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -92,6 +92,7 @@
 #include "ssluse.h"
 #include "connect.h"
 #include "strerror.h"
+#include "memory.h"
 
 #if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
 #include "inet_ntoa_r.h"

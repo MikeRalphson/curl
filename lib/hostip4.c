@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.2 2004-04-26 12:02:33 bagder Exp $
+ * $Id: hostip4.c,v 1.3 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,10 +87,9 @@
 #include "inet_ntoa_r.h"
 #endif
 
+#include "memory.h"
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /***********************************************************************
  * Only for plain-ipv4 builds

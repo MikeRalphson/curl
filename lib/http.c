@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.225 2004-05-10 14:22:20 bagder Exp $
+ * $Id: http.c,v 1.226 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -74,7 +74,6 @@
 #include <sys/select.h>
 #endif
 
-
 #endif
 
 #include "urldata.h"
@@ -94,14 +93,13 @@
 #include "share.h"
 #include "hostip.h"
 #include "http.h"
+#include "memory.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /*
  * checkheaders() checks the linked list of custom HTTP headers for a

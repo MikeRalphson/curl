@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.98 2004-04-29 07:36:40 bagder Exp $
+ * $Id: ssluse.c,v 1.99 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -50,10 +50,10 @@
 #include <openssl/rand.h>
 #include <openssl/x509v3.h>
 
+#include "memory.h"
+
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 #if OPENSSL_VERSION_NUMBER >= 0x0090581fL
 #define HAVE_SSL_GET1_SESSION 1

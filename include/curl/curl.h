@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.251 2004-05-04 08:24:13 bagder Exp $
+ * $Id: curl.h,v 1.252 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -153,6 +153,18 @@ typedef int (*curl_passwd_callback)(void *clientp,
                                     const char *prompt,
                                     char *buffer,
                                     int buflen);
+
+/*
+ * The following typedef's are signatures of malloc, free, realloc, strdup and
+ * calloc respectively.  Function pointers of these types can be passed to the
+ * curl_global_init_mem() function to set user defined memory management
+ * callback routines.
+ */
+typedef void *(*curl_malloc_callback)(size_t size);
+typedef void (*curl_free_callback)(void *ptr);
+typedef void *(*curl_realloc_callback)(void *ptr, size_t size);
+typedef char *(*curl_strdup_callback)(const char *str);
+typedef void *(*curl_calloc_callback)(size_t nmemb, size_t size);
 
 /* the kind of data that is passed to information_callback*/
 typedef enum {
@@ -1011,6 +1023,26 @@ void curl_free(void *p);
  * uses libcurl
  */
 CURLcode curl_global_init(long flags);
+
+/*
+ * NAME curl_global_init_mem()
+ *
+ * DESCRIPTION
+ *
+ * curl_global_init() or curl_global_init_mem() should be invoked exactly once
+ * for each application that uses libcurl.  This function can be used to
+ * initialize libcurl and set user defined memory management callback
+ * functions.  Users can implement memory management routines to check for
+ * memory leaks, check for mis-use of the curl library etc.  User registered
+ * callback routines with be invoked by this library instead of the system
+ * memory management routines like malloc, free etc.
+ */
+CURLcode curl_global_init_mem(long flags,
+                              curl_malloc_callback m,
+                              curl_free_callback f,
+                              curl_realloc_callback r,
+                              curl_strdup_callback s,
+                              curl_calloc_callback c);
 
 /*
  * NAME curl_global_cleanup()

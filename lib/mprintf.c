@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.41 2004-05-10 10:50:43 bagder Exp $
+ * $Id: mprintf.c,v 1.42 2004-05-11 11:30:23 bagder Exp $
  *
  *************************************************************************
  *
@@ -55,10 +55,9 @@
 #define ENABLE_64BIT
 #endif
 
+#include "memory.h"
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 #define BUFFSIZE 256 /* buffer for long-to-str and float-to-str calcs */
 #define MAX_PARAMETERS 128 /* lame static limit */

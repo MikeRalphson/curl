@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.50 2004-04-26 07:20:11 bagder Exp $
+ * $Id: multi.c,v 1.51 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -42,11 +42,10 @@
 #include "url.h"
 #include "connect.h"
 #include "progress.h"
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 struct Curl_message {
   /* the 'CURLMsg' is the part that is visible to the external user */

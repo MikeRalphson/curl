@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.23 2004-05-10 09:17:50 bagder Exp $
+ * $Id: hash.c,v 1.24 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,12 +28,10 @@
 
 #include "hash.h"
 #include "llist.h"
+#include "memory.h"
 
-#ifdef CURLDEBUG
 /* this must be the last include file */
 #include "memdebug.h"
-#endif
-
 
 static unsigned long
 hash_str(const char *key, size_t key_length)

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostasyn.c,v 1.1 2004-04-26 07:20:11 bagder Exp $
+ * $Id: hostasyn.c,v 1.2 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,10 +87,9 @@
 #include "inet_ntoa_r.h"
 #endif
 
+#include "memory.h"
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /***********************************************************************
  * Only for builds using asynchronous name resolves

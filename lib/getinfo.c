@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.36 2004-03-11 21:51:55 bagder Exp $
+ * $Id: getinfo.c,v 1.37 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -31,17 +31,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-
-#ifdef	VMS
-#include	<stdlib.h>
-#endif
+#include <stdlib.h>
+#include "memory.h"
 
 /* Make this the last #include */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#else
-#include <stdlib.h>
-#endif
 
 /*
  * This is supposed to be called in the beginning of a permform() session

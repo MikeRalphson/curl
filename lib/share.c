@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.17 2004-03-30 13:02:31 bagder Exp $
+ * $Id: share.c,v 1.18 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,11 +28,10 @@
 #include <curl/curl.h>
 #include "urldata.h"
 #include "share.h"
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 CURLSH *
 curl_share_init(void)

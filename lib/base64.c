@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.28 2004-03-01 12:54:59 bagder Exp $
+ * $Id: base64.c,v 1.29 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -41,10 +41,11 @@
 #include <curl/mprintf.h>
 
 #include "base64.h"
+#include "memory.h"
 
-#ifdef CURLDEBUG
+/* include memdebug.h last */
 #include "memdebug.h"
-#endif
+
 
 static void decodeQuantum(unsigned char *dest, const char *src)
 {

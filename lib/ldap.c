@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.37 2004-05-06 07:22:32 bagder Exp $
+ * $Id: ldap.c,v 1.38 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -56,13 +56,12 @@
 #include "strequal.h"
 #include "strtok.h"
 #include "ldap.h"
+#include "memory.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* WLdap32.dll functions are *not* stdcall. Must call these via __cdecl
  * pointers in case libcurl was compiled as fastcall (-Gr).

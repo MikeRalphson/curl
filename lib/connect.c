@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.99 2004-04-27 13:56:23 bagder Exp $
+ * $Id: connect.c,v 1.100 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -96,11 +96,10 @@
 #include "if2ip.h"
 #include "strerror.h"
 #include "connect.h"
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 static bool verifyconnect(curl_socket_t sockfd);
 

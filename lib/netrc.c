@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.31 2004-03-23 15:30:12 bagder Exp $
+ * $Id: netrc.c,v 1.32 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,14 +45,13 @@
 
 #include "strequal.h"
 #include "strtok.h"
+#include "memory.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* Debug this single source file with:
    'make netrc' then run './netrc'!

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.6 2004-05-07 18:56:33 bagder Exp $
+ * $Id: hostares.c,v 1.7 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,10 +87,10 @@
 #include "inet_ntoa_r.h"
 #endif
 
+#include "memory.h"
+
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /***********************************************************************
  * Only for ares-enabled builds

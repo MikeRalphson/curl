@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.16 2004-05-10 08:09:15 bagder Exp $
+ * $Id: http_digest.c,v 1.17 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -38,14 +38,13 @@
 #include "http_digest.h"
 #include "strtok.h"
 #include "url.h" /* for Curl_safefree() */
+#include "memory.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* Test example headers:
 

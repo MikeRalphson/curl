@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.373 2004-05-07 18:46:28 bagder Exp $
+ * $Id: url.c,v 1.374 2004-05-11 11:30:24 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -134,11 +134,10 @@
 #ifdef HAVE_KRB4
 #include "security.h"
 #endif
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* Local static prototypes */
 static int ConnectionKillOne(struct SessionHandle *data);

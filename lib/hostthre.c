@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.5 2004-04-27 15:13:46 bagder Exp $
+ * $Id: hostthre.c,v 1.6 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -85,10 +85,9 @@
 
 #include "inet_ntop.h"
 
+#include "memory.h"
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /***********************************************************************
  * Only for Windows threaded name resolves builds

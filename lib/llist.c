@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.13 2004-05-10 08:57:37 bagder Exp $
+ * $Id: llist.c,v 1.14 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -27,11 +27,11 @@
 #include <stdlib.h>
 
 #include "llist.h"
+#include "memory.h"
 
-#ifdef CURLDEBUG
 /* this must be the last include file */
 #include "memdebug.h"
-#endif
+
 void 
 Curl_llist_init(curl_llist *l, curl_llist_dtor dtor)
 {

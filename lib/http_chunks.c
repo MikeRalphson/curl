@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.23 2004-03-04 15:25:06 bagder Exp $
+ * $Id: http_chunks.c,v 1.24 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -35,14 +35,13 @@
 
 #include "content_encoding.h"   /* 08/29/02 jhrg */
 #include "http.h"
+#include "memory.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* 
  * Chunk format (simplified):

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.83 2004-05-10 14:21:19 bagder Exp $
+ * $Id: sendf.c,v 1.84 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -52,10 +52,9 @@
 #include "security.h"
 #endif
 #include <string.h>
+#include "memory.h"
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* returns last node in linked list */
 static struct curl_slist *slist_get_last(struct curl_slist *list)

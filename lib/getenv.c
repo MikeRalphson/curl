@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.23 2004-01-29 13:56:45 bagder Exp $
+ * $Id: getenv.c,v 1.24 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,10 +36,9 @@
 #endif
 
 #include <curl/curl.h>
+#include "memory.h"
 
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 static
 char *GetEnv(const char *variable)

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.150 2004-05-04 13:40:30 bagder Exp $
+ * $Id: hostip.c,v 1.151 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,10 +87,9 @@
 #include "inet_ntoa_r.h"
 #endif
 
+#include "memory.h"
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /*
  * hostip.c explained

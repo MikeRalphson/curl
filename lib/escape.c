@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.30 2004-03-08 08:38:29 bagder Exp $
+ * $Id: escape.c,v 1.31 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -31,11 +31,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "memory.h"
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 char *curl_escape(const char *string, int length)
 {

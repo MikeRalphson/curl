@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.53 2004-05-10 14:04:06 bagder Exp $
+ * $Id: cookie.c,v 1.54 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -92,6 +92,7 @@ Example set of cookies:
 #include "strequal.h"
 #include "strtok.h"
 #include "sendf.h"
+#include "memory.h"
 
 /* The last #include file should be: */
 #ifdef CURLDEBUG

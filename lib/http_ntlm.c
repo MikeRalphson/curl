@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.31 2004-05-04 07:52:53 bagder Exp $
+ * $Id: http_ntlm.c,v 1.32 2004-05-11 11:30:23 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -46,6 +46,7 @@
 #include "base64.h"
 #include "http_ntlm.h"
 #include "url.h"
+#include "memory.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -71,9 +72,7 @@
 #endif
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
 
 /* Define this to make the type-3 message include the NT response message */
 #define USE_NTRESPONSES 1
