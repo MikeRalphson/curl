@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.h,v 1.7 2001-04-22 15:49:17 bagder Exp $
+ * $Id: strequal.h,v 1.8 2001-05-18 12:03:30 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -33,7 +33,8 @@ int curl_strnequal(const char *first, const char *second, size_t max);
 #define strnequal(a,b,c) curl_strnequal(a,b,c)
 
 #ifndef HAVE_STRLCAT
-size_t strlcat(char *dst, const char *src, size_t siz);
+#define strlcat(x,y,z) Curl_strlcat(x,y,z)
+size_t Curl_strlcat(char *dst, const char *src, size_t siz);
 #endif
 
 #endif
