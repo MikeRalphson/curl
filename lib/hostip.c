@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.95 2003-08-21 12:07:47 bagder Exp $
+ * $Id: hostip.c,v 1.96 2003-08-22 12:25:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -212,7 +212,7 @@ cache_resolv_response(struct SessionHandle *data,
                       int port)
 {
   char *entry_id;
-  int entry_len;
+  ssize_t entry_len;
   struct Curl_dns_entry *dns;
   time_t now;
 
