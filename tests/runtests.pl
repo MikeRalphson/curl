@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.45 2002-01-08 09:32:41 bagder Exp $
+# $Id: runtests.pl,v 1.46 2002-01-30 10:18:47 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -834,6 +834,36 @@ EOHELP
 if($testthis[0] ne "") {
     $TESTCASES=join(" ", @testthis);
 }
+
+############################################################################
+#
+# don't let anyone think this works right now
+
+print <<EOM
+ ***************************************************************************
+
+    THIS DOES NOT WORK
+
+ ***************************************************************************
+
+ Things in curl-land have changed, but the test suite has not been fixed
+ accordingly and thus, the test suite is currently more or less useless.
+
+ *PLEASE* help us fixing this. We have to make our new test server written
+ in C work and get used instead of the perl version previously used.
+
+ The working version of the test server is found here:
+
+ http://curl.haxx.se/dev/sws-0.2.tar.gz
+   
+ If you unpack this in the tests/ directory and run the server in there, you
+ can actually get test-responses if you do like this:
+
+ \$ ./sws 8080 &
+ \$ curl localhost:8080/3
+
+EOM
+    ;
 
 
 #######################################################################
