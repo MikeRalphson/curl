@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.143 2003-07-25 08:30:58 bagder Exp $
+ * $Id: http.c,v 1.144 2003-07-28 10:21:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -624,6 +624,7 @@ CURLcode Curl_http_done(struct connectdata *conn)
     
     free(buff->buffer);
     free(buff);
+    http->send_buffer = NULL; /* cleaer the pointer */
   }
 
   if(HTTPREQ_POST_FORM == data->set.httpreq) {
