@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.h,v 1.5 2003-01-16 21:08:13 bagder Exp $
+ * $Id: llist.h,v 1.6 2003-09-05 12:44:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -52,13 +52,5 @@ int Curl_llist_remove(curl_llist *, curl_llist_element *, void *);
 int Curl_llist_remove_next(curl_llist *, curl_llist_element *, void *);
 size_t Curl_llist_count(curl_llist *);
 void Curl_llist_destroy(curl_llist *, void *);
-
-#define CURL_LLIST_HEAD(__l) ((__l)->head)
-#define CURL_LLIST_TAIL(__l) ((__l)->tail)
-#define CURL_LLIST_NEXT(__e) ((__e)->next)
-#define CURL_LLIST_PREV(__e) ((__e)->prev)
-#define CURL_LLIST_VALP(__e) ((__e)->ptr)
-#define CURL_LLIST_IS_TAIL(__e) ((__e)->next ? 0 : 1)
-#define CURL_LLIST_IS_HEAD(__e) ((__e)->prev ? 0 : 1)
 
 #endif
