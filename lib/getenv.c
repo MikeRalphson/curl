@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.15 2001-11-12 10:19:36 bagder Exp $
+ * $Id: getenv.c,v 1.16 2002-01-04 09:53:10 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -55,7 +55,6 @@ char *GetEnv(const char *variable)
   if (env && strcmp("HOME",variable) == 0) {
 	env = decc$translate_vms(env);
   }
-/*  printf ("Getenv: %s=%s\n",variable,env); */
 #else
   /* no length control */
   char *env = getenv(variable);
