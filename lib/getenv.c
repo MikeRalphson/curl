@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/getenv.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.7 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -43,6 +43,10 @@
 
 #ifdef WIN32
 #include <windows.h>
+#endif
+
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 char *GetEnv(char *variable)

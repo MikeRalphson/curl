@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.15 $
- * $Date: 2000-10-08 12:50:51 $
+ * $Revision: 1.16 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -70,6 +70,11 @@
 
 #if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
 #include "inet_ntoa_r.h"
+#endif
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 /* --- resolve name or IP-number --- */

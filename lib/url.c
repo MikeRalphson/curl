@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.44 $
- * $Date: 2000-10-06 11:03:20 $
+ * $Revision: 1.45 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -125,6 +125,10 @@
 
 #ifdef KRB4
 #include "security.h"
+#endif
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 /* -- -- */

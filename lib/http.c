@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.30 $
- * $Date: 2000-10-04 13:07:43 $
+ * $Revision: 1.31 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -116,6 +116,11 @@
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 /*
  * This function checks the linked list of custom HTTP headers for a particular

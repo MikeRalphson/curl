@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-10-03 16:53:41 $
+ * $Revision: 1.10 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -60,6 +60,10 @@
 #ifdef KRB4
 #include "security.h"
 #include <string.h>
+#endif
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 /* infof() is for info message along the way */

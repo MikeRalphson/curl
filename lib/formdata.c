@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/formdata.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.9 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -62,6 +62,11 @@
 #include "formdata.h"
 
 #include "strequal.h"
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 /* Length of the random boundary string. The risk of this being used
    in binary data is very close to zero, 64^32 makes

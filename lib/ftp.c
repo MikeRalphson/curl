@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.24 $
- * $Date: 2000-09-25 22:15:28 $
+ * $Revision: 1.25 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -88,6 +88,10 @@
 
 #ifdef KRB4
 #include "security.h"
+#endif
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 /* returns last node in linked list */
@@ -1178,7 +1182,7 @@ CURLcode _ftp(struct connectdata *conn)
     else {
       /* Set type to binary (unless specified ASCII) */
       ftpsendf(data->firstsocket, conn, "TYPE %s",
-            (data->bits.ftp_list_only)?"A":"I");
+               (data->bits.ftp_ascii)?"A":"I");
 
       nread = GetLastResponse(data->firstsocket, buf, conn);
       if(nread < 0)

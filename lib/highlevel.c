@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.15 $
- * $Date: 2000-10-06 11:06:20 $
+ * $Revision: 1.16 $
+ * $Date: 2000-10-09 11:12:34 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -110,6 +110,11 @@
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 #ifndef min
 #define min(a, b)   ((a) < (b) ? (a) : (b))

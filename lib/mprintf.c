@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.2 2000-01-10 23:36:15 bagder Exp $
+ * $Id: mprintf.c,v 1.3 2000-10-09 11:12:34 bagder Exp $
  *
  *************************************************************************
  *
@@ -83,7 +83,7 @@
  *
  ****************************************************************************/
 
-static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.2 2000-01-10 23:36:15 bagder Exp $";
+static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.3 2000-10-09 11:12:34 bagder Exp $";
 
 /*
  * To test:
@@ -98,6 +98,10 @@ static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.2 2000-01-10 23:36:15 bagder
 #include <ctype.h>
 #include <string.h>
 
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 #define BUFFSIZE 256 /* buffer for long-to-str and float-to-str calcs */
 #define MAX_PARAMETERS 128 /* lame static limit */
