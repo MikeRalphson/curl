@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.29 2003-06-26 11:22:12 bagder Exp $
+ * $Id: memdebug.c,v 1.30 2003-08-14 14:19:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -62,7 +62,10 @@ struct memdebug {
  * Don't use these with multithreaded test programs!
  */
 
-FILE *logfile;
+#define logfile curl_debuglogfile
+FILE *curl_debuglogfile;
+static bool memlimit; /* enable memory limit */
+static long memsize;  /* set number of mallocs allowed */
 
 /* this sets the log file name */
 void curl_memdebug(const char *logname)
@@ -73,11 +76,46 @@ void curl_memdebug(const char *logname)
     logfile = stderr;
 }
 
+/* This function sets the number of malloc() calls that should return
+   successfully! */
+void curl_memlimit(long limit)
+{
+  memlimit = TRUE;
+  memsize = limit;
+}
+
+/* returns TRUE if this isn't allowed! */
+static bool countcheck(const char *func, int line, const char *source)
+{
+  /* if source is NULL, then the call is made internally and this check
+     should not be made */
+  if(memlimit && source) {
+    if(!memsize) {
+      if(logfile && source)
+        fprintf(logfile, "LIMIT %s:%d %s reached memlimit\n",
+                source, line, func);
+      return TRUE; /* RETURN ERROR! */
+    }
+    else
+      memsize--; /* countdown */
+    
+    /* log the countdown */
+    if(logfile && source)
+      fprintf(logfile, "LIMIT %s:%d %ld ALLOCS left\n",
+              source, line, memsize);
+    
+  }
+
+  return FALSE; /* allow this */
+}
 
 void *curl_domalloc(size_t wantedsize, int line, const char *source)
 {
   struct memdebug *mem;
   size_t size;
+
+  if(countcheck("malloc", line, source))
+    return NULL;
 
   /* alloc at least 64 bytes */
   size = sizeof(struct memdebug)+wantedsize;
@@ -106,6 +144,9 @@ char *curl_dostrdup(const char *str, int line, const char *source)
     exit(2);
   }
 
+  if(countcheck("strdup", line, source))
+    return NULL;
+
   len=strlen(str)+1;
 
   mem=curl_domalloc(len, 0, NULL); /* NULL prevents logging */
@@ -124,6 +165,9 @@ void *curl_dorealloc(void *ptr, size_t wantedsize,
   struct memdebug *mem;
 
   size_t size = sizeof(struct memdebug)+wantedsize;
+
+  if(countcheck("realloc", line, source))
+    return NULL;
 
   mem = (struct memdebug *)((char *)ptr - offsetof(struct memdebug, mem));
 
