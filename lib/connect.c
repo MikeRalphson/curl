@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.97 2004-04-26 07:11:06 bagder Exp $
+ * $Id: connect.c,v 1.98 2004-04-26 14:18:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -263,7 +263,7 @@ static CURLcode bindlocal(struct connectdata *conn,
        * We now have the numerical IPv4-style x.y.z.w in the 'myhost' buffer
        */
       rc = Curl_resolv(conn, myhost, 0, &h);
-      if(rc == 1)
+      if(rc == CURLRESOLV_PENDING)
         (void)Curl_wait_for_resolv(conn, &h);
 
       if(h)
@@ -276,7 +276,7 @@ static CURLcode bindlocal(struct connectdata *conn,
        * or IP number
        */
       rc = Curl_resolv(conn, data->set.device, 0, &h);
-      if(rc == 1)
+      if(rc == CURLRESOLV_PENDING)
         (void)Curl_wait_for_resolv(conn, &h);
 
       if(h)

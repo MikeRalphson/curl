@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.361 2004-04-26 14:03:25 bagder Exp $
+ * $Id: url.c,v 1.362 2004-04-26 14:18:00 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1765,10 +1765,10 @@ static int handleSock5Proxy(const char *proxy_name,
     Curl_addrinfo *hp=NULL;
     int rc = Curl_resolv(conn, TRUE_HOSTNAME(conn), conn->remote_port, &dns);
     
-    if(rc == -1)
+    if(rc == CURLRESOLV_ERROR)
       return 1;
 
-    if(rc == 1)
+    if(rc == CURLRESOLV_PENDING)
       /* this requires that we're in "wait for resolve" state */
       rc = Curl_wait_for_resolv(conn, &dns);
     
@@ -3062,7 +3062,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
     /* Resolve target host right on */
     rc = Curl_resolv(conn, TRUE_HOSTNAME(conn), conn->port, &hostaddr);
-    if(rc == 1)
+    if(rc == CURLRESOLV_PENDING)
       *async = TRUE;
 
     else if(!hostaddr) {
@@ -3077,7 +3077,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     /* resolve proxy */
     rc = Curl_resolv(conn, conn->proxyhost, conn->port, &hostaddr);
 
-    if(rc == 1)
+    if(rc == CURLRESOLV_PENDING)
       *async = TRUE;
 
     else if(!hostaddr) {
