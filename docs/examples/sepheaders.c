@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: sepheaders.c,v 1.3 2001-05-15 12:55:35 bagder Exp $
+ * $Id: sepheaders.c,v 1.4 2002-08-12 11:36:48 bagder Exp $
  */
 
 /* to make this work under windows, use the win32-functions from the
@@ -62,6 +62,10 @@ int main(int argc, char **argv)
 
   /* we want the headers to this file handle */
   curl_easy_setopt(curl_handle,   CURLOPT_WRITEHEADER ,headerfile);
+
+  /*
+   * Notice here that if you want the actual data sent anywhere else but
+   * stdout, you should consider using the CURLOPT_WRITEDATA option.  */
 
   /* get it! */
   curl_easy_perform(curl_handle);
