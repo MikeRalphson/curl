@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.16 2000-11-27 12:53:50 bagder Exp $
+# $Id: runtests.pl,v 1.17 2000-11-28 12:49:39 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -346,6 +346,7 @@ sub singletest {
 
     if(! -r $CURLCMD) {
         # this is not a test
+        print "$NUMBER doesn't look like a test case!\n";
         next;
     }
 
@@ -606,7 +607,7 @@ runftpserver($verbose);
 if ( $TESTCASES eq "all") {
     # Get all commands and find out their test numbers
     opendir(DIR, $TESTDIR) || die "can't opendir $TESTDIR: $!";
-    my @cmds = grep { /^command/ && -f "$TESTDIR/$_" } readdir(DIR);
+    my @cmds = grep { /^command([0-9]+).txt/ && -f "$TESTDIR/$_" } readdir(DIR);
     closedir DIR;
 
     $TESTCASES=""; # start with no test cases
@@ -632,12 +633,19 @@ open(CMDLOG, ">$CURLLOG") ||
 #
 
 my $testnum;
+my $ok=0;
+my $total=0;
 foreach $testnum (split(" ", $TESTCASES)) {
 
-    if(singletest($testnum) && !$anyway) {
+    $total++;
+    my $error = singletest($testnum);
+    if($error && !$anyway) {
         # a test failed, abort
         print "\n - abort tests\n";
         last;
+    }
+    elsif(!$error) {
+        $ok++;
     }
 
     # loop for next test
@@ -655,3 +663,4 @@ close(CMDLOG);
 stopserver($FTPPIDFILE);
 stopserver($PIDFILE);
 
+print "$ok tests out of $total reported OK\n";
