@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.145 2005-02-08 23:39:47 bagder Exp $
+.\" * $Id: curl.1,v 1.146 2005-02-17 07:47:32 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "25 Jan 2005" "Curl 7.13.0" "Curl Manual"
@@ -379,6 +379,11 @@ similar to:
 or
 
 \fBcurl\fP -F "name=daniel;type=text/foo" url.com
+
+You can also explicitly change the name field of an file upload part by
+setting filename=, like this:
+
+\fBcurl\fP -F "file=@localfile;filename=nameinpost" url.com
 
 See further examples and details in the MANUAL.
 
