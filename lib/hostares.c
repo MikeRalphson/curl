@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.4 2004-05-06 11:10:51 bagder Exp $
+ * $Id: hostares.c,v 1.5 2004-05-07 06:18:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -152,7 +152,7 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
   if(conn->async.done) {
     /* we're done, kill the ares handle */
     if(!conn->async.dns) {
-      failf(data, "Could not resolve host: %s (%s)", conn->name,
+      failf(data, "Could not resolve host: %s (%s)", conn->host.dispname,
             ares_strerror(conn->async.status));
       return CURLE_COULDNT_RESOLVE_HOST;
     }
