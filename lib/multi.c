@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.33 2003-08-05 14:40:59 bagder Exp $
+ * $Id: multi.c,v 1.34 2003-08-20 13:49:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -587,6 +587,8 @@ CURLMcode curl_multi_cleanup(CURLM *multi_handle)
 CURLMsg *curl_multi_info_read(CURLM *multi_handle, int *msgs_in_queue)
 {
   struct Curl_multi *multi=(struct Curl_multi *)multi_handle;
+
+  *msgs_in_queue = 0; /* default to none */
 
   if(GOOD_MULTI_HANDLE(multi)) {
     struct Curl_one_easy *easy;
