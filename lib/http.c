@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-02-14 22:57:42 $
+ * $Revision: 1.8 $
+ * $Date: 2000-03-13 09:11:54 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -232,11 +232,11 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
         if(co->value && strlen(co->value)) {
           if(0 == count) {
             sendf(data->firstsocket, data,
-                  "Cookie: ");
+                  "Cookie:");
           }
           count++;
           sendf(data->firstsocket, data,
-                "%s=%s;", co->name, co->value);
+                " %s=%s;", co->name, co->value);
         }
         co = co->next; /* next cookie please */
       }
