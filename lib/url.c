@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.209 2002-05-21 22:24:56 bagder Exp $
+ * $Id: url.c,v 1.210 2002-05-28 09:21:29 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -981,7 +981,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set CA info for SSL connection. Specify file name of the CA certificate
      */
     data->set.ssl.CAfile = va_arg(param, char *);
-    data->set.ssl.CApath = NULL; /*This does not work on windows.*/
+    break;
+  case CURLOPT_CAPATH:
+    /*
+     * Set CA path info  for SSL connection. Specify directory name of the CA certificates
+     * which have been prepared using openssl c_rehash utility.
+     */
+    data->set.ssl.CApath = va_arg(param, char *); /*This does not work on windows.*/
     break;
   case CURLOPT_TELNETOPTIONS:
     /*

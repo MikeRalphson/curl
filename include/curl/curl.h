@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.147 2002-05-21 22:22:28 bagder Exp $
+ * $Id: curl.h,v 1.148 2002-05-28 09:21:29 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -544,6 +544,10 @@ typedef enum {
 
   /* mark this as start of a cookie session */
   CINIT(COOKIESESSION, LONG, 96),
+
+  /* The CApath directory used to validate the peer certificate
+     this option is used only if SSL_VERIFYPEER is true */
+  CINIT(CAPATH, OBJECTPOINT, 97),
   
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
@@ -728,8 +732,8 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.9.7"
-#define LIBCURL_VERSION_NUM 0x070907
+#define LIBCURL_VERSION "7.9.8-pre1"
+#define LIBCURL_VERSION_NUM 0x070908
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
 struct curl_slist {
