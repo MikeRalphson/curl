@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.23 2001-09-05 06:56:24 bagder Exp $
+# $Id: Makefile.am,v 1.24 2001-09-11 10:15:40 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -12,7 +12,7 @@ EXTRA_DIST =						\
 
 bin_SCRIPTS = curl-config
 
-SUBDIRS = docs lib src include tests packages perl php
+SUBDIRS = docs lib src include tests packages
 
 # create a root makefile in the distribution:
 dist-hook:
