@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.21 2004-05-11 14:48:53 bagder Exp $
+ * $Id: formdata.h,v 1.22 2004-05-12 09:02:23 bagder Exp $
  ***************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -45,11 +45,13 @@ typedef struct FormInfo {
   bool value_alloc;
   size_t contentslength;
   char *contenttype;
+  bool contenttype_alloc;
   long flags;
   char *buffer;      /* pointer to existing buffer used for file upload */
   size_t bufferlength;
   char *showfilename; /* The file name to show. If not set, the actual
                          file name will be used */
+  bool showfilename_alloc;
   struct curl_slist* contentheader;
   struct FormInfo *more;
 } FormInfo;
