@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.52 $
- * $Date: 2000-11-28 09:10:43 $
+ * $Revision: 1.53 $
+ * $Date: 2000-12-04 12:21:18 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1473,9 +1473,9 @@ operate(struct Configurable *config, int argc, char *argv[])
 #endif
   }
   for (i = 0; (url = next_url(urls)); ++i) {
-    if (outfiles) {
+    if (config->outfile) {
       free(config->outfile);
-      config->outfile = outfiles;
+      config->outfile = strdup(outfiles);
     }
  
     if (config->outfile || config->remotefile) {
@@ -1757,6 +1757,9 @@ operate(struct Configurable *config, int argc, char *argv[])
       free(url);
 
   }
+  if(outfiles)
+    free(outfiles);
+
 #ifdef MIME_SEPARATORS
   if (separator)
     printf("--%s--\n", MIMEseparator);
