@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.18 2001-03-14 14:11:11 bagder Exp $
+ * $Id: telnet.c,v 1.19 2001-03-16 15:19:36 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -81,6 +81,11 @@
 #define  TELCMDS
 
 #include "arpa_telnet.h"
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 #define SUBBUFSIZE 512
 

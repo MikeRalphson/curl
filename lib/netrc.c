@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.11 2001-03-14 16:12:47 bagder Exp $
+ * $Id: netrc.c,v 1.12 2001-03-16 15:19:36 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -41,6 +41,11 @@
 #include <curl/curl.h>
 
 #include "strequal.h"
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 /* Debug this single source file with:
    'make netrc' then run './netrc'!

@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.11 2000-12-05 08:04:04 bagder Exp $
+ * $Id: getpass.c,v 1.12 2001-03-16 15:19:36 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -64,6 +64,11 @@
 #  include <termio.h>
 #  else
 #  endif
+#endif
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 /* no perror? make an fprintf! */

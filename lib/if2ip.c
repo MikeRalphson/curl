@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.13 2001-01-24 14:44:05 bagder Exp $
+ * $Id: if2ip.c,v 1.14 2001-03-16 15:19:36 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -68,6 +68,11 @@
 
 #if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL) 
 #include "inet_ntoa_r.h"
+#endif
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
 #endif
 
 #define SYS_ERROR -1
