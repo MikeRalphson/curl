@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.16 2004-07-15 21:51:59 gknauf Exp $
+# $Id: Makefile.b32,v 1.17 2004-07-16 09:20:57 gknauf Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -36,6 +36,7 @@ TOPDIR   = ..
 CURNTDIR = .
 
 CXXFLAGS = -q -5 -O2 -w-aus -w-ccc -w-csu -w-par -w-pia -w-rch -w-inl -w-ngu -w-pro -tWM
+LIBFLAGS = /C /P32
 LDFLAGS  = -q -lq -laa -tWD
 
 INCDIRS  = -I$(CURNTDIR);$(TOPDIR)/include
@@ -73,7 +74,10 @@ clean:
 
 $(LIBCURLLIB): $(OBJECTS)
 	@-$(RM) $@
-	$(LIB) $@ /a $**
+	$(LIB) $(LIBFLAGS) $@ @&&!
++$(**: = &^
++)
+!
 
 $(LIBCURLDLL): $(OBJECTS) $(LINKLIB)
 	@-$(RM) $@
