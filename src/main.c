@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.294 2004-12-13 16:47:36 giva Exp $
+ * $Id: main.c,v 1.295 2004-12-14 14:24:04 giva Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -3029,10 +3029,11 @@ operate(struct Configurable *config, int argc, char *argv[])
 
 
   if (config->list_engines) {
-    const struct curl_slist *engines = NULL;
+    struct curl_slist *engines = NULL;
 
     curl_easy_getinfo(curl, CURLINFO_SSL_ENGINES, &engines);
     list_engines(engines);
+    curl_slist_free_all(engines);
     res = CURLE_OK;
     goto quit_curl;
   }
