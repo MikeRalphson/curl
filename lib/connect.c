@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.68 2004-01-14 09:11:42 bagder Exp $
+ * $Id: connect.c,v 1.69 2004-01-15 09:54:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -573,7 +573,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
 #ifdef ENABLE_IPV6
     rc = connect(sockfd, ai->ai_addr, ai->ai_addrlen);
 #else
-    rc = connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr);
+    rc = connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 #endif
 
     if(-1 == rc) {
