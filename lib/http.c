@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.257 2004-12-16 09:52:36 bagder Exp $
+ * $Id: http.c,v 1.258 2004-12-16 13:55:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1299,9 +1299,11 @@ CURLcode Curl_http_done(struct connectdata *conn,
     conn->bytecount = http->readbytecount + http->writebytecount;
 
     Curl_formclean(http->sendit); /* Now free that whole lot */
-    if(http->form.fp)
+    if(http->form.fp) {
       /* a file being uploaded was left opened, close it! */
       fclose(http->form.fp);
+      http->form.fp = NULL;
+    }
   }
   else if(HTTPREQ_PUT == data->set.httpreq)
     conn->bytecount = http->readbytecount + http->writebytecount;
