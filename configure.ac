@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.68 2004-03-29 06:22:57 bagder Exp $
+dnl $Id: configure.ac,v 1.69 2004-03-30 10:35:54 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -384,6 +384,8 @@ main()
 
 if test "$ipv6" = "yes"; then
   CURL_CHECK_WORKING_GETADDRINFO
+
+  CURL_CHECK_NI_WITHSCOPEID
 fi
 
 dnl **********************************************************************
