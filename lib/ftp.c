@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.161 2002-11-11 23:03:03 bagder Exp $
+ * $Id: ftp.c,v 1.162 2002-12-02 07:18:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -544,7 +544,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
        The directory name can contain any character; embedded double-quotes
        should be escaped by double-quotes (the "quote-doubling" convention).
     */
-    if('\"' == *ptr) {
+    if(dir && ('\"' == *ptr)) {
       /* it started good */
       ptr++;
       while(ptr && *ptr) {
@@ -570,6 +570,8 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
     }
     else {
       /* couldn't get the path */
+      free(dir);
+      infof(data, "Failed to figure out path\n");
     }
 
   }
