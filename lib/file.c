@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.60 2004-06-24 11:54:11 bagder Exp $
+ * $Id: file.c,v 1.61 2004-06-24 15:06:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -307,7 +307,7 @@ CURLcode Curl_file(struct connectdata *conn)
       return result;
 
     result = Curl_client_write(data, CLIENTWRITE_BOTH,
-                               "Accept-ranges: bytes\r\n", 0);
+                               (char *)"Accept-ranges: bytes\r\n", 0);
     if(result)
       return result;
 
