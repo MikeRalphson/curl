@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.13 2001-08-21 13:18:07 bagder Exp $
+# $Id: Makefile.am,v 1.14 2001-08-28 08:55:12 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -63,7 +63,7 @@ EXTRA_DIST = $(man_MANS) \
 
 MAN2HTML= gnroff -man $< | man2html >$@
 
-SUFFIXES += .1 .3 .html
+SUFFIXES = .1 .3 .html
 
 html: $(HTMLPAGES)
 
