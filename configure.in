@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.127 2003-03-13 23:02:33 bagder Exp $
+dnl $Id: configure.in,v 1.128 2003-03-14 12:44:56 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -758,8 +758,9 @@ dnl if not found, $ac_func is the name we check for
   AC_TRY_LINK( [],
                [ $func ();],
                AC_MSG_RESULT(yes!)
+               eval "ac_cv_func_$func=yes"
                def=`echo "HAVE_$func" | tr 'a-z' 'A-Z'`
-               AC_DEFINE($def, 1, [If you have $func]),
+               AC_DEFINE_UNQUOTED($def, 1, [If you have $func]),
                AC_MSG_RESULT(but still no)
                )
 
