@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.10 $
- * $Date: 2000-06-16 13:19:30 $
+ * $Revision: 1.11 $
+ * $Date: 2000-06-20 09:28:36 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -360,7 +360,11 @@ typedef enum {
    * prototype defines. */
   T(PROGRESSFUNCTION, FUNCTIONPOINT, 56),
 
+  /* Data passed to the progress callback */
   T(PROGRESSDATA, OBJECTPOINT, 57),
+
+  /* We want the referer field set automatically when following locations */
+  T(AUTOREFERER, LONG, 58),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
@@ -405,8 +409,8 @@ char *curl_getenv(char *variable);
 char *curl_version(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.0.6beta"
-#define LIBCURL_VERSION_NUM 0x070006
+#define LIBCURL_VERSION "7.0.7beta"
+#define LIBCURL_VERSION_NUM 0x070007
 
 /* linked-list structure for the CURLOPT_QUOTE option */
 struct curl_slist {
