@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.27 2004-03-08 12:36:54 bagder Exp $
+ * $Id: http_ntlm.c,v 1.28 2004-03-08 16:20:51 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -212,7 +212,7 @@ static void mkhash(char *password,
   static const unsigned char magic[] = {
     0x4B, 0x47, 0x53, 0x21, 0x40, 0x23, 0x24, 0x25
   };
-  int i;
+  unsigned int i;
   size_t len = strlen(password);
 
   /* make it fit at least 14 bytes */
