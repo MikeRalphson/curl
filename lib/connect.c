@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.42 2002-11-11 22:36:00 bagder Exp $
+ * $Id: connect.c,v 1.43 2002-12-13 13:47:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -379,6 +379,11 @@ CURLcode Curl_is_connected(struct connectdata *conn,
       failf(data, "Connection time-out");
       return CURLE_OPERATION_TIMEOUTED;
     }
+  }
+  if(conn->protocol & PROT_FILE) {
+    /* we are connected, awesome! */
+    *connected = TRUE;
+    return CURLE_OK;
   }
 
   /* check for connect without timeout as we want to return immediately */
