@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.66 2004-05-12 09:02:23 bagder Exp $
+ * $Id: formdata.c,v 1.67 2004-05-13 14:13:12 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -492,8 +492,10 @@ CURLFORMcode FormAdd(struct curl_httppost **httppost,
           current_form->value = strdup(filename);
           if(!current_form->value)
             return_value = CURL_FORMADD_MEMORY;
-          else
+          else {
             current_form->flags |= HTTPPOST_READFILE;
+            current_form->value_alloc = TRUE;
+          }
         }
         else
           return_value = CURL_FORMADD_NULL;
