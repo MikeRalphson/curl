@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.113 2004-08-10 08:06:43 bagder Exp $
+ * $Id: ssluse.c,v 1.114 2004-09-02 21:03:41 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -277,12 +277,15 @@ int cert_stuff(struct connectdata *conn,
 
     file_type = do_file_type(cert_type);
 
+#define SSL_CLIENT_CERT_ERR \
+    "unable to use client certificate (no key found or wrong pass phrase?)"
+
     switch(file_type) {
     case SSL_FILETYPE_PEM:
       /* SSL_CTX_use_certificate_chain_file() only works on PEM files */
       if(SSL_CTX_use_certificate_chain_file(ctx,
                                             cert_file) != 1) {
-        failf(data, "unable to set certificate file (wrong password?)");
+        failf(data, SSL_CLIENT_CERT_ERR);
         return 0;
       }
       break;
@@ -294,7 +297,7 @@ int cert_stuff(struct connectdata *conn,
       if(SSL_CTX_use_certificate_file(ctx,
                                       cert_file,
                                       file_type) != 1) {
-        failf(data, "unable to set certificate file (wrong password?)");
+        failf(data, SSL_CLIENT_CERT_ERR);
         return 0;
       }
       break;
