@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.18 2003-04-22 22:33:39 bagder Exp $
+ * $Id: http_chunks.c,v 1.19 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -39,7 +39,7 @@
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 

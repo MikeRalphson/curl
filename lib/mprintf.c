@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.23 2003-01-29 10:14:23 bagder Exp $
+ * $Id: mprintf.c,v 1.24 2003-06-26 11:22:12 bagder Exp $
  *
  *************************************************************************
  *
@@ -48,7 +48,7 @@
 
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 

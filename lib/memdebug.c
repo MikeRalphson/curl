@@ -1,4 +1,4 @@
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 /***************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.28 2003-01-29 10:14:22 bagder Exp $
+ * $Id: memdebug.c,v 1.29 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -220,4 +220,4 @@ int curl_fclose(FILE *file, int line, const char *source)
 #ifdef VMS
 int VOID_VAR_MEMDEBUG;	
 #endif
-#endif /* MALLOCDEBUG */
+#endif /* CURLDEBUG */

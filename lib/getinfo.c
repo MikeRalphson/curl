@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.28 2003-05-01 13:37:36 bagder Exp $
+ * $Id: getinfo.c,v 1.29 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,7 +36,7 @@
 #endif
 
 /* Make this the last #include */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #else
 #include <stdlib.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.25 2003-05-23 06:43:14 bagder Exp $
+ * $Id: if2ip.c,v 1.26 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -73,7 +73,7 @@
 #endif
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 

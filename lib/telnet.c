@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.40 2003-03-12 08:44:00 bagder Exp $
+ * $Id: telnet.c,v 1.41 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -84,7 +84,7 @@
 #include "arpa_telnet.h"
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.3 2003-05-22 22:39:38 bagder Exp $
+ * $Id: http_digest.c,v 1.4 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -41,7 +41,7 @@
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
@@ -106,6 +106,9 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
         /* allow the list to be comma-separated */
         header++; 
     }
+
+    if(!data->state.digest.nonce)
+      return CURLDIGEST_BAD;
   }
   else 
     /* else not a digest, get out */

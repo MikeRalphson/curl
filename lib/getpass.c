@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.20 2003-05-21 08:08:49 bagder Exp $
+ * $Id: getpass.c,v 1.21 2003-06-26 11:22:12 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -89,7 +89,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 #endif
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.14 2003-01-29 10:12:06 bagder Exp $
+ * $Id: hash.c,v 1.15 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -29,7 +29,7 @@
 #include "hash.h"
 #include "llist.h"
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 /* this must be the last include file */
 #include "memdebug.h"
 #endif

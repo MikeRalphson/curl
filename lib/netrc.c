@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.23 2003-01-29 10:14:23 bagder Exp $
+ * $Id: netrc.c,v 1.24 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,7 @@
 #include "strtok.h"
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
@@ -119,7 +119,7 @@ int Curl_parsenetrc(char *host,
 
   sprintf(netrcbuffer, "%s%s%s", home, DIR_CHAR, NETRC);
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
   {
     /* This is a hack to allow testing.
      * If compiled with --enable-debug and CURL_DEBUG_NETRC is defined,
@@ -141,7 +141,7 @@ int Curl_parsenetrc(char *host,
       free(override);
     }
   }
-#endif /* MALLOCDEBUG */
+#endif /* CURLDEBUG */
 
   file = fopen(netrcbuffer, "r");
   if(file) {

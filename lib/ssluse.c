@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.73 2003-06-02 13:27:03 bagder Exp $
+ * $Id: ssluse.c,v 1.74 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -46,7 +46,7 @@
 #include <openssl/rand.h>
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.23 2003-05-13 12:12:17 bagder Exp $
+ * $Id: hostip.h,v 1.24 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -41,7 +41,7 @@ struct Curl_dns_entry {
   time_t timestamp;
   long inuse;      /* use-counter, make very sure you decrease this
                       when you're done using the address you received */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
   char *entry_id;
 #endif
 };
@@ -70,7 +70,7 @@ void Curl_freeaddrinfo(Curl_addrinfo *freeaddr);
 /* free cached name info */
 void Curl_freednsinfo(void *freethis);
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 void curl_freeaddrinfo(struct addrinfo *freethis,
                        int line, const char *source);
 int curl_getaddrinfo(char *hostname, char *service,

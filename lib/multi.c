@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.30 2003-06-13 06:48:04 bagder Exp $
+ * $Id: multi.c,v 1.31 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -44,7 +44,7 @@
 #include "progress.h"
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
@@ -302,7 +302,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
   easy=multi->easy.next;
   while(easy) {
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
     fprintf(stderr, "HANDLE %p: State: %x\n",
             (char *)easy, easy->state);
 #endif

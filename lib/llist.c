@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.7 2003-01-16 21:08:13 bagder Exp $
+ * $Id: llist.c,v 1.8 2003-06-26 11:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,7 +28,7 @@
 
 #include "llist.h"
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 /* this must be the last include file */
 #include "memdebug.h"
 #endif
