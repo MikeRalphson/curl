@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.17 2001-11-27 07:27:32 bagder Exp $
+ * $Id: setup.h,v 1.18 2001-12-17 23:02:22 bagder Exp $
  *****************************************************************************/
 
 
@@ -34,9 +34,9 @@
 #ifdef HAVE_CONFIG_H
 
 #ifdef VMS
-#include "config-vms.h"
+#include "../config-vms.h"
 #else
-#include "config.h" /* the configure script results */
+#include "../config.h" /* the configure script results */
 #endif
 
 #else
@@ -46,13 +46,14 @@
 #endif
 #ifdef macintosh
 /* hand-modified MacOS config.h! */
-#include "config-mac.h"
+#include "../config-mac.h"
 #endif
 
 #endif
 
 #ifndef __cplusplus        /* (rabe) */
 typedef char bool;
+#define typedef_bool
 #endif                     /* (rabe) */
 
 #ifdef NEED_REENTRANT

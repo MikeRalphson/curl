@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.88 2001-12-07 15:51:59 bagder Exp $
+dnl $Id: configure.in,v 1.89 2001-12-17 23:01:54 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -391,6 +391,10 @@ else
       AC_CHECK_HEADERS(x509.h rsa.h crypto.h pem.h ssl.h err.h,
         OPENSSL_ENABLED=1)
     fi
+
+    dnl Check for the OpenSSL engine header, it is kind of "separated"
+    dnl from the main SSL check
+    AC_CHECK_HEADERS(openssl/engine.h)
 
     AC_SUBST(OPENSSL_ENABLED)
 

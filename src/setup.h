@@ -1,5 +1,5 @@
-#ifndef __SETUP_H
-#define __SETUP_H
+#ifndef __CLIENT_SETUP_H
+#define __CLIENT_SETUP_H
 /*****************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.8 2001-11-29 12:47:41 bagder Exp $
+ * $Id: setup.h,v 1.9 2001-12-17 23:02:28 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
