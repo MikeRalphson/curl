@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.60 2004-08-04 12:26:27 bagder Exp $
+ * $Id: cookie.c,v 1.61 2004-09-13 20:47:15 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -88,7 +88,6 @@ Example set of cookies:
 
 #include "urldata.h"
 #include "cookie.h"
-#include "getdate.h"
 #include "strequal.h"
 #include "strtok.h"
 #include "sendf.h"
