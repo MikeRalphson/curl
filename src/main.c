@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.136 2002-06-15 21:08:07 bagder Exp $
+ * $Id: main.c,v 1.137 2002-08-05 11:15:57 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -525,7 +525,7 @@ static void GetStr(char **string,
 {
   if(*string)
     free(*string);
-  if(value && *value)
+  if(value)
     *string = strdup(value);
   else
     *string = NULL;
@@ -1131,7 +1131,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       nextarg=(char *)&parse[1]; /* this is the actual extra parameter */
       singleopt=TRUE;   /* don't loop anymore after this */
     }
-    else if((!nextarg || !*nextarg) && aliases[hit].extraparam) {
+    else if(!nextarg && aliases[hit].extraparam) {
       return PARAM_REQUIRES_PARAMETER;
     }
     else if(nextarg && aliases[hit].extraparam)
@@ -1324,7 +1324,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           GetStr(&postdata, nextarg);
         }
 
-        if(config->postfields && *config->postfields) {
+        if(config->postfields) {
           /* we already have a string, we append this one
              with a separating &-letter */
           char *oldpost=config->postfields;
