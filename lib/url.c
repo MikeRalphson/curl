@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.419 2004-10-14 13:44:54 bagder Exp $
+ * $Id: url.c,v 1.420 2004-11-02 10:12:23 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -30,9 +30,12 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
+#ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
-
+#endif
 #include <errno.h>
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)

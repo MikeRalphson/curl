@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.20 2004-09-30 19:50:36 bagder Exp $
+ * $Id: multi.h,v 1.21 2004-11-02 10:12:22 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -51,7 +51,8 @@
 #define WIN32 1
 #endif
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if defined(WIN32) && !defined(_WIN32_WCE) && !defined(__GNUC__) || \
+  defined(__MINGW32__)
 #if !(defined(_WINSOCKAPI_) || defined(_WINSOCK_H))
 /* The check above prevents the winsock2 inclusion if winsock.h already was
    included, since they can't co-exist without problems */

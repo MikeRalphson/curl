@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.37 2004-10-06 06:58:42 bagder Exp $
+ * $Id: if2ip.c,v 1.38 2004-11-02 10:12:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -127,9 +127,9 @@ char *Curl_if2ip(const char *interface, char *buf, int buf_size)
 
 /* -- end of if2ip() -- */
 #else
-char *Curl_if2ip(const char *interface, char *buf, int buf_size)
+char *Curl_if2ip(const char *interf, char *buf, int buf_size)
 {
-    (void) interface;
+    (void) interf;
     (void) buf;
     (void) buf_size;
     return NULL;

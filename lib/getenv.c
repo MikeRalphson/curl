@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.25 2004-10-06 07:50:18 bagder Exp $
+ * $Id: getenv.c,v 1.26 2004-11-02 10:12:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -43,6 +43,9 @@
 static
 char *GetEnv(const char *variable)
 {
+#ifdef _WIN32_WCE
+  return NULL;
+#else
 #ifdef WIN32
   /* This shit requires windows.h (HUGE) to be included */
   char env[MAX_PATH]; /* MAX_PATH is from windef.h */
@@ -62,6 +65,7 @@ char *GetEnv(const char *variable)
 #endif
 #endif
   return (env && env[0])?strdup(env):NULL;
+#endif
 }
 
 char *curl_getenv(const char *v)

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.71 2004-10-26 13:31:55 bagder Exp $
+ * $Id: setup.h,v 1.72 2004-11-02 10:12:23 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -40,9 +40,13 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h" /* the configure script results */
 #else
+#ifdef _WIN32_WCE
+#include "config-win32ce.h"
+#else
 #ifdef WIN32
 /* hand-modified win32 config.h! */
 #include "config-win32.h"
+#endif
 #endif
 #endif
 
@@ -173,7 +177,9 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #define _WIN32_WINNT 0x0501
 #endif
 
+#if HAVE_WINSOCK2_H
 #include <winsock2.h>        /* required by telnet.c */
+#endif
 
 #if defined(ENABLE_IPV6) || defined(USE_SSLEAY)
 #include <ws2tcpip.h>

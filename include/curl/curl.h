@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.266 2004-10-19 15:30:08 bagder Exp $
+ * $Id: curl.h,v 1.267 2004-11-02 10:12:22 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -52,10 +52,16 @@ extern "C" {
  * platforms. We also provide a CURL_FORMAT_OFF_T define to use in *printf
  * format strings when outputting a variable of type curl_off_t.
  */
+
 #if defined(_MSC_VER) || defined(__LCC__)
 /* MSVC */
+#ifdef _WIN32_WCE
+  typedef long curl_off_t;
+#define CURL_FORMAT_OFF_T "%ld"
+#else
   typedef signed __int64 curl_off_t;
 #define CURL_FORMAT_OFF_T "%I64d"
+#endif
 #else /* _MSC_VER || __LCC__ */
 #if (defined(__GNUC__) && defined(WIN32)) || defined(__WATCOMC__)
 /* gcc on windows or Watcom */

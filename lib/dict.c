@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.35 2004-10-06 07:50:18 bagder Exp $
+ * $Id: dict.c,v 1.36 2004-11-02 10:12:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -29,8 +29,12 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
+#ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
+#endif
 
 #include <errno.h>
 

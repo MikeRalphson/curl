@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.245 2004-10-25 11:28:40 bagder Exp $
+ * $Id: http.c,v 1.246 2004-11-02 10:12:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,8 +30,12 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
+#ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
+#endif
 
 #include <errno.h>
 

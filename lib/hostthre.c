@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.14 2004-10-16 12:59:05 giva Exp $
+ * $Id: hostthre.c,v 1.15 2004-11-02 10:12:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -195,7 +195,9 @@ static unsigned __stdcall gethostbyname_thread (void *arg)
    * hopefully make printouts synchronised. I'm not sure it works
    * with a static runtime lib (MSVC's libc.lib).
    */
+#ifndef _WIN32_WCE
   *stderr = *td->stderr_file;
+#endif
 
   WSASetLastError (conn->async.status = NO_DATA); /* pending status */
   he = gethostbyname (conn->async.hostname);
@@ -375,8 +377,15 @@ static bool init_resolve_thread (struct connectdata *conn,
   }
 
   td->stderr_file = stderr;
+
+#ifdef _WIN32_WCE
+  td->thread_hnd=(HANDLE) CreateThread(NULL,0,(LPTHREAD_START_ROUTINE) THREAD_FUNC,conn,0,&td->thread_id);
+#else
+
   td->thread_hnd = (HANDLE) _beginthreadex(NULL, 0, THREAD_FUNC,
                                            conn, 0, &td->thread_id);
+#endif
+
 #ifdef CURLRES_IPV6
   curlassert(hints);
   td->hints = *hints;
