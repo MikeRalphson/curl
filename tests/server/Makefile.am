@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.6 2004-03-09 21:49:46 bagder Exp $
+# $Id: Makefile.am,v 1.7 2004-10-07 22:57:24 bagder Exp $
 ###########################################################################
 # sws is the Silly Web Server
 #
@@ -31,6 +31,7 @@ INCLUDES = -I$(top_srcdir)/lib -I$(top_srcdir)/include
 
 noinst_PROGRAMS = sws
 
-sws_SOURCES= sws.c getpart.c getpart.h
+sws_SOURCES= sws.c getpart.c getpart.h $(top_srcdir)/lib/strequal.c
 
 extra_DIST = config.h.in
+
