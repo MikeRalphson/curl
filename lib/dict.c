@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/dict.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-02-01 23:52:11 $
+ * $Revision: 1.4 $
+ * $Date: 2000-02-14 22:57:42 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -243,6 +243,10 @@ UrgError dict(struct UrlData *data, char *path, long *bytecount)
     }
   }
 
+#if 0
   ProgressEnd(data);
+#endif
+  pgrsDone(data);
+
   return URG_OK;
 }
