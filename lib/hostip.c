@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.75 2002-10-21 13:20:30 bagder Exp $
+ * $Id: hostip.c,v 1.76 2002-10-31 13:09:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -218,11 +218,13 @@ Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
   }
 #endif
 
+#if 0
   /* If the host cache timeout is 0, we don't do DNS cach'ing
      so fall through */
   if (data->set.dns_cache_timeout == 0) {
     return Curl_getaddrinfo(data, hostname, port, &bufp);
   }
+#endif
 
   time(&now);
 
