@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.25 2003-08-05 14:40:59 bagder Exp $
+ * $Id: hostip.h,v 1.26 2003-10-04 14:50:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -57,7 +57,8 @@ int Curl_resolv(struct connectdata *conn,
                 int port,
                 struct Curl_dns_entry **dnsentry);
 
-CURLcode Curl_is_resolved(struct connectdata *conn, bool *done);
+CURLcode Curl_is_resolved(struct connectdata *conn,
+                          struct Curl_dns_entry **dns);
 CURLcode Curl_wait_for_resolv(struct connectdata *conn,
                               struct Curl_dns_entry **dnsentry);
 CURLcode Curl_multi_ares_fdset(struct connectdata *conn,
