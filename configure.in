@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.105 2002-09-02 22:31:19 bagder Exp $
+dnl $Id: configure.in,v 1.106 2002-09-02 22:45:46 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -536,7 +536,9 @@ fi
 dnl AC_CHECK_FUNC(gzread, , AC_CHECK_LIB(z, gzread))
 AC_CHECK_LIB(z, gzread, [AM_CONDITIONAL(CONTENT_ENCODING, true) 
 		         AC_DEFINE(HAVE_LIBZ)
-			 LIBS="$LIBS -lz"])
+			 LIBS="$LIBS -lz"
+                         HAVE_LIBZ="1"
+                         AC_SUBST(HAVE_LIBZ)])
 
 dnl Default is to try the thread-safe versions of a few functions
 OPT_THREAD=on
