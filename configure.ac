@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.77 2004-04-26 22:13:36 bagder Exp $
+dnl $Id: configure.ac,v 1.78 2004-04-27 12:08:53 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -923,10 +923,10 @@ dnl set variable for use in automakefile(s)
 AM_CONDITIONAL(HAVE_LIBZ, test x"$AMFIXLIB" = x1)
 
 AC_MSG_CHECKING([whether to build with libidn])
-AC_ARG_WITH(idn,
+AC_ARG_WITH(libidn,
 AC_HELP_STRING([--with-libidn=PATH],[Enable libidn usage])
 AC_HELP_STRING([--without-libidn],[Disable libidn usage]),
-  [LIBIDN="$withval" ])
+  [LIBIDN="$withval"])
 
 case "$LIBIDN" in
   no)
@@ -937,7 +937,7 @@ case "$LIBIDN" in
                     [
                     dnl if there was a given path, try it
                     nolibidn="true"
-                    if test "x$LIBIDN" != "x"; then
+                    if test "x$LIBIDN" != "xyes"; then
                       nolibidn="" dnl reset to test again
                       oldLDFLAGS=$LDFLAGS
                       oldCPPFLAGS=$CPPFLAGS
@@ -1391,7 +1391,7 @@ AC_MSG_NOTICE([Configured to build curl/libcurl:
   SNPEGO support:  ${curl_spnego_msg}
   c-ares support:  ${curl_ares_msg}
   ipv6 support:    ${curl_ipv6_msg}
-  libidn support:  ${curl_idn_msg}
+  IDN support:     ${curl_idn_msg}
   Build libcurl:   Shared=${enable_shared}, Static=${enable_static} 
   Built-in manual: ${curl_manual_msg}
 ])
