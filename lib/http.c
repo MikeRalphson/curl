@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.108 2002-09-25 12:47:38 bagder Exp $
+ * $Id: http.c,v 1.109 2002-10-10 08:00:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -420,7 +420,7 @@ CURLcode Curl_http_connect(struct connectdata *conn)
    * has occured, can we start talking SSL
    */
 
-  if(data->change.proxy && (data->set.proxytype == CURLPROXY_HTTP) &&
+  if(conn->bits.httpproxy &&
      ((conn->protocol & PROT_HTTPS) || data->set.tunnel_thru_httpproxy)) {
 
     /* either HTTPS over proxy, OR explicitly asked for a tunnel */
@@ -551,7 +551,7 @@ CURLcode Curl_http(struct connectdata *conn)
                              host, ppath,
                              (conn->protocol&PROT_HTTPS?TRUE:FALSE));
   }
-  if (data->change.proxy &&
+  if (data->change.proxy && *data->change.proxy &&
       !data->set.tunnel_thru_httpproxy &&
       !(conn->protocol&PROT_HTTPS))  {
     /* The path sent to the proxy is in fact the entire URL */
