@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.58 2001-03-02 15:34:15 bagder Exp $
+ * $Id: ftp.c,v 1.59 2001-03-05 13:40:08 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -295,6 +295,9 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
 
   memset(ftp, 0, sizeof(struct FTP));
   conn->proto.ftp = ftp;
+
+  /* We always support persistant connections on ftp */
+  conn->bits.close = FALSE;
 
   /* get some initial data into the ftp struct */
   ftp->bytecountp = &conn->bytecount;
