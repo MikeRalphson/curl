@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/getinfo.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-11-06 15:31:10 $
+ * $Revision: 1.5 $
+ * $Date: 2000-11-22 13:50:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -83,6 +83,9 @@ CURLcode curl_getinfo(CURL *curl, CURLINFO info, ...)
     break;
   case CURLINFO_HTTP_CODE:
     *param_longp = data->progress.httpcode;
+    break;
+  case CURLINFO_FILETIME:
+    *param_longp = data->progress.filetime;
     break;
   case CURLINFO_HEADER_SIZE:
     *param_longp = data->header_size;

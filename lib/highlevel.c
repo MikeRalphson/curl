@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.22 $
- * $Date: 2000-11-22 12:54:48 $
+ * $Revision: 1.23 $
+ * $Date: 2000-11-22 13:50:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -395,7 +395,7 @@ _Transfer(struct connectdata *c_conn)
               }
               else if(strnequal("Last-Modified:", p,
                                 strlen("Last-Modified:")) &&
-                      data->timecondition) {
+                      (data->timecondition || data->bits.get_filetime) ) {
                 time_t secs=time(NULL);
                 timeofdoc = curl_getdate(p+strlen("Last-Modified:"), &secs);
                 if(data->bits.get_filetime)

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.64 $
- * $Date: 2000-11-21 19:06:55 $
+ * $Revision: 1.65 $
+ * $Date: 2000-11-22 13:50:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -364,6 +364,9 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
     break;
   case CURLOPT_POST:
     data->bits.http_post = va_arg(param, long)?TRUE:FALSE;
+    break;
+  case CURLOPT_FILETIME:
+    data->bits.get_filetime = va_arg(param, long)?TRUE:FALSE;
     break;
   case CURLOPT_FTPLISTONLY:
     data->bits.ftp_list_only = va_arg(param, long)?TRUE:FALSE;
