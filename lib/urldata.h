@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.25 $
- * $Date: 2000-10-06 06:28:39 $
+ * $Revision: 1.26 $
+ * $Date: 2000-10-11 10:29:25 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -304,16 +304,18 @@ struct Configbits {
   bool mute;
   bool no_body;
   bool proxy_user_passwd;
-  bool proxystringalloc; /* the http proxy string is malloc()'ed */
   bool set_port;
   bool set_range;
-  bool rangestringalloc; /* the range string is malloc()'ed */
   bool upload;
   bool use_netrc;
   bool user_passwd;
   bool verbose;
   bool this_is_a_follow; /* this is a followed Location: request */
   bool krb4; /* kerberos4 connection requested */
+
+  bool proxystringalloc; /* the http proxy string is malloc()'ed */
+  bool rangestringalloc; /* the range string is malloc()'ed */
+  bool urlstringalloc;   /* the URL string is malloc()'ed */
 };
 
 /* What type of interface that intiated this struct */

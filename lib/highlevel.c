@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.16 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.17 $
+ * $Date: 2000-10-11 10:29:25 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -722,6 +722,7 @@ CURLcode curl_transfer(CURL *curl)
         /* TBD: set the URL with curl_setopt() */
         data->url = data->newurl;
         data->newurl = NULL; /* don't show! */
+        data->bits.urlstringalloc = TRUE; /* the URL is allocated */
 
         /* Disable both types of POSTs, since doing a second POST when
            following isn't what anyone would want! */

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.31 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.32 $
+ * $Date: 2000-10-11 10:29:25 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -254,7 +254,8 @@ CURLcode http_done(struct connectdata *conn)
     *bytecount = http->readbytecount + http->writebytecount;
   }
 
-  /* TBD: the HTTP struct remains allocated here */
+  free(http);
+  data->proto.http=NULL; /* it is gone */
 
   return CURLE_OK;
 }
