@@ -1,10 +1,10 @@
 #
-# $Id: Makefile.am,v 1.35 2002-10-14 07:39:49 bagder Exp $
+# $Id: Makefile.am,v 1.36 2002-11-11 22:38:32 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
 
-EXTRA_DIST = CHANGES COPYING maketgz UPGRADE reconf Makefile.dist	\
+EXTRA_DIST = CHANGES COPYING maketgz SSLCERTS reconf Makefile.dist	\
 curl-config.in build_vms.com curl-mode.el
 
 bin_SCRIPTS = curl-config
