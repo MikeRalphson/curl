@@ -1,8 +1,8 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl.3,v 1.1 2001-06-21 09:34:38 bagder Exp $
+.\" $Id: libcurl.3,v 1.2 2001-08-14 11:04:58 bagder Exp $
 .\"
-.TH libcurl 5 "28 May 2001" "libcurl 7.8" "libcurl overview"
+.TH libcurl 5 "14 August 2001" "libcurl 7.8.1" "libcurl overview"
 .SH NAME
 libcurl \- client-side URL transfers
 .SH DESCRIPTION
@@ -101,7 +101,7 @@ you to init the winsock stuff before you use the libcurl functions. Details on
 this are noted on the curl_easy_init() man page.
 
 (*) = it appears as if users of the cygwin environment get this done
-automatically.
+automatically, also libcurl 7.8.1 and later can handle this for you.
 .SH "THREADS"
 Never ever call curl-functions simultaneously using the same handle from
 several threads. libcurl is thread-safe and can be used in any number of
