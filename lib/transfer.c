@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.73 2002-01-07 14:57:18 bagder Exp $
+ * $Id: transfer.c,v 1.74 2002-01-07 15:24:52 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -437,8 +437,10 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                  * NOT contain a message-body, and thus is always terminated
                  * by the first empty line after the header fields.  */
                 conn->size=0;
+                break;
               default:
                 /* nothing */
+                break;
               }
             }
             else {
