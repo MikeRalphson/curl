@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.66 2002-06-05 13:41:33 bagder Exp $
+ * $Id: hostip.c,v 1.67 2002-06-10 13:26:02 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -344,7 +344,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
   snprintf(sbuf, sizeof(sbuf), "%d", port);
   error = getaddrinfo(hostname, sbuf, &hints, &res);
   if (error) {
-    infof(data, "getaddrinfo(3) failed for %s\n", hostname);    
+    infof(data, "getaddrinfo(3) failed for %s:%d\n", hostname, port);    
     return NULL;
   }
   *bufp=(char *)res; /* make it point to the result struct */
