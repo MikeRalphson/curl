@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.236 2004-07-04 21:36:14 bagder Exp $
+ * $Id: urldata.h,v 1.237 2004-09-10 20:58:51 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -720,10 +720,10 @@ struct UrlState {
                                 bytes / second */
   bool this_is_a_follow; /* this is a followed Location: request */
 
-  char *auth_host; /* if set, this should be the host name that we will
-                      sent authorization to, no else. Used to make Location:
-                      following not keep sending user+password... This is
-                      strdup() data.
+  char *first_host; /* if set, this should be the host name that we will
+                       sent authorization to, no else. Used to make Location:
+                       following not keep sending user+password... This is
+                       strdup() data.
                     */
 
   struct curl_ssl_session *session; /* array of 'numsessions' size */

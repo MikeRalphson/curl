@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.406 2004-08-16 13:25:30 bagder Exp $
+ * $Id: url.c,v 1.407 2004-09-10 20:58:51 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -211,7 +211,7 @@ CURLcode Curl_close(struct SessionHandle *data)
   if(data->change.cookielist) /* clean up list if any */
     curl_slist_free_all(data->change.cookielist);
 
-  Curl_safefree(data->state.auth_host);
+  Curl_safefree(data->state.first_host);
   Curl_safefree(data->state.scratch);
 
   if(data->change.proxy_alloc)
