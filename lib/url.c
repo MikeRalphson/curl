@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.432 2004-12-13 16:43:00 giva Exp $
+ * $Id: url.c,v 1.433 2004-12-14 21:22:51 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3131,7 +3131,26 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     /* get the user+password information from the old_conn struct since it may
      * be new for this request even when we re-use an existing connection */
     conn->bits.user_passwd = old_conn->bits.user_passwd;
+    if (conn->bits.user_passwd) {
+      /* use the new user namd and password though */
+      Curl_safefree(conn->user);
+      Curl_safefree(conn->passwd);
+      conn->user = old_conn->user;
+      conn->passwd = old_conn->passwd;
+      old_conn->user = NULL;
+      old_conn->passwd = NULL;
+    }
+
     conn->bits.proxy_user_passwd = old_conn->bits.proxy_user_passwd;
+    if (conn->bits.proxy_user_passwd) {
+      /* use the new proxy user name and proxy password though */
+      Curl_safefree(conn->proxyuser);
+      Curl_safefree(conn->proxypasswd);
+      conn->proxyuser = old_conn->proxyuser;
+      conn->proxypasswd = old_conn->proxypasswd;
+      old_conn->proxyuser = NULL;
+      old_conn->proxypasswd = NULL;
+    }
 
     /* host can change, when doing keepalive with a proxy ! */
     if (conn->bits.httpproxy) {
