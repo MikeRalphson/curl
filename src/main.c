@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-02-16 00:05:26 $
+ * $Revision: 1.7 $
+ * $Date: 2000-02-21 23:52:13 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1107,6 +1107,7 @@ int main(int argc, char *argv[])
                     URGTAG_CUSTOMREQUEST, config.customrequest,
                     URGTAG_STDERR, config.errors,
                     URGTAG_PROGRESSMODE, config.progressmode,
+                    URGTAG_WRITEINFO, config.writeout,
                     URGTAG_DONE); /* always terminate the list of tags */
   if((res!=URG_OK) && config.showerror)
     fprintf(config.errors, "curl: (%d) %s\n", res, errorbuffer);
