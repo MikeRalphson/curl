@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.4 2000-02-21 23:53:36 bagder Exp $
+# $Id: Makefile.am,v 1.5 2000-03-20 09:10:51 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -7,7 +7,7 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
 noinst_LIBRARIES = libcurl.a
 
 # Some flags needed when trying to cause warnings ;-)
-CFLAGS = -g #-Wall -pedantic
+#CFLAGS = -g -Wall -pedantic
 
 INCLUDES = -I$(top_srcdir)/include
 
