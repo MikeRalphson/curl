@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.256 2004-04-26 07:14:47 bagder Exp $
+ * $Id: main.c,v 1.257 2004-04-30 06:45:53 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -762,13 +762,12 @@ static int formparse(char *input,
   char *sep;
   char *sep2;
 
-  /* Preallocate contents to the length of input to make sure we don't
-     overwrite anything. */
-  contents = malloc(strlen(input));
-  contents[0] = '\000';
- 
-  if(1 <= sscanf(input, "%255[^=]=%s", name, contents)) {
+  if((1 == sscanf(input, "%255[^=]=", name)) &&
+     (contp = strchr(input, '='))) {
     /* the input was using the correct format */
+    
+    /* Allocate the contents */
+    contents = strdup(contp+1);
     contp = contents;
 
     if('@' == contp[0]) {
