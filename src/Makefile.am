@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.32 2003-12-03 08:39:46 bagder Exp $
+# $Id: Makefile.am,v 1.33 2003-12-10 13:56:13 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -38,7 +38,8 @@ EXTRA_DIST = mkhelp.pl curlmsg.msg makefile.dj \
 	macos/curl.mcp.xml.sit.hqx \
 	macos/MACINSTALL.TXT \
 	macos/src/curl_GUSIConfig.cpp \
-	macos/src/macos_main.cpp curlmsg.h curlmsg.sdl curlmsg_vms.h
+	macos/src/macos_main.cpp curlmsg.h curlmsg.sdl curlmsg_vms.h \
+	config-amiga.h makefile.amiga
 
 MANPAGE=$(top_srcdir)/docs/curl.1
 README=$(top_srcdir)/docs/MANUAL

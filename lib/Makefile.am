@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.77 2003-12-10 13:38:51 bagder Exp $
+# $Id: Makefile.am,v 1.78 2003-12-10 13:56:13 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -9,7 +9,8 @@ EXTRA_DIST = getdate.y Makefile.b32 Makefile.b32.resp Makefile.m32	    \
        curllib.dsw config-vms.h config-win32.h config-riscos.h config-mac.h \
        config.h.in ca-bundle.crt README.encoding README.memoryleak	    \
        README.ares makefile.dj config.dj				    \
-       libcurl.framework.make libcurl.plist libcurl.rc
+       libcurl.framework.make libcurl.plist libcurl.rc \
+       config-amiga.h amigaos.c amigaos.h makefile.amiga
 
 lib_LTLIBRARIES = libcurl.la
 
