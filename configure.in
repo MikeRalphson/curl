@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.90 2002-01-03 15:03:58 bagder Exp $
+dnl $Id: configure.in,v 1.91 2002-01-18 10:43:55 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -524,9 +524,9 @@ AC_HEADER_TIME
 # mprintf() checks:
 
 # check for 'long double'
-AC_CHECK_SIZEOF(long double, 8)
+# AC_CHECK_SIZEOF(long double, 8)
 # check for 'long long'
-AC_CHECK_SIZEOF(long long, 4)
+# AC_CHECK_SIZEOF(long long, 4)
 
 # check for ssize_t
 AC_CHECK_TYPE(ssize_t, int)
