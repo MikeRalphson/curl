@@ -21,8 +21,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.h,v 1.5 2001-01-03 09:29:34 bagder Exp $
+ * $Id: file.h,v 1.6 2001-03-05 13:39:01 bagder Exp $
  *****************************************************************************/
-CURLcode file(struct connectdata *conn);
-
+CURLcode Curl_file(struct connectdata *conn);
+CURLcode Curl_file_connect(struct connectdata *conn);
 #endif

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.46 2001-03-02 15:34:15 bagder Exp $
+ * $Id: urldata.h,v 1.47 2001-03-05 13:39:01 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -183,6 +183,13 @@ struct FTP {
   char *entrypath; /* the PWD reply when we logged on */
 };
 
+/****************************************************************************
+ * FILE unique setup
+ ***************************************************************************/
+struct FILE {
+  int fd; /* open file descriptor to read from! */
+};
+
 /*
  * Boolean values that concerns this connection.
  */
@@ -318,9 +325,9 @@ struct connectdata {
     struct HTTP *gopher; /* alias, just for the sake of being more readable */
     struct HTTP *https;  /* alias, just for the sake of being more readable */
     struct FTP *ftp;
+    struct FILE *file;
 #if 0 /* no need for special ones for these: */
     struct TELNET *telnet;
-    struct FILE *file;
     struct LDAP *ldap;
     struct DICT *dict;
 #endif
