@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.42 2002-01-08 04:30:59 bumblebury Exp $
+ * $Id: hostip.c,v 1.43 2002-01-08 07:06:07 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -186,7 +186,7 @@ int curl_getaddrinfo(char *hostname, char *service,
     /* success */
     if(logfile)
       fprintf(logfile, "ADDR %s:%d getaddrinfo() = %p\n",
-              source, line, *result);
+              source, line, (void *)*result);
   }
   else {
     if(logfile)
@@ -202,7 +202,7 @@ void curl_freeaddrinfo(struct addrinfo *freethis,
   (freeaddrinfo)(freethis);
   if(logfile)
     fprintf(logfile, "ADDR %s:%d freeaddrinfo(%p)\n",
-            source, line, freethis);
+            source, line, (void *)freethis);
 }
 
 #endif
