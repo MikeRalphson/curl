@@ -5,13 +5,13 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: simple.c,v 1.3 2002-01-09 13:22:03 bagder Exp $
+ * $Id: simple.c,v 1.4 2002-01-09 13:22:31 bagder Exp $
  */
 
 #include <stdio.h>
 #include <curl/curl.h>
 
-int main(int argc, char **argv)
+int main(void)
 {
   CURL *curl;
   CURLcode res;
