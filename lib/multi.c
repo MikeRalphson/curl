@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.25 2003-01-16 21:08:13 bagder Exp $
+ * $Id: multi.c,v 1.26 2003-01-29 10:14:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -557,11 +557,3 @@ CURLMsg *curl_multi_info_read(CURLM *multi_handle, int *msgs_in_queue)
   else
     return NULL;
 }
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */

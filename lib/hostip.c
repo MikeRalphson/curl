@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.81 2003-01-16 21:08:13 bagder Exp $
+ * $Id: hostip.c,v 1.82 2003-01-29 10:14:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -718,12 +718,3 @@ static Curl_addrinfo *my_getaddrinfo(struct SessionHandle *data,
 }
 
 #endif /* end of IPv4-specific code */
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */
- 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.58 2003-01-16 21:08:13 bagder Exp $
+ * $Id: sendf.c,v 1.59 2003-01-29 10:14:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -412,12 +412,3 @@ int Curl_debug(struct SessionHandle *data, curl_infotype type,
   }
   return 0;
 }
-
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */

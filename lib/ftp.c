@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.167 2003-01-16 21:08:13 bagder Exp $
+ * $Id: ftp.c,v 1.168 2003-01-29 10:14:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2187,13 +2187,5 @@ CURLcode Curl_ftp_disconnect(struct connectdata *conn)
   }
   return CURLE_OK;
 }
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */
 
 #endif /* CURL_DISABLE_FTP */

@@ -18,17 +18,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.h,v 1.3 2003-01-16 21:08:13 bagder Exp $
+ * $Id: content_encoding.h,v 1.4 2003-01-29 10:14:20 bagder Exp $
  ***************************************************************************/
 
 CURLcode Curl_unencode_deflate_write(struct SessionHandle *data, 
                                      struct Curl_transfer_keeper *k, 
                                      ssize_t nread);
-          
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.22 2003-01-16 21:08:13 bagder Exp $
+ * $Id: if2ip.c,v 1.23 2003-01-29 10:14:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -124,11 +124,3 @@ char *Curl_if2ip(char *interface, char *buf, int buf_size)
 #else
 #define if2ip(x) NULL
 #endif
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */

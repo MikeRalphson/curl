@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.256 2003-01-20 12:52:34 bagder Exp $
+ * $Id: url.c,v 1.257 2003-01-29 10:14:25 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2978,11 +2978,3 @@ CURLcode Curl_do_more(struct connectdata *conn)
 
   return result;
 }
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */

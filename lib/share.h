@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.h,v 1.5 2003-01-16 21:08:13 bagder Exp $
+ * $Id: share.h,v 1.6 2003-01-29 10:14:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -42,11 +42,3 @@ CURLSHcode Curl_share_aquire_lock (struct SessionHandle *, curl_lock_data);
 CURLSHcode Curl_share_release_lock (struct SessionHandle *, curl_lock_data);
 
 #endif /* __CURL_SHARE_H */
-
-/*
- * local variables:
- * eval: (load-file "../curl-mode.el")
- * end:
- * vim600: fdm=marker
- * vim: et sw=2 ts=2 sts=2 tw=78
- */
