@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.33 2001-10-26 11:25:03 bagder Exp $
+ * $Id: progress.c,v 1.34 2001-10-31 14:45:47 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -119,15 +119,15 @@ void Curl_pgrsTime(struct SessionHandle *data, timerid timer)
 
   case TIMER_NAMELOOKUP:
     data->progress.t_nslookup +=
-      Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000;
+      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000;
     break;
   case TIMER_CONNECT:
     data->progress.t_connect +=
-      Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000;
+      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000;
     break;
   case TIMER_PRETRANSFER:
     data->progress.t_pretransfer +=
-      Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000;
+      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000;
     break;
   case TIMER_POSTRANSFER:
     /* this is the normal end-of-transfer thing */
