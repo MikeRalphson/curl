@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.10 $
- * $Date: 2000-11-22 12:51:18 $
+ * $Revision: 1.11 $
+ * $Date: 2000-11-27 12:04:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -103,6 +103,10 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 CURLcode file(struct connectdata *conn)
 {
