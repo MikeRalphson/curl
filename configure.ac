@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.92 2004-08-11 07:14:34 bagder Exp $
+dnl $Id: configure.ac,v 1.93 2004-08-11 07:25:08 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -121,7 +121,17 @@ case $host in
   mips-sgi-irix*)
     if test "$GCC" != "yes"; then
       xopen="yes"
-      CPPFLAGS="$CPPFLAGS -D_XOPEN_SOURCE=500"
+
+      # "Applications should ensure that the feature test macro _XOPEN_SOURCE
+      # is defined with the value 500 before inclusion of any header. This is
+      # needed to enable the functionality described in this specification,
+      # and possibly to enable functionality defined elsewhere in the Common
+      # Applications Environment."
+
+      # So far, we've only detected this to be strictly necessary if not using
+      # gcc on SGI IRIX. And this only to avoid warnings.
+
+      AC_DEFINE(_XOPEN_SOURCE, 500, [ensure SUSV2 compatibility])
     fi
     ;;
   *)
