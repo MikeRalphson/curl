@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.75 2001-08-20 07:10:28 bagder Exp $
+dnl $Id: configure.in,v 1.76 2001-08-21 06:36:30 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -305,6 +305,8 @@ else
   case "$OPT_SSL" in
   yes)
     EXTRA_SSL=/usr/local/ssl ;;
+  off)
+    EXTRA_SSL= ;;
   *)
     dnl check the given spot right away!
     EXTRA_SSL=$OPT_SSL
