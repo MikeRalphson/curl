@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.5 2001-03-13 23:29:53 bagder Exp $
+ * $Id: http_chunks.c,v 1.6 2001-08-14 08:29:09 bagder Exp $
  *****************************************************************************/
 #include "setup.h"
 
@@ -96,8 +96,8 @@ void Curl_httpchunk_init(struct connectdata *conn)
  */
 CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
                               char *datap,
-                              ssize_t length,
-                              ssize_t *wrote)
+                              size_t length,
+                              size_t *wrote)
 {
   CURLcode result;
   struct Curl_chunker *ch = &conn->proto.http->chunk;
