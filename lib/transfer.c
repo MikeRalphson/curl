@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.3 2001-01-25 12:23:12 bagder Exp $
+ * $Id: transfer.c,v 1.4 2001-01-26 15:50:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -444,10 +444,14 @@ _Transfer(struct connectdata *c_conn)
                  write a chunk of the body */
               if(conn->protocol&PROT_HTTP) {
                 /* HTTP-only checks */
-                if (data->resume_from && !content_range ) {
+                if (data->resume_from &&
+                    !content_range &&
+                    (data->httpreq==HTTPREQ_GET)) {
                   /* we wanted to resume a download, although the server
-                     doesn't seem to support this */
-                  failf (data, "HTTP server doesn't seem to support byte ranges. Cannot resume.");
+                     doesn't seem to support this and we did this with a GET
+                     (if it wasn't a GET we did a POST or PUT resume) */
+                  failf (data, "HTTP server doesn't seem to support "
+                         "byte ranges. Cannot resume.");
                   return CURLE_HTTP_RANGE_ERROR;
                 }
                 else if (data->newurl) {
