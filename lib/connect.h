@@ -1,5 +1,5 @@
-#ifndef __NONBLOCK_H
-#define __NONBLOCK_H
+#ifndef __CONNECT_H
+#define __CONNECT_H
 /*****************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -20,10 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.1 2001-10-01 08:59:18 bagder Exp $
+ * $Id: connect.h,v 1.2 2001-10-01 11:26:21 bagder Exp $
  *****************************************************************************/
 
 CURLcode Curl_connecthost(struct connectdata *conn,
-                          int sockfd, /* input socket, or -1 if none */
-                          int *socket);
+                          long timeout, /* milliseconds */
+                          int sockfd,   /* input socket, or -1 if none */
+                          int *socket); /* not set if error is returned */
 #endif
