@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.90 2004-06-22 17:22:30 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.91 2004-06-27 21:19:54 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "12 Mar 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -720,6 +720,8 @@ instead of GET or HEAD when doing an HTTP request, or instead of LIST or NLST
 when doing an ftp directory listing. This is useful for doing DELETE or other
 more or less obscure HTTP requests. Don't do this at will, make sure your
 server supports the command first.
+
+Restore to the internal default by setting this to NULL.
 
 \fBNOTE:\fP Many people have wrongly used this option to replace the entire
 request with their own, including multiple headers and POST contents. While
