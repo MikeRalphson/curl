@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.14 2003-11-23 22:26:40 bagder Exp $
+# $Id: Makefile.m32,v 1.15 2004-02-05 21:03:53 bagder Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.7)
@@ -12,8 +12,8 @@
 CC = gcc
 RM = rm -f
 STRIP = strip -s
-OPENSSL_PATH = ../../openssl-0.9.7a
-ZLIB_PATH = ../../zlib-1.1.4
+OPENSSL_PATH = ../../openssl-0.9.7c
+ZLIB_PATH = ../../zlib-1.2.1
 
 # We may need these someday
 # PERL = perl
