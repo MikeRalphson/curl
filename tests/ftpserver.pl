@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.28 2003-02-26 16:57:00 bagder Exp $
+# $Id: ftpserver.pl,v 1.29 2003-02-26 17:05:36 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -175,8 +175,14 @@ sub SIZE_command {
     my $size = $data[0];
 
     if($size) {
-        print "213 $size\r\n";
-        logmsg "SIZE $testno returned $size\n";
+        if($size > -1) {
+            print "213 $size\r\n";
+            logmsg "SIZE $testno returned $size\n";
+        }
+        else {
+            print "550 $testno: No such file or directory.\r\n";
+            logmsg "SIZE $testno: no such file\n";
+        }
     }
     else {
         $size=0;
