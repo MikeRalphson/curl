@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: getinmemory.c,v 1.2 2001-05-15 13:04:53 bagder Exp $
+ * $Id: getinmemory.c,v 1.3 2003-03-10 17:01:11 bagder Exp $
  *
  * Example source code to show how the callback function can be used to
  * download data into a chunk of memory instead of storing it in a file.
@@ -74,6 +74,10 @@ int main(int argc, char **argv)
    * bytes big and contains the remote file.
    *
    * Do something nice with it!
+   *
+   * You should be aware of the fact that at this point we might have an
+   * allocated data block, and nothing has yet deallocated that data. So when
+   * you're done with it, you should free() it as a nice application.
    */
 
   return 0;
