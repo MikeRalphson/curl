@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.104 2001-11-30 09:26:06 bagder Exp $
+ * $Id: main.c,v 1.105 2001-12-11 00:48:55 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2091,17 +2091,29 @@ operate(struct Configurable *config, int argc, char *argv[])
              to be able to do so, we have to create a new URL in another
              buffer.*/
 
-          urlbuffer=(char *)malloc(strlen(url) + strlen(config->infile) + 3);
+          /* We only want the part of the local path that is on the right
+             side of the rightmost slash and backslash. */
+          char *filep = strrchr(config->infile, '/');
+          char *file2 = strrchr(filep?filep:config->infile, '\\');
+
+          if(file2)
+            filep = file2+1;
+          else if(filep)
+            filep++;
+          else
+            filep = config->infile;
+
+          urlbuffer=(char *)malloc(strlen(url) + strlen(filep) + 3);
           if(!urlbuffer) {
             helpf("out of memory\n");
             return CURLE_OUT_OF_MEMORY;
           }
           if(ptr)
             /* there is a trailing slash on the URL */
-            sprintf(urlbuffer, "%s%s", url, config->infile);
+            sprintf(urlbuffer, "%s%s", url, filep);
           else
             /* thers is no trailing slash on the URL */
-            sprintf(urlbuffer, "%s/%s", url, config->infile);
+            sprintf(urlbuffer, "%s/%s", url, filep);
           
           url = urlbuffer; /* use our new URL instead! */
         }
