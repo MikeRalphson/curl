@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.192 2004-01-07 09:19:35 bagder Exp $
+ * $Id: transfer.c,v 1.193 2004-01-21 08:47:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -888,7 +888,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                    HTTP/1.1 client */
                 if((k->timeofdoc > 0) && (data->set.timevalue > 0)) {
                   switch(data->set.timecondition) {
-                  case TIMECOND_IFMODSINCE:
+                  case CURL_TIMECOND_IFMODSINCE:
                   default:
                     if(k->timeofdoc < data->set.timevalue) {
                       infof(data,
@@ -897,7 +897,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                       return CURLE_OK;
                     }
                     break;
-                  case TIMECOND_IFUNMODSINCE:
+                  case CURL_TIMECOND_IFUNMODSINCE:
                     if(k->timeofdoc > data->set.timevalue) {
                       infof(data,
                             "The requested document is not old enough\n");
