@@ -1,5 +1,5 @@
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.60 2003-11-11 14:30:44 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.61 2003-11-12 14:34:17 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "11 Nov 2003" "libcurl 7.10.9" "libcurl Manual"
 .SH NAME
@@ -278,7 +278,7 @@ user.
 Pass a char * as parameter, pointing to a zero terminated string containing
 the full path name to the file you want libcurl to use as .netrc file. If this
 option is omitted, and CURLOPT_NETRC is set, libcurl will attempt to find the
-a .netrc file in the current user's home directory.
+a .netrc file in the current user's home directory. (Added in 7.10.9)
 .IP CURLOPT_USERPWD
 Pass a char * as parameter, which should be [user name]:[password] to use for
 the connection. Use \fICURLOPT_HTTPAUTH\fP to decide authentication method.
