@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.92 2003-09-12 15:41:14 bagder Exp $
+# $Id: runtests.pl,v 1.93 2003-10-22 12:46:45 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -784,7 +784,7 @@ sub singletest {
         print GDBCMD "set args $cmdargs\n";
         print GDBCMD "show args\n";
         close(GDBCMD);
-        system("gdb $DBGCURL -x log/gdbcmd");
+        system("gdb --directory libtest $DBGCURL -x log/gdbcmd");
         $res =0; # makes it always continue after a debugged run
     }
     else {
