@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.82 2002-02-06 07:02:13 bagder Exp $
+ * $Id: transfer.c,v 1.83 2002-02-20 13:38:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -380,6 +380,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                 /* we make sure that this socket isn't read more now */
                 k->keepon &= ~KEEP_READ;
                 FD_ZERO(&k->rkeepfd);
+                /* for a progress meter/info update before going away */
+                Curl_pgrsUpdate(conn);
                 return CURLE_OK;
               }
 
