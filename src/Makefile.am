@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.37 2004-01-23 12:49:53 bagder Exp $
+# $Id: Makefile.am,v 1.38 2004-01-29 13:53:34 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -29,7 +29,7 @@ INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/src -I$(top_srcdir)/src
 
 bin_PROGRAMS = curl
 
-curl_SOURCES = main.c hugehelp.c urlglob.c writeout.c setup.h \
+curl_SOURCES = main.c hugehelp.c hugehelp.h urlglob.c writeout.c setup.h \
 	config-win32.h config-mac.h config-vms.h config-riscos.h \
 	urlglob.h version.h writeout.h writeenv.c writeenv.h \
 	getpass.c getpass.h homedir.c homedir.h $(top_srcdir)/lib/strtoofft.c
