@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.90 2001-11-28 23:20:14 bagder Exp $
+ * $Id: urldata.h,v 1.91 2001-12-02 14:16:34 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -223,6 +223,7 @@ struct connectdata {
 #define PROT_LDAP    (1<<7)
 #define PROT_FILE    (1<<8)
 #define PROT_FTPS    (1<<9)
+#define PROT_SSL     (1<<10) /* protocol requires SSL */
 
   Curl_addrinfo *hostaddr; /* IP-protocol independent host info pointer list */
   char *hostent_buf; /* pointer to allocated memory for name info */
