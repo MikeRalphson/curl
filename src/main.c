@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.22 $
- * $Date: 2000-06-14 12:50:38 $
+ * $Revision: 1.23 $
+ * $Date: 2000-06-14 12:52:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -74,6 +74,10 @@
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+
+#ifdef HAVE_FCNTL_H
+#include <fcntl.h>
 #endif
 
 /* Just a set of bits */
