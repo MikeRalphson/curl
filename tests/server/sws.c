@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.23 2003-02-24 18:14:55 bagder Exp $
+ * $Id: sws.c,v 1.24 2003-03-15 14:47:09 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -39,6 +39,10 @@
 #include <sys/wait.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#ifdef _XOPEN_SOURCE_EXTENDED
+/* This define is "almost" required to build on HPUX 11 */
+#include <arpa/inet.h> 
+#endif
 #include <netdb.h>
 
 #ifndef FALSE
