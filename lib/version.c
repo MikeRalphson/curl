@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.25 2003-06-26 11:22:48 bagder Exp $
+ * $Id: version.c,v 1.26 2003-08-11 23:13:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -182,6 +182,9 @@ static curl_version_info_data version_info = {
 #endif
 #ifdef CURLDEBUG
   | CURL_VERSION_DEBUG
+#endif
+#ifdef USE_ARES
+  | CURL_VERSION_ASYNCHDNS
 #endif
   ,
   NULL, /* ssl_version */
