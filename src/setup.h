@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.18 2003-05-21 08:08:51 bagder Exp $
+ * $Id: setup.h,v 1.19 2003-07-05 13:13:50 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -78,6 +78,10 @@ int fileno( FILE *stream);
 #else
 
 #ifdef DJGPP
+#include <tcp.h>
+#ifdef word
+#undef word
+#endif
 #define DIR_CHAR      "/"
 #define DOT_CHAR      "_"
 #else
