@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.24 2004-01-13 08:35:58 bagder Exp $
+ * $Id: setup.h,v 1.25 2004-01-14 07:42:10 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -92,6 +92,7 @@ int fileno( FILE *stream);
 #ifdef word
 #undef word
 #endif
+#define HAVE_LIMITS_H /* we have limits.h */
 #define DIR_CHAR      "/"
 #define DOT_CHAR      "_"
 #else

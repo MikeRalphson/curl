@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.221 2004-01-13 08:35:58 bagder Exp $
+ * $Id: main.c,v 1.222 2004-01-14 07:42:10 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -86,6 +86,10 @@
 #include <sys/utime.h>
 #endif
 
+#endif
+
+#ifdef HAVE_LIMITS_H
+#include <limits.h>
 #endif
 
 #ifdef HAVE_SYS_POLL_H
