@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.59 2004-02-25 10:19:02 bagder Exp $
+dnl $Id: configure.ac,v 1.60 2004-03-03 09:16:36 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -617,7 +617,7 @@ if test x"$want_gss" = xyes; then
      if test -f "$GSSAPI_ROOT/bin/krb5-config"; then
         GSSAPI_INCS=`$GSSAPI_ROOT/bin/krb5-config --cflags gssapi`
      else
-        GSSAPI_INCS=="-I$GSSAPI_ROOT/include"
+        GSSAPI_INCS="-I$GSSAPI_ROOT/include"
      fi
   fi
   CPPFLAGS="$CPPFLAGS $GSSAPI_INCS"
@@ -627,7 +627,7 @@ if test x"$want_gss" = xyes; then
         gss_ldflags=`$GSSAPI_ROOT/bin/krb5-config --libs gssapi`
 	LDFLAGS="$LDFLAGS $gss_ldflags"
      else
-        LDFLAGS="$LDFLAGS $GSSAPI_ROOT/lib -lgssapi"
+        LDFLAGS="$LDFLAGS -L$GSSAPI_ROOT/lib -lgssapi"
      fi
   else
      LDFLAGS="$LDFLAGS $GSSAPI_LIB_DIR"
