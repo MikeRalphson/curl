@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.11 $
- * $Date: 2000-06-08 15:11:39 $
+ * $Revision: 1.12 $
+ * $Date: 2000-06-13 23:04:44 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -88,7 +88,9 @@
 #endif
 #endif
 
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
 
 #include "timeval.h"
 
