@@ -5,12 +5,15 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.1 2001-08-29 07:12:04 bagder Exp $
+ * $Id: ftpupload.c,v 1.2 2003-03-17 12:38:08 bagder Exp $
  */
 
 #include <stdio.h>
 
 #include <curl/curl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 /*
  * This example shows an FTP upload, with a rename of the file just after

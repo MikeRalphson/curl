@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: sepheaders.c,v 1.4 2002-08-12 11:36:48 bagder Exp $
+ * $Id: sepheaders.c,v 1.5 2003-03-17 12:38:08 bagder Exp $
  */
 
 /* to make this work under windows, use the win32-functions from the
@@ -21,7 +21,7 @@
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-  written = fwrite(ptr, size, nmemb, (FILE *)stream);
+  int written = fwrite(ptr, size, nmemb, (FILE *)stream);
   return written;
 }
 
