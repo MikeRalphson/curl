@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.41 $
- * $Date: 2000-11-13 11:59:19 $
+ * $Revision: 1.42 $
+ * $Date: 2000-11-15 20:45:29 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1016,7 +1016,7 @@ static int parseconfig(char *filename,
         res = getparameter(tok1 + 1, tok2, &usedarg, config);
         free(tok1);
         if (!usedarg) {
-          if ('-' != tok2[0]) {
+          if (tok2 && ('-' != tok2[0])) {
             /* this is not an option, this is a URL */
             if (config->url)
               free(config->url);
