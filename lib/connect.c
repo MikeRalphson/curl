@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.50 2003-02-14 08:02:55 bagder Exp $
+ * $Id: connect.c,v 1.51 2003-02-14 09:01:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -81,12 +81,8 @@
 #include "memdebug.h"
 #endif
 
-/* The AIX 3.2.5 system headers define a function called geterrno() which
-   we won't need but that interferes with our function */
-#undef geterrno
-
 static
-int geterrno(void)
+int ourerrno(void)
 {
 #ifdef WIN32
   return (int)GetLastError();
@@ -350,7 +346,7 @@ int socketerror(int sockfd)
 
   if( -1 == getsockopt(sockfd, SOL_SOCKET, SO_ERROR,
                        (void *)&err, &errSize))
-    err = geterrno();
+    err = ourerrno();
   
   return err;
 }
@@ -523,7 +519,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
       rc = connect(sockfd, ai->ai_addr, ai->ai_addrlen);
 
       if(-1 == rc) {
-        int error=geterrno();
+        int error=ourerrno();
 
         switch (error) {
         case EINPROGRESS:
@@ -642,7 +638,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
                  sizeof(serv_addr));
 
     if(-1 == rc) {
-      int error=geterrno();
+      int error=ourerrno();
 
       switch (error) {
       case EINPROGRESS:
