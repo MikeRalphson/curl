@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.107 2001-11-13 12:09:05 bagder Exp $
+ * $Id: ftp.c,v 1.108 2001-11-13 12:46:29 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1509,11 +1509,13 @@ CURLcode ftp_perform(struct connectdata *conn)
       if(conn->resume_from < 0 ) {
         /* we could've got a specified offset from the command line,
            but now we know we didn't */
+        ssize_t gottensize;
 
-        if(CURLE_OK != ftp_getsize(conn, ftp->file, &conn->resume_from)) {
+        if(CURLE_OK != ftp_getsize(conn, ftp->file, &gottensize)) {
           failf(data, "Couldn't get remote file size");
           return CURLE_FTP_COULDNT_GET_SIZE;
         }
+        conn->resume_from = gottensize;
       }
 
       if(conn->resume_from) {
@@ -1680,7 +1682,7 @@ CURLcode ftp_perform(struct connectdata *conn)
          * We start with trying to use the SIZE command to figure out the size
          * of the file we're gonna get. If we can get the size, this is by far
          * the best way to know if we're trying to resume beyond the EOF.  */
-        int foundsize=-1;
+        ssize_t foundsize;
         
         result = ftp_getsize(conn, ftp->file, &foundsize);
 
