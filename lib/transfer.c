@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.78 2002-01-23 07:15:32 bagder Exp $
+ * $Id: transfer.c,v 1.79 2002-01-25 08:35:49 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -610,6 +610,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             if (conn->newurl) {
               /* abort after the headers if "follow Location" is set */
               infof (data, "Follow to new URL: %s\n", conn->newurl);
+                k->keepon &= ~KEEP_READ;
+                FD_ZERO(&k->rkeepfd);
               return CURLE_OK;
             }
             else if (conn->resume_from &&
