@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.207 2004-03-25 13:37:19 bagder Exp $
+ * $Id: urldata.h,v 1.208 2004-03-30 06:38:52 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -719,6 +719,8 @@ struct UrlState {
                      depending on authstage) */
   long authavail; /* what the server reports */
 
+  bool authdone; /* TRUE when the auth phase is done and ready
+                    to do the *actual* request */
 #ifdef USE_ARES
   ares_channel areschannel; /* for name resolves */
 #endif
