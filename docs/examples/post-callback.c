@@ -5,25 +5,15 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: post-callback.c,v 1.2 2003-12-08 14:13:19 bagder Exp $
+ * $Id: post-callback.c,v 1.3 2003-12-08 14:14:26 bagder Exp $
  *
  * An example source code that issues a HTTP POST and we provide the actual
  * data through a read callback.
  *
- * Please be aware of the fact that the size of the posted data MUST be
- * specified before the transfer is being made (with CURLOPT_POSTFIELDSIZE).
- * This requirement will change when libcurl starts supporting chunked-encoded
- * sends.
- *
- * This example requires libcurl 7.9.6 or later.
  */
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>
-
-#if LIBCURL_VERSION_NUM < 0x070906
-#error this example source requires libcurl 7.9.6 or newer
-#endif
 
 char data[]="this is what we post to the silly web server";
 
