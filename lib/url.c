@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.297 2003-08-11 12:30:21 bagder Exp $
+ * $Id: url.c,v 1.298 2003-08-14 14:20:03 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -321,6 +321,7 @@ CURLcode Curl_open(struct SessionHandle **curl)
     malloc(sizeof(struct connectdata *) * data->state.numconnects);
 
   if(!data->state.connects) {
+    free(data->state.headerbuff);
     free(data);
     return CURLE_OUT_OF_MEMORY;
   }
