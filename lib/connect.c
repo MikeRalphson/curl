@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.3 2001-10-01 22:32:37 bagder Exp $
+ * $Id: connect.c,v 1.4 2001-10-01 22:42:46 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -172,6 +172,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,
   struct timeval before = Curl_tvnow();
 
 #ifdef ENABLE_IPV6
+  struct addrinfo *ai;
   /*
    * Connecting with IPv6 support is so much easier and cleanly done
    */
