@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.105 2002-08-08 22:52:50 bagder Exp $
+ * $Id: transfer.c,v 1.106 2002-08-29 06:09:21 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -960,7 +960,6 @@ CURLcode Curl_readwrite_init(struct connectdata *conn)
   k->now = k->start;   /* current time is now */
   k->header = TRUE; /* assume header */
   k->httpversion = -1; /* unknown at this point */
-  k->conn = (struct connectdata *)conn; /* store the connection */
 
   data = conn->data; /* there's the root struct */
   k->buf = data->state.buffer;

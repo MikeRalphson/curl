@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.120 2002-08-26 23:13:26 bagder Exp $
+ * $Id: urldata.h,v 1.121 2002-08-29 06:09:21 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -248,9 +248,6 @@ struct Curl_transfer_keeper {
   long bodywrites;
   int writetype;
 
-  /* the highest fd we use + 1 */
-  struct SessionHandle *data;
-  struct connectdata *conn;
   char *buf;
   char *uploadbuf;
   int maxfd;
