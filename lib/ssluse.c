@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.86 2003-11-24 07:15:37 bagder Exp $
+ * $Id: ssluse.c,v 1.87 2003-11-24 11:44:04 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1249,8 +1249,8 @@ Curl_SSLConnect(struct connectdata *conn,
 
   X509_free(connssl->server_cert);
 #else /* USE_SSLEAY */
-  /* this is for "-ansi -Wall -pedantic" to stop complaining!   (rabe) */
-  (void) conn;
+  (void)conn;
+  (void)sockindex;
 #endif
   return retcode;
 }
