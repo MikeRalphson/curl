@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: multi-single.c,v 1.3 2003-01-09 11:42:07 bagder Exp $
+ * $Id: multi-single.c,v 1.4 2004-04-02 06:40:31 bagder Exp $
  *
  * This is a very simple example using the multi interface.
  */
@@ -70,6 +70,8 @@ int main(int argc, char **argv)
     switch(rc) {
     case -1:
       /* select error */
+      still_running = 0;
+      printf("select() returns error, this is badness\n");
       break;
     case 0:
     default:
