@@ -20,10 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.h,v 1.16 2004-05-25 21:47:29 bagder Exp $
+ * $Id: transfer.h,v 1.17 2004-06-03 11:41:05 bagder Exp $
  ***************************************************************************/
 CURLcode Curl_perform(struct SessionHandle *data);
 CURLcode Curl_pretransfer(struct SessionHandle *data);
+CURLcode Curl_pretransfersec(struct connectdata *conn);
 CURLcode Curl_posttransfer(struct SessionHandle *data);
 CURLcode Curl_follow(struct SessionHandle *data, char *newurl);
 CURLcode Curl_readwrite(struct connectdata *conn, bool *done);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.229 2004-05-26 08:54:36 bagder Exp $
+ * $Id: http.c,v 1.230 2004-06-03 11:41:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -740,7 +740,8 @@ CURLcode add_buffer_send(send_buffer *in,
 
     if(conn->data->set.verbose)
       /* this data _may_ contain binary stuff */
-      Curl_debug(conn->data, CURLINFO_HEADER_OUT, ptr, amount);
+      Curl_debug(conn->data, CURLINFO_HEADER_OUT, ptr, amount,
+                 conn->host.dispname);
 
     *bytes_written += amount;
 
@@ -1044,7 +1045,8 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
 
               /* output debug output if that is requested */
               if(data->set.verbose)
-                Curl_debug(data, CURLINFO_HEADER_IN, line_start, perline);
+                Curl_debug(data, CURLINFO_HEADER_IN, line_start, perline,
+                           conn->host.dispname);
 
               /* send the header to the callback */
               writetype = CLIENTWRITE_HEADER;

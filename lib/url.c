@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.390 2004-06-02 13:57:38 bagder Exp $
+ * $Id: url.c,v 1.391 2004-06-03 11:41:05 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1335,6 +1335,57 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * algorithm
      */
     data->set.tcp_nodelay = (bool)va_arg(param, long);
+    break;
+
+  /*********** 3rd party transfer options ***********/
+  case CURLOPT_SOURCE_HOST:
+    /*
+     * Use SOURCE HOST
+     */
+    data->set.source_host = va_arg(param, char *);
+    data->set.printhost = (data->set.source_host != NULL);
+    break;
+
+  case CURLOPT_SOURCE_PORT:
+    /*
+     * Use SOURCE PORT
+     */
+    data->set.source_port = va_arg(param, char *);
+    break;
+
+  case CURLOPT_SOURCE_USERPWD:
+    /*
+     * Use SOURCE USER[:PASSWORD]
+     */
+    data->set.source_userpwd = va_arg(param, char *);
+    break;
+
+  case CURLOPT_SOURCE_PATH:
+    /*
+     * Use SOURCE PATH
+     */
+    data->set.source_path = va_arg(param, char *);
+    break;
+
+  case CURLOPT_PASV_HOST:
+    /*
+     * Indicates whether source or target host is passive
+     */
+    data->set.pasvHost = va_arg(param, long)?CURL_SOURCE_PASV:CURL_TARGET_PASV;
+    break;
+
+  case CURLOPT_SOURCE_PREQUOTE:
+    /*
+     * List of RAW FTP commands to use before a transfer on the source host
+     */
+    data->set.source_prequote = va_arg(param, struct curl_slist *);
+    break;
+
+  case CURLOPT_SOURCE_POSTQUOTE:
+    /*
+     * List of RAW FTP commands to use after a transfer on the source host
+     */
+    data->set.source_postquote = va_arg(param, struct curl_slist *);
     break;
 
   default:
