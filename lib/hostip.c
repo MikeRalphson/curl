@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.108 2003-11-14 11:56:15 bagder Exp $
+ * $Id: hostip.c,v 1.109 2003-11-15 10:29:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -446,6 +446,8 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
   *dns = NULL;
 
   if(conn->async.done) {
+    /* we're done, kill the ares handle */
+    ares_destroy(data->state.areschannel);
     if(!conn->async.dns)
       return CURLE_COULDNT_RESOLVE_HOST;
     *dns = conn->async.dns;
