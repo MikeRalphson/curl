@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.317 2003-11-24 07:15:37 bagder Exp $
+ * $Id: url.c,v 1.318 2003-12-02 06:25:41 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2094,10 +2094,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       /* Note: if you add a new protocol, please update the list in
        * lib/version.c too! */
 
-      if(checkprefix("FTP", conn->gname)) {
-        strcpy(conn->protostr, "ftp");
-      }
-      else if(checkprefix("GOPHER", conn->gname))
+      if(checkprefix("GOPHER", conn->gname))
         strcpy(conn->protostr, "gopher");
 #ifdef USE_SSLEAY
       else if(checkprefix("HTTPS", conn->gname))
@@ -2105,6 +2102,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       else if(checkprefix("FTPS", conn->gname))
         strcpy(conn->protostr, "ftps");
 #endif /* USE_SSLEAY */
+      else if(checkprefix("FTP", conn->gname))
+        strcpy(conn->protostr, "ftp");
       else if(checkprefix("TELNET", conn->gname))
         strcpy(conn->protostr, "telnet");
       else if (checkprefix("DICT", conn->gname))
