@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.74 2001-03-15 14:38:03 bagder Exp $
+ * $Id: main.c,v 1.75 2001-03-16 15:21:26 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -37,11 +37,6 @@
 #include "writeout.h"
 
 #define CURLseparator	"--_curl_--"
-
-/* This define make use of the "Curlseparator" as opposed to the
-   MIMEseparator. We might add support for the latter one in the
-   future, and that's why this is left in the source. */
-#define CURL_SEPARATORS
 
 /* This is now designed to have its own local setup.h */
 #include "setup.h"
