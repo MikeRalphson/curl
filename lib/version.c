@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.26 2003-08-11 23:13:09 bagder Exp $
+ * $Id: version.c,v 1.27 2003-08-29 08:43:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,7 @@ static void getssl_version(char *ptr, long *num)
     }
     else {
       if(ssleay_value&0xff0) {
-        sub[0]=((ssleay_value>>4)&0xff) + 'a' -1;
+        sub[0]=(char)((ssleay_value>>4)&0xff) + 'a' -1;
       }
       else
         sub[0]='\0';
