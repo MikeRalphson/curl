@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.41 2002-09-03 11:53:00 bagder Exp $
+ * $Id: formdata.c,v 1.42 2002-10-28 19:21:30 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -637,7 +637,7 @@ CURLFORMcode FormAdd(struct curl_httppost **httppost,
   struct curl_httppost *post = NULL;
   CURLformoption option;
   struct curl_forms *forms = NULL;
-  char *array_value; /* value read from an array */
+  char *array_value=NULL; /* value read from an array */
 
   /* This is a state variable, that if TRUE means that we're parsing an
      array that we got passed to us. If FALSE we're parsing the input
