@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.24 2001-03-12 13:46:23 bagder Exp $
+# $Id: runtests.pl,v 1.25 2001-03-13 22:14:53 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -619,7 +619,7 @@ EOHELP
         }
     }
     elsif($ARGV[0] =~ /^to$/i) {
-        $fromnum = $number;
+        $fromnum = $number+1;
     }
 } while(shift @ARGV);
 
