@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.69 2004-03-30 10:35:54 bagder Exp $
+dnl $Id: configure.ac,v 1.70 2004-04-01 09:10:33 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1268,6 +1268,28 @@ AC_HELP_STRING([--disable-ares],[Disable ares for name lookups]),
          CPPFLAGS="$CPPFLAGS -I$enableval/include"
          LDFLAGS="$LDFLAGS -L$enableval/lib"
        fi
+
+       dnl verify that a sufficient c-ares is here
+       AC_MSG_CHECKING([that c-ares is good and recent enough])
+       AC_LINK_IFELSE( [
+#include <ares.h>
+/* provide a set of dummy functions in case c-ares was built with debug */
+void curl_dofree() { }
+void curl_sclose() { }
+void curl_domalloc() { }
+
+int main(void)
+{
+  ares_channel channel;
+  ares_cancel(channel);
+  return 0;
+}
+],
+        AC_MSG_RESULT(yes),
+        AC_MSG_RESULT(no)
+        AC_MSG_ERROR([c-ares library defective or too old])
+        )
+
        ;;
   esac ],
        AC_MSG_RESULT(no)
