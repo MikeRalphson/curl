@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.183 2002-01-03 15:01:23 bagder Exp $
+ * $Id: url.c,v 1.184 2002-01-04 09:38:52 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -109,6 +109,10 @@
 #include "connect.h"
 
 #include <curl/types.h>
+
+#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
+#include "inet_ntoa_r.h"
+#endif
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -1224,6 +1228,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   struct connectdata *conn_temp;
   char endbracket;
   int urllen;
+#ifdef HAVE_INET_NTOA_R
+  char ntoa_buf[64];
+#endif
 #ifdef HAVE_ALARM
   unsigned int prev_alarm;
 #endif
@@ -2214,7 +2221,12 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     struct in_addr in;
     (void) memcpy(&in.s_addr, &conn->serv_addr.sin_addr, sizeof (in.s_addr));
     infof(data, "Connected to %s (%s)\n", conn->hostaddr->h_name,
-          inet_ntoa(in));
+#if defined(HAVE_INET_NTOA_R)
+          inet_ntoa_r(in, ntoa_buf, sizeof(ntoa_buf))
+#else
+          inet_ntoa(in)
+#endif
+          );
   }
 #endif
 
