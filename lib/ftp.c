@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.242 2004-03-25 13:42:23 bagder Exp $
+ * $Id: ftp.c,v 1.243 2004-03-31 10:59:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -103,6 +103,12 @@
 /* The last #include file should be: */
 #ifdef CURLDEBUG
 #include "memdebug.h"
+#endif
+
+#ifdef NI_WITHSCOPEID
+#define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV | NI_WITHSCOPEID
+#else
+#define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV
 #endif
 
 /* Local API functions */
@@ -1074,14 +1080,9 @@ ftp_pasv_verbose(struct connectdata *conn,
   char hbuf[NI_MAXHOST]; /* ~1KB */
   char nbuf[NI_MAXHOST]; /* ~1KB */
   char sbuf[NI_MAXSERV]; /* around 32 */
-#ifdef NI_WITHSCOPEID
-  const int niflags = NI_NUMERICHOST | NI_NUMERICSERV | NI_WITHSCOPEID;
-#else
-  const int niflags = NI_NUMERICHOST | NI_NUMERICSERV;
-#endif
   (void)port; /* prevent compiler warning */
   if (getnameinfo(addr->ai_addr, addr->ai_addrlen,
-                  nbuf, sizeof(nbuf), sbuf, sizeof(sbuf), niflags)) {
+                  nbuf, sizeof(nbuf), sbuf, sizeof(sbuf), NIFLAGS)) {
     snprintf(nbuf, sizeof(nbuf), "?");
     snprintf(sbuf, sizeof(sbuf), "?");
   }
@@ -1127,11 +1128,6 @@ CURLcode ftp_use_port(struct connectdata *conn)
   char hbuf[NI_MAXHOST];
 
   struct sockaddr *sa=(struct sockaddr *)&ss;
-#ifdef NI_WITHSCOPEID
-#define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV | NI_WITHSCOPEID
-#else
-#define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV
-#endif
   unsigned char *ap;
   unsigned char *pp;
   char portmsgbuf[4096], tmp[4096];
