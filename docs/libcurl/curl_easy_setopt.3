@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.79 2004-02-27 15:34:06 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.80 2004-03-01 15:50:15 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "27 Feb 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -283,6 +283,10 @@ libcurl caches this info for 60 seconds.
 Pass a long. If the value is non-zero, it tells curl to use a global DNS cache
 that will survive between easy handle creations and deletions. This is not
 thread-safe and this will use a global varible.
+
+\fBWARNING:\fP this option is considered obsolete. Stop using it. Switch over
+to using the share interface instead! See \fICURLOPT_SHARE\fP and
+\fIcurl_share_init(3)\fP.
 .IP CURLOPT_BUFFERSIZE
 Pass a long specifying your prefered size for the receive buffer in libcurl.
 The main point of this would be that the write callback gets called more often
