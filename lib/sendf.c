@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.91 2004-10-12 07:24:19 bagder Exp $
+ * $Id: sendf.c,v 1.92 2004-10-12 12:49:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -53,6 +53,7 @@
 #endif
 #include <string.h>
 #include "memory.h"
+#include "strerror.h"
 /* The last #include file should be: */
 #include "memdebug.h"
 
