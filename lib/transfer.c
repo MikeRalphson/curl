@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.270 2005-02-14 09:30:40 bagder Exp $
+ * $Id: transfer.c,v 1.271 2005-02-16 14:31:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -541,6 +541,13 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
                 if(result)
                   return result;
+
+                if(conn->bits.rewindaftersend) {
+                  /* We rewind after a complete send, so thus we continue
+                     sending now */
+                  infof(data, "Keep sending data to get tossed away!\n");
+                  k->keepon |= KEEP_WRITE;
+                }
               }
 #endif   /* CURL_DISABLE_HTTP */
 
