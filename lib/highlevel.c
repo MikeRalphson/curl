@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.1.2.1 $
- * $Date: 2000-04-26 21:34:23 $
+ * $Revision: 1.1.2.2 $
+ * $Date: 2000-05-02 21:35:50 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -134,16 +134,15 @@
 UrgError 
 _Transfer (struct connectdata *c_conn)
 {
-  size_t nread;
-  int bytecount = 0; /* number of bytes read */
-  int writebytecount = 0; /* number of bytes written */
-  long contentlength=0; /* size of incoming data */
+  size_t nread;                 /* number of bytes read */
+  int bytecount = 0;            /* total number of bytes read */
+  int writebytecount = 0;       /* number of bytes written */
+  long contentlength=0;         /* size of incoming data */
   struct timeval start = tvnow();
-  struct timeval now = start;
+  struct timeval now = start;   /* current time */
   bool header = TRUE;		/* incoming data has HTTP header */
   int headerline = 0;		/* counts header lines to better track the
                                    first one */
-
   char *hbufp;			/* points at *end* of header line */
   int hbuflen = 0;
   char *str;			/* within buf */
