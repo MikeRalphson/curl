@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.153 2002-12-03 08:07:52 bagder Exp $
+ * $Id: main.c,v 1.154 2002-12-03 11:12:18 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -356,6 +356,7 @@ static void help(void)
        "    --ciphers <list> What SSL ciphers to use (SSL)\n"
        "    --compressed    Request a compressed response (using deflate).");
   puts("    --connect-timeout <seconds> Maximum time allowed for connection\n"
+       "    --create-dirs   Create the necessary local directory hierarchy\n"
        "    --crlf          Convert LF to CRLF in upload. Useful for MVS (OS/390)\n"
        " -f/--fail          Fail silently (no output at all) on errors (H)\n"
        " -F/--form <name=content> Specify HTTP POST data (H)\n"
@@ -411,9 +412,7 @@ static void help(void)
        " -1/--tlsv1         Force usage of TLSv1 (H)\n"
        " -2/--sslv2         Force usage of SSLv2 (H)\n"
        " -3/--sslv3         Force usage of SSLv3 (H)");
-  puts(" -#/--progress-bar  Display transfer progress as a progress bar\n"
-       " -@/--create-dirs   Create the necessary local directory hierarchy");
-}
+  puts(" -#/--progress-bar  Display transfer progress as a progress bar");
 
 struct LongShort {
   const char *letter;
