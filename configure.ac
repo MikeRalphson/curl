@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.34 2003-12-10 15:25:49 bagder Exp $
+dnl $Id: configure.ac,v 1.35 2003-12-10 16:05:26 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -918,7 +918,8 @@ dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL
 AC_TYPE_SIGNAL
 dnl AC_FUNC_VPRINTF
-AC_CHECK_FUNCS( socket \
+AC_CHECK_FUNCS( strtoll \
+                socket \
                 select \
                 strdup \
                 strstr \
