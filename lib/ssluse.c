@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.48 2002-01-29 14:11:38 bagder Exp $
+ * $Id: ssluse.c,v 1.49 2002-01-30 08:17:23 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -678,7 +678,7 @@ Curl_SSLConnect(struct connectdata *conn)
   /* mark this is being ssl enabled from here on out. */
   conn->ssl.use = TRUE;
 
-  if(!ssl_seeded) {
+  if(!ssl_seeded || data->set.ssl.random_file || data->set.ssl.egdsocket) {
     /* Make funny stuff to get random input */
     random_the_seed(data);
 
