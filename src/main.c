@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.243 2004-03-08 12:48:09 bagder Exp $
+ * $Id: main.c,v 1.244 2004-03-08 12:56:18 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -555,7 +555,7 @@ static char *file2memory(FILE *file, long *size)
   char buffer[1024];
   char *string=NULL;
   char *newstring=NULL;
-  long len=0;
+  size_t len=0;
   long stringlen=0;
 
   if(file) {
