@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.12 2001-01-05 10:11:42 bagder Exp $
+ * $Id: if2ip.c,v 1.13 2001-01-24 14:44:05 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -32,7 +32,7 @@
 #include <unistd.h>
 #endif
 
-#if ! defined(WIN32) && ! defined(__BEOS__)
+#if ! defined(WIN32) && ! defined(__BEOS__) && !defined(__CYGWIN32__)
 
 #ifdef NEED_REENTRANT
 #define _REENTRANT

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.73 2001-01-24 12:32:34 bagder Exp $
+ * $Id: url.c,v 1.74 2001-01-24 14:44:05 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -533,7 +533,7 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
   return CURLE_OK;
 }
 
-#ifndef WIN32
+#if !defined(WIN32)||defined(__CYGWIN32__)
 #ifndef RETSIGTYPE
 #define RETSIGTYPE void
 #endif
@@ -1306,7 +1306,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
   conn->serv_addr.sin_family = conn->hp->h_addrtype;
   conn->serv_addr.sin_port = htons(data->port);
 
-#ifndef WIN32 
+#if !defined(WIN32)||defined(__CYGWIN32__)
   /* We don't generally like checking for OS-versions, we should make this
      HAVE_XXXX based, although at the moment I don't have a decent test for
      this! */
