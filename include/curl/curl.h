@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.27 $
- * $Date: 2000-10-30 23:15:15 $
+ * $Revision: 1.28 $
+ * $Date: 2000-10-30 23:17:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -668,7 +668,7 @@ typedef enum {
   CURLINFO_REQUEST_SIZE     = CURLINFO_LONG   + 12,
   CURLINFO_SSL_VERIFYRESULT = CURLINFO_LONG   + 13,
 
-  CURLINFO_LASTONE          = 14,
+  CURLINFO_LASTONE          = 14
 } CURLINFO;
 
 /*
