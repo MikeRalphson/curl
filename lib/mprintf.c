@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.15 2001-11-12 14:08:42 bagder Exp $
+ * $Id: mprintf.c,v 1.16 2001-11-27 07:27:32 bagder Exp $
  *
  *************************************************************************
  *
@@ -902,14 +902,14 @@ static int dprintf_formatf(
 	}
 	else {
 	  /* Write "(nil)" for a nil pointer.  */
-	  static char nil[] = "(nil)";
+	  static char strnil[] = "(nil)";
 	  register char *point;
 	  
-	  width -= sizeof(nil) - 1;
+	  width -= sizeof(strnil) - 1;
 	  if (p->flags & FLAGS_LEFT)
 	    while (width-- > 0)
 	      OUTCHAR(' ');
-	  for (point = nil; *point != '\0'; ++point)
+	  for (point = strnil; *point != '\0'; ++point)
 	    OUTCHAR(*point);
 	  if (! (p->flags & FLAGS_LEFT))
 	    while (width-- > 0)

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.28 2001-10-16 07:59:43 bagder Exp $
+# $Id: Makefile.am,v 1.29 2001-11-27 07:27:32 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -9,9 +9,6 @@ EXTRA_DIST = getdate.y \
        libcurl.def dllinit.c curllib.dsp curllib.dsw
 
 lib_LTLIBRARIES = libcurl.la
-
-# Some flags needed when trying to cause warnings ;-)
-# CFLAGS = -DMALLOCDEBUG -g # -Wall #-pedantic
 
 INCLUDES = -I$(top_srcdir)/include
 

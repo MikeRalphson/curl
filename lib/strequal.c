@@ -18,12 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.16 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: strequal.c,v 1.17 2001-11-27 07:27:32 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
+#include <ctype.h>
 
 int curl_strequal(const char *first, const char *second)
 {

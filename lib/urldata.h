@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.88 2001-11-20 15:00:50 bagder Exp $
+ * $Id: urldata.h,v 1.89 2001-11-27 07:27:32 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -246,7 +246,7 @@ struct connectdata {
 
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */
-  int resume_from; /* continue [ftp] transfer from here */
+  ssize_t resume_from; /* continue [ftp] transfer from here */
 
   char *proxyhost; /* name of the http proxy host */
 
