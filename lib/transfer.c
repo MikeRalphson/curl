@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.7 2001-01-31 15:05:44 bagder Exp $
+ * $Id: transfer.c,v 1.8 2001-01-31 15:06:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -109,7 +109,7 @@
 CURLcode static
 _Transfer(struct connectdata *c_conn)
 {
-  size_t nread;                 /* number of bytes read */
+  ssize_t nread;                /* number of bytes read */
   int bytecount = 0;            /* total number of bytes read */
   int writebytecount = 0;       /* number of bytes written */
   long contentlength=0;         /* size of incoming data */
