@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.1 2004-11-19 08:52:33 bagder Exp $
+ * $Id: select.c,v 1.2 2004-11-19 13:46:58 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -32,6 +32,12 @@
 #endif
 
 #include "select.h"
+
+#ifdef WIN32
+#define VALID_SOCK(s) (1)  /* Win-sockets are not in range [0..FD_SETSIZE> */
+#else
+#define VALID_SOCK(s) ((s) >= 0) && ((s) < FD_SETSIZE))
+#endif
 
 /*
  * This is an internal function used for waiting for read or write
@@ -104,7 +110,7 @@ int Curl_select(int readfd, int writefd, int timeout_ms)
 
   FD_ZERO(&fds_read);
   if (readfd != CURL_SOCKET_BAD) {
-    if ((readfd < 0) || (readfd >= FD_SETSIZE)) {
+    if (!VALID_SOCK(readfd)) {
       errno = EINVAL;
       return -1;
     }
@@ -115,7 +121,7 @@ int Curl_select(int readfd, int writefd, int timeout_ms)
 
   FD_ZERO(&fds_write);
   if (writefd != CURL_SOCKET_BAD) {
-    if ((writefd < 0) || (writefd >= FD_SETSIZE)) {
+    if (!VALID_SOCK(writefd)) {
       errno = EINVAL;
       return -1;
     }
