@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.77 2004-02-26 13:40:43 bagder Exp $
+ * $Id: sendf.c,v 1.78 2004-03-08 12:37:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -362,11 +362,11 @@ CURLcode Curl_client_write(struct SessionHandle *data,
  * If the read would block (EWOULDBLOCK) we return -1. Otherwise we return
  * a regular CURLcode value.
  */
-int Curl_read(struct connectdata *conn,
-              int sockfd,
-              char *buf,
-              size_t buffersize,
-              ssize_t *n)
+int Curl_read(struct connectdata *conn, /* connection data */
+              int sockfd,               /* read from this file handle */
+              char *buf,                /* store read data here */
+              size_t buffersize,        /* max amount to read */
+              ssize_t *n)               /* amount bytes read */
 {
   ssize_t nread;
 #ifdef USE_SSLEAY
