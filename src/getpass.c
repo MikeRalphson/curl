@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.7 2004-05-12 08:22:04 bagder Exp $
+ * $Id: getpass.c,v 1.8 2004-06-08 21:21:53 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -45,12 +45,22 @@
 #include descrip
 #include starlet
 #include iodef
-#include iosbdef
+/* #include iosbdef */
 char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 {
   long sts;
   short chan;
   struct _iosb iosb;
+  /* MSK, 23-JAN-2004, iosbdef.h wasn't in VAX V7.2 or CC 6.4  */
+  /* distribution so I created this.  May revert back later to */
+  /* struct _iosb iosb;                                        */
+  struct _iosb
+     {
+     short int iosb$w_status; /* status     */
+     short int iosb$w_bcnt;   /* byte count */
+     int       unused;        /* unused     */
+     } iosb;
+
   $DESCRIPTOR(ttdesc, "TT");
 
   buffer[0]='\0';
