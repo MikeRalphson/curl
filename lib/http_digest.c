@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.10 2004-03-31 11:55:07 bagder Exp $
+ * $Id: http_digest.c,v 1.11 2004-03-31 11:55:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -36,6 +36,7 @@
 
 #include "md5.h"
 #include "http_digest.h"
+#include "url.h" /* for Curl_safefree() */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
