@@ -1,12 +1,13 @@
 #
-# $Id: Makefile.am,v 1.16 2001-04-17 12:33:02 bagder Exp $
+# $Id: Makefile.am,v 1.17 2001-05-22 21:17:58 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
 EXTRA_DIST = \
 	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt \
-	config-win32.h reconf packages/README Makefile.dist
+	config-win32.h reconf packages/README Makefile.dist \
+	curl-config.in
 
 bin_SCRIPTS = curl-config
 

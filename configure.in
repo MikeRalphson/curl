@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.66 2001-05-22 18:16:24 bagder Exp $
+dnl $Id: configure.in,v 1.67 2001-05-22 21:17:58 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -11,6 +11,7 @@ dnl
 dnl Detect the canonical host and target build environment
 dnl
 
+AC_CANONICAL_HOST
 dnl Get system canonical name
 AC_DEFINE_UNQUOTED(OS, "${host}")
 
