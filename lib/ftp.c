@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.287 2004-12-16 22:20:33 bagder Exp $
+ * $Id: ftp.c,v 1.288 2004-12-17 08:58:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -773,7 +773,7 @@ CURLcode Curl_ftp_done(struct connectdata *conn, CURLcode status)
 
   path = curl_unescape(conn->path, 0); /* get the "raw" path */
   if(!path)
-    CURLE_OUT_OF_MEMORY;
+    return CURLE_OUT_OF_MEMORY;
 
   flen = ftp->file?strlen(ftp->file):0; /* file is "raw" already */
   dlen = strlen(path)-flen;
