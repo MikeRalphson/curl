@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.236 2004-06-24 10:43:22 bagder Exp $
+ * $Id: http.c,v 1.237 2004-07-01 06:08:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1133,11 +1133,10 @@ CURLcode Curl_http_connect(struct connectdata *conn)
 
   data=conn->data;
 
-  /* If we are not using a proxy and we want a secure connection,
-   * perform SSL initialization & connection now.
-   * If using a proxy with https, then we must tell the proxy to CONNECT
-   * us to the host we want to talk to.  Only after the connect
-   * has occured, can we start talking SSL
+  /* If we are not using a proxy and we want a secure connection, perform SSL
+   * initialization & connection now.  If using a proxy with https, then we
+   * must tell the proxy to CONNECT to the host we want to talk to.  Only
+   * after the connect has occured, can we start talking SSL
    */
 
   if(conn->bits.tunnel_proxy) {
@@ -1224,7 +1223,7 @@ CURLcode Curl_http_done(struct connectdata *conn,
 
 /*
  * Curl_http() gets called from the generic Curl_do() function when a HTTP
- * request is to be performed. This creates and sends a propperly constructed
+ * request is to be performed. This creates and sends a properly constructed
  * HTTP request.
  */
 CURLcode Curl_http(struct connectdata *conn)
