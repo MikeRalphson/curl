@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.117 2004-04-22 10:33:55 bagder Exp $
+# $Id: runtests.pl,v 1.118 2004-04-23 08:38:43 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1024,7 +1024,7 @@ sub singletest {
     }
 
     if($valgrind) {
-        $CMDLINE = "exec 3>log/valgrind$testnum && $CMDLINE";
+        $CMDLINE = "valgrind --leak-check=yes --logfile=log/valgrind$testnum -q $CMDLINE";
     }
 
     $CMDLINE .= "$cmdargs >>$STDOUT 2>>$STDERR";
@@ -1475,9 +1475,6 @@ if($valgrind) {
     if(($code>>8) != 1) {
         #print "Valgrind failure, disable it\n";
         undef $valgrind;
-    }
-    else {
-        $CURL="valgrind --leak-check=yes --logfile-fd=3 -q $CURL";
     }
 }
 
