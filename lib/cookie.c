@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.66 2004-12-22 22:33:31 bagder Exp $
+ * $Id: cookie.c,v 1.67 2005-03-04 00:26:50 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -650,6 +650,10 @@ struct CookieInfo *Curl_cookie_init(struct SessionHandle *data,
   if(file && strequal(file, "-")) {
     fp = stdin;
     fromfile=FALSE;
+  }
+  else if(file && !*file) {
+    /* points to a "" string */
+    fp = NULL;
   }
   else
     fp = file?fopen(file, "r"):NULL;
