@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.60 2001-01-08 14:48:34 bagder Exp $
+ * $Id: main.c,v 1.61 2001-01-08 15:02:58 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -441,6 +441,23 @@ static char *file2memory(FILE *file, long *size)
   }
   else
     return NULL; /* no string */
+}
+
+void clean_getout(struct Configurable *config)
+{
+  struct getout *node=config->url_list;
+  struct getout *next;
+
+  while(node) {
+    next = node->next;
+    if(node->url)
+      free(node->url);
+    if(node->outfile)
+      free(node->outfile);
+    free(node);
+
+    node = next; /* GOTO next */
+  }
 }
 
 struct getout *new_getout(struct Configurable *config)
@@ -1480,6 +1497,7 @@ operate(struct Configurable *config, int argc, char *argv[])
             /* no text */
             break;
           }
+          clean_getout(config);
 	  return CURLE_FAILED_INIT;
         }
 
@@ -1530,7 +1548,7 @@ operate(struct Configurable *config, int argc, char *argv[])
     /* save outfile pattern before expansion */
     outfiles = urlnode->outfile?strdup(urlnode->outfile):NULL;
 
-    if (!outfiles || strequal(outfiles, "-") && urlnum > 1) {
+    if ((!outfiles || strequal(outfiles, "-")) && urlnum > 1) {
       /* multiple files extracted to stdout, insert separators! */
       separator = 1;
     }
