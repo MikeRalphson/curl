@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.12 2002-01-16 14:20:06 bagder Exp $
+# $Id: curl-config.in,v 1.13 2002-06-11 11:13:29 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -60,6 +60,27 @@ while test $# -gt 0; do
         fi
 	if test "@IPV6_ENABLED@" = "1"; then
           echo "IPv6"
+        fi
+	if test "@CURL_DISABLE_HTTP@" = "1"; then
+          echo "HTTP-disabled"
+        fi
+	if test "@CURL_DISABLE_FTP@" = "1"; then
+          echo "FTP-disabled"
+        fi
+	if test "@CURL_DISABLE_GOPHER@" = "1"; then
+          echo "GOPHER-disabled"
+        fi
+	if test "@CURL_DISABLE_FILE@" = "1"; then
+          echo "FILE-disabled"
+        fi
+	if test "@CURL_DISABLE_TELNET@" = "1"; then
+          echo "TELNET-disabled"
+        fi
+	if test "@CURL_DISABLE_LDAP@" = "1"; then
+          echo "LDAP-disabled"
+        fi
+	if test "@CURL_DISABLE_DICT@" = "1"; then
+          echo "DICT-disabled"
         fi
 	;;
 
