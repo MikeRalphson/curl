@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.202 2003-10-17 13:11:04 bagder Exp $
+ * $Id: main.c,v 1.203 2003-10-22 11:56:08 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1143,6 +1143,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
     {"*w", "interface",   TRUE},
     {"*x", "krb4",        TRUE},
     {"*y", "max-filesize", TRUE},
+    {"*z", "disable-eprt", FALSE},
     {"0", "http1.0",     FALSE},
     {"1", "tlsv1",       FALSE},
     {"2", "sslv2",       FALSE},
@@ -1303,9 +1304,6 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       case 'e': /* --disable-epsv */
         config->disable_epsv ^= TRUE;
         break;
-      case 'f': /* --disable-eprt */
-        config->disable_eprt ^= TRUE;
-        break;
 #ifdef USE_ENVIRONMENT
       case 'f':
         config->writeenv ^= TRUE;
@@ -1411,6 +1409,9 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         break;
       case 'y': /* --max-filesize */
         config->max_filesize = atoi(nextarg);
+        break;
+      case 'z': /* --disable-eprt */
+        config->disable_eprt ^= TRUE;
         break;
 
       default: /* the URL! */
