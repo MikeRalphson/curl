@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.35 2003-12-10 16:05:26 bagder Exp $
+dnl $Id: configure.ac,v 1.36 2003-12-11 10:19:57 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1054,9 +1054,13 @@ AC_HELP_STRING([--disable-ares],[Disable ares for name lookups]),
        dnl and the includes are in $val/include. This is the default setup for
        dnl ares so it should not be a problem.
        if test "x$enableval" = "xyes" ; then
-         aresdir=`cd $srcdir/ares && pwd`
-         CPPFLAGS="$CPPFLAGS -I$aresdir"
-         LDFLAGS="$LDFLAGS -L$aresdir"
+         if test -d "$srcdir/ares"; then
+            AC_CONFIG_SUBDIRS(ares)
+            aresinc=`cd $srcdir/ares && pwd`
+            CPPFLAGS="$CPPFLAGS -I$aresinc"
+            areslib=`cd ares && pwd`
+            LDFLAGS="$LDFLAGS -L$areslib"
+         fi
        else
          CPPFLAGS="$CPPFLAGS -I$enableval/include"
          LDFLAGS="$LDFLAGS -L$enableval/lib"
