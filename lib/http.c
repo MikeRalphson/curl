@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.193 2004-03-05 12:54:18 bagder Exp $
+ * $Id: http.c,v 1.194 2004-03-09 21:39:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1259,7 +1259,7 @@ CURLcode Curl_http(struct connectdata *conn)
          input. If we knew it was a proper file we could've just
          fseek()ed but we only have a stream here */
       do {
-        size_t readthisamountnow = (conn->resume_from - passed);
+        size_t readthisamountnow = (size_t)(conn->resume_from - passed);
         size_t actuallyread;
 
         if(readthisamountnow > BUFSIZE)
