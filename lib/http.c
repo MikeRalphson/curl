@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.46 2001-01-31 13:54:12 bagder Exp $
+ * $Id: http.c,v 1.47 2001-02-07 09:31:03 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -226,17 +226,18 @@ int GetLine(int sockfd, char *buf, struct connectdata *conn)
       (nread<BUFSIZE) && read_rc;
       nread++, ptr++) {
     if((CURLE_OK != Curl_read(conn, sockfd, ptr, 1, &nread)) ||
+       (nread <= 0) ||
        (*ptr == '\n'))
       break;
   }
   *ptr=0; /* zero terminate */
-
+  
   if(data->bits.verbose) {
     fputs("< ", data->err);
     fwrite(buf, 1, nread, data->err);
     fputs("\n", data->err);
   }
-  return nread;
+  return nread>0?nread:0;
 }
 
 
