@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.25 2001-04-18 07:25:11 bagder Exp $
+ * $Id: progress.c,v 1.26 2001-08-02 17:05:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -97,7 +97,9 @@ void Curl_pgrsDone(struct connectdata *conn)
   if(!(data->progress.flags & PGRS_HIDE)) {
     data->progress.lastshow=0;
     Curl_pgrsUpdate(conn); /* the final (forced) update */
-    fprintf(data->err, "\n");
+    if(!data->progress.callback)
+      /* only output if we don't use progress callback */
+      fprintf(data->err, "\n");
   }
 }
 
