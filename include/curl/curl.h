@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.28 $
- * $Date: 2000-10-30 23:17:06 $
+ * $Revision: 1.29 $
+ * $Date: 2000-11-02 14:34:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -100,7 +100,11 @@ typedef size_t (*curl_read_callback)(char *buffer,
                                      FILE *instream);
 
 /* All possible error codes from this version of urlget(). Future versions
-   may return other values, stay prepared. */
+   may return other values, stay prepared.
+
+   Always add new return codes last. Never *EVER* remove any. The return
+   codes must remain the same!
+ */
 
 typedef enum {
   CURLE_OK = 0,
@@ -145,8 +149,6 @@ typedef enum {
 
   CURLE_HTTP_POST_ERROR,
 
-  CURLE_HTTP_PORT_FAILED, /* HTTP Interface operation failed */
-
   CURLE_SSL_CONNECT_ERROR, /* something was wrong when connecting with SSL */
 
   CURLE_FTP_BAD_DOWNLOAD_RESUME, /* couldn't resume download */
@@ -159,9 +161,10 @@ typedef enum {
   CURLE_FUNCTION_NOT_FOUND,
   
   CURLE_ABORTED_BY_CALLBACK,
-
   CURLE_BAD_FUNCTION_ARGUMENT,
   CURLE_BAD_CALLING_ORDER,
+
+  CURLE_HTTP_PORT_FAILED, /* HTTP Interface operation failed */
 
   CURL_LAST
 } CURLcode;
