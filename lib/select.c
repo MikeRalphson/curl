@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.8 2005-01-13 21:51:48 bagder Exp $
+ * $Id: select.c,v 1.9 2005-01-15 09:26:07 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -39,12 +39,16 @@
 #error "We can't compile without select() support!"
 #endif
 
-#include "select.h"
-
 #ifdef __BEOS__
 /* BeOS has FD_SET defined in socket.h */
 #include <socket.h>
 #endif
+
+#include <curl/curl.h>
+
+#include "urldata.h"
+#include "connect.h"
+#include "select.h"
 
 #ifdef WIN32
 #define VALID_SOCK(s) (1)  /* Win-sockets are not in range [0..FD_SETSIZE> */
@@ -148,7 +152,7 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms)
 
   do {
     r = select(maxfd + 1, &fds_read, &fds_write, &fds_err, &timeout);
-  } while((r == -1) && (errno == EINTR));
+  } while((r == -1) && (Curl_ourerrno() == EINTR));
 
   if (r < 0)
     return -1;
@@ -233,7 +237,7 @@ int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms)
 
   do {
     r = select(maxfd + 1, &fds_read, &fds_write, &fds_err, ptimeout);
-  } while((r == -1) && (errno == EINTR));
+  } while((r == -1) && (Curl_ourerrno() == EINTR));
 
   if (r < 0)
     return -1;
