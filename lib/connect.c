@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.74 2004-02-09 08:34:19 bagder Exp $
+ * $Id: connect.c,v 1.75 2004-02-09 11:40:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -216,7 +216,7 @@ static CURLcode bindlocal(struct connectdata *conn,
                           int sockfd)
 {
 #ifdef HAVE_INET_NTOA
-
+  bool bindworked = FALSE;
   struct SessionHandle *data = conn->data;
 
   /*************************************************************
@@ -284,6 +284,8 @@ static CURLcode bindlocal(struct connectdata *conn,
         if( bind(sockfd, addr->ai_addr, addr->ai_addrlen) >= 0) {
           /* we succeeded to bind */
           struct sockaddr_in6 add;
+
+          bindworked = TRUE;
 	
           size = sizeof(add);
           if(getsockname(sockfd, (struct sockaddr *) &add,
@@ -306,6 +308,8 @@ static CURLcode bindlocal(struct connectdata *conn,
             /* we succeeded to bind */
             struct sockaddr_in add;
 	
+            bindworked = TRUE;
+            
             size = sizeof(add);
             if(getsockname(sockfd, (struct sockaddr *) &add,
                            (socklen_t *)&size)<0) {
@@ -315,7 +319,7 @@ static CURLcode bindlocal(struct connectdata *conn,
           }
         }
 #endif
-        else {
+        if(!bindworked) {
           switch(errno) {
           case EBADF:
             failf(data, "Invalid descriptor: %d", errno);
