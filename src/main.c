@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.252 2004-04-07 07:30:41 bagder Exp $
+ * $Id: main.c,v 1.253 2004-04-14 12:00:53 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -3355,6 +3355,13 @@ operate(struct Configurable *config, int argc, char *argv[])
         if(config->max_filesize)
           curl_easy_setopt(curl, CURLOPT_MAXFILESIZE_LARGE,
                            config->max_filesize);
+
+        if(4 == config->ip_version)
+          curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        else if(6 == config->ip_version)
+          curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V6);
+        else
+          curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_WHATEVER);
 
         /* new in curl 7.11.0 */
         if(config->ftp_ssl)
