@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.25 $
- * $Date: 2000-10-09 11:12:34 $
+ * $Revision: 1.26 $
+ * $Date: 2000-10-11 10:57:52 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -588,7 +588,8 @@ CURLcode ftp_done(struct connectdata *conn)
   if(ftp->dir)
     free(ftp->dir);
 
-  /* TBD: the ftp struct is still allocated here */
+  free(ftp);
+  data->proto.ftp=NULL; /* it is gone */
 
   return CURLE_OK;
 }
