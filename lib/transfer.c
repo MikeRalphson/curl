@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.217 2004-04-07 14:27:56 bagder Exp $
+ * $Id: transfer.c,v 1.218 2004-04-13 07:37:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -454,7 +454,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               /* now, only output this if the header AND body are requested:
                */
               writetype = CLIENTWRITE_HEADER;
-              if (data->set.http_include_header)
+              if (data->set.include_header)
                 writetype |= CLIENTWRITE_BODY;
 
               headerlen = k->p - data->state.headerbuff;
@@ -868,7 +868,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
              */
 
             writetype = CLIENTWRITE_HEADER;
-            if (data->set.http_include_header)
+            if (data->set.include_header)
               writetype |= CLIENTWRITE_BODY;
 
             if(data->set.verbose)

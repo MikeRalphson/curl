@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.355 2004-04-13 07:16:26 bagder Exp $
+ * $Id: url.c,v 1.356 2004-04-13 07:37:28 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -455,7 +455,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Set to include the header in the general data output stream.
      */
-    data->set.http_include_header = va_arg(param, long)?TRUE:FALSE;
+    data->set.include_header = va_arg(param, long)?TRUE:FALSE;
     break;
   case CURLOPT_NOPROGRESS:
     /*
