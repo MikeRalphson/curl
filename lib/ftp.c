@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.226 2004-02-13 06:59:49 bagder Exp $
+ * $Id: ftp.c,v 1.227 2004-02-26 13:40:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -134,8 +134,8 @@ static CURLcode AllowServerConnect(struct connectdata *conn)
   struct SessionHandle *data = conn->data;
   int sock = conn->sock[SECONDARYSOCKET];
   struct timeval now = Curl_tvnow();
-  int timespent = Curl_tvdiff(Curl_tvnow(), now)/1000;
-  int timeout = data->set.connecttimeout?data->set.connecttimeout:
+  long timespent = Curl_tvdiff(Curl_tvnow(), now)/1000;
+  long timeout = data->set.connecttimeout?data->set.connecttimeout:
     (data->set.timeout?data->set.timeout: 0);
   
   FD_ZERO(&rdset);
@@ -1347,7 +1347,7 @@ CURLcode ftp_use_port(struct connectdata *conn)
         rc = Curl_wait_for_resolv(conn, &h);
     }
     else {
-      int len = strlen(data->set.ftpport);
+      size_t len = strlen(data->set.ftpport);
       if(len>1) {
         rc = Curl_resolv(conn, data->set.ftpport, 0, &h);
         if(rc == 1)
