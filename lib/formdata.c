@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.64 2004-05-11 14:48:53 bagder Exp $
+ * $Id: formdata.c,v 1.65 2004-05-12 06:27:40 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -944,7 +944,7 @@ CURLcode Curl_getFormData(struct FormData **finalform,
     if (result)
       break;
 
-    size += AddFormData(&form, "\"", 0, &size);
+    result = AddFormData(&form, "\"", 0, &size);
     if (result)
       break;
 
