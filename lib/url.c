@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.138 2001-08-15 06:55:42 bagder Exp $
+ * $Id: url.c,v 1.139 2001-08-15 21:40:09 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1996,7 +1996,10 @@ static CURLcode Connect(struct UrlData *data,
     failf(data, "You haven't enabled IPv6 support");
     return CURLE_URL_MALFORMAT;
 #else
+    conn->name++; /* pass the starting bracket */
+
     tmp = strchr(conn->name, ']');
+    *tmp = 0; /* zero terminate */
 
     tmp++; /* pass the ending bracket */
     if(':' != *tmp)
