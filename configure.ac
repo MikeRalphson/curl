@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.110 2004-11-08 07:47:08 bagder Exp $
+dnl $Id: configure.ac,v 1.111 2004-11-08 19:41:28 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1227,6 +1227,7 @@ AC_CHECK_FUNCS( strtoll \
                 basename \
                 setlocale \
                 ftruncate \
+                pipe \
                 poll,
 dnl if found
 [],
