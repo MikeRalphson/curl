@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.13 2002-05-02 22:12:14 bagder Exp $
+ * $Id: multi.c,v 1.14 2002-05-03 12:40:37 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -438,7 +438,7 @@ CURLMsg *curl_multi_info_read(CURLM *multi_handle, int *msgs_in_queue)
     return msg;
   }
   else
-    return CURLM_BAD_HANDLE;
+    return NULL;
 }
 
 /*
