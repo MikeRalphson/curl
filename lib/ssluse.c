@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.95 2004-04-20 07:53:24 bagder Exp $
+ * $Id: ssluse.c,v 1.96 2004-04-26 11:52:43 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -335,11 +335,11 @@ int cert_stuff(struct connectdata *conn,
           return 0;
         }
       }
+      break;
 #else
       failf(data, "file type ENG for private key not supported\n");
       return 0;
 #endif
-      break;
     default:
       failf(data, "not supported file type for private key\n");
       return 0;
