@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.114 2002-03-08 15:18:03 bagder Exp $
+ * $Id: main.c,v 1.115 2002-03-08 16:12:00 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2409,7 +2409,8 @@ operate(struct Configurable *config, int argc, char *argv[])
       
       res = curl_easy_perform(curl);
         
-      if(progressbar.calls) {
+      if((config->progressmode == CURL_PROGRESS_BAR) &&
+         progressbar.calls) {
         /* if the custom progress bar has been displayed, we output a
            newline here */
         fputs("\n", progressbar.out);
