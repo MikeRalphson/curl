@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.140 2001-08-15 21:54:24 bagder Exp $
+ * $Id: url.c,v 1.141 2001-08-22 11:24:57 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -430,9 +430,12 @@ CURLcode Curl_setopt(struct UrlData *data, CURLoption option, ...)
      */
     data->bits.http_follow_location = va_arg(param, long)?TRUE:FALSE;
     break;
-  case CURLOPT_FTPASCII:
+  case CURLOPT_TRANSFERTEXT:
     /*
-     * Transfer FTP using ASCII instead of BINARY.
+     * This option was previously named 'FTPASCII'. Renamed to work with
+     * more protocols than merely FTP.
+     *
+     * Transfer using ASCII (instead of BINARY).
      */
     data->bits.ftp_ascii = va_arg(param, long)?TRUE:FALSE;
     break;
