@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.86 2002-01-27 11:51:11 bagder Exp $
+ * $Id: http.c,v 1.87 2002-01-29 20:32:10 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -853,6 +853,9 @@ CURLcode Curl_http(struct connectdata *conn)
           return CURLE_HTTP_POST_ERROR;
         }
         add_buffer(req_buffer, contentType, linelength);
+
+        /* make the request end in a true CRLF */
+        add_buffer(req_buffer, "\r\n", 2);
       }
 
       /* set upload size to the progress meter */
