@@ -20,11 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.h,v 1.1 2004-03-25 13:40:24 bagder Exp $
+ * $Id: strerror.h,v 1.2 2004-10-02 13:01:44 bagder Exp $
  ***************************************************************************/
 
 #include "urldata.h"
 
 const char *Curl_strerror (struct connectdata *conn, int err);
+
+#ifdef USE_LIBIDN
+const char *Curl_idn_strerror (struct connectdata *conn, int err);
+#endif
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.410 2004-09-28 07:11:32 bagder Exp $
+ * $Id: url.c,v 1.411 2004-10-02 13:01:44 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -116,6 +116,7 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "progress.h"
 #include "cookie.h"
 #include "strequal.h"
+#include "strerror.h"
 #include "escape.h"
 #include "strtok.h"
 #include "share.h"
@@ -2078,8 +2079,8 @@ static void fix_hostname(struct connectdata *conn, struct hostname *host)
     infof (data, "Input domain encoded as `%s'\n",
            stringprep_locale_charset ());
     if (rc != IDNA_SUCCESS)
-      infof(data, "Failed to convert %s to ACE; IDNA error %d\n",
-            host->name, rc);
+      infof(data, "Failed to convert %s to ACE; %s\n",
+            host->name, Curl_idn_strerror(conn,rc));
     else {
       host->encalloc = ace_hostname;
       /* change the name pointer to point to the encoded hostname */
