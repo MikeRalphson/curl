@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.99 2002-05-28 14:18:36 bagder Exp $
+ * $Id: transfer.c,v 1.100 2002-06-10 12:34:04 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1413,6 +1413,13 @@ CURLcode Curl_perform(struct SessionHandle *data)
   res2 = Curl_posttransfer(data);
   if(!res && res2)
     res = res2;
+
+  if(conn && (-1 !=conn->secondarysocket)) {
+    /* if we failed anywhere, we must clean up the secondary socket if it
+       was used */
+    sclose(conn->secondarysocket);
+    conn->secondarysocket=-1;
+  }
 
   return res;
 }
