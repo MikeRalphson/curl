@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.114 2004-04-14 07:04:45 bagder Exp $
+# $Id: runtests.pl,v 1.115 2004-04-15 13:37:19 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1180,13 +1180,9 @@ sub singletest {
         }
     }
 
+    # the test succeeded, remove all log files
     if(!$keepoutfiles) {
-        # remove the stdout and stderr files
-        unlink($STDOUT);
-        unlink($STDERR);
-        unlink($CURLOUT); # remove the downloaded results
-
-        unlink("$LOGDIR/upload.$testnum");  # remove upload leftovers
+        cleardir($LOGDIR);        
     }
 
     unlink($FTPDCMD); # remove the instructions for this test
@@ -1550,23 +1546,10 @@ sub displaylogs {
     closedir DIR;
     my $log;
 
-    my %interest=('curl.log' => 1,
-                  'server.input' => 1,
-                  'server.response' => 1,
-                  'sws.log' => 1,
-                  'ftpd.log' => 1,
-                  );
-
-    print "== Contents of files in the log/ dir:\n";
+    print "== Contents of files in the log/ dir after test $testnum\n";
     foreach $log (sort @logs) {
-        my $num = $log;
-        $num =~ s/[^0-9]//g; # cut off all non-digits
-
-        # the log file is:
-        # generally interesting OR
-        # contains our test case number AND
-        # contains more than zero bytes
-        if(($interest{$log} || ($num  == $testnum)) && (-s "$LOGDIR/$log")) {
+        # the log file contains more than zero bytes
+        if(-s "$LOGDIR/$log") {
             print "== Start of file $log\n";
             displaylogcontent("$LOGDIR/$log");
             print "== End of file $log\n";
