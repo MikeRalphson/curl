@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-05-30 22:27:39 $
+ * $Revision: 1.5 $
+ * $Date: 2000-05-31 06:31:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -113,7 +113,8 @@ struct hostent *GetHost(struct UrlData *data,
     h->h_addr_list[1] = NULL;
     h->h_addrtype = AF_INET;
     h->h_length = sizeof(*addrentry);
-    h->h_name = (char*)(h->h_addr_list + h->h_length);
+    h->h_name = *(h->h_addr_list) + h->h_length;
+    /* bad one h->h_name = (char*)(h->h_addr_list + h->h_length); */
     MakeIP(ntohl(in),h->h_name,buf_size - (long)(h->h_name) + (long)buf);
 #if defined(HAVE_GETHOSTBYNAME_R)
   }
