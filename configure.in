@@ -1,8 +1,8 @@
-dnl $Id: configure.in,v 1.13 2000-05-22 14:15:05 bagder Exp $
+dnl $Id: configure.in,v 1.14 2000-05-25 15:18:02 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
-AM_INIT_AUTOMAKE(curl,"7.0beta")
+AM_INIT_AUTOMAKE(curl,"7.0.1beta")
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -131,6 +131,7 @@ AC_CHECK_HEADERS( \
         sys/sockio.h \
         sys/stat.h \
         sys/types.h \
+        sys/time.h \
         getopt.h \
         sys/param.h \
         termios.h \
