@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.244 2004-08-09 08:29:39 bagder Exp $
+ * $Id: transfer.c,v 1.245 2004-08-10 06:41:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -137,8 +137,10 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
     conn->upload_fromhere += 10; /* 32bit hex + CRLF */
   }
 
-  nread = conn->fread(conn->upload_fromhere, 1,
-                      buffersize, conn->fread_in);
+  /* this function returns a size_t, so we typecast to int to prevent warnings
+     with picky compilers */
+  nread = (int)conn->fread(conn->upload_fromhere, 1,
+                           buffersize, conn->fread_in);
 
   if(nread == CURL_READFUNC_ABORT) {
     failf(data, "operation aborted by callback\n");

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.277 2004-07-02 12:48:53 bagder Exp $
+ * $Id: main.c,v 1.278 2004-08-10 06:41:13 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2279,7 +2279,9 @@ static int my_fwrite(void *buffer, size_t sz, size_t nmemb, void *stream)
   int rc;
   struct OutStruct *out=(struct OutStruct *)stream;
   struct Configurable *config = out->config;
-  curl_off_t size = sz * nmemb;
+  curl_off_t size = (curl_off_t)(sz * nmemb); /* typecast to prevent
+                                                 warnings when converting from
+                                                 unsigned to signed */
   if(out && !out->stream) {
     /* open file for writing */
     out->stream=fopen(out->filename, "wb");
@@ -2354,7 +2356,9 @@ static int my_fread(void *buffer, size_t sz, size_t nmemb, void *userp)
 {
   struct InStruct *in=(struct InStruct *)userp;
   struct Configurable *config = in->config;
-  curl_off_t size = sz * nmemb;
+  curl_off_t size = (curl_off_t)(sz * nmemb);  /* typecast to prevent warnings
+                                                  when converting from
+                                                  unsigned to signed */
 
   if(config->sendpersecond) {
     /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.265 2004-07-04 21:48:54 bagder Exp $
+ * $Id: ftp.c,v 1.266 2004-08-10 06:41:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1690,7 +1690,7 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
           if(readthisamountnow > BUFSIZE)
             readthisamountnow = BUFSIZE;
 
-          actuallyread =
+          actuallyread = (curl_off_t)
             conn->fread(data->state.buffer, 1, (size_t)readthisamountnow,
                         conn->fread_in);
 
