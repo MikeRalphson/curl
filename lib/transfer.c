@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.142 2003-02-24 16:53:56 bagder Exp $
+ * $Id: transfer.c,v 1.143 2003-02-26 12:42:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -233,17 +233,16 @@ CURLcode Curl_readwrite(struct connectdata *conn,
     if((k->keepon & KEEP_READ) &&
        (FD_ISSET(conn->sockfd, readfdp))) {
 
-      bool readdone = FALSE;
+      bool readdone = TRUE;
 
       /* This is where we loop until we have read everything there is to
          read or we get a EWOULDBLOCK */
       do {
+        int buffersize = data->set.buffer_size?
+          data->set.buffer_size:BUFSIZE -1;
 
-        /* read! */
-        result = Curl_read(conn, conn->sockfd, k->buf,
-                           data->set.buffer_size?
-                           data->set.buffer_size:BUFSIZE -1,
-                           &nread);
+        /* receive data from the network! */
+        result = Curl_read(conn, conn->sockfd, k->buf, buffersize, &nread);
 
         if(0>result)
           break; /* get out of loop */
