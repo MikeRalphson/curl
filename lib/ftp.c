@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.299 2005-02-09 13:47:35 bagder Exp $
+ * $Id: ftp.c,v 1.300 2005-02-09 13:59:40 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2216,7 +2216,7 @@ static CURLcode ftp_state_user_resp(struct connectdata *conn,
       state(conn, FTP_ACCT);
     }
     else {
-      failf(data, "ACCT requested by none available");
+      failf(data, "ACCT requested but none available");
       result = CURLE_LOGIN_DENIED;
     }
   }
