@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.33 2004-05-13 15:16:36 bagder Exp $
+ * $Id: escape.c,v 1.34 2004-06-24 11:54:11 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -68,7 +68,7 @@ char *curl_escape(const char *string, int length)
           ns = testing_ptr;
         }
       }
-      sprintf(&ns[strindex], "%%%02X", in);
+      snprintf(&ns[strindex], 4, "%%%02X", in);
 
       strindex+=3;
     }

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.20 2004-06-03 10:42:20 bagder Exp $
+ * $Id: http_digest.c,v 1.21 2004-06-24 11:54:11 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -201,7 +201,7 @@ static void md5_to_ascii(unsigned char *source, /* 16 bytes */
 {
   int i;
   for(i=0; i<16; i++)
-    sprintf((char *)&dest[i*2], "%02x", source[i]);
+    snprintf((char *)&dest[i*2], 3, "%02x", source[i]);
 }
 
 CURLcode Curl_output_digest(struct connectdata *conn,

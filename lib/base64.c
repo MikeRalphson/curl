@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.30 2004-05-12 13:23:17 bagder Exp $
+ * $Id: base64.c,v 1.31 2004-06-24 11:54:11 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -160,22 +160,22 @@ size_t Curl_base64_encode(const char *inp, size_t insize, char **outptr)
 
     switch(inputparts) {
     case 1: /* only one byte read */
-      sprintf(output, "%c%c==",
-              table64[obuf[0]],
-              table64[obuf[1]]);
+      snprintf(output, 5, "%c%c==",
+               table64[obuf[0]],
+               table64[obuf[1]]);
       break;
     case 2: /* two bytes read */
-      sprintf(output, "%c%c%c=",
-              table64[obuf[0]],
-              table64[obuf[1]],
-              table64[obuf[2]]);
+      snprintf(output, 5, "%c%c%c=",
+               table64[obuf[0]],
+               table64[obuf[1]],
+               table64[obuf[2]]);
       break;
     default:
-      sprintf(output, "%c%c%c%c",
-              table64[obuf[0]],
-              table64[obuf[1]],
-              table64[obuf[2]],
-              table64[obuf[3]] );
+      snprintf(output, 5, "%c%c%c%c",
+               table64[obuf[0]],
+               table64[obuf[1]],
+               table64[obuf[2]],
+               table64[obuf[3]] );
       break;
     }
     output += 4;
