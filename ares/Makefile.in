@@ -1,4 +1,4 @@
-# $Id: Makefile.in,v 1.4 2004-02-04 07:48:20 bagder Exp $
+# $Id: Makefile.in,v 1.5 2004-02-11 12:58:43 bagder Exp $
 
 SHELL=/bin/sh
 INSTALL=@INSTALL@
@@ -57,6 +57,7 @@ install:
 	${RANLIB} ${DESTDIR}${libdir}/$(LIB)
 	chmod u-w ${DESTDIR}${libdir}/$(LIB)
 	${INSTALL} -m 444 ${srcdir}/ares.h ${DESTDIR}${includedir}
+	${INSTALL} -m 444 ${srcdir}/ares_version.h ${DESTDIR}${includedir}
 	${INSTALL} -m 444 ${srcdir}/ares_destroy.3 ${DESTDIR}${mandir}/man3
 	${INSTALL} -m 444 ${srcdir}/ares_expand_name.3 ${DESTDIR}${mandir}/man3
 	${INSTALL} -m 444 ${srcdir}/ares_fds.3 ${DESTDIR}${mandir}/man3
