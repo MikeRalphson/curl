@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.63 $
- * $Date: 2000-11-21 15:36:38 $
+ * $Revision: 1.64 $
+ * $Date: 2000-11-21 19:06:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -191,6 +191,7 @@ void static urlfree(struct UrlData *data, bool totally)
   if(data->bits.rangestringalloc) {
     free(data->range);
     data->range=NULL;
+    data->bits.rangestringalloc=0; /* free now */
   }
 
   if(data->ptr_proxyuserpwd) {
@@ -693,7 +694,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
   char *tmp;
   char *buf;
   CURLcode result;
-  char resumerange[12]="";
+  char resumerange[40]="";
   struct UrlData *data = curl;
   struct connectdata *conn;
 #ifdef HAVE_SIGACTION
