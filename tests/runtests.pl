@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.139 2004-09-08 08:08:38 bagder Exp $
+# $Id: runtests.pl,v 1.140 2004-10-25 11:28:15 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1269,7 +1269,7 @@ sub singletest {
     }
     else {
         if(!$short) {
-            print "curl returned $cmdres, ".(0+$errorcode)." was expected\n";
+            print "\ncurl returned $cmdres, ".(0+$errorcode)." was expected\n";
         }
         print " exit FAILED\n";
         return 1;
