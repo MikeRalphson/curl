@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.125 2004-12-13 17:52:55 giva Exp $
+ * $Id: connect.c,v 1.126 2005-01-28 23:21:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -754,7 +754,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
 
   if(data->state.used_interface == Curl_if_multi)
     /* don't hang when doing multi */
-    timeout_per_addr = timeout_ms = 0;
+    timeout_per_addr = 0;
 
   /*
    * Connecting with a Curl_addrinfo chain
