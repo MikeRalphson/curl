@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.20 2004-12-24 08:59:44 bagder Exp $
+# $Id: curl-config.in,v 1.21 2005-03-15 07:49:47 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -60,6 +60,7 @@ while test $# -gt 0; do
     --feature|--features)
 	if test "@USE_SSLEAY@" = "1"; then
           echo "SSL"
+          NTLM=1
         fi
 	if test "@KRB4_ENABLED@" = "1"; then
           echo "KRB4"
@@ -72,6 +73,16 @@ while test $# -gt 0; do
         fi
 	if test "@HAVE_ARES@" = "1"; then
           echo "AsynchDNS"
+        fi
+	if test "@IDN_ENABLED@" = "1"; then
+          echo "IDN"
+        fi
+	if test "@USE_WINDOWS_SSPI@" = "1"; then
+          echo "SSPI"
+          NTLM=1
+        fi
+	if test "$NTLM" = "1"; then
+          echo "NTLM"
         fi
 	;;
 
