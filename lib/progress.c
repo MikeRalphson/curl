@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.26 2001-08-02 17:05:11 bagder Exp $
+ * $Id: progress.c,v 1.27 2001-08-10 06:24:49 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -225,20 +225,19 @@ int Curl_pgrsUpdate(struct connectdata *conn)
   /* The exact time spent so far */
   data->progress.timespent = Curl_tvdiff (now, data->progress.start);
 
-  if(data->progress.lastshow == Curl_tvlong(now))
-    return 0; /* never update this more than once a second if the end isn't 
-                 reached */
-  data->progress.lastshow = now.tv_sec;
-
   /* The average download speed this far */
   data->progress.dlspeed = data->progress.downloaded/(data->progress.timespent!=0.0?data->progress.timespent:1.0);
 
   /* The average upload speed this far */
   data->progress.ulspeed = data->progress.uploaded/(data->progress.timespent!=0.0?data->progress.timespent:1.0);
 
+  if(data->progress.lastshow == Curl_tvlong(now))
+    return 0; /* never update this more than once a second if the end isn't 
+                 reached */
+  data->progress.lastshow = now.tv_sec;
+
   /* Let's do the "current speed" thing, which should use the fastest
          of the dl/ul speeds */
-
   data->progress.speeder[ nowindex ] =
     data->progress.downloaded>data->progress.uploaded?
     data->progress.downloaded:data->progress.uploaded;
