@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.128 2005-01-29 22:38:45 bagder Exp $
+ * $Id: connect.c,v 1.129 2005-02-17 14:45:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -640,8 +640,10 @@ singleipconnect(struct connectdata *conn,
     /* user selected to bind the outgoing socket to a specified "device"
        before doing connect */
     CURLcode res = bindlocal(conn, sockfd);
-    if(res)
+    if(res) {
+      sclose(sockfd); /* close socket and bail out */
       return res;
+    }
   }
 
   /* set socket non-blocking */
