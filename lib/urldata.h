@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.133 2002-11-20 19:11:23 bagder Exp $
+ * $Id: urldata.h,v 1.134 2002-12-03 10:25:31 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -190,7 +190,9 @@ struct FTP {
                        read the line, just ignore the result. */
   bool no_transfer; /* nothing was transfered, (possibly because a resumed
                        transfer already was complete) */
-
+  long response_time; /* When no timeout is given, this is the amount of
+                         seconds we await for an FTP response. Initialized
+                         in Curl_ftp_connect() */
 };
 
 /****************************************************************************
