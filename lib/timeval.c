@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.19 2004-01-04 12:10:14 bagder Exp $
+ * $Id: timeval.c,v 1.20 2004-03-11 13:13:35 bagder Exp $
  ***************************************************************************/
 
 #include "timeval.h"
@@ -63,6 +63,7 @@ static int gettimeofday(struct timeval *tp, void *nothing)
   tp->tv_sec = Sec;
   tp->tv_usec = Usec;
 #endif /* WITHOUT_MM_LIB */
+  (void)nothing;
   return 0;
 }
 #else /* WIN32 */

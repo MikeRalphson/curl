@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.80 2004-03-09 22:52:50 bagder Exp $
+ * $Id: connect.c,v 1.81 2004-03-11 13:13:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -417,6 +417,7 @@ static bool verifyconnect(curl_socket_t sockfd)
   /* This wasn't a successful connect */
   return FALSE;
 #else
+  (void)sockfd;
   return TRUE;
 #endif
 }
@@ -571,7 +572,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
    */
   for (ai = remotehost->addr; ai; ai = ai->ai_next, aliasindex++) {
     sockfd = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol);
-    if (sockfd < 0)
+    if (sockfd == CURL_SOCKET_BAD)
       continue;
 #else
   /*
@@ -681,7 +682,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
     }
     before = after;
   }
-  if (sockfd < 0) {
+  if (sockfd == CURL_SOCKET_BAD) {
     /* no good connect was made */
     *sockconn = -1;
     failf(data, "Connect failed");
