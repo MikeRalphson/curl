@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.8 2003-06-12 12:53:38 bagder Exp $
+dnl $Id: configure.ac,v 1.9 2003-06-26 06:21:29 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -931,7 +931,7 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
        ;;
   *)   AC_MSG_RESULT(yes)
 
-    CPPFLAGS="$CPPFLAGS -DMALLOCDEBUG"
+    CPPFLAGS="$CPPFLAGS -DCURLDEBUG"
     CFLAGS="$CFLAGS -g" 
     if test "$GCC" = "yes"; then
        CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wundef -Wpointer-arith -Wnested-externs"
