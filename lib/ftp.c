@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.35 $
- * $Date: 2000-11-29 08:19:23 $
+ * $Revision: 1.36 $
+ * $Date: 2000-11-30 21:59:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -860,7 +860,8 @@ CURLcode _ftp(struct connectdata *conn)
          * previous lookup.
          */
         he = conn->hp;
-        connectport = data->port; /* we connect to the proxy's port */
+        connectport =
+          (unsigned short)data->port; /* we connect to the proxy's port */
       }
       else {
         /* normal, direct, ftp connection */
