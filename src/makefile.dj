@@ -1,11 +1,13 @@
 #
-# $Id: makefile.dj,v 1.5 2004-11-15 10:38:34 giva Exp $
+# $Id: makefile.dj,v 1.6 2004-11-15 10:41:58 giva Exp $
 #
 #  Adapted for djgpp2 / Watt-32 / DOS by
 #  Gisle Vanem <giva@bgnett.no>
 #
 
 DEPEND_PREREQ = config.h hugehelp.c
+
+top_srcdir = ..
 
 include ../packages/DOS/common.dj
 include Makefile.inc
