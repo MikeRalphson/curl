@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.1 2001-04-17 12:23:06 bagder Exp $
+# $Id: curl-config.in,v 1.2 2001-04-17 12:32:37 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -49,7 +49,7 @@ while test $# -gt 0; do
 	;;
 
     --version)
-	echo curl @VERSION@
+	echo libcurl @VERSION@
 	exit 0
 	;;
 
