@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.132 2005-02-14 23:50:29 bagder Exp $
+dnl $Id: configure.ac,v 1.133 2005-02-18 08:24:53 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -115,6 +115,17 @@ case $host in
 esac
 AC_MSG_RESULT($mimpure)
 AM_CONDITIONAL(MIMPURE, test x$mimpure = xyes)
+
+AC_MSG_CHECKING([if we need BUILDING_LIBCURL])
+case $host in
+  *-*-mingw*)
+    AC_DEFINE(BUILDING_LIBCURL, 1, [when building libcurl itself])
+    AC_MSG_RESULT(yes)
+    ;;
+  *)
+    AC_MSG_RESULT(no)
+    ;;
+esac
 
 dnl The install stuff has already been taken care of by the automake stuff
 dnl AC_PROG_INSTALL
