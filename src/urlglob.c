@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.38 2004-12-15 09:23:24 bagder Exp $
+ * $Id: urlglob.c,v 1.39 2005-01-29 23:46:27 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -314,7 +314,7 @@ int glob_url(URLGlob** glob, char* url, int *urlnum, FILE *error)
   if(NULL == glob_buffer)
     return CURLE_OUT_OF_MEMORY;
 
-  glob_expand = (URLGlob*)malloc(sizeof(URLGlob));
+  glob_expand = (URLGlob*)calloc(sizeof(URLGlob), 1);
   if(NULL == glob_expand) {
     free(glob_buffer);
     return CURLE_OUT_OF_MEMORY;
