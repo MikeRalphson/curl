@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.2 2004-04-26 14:03:25 bagder Exp $
+ * $Id: hostip6.c,v 1.3 2004-04-26 15:11:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -204,7 +204,7 @@ bool Curl_ipvalid(struct SessionHandle *data)
   if(data->set.ip_version == CURL_IPRESOLVE_V6) {
     /* see if we have an IPv6 stack */
     curl_socket_t s = socket(PF_INET6, SOCK_DGRAM, 0);
-    if (s != CURL_SOCKET_BAD)
+    if (s == CURL_SOCKET_BAD)
       /* an ipv6 address was requested and we can't get/use one */
       return FALSE;
     sclose(s);
