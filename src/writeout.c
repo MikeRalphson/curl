@@ -18,11 +18,17 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.10 2002-03-19 07:54:55 bagder Exp $
+ * $Id: writeout.c,v 1.11 2002-05-10 14:37:39 bagder Exp $
  *****************************************************************************/
+
+#include "setup.h"
 
 #include <stdio.h>
 #include <string.h>
+
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>
+#endif
 
 #include <curl/curl.h>
 
