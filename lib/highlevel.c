@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.13 $
- * $Date: 2000-10-03 11:02:52 $
+ * $Revision: 1.14 $
+ * $Date: 2000-10-04 13:07:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -349,6 +349,7 @@ _Transfer(struct connectdata *c_conn)
                     return CURLE_WRITE_ERROR;
                   }
                 }
+                data->header_size += p - data->headerbuff;
                 break;		/* exit header line loop */
               }
               
@@ -425,6 +426,7 @@ _Transfer(struct connectdata *c_conn)
                   return CURLE_WRITE_ERROR;
                 }
               }
+              data->header_size += hbuflen;
               
               /* reset hbufp pointer && hbuflen */
               hbufp = data->headerbuff;

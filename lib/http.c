@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.29 $
- * $Date: 2000-10-03 11:01:32 $
+ * $Revision: 1.30 $
+ * $Date: 2000-10-04 13:07:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -475,7 +475,8 @@ CURLcode http(struct connectdata *conn)
       /* set upload size to the progress meter */
       pgrsSetUploadSize(data, http->postsize);
 
-      add_buffer_send(data->firstsocket, conn, req_buffer);
+      data->request_size = 
+        add_buffer_send(data->firstsocket, conn, req_buffer);
       result = Transfer(conn, data->firstsocket, -1, TRUE,
                         &http->readbytecount,
                           data->firstsocket,
@@ -500,7 +501,8 @@ CURLcode http(struct connectdata *conn)
       pgrsSetUploadSize(data, data->infilesize);
 
       /* this sends the buffer and frees all the buffer resources */
-      add_buffer_send(data->firstsocket, conn, req_buffer);
+      data->request_size = 
+        add_buffer_send(data->firstsocket, conn, req_buffer);
 
       /* prepare for transfer */
       result = Transfer(conn, data->firstsocket, -1, TRUE,
@@ -544,8 +546,11 @@ CURLcode http(struct connectdata *conn)
       else
         add_buffer(req_buffer, "\r\n", 2);
 
+      /* issue the request */
+      data->request_size = 
+        add_buffer_send(data->firstsocket, conn, req_buffer);
+
       /* HTTP GET/HEAD download: */
-      add_buffer_send(data->firstsocket, conn, req_buffer);
       result = Transfer(conn, data->firstsocket, -1, TRUE, bytecount,
                         -1, NULL); /* nothing to upload */
     }

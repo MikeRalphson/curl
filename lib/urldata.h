@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.23 $
- * $Date: 2000-10-03 11:05:09 $
+ * $Revision: 1.24 $
+ * $Date: 2000-10-04 13:07:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -211,7 +211,6 @@ struct connectdata {
                             the same we read from. -1 disables */
   long *writebytecountp; /* return number of bytes written or NULL */
 
-
 #ifdef KRB4
 
   enum protection_level command_prot;
@@ -357,6 +356,10 @@ struct UrlData {
                      proxy string features a ":[port]" that one will override
                      this. */
 
+  
+  long header_size;  /* size of read header(s) in bytes */
+  long request_size; /* the amount of bytes sent in the request(s) */
+
   /*************** Request - specific items ************/
 
   union {
@@ -463,8 +466,11 @@ struct UrlData {
   char *headerbuff; /* allocated buffer to store headers in */
   int headersize;   /* size of the allocation */
 
+#if 0
+  /* this was removed in libcurl 7.4 */
   char *writeinfo;  /* if non-NULL describes what to output on a successful
                        completion */
+#endif
 
   struct Progress progress;
 
