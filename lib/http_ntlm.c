@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.4 2003-06-11 16:14:45 bagder Exp $
+ * $Id: http_ntlm.c,v 1.5 2003-06-12 13:18:10 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -46,6 +46,15 @@
 
 #include <openssl/des.h>
 #include <openssl/md4.h>
+#include <openssl/ssl.h>
+
+#if OPENSSL_VERSION_NUMBER < 0x00907001L
+#define DES_key_schedule des_key_schedule
+#define DES_cblock des_cblock
+#define DES_set_odd_parity des_set_odd_parity
+#define DES_set_key des_set_key
+#define DES_ecb_encrypt des_ecb_encrypt
+#endif
 
 /* The last #include file should be: */
 #ifdef MALLOCDEBUG
