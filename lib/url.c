@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.302 2003-09-03 22:02:41 bagder Exp $
+ * $Id: url.c,v 1.303 2003-09-15 22:33:18 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1297,6 +1297,13 @@ CURLcode Curl_disconnect(struct connectdata *conn)
     free(conn->range);
     conn->bits.rangestringalloc = FALSE;
   }
+
+  if((conn->ntlm.state != NTLMSTATE_NONE) ||
+     (conn->proxyntlm.state != NTLMSTATE_NONE))
+    /* Authentication data is a mix of connection-related and sessionhandle-
+       related stuff. NTLM is connection-related so when we close the shop
+       we shall forget. */
+    conn->data->state.authstage = 0;
 
   if(-1 != conn->connectindex) {
     /* unlink ourselves! */
