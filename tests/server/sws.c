@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.43 2004-03-05 08:32:11 bagder Exp $
+ * $Id: sws.c,v 1.44 2004-03-09 08:38:25 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -48,7 +48,9 @@
 /* This define is "almost" required to build on HPUX 11 */
 #include <arpa/inet.h> 
 #endif
+#ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
 
 #include "getpart.h"
 
