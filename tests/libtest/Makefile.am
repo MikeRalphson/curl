@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.5 2002-12-13 14:14:35 bagder Exp $
+# $Id: Makefile.am,v 1.6 2002-12-13 16:22:17 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -9,7 +9,7 @@ INCLUDES = -I$(top_srcdir)/include/curl
 LIBDIR = ../../lib
 
 # here are all tools used for running libcurl tests
-bin_PROGRAMS = lib500 lib501 lib502
+bin_PROGRAMS = lib500 lib501 lib502 lib503
 
 lib500_SOURCES = lib500.c first.c test.h
 lib500_LDADD = $(LIBDIR)/libcurl.la
@@ -22,3 +22,7 @@ lib501_DEPENDENCIES = $(LIBDIR)/libcurl.la
 lib502_SOURCES = lib502.c first.c test.h
 lib502_LDADD = $(LIBDIR)/libcurl.la
 lib502_DEPENDENCIES = $(LIBDIR)/libcurl.la
+
+lib503_SOURCES = lib503.c first.c test.h
+lib503_LDADD = $(LIBDIR)/libcurl.la
+lib503_DEPENDENCIES = $(LIBDIR)/libcurl.la
