@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.89 2004-06-21 14:09:23 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.90 2004-06-22 17:22:30 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "12 Mar 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -533,6 +533,8 @@ of the headers you specified.
 The first line in a request (usually containing a GET or POST) is not a header
 and cannot be replaced using this option. Only the lines following the
 request-line are headers.
+
+Pass a NULL to this to reset back to no custom headers.
 
 \fBNOTE:\fP The most commonly replaced headers have "shortcuts" in the options
 \fICURLOPT_COOKIE\fP, \fICURLOPT_USERAGENT\fP and \fICURLOPT_REFERER\fP.
