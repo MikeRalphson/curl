@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_formadd.3,v 1.10 2004-06-09 08:18:17 bagder Exp $
+.\" $Id: curl_formadd.3,v 1.11 2004-08-23 14:46:43 bagder Exp $
 .\"
 .TH curl_formadd 3 "24 June 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -25,6 +25,9 @@ The pointers \fI*firstitem\fP and \fI*lastitem\fP should both be pointing to
 NULL in the first call to this function. All list-data will be allocated by
 the function itself. You must call \fIcurl_formfree\fP after the form post has
 been done to free the resources again.
+
+Using POST with HTTP 1.1 implies the use of a "Expect: 100-continue" header.
+You can disable this header with \fICURLOPT_HTTPHEADER\fP as usual.
 
 First, there are some basics you need to understand about multipart/formdata
 posts. Each part consists of at least a NAME and a CONTENTS part. If the part
