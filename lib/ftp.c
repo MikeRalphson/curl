@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.243 2004-03-31 10:59:48 bagder Exp $
+ * $Id: ftp.c,v 1.244 2004-03-31 21:33:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -105,7 +105,7 @@
 #include "memdebug.h"
 #endif
 
-#ifdef NI_WITHSCOPEID
+#ifdef HAVE_NI_WITHSCOPEID
 #define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV | NI_WITHSCOPEID
 #else
 #define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV

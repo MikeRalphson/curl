@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.352 2004-03-31 10:46:06 bagder Exp $
+ * $Id: url.c,v 1.353 2004-03-31 21:33:52 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1877,7 +1877,7 @@ static void verboseconnect(struct connectdata *conn,
 #ifdef ENABLE_IPV6
   {
     char hbuf[NI_MAXHOST];
-#ifdef NI_WITHSCOPEID
+#ifdef HAVE_NI_WITHSCOPEID
 #define NIFLAGS NI_NUMERICHOST | NI_WITHSCOPEID
 #else
 #define NIFLAGS NI_NUMERICHOST
