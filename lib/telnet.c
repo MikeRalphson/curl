@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.45 2003-10-18 20:24:20 bagder Exp $
+ * $Id: telnet.c,v 1.46 2003-10-18 20:24:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -870,13 +870,13 @@ void telrcv(struct connectdata *conn,
             int count)			/* Number of bytes received */
 {
   unsigned char c;
-  int index = 0;
+  int in = 0;
   struct SessionHandle *data = conn->data;
   struct TELNET *tn = (struct TELNET *)conn->proto.telnet;
 
   while(count--)
   {
-    c = inbuf[index++];
+    c = inbuf[in++];
 
     switch (tn->telrcv_state)
     {
