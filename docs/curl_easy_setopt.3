@@ -1,8 +1,8 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.36 2001-05-31 08:41:42 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.37 2001-05-31 13:55:13 bagder Exp $
 .\"
-.TH curl_easy_setopt 3 "29 May 2001" "libcurl 7.8" "libcurl Manual"
+.TH curl_easy_setopt 3 "31 May 2001" "libcurl 7.8" "libcurl Manual"
 .SH NAME
 curl_easy_setopt - Set curl easy-session options
 .SH SYNOPSIS
@@ -177,12 +177,6 @@ similar.
 .B CURLOPT_PUT
 A non-zero parameter tells the library to use HTTP PUT a file. The file to put
 must be set with CURLOPT_INFILE and CURLOPT_INFILESIZE.
-.TP
-.B CURLOPT_MUTE
-A non-zero parameter tells the library to be completely quiet. This only
-affects error messages that occurs when there's no CURLOPT_ERRORBUFFER
-specified. If an error messaged is specifed, this option won't make any
-difference.
 .TP
 .B CURLOPT_USERPWD
 Pass a char * as parameter, which should be [username]:[password] to use for
