@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ssluse.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-09-25 22:04:51 $
+ * $Revision: 1.9 $
+ * $Date: 2000-09-26 07:03:59 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -266,7 +266,7 @@ UrgSSLConnect (struct UrlData *data)
       return 4;
     }
     infof(data, "\t subject: %s\n", str);
-    OPENSSL_free(str);
+    CRYPTO_free(str);
 
     str = X509_NAME_oneline (X509_get_issuer_name  (data->server_cert), NULL, 0);
     if(!str) {
@@ -274,7 +274,7 @@ UrgSSLConnect (struct UrlData *data)
       return 5;
     }
     infof(data, "\t issuer: %s\n", str);
-    OPENSSL_free(str);
+    CRYPTO_free(str);
 
     /* We could do all sorts of certificate verification stuff here before
        deallocating the certificate. */
