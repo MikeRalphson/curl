@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.285 2003-07-19 23:56:33 bagder Exp $
+ * $Id: url.c,v 1.286 2003-07-20 00:02:47 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1360,9 +1360,11 @@ ConnectionExists(struct SessionHandle *data,
             continue;
           }
         }
-        if(needle->protocol & PROT_FTP) {
-          /* This is FTP, verify that we're using the same name and
-             password as well */
+        if((needle->protocol & PROT_FTP) ||
+           ((needle->protocol & PROT_HTTP) &&
+            (needle->data->state.authwant==CURLAUTH_NTLM))) {
+          /* This is FTP or HTTP+NTLM, verify that we're using the same name
+             and password as well */
           if(!strequal(needle->user, check->user) ||
              !strequal(needle->passwd, check->passwd)) {
             /* one of them was different */
