@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.207 2004-03-05 09:40:16 bagder Exp $
+ * $Id: transfer.c,v 1.208 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2012,14 +2012,16 @@ Curl_Transfer(struct connectdata *c_conn, /* connection data */
   if(!conn)
     return CURLE_BAD_FUNCTION_ARGUMENT;
 
-  curlassert(sockindex <= 1);
+  curlassert((sockindex <= 1) && (sockindex >= -1));
 
   /* now copy all input parameters */
-  conn->sockfd = sockindex==-1?-1:conn->sock[sockindex];
+  conn->sockfd = sockindex==-1?
+    CURL_SOCKET_BAD:conn->sock[sockindex];
   conn->size = size;
   conn->bits.getheader = getheader;
   conn->bytecountp = bytecountp;
-  conn->writesockfd = writesockindex==-1?-1:conn->sock[writesockindex];
+  conn->writesockfd = writesockindex==-1?
+    CURL_SOCKET_BAD:conn->sock[writesockindex];
   conn->writebytecountp = writecountp;
 
   return CURLE_OK;

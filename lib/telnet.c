@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.55 2004-03-03 13:32:57 bagder Exp $
+ * $Id: telnet.c,v 1.56 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1079,7 +1079,7 @@ CURLcode Curl_telnet(struct connectdata *conn)
 {
   CURLcode code;
   struct SessionHandle *data = conn->data;
-  int sockfd = conn->sock[FIRSTSOCKET];
+  curl_socket_t sockfd = conn->sock[FIRSTSOCKET];
 #ifdef WIN32
   HMODULE wsock2;
   WSOCK2_FUNC close_event_func;

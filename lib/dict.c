@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.33 2004-02-12 09:50:44 bagder Exp $
+ * $Id: dict.c,v 1.34 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -89,7 +89,7 @@ CURLcode Curl_dict(struct connectdata *conn)
                           by RFC 2229 */
   CURLcode result=CURLE_OK;
   struct SessionHandle *data=conn->data;
-  int sockfd = conn->sock[FIRSTSOCKET];
+  curl_socket_t sockfd = conn->sock[FIRSTSOCKET];
 
   char *path = conn->path;
   curl_off_t *bytecount = &conn->bytecount;

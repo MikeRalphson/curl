@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.22 2004-01-07 09:19:35 bagder Exp $
+ * $Id: sendf.h,v 1.23 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 CURLcode Curl_sendf(int fd, struct connectdata *, const char *fmt, ...);
@@ -38,7 +38,7 @@ CURLcode Curl_client_write(struct SessionHandle *data, int type, char *ptr,
                            size_t len);
 
 /* internal read-function, does plain socket, SSL and krb4 */
-int Curl_read(struct connectdata *conn, int sockfd,
+int Curl_read(struct connectdata *conn, curl_socket_t sockfd,
               char *buf, size_t buffersize,
               ssize_t *n);
 /* internal write-function, does plain socket, SSL and krb4 */

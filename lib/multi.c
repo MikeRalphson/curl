@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.44 2004-03-04 16:13:33 bagder Exp $
+ * $Id: multi.c,v 1.45 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -263,7 +263,7 @@ CURLMcode curl_multi_fdset(CURLM *multi_handle,
         /* when we're waiting for a connect, we wait for the socket to
            become writable */
         struct connectdata *conn = easy->easy_conn;
-        int sockfd;
+        curl_socket_t sockfd;
 
         if(CURLM_STATE_WAITCONNECT == easy->state) {
           sockfd = conn->sock[FIRSTSOCKET];

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.194 2004-03-09 21:39:50 bagder Exp $
+ * $Id: http.c,v 1.195 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -531,7 +531,7 @@ CURLcode add_buffer_send(send_buffer *in,
   size_t size;
   struct HTTP *http = conn->proto.http;
   size_t sendsize;
-  int sockfd = conn->sock[FIRSTSOCKET];
+  curl_socket_t sockfd = conn->sock[FIRSTSOCKET];
 
   /* The looping below is required since we use non-blocking sockets, but due
      to the circumstances we will just loop and try again and again etc */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.90 2004-01-29 13:56:45 bagder Exp $
+ * $Id: ssluse.c,v 1.91 2004-03-09 22:52:50 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -922,7 +922,7 @@ Curl_SSLConnect(struct connectdata *conn,
   SSL_METHOD *req_method;
   SSL_SESSION *ssl_sessionid=NULL;
   ASN1_TIME *certdate;
-  int sockfd = conn->sock[sockindex];
+  curl_socket_t sockfd = conn->sock[sockindex];
   struct ssl_connect_data *connssl = &conn->ssl[sockindex];
 
   /* mark this is being ssl enabled from here on out. */
