@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.237 2004-01-22 11:54:39 bagder Exp $
+ * $Id: curl.h,v 1.238 2004-01-22 11:56:39 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -82,7 +82,7 @@ extern "C" {
 /* gcc on windows or Watcom */
   typedef long long curl_off_t;
 #else
-/* "normal" approach, do not that this does not necessarily mean that
+/* "normal" approach, do note that this does not necessarily mean that
    the type is >32 bits, see the SIZEOF_CURL_OFF_T define for that! */
   typedef off_t curl_off_t;
 #endif
