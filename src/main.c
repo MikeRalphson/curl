@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.254 2004-04-22 15:26:30 bagder Exp $
+ * $Id: main.c,v 1.255 2004-04-23 08:44:27 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1389,7 +1389,10 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         break;
 
       case 't': /* --proxy-ntlm */
-        config->proxyntlm ^= TRUE;
+        if(curlinfo->features & CURL_VERSION_NTLM)
+          config->proxyntlm ^= TRUE;
+        else
+          return PARAM_LIBCURL_DOESNT_SUPPORT;        
         break;
 
       case 'u': /* --crlf */
