@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.9 2004-06-29 18:44:59 bagder Exp $
+ * $Id: hostip4.c,v 1.10 2004-06-30 11:32:16 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -362,8 +362,8 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   if(h) {
     ai = Curl_he2ai(h, port);
 
-    if (h == buf) /* used a *_r() function */
-      free(h);
+    if (buf) /* used a *_r() function */
+      free(buf);
   }
 
   return ai;
