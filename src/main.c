@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.175 2003-05-22 22:40:01 bagder Exp $
+ * $Id: main.c,v 1.176 2003-05-27 22:56:01 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -48,6 +48,10 @@
 
 #if defined(WIN32)&&!defined(__CYGWIN32__)
 #include <winsock.h>
+#endif
+
+#ifdef HAVE_SYS_TIME_H
+#include <sys/time.h>
 #endif
 
 #include "version.h"
