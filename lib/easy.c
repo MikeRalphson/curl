@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.17 2001-08-14 08:19:40 bagder Exp $
+ * $Id: easy.c,v 1.18 2001-08-15 06:51:37 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -74,6 +74,7 @@
 #include <curl/curl.h>
 #include "transfer.h"
 #include "ssluse.h"
+#include "url.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -180,7 +181,7 @@ CURL *curl_easy_init(void)
     curl_global_init(CURL_GLOBAL_DEFAULT);
 
   /* We use curl_open() with undefined URL so far */
-  res = Curl_open((CURL **)&data);
+  res = Curl_open(&data);
   if(res != CURLE_OK)
     return NULL;
 
@@ -229,20 +230,25 @@ CURLcode curl_easy_setopt(CURL *curl, CURLoption tag, ...)
 
 CURLcode curl_easy_perform(CURL *curl)
 {
-  return Curl_perform(curl);
+  struct UrlData *data = (struct UrlData *)curl;
+
+  return Curl_perform(data);
 }
 
 void curl_easy_cleanup(CURL *curl)
 {
-  Curl_close(curl);
+  struct UrlData *data = (struct UrlData *)curl;
+  Curl_close(data);
 }
 
 CURLcode curl_easy_getinfo(CURL *curl, CURLINFO info, ...)
 {
   va_list arg;
   void *paramp;
+  struct UrlData *data = (struct UrlData *)curl;
+
   va_start(arg, info);
   paramp = va_arg(arg, void *);
 
-  return Curl_getinfo(curl, info, paramp);
+  return Curl_getinfo(data, info, paramp);
 }
