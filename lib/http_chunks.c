@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.15 2003-01-29 10:14:22 bagder Exp $
+ * $Id: http_chunks.c,v 1.16 2003-04-11 08:49:21 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -190,6 +190,9 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
           break;
 
         case GZIP:
+          result = Curl_unencode_gzip_write(conn->data, &conn->keep, piece);
+          break;
+
         case COMPRESS:
         default:
           failf (conn->data,

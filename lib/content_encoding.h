@@ -18,9 +18,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.h,v 1.4 2003-01-29 10:14:20 bagder Exp $
+ * $Id: content_encoding.h,v 1.5 2003-04-11 08:49:21 bagder Exp $
  ***************************************************************************/
 
 CURLcode Curl_unencode_deflate_write(struct SessionHandle *data, 
                                      struct Curl_transfer_keeper *k, 
                                      ssize_t nread);
+
+CURLcode
+Curl_unencode_gzip_write(struct SessionHandle *data, 
+                         struct Curl_transfer_keeper *k,
+                         ssize_t nread);

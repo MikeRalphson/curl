@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.149 2003-03-31 05:13:26 bagder Exp $
+ * $Id: urldata.h,v 1.150 2003-04-11 08:49:22 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -296,7 +296,7 @@ struct Curl_transfer_keeper {
 
 #ifdef HAVE_LIBZ
   bool zlib_init;		/* True if zlib already initialized;
-				   undefined if Content-Encdoing header. */
+				   undefined if Content-Encoding header. */
   z_stream z;			/* State structure for zlib. */
 #endif
 
