@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.301 2003-09-03 21:47:41 bagder Exp $
+ * $Id: url.c,v 1.302 2003-09-03 22:02:41 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -499,6 +499,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * the server.
      */ 
     data->set.ftp_create_missing_dirs = va_arg( param , long )?TRUE:FALSE;
+    break;
+  case CURLOPT_FTP_RESPONSE_TIMEOUT:
+    /*
+     * An FTP option that specifies how quickly an FTP response must be 
+     * obtained before it is considered failure.
+     */
+    data->set.ftp_response_timeout = va_arg( param , long );
     break;
   case CURLOPT_FTPLISTONLY:
     /*

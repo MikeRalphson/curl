@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.173 2003-08-20 15:41:45 bagder Exp $
+ * $Id: urldata.h,v 1.174 2003-09-03 22:02:41 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -773,6 +773,7 @@ struct UserDefined {
   void *passwd_client;               /* pass to the passwd callback */
   long timeout;         /* in seconds, 0 means no timeout */
   long connecttimeout;  /* in seconds, 0 means no timeout */
+  long ftp_response_timeout; /* in seconds, 0 means no timeout */
   long infilesize;      /* size of file to upload, -1 means unknown */
   long low_speed_limit; /* bytes/second */
   long low_speed_time;  /* number of seconds */

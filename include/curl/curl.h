@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.213 2003-09-01 08:22:21 bagder Exp $
+ * $Id: curl.h,v 1.214 2003-09-03 22:02:41 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -29,7 +29,7 @@
 
 /* This is the version number of the libcurl package from which this header
    file origins: */
-#define LIBCURL_VERSION "7.10.7"
+#define LIBCURL_VERSION "7.10.8-test2"
 
 /* This is the numeric version of the libcurl version number, meant for easier
    parsing and comparions by programs. The LIBCURL_VERSION_NUM define will
@@ -45,7 +45,7 @@
    always a greater number in a more recent release. It makes comparisons with
    greater than and less than work.
 */
-#define LIBCURL_VERSION_NUM 0x070a07
+#define LIBCURL_VERSION_NUM 0x070a08
 
 #include <stdio.h>
 
@@ -677,6 +677,12 @@ typedef enum {
      methods you like. Use this in combination with CURLOPT_PROXYUSERPWD.
      Note that setting multiple bits may cause extra network round-trips. */
   CINIT(PROXYAUTH, LONG, 111),
+
+  /* FPT Option that changes the timeout, in seconds, associated with 
+     getting a response.  This is different from transfer timeout time and
+     essentially places a demand on the FTP server to acknowledge commands
+     in a timely manner. */
+  CINIT(FTP_RESPONSE_TIMEOUT, LONG , 112),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
