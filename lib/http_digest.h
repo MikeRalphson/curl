@@ -20,13 +20,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.h,v 1.6 2004-05-04 07:52:53 bagder Exp $
+ * $Id: http_digest.h,v 1.7 2004-05-13 14:14:03 bagder Exp $
  ***************************************************************************/
 
 typedef enum {
   CURLDIGEST_NONE, /* not a digest */
   CURLDIGEST_BAD,  /* a digest, but one we don't like */
   CURLDIGEST_BADALGO, /* unsupported algorithm requested */
+  CURLDIGEST_NOMEM,
   CURLDIGEST_FINE, /* a digest we act on */
 
   CURLDIGEST_LAST  /* last entry in this enum, don't use */
