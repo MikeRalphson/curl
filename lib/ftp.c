@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.224 2004-02-05 09:26:01 bagder Exp $
+ * $Id: ftp.c,v 1.225 2004-02-09 07:52:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1167,6 +1167,12 @@ CURLcode ftp_use_port(struct connectdata *conn)
   
   portsock = -1;
   for (ai = res; ai; ai = ai->ai_next) {
+    /*
+     * Workaround for AIX5 getaddrinfo() problem (it doesn't set ai_socktype):
+     */
+    if (ai->ai_socktype == 0)
+      ai->ai_socktype = hints.ai_socktype;
+
     portsock = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol);
     if (portsock < 0)
       continue;
