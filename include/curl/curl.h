@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.19 $
- * $Date: 2000-09-07 11:34:08 $
+ * $Revision: 1.20 $
+ * $Date: 2000-09-14 14:14:03 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -380,6 +380,9 @@ typedef enum {
 
   /* size of the POST input data, if strlen() is not good to use */
   CINIT(POSTFIELDSIZE, LONG, 60),
+
+  /* tunnel non-http operations through a HTTP proxy */
+  CINIT(HTTPPROXYTUNNEL, LONG, 61),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
