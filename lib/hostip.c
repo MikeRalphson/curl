@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.43 2002-01-08 07:06:07 bagder Exp $
+ * $Id: hostip.c,v 1.44 2002-01-14 23:14:24 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -131,13 +131,14 @@ Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
   }
 
   /* Create a new cache entry */
-  p = (struct curl_dns_cache_entry *) malloc(sizeof(struct curl_dns_cache_entry));
-  if (!p) {
+  p = (struct curl_dns_cache_entry *)
+    malloc(sizeof(struct curl_dns_cache_entry));
+  if (!p)
     return NULL;
-  }
 
   p->addr = Curl_getaddrinfo(data, hostname, port, bufp);
   if (!p->addr) {
+    free(p);
     return NULL;
   }
   p->timestamp = now;
