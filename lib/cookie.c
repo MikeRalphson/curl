@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.25 2001-10-24 11:36:55 bagder Exp $
+ * $Id: cookie.c,v 1.26 2001-10-30 12:08:17 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -198,7 +198,7 @@ Curl_cookie_add(struct CookieInfo *c,
 
     if(NULL == co->domain)
       /* no domain given in the header line, set the default now */
-      co->domain=strdup(domain);
+      co->domain=domain?strdup(domain):NULL;
   }
   else {
     /* This line is NOT a HTTP header style line, we do offer support for
