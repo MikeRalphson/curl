@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.62 2004-06-24 07:43:49 bagder Exp $
+ * $Id: telnet.c,v 1.63 2004-06-24 12:07:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -878,7 +878,7 @@ static void suboption(struct connectdata *conn)
         tmplen = (strlen(v->data) + 1);
         /* Add the variable only if it fits */
         if(len + tmplen < (int)sizeof(temp)-6) {
-          sscanf(v->data, "%127[^,],%s", varname, varval);
+          sscanf(v->data, "%127[^,],%127s", varname, varval);
           snprintf((char *)&temp[len], sizeof(temp) - len,
                    "%c%s%c%s", CURL_NEW_ENV_VAR, varname,
                    CURL_NEW_ENV_VALUE, varval);
