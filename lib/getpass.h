@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.h,v 1.7 2001-01-08 22:30:30 bagder Exp $
+ * $Id: getpass.h,v 1.8 2001-08-14 08:27:07 bagder Exp $
  *****************************************************************************/
 #ifndef HAVE_GETPASS_R
 /* If there's a system-provided function named like this, we trust it is
@@ -29,7 +29,7 @@
 /*
  * Returning NULL will abort the continued operation!
  */
-char* getpass_r(char *prompt, char* buffer, size_t buflen );
+char* getpass_r(const char *prompt, char* buffer, size_t buflen );
 #endif
 
 #endif
