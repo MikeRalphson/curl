@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.1 2002-01-03 10:22:59 bagder Exp $
+ * $Id: hash.c,v 1.2 2002-01-07 20:52:32 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -255,11 +255,22 @@ curl_hash_clean(curl_hash *h)
   h->table = NULL;
 }
 
+size_t 
+curl_hash_count(curl_hash *h)
+{
+  return h->size;
+}
+
 void 
 curl_hash_destroy(curl_hash *h)
 {
+  if (!h) {
+    return;
+  }
+
   curl_hash_clean(h);
   free(h);
+  h = NULL;
 }
 
 /*

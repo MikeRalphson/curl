@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.112 2001-12-17 23:02:21 bagder Exp $
+ * $Id: curl.h,v 1.113 2002-01-07 20:52:32 bumblebury Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -487,6 +487,9 @@ typedef enum {
      the param has no meaning...
    */
   CINIT(SSLENGINE_DEFAULT, LONG, 90),
+
+  /* Non-zero value means to use the global dns cache */
+  CINIT(DNS_USE_GLOBAL_CACHE, LONG, 91),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;

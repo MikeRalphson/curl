@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.184 2002-01-04 09:38:52 bagder Exp $
+ * $Id: url.c,v 1.185 2002-01-07 20:52:32 bumblebury Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -284,6 +284,15 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
   va_start(param, option);
 
   switch(option) {
+    case CURLOPT_DNS_USE_GLOBAL_CACHE: {
+      int use_cache = va_arg(param, int);
+      if (use_cache) {
+        Curl_global_host_cache_init();
+      }
+
+      data->set.global_dns_cache = use_cache;
+    }
+    break;
   case CURLOPT_SSL_CIPHER_LIST:
     /* set a list of cipher we want to use in the SSL connection */
     data->set.ssl.cipher_list = va_arg(param, char *);

@@ -20,13 +20,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.96 2002-01-03 15:01:23 bagder Exp $
+ * $Id: urldata.h,v 1.97 2002-01-07 20:52:32 bumblebury Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
 
 #include "setup.h"
 #include "hostip.h"
+#include "hash.h"
 
 #define PORT_FTP 21
 #define PORT_TELNET 23
@@ -644,6 +645,8 @@ struct UserDefined {
   bool reuse_fresh;      /* do not re-use an existing connection  */
   bool expect100header;  /* TRUE if we added Expect: 100-continue */
   bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
+
+  bool global_dns_cache;
 };
 
 /*
@@ -658,6 +661,7 @@ struct UserDefined {
  * 'struct urlstate' instead.  */
 
 struct SessionHandle {
+  curl_hash          *hostcache;
   struct UserDefined set;      /* values set by the libcurl user */
   struct DynamicStatic change; /* possibly modified userdefined data */
 
