@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.42 2001-11-29 20:15:59 bagder Exp $
+# $Id: runtests.pl,v 1.43 2002-01-03 08:22:05 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -912,7 +912,8 @@ for(keys %run) {
 }
 
 if($total) {
-    print "$ok tests out of $total reported OK\n";
+    printf("$ok tests out of $total reported OK: %d%%\n",
+           $ok/$total*100);
 
     if($ok != $total) {
         print "These test cases failed: $failed\n";
