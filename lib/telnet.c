@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.37 2003-03-03 06:40:36 bagder Exp $
+ * $Id: telnet.c,v 1.38 2003-03-03 06:42:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1094,7 +1094,7 @@ CURLcode Curl_telnet(struct connectdata *conn)
         ssize_t bytes_written;
         char *buffer = buf;
               
-        if(!ReadFile(stdin_handle, buf, 255, &nread, NULL)) {
+        if(!ReadFile(stdin_handle, buf, 255, (LPDWORD)&nread, NULL)) {
           keepon = FALSE;
           break;
         }
