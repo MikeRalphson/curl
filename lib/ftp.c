@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.85 2001-08-30 22:48:34 bagder Exp $
+ * $Id: ftp.c,v 1.86 2001-08-30 22:59:58 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -462,7 +462,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
     /* we may need to issue a KAUTH here to have access to the files
      * do it if user supplied a password
      */
-    if(conn->data->set.passwd && *conn->data->set.passwd)
+    if(data->state.passwd && *data->state.passwd)
       Curl_krb_kauth(conn);
 #endif
   }
