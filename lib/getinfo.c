@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.22 2002-09-03 11:53:00 bagder Exp $
+ * $Id: getinfo.c,v 1.23 2002-10-28 19:24:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -72,9 +72,9 @@ CURLcode Curl_initinfo(struct SessionHandle *data)
 CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
 {
   va_list arg;
-  long *param_longp;
-  double *param_doublep;
-  char **param_charp;
+  long *param_longp=NULL;
+  double *param_doublep=NULL;
+  char **param_charp=NULL;
   va_start(arg, info);
 
   switch(info&CURLINFO_TYPEMASK) {

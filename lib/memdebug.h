@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.13 2002-09-03 11:53:01 bagder Exp $
+ * $Id: memdebug.h,v 1.14 2002-10-28 19:24:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -57,6 +57,7 @@ FILE *curl_fopen(const char *file, const char *mode, int line,
 int curl_fclose(FILE *file, int line, const char *source);
 
 /* Set this symbol on the command-line, recompile all lib-sources */
+#undef strdup
 #define strdup(ptr) curl_dostrdup(ptr, __LINE__, __FILE__)
 #define malloc(size) curl_domalloc(size, __LINE__, __FILE__)
 #define realloc(ptr,size) curl_dorealloc(ptr, size, __LINE__, __FILE__)
