@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.8 2003-06-13 07:14:46 bagder Exp $
+ * $Id: http_ntlm.c,v 1.9 2003-06-13 07:56:38 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -226,17 +226,16 @@ static void mkhash(char *password,
     pw[i] = 0;
 
   {
-  /* create LanManager hashed password */
-
+    /* create LanManager hashed password */
     DES_key_schedule ks;
 
     setup_des_key(pw, DESKEY(ks));
-    DES_ecb_encrypt((DES_cblock *)magic, (DES_cblock *)lmbuffer, DESKEY(ks),
-                    DES_ENCRYPT);
+    DES_ecb_encrypt((DES_cblock *)magic, (DES_cblock *)lmbuffer,
+                    DESKEY(ks), DES_ENCRYPT);
   
     setup_des_key(pw+7, DESKEY(ks));
-    DES_ecb_encrypt((DES_cblock *)magic, (DES_cblock *)lmbuffer+8, DESKEY(ks),
-                    DES_ENCRYPT);
+    DES_ecb_encrypt((DES_cblock *)magic, (DES_cblock *)(lmbuffer+8),
+                    DESKEY(ks), DES_ENCRYPT);
 
     memset(lmbuffer+16, 0, 5);
   }
