@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.47 2002-02-19 00:26:44 bagder Exp $
+# $Id: runtests.pl,v 1.48 2002-02-19 01:04:31 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -22,7 +22,7 @@ my $FTPSPORT=8821;  # this is the FTPS server port
 my $CURL="../src/curl"; # what curl executable to run on the tests
 my $LOGDIR="log";
 my $TESTDIR="data";
-my $SERVERIN="$LOGDIR/server.input"; # what curl sent the server
+my $SERVERIN="$LOGDIR/http-request.dump"; # what curl sent the server
 my $CURLLOG="$LOGDIR/curl.log"; # all command lines run
 my $FTPDCMD="$LOGDIR/ftpserver.cmd"; # copy ftp server instructions here
 
