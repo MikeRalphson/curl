@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.56 2001-03-07 23:51:41 bagder Exp $
+ * $Id: http.c,v 1.57 2001-03-09 16:48:18 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -469,10 +469,14 @@ CURLcode Curl_http(struct connectdata *conn)
     http->sendit = Curl_getFormData(data->httppost, &http->postsize);
   }
 
-  if(!checkheaders(data, "Host:") &&
-     !conn->allocptr.host) {
-    /* if ptr_host is already set, it is OK since we only re-use connections
-       to the very same host and port */
+  if(!checkheaders(data, "Host:")) {
+    /* if ptr_host is already set, it is almost OK since we only re-use
+       connections to the very same host and port, but when we use a HTTP
+       proxy we have a persistant connect and yet we must change the Host:
+       header! */
+
+    if(conn->allocptr.host)
+      free(conn->allocptr.host);
 
     if(((conn->protocol&PROT_HTTPS) && (conn->remote_port == PORT_HTTPS)) ||
        (!(conn->protocol&PROT_HTTPS) && (conn->remote_port == PORT_HTTP)) )
