@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.304 2003-09-19 12:56:24 bagder Exp $
+ * $Id: url.c,v 1.305 2003-10-09 20:04:47 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2935,6 +2935,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
       conn->bits.use_range = TRUE;        /* enable range download */
     }
+    else
+      conn->bits.use_range = FALSE; /* disable range download */
 
     *in_connect = conn;      /* return this instead! */
 
