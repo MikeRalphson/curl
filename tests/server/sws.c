@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.28 2003-04-03 13:43:15 bagder Exp $
+ * $Id: sws.c,v 1.29 2003-05-22 22:36:39 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -290,6 +290,13 @@ static int get_request(int sock, int *part)
 
       sprintf(logbuf, "Found test number %d in path", test_no);
       logmsg(logbuf);
+
+      if(strstr(reqbuf, "Authorization: Digest")) {
+        /* If the client is passing this Digest-header, we set the part number
+           to 1000. Not only to spice up the complexity of this, but to make
+           Digest stuff to work in the test suite. */
+        *part = 1000;
+      }
     }
     else {
       if(sscanf(reqbuf, "CONNECT %" MAXDOCNAMELEN_TXT "s HTTP/%d.%d",
