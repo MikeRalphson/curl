@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2001, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * In order to be useful for every potential user, curl and libcurl are
  * dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.53 2002-02-20 13:46:55 bagder Exp $
+ * $Id: hostip.c,v 1.54 2002-03-15 08:45:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -293,7 +293,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
   char sbuf[NI_MAXSERV];
 
   memset(&hints, 0, sizeof(hints));
-  hints.ai_family = PF_INET;
+  hints.ai_family = PF_UNSPEC;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_CANONNAME;
   snprintf(sbuf, sizeof(sbuf), "%d", port);
