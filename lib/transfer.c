@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.222 2004-04-26 07:12:52 bagder Exp $
+ * $Id: transfer.c,v 1.223 2004-04-26 14:02:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -84,7 +84,6 @@
 
 #include "urldata.h"
 #include <curl/curl.h>
-#include <curl/types.h>
 #include "netrc.h"
 
 #include "content_encoding.h"
