@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.298 2005-02-09 13:06:40 bagder Exp $
+ * $Id: ftp.c,v 1.299 2005-02-09 13:47:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -700,12 +700,14 @@ CURLcode Curl_ftp_fdset(struct connectdata *conn,
   struct FTP *ftp = conn->proto.ftp;
   curl_socket_t sockfd = conn->sock[FIRSTSOCKET];
 
-  if(ftp->sendleft)
+  if(ftp->sendleft) {
     /* write mode */
     FD_SET(sockfd, write_fd_set);
-  else
+  }
+  else {
     /* read mode */
     FD_SET(sockfd, read_fd_set);
+  }
 
   if((int)sockfd > *max_fdp)
     *max_fdp = (int)sockfd;
