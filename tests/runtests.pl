@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.107 2004-02-12 14:40:08 bagder Exp $
+# $Id: runtests.pl,v 1.108 2004-02-20 06:59:17 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -338,7 +338,7 @@ sub runhttpserver {
     if ( $data =~ /WE ROOLZ: (\d+)/ ) {
         $pid = 0+$1;
     }
-    elsif($data) {
+    elsif($data || ($res != 7)) {
         print "RUN: Unknown HTTP server is running on port $HOSTPORT\n";
         return -2;
     }
