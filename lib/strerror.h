@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_strerror.h,v 1.1 2004-03-24 22:43:09 bagder Exp $
+ * $Id: strerror.h,v 1.1 2004-03-25 13:40:24 bagder Exp $
  ***************************************************************************/
 
 #include "urldata.h"
