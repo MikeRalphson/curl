@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: post-callback.c,v 1.1 2002-03-14 14:53:00 bagder Exp $
+ * $Id: post-callback.c,v 1.2 2003-12-08 14:13:19 bagder Exp $
  *
  * An example source code that issues a HTTP POST and we provide the actual
  * data through a read callback.
@@ -74,7 +74,7 @@ int main(void)
     curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
 
     /* pointer to pass to our read function */
-    curl_easy_setopt(curl, CURLOPT_INFILE, &pooh);
+    curl_easy_setopt(curl, CURLOPT_READDATA, &pooh);
 
     /* get verbose debug output please */
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: getinmemory.c,v 1.4 2003-11-19 08:19:20 bagder Exp $
+ * $Id: getinmemory.c,v 1.5 2003-12-08 14:13:19 bagder Exp $
  *
  * Example source code to show how the callback function can be used to
  * download data into a chunk of memory instead of storing it in a file.
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
   curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
 
   /* we pass our 'chunk' struct to the callback function */
-  curl_easy_setopt(curl_handle, CURLOPT_FILE, (void *)&chunk);
+  curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&chunk);
 
   /* get it! */
   curl_easy_perform(curl_handle);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.2 2003-03-17 12:38:08 bagder Exp $
+ * $Id: ftpupload.c,v 1.3 2003-12-08 14:13:19 bagder Exp $
  */
 
 #include <stdio.h>
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
     curl_easy_setopt(curl, CURLOPT_POSTQUOTE, headerlist);
 
     /* now specify which file to upload */
-    curl_easy_setopt(curl, CURLOPT_INFILE, hd_src);
+    curl_easy_setopt(curl, CURLOPT_READDATA, hd_src);
 
     /* and give the size of the upload (optional) */
     curl_easy_setopt(curl, CURLOPT_INFILESIZE, file_info.st_size);
