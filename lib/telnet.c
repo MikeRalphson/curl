@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.53 2004-02-12 09:53:03 bagder Exp $
+ * $Id: telnet.c,v 1.54 2004-02-15 13:48:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1117,7 +1117,7 @@ CURLcode Curl_telnet(struct connectdata *conn)
          != SOCKET_ERROR) {
         if(events.lNetworkEvents & FD_READ) {
           /* This reallu OUGHT to check its return code. */
-          Curl_read(conn, sockfd, buf, BUFSIZE - 1, &nread);
+          (void)Curl_read(conn, sockfd, buf, BUFSIZE - 1, &nread);
             
           telrcv(conn, (unsigned char *)buf, nread);
           
@@ -1181,7 +1181,7 @@ CURLcode Curl_telnet(struct connectdata *conn)
 
       if(FD_ISSET(sockfd, &readfd)) {
         /* This OUGHT to check the return code... */
-        Curl_read(conn, sockfd, buf, BUFSIZE - 1, &nread);
+        (void)Curl_read(conn, sockfd, buf, BUFSIZE - 1, &nread);
 
         /* if we receive 0 or less here, the server closed the connection and
            we bail out from this! */
