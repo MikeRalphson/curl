@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.186 2004-02-06 08:11:58 bagder Exp $
+ * $Id: http.c,v 1.187 2004-02-09 12:46:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1230,7 +1230,7 @@ CURLcode Curl_http(struct connectdata *conn)
     http->p_pragma = "Pragma: no-cache\r\n";
 
   if(!checkheaders(data, "Accept:"))
-    http->p_accept = "Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*\r\n";
+    http->p_accept = "Accept: */*\r\n";
 
   if(( (HTTPREQ_POST == data->set.httpreq) ||
        (HTTPREQ_POST_FORM == data->set.httpreq) ||
