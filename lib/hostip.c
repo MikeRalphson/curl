@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.133 2004-03-31 12:45:26 bagder Exp $
+ * $Id: hostip.c,v 1.134 2004-03-31 12:55:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,6 +87,9 @@
 #ifndef ARES_SUCCESS
 #define ARES_SUCCESS CURLE_OK
 #endif
+
+#define CURL_TIMEOUT_RESOLVE 300 /* when using asynch methods, we allow this
+                                    many seconds for a name resolve */
 
 /* These two symbols are for the global DNS cache */
 static curl_hash hostname_cache;
@@ -570,8 +573,8 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
   diff = Curl_tvdiff(Curl_tvnow(),
                      data->progress.t_startsingle)/1000;
 
-  if(diff > 180) {
-    /* Waited >180 seconds, this is a name resolve timeout! */
+  if(diff > CURL_TIMEOUT_RESOLVE) {
+    /* Waited many seconds, this is a name resolve timeout! */
     failf(data, "Name resolve timeout after %ld seconds", diff);
     return CURLE_OPERATION_TIMEDOUT;
   }
@@ -614,7 +617,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
   CURLcode rc=CURLE_OK;
   struct SessionHandle *data = conn->data;
   struct timeval now = Curl_tvnow();
-  long timeout = 300; /* default name resolve timeout in seconds */
+  long timeout = CURL_TIMEOUT_RESOLVE; /* default name resolve timeout */
 
   /* now, see if there's a connect timeout or a regular timeout to
      use instead of the default one */
@@ -1431,9 +1434,10 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
 
   /* now, see if there's a connect timeout or a regular timeout to
      use instead of the default one */
-  timeout = conn->data->set.connecttimeout ? conn->data->set.connecttimeout :
-            conn->data->set.timeout        ? conn->data->set.timeout :
-            300;   /* default name resolve timeout in seconds */
+  timeout =
+    conn->data->set.connecttimeout ? conn->data->set.connecttimeout :
+    conn->data->set.timeout ? conn->data->set.timeout :
+    CURL_TIMEOUT_RESOLVE; /* default name resolve timeout */
   ticks = GetTickCount();
 
   status = WaitForSingleObject(td->thread_hnd, 1000UL*timeout);
