@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.21 2005-03-11 00:20:30 bagder Exp $
+# $Id: testcurl.pl,v 1.22 2005-03-14 12:26:29 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.21 $';
+$version='$Revision: 1.22 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -212,9 +212,10 @@ logit "NAME = $name";
 logit "EMAIL = $email";
 logit "DESC = $desc";
 logit "CONFOPTS = $confopts";
-logit "CFLAGS = ".($ENV{CFLAGS} ? $ENV{CFLAGS} : "");
-logit "CC = ".($ENV{CC} ? $ENV{CC} : "");
-logit "target = ".($targetos ? $targetos : "");
+logit "CFLAGS = ".$ENV{CFLAGS};
+logit "LDFLAGS = ".$ENV{LDFLAGS};
+logit "CC = ".$ENV{CC};
+logit "target = ".$targetos;
 logit "version = $version";
 logit "date = ".(scalar gmtime)." UTC";
 
