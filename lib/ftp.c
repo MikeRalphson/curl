@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.123 2002-01-04 09:17:52 bagder Exp $
+ * $Id: ftp.c,v 1.124 2002-01-04 09:35:23 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -83,6 +83,10 @@
 #include "strequal.h"
 #include "ssluse.h"
 #include "connect.h"
+
+#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
+#include "inet_ntoa_r.h"
+#endif
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
