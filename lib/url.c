@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.180 2001-12-17 23:02:23 bagder Exp $
+ * $Id: url.c,v 1.181 2001-12-20 15:58:22 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1566,6 +1566,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
           /* we have a proxy here to set */
           data->change.proxy = proxy;
           data->change.proxy_alloc=TRUE; /* this needs to be freed later */
+          conn->bits.httpproxy = TRUE;
         }
       } /* if (!nope) - it wasn't specified non-proxy */
     } /* NO_PROXY wasn't specified or '*' */
