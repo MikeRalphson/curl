@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.38 2004-11-02 10:12:23 bagder Exp $
+ * $Id: if2ip.c,v 1.39 2005-03-14 15:51:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,6 +30,8 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+
+#include "if2ip.h"
 
 #if !defined(WIN32) && !defined(__BEOS__) && !defined(__CYGWIN32__) && \
     !defined(__riscos__) && !defined(__INTERIX) && !defined(NETWARE)
@@ -55,7 +57,6 @@
 #include <sys/ioctl.h>
 #endif
 
-/* -- if2ip() -- */
 #ifdef HAVE_NETDB_H
 #include <netdb.h>
 #endif
@@ -72,7 +73,6 @@
 #include <inet.h>
 #endif
 
-#include "if2ip.h"
 #include "memory.h"
 
 /* The last #include file should be: */
