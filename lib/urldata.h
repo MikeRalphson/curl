@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.166 2003-07-21 13:16:30 bagder Exp $
+ * $Id: urldata.h,v 1.167 2003-07-22 09:58:18 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -537,6 +537,7 @@ struct connectdata {
   struct ntlmdata ntlm;     /* NTLM differs from other authentication schemes
                                because it authenticates connections, not
                                single requests! */
+  struct ntlmdata proxyntlm; /* NTLM data for proxy */
 };
 
 /* The end of connectdata. */
