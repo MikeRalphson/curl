@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.196 2003-05-27 06:25:56 bagder Exp $
+ * $Id: curl.h,v 1.197 2003-05-27 12:45:51 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -34,11 +34,7 @@
 #  include <sys/time.h>
 #  include <time.h>
 # else
-#  ifdef HAVE_SYS_TIME_H
-#   include <sys/time.h>
-#  else
-#   include <time.h>
-#  endif
+   include <sys/time.h>
 # endif
 #endif /* defined (vms) */
 

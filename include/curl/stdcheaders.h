@@ -20,12 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: stdcheaders.h,v 1.6 2003-01-16 21:08:12 bagder Exp $
+ * $Id: stdcheaders.h,v 1.7 2003-05-27 12:45:52 bagder Exp $
  ***************************************************************************/
 
-#ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
-#endif
 
 size_t fread (void *, size_t, size_t, FILE *);
 size_t fwrite (const void *, size_t, size_t, FILE *);
