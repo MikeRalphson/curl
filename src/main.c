@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.261 2004-05-05 07:30:52 bagder Exp $
+ * $Id: main.c,v 1.262 2004-05-10 09:16:21 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1049,7 +1049,11 @@ static int str2offset(curl_off_t *val, char *str)
 static void checkpasswd(const char *kind, /* for what purpose */
                         char **userpwd) /* pointer to allocated string */
 {
-  char *ptr = strchr(*userpwd, ':');
+  char *ptr;
+  if(!*userpwd)
+    return;
+
+  ptr = strchr(*userpwd, ':');
   if(!ptr) {
     /* no password present, prompt for one */
     char passwd[256]="";
