@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.36 2003-01-29 10:14:20 bagder Exp $
+ * $Id: easy.c,v 1.37 2003-04-22 21:42:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -200,6 +200,7 @@ CURLcode curl_easy_setopt(CURL *curl, CURLoption tag, ...)
   long param_long = 0;
   void *param_obj = NULL;
   struct SessionHandle *data = curl;
+  CURLcode ret=CURLE_FAILED_INIT;
 
   va_start(arg, tag);
 
@@ -213,20 +214,20 @@ CURLcode curl_easy_setopt(CURL *curl, CURLoption tag, ...)
   if(tag < CURLOPTTYPE_OBJECTPOINT) {
     /* This is a LONG type */
     param_long = va_arg(arg, long);
-    Curl_setopt(data, tag, param_long);
+    ret = Curl_setopt(data, tag, param_long);
   }
   else if(tag < CURLOPTTYPE_FUNCTIONPOINT) {
     /* This is a object pointer type */
     param_obj = va_arg(arg, void *);
-    Curl_setopt(data, tag, param_obj);
+    ret = Curl_setopt(data, tag, param_obj);
   }
   else {
     param_func = va_arg(arg, func_T );
-    Curl_setopt(data, tag, param_func);
+    ret = Curl_setopt(data, tag, param_func);
   }
 
   va_end(arg);
-  return CURLE_OK;
+  return ret;
 }
 
 CURLcode curl_easy_perform(CURL *curl)
