@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.11 2004-08-05 18:52:54 bagder Exp $
+ * $Id: http_negotiate.c,v 1.12 2005-02-22 12:10:30 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -166,12 +166,7 @@ int Curl_input_negotiate(struct connectdata *conn, char *header)
 
   len = strlen(header);
   if (len > 0) {
-    int rawlen;
-    input_token.length = (len+3)/4 * 3;
-    input_token.value = malloc(input_token.length);
-    if (input_token.value == NULL)
-      return ENOMEM;
-    rawlen = Curl_base64_decode(header, input_token.value);
+    int rawlen = Curl_base64_decode(header, &input_token.value);
     if (rawlen < 0)
       return -1;
     input_token.length = rawlen;
