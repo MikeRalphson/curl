@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.128 2005-02-09 23:04:51 bagder Exp $
+ * $Id: ssluse.c,v 1.129 2005-02-10 07:45:08 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -530,7 +530,7 @@ int Curl_SSL_init(void)
 {
 #ifdef USE_SSLEAY
   /* make sure this is only done once */
-  if(0 != init_ssl)
+  if(init_ssl)
     return 1;
 
 #ifdef HAVE_ENGINE_LOAD_BUILTIN_ENGINES
@@ -543,11 +543,12 @@ int Curl_SSL_init(void)
   /* Setup all the global SSL stuff */
   if (!SSLeay_add_ssl_algorithms())
     return 0;
+
+  init_ssl++; /* never again */
+
 #else
   /* SSL disabled, do nothing */
 #endif
-
-  init_ssl++; /* never again */
 
   return 1;
 }
