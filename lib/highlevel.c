@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.10 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.11 $
+ * $Date: 2000-08-31 12:04:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -172,7 +172,9 @@ _Transfer(struct connectdata *c_conn)
     if(conn->size > 0)
       pgrsSetDownloadSize(data, conn->size);
   }
-  {
+  /* we want header and/or body, if neither then don't do this! */
+  if(conn->getheader ||
+     !data->bits.no_body) {
     fd_set readfd;
     fd_set writefd;
     fd_set rkeepfd;
