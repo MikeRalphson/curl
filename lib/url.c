@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.188 2002-01-29 10:49:32 bagder Exp $
+ * $Id: url.c,v 1.189 2002-01-29 20:34:30 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1292,7 +1292,6 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
   /* and we setup a few fields in case we end up actually using this struct */
   conn->data = data;           /* remember our daddy */
-  conn->upload_bufsize = UPLOAD_BUFSIZE; /* default upload buffer size */
   conn->firstsocket = -1;     /* no file descriptor */
   conn->secondarysocket = -1; /* no file descriptor */
   conn->connectindex = -1;    /* no index */
