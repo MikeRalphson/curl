@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.16 2003-02-28 12:20:10 bagder Exp $
+ * $Id: writeout.c,v 1.17 2003-08-20 15:42:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -118,7 +118,7 @@ void ourWriteOut(CURL *curl, char *writeinfo)
                 break;
               case VAR_HTTP_CODE:
                 if(CURLE_OK ==
-                   curl_easy_getinfo(curl, CURLINFO_HTTP_CODE, &longinfo))
+                   curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &longinfo))
                   fprintf(stream, "%03d", longinfo);
                 break;
               case VAR_HEADER_SIZE:

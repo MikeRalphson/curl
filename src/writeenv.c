@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeenv.c,v 1.5 2003-01-16 21:08:13 bagder Exp $
+ * $Id: writeenv.c,v 1.6 2003-08-20 15:42:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -44,7 +44,7 @@ struct
 } variables[14] =
 {
   {"curl_url_effective", CURLINFO_EFFECTIVE_URL, writeenv_STRING},
-  {"curl_http_code", CURLINFO_HTTP_CODE, writeenv_LONG},
+  {"curl_http_code", CURLINFO_RESPONSE_CODE, writeenv_LONG},
   {"curl_time_total", CURLINFO_TOTAL_TIME, writeenv_DOUBLE},
   {"curl_time_namelookup", CURLINFO_NAMELOOKUP_TIME, writeenv_DOUBLE},
   {"curl_time_connect", CURLINFO_CONNECT_TIME, writeenv_DOUBLE},

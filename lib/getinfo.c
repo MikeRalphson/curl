@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.30 2003-08-11 23:15:41 bagder Exp $
+ * $Id: getinfo.c,v 1.31 2003-08-20 15:42:26 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -103,7 +103,7 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
   case CURLINFO_EFFECTIVE_URL:
     *param_charp = data->change.url?data->change.url:(char *)"";
     break;
-  case CURLINFO_HTTP_CODE:
+  case CURLINFO_RESPONSE_CODE:
     *param_longp = data->info.httpcode;
     break;
   case CURLINFO_HTTP_CONNECTCODE:
