@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.188 2003-12-03 07:52:01 bagder Exp $
+ * $Id: transfer.c,v 1.189 2003-12-10 15:27:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1950,6 +1950,8 @@ Curl_Transfer(struct connectdata *c_conn, /* connection data */
   struct connectdata *conn = (struct connectdata *)c_conn;
   if(!conn)
     return CURLE_BAD_FUNCTION_ARGUMENT;
+
+  curlassert(sockindex <= 1);
 
   /* now copy all input parameters */
   conn->sockfd = sockindex==-1?-1:conn->sock[sockindex];
