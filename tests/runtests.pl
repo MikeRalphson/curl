@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.132 2004-05-17 10:53:34 bagder Exp $
+# $Id: runtests.pl,v 1.133 2004-06-14 08:25:54 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -746,6 +746,10 @@ sub checkcurl {
     }
     if(!$curl) {
         die "couldn't run '$CURL'"
+    }
+
+    if(!$curl_debug && $torture) {
+        die "can't run torture tests since curl was not build with debug";
     }
 
     my $hostname=`hostname`;
