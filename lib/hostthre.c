@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.19 2005-02-09 13:06:40 bagder Exp $
+ * $Id: hostthre.c,v 1.20 2005-03-20 12:46:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -536,8 +536,6 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
     *entry = conn->async.dns;
     TRACE(("resolved okay, dns %p\n", *entry));
   }
-  else
-    TRACE(("not yet\n"));
   return CURLE_OK;
 }
 
