@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.161 2003-10-04 15:48:15 bagder Exp $
+ * $Id: http.c,v 1.162 2003-10-07 14:39:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1568,11 +1568,15 @@ CURLcode Curl_http(struct connectdata *conn)
           Curl_pgrsSetUploadSize(data, http->postsize);
         }
       }
-      else
+      else {
         /* set the upload size to the progress meter */
         Curl_pgrsSetUploadSize(data, data->set.infilesize);
 
-      /* issue the request, headers-only */
+        /* set the pointer to mark that we will send the post body using
+           the read callback */
+        http->postdata = (char *)&http->postdata;
+      }
+      /* issue the request */
       result = add_buffer_send(req_buffer, conn->firstsocket, conn,
                                &data->info.request_size);
 
