@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.39 2002-05-03 12:06:04 bagder Exp $
+ * $Id: progress.c,v 1.40 2002-06-03 12:46:04 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -149,7 +149,7 @@ void Curl_pgrsTime(struct SessionHandle *data, timerid timer)
     break;
   case TIMER_REDIRECT:
     data->progress.t_redirect =
-      (double)Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle)/1000.0;
+      (double)Curl_tvdiff(Curl_tvnow(), data->progress.start)/1000.0;
     break;
   }
 }
