@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.26 2001-09-12 07:19:11 bagder Exp $
+ * $Id: hostip.c,v 1.27 2001-09-12 08:59:00 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -125,8 +125,6 @@ struct hostent *Curl_gethost(struct SessionHandle *data,
 {
   struct hostent *h = NULL;
   unsigned long in;
-
-#ifdef HAVE_GETHOSTBYNAME_R
   int ret; /* this variable is unused on several platforms but used on some */
 
 #define CURL_NAMELOOKUP_SIZE 9000
@@ -138,7 +136,7 @@ struct hostent *Curl_gethost(struct SessionHandle *data,
   if(!buf)
     return NULL; /* major failure */
   *bufp = buf;
-#endif
+
   ret = 0; /* to prevent the compiler warning */
 
   if ( (in=inet_addr(hostname)) != INADDR_NONE ) {
@@ -208,9 +206,10 @@ struct hostent *Curl_gethost(struct SessionHandle *data,
     }
 #else
   else {
-    *bufp=NULL; /* zero this always */
     if ((h = gethostbyname(hostname)) == NULL ) {
       infof(data, "gethostbyname(2) failed for %s\n", hostname);
+      free(buf);
+      *bufp=NULL;
     }
 #endif
   }
