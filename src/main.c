@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.149 2002-10-28 19:49:58 bagder Exp $
+ * $Id: main.c,v 1.150 2002-11-15 14:15:28 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2149,6 +2149,7 @@ void dump(const char *text,
     }
     fputc('\n', stream); /* newline */
   }
+  fflush(stream);
 }
 
 static
