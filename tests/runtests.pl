@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.157 2005-01-07 21:11:13 bagder Exp $
+# $Id: runtests.pl,v 1.158 2005-01-15 09:21:51 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -374,6 +374,11 @@ sub runhttpserver {
 
     if ( $data =~ /WE ROOLZ: (\d+)/ ) {
         $pid = 0+$1;
+    }
+    elsif($res == 6) {
+        # curl: (6) Couldn't resolve host '::1'
+        print "RUN: failed to resolve host\n";
+        return -3;
     }
     elsif($data || ($res != 7)) {
         print "RUN: Unknown server is running on port $port\n";
