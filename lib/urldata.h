@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.211 2004-04-07 14:27:56 bagder Exp $
+ * $Id: urldata.h,v 1.212 2004-04-13 07:16:27 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -889,8 +889,9 @@ struct UserDefined {
   bool ftp_use_eprt;     /* if EPRT is to be attempted or not */
   curl_ftpssl ftp_ssl;   /* if AUTH TLS is to be attempted etc */
   bool no_signal;        /* do not use any signal/alarm handler */
+  bool global_dns_cache; /* subject for future removal */
+  bool tcp_nodelay;      /* whether to enable TCP_NODELAY or not */
 
-  bool global_dns_cache;
 };
 
 /*
@@ -918,9 +919,6 @@ struct SessionHandle {
 #if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
   ENGINE*  engine;
 #endif /* USE_SSLEAY */
-
-  /* This tells CreateConnection() whether to enable TCP_NODELAY or not */
-  int tcp_nodelay;
 };
 
 #define LIBCURL_NAME "libcurl"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.354 2004-04-06 15:14:11 bagder Exp $
+ * $Id: url.c,v 1.355 2004-04-13 07:16:26 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -245,6 +245,14 @@ CURLcode Curl_close(struct SessionHandle *data)
   free(data);
   return CURLE_OK;
 }
+
+/**
+ * Curl_open()
+ *
+ * @param curl is a pointer to a sessionhandle pointer that gets set by this
+ * function.
+ * @return CURLcode
+ */
 
 CURLcode Curl_open(struct SessionHandle **curl)
 {
@@ -1308,7 +1316,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Enable or disable TCP_NODELAY, which will disable/enable the Nagle
      * algorithm
      */
-    data->tcp_nodelay = va_arg(param, long);
+    data->set.tcp_nodelay = va_arg(param, long);
     break;
 
   default:
@@ -1968,13 +1976,20 @@ CURLcode Curl_protocol_connect(struct connectdata *conn,
   return result; /* pass back status */
 }
 
-/*
+/**
  * CreateConnection() sets up a new connectdata struct, or re-uses an already
  * existing one, and resolves host name.
  *
  * if this function returns CURLE_OK and *async is set to TRUE, the resolve
  * response will be coming asynchronously. If *async is FALSE, the name is
  * already resolved.
+ *
+ * @param data The sessionhandle pointer
+ * @param in_connect is set to the next connection data pointer
+ * @param addr is set to the new dns entry for this connection
+ * @param async is set TRUE/FALSE depending on the nature of this lookup
+ * @return CURLcode
+ * @see SetupConnection()
  */
 
 static CURLcode CreateConnection(struct SessionHandle *data,
