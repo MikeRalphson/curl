@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.23 $
- * $Date: 2000-09-21 08:47:20 $
+ * $Revision: 1.24 $
+ * $Date: 2000-09-25 22:15:28 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -535,6 +535,9 @@ CURLcode ftp_done(struct connectdata *conn)
       return CURLE_FTP_COULDNT_RETR_FILE;
     }
   }
+#ifdef KRB4
+  sec_fflush_fd(conn, data->secondarysocket);
+#endif
   /* shut down the socket to inform the server we're done */
   sclose(data->secondarysocket);
   data->secondarysocket = -1;
