@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.172 2003-10-31 21:43:22 bagder Exp $
+ * $Id: http.c,v 1.173 2003-11-20 09:53:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -402,8 +402,9 @@ CURLcode Curl_http_auth(struct connectdata *conn,
       }
       else if(checkprefix("Basic", start)) {
         *availp |= CURLAUTH_BASIC;
-        if((data->state.authwant == CURLAUTH_BASIC) && (httpcode == 401)) {
-          /* We asked for Basic authentication but got a 401 back
+        if((data->state.authwant == CURLAUTH_BASIC) &&
+           (httpcode == data->state.authstage)) {
+          /* We asked for Basic authentication but got a 40X back
              anyway, which basicly means our name+password isn't
              valid. */
           data->state.authavail = CURLAUTH_NONE;
