@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.121 2002-08-29 06:09:21 bagder Exp $
+ * $Id: urldata.h,v 1.122 2002-08-30 09:20:12 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -644,6 +644,8 @@ struct UserDefined {
                     */
   char *krb4_level; /* what security level */
   struct ssl_config_data ssl;  /* user defined SSL stuff */
+
+  curl_proxytype proxytype; /* what kind of proxy that is in use */
 
   int dns_cache_timeout; /* DNS cache timeout */
   long buffer_size;      /* size of receive buffer to use */

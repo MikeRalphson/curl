@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.141 2002-08-26 23:13:26 bagder Exp $
+ * $Id: main.c,v 1.142 2002-08-30 09:20:12 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2698,7 +2698,7 @@ operate(struct Configurable *config, int argc, char *argv[])
       curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorbuffer);
       curl_easy_setopt(curl, CURLOPT_TIMEOUT, config->timeout);
       curl_easy_setopt(curl, CURLOPT_POSTFIELDS, config->postfields);
-        
+
       /* new in libcurl 7.2: */
       curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, config->postfieldsize);
         
