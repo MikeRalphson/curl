@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.26 2002-09-03 11:53:00 bagder Exp $
+ * $Id: file.c,v 1.27 2002-09-23 12:46:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -159,12 +159,26 @@ CURLcode Curl_file(struct connectdata *conn)
     expected_size = (double)statbuf.st_size;
   }
 
+  /* Added by Dolbneff A.V & Spiridonoff A.V */
+  if (conn->resume_from <= expected_size)
+    expected_size -= conn->resume_from;
+  else
+    /* Is this error code suitable in such situation? */
+    return CURLE_FTP_BAD_DOWNLOAD_RESUME;
+
+  if (expected_size == 0)
+    return CURLE_OK;
+
   /* The following is a shortcut implementation of file reading
      this is both more efficient than the former call to download() and
      it avoids problems with select() and recv() on file descriptors
      in Winsock */
   if(expected_size != -1)
     Curl_pgrsSetDownloadSize(data, expected_size);
+
+  if(conn->resume_from)
+    /* Added by Dolbneff A.V & Spiridonoff A.V */
+    lseek(fd, conn->resume_from, SEEK_SET);
 
   while (res == CURLE_OK) {
     nread = read(fd, buf, BUFSIZE-1);
