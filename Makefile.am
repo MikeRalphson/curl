@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.14 2001-03-16 15:22:51 bagder Exp $
+# $Id: Makefile.am,v 1.15 2001-03-23 14:29:10 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -17,7 +17,7 @@ dist-hook:
 check: test
 
 test:
-	@(cd tests; make quiet-test)
+	@(cd tests; $(MAKE) quiet-test)
 
 #
 # Build source and binary rpms. For rpm-3.0 and above, the ~/.rpmmacros
