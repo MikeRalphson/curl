@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.32 $
- * $Date: 2000-11-17 09:48:21 $
+ * $Revision: 1.33 $
+ * $Date: 2000-11-20 08:53:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -175,7 +175,7 @@ struct connectdata {
   char proto[64];
   char gname[256];
   char *name;
-  char path[URL_MAX_LENGTH];
+  char *path; /* formerly staticly this size: URL_MAX_LENGTH */
   char *ppath;
   long bytecount;
   struct timeval now;

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/dict.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.8 $
+ * $Date: 2000-11-20 08:53:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -233,7 +233,7 @@ CURLcode dict(struct connectdata *conn)
       int i;
 	
       ppath++;
-      for (i = 0; (i < URL_MAX_LENGTH) && (ppath[i]); i++) {
+      for (i = 0; ppath[i]; i++) {
         if (ppath[i] == ':')
           ppath[i] = ' ';
       }

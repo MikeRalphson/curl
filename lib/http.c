@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.35 $
- * $Date: 2000-11-17 14:05:11 $
+ * $Revision: 1.36 $
+ * $Date: 2000-11-20 08:53:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -327,7 +327,7 @@ CURLcode http(struct connectdata *conn)
   }
   if ((data->bits.httpproxy) && !(conn->protocol&PROT_HTTPS))  {
     /* The path sent to the proxy is in fact the entire URL */
-    strncpy(ppath, data->url, URL_MAX_LENGTH-1);
+    ppath = data->url;
   }
   if(data->bits.http_formpost) {
     /* we must build the whole darned post sequence first, so that we have
