@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.16 2002-06-05 21:29:20 bagder Exp $
+ * $Id: multi.c,v 1.17 2002-08-05 17:04:39 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -263,10 +263,13 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
     case CURLM_STATE_INIT:
       /* init this transfer. */
       easy->result=Curl_pretransfer(easy->easy_handle);
+
       if(CURLE_OK == easy->result) {
         /* after init, go CONNECT */
         easy->state = CURLM_STATE_CONNECT;
         result = CURLM_CALL_MULTI_PERFORM; 
+        
+        easy->easy_handle->state.used_interface = Curl_if_multi;
       }
       break;
     case CURLM_STATE_CONNECT:

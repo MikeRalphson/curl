@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.114 2002-06-15 21:00:55 bagder Exp $
+ * $Id: urldata.h,v 1.115 2002-08-05 17:04:39 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -488,6 +488,12 @@ typedef enum {
 #define MAX_CURL_PASSWORD_LENGTH 256
 
 struct UrlState {
+  enum {
+    Curl_if_none,
+    Curl_if_easy,
+    Curl_if_multi
+  } used_interface;
+
   /* buffers to store authentication data in, as parsed from input options */
   char user[MAX_CURL_USER_LENGTH];
   char passwd[MAX_CURL_PASSWORD_LENGTH];
