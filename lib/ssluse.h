@@ -20,7 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.5 2001-01-05 10:11:42 bagder Exp $
+ * $Id: ssluse.h,v 1.6 2001-02-20 17:35:52 bagder Exp $
  *****************************************************************************/
-int Curl_SSLConnect (struct UrlData *data);
+#include "urldata.h"
+int Curl_SSLConnect(struct connectdata *conn);
 #endif

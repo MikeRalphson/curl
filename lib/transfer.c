@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.9 2001-02-07 08:36:23 bagder Exp $
+ * $Id: transfer.c,v 1.10 2001-02-20 17:35:52 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -366,6 +366,16 @@ _Transfer(struct connectdata *c_conn)
               if (strnequal("Content-Length", p, 14) &&
                   sscanf (p+14, ": %ld", &contentlength))
                 conn->size = contentlength;
+              else if (strnequal("Connection: close", p,
+                                 strlen("Connection: close"))) {
+                /*
+                 * [RFC 2616, section 8.1.2.1]
+                 * "Connection: close" is HTTP/1.1 language and means that
+                 * the connection will close when this request has been
+                 * served.
+                 */
+                conn->bits.close = TRUE; /* close when done */
+              }
               else if (strnequal("Content-Range", p, 13)) {
                 if (sscanf (p+13, ": bytes %d-", &offset) ||
                     sscanf (p+13, ": bytes: %d-", &offset)) {
@@ -635,7 +645,9 @@ CURLcode curl_transfer(CURL *curl)
 
 	if (data->maxredirs && (data->followlocation >= data->maxredirs)) {
 	  failf(data,"Maximum (%d) redirects followed", data->maxredirs);
+#ifdef USE_OLD_DISCONNECT
           curl_disconnect(c_connect);
+#endif
           res=CURLE_TOO_MANY_REDIRECTS;
 	  break;
 	}
@@ -772,11 +784,15 @@ CURLcode curl_transfer(CURL *curl)
            */
           break;
         }
+#ifdef USE_OLD_DISCONNECT
         curl_disconnect(c_connect);
+#endif
         continue;
       }
 
+#ifdef USE_OLD_DISCONNECT
       curl_disconnect(c_connect);
+#endif
     }
     break; /* it only reaches here when this shouldn't loop */
 
