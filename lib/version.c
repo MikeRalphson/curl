@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.40 2004-06-24 11:54:11 bagder Exp $
+ * $Id: version.c,v 1.41 2004-06-24 14:52:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -102,7 +102,12 @@ char *curl_version(void)
 {
   static char version[200];
   char *ptr=version;
+  /* to prevent compier warnings, we only declare len if we have code
+     that uses it */
+#if defined(USE_SSLEAY) || defined(HAVE_LIBZ) || defined(USE_ARES) || \
+  defined(USE_LIBIDN)
   int len;
+#endif
   size_t left = sizeof(version);
   strcpy(ptr, LIBCURL_NAME "/" LIBCURL_VERSION );
   ptr=strchr(ptr, '\0');
