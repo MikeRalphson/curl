@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.10 2001-02-06 09:08:24 bagder Exp $
+ * $Id: strequal.c,v 1.11 2001-02-06 09:12:39 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -80,7 +80,7 @@ int Curl_strnequal(const char *first, const char *second, size_t max)
  *
  * 
  */
-size_t strlcat(char *dst, const char *src, size_t size)
+size_t strlcat(char *dst, const char *src, size_t siz)
 {
   char *d = dst;
   const char *s = src;
