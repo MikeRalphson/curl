@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.125 2004-02-23 08:35:57 bagder Exp $
+ * $Id: hostip.c,v 1.126 2004-02-23 08:38:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -810,7 +810,7 @@ static struct hostent* pack_hostent(char** buf, struct hostent* orig)
 
   int i;
   char *str;
-  int len;
+  size_t len;
 
   bufptr = *buf;
   copy = (struct hostent*)bufptr;
