@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.24 2002-09-03 11:53:01 bagder Exp $
+ * $Id: setup.h,v 1.25 2002-12-04 11:06:17 bagder Exp $
  ***************************************************************************/
 
 /* MN 06/07/02 */
@@ -35,9 +35,8 @@
 #define CURL_DISABLE_GOPHER
 #endif
 
-#if !defined(WIN32) && defined(_WIN32)
-/* This _might_ be a good Borland fix. Please report whether this works or
-   not! */
+#if !defined(WIN32) && defined(__WIN32__)
+/* This should be a good Borland fix. Alexander J. Oss told us! */
 #define WIN32
 #endif
 

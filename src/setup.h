@@ -20,14 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.14 2002-09-03 11:53:01 bagder Exp $
+ * $Id: setup.h,v 1.15 2002-12-04 11:06:17 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
 
-#if !defined(WIN32) && defined(_WIN32)
-/* This _might_ be a good Borland fix. Please report whether this works or
-   not! */
+#if !defined(WIN32) && defined(__WIN32__)
+/* Borland fix */
 #define WIN32
 #endif
 
