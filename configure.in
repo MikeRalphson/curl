@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.83 2001-10-16 07:58:41 bagder Exp $
+dnl $Id: configure.in,v 1.84 2001-10-22 06:32:54 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -589,6 +589,7 @@ AC_CONFIG_FILES([Makefile \
            tests/data/Makefile \
 	   packages/Makefile \
 	   packages/Win32/Makefile \
+	   packages/Cygwin/Makefile \
 	   packages/Linux/Makefile \
 	   packages/Linux/RPM/Makefile \
 	   packages/Linux/RPM/curl.spec \
