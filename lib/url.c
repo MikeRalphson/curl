@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.431 2004-12-10 15:11:11 bagder Exp $
+ * $Id: url.c,v 1.432 2004-12-13 16:43:00 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -97,9 +97,6 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #endif
 #endif
 
-#ifdef HAVE_OPENSSL_ENGINE_H
-#include <openssl/engine.h>
-#endif
 #include "urldata.h"
 #include "netrc.h"
 
@@ -1150,45 +1147,15 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * String that holds the SSL crypto engine.
      */
     argptr = va_arg(param, char *);
-    if (argptr && argptr[0]) {
-#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
-      ENGINE *e = ENGINE_by_id(argptr);
-      if (e) {
-        if (data->engine) {
-          ENGINE_free(data->engine);
-        }
-        data->engine = e;
-      }
-      else {
-        failf(data, "SSL Engine '%s' not found", argptr);
-        result = CURLE_SSL_ENGINE_NOTFOUND;
-      }
-#else
-      failf(data, "SSL Engine not supported");
-      result = CURLE_SSL_ENGINE_NOTFOUND;
-#endif
-    }
+    if (argptr && argptr[0])
+       result = Curl_SSL_set_engine(data, argptr);
     break;
 
   case CURLOPT_SSLENGINE_DEFAULT:
     /*
      * flag to set engine as default.
      */
-#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
-    if (data->engine) {
-      if (ENGINE_set_default(data->engine, ENGINE_METHOD_ALL) > 0) {
-#ifdef DEBUG
-        fprintf(stderr,"set default crypto engine\n");
-#endif
-      }
-      else {
-#ifdef DEBUG
-        failf(data, "set default crypto engine failed");
-#endif
-        return CURLE_SSL_ENGINE_SETFAILED;
-      }
-    }
-#endif
+    result = Curl_SSL_set_engine_default(data);
     break;
   case CURLOPT_CRLF:
     /*

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.246 2004-12-06 16:36:50 giva Exp $
+ * $Id: urldata.h,v 1.247 2004-12-13 16:43:00 giva Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -974,7 +974,8 @@ struct SessionHandle {
                                   other dynamic purposes */
   struct PureInfo info;        /* stats, reports and info data */
 #if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
-  ENGINE*  engine;
+  ENGINE *engine;
+  struct curl_slist *engine_list; /* list of names from ENGINE_get_id() */
 #endif /* USE_SSLEAY */
 };
 
