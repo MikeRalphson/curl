@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.157 2003-06-10 12:49:20 bagder Exp $
+ * $Id: urldata.h,v 1.158 2003-06-11 13:38:57 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -162,6 +162,20 @@ struct digestdata {
   char *cnonce;
   char *realm;
   int algo;
+};
+
+typedef enum {
+  NTLMSTATE_NONE,
+  NTLMSTATE_TYPE1,
+  NTLMSTATE_TYPE2,
+  NTLMSTATE_TYPE3,
+  NTLMSTATE_LAST
+} curlntlm;
+
+/* Struct used for Digest challenge-response authentication */
+struct ntlmdata {
+  curlntlm state;
+  unsigned char nonce[8];
 };
 
 #ifdef GSSAPI
@@ -640,6 +654,7 @@ struct UrlState {
                       is always set TRUE when curl_easy_perform() is called. */
 
   struct digestdata digest;
+  struct ntlmdata ntlm;
 
 #ifdef GSSAPI
   struct negotiatedata negotiate;
@@ -688,8 +703,9 @@ struct UserDefined {
   char *set_proxy;   /* proxy to use */
   long use_port;     /* which port to use (when not using default) */
   char *userpwd;     /* <user:password>, if used */
-  bool httpdigest;   /* if HTTP Digest is enabled */
+  bool httpdigest;    /* if HTTP Digest authentication is enabled */
   bool httpnegotiate; /* if HTTP Negotiate authentication is enabled */
+  bool httpntlm;      /* if HTTP NTLM authentication is enabled */
   char *set_range;   /* range, if used. See README for detailed specification
                         on this syntax. */
   long followlocation; /* as in HTTP Location: */

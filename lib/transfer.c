@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.156 2003-06-10 12:22:24 bagder Exp $
+ * $Id: transfer.c,v 1.157 2003-06-11 13:38:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -96,6 +96,7 @@
 #include "getinfo.h"
 #include "ssluse.h"
 #include "http_digest.h"
+#include "http_ntlm.h"
 #ifdef GSSAPI
 #include "http_negotiate.h"
 #endif
@@ -736,6 +737,17 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                 conn->newurl = strdup(data->change.url);
 	    }
 #endif
+            else if(Curl_compareheader(k->p,
+                                       "WWW-Authenticate:", "NTLM") &&
+                    (401 == k->httpcode) &&
+                    data->set.httpntlm /* NTLM authentication is 
+                                          activated */) {
+              CURLntlm ntlm;
+              ntlm = Curl_input_ntlm(conn,
+                                     k->p+strlen("WWW-Authenticate:"));
+
+              conn->newurl = strdup(data->change.url); /* clone string */
+            }
             else if(checkprefix("WWW-Authenticate:", k->p) &&
                     (401 == k->httpcode) &&
                     data->set.httpdigest /* Digest authentication is 
