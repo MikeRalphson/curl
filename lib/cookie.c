@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.32 2002-03-19 07:54:55 bagder Exp $
+ * $Id: cookie.c,v 1.33 2002-03-25 09:08:33 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -347,7 +347,13 @@ Curl_cookie_add(struct CookieInfo *c,
       /* the names are identical */
 
       if(clist->domain && co->domain) {
-        if(strequal(clist->domain, co->domain))
+        if(strequal(clist->domain, co->domain) ||
+           (clist->domain[0]=='.' &&
+            strequal(&(clist->domain[1]), co->domain)) ||
+           (co->domain[0]=='.' &&
+            strequal(clist->domain, &(co->domain[1]))) )
+          /* The domains are identical, or at least identical if you skip the
+             preceeding dot */
           replace_old=TRUE;
       }
       else if(!clist->domain && !co->domain)
