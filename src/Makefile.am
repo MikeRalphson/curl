@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.30 2003-10-16 14:09:39 bagder Exp $
+# $Id: Makefile.am,v 1.31 2003-11-07 17:17:15 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -25,7 +25,7 @@ endif
 curl_SOURCES = main.c hugehelp.c urlglob.c writeout.c setup.h \
 	config-win32.h config-mac.h config-vms.h config-riscos.h \
 	urlglob.h version.h writeout.h writeenv.c writeenv.h \
-	getpass.c getpass.h
+	getpass.c getpass.h homedir.c homedir.h
 
 curl_LDADD = ../lib/libcurl.la
 curl_DEPENDENCIES = ../lib/libcurl.la

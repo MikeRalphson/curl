@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.211 2003-11-06 14:16:16 bagder Exp $
+ * $Id: main.c,v 1.212 2003-11-07 17:17:15 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -41,6 +41,7 @@
 #include "urlglob.h"
 #include "writeout.h"
 #include "getpass.h"
+#include "homedir.h"
 #ifdef USE_ENVIRONMENT
 #include "writeenv.h"
 #endif
@@ -2054,11 +2055,10 @@ static int parseconfig(const char *filename,
 
 #define CURLRC DOT_CHAR "curlrc"
 
-    filename = CURLRC;          /* sensible default */
-    home = curl_getenv("HOME"); /* portable environment reader */
+    filename = CURLRC;   /* sensible default */
+    home = homedir();    /* portable homedir finder */
     if(home) {
       if(strlen(home)<(sizeof(filebuffer)-strlen(CURLRC))) {
-
         snprintf(filebuffer, sizeof(filebuffer),
                  "%s%s%s", home, DIR_CHAR, CURLRC);
 
