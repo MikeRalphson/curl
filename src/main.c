@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.138 2002-08-13 12:12:08 bagder Exp $
+ * $Id: main.c,v 1.139 2002-08-26 11:58:18 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1318,7 +1318,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           else
             postdata = file2string(file);
           if(file && (file != stdin))
-            fclose(stdin);
+            fclose(file);
         }
         else {
           GetStr(&postdata, nextarg);
@@ -1626,7 +1626,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           file = fopen(nextarg, "r");
         config->writeout = file2string(file);
         if(file && (file != stdin))
-          fclose(stdin);
+          fclose(file);
       }
       else 
         GetStr(&config->writeout, nextarg);
