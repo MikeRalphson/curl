@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.19 2004-08-17 19:46:34 bagder Exp $
+ * $Id: multi.h,v 1.20 2004-09-30 19:50:36 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -52,7 +52,11 @@
 #endif
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if !(defined(_WINSOCKAPI_) || defined(_WINSOCK_H))
+/* The check above prevents the winsock2 inclusion if winsock.h already was
+   included, since they can't co-exist without problems */
 #include <winsock2.h>
+#endif
 #else
 
 /* HP-UX systems version 9, 10 and 11 lack sys/select.h and so does oldish
