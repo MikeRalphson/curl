@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.248 2004-12-14 09:36:22 bagder Exp $
+ * $Id: urldata.h,v 1.249 2004-12-14 14:20:21 giva Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -781,8 +781,6 @@ struct UrlState {
 #if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
   ENGINE *engine;
 #endif /* USE_SSLEAY */
-  struct curl_slist *engine_list; /* list of names from ENGINE_get_id() */
-
 };
 
 

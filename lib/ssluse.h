@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.19 2004-12-13 16:43:00 giva Exp $
+ * $Id: ssluse.h,v 1.20 2004-12-14 14:20:21 giva Exp $
  ***************************************************************************/
 #include "urldata.h"
 CURLcode Curl_SSLConnect(struct connectdata *conn, int sockindex);
@@ -43,6 +43,6 @@ CURLcode Curl_SSL_set_engine(struct SessionHandle *data, const char *engine);
 CURLcode Curl_SSL_set_engine_default(struct SessionHandle *data);
 
 /* Build list of OpenSSL engines */
-CURLcode Curl_SSL_engines_list(struct SessionHandle *data);
+struct curl_slist *Curl_SSL_engines_list(struct SessionHandle *data);
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.41 2004-12-14 09:36:22 bagder Exp $
+ * $Id: getinfo.c,v 1.42 2004-12-14 14:20:21 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -182,8 +182,7 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     *param_longp = data->info.numconnects;
     break;
   case CURLINFO_SSL_ENGINES:
-    Curl_SSL_engines_list(data);
-    *param_slistp = data->state.engine_list;
+    *param_slistp = Curl_SSL_engines_list(data);
     break;
   default:
     return CURLE_BAD_FUNCTION_ARGUMENT;
