@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.437 2005-01-10 23:32:14 bagder Exp $
+ * $Id: url.c,v 1.438 2005-01-11 15:25:29 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -118,7 +118,7 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "http_digest.h"
 #include "http_negotiate.h"
 #include "select.h"
-#include "multi.h"
+#include "multiif.h"
 
 /* And now for the protocols */
 #include "ftp.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.61 2005-01-11 14:00:46 bagder Exp $
+ * $Id: multi.c,v 1.62 2005-01-11 15:25:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -43,8 +43,8 @@
 #include "connect.h"
 #include "progress.h"
 #include "memory.h"
-#include "easy.h"
-#include "multi.h"
+#include "easyif.h"
+#include "multiif.h"
 
 /* The last #include file should be: */
 #include "memdebug.h"
