@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.77 2002-01-16 14:50:53 bagder Exp $
+ * $Id: transfer.c,v 1.78 2002-01-23 07:15:32 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -356,10 +356,11 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                * If we requested a "no body", this is a good time to get
                * out and return home.
                */
-              if(data->set.no_body)
-                return CURLE_OK;
+              bool stop_reading = FALSE;
 
-              if(!conn->bits.close) {
+              if(data->set.no_body)
+                stop_reading = TRUE;
+              else if(!conn->bits.close) {
                 /* If this is not the last request before a close, we must
                    set the maximum download size to the size of the
                    expected document or else, we won't know when to stop
@@ -370,10 +371,18 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                 /* If max download size is *zero* (nothing) we already
                    have nothing and can safely return ok now! */
                 if(0 == conn->maxdownload)
-                  return CURLE_OK;
+                  stop_reading = TRUE;
                     
                 /* What to do if the size is *not* known? */
               }
+
+              if(stop_reading) {
+                /* we make sure that this socket isn't read more now */
+                k->keepon &= ~KEEP_READ;
+                FD_ZERO(&k->rkeepfd);
+                return CURLE_OK;
+              }
+
               break;		/* exit header line loop */
             }
 
