@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.14 2001-10-02 09:40:06 bagder Exp $
+ * $Id: setup.h,v 1.15 2001-11-02 13:04:23 bagder Exp $
  *****************************************************************************/
 
 
@@ -125,8 +125,8 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 
 #else
 #define sclose(x) close(x)
-#define sread(x,y,z) read(x,y,z)
-#define swrite(x,y,z) write(x,y,z)
+#define sread(x,y,z) recv(x,y,z,0)
+#define swrite(x,y,z) send(x,y,z,0)
 #define myalarm(x) alarm(x)
 
 #define PATH_CHAR     ":"
