@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.158 2003-06-11 15:30:30 bagder Exp $
+ * $Id: transfer.c,v 1.159 2003-06-11 16:14:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -744,11 +744,13 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                     (401 == k->httpcode) &&
                     data->set.httpntlm /* NTLM authentication is 
                                           activated */) {
-              CURLntlm ntlm;
-              ntlm = Curl_input_ntlm(conn,
-                                     k->p+strlen("WWW-Authenticate:"));
+              CURLntlm ntlm =
+                Curl_input_ntlm(conn, k->p+strlen("WWW-Authenticate:"));
 
-              conn->newurl = strdup(data->change.url); /* clone string */
+              if(CURLNTLM_BAD != ntlm)
+                conn->newurl = strdup(data->change.url); /* clone string */
+              else
+                infof(data, "Authentication problem. Ignoring this.\n");
             }
 #endif
             else if(checkprefix("WWW-Authenticate:", k->p) &&
@@ -758,7 +760,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               CURLdigest dig = CURLDIGEST_BAD;
 
               if(data->state.digest.nonce)
-                infof(data, "Authentication problem. Ignoring this.");
+                infof(data, "Authentication problem. Ignoring this.\n");
               else
                 dig = Curl_input_digest(conn,
                                         k->p+strlen("WWW-Authenticate:"));
