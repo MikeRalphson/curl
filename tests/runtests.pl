@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.99 2003-10-29 16:27:43 bagder Exp $
+# $Id: runtests.pl,v 1.100 2003-10-31 21:34:39 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -68,8 +68,16 @@ my @teststat;   # teststat[testnum]=reason, reasons for skip
 if($valgrind) {
     # we have found valgrind on the host, use it
 
-    # perhaps we should verify that valgrind works before we actually use it?
-    $CURL="valgrind --leak-check=yes --logfile-fd=3 -q $CURL";
+    # verify that we can invoke it fine
+    my $code = system("valgrind >/dev/null 2>&1");
+
+    if(($code>>8) != 1) {
+        #print "Valgrind failure, disable it\n";
+        undef $valgrind;
+    }
+    else {
+        $CURL="valgrind --leak-check=yes --logfile-fd=3 -q $CURL";
+    }
 }
 #######################################################################
 # variables the command line options may set
