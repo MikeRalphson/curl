@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.13 2002-06-03 12:46:32 bagder Exp $
+ * $Id: timeval.c,v 1.14 2002-06-26 06:47:18 bagder Exp $
  *****************************************************************************/
 
 #ifdef WIN32
@@ -56,10 +56,14 @@ gettimeofday (struct timeval *tp, void *nothing)
    ** of 1ms.Need to link against winmm.lib for this
    **/
   unsigned long Ticks = 0;
+  unsigned long Sec =0;
+  unsigned long Usec = 0;
   Ticks = timeGetTime();
-  tp->tv_sec = Ticks%1000;
-  tp->tv_usec = (Ticks - (tp->tv_sec*1000))*1000;
-  
+
+  Sec = Ticks/1000;
+  Usec = (Ticks - (Sec*1000))*1000;
+  tp->tv_sec = Sec;
+  tp->tv_usec = Usec;
 #endif
   return 1;
 }
