@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.55 $
- * $Date: 2000-11-06 23:18:50 $
+ * $Revision: 1.56 $
+ * $Date: 2000-11-10 09:19:09 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -266,7 +266,12 @@ CURLcode curl_close(CURL *curl)
 
 int my_getpass(void *clientp, char *prompt, char* buffer, int buflen )
 {
-  return getpass_r(prompt, buffer, buflen);
+  char *retbuf;
+  retbuf = getpass_r(prompt, buffer, buflen);
+  if(NULL == retbuf)
+    return 1;
+  else
+    return 0; /* success */
 }
 
 
