@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.38 2002-01-16 14:49:08 bagder Exp $
+ * $Id: sendf.c,v 1.39 2002-01-16 23:28:58 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -212,6 +212,7 @@ CURLcode Curl_write(struct connectdata *conn, int sockfd,
       failf(conn->data, "SSL_write() return error %d\n", err);
       return CURLE_WRITE_ERROR;
     }
+    bytes_written = rc;
   }
   else {
 #endif
