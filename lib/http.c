@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.221 2004-05-04 14:27:07 bagder Exp $
+ * $Id: http.c,v 1.222 2004-05-05 13:00:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -207,8 +207,8 @@ static bool pickoneauth(struct auth *pick)
 CURLcode Curl_http_auth_act(struct connectdata *conn)
 {
   struct SessionHandle *data = conn->data;
-  bool pickhost;
-  bool pickproxy;
+  bool pickhost = FALSE;
+  bool pickproxy = FALSE;
   CURLcode code = CURLE_OK;
 
   if(data->state.authproblem)
