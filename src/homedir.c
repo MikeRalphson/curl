@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: homedir.c,v 1.1 2003-11-07 17:17:15 bagder Exp $
+ * $Id: homedir.c,v 1.2 2003-11-08 08:39:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,7 @@
 #endif
 
 static
-char *GetEnv(const char *variable, bool do_expand)
+char *GetEnv(const char *variable, char do_expand)
 {
   char *env = NULL;
 #ifdef WIN32
