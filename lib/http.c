@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.131 2003-05-22 22:45:38 bagder Exp $
+ * $Id: http.c,v 1.132 2003-05-27 06:28:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -791,7 +791,7 @@ CURLcode Curl_http(struct connectdata *conn)
                              (bool)(conn->protocol&PROT_HTTPS?TRUE:FALSE));
   }
 
-  if (data->change.proxy && *data->change.proxy &&
+  if (conn->bits.httpproxy &&
       !data->set.tunnel_thru_httpproxy &&
       !(conn->protocol&PROT_HTTPS))  {
     /* The path sent to the proxy is in fact the entire URL */
@@ -936,8 +936,8 @@ CURLcode Curl_http(struct connectdata *conn)
                 request,
                 ppath,
                 httpstring,
-                (conn->bits.proxy_user_passwd &&
-                 conn->allocptr.proxyuserpwd)?conn->allocptr.proxyuserpwd:"",
+                (conn->bits.httpproxy && conn->allocptr.proxyuserpwd)?
+                conn->allocptr.proxyuserpwd:"",
                 conn->allocptr.userpwd?conn->allocptr.userpwd:"",
                 (conn->bits.use_range && conn->allocptr.rangeline)?
                 conn->allocptr.rangeline:"",
