@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.80 2003-10-07 21:46:47 bagder Exp $
+ * $Id: ssluse.c,v 1.81 2003-10-08 13:06:50 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -743,7 +743,6 @@ cert_hostcheck(const char *certname, const char *hostname)
   }
   return 0;
 }
-#endif
 
 static CURLcode verifyhost(struct connectdata *conn)
 {
@@ -886,6 +885,7 @@ static CURLcode verifyhost(struct connectdata *conn)
 
   return CURLE_OK;
 }
+#endif
 
 /* ====================================================== */
 CURLcode
