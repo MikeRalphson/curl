@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/progress.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-02-14 23:15:08 $
+ * $Revision: 1.4 $
+ * $Date: 2000-03-01 22:01:46 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -76,5 +76,15 @@ void pgrsUpdate(struct UrlData *data);
 
 #define PGRS_HEADERS_OUT (1<<7) /* set when the headers have been written */
 
+
+typedef enum {
+  TIMER_NONE,
+  TIMER_NAMELOOKUP,
+  TIMER_CONNECT,
+  TIMER_PRETRANSFER,
+  TIMER_POSTRANSFER,
+  TIMER_LAST /* must be last */
+} timerid;
+  
 
 #endif /* __PROGRESS_H */
