@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.337 2004-02-16 07:33:30 bagder Exp $
+ * $Id: url.c,v 1.338 2004-02-16 13:14:55 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1849,26 +1849,36 @@ static void verboseconnect(struct connectdata *conn,
 
   /* Figure out the ip-number and display the first host name it shows: */
 #ifdef ENABLE_IPV6
-  (void)dns; /* not used in the IPv6 enabled version */
   {
     char hbuf[NI_MAXHOST];
 #ifdef NI_WITHSCOPEID
-    const int niflags = NI_NUMERICHOST | NI_WITHSCOPEID;
+#define NIFLAGS NI_NUMERICHOST | NI_WITHSCOPEID
 #else
-    const int niflags = NI_NUMERICHOST;
+#define NIFLAGS NI_NUMERICHOST
 #endif
-    struct addrinfo *ai = conn->serv_addr;
+    if(dns) {
+      struct addrinfo *ai = dns->addr;
 
-    if (getnameinfo(ai->ai_addr, ai->ai_addrlen, hbuf, sizeof(hbuf), NULL, 0,
-	niflags)) {
-      snprintf(hbuf, sizeof(hbuf), "?");
+      /* Lookup the name of the given address. This should probably be remade
+         to use the DNS cache instead, as the host name is most likely cached
+         already. */
+      if (getnameinfo(ai->ai_addr, ai->ai_addrlen, hbuf, sizeof(hbuf), NULL, 0,
+                      NIFLAGS)) {
+        snprintf(hbuf, sizeof(hbuf), "unknown");
+      }
+      else {
+        if (ai->ai_canonname) {
+          infof(data, "Connected to %s (%s) port %d\n", ai->ai_canonname, hbuf,
+                conn->port);
+          return;
+        }
+      }
     }
-    if (ai->ai_canonname) {
-      infof(data, "Connected to %s (%s) port %d\n", ai->ai_canonname, hbuf,
-            conn->port);
-    } else {
-      infof(data, "Connected to %s port %d\n", hbuf, conn->port);
+    else {
+      snprintf(hbuf, sizeof(hbuf), "same host");
     }
+
+    infof(data, "Connected to %s port %d\n", hbuf, conn->port);
   }
 #else
   {
