@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.16 2001-03-12 15:47:17 bagder Exp $
+ * $Id: ssluse.c,v 1.17 2001-03-14 08:20:41 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -138,8 +138,8 @@ int random_the_seed(struct connectdata *conn)
     RAND_seed(area, len);
 
     free(area); /* now remove the random junk */
-#endif
   }
+#endif
 
   /* generates a default path for the random seed file */
   buf[0]=0; /* blank it first */
