@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.33 2004-12-15 14:05:07 bagder Exp $
+ * $Id: setup.h,v 1.34 2004-12-25 22:08:03 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -49,7 +49,7 @@
 #endif
 #endif
 
-#ifdef CURLDEBUG
+#if defined(CURLDEBUG) && defined(CURLTOOLDEBUG)
 /* This is an ugly hack for CURLDEBUG conditions only. We need to include
    the file here, since it might set the _FILE_OFFSET_BITS define, which must
    be set BEFORE all normal system headers. */

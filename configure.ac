@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.127 2004-12-23 08:48:59 bagder Exp $
+dnl $Id: configure.ac,v 1.128 2004-12-25 22:08:02 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1263,13 +1263,12 @@ AC_CHECK_FUNCS( strtoll \
                 inet_addr \
                 inet_ntoa \
                 inet_pton \
-                tcsetattr \
-                tcgetattr \
                 perror \
                 closesocket \
                 siginterrupt \
                 sigaction \
                 signal \
+                getpass \
                 getpass_r \
                 strlcat \
                 getpwuid \
