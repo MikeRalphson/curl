@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.288 2003-07-22 11:15:46 bagder Exp $
+ * $Id: url.c,v 1.289 2003-07-23 17:06:21 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2901,6 +2901,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if(conn->bits.reuse) {
     /* re-used connection, no resolving is necessary */
     hostaddr = NULL;
+    conn->connect_addr = NULL; /* we don't connect now so we don't have any
+                                  fresh connect_addr struct to point to */
   }
   else if(!data->change.proxy || !*data->change.proxy) {
     /* If not connecting via a proxy, extract the port from the URL, if it is
