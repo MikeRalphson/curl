@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.25 2005-03-17 00:57:17 danf Exp $
+# $Id: testcurl.pl,v 1.26 2005-03-17 09:44:09 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -67,7 +67,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $crosscompile);
 
 # version of this script
-$version='$Revision: 1.25 $';
+$version='$Revision: 1.26 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -521,8 +521,12 @@ elsif(!$crosscompile) {
 }
 
 if ($configurebuild && !$crosscompile) {
-  logit "run make TEST_F=\"$runtestopts\" test-full";
-  open(F, "make TEST_F=\"$runtestopts\" test-full 2>&1 |") or die;
+  my $o;
+  if($runtestopts) {
+      $o = "TEST_F=\"$runtestopts\" ";
+  }
+  logit "run make ${o}test-full";
+  open(F, "make ${o}test-full 2>&1 |") or die;
   open(LOG, ">$buildlog") or die;
   while (<F>) {
     s/$pwd//g;
