@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.8 2004-04-01 08:25:58 bagder Exp $ */
+/* $Id: ares.h,v 1.9 2004-07-11 08:30:23 gknauf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -20,7 +20,7 @@
 
 #include <sys/types.h>
 
-#ifdef _AIX
+#if defined(_AIX) || defined(NETWARE)
 /* HP-UX systems version 9, 10 and 11 lack sys/select.h and so does oldish
    libc5-based Linux systems. Only include it on system that are known to
    require it! */
