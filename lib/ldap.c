@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.25 2003-01-29 10:14:22 bagder Exp $
+ * $Id: ldap.c,v 1.26 2003-07-01 10:12:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -74,7 +74,7 @@ static void DynaOpen(void)
      * liblber.so automatically, but since it does not we will
      * handle it here by opening liblber.so as global.
      */
-    dlopen("liblber.so",
+    liblber = dlopen("liblber.so",
 #ifdef RTLD_LAZY_GLOBAL /* It turns out some systems use this: */
            RTLD_LAZY_GLOBAL
 #else
