@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.36 2003-03-02 17:20:59 bagder Exp $
+ * $Id: telnet.c,v 1.37 2003-03-03 06:40:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -263,7 +263,7 @@ static void send_negotiation(struct connectdata *conn, int cmd, int option)
    buf[1] = cmd;
    buf[2] = option;
    
-   swrite(conn->firstsocket, buf, 3);
+   (void)swrite(conn->firstsocket, buf, 3);
    
    printoption(conn->data, "SENT", cmd, option);
 }
@@ -827,7 +827,7 @@ static void suboption(struct connectdata *conn)
       snprintf((char *)temp, sizeof(temp),
                "%c%c%c%c%s%c%c", IAC, SB, TELOPT_TTYPE,
                TELQUAL_IS, tn->subopt_ttype, IAC, SE);
-      swrite(conn->firstsocket, temp, len);
+      (void)swrite(conn->firstsocket, temp, len);
       printsub(data, '>', &temp[2], len-2);
       break;
     case TELOPT_XDISPLOC:
@@ -835,7 +835,7 @@ static void suboption(struct connectdata *conn)
       snprintf((char *)temp, sizeof(temp),
                "%c%c%c%c%s%c%c", IAC, SB, TELOPT_XDISPLOC,
                TELQUAL_IS, tn->subopt_xdisploc, IAC, SE);
-      swrite(conn->firstsocket, temp, len);
+      (void)swrite(conn->firstsocket, temp, len);
       printsub(data, '>', &temp[2], len-2);
       break;
     case TELOPT_NEW_ENVIRON:
@@ -857,7 +857,7 @@ static void suboption(struct connectdata *conn)
       snprintf((char *)&temp[len], sizeof(temp) - len,
                "%c%c", IAC, SE);
       len += 2;
-      swrite(conn->firstsocket, temp, len);
+      (void)swrite(conn->firstsocket, temp, len);
       printsub(data, '>', &temp[2], len-2);
       break;
   }
