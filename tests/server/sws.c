@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.24 2003-03-15 14:47:09 bagder Exp $
+ * $Id: sws.c,v 1.25 2003-03-15 16:05:47 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -504,8 +504,6 @@ int main(int argc, char *argv[])
 
   /* start accepting connections */
   listen(sock, 5);
-
-  fprintf(stderr, "*** %s listening on port %u ***\n", VERSION, port);
 
   while (1) {
     int doc;
