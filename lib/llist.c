@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.8 2003-06-26 11:22:12 bagder Exp $
+ * $Id: llist.c,v 1.9 2003-08-14 15:06:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -159,10 +159,10 @@ Curl_llist_count(curl_llist *list)
 void 
 Curl_llist_destroy(curl_llist *list, void *user)
 {
-  while (list->size > 0) {
-    Curl_llist_remove(list, CURL_LLIST_TAIL(list), user);
-  }
+  if(list) {
+    while (list->size > 0)
+      Curl_llist_remove(list, CURL_LLIST_TAIL(list), user);
 
-  free(list);
-  list = NULL;
+    free(list);
+  }
 }
