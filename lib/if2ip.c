@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.29 2004-01-29 13:56:45 bagder Exp $
+ * $Id: if2ip.c,v 1.30 2004-01-29 15:35:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -26,7 +26,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -68,7 +67,6 @@
 #endif
 
 #ifdef	VMS
-#define	IOCTL_3_ARGS
 #include <inet.h>
 #endif
 
@@ -77,10 +75,6 @@
 /* The last #include file should be: */
 #ifdef CURLDEBUG
 #include "memdebug.h"
-#endif
-
-#ifdef DJGPP
-#define IOCTL_3_ARGS
 #endif
 
 #define SYS_ERROR -1

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.42 2004-01-23 07:41:06 bagder Exp $
+ * $Id: setup.h,v 1.43 2004-01-29 15:35:42 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -246,6 +246,14 @@ typedef struct in_addr Curl_ipconnect;
 
 #ifndef SIZEOF_CURL_OFF_T
 #define SIZEOF_CURL_OFF_T sizeof(curl_off_t)
+#endif
+
+#ifdef VMS
+#define IOCTL_3_ARGS
+#endif
+
+#ifdef mpeix
+#define IOCTL_3_ARGS
 #endif
 
 #endif /* __CONFIG_H */
