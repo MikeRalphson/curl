@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.36 2004-04-26 07:14:08 bagder Exp $
+ * $Id: version.c,v 1.37 2004-05-06 07:24:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -47,7 +47,7 @@ static void getssl_version(char *ptr, long *num)
     unsigned long ssleay_value;
     sub[1]='\0';
     ssleay_value=SSLeay();
-    *num = ssleay_value;
+    *num = (long)ssleay_value;
     if(ssleay_value < 0x906000) {
       ssleay_value=SSLEAY_VERSION_NUMBER;
       sub[0]='\0';
