@@ -11,7 +11,7 @@
 # PARTICULAR PURPOSE.
 
 #
-# $Id: Makefile.in,v 1.6.2.2 2000-05-08 22:35:45 bagder Exp $
+# $Id: Makefile.in,v 1.6.2.3 2000-05-09 22:48:47 bagder Exp $
 #
 
 
@@ -76,7 +76,7 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
 noinst_LIBRARIES = libcurl.a
 
 # Some flags needed when trying to cause warnings ;-)
-#CFLAGS = -g -Wall -pedantic
+CFLAGS = -g #-Wall -pedantic
 
 INCLUDES = -I$(top_srcdir)/include
 
@@ -98,7 +98,6 @@ formdata.o cookie.o http.o sendf.o ftp.o url.o dict.o if2ip.o \
 speedcheck.o getdate.o download.o ldap.o ssluse.o version.o getenv.o \
 escape.o mprintf.o telnet.o getpass.o netrc.o writeout.o highlevel.o
 AR = ar
-CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@

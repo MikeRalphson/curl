@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.15.2.4 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.15.2.5 $
+ * $Date: 2000-05-09 22:48:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -718,9 +718,6 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
   conn->data = data; /* remember our daddy */
   conn->state = CONN_INIT;
 
-  strcpy(conn->gname, "default.com");
-  strcpy(conn->path, "/");
-
   buf = data->buffer; /* this is our buffer */
 
 #if 0
@@ -747,36 +744,42 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
 
     strcpy(conn->proto, "file");
   }
-  else if (2 > sscanf(data->url, "%64[^\n:]://%256[^\n/]%" URL_MAX_LENGTH_TXT "[^\n]",
-                 conn->proto, conn->gname, conn->path)) {
-    
-      
-    /* badly formatted, let's try the browser-style _without_ 'http://' */
-    if((1 > sscanf(data->url, "%256[^\n/]%" URL_MAX_LENGTH_TXT "[^\n]",
-                   conn->gname, conn->path)) ) {
-      failf(data, "<url> malformed");
-      return URG_URL_MALFORMAT;
-    }
-    if(strnequal(conn->gname, "FTP", 3)) {
-      strcpy(conn->proto, "ftp");
-    }
-    else if(strnequal(conn->gname, "GOPHER", 6))
-      strcpy(conn->proto, "gopher");
-#ifdef USE_SSLEAY
-    else if(strnequal(conn->gname, "HTTPS", 5))
-      strcpy(conn->proto, "https");
-#endif /* USE_SSLEAY */
-    else if(strnequal(conn->gname, "TELNET", 6))
-      strcpy(conn->proto, "telnet");
-    else if (strnequal(conn->gname, "DICT", sizeof("DICT")-1))
-      strcpy(conn->proto, "DICT");
-    else if (strnequal(conn->gname, "LDAP", sizeof("LDAP")-1))
-      strcpy(conn->proto, "LDAP");
-    else {
-      strcpy(conn->proto, "http");
-    }
+  else {
+    /* Set default host and default path */
+    strcpy(conn->gname, "curl.haxx.nu");
+    strcpy(conn->path, "/");
 
-    conn->protocol |= PROT_MISSING; /* not given in URL */
+    if (2 > sscanf(data->url,
+                   "%64[^\n:]://%256[^\n/]%" URL_MAX_LENGTH_TXT "[^\n]",
+                   conn->proto, conn->gname, conn->path)) {
+      
+      /* badly formatted, let's try the browser-style _without_ 'http://' */
+      if((1 > sscanf(data->url, "%256[^\n/]%" URL_MAX_LENGTH_TXT "[^\n]",
+                     conn->gname, conn->path)) ) {
+        failf(data, "<url> malformed");
+        return URG_URL_MALFORMAT;
+      }
+      if(strnequal(conn->gname, "FTP", 3)) {
+        strcpy(conn->proto, "ftp");
+      }
+      else if(strnequal(conn->gname, "GOPHER", 6))
+        strcpy(conn->proto, "gopher");
+#ifdef USE_SSLEAY
+      else if(strnequal(conn->gname, "HTTPS", 5))
+        strcpy(conn->proto, "https");
+#endif /* USE_SSLEAY */
+      else if(strnequal(conn->gname, "TELNET", 6))
+        strcpy(conn->proto, "telnet");
+      else if (strnequal(conn->gname, "DICT", sizeof("DICT")-1))
+        strcpy(conn->proto, "DICT");
+      else if (strnequal(conn->gname, "LDAP", sizeof("LDAP")-1))
+        strcpy(conn->proto, "LDAP");
+      else {
+        strcpy(conn->proto, "http");
+      }
+
+      conn->protocol |= PROT_MISSING; /* not given in URL */
+    }
   }
 
 
@@ -940,8 +943,8 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       data->port = PORT_HTTP;
     data->remote_port = PORT_HTTP;
     conn->protocol |= PROT_HTTP;
-    data->curl_do = http;
-    data->curl_done = http_done;
+    conn->curl_do = http;
+    conn->curl_done = http_done;
   }
   else if (strequal(conn->proto, "HTTPS")) {
 #ifdef USE_SSLEAY
@@ -951,9 +954,9 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     conn->protocol |= PROT_HTTP;
     conn->protocol |= PROT_HTTPS;
 
-    data->curl_do = http;
-    data->curl_done = http_done;
-    data->curl_connect = http_connect;
+    conn->curl_do = http;
+    conn->curl_done = http_done;
+    conn->curl_connect = http_connect;
 
 #else /* USE_SSLEAY */
     failf(data, "SSL is disabled, https: not supported!");
@@ -971,8 +974,8 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
 	conn->ppath = conn->path;
       }
     conn->protocol |= PROT_GOPHER;
-    data->curl_do = http;
-    data->curl_done = http_done;
+    conn->curl_do = http;
+    conn->curl_done = http_done;
   }
   else if(strequal(conn->proto, "FTP")) {
     char *type;
@@ -982,14 +985,13 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     conn->protocol |= PROT_FTP;
 
     if(data->bits.httpproxy) {
-      data->curl_do = http;
-      data->curl_done = http_done;
+      conn->curl_do = http;
+      conn->curl_done = http_done;
     }
     else {
-      data->curl_do = ftp;
-      data->curl_done = ftp_done;
-
-      data->curl_connect = ftp_connect;
+      conn->curl_do = ftp;
+      conn->curl_done = ftp_done;
+      conn->curl_connect = ftp_connect;
     }
 
     conn->ppath++; /* don't include the initial slash */
@@ -1026,8 +1028,8 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       data->port = PORT_TELNET;
     data->remote_port = PORT_TELNET;
 
-    data->curl_do = telnet;
-    data->curl_done = telnet_done;
+    conn->curl_do = telnet;
+    conn->curl_done = telnet_done;
 
   }
   else if (strequal(conn->proto, "DICT")) {
@@ -1035,21 +1037,21 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     if(!data->port)
       data->port = PORT_DICT;
     data->remote_port = PORT_DICT;
-    data->curl_do = dict;
-    data->curl_done = dict_done;
+    conn->curl_do = dict;
+    conn->curl_done = dict_done;
   }
   else if (strequal(conn->proto, "LDAP")) {
     conn->protocol |= PROT_LDAP;
     if(!data->port)
       data->port = PORT_LDAP;
     data->remote_port = PORT_LDAP;
-    data->curl_do = ldap;
-    data->curl_done = ldap_done;
+    conn->curl_do = ldap;
+    conn->curl_done = ldap_done;
   }
   else if (strequal(conn->proto, "FILE")) {
     conn->protocol |= PROT_FILE;
 
-    data->curl_do = file;
+    conn->curl_do = file;
     /* no done() function */
   }
 
@@ -1210,9 +1212,9 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     }
   }
 
-  if(data->curl_connect) {
+  if(conn->curl_connect) {
     /* is there a post-connect() procedure? */
-    result = data->curl_connect(conn);
+    result = conn->curl_connect(conn);
   }
 
   pgrsTime(data, TIMER_CONNECT);
@@ -1262,8 +1264,8 @@ UrgError curl_done(CURLconnect *c_connect)
   data = conn->data;
 
   /* this calls the protocol-specific function pointer previously set */
-  if(data->curl_done)
-    result = data->curl_done(conn);
+  if(conn->curl_done)
+    result = conn->curl_done(conn);
   else
     result = URG_OK;
 
@@ -1287,9 +1289,9 @@ UrgError curl_do(CURLconnect *in_conn)
     return URG_FAILED_INIT; /* TBD: make a proper return code */
   }
 
-  if(data->curl_do) {
+  if(conn->curl_do) {
     /* generic protocol-specific function pointer set in curl_connect() */
-    result = data->curl_do(conn);
+    result = conn->curl_do(conn);
     if(result) {
       conn->state = CONN_ERROR;
       return result;

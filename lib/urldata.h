@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.6.2.3 $
- * $Date: 2000-05-08 22:35:45 $
+ * $Revision: 1.6.2.4 $
+ * $Date: 2000-05-09 22:48:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -122,11 +122,15 @@ typedef enum {
 } ConnState;
 
 
-/* To better see what kind of struct that is passed as input, *ALL* publicly
-   returned handles MUST have this initial 'Handle'. */
+/*
+ * The connectdata struct contains all fields and variables that should be
+ * unique for an entire connection.
+ */
 struct connectdata {
   /**** Fields set when inited and not modified again */
 
+  /* To better see what kind of struct that is passed as input, *ALL* publicly
+     returned handles MUST have this initial 'Handle'. */
   Handle handle; /* struct identifier */
   struct UrlData *data; /* link to the root CURL struct */
 
@@ -144,7 +148,6 @@ struct connectdata {
 #define PROT_LDAP    (1<<7)
 #define PROT_FILE    (1<<8)
 
-
   struct hostent *hp;
   struct sockaddr_in serv_addr;
   char proto[64];
@@ -154,6 +157,16 @@ struct connectdata {
   char *ppath;
   long bytecount;
   struct timeval now;
+
+  /* These two functions MUST be set by the curl_connect() function to be
+     be protocol dependent */
+  UrgError (*curl_do)(struct connectdata *connect);
+  UrgError (*curl_done)(struct connectdata *connect);
+
+  /* This function *MAY* be set to a protocol-dependent function that is run
+   * after the connect() and everything is done, as a step in the connection.
+   */ 
+  UrgError (*curl_connect)(struct connectdata *connect);
 
   /**** curl_get() phase fields */
 
@@ -293,22 +306,12 @@ struct UrlData {
     void *generic;
   } proto;
 
-  /* These two functions MUST be set by the curl_connect() function to be
-     be protocol dependent */
-  UrgError (*curl_do)(struct connectdata *connect);
-  UrgError (*curl_done)(struct connectdata *connect);
-
-  /* This function *MAY* be set to a protocol-dependent function that is run
-   * after the connect() and everything is done, as a step in the connection.
-   */ 
-  UrgError (*curl_connect)(struct connectdata *connect);
-
   FILE *out;    /* the fetched file goes here */
   FILE *in;     /* the uploaded file is read from here */
   FILE *writeheader; /* write the header to this is non-NULL */
   char *url;   /* what to get */
   char *freethis; /* if non-NULL, an allocated string for the URL */
-  char *hostname; /* hostname to contect, as parsed from url */
+  char *hostname; /* hostname to connect, as parsed from url */
   unsigned short port; /* which port to use (if non-protocol bind) set
                           CONF_PORT to use this */
   unsigned short remote_port; /* what remote port to connect to, not the proxy
