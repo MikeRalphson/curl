@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.77 2001-09-11 22:21:26 bagder Exp $
+ * $Id: urldata.h,v 1.78 2001-09-12 12:02:12 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -439,6 +439,8 @@ struct UrlState {
 
   struct curl_ssl_session *session; /* array of 'numsessions' size */
   long sessionage;                  /* number of the most recent session */
+
+  char scratch[BUFSIZE*2]; /* huge buffer when doing upload CRLF replacing */
 };
 
 
