@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.222 2004-01-14 07:42:10 bagder Exp $
+ * $Id: main.c,v 1.223 2004-01-15 07:09:23 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -999,9 +999,8 @@ static int str2num(long *val, char *str)
 static int str2offset(off_t *val, char *str)
 {
 #if SIZEOF_OFF_T > 4
-  /* Ugly, but without going through a bunch of rigamarole,
-   * we don't have the definitions for LLONG_{MIN,MAX} or
-   * LONG_LONG_{MIN,MAX}.
+  /* Ugly, but without going through a bunch of rigmarole, we don't have the
+   * definitions for LLONG_{MIN,MAX} or LONG_LONG_{MIN,MAX}.
    */
 #ifndef LLONG_MAX
 #define LLONG_MAX (off_t)0x7FFFFFFFFFFFFFFFLL
@@ -1012,6 +1011,7 @@ static int str2offset(off_t *val, char *str)
   *val = strtoll(str, NULL, 0);
 #else
   /* TODO:  Handle strtoll stuff...sigh... */
+#error "lack of strtoll() needs fixing"
 #endif
 
   if ((*val == LLONG_MAX || *val == LLONG_MIN) && errno == ERANGE)
