@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.130 2001-05-31 13:50:28 bagder Exp $
+ * $Id: url.c,v 1.131 2001-06-07 05:59:20 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2077,6 +2077,7 @@ static CURLcode Connect(struct UrlData *data,
         
         /* tell ourselves to fetch this range */
         conn->range = strdup(resumerange);
+        conn->bits.use_range = TRUE;        /* enable range download */
         conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
     }
     
