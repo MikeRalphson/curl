@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.37 2005-03-15 12:13:37 bagder Exp $
+# $Id: Makefile.am,v 1.38 2005-03-17 00:57:17 danf Exp $
 ###########################################################################
 EXTRA_DIST = ftpserver.pl httpserver.pl httpsserver.pl runtests.pl	\
  ftpsserver.pl getpart.pm FILEFORMAT README stunnel.pem memanalyze.pl	\
@@ -35,24 +35,24 @@ curl:
 
 if CROSSCOMPILING
 TEST = @echo "NOTICE: we can't run the tests when cross-compiling!"
-TEST_Q = $(TEST)
-TEST_F = $(TEST)
-TEST_T = $(TEST)
+TEST_Q =
+TEST_F =
+TEST_T =
 else # if not cross-compiling:
 TEST = srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl
-TEST_Q = $(TEST) -s -a
-TEST_F = $(TEST) -a -p
-TEST_T = $(TEST) -t
+TEST_Q = -s -a
+TEST_F = -a -p
+TEST_T = -t
 endif
 
 test: all
 	$(TEST)
 
 quiet-test: all
-	$(TEST_Q)
+	$(TEST) $(TEST_Q)
 
 full-test: all
-	$(TEST_F)
+	$(TEST) $(TEST_F)
 
 torture-test: all
-	$(TEST_T)
+	$(TEST) $(TEST_T)
