@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.42 2004-02-13 07:03:03 bagder Exp $
+ * $Id: file.c,v 1.43 2004-02-13 12:13:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -174,8 +174,6 @@ CURLcode Curl_file(struct connectdata *conn)
   struct SessionHandle *data = conn->data;
   char *buf = data->state.buffer;
   curl_off_t bytecount = 0;
-  struct timeval start = Curl_tvnow();
-  struct timeval now = start;
   int fd;
 
   /* get the fd from the connection phase */
@@ -261,11 +259,9 @@ CURLcode Curl_file(struct connectdata *conn)
     if(res)
       return res;
 
-    now = Curl_tvnow();
     if(Curl_pgrsUpdate(conn))
       res = CURLE_ABORTED_BY_CALLBACK;
   }
-  now = Curl_tvnow();
   if(Curl_pgrsUpdate(conn))
     res = CURLE_ABORTED_BY_CALLBACK;
 
