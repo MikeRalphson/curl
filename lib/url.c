@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.83 2001-02-13 13:34:16 bagder Exp $
+ * $Id: url.c,v 1.84 2001-02-13 21:57:04 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1464,7 +1464,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
       break;
 #endif
     case EINTR:
-      failf(data, "Connection timeouted");
+      failf(data, "Connection timed out");
       break;
     default:
       failf(data, "Can't connect to server: %d", errno);

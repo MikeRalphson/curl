@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.52 2001-02-13 13:34:16 bagder Exp $
+ * $Id: ftp.c,v 1.53 2001-02-13 21:57:04 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1213,7 +1213,7 @@ again:;
 #endif
 #ifdef EINTR
         case EINTR:
-          failf(data, "Connection timeouted to ftp server");
+          failf(data, "Connection timed out to ftp server");
           break;
 #endif
         default:
