@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.12 $
+ * $Date: 2000-09-18 21:16:27 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -165,6 +165,7 @@ struct hostent *GetHost(struct UrlData *data,
 #endif
       {
       infof(data, "gethostbyname_r(2) failed for %s\n", hostname);
+      h = NULL; /* set return code to NULL */
     }
 #else
   else {
