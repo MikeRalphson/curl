@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.205 2002-04-25 19:18:19 bagder Exp $
+ * $Id: url.c,v 1.206 2002-05-06 18:30:17 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -819,6 +819,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * defaults to CURLOPT_STDERR for normal operations.
      */
     data->set.debugdata = va_arg(param, void *);
+    break;
   case CURLOPT_STDERR:
     /*
      * Set to a FILE * that should receive all error writes. This
