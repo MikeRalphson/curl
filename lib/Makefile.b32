@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.10 2003-11-27 12:24:23 bagder Exp $
+# $Id: Makefile.b32,v 1.11 2004-01-05 22:29:32 bagder Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -61,6 +61,7 @@ SOURCES	   = \
 	easy.c \
 	strequal.c \
 	strtok.c \
+	strtoofft.c \
 	connect.c \
         hash.c \
         share.c \

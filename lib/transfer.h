@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.h,v 1.10 2003-01-16 21:08:13 bagder Exp $
+ * $Id: transfer.h,v 1.11 2004-01-05 22:29:32 bagder Exp $
  ***************************************************************************/
 CURLcode Curl_perform(struct SessionHandle *data);
 CURLcode Curl_pretransfer(struct SessionHandle *data);
@@ -38,11 +38,11 @@ CURLcode Curl_readwrite_init(struct connectdata *conn);
 CURLcode 
 Curl_Transfer (struct connectdata *data,
                int sockfd,		/* socket to read from or -1 */
-               int size,		/* -1 if unknown at this point */
+               off_t size,		/* -1 if unknown at this point */
                bool getheader,     	/* TRUE if header parsing is wanted */
-               long *bytecountp,	/* return number of bytes read */
+               off_t *bytecountp,	/* return number of bytes read */
                int writesockfd,      /* socket to write to, it may very well be
                                         the same we read from. -1 disables */
-               long *writebytecountp /* return number of bytes written */
+               off_t *writebytecountp /* return number of bytes written */
 );
 #endif

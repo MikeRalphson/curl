@@ -1,4 +1,4 @@
-$Id: libcurl-the-guide,v 1.20 2002-12-19 15:22:36 bagder Exp $
+$Id: libcurl-the-guide,v 1.21 2004-01-05 22:29:29 bagder Exp $
                                   _   _ ____  _     
                               ___| | | |  _ \| |    
                              / __| | | | |_) | |    
@@ -298,9 +298,9 @@ Upload Data to a Remote Site
 
  A few protocols won't behave properly when uploads are done without any prior
  knowledge of the expected file size. So, set the upload file size using the
- CURLOPT_INFILESIZE for all known file sizes like this[1]:
+ CURLOPT_INFILESIZE_LARGE for all known file sizes like this[1]:
 
-    curl_easy_setopt(easyhandle, CURLOPT_INFILESIZE, file_size);
+    curl_easy_setopt(easyhandle, CURLOPT_INFILESIZE_LARGE, file_size);
 
  When you call curl_easy_perform() this time, it'll perform all the necessary
  operations and when it has invoked the upload it'll call your supplied

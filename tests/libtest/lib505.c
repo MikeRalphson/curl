@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.2 2003-04-15 14:18:37 bagder Exp $
+ * $Id: lib505.c,v 1.3 2004-01-05 22:29:33 bagder Exp $
  */
 
 #include "test.h"
@@ -92,8 +92,8 @@ CURLcode test(char *URL)
     curl_easy_setopt(curl, CURLOPT_INFILE, hd_src);
 
     /* and give the size of the upload (optional) */
-    curl_easy_setopt(curl, CURLOPT_INFILESIZE,
-                     (long)file_info.st_size);
+    curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                     file_info.st_size);
 
     /* Now run off and do what you've been told! */
     res = curl_easy_perform(curl);
