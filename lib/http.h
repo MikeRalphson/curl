@@ -32,8 +32,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.h,v $
- * $Revision: 1.6 $
- * $Date: 2000-09-14 14:05:01 $
+ * $Revision: 1.7 $
+ * $Date: 2000-09-15 06:10:52 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -42,7 +42,8 @@
  ****************************************************************************/
 
 /* ftp can use this as well */
-CURLcode GetHTTPProxyTunnel(struct UrlData *data, int tunnelsocket);
+CURLcode GetHTTPProxyTunnel(struct UrlData *data, int tunnelsocket,
+                            char *hostname, int remote_port);
 
 /* protocol-specific functions set up to be called by the main engine */
 CURLcode http(struct connectdata *conn);
