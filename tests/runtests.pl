@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.147 2004-11-30 09:27:11 bagder Exp $
+# $Id: runtests.pl,v 1.148 2004-11-30 09:53:53 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -653,7 +653,7 @@ sub compare {
     if($result) {
         if(!$short) {
             print "\n $subject FAILED:\n";
-            print showdiff($firstref, $secondref);
+            print showdiff($LOGDIR, $firstref, $secondref);
         }
         else {
             print "FAILED\n";
