@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.267 2005-03-29 12:28:25 bagder Exp $
+ * $Id: http.c,v 1.268 2005-04-03 22:46:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -303,6 +303,10 @@ CURLcode Curl_http_auth_act(struct connectdata *conn)
   bool pickhost = FALSE;
   bool pickproxy = FALSE;
   CURLcode code = CURLE_OK;
+
+  if(100 == conn->keep.httpcode)
+    /* this is a transient response code, ignore */
+    return CURLE_OK;
 
   if(data->state.authproblem)
     return data->set.http_fail_on_error?CURLE_HTTP_RETURNED_ERROR:CURLE_OK;
