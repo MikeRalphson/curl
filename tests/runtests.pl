@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.86 2003-06-13 09:04:08 bagder Exp $
+# $Id: runtests.pl,v 1.87 2003-06-13 09:09:04 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -1187,7 +1187,7 @@ close(CMDLOG);
 
 print "Shutting down test suite servers:\n" if (!$short);
 for(keys %run) {
-    printf STDERR ("* kill pid for %-5s => %-5d\n", $_, $run{$_}) if(!$short);
+    printf ("* kill pid for %-5s => %-5d\n", $_, $run{$_}) if(!$short);
     stopserver($run{$_}); # the pid file is in the hash table
 }
 
