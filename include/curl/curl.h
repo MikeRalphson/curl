@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.21 $
- * $Date: 2000-09-18 21:53:21 $
+ * $Revision: 1.22 $
+ * $Date: 2000-09-21 08:54:36 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -389,6 +389,11 @@ typedef enum {
   /* Set the interface string to use as outgoing network interface */
   CINIT(INTERFACE, OBJECTPOINT, 62),
 
+  /* Set the krb4 security level, this also enables krb4 awareness.  This is a
+   * string, 'clear', 'safe', 'confidential' or 'private'.  If the string is
+   * set but doesn't match one of these, 'private' will be used.  */
+  CINIT(KRB4LEVEL, OBJECTPOINT, 63),
+
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
 
@@ -437,7 +442,7 @@ char *curl_getenv(char *variable);
 char *curl_version(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.3-pre2"
+#define LIBCURL_VERSION "7.3-pre6"
 #define LIBCURL_VERSION_NUM 0x070300
 
 /* linked-list structure for the CURLOPT_QUOTE option */
