@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.23 2002-01-07 18:38:01 bagder Exp $
+ * $Id: connect.c,v 1.24 2002-01-16 22:26:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -369,9 +369,11 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
     /* subtract the passed time */
     timeout_ms -= (long)has_passed;
 
-    if(timeout_ms < 0)
+    if(timeout_ms < 0) {
       /* a precaution, no need to continue if time already is up */
+      failf(data, "Connection time-out");
       return CURLE_OPERATION_TIMEOUTED;
+    }
   }
 
 #ifdef ENABLE_IPV6
