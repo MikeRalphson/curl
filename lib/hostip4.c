@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.1 2004-04-26 07:20:11 bagder Exp $
+ * $Id: hostip4.c,v 1.2 2004-04-26 12:02:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -129,7 +129,7 @@ bool Curl_ipvalid(struct SessionHandle *data)
  * The input parameters ARE NOT checked for validity but they are expected
  * to have been checked already when this is called.
  */
-Curl_addrinfo *Curl_ip2addr(unsigned long num, char *hostname)
+Curl_addrinfo *Curl_ip2addr(in_addr_t num, char *hostname)
 {
   struct hostent *h;
   struct in_addr *addrentry;
