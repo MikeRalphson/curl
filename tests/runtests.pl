@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.149 2004-12-11 21:41:00 bagder Exp $
+# $Id: runtests.pl,v 1.150 2004-12-12 23:31:45 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -350,15 +350,19 @@ sub runhttpserver {
     $pid = checkserver($pidfile);
 
     # verify if our/any server is running on this port
-    my $cmd = "$CURL -o log/verifiedserver -g \"http://$ip:$port/verifiedserver\" 2>/dev/null";
+    my $cmd = "$CURL -o log/verifiedserver -g \"http://$ip:$port/verifiedserver\" 2>log/verifystderr";
     print "CMD; $cmd\n" if ($verbose);
     my $res = system($cmd);
 
     $res >>= 8; # rotate the result
     my $data;
 
-    print "RUN: curl command returned $res\n" if ($verbose);
-
+    if($res && $verbose) {
+        print "RUN: curl command returned $res\nRUN: ";
+        open(ERR, "<log/verifystderr");
+        print <ERR>;
+        close(ERR);
+    }
     open(FILE, "<log/verifiedserver");
     my @file=<FILE>;
     close(FILE);
