@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.91 2001-08-08 07:15:00 bagder Exp $
+ * $Id: curl.h,v 1.92 2001-08-15 18:33:52 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -493,7 +493,7 @@ void curl_formfree(struct HttpPost *form);
 
 /* Unix and Win32 getenv function call, this returns a malloc()'ed string that
    MUST be free()ed after usage is complete. */
-char *curl_getenv(char *variable);
+char *curl_getenv(const char *variable);
 
 /* Returns a static ascii string of the libcurl version. */
 char *curl_version(void);
