@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.53 2004-12-13 08:34:17 bagder Exp $
+# $Id: Makefile.am,v 1.54 2005-03-11 00:44:32 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -48,6 +48,15 @@ pdf:
 
 check: test
 
+if CROSSCOMPILING
+test-full: test
+test-torture: test
+
+test:
+	@echo "NOTICE: we can't run the tests when cross-compiling!"
+
+else
+
 test:
 	@(cd tests; $(MAKE) all quiet-test)
 
@@ -56,6 +65,8 @@ test-full:
 
 test-torture:
 	@(cd tests; $(MAKE) all torture-test)
+
+endif
 
 #
 # Build source and binary rpms. For rpm-3.0 and above, the ~/.rpmmacros
