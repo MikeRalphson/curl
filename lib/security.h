@@ -35,7 +35,7 @@
  * SUCH DAMAGE. 
  */
 
-/* $Id: security.h,v 1.1 2000-09-21 08:46:14 bagder Exp $ */
+/* $Id: security.h,v 1.2 2000-09-25 22:15:56 bagder Exp $ */
 
 #ifndef __security_h__
 #define __security_h__
@@ -94,6 +94,7 @@ void delete_ftp_command(void);
 
 
 int sec_fflush (struct connectdata *conn, FILE *);
+int sec_fflush_fd(struct connectdata *conn, int fd);
 int sec_fprintf (struct connectdata *, FILE *, const char *, ...);
 int sec_getc (struct connectdata *conn, FILE *);
 int sec_putc (struct connectdata *conn, int, FILE *);
