@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.75 2003-03-15 17:11:13 bagder Exp $
+# $Id: runtests.pl,v 1.76 2003-03-15 17:26:59 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -159,7 +159,7 @@ sub runhttpserver {
 
     # verify if our/any server is running on this port
     my $cmd = "$CURL -o log/verifiedserver --silent -i $HOSTIP:$HOSTPORT/verifiedserver 2>/dev/null";
-    print "CMD; $cmd" if ($verbose);
+    print "CMD; $cmd\n" if ($verbose);
     my $res = system($cmd);
 
     $res >>= 8; # rotate the result
