@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.27 2001-08-10 06:24:49 bagder Exp $
+ * $Id: progress.c,v 1.28 2001-08-21 06:29:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -326,6 +326,9 @@ int Curl_pgrsUpdate(struct connectdata *conn)
           time_left,                            /* time left */
           max5data(data->progress.current_speed, max5[5]) /* current speed */
           );
+
+  /* we flush the output stream to make it appear as soon as possible */
+  fflush(data->err);
 
   return 0;
 }
