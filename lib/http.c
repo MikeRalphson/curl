@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-03-13 09:11:54 $
+ * $Revision: 1.9 $
+ * $Date: 2000-03-16 11:40:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -253,7 +253,7 @@ UrgError http(struct UrlData *data, char *ppath, char *host, long *bytecount)
 
       thistime = localtime(&data->timevalue);
 
-#if defined(HAVE_STRFTIME) || defined(WIN32)
+#ifdef HAVE_STRFTIME
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
       strftime(buf, BUFSIZE-1, "%a, %d %b %Y %H:%M:%S %Z", thistime);
 #else
