@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.91 2001-12-02 14:16:34 bagder Exp $
+ * $Id: urldata.h,v 1.92 2001-12-03 13:48:59 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -175,6 +175,9 @@ struct FTP {
   char *file;    /* decoded file */
 
   char *entrypath; /* the PWD reply when we logged on */
+
+  char *cache;       /* data cache between getresponse()-calls */
+  size_t cache_size; /* size of cache in bytes */                    
 };
 
 /****************************************************************************
