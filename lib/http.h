@@ -32,8 +32,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.h,v $
- * $Revision: 1.2.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.2.2.2 $
+ * $Date: 2000-04-26 23:03:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -41,6 +41,7 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
-UrgError http(struct connectdata *conn, char *path, char *host, long *bytecountp);
+UrgError http(struct connectdata *conn);
+UrgError http_done(struct connectdata *conn);
 
 #endif

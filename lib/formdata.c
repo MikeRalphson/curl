@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/formdata.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.2.2.1 $
+ * $Date: 2000-04-26 23:03:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -513,11 +513,16 @@ struct FormData *getFormData(struct HttpPost *post,
 
 int FormInit(struct Form *form, struct FormData *formdata )
 {
-  form->data = formdata;
-  form->sent = 0;
-
   if(!formdata)
     return 1; /* error */
+  
+  /* First, make sure that we'll send a nice terminating sequence at the end
+   * of the post. We *DONT* add this string to the size of the data since this
+   * is actually AFTER the data. */
+  AddFormDataf(&formdata, "\r\n\r\n");
+
+  form->data = formdata;
+  form->sent = 0;
 
   return 0;
 }

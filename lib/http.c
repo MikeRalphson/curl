@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.9.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.9.2.2 $
+ * $Date: 2000-04-26 23:03:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -117,34 +117,27 @@ bool static checkheaders(struct UrlData *data, char *thisheader)
 
 UrgError http_done(struct connectdata *conn)
 {
-  struct UrlData *data=conn->data;
+  struct UrlData *data;
   long *bytecount = &conn->bytecount;
+  struct HTTP *http;
 
-  if(!conn || (conn->handle != STRUCT_CONNECT))
-    return URG_FAILED_INIT; /* TBD: correct return code */
+  data=conn->data;
+  http=data->proto.http;
 
-  if(data->conf&(CONF_POST|CONF_HTTPPOST)) {
-    if(data->conf & CONF_POST) {
-    }
-    else {
-      *bytecount = http->readbytecount + http->writebytecount;
+  if(data->conf&CONF_HTTPPOST) {
+    *bytecount = http->readbytecount + http->writebytecount;
       
-      FormFree(http->sendit); /* Now free that whole lot */
+    FormFree(http->sendit); /* Now free that whole lot */
 
-      data->fread = storefread; /* restore */
-      data->in = in; /* restore */
-
-      sendf(data->firstsocket, data,
-            "\r\n\r\n");
-    }
+    data->fread = http->storefread; /* restore */
+    data->in = http->in; /* restore */
   }
   else if(data->conf&CONF_PUT) {
     *bytecount = http->readbytecount + http->writebytecount;
   }
-  else {
-    sendf(data->firstsocket, data, "\r\n");
-  }
   pgrsDone(data);
+
+  /* TBD: the HTTP struct remains allocated here */
 
   return URG_OK;
 }
@@ -160,9 +153,6 @@ UrgError http(struct connectdata *conn)
   char *ppath = conn->ppath; /* three previous function arguments */
   char *host = conn->name;
   long *bytecount = &conn->bytecount;
-
-  if(!conn || (conn->handle != STRUCT_CONNECT))
-    return URG_FAILED_INIT; /* TBD: correct return code */
 
   http = (struct HTTP *)malloc(sizeof(struct HTTP));
   if(!http)
@@ -341,7 +331,7 @@ UrgError http(struct connectdata *conn)
           (size_t (*)(char *, size_t, size_t, FILE *))
           FormReader; /* set the read function to read from the
                          generated form data */
-        data->in = (FILE *)&form;
+        data->in = (FILE *)&http->form;
 
         sendf(data->firstsocket, data,
               "Content-Length: %d\r\n",
@@ -383,6 +373,8 @@ UrgError http(struct connectdata *conn)
 
     }
     else {
+      sendf(data->firstsocket, data, "\r\n");
+
       /* HTTP GET/HEAD download: */
       result = Transfer(conn, data->firstsocket, -1, TRUE, bytecount,
                         -1, NULL); /* nothing to upload */

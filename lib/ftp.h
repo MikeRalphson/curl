@@ -32,19 +32,16 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.h,v $
- * $Revision: 1.2.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.2.2.2 $
+ * $Date: 2000-04-26 23:03:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
-UrgError ftp(struct connectdata *conn,
-             long *bytecountp,
-             char *ftpuser,
-             char *ftppasswd,
-             char *ppath);
+UrgError ftp(struct connectdata *conn);
+UrgError ftp_done(struct connectdata *conn);
 
 struct curl_slist *curl_slist_append(struct curl_slist *list, char *data);
 void curl_slist_free_all(struct curl_slist *list);

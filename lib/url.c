@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.15.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.15.2.2 $
+ * $Date: 2000-04-26 23:03:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -681,8 +681,6 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       strcpy(conn->proto, "LDAP");
     else {
       strcpy(conn->proto, "http");
-      data->curl_do = http;
-      data->curl_done = http_done;
     }
 
     data->conf |= CONF_NOPROT;
@@ -849,6 +847,8 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       data->port = PORT_HTTP;
     data->remote_port = PORT_HTTP;
     data->conf |= CONF_HTTP;
+    data->curl_do = http;
+    data->curl_done = http_done;
   }
   else if (strequal(conn->proto, "HTTPS")) {
 #ifdef USE_SSLEAY
@@ -857,6 +857,9 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
     data->remote_port = PORT_HTTPS;
     data->conf |= CONF_HTTP;
     data->conf |= CONF_HTTPS;
+
+    data->curl_do = http;
+    data->curl_done = http_done;
 #else /* USE_SSLEAY */
     failf(data, "SSL is disabled, https: not supported!");
     return URG_UNSUPPORTED_PROTOCOL;
@@ -873,6 +876,8 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
 	conn->ppath = conn->path;
       }
     data->conf |= CONF_GOPHER;
+    data->curl_do = http;
+    data->curl_done = http_done;
   }
   else if(strequal(conn->proto, "FTP")) {
     char *type;
@@ -880,6 +885,15 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
       data->port = PORT_FTP;
     data->remote_port = PORT_FTP;
     data->conf |= CONF_FTP;
+
+    if(data->conf&CONF_PROXY) {
+      data->curl_do = http;
+      data->curl_done = http_done;
+    }
+    else {
+      data->curl_do = ftp;
+      data->curl_done = ftp_done;
+    }
 
     conn->ppath++; /* don't include the initial slash */
 
@@ -1179,7 +1193,19 @@ UrgError curl_connect(CURL *curl, CURLconnect **in_connect)
 
 UrgError curl_done(CURLconnect *c_connect)
 {
-  return URG_OK;
+  struct connectdata *conn = c_connect;
+  struct UrlData *data;
+  UrgError result;
+
+  if(!conn || (conn->handle!= STRUCT_CONNECT)) {
+    return URG_FAILED_INIT; /* TBD: make a proper return code */
+  }
+  data = conn->data;
+
+  /* this calls the protocol-specific function pointer previously set */
+  result = data->curl_done(conn);
+
+  return result;
 }
 
 UrgError curl_do(CURLconnect *in_conn)
@@ -1192,13 +1218,7 @@ UrgError curl_do(CURLconnect *in_conn)
     return URG_FAILED_INIT; /* TBD: make a proper return code */
   }
 
-  if((data->conf&(CONF_FTP|CONF_PROXY)) == CONF_FTP) {
-    result = ftp(conn, &conn->bytecount, data->user, data->passwd,
-                 conn->ppath);
-    if(result)
-      return result;
-  }
-  else if(data->conf & CONF_TELNET) {
+  if(data->conf & CONF_TELNET) {
     result=telnet(conn);
     if(result)
       return result;
@@ -1214,7 +1234,8 @@ UrgError curl_do(CURLconnect *in_conn)
       return result;
   }
   else {
-    result = http(conn);
+    /* generic protocol-specific function pointer set in curl_connect() */
+    result = data->curl_do(conn);
     if(result)
       return result;
   }

@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.6.2.1 $
- * $Date: 2000-04-26 21:37:19 $
+ * $Revision: 1.6.2.2 $
+ * $Date: 2000-04-26 23:03:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -67,6 +67,7 @@
 #define CURL_DEFAULT_PASSWORD "curl_by_Daniel.Stenberg@haxx.nu"
 
 #include "cookie.h"
+#include "formdata.h"
     
 #ifdef USE_SSLEAY
 /* SSLeay stuff usually in /usr/local/ssl/include */
@@ -181,9 +182,18 @@ struct HTTP {
   struct Form form;
   size_t (*storefread)(char *, size_t , size_t , FILE *);
   FILE *in;
-  long conf;
 };
 
+/****************************************************************************
+ * FTP unique setup
+ ***************************************************************************/
+struct FTP {
+  long *bytecountp;
+  char *ftpuser;
+  char *ftppasswd;
+  char *urlpath;
+  char *realpath;
+};
 
 
 /*
@@ -221,8 +231,8 @@ struct UrlData {
     struct HTTP *http;
     struct HTTP *gopher; /* alias, just for the sake of being more readable */
     struct HTTP *https;  /* alias, just for the sake of being more readable */
-#if 0
     struct FTP *ftp;
+#if 0
     struct TELNET *telnet;
     struct FILE *file;
     struct LDAP *ldap;
@@ -232,8 +242,8 @@ struct UrlData {
 
   /* These two functions MUST be set by the curl_connect() function to be
      be protocol dependent */
-  int (*curl_do)(CURLconnect *connect);
-  int (*curl_done)(CURLconnect *connect);
+  UrgError (*curl_do)(struct connectdata *connect);
+  UrgError (*curl_done)(struct connectdata *connect);
 
   FILE *out;    /* the fetched file goes here */
   FILE *in;     /* the uploaded file is read from here */
