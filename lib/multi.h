@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.7 2002-02-19 11:02:01 bagder Exp $
+ * $Id: multi.h,v 1.8 2002-02-25 08:20:29 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -50,7 +50,7 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
-#ifdef HAVE_WINSOCK_H
+#ifdef defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>
 #endif
 
