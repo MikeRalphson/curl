@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.16 2004-02-26 11:39:38 bagder Exp $
+ * $Id: share.c,v 1.17 2004-03-30 13:02:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -73,7 +73,7 @@ curl_share_setopt(CURLSH *sh, CURLSHoption option, ...)
     {
       case CURL_LOCK_DATA_DNS:
         if (!share->hostcache) {
-          share->hostcache = Curl_hash_alloc(7, Curl_freednsinfo);
+          share->hostcache = Curl_mk_dnscache();
         }
         break;
 
