@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.11 2004-01-29 13:56:45 bagder Exp $
+ * $Id: content_encoding.c,v 1.12 2004-02-13 12:16:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -74,7 +74,7 @@ Curl_unencode_deflate_write(struct SessionHandle *data,
                             ssize_t nread)
 {
   int status;                   /* zlib status */
-  int result = CURLE_OK; /*?*/  /* Curl_client_write status */
+  CURLcode result = CURLE_OK; /*?*/  /* Curl_client_write status */
   char decomp[DSIZ];            /* Put the decompressed data here. */
   z_stream *z = &k->z;          /* zlib state structure */
 
