@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.103 2002-08-30 07:50:59 bagder Exp $
+dnl $Id: configure.in,v 1.104 2002-08-30 11:09:49 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -710,7 +710,7 @@ if test "x$ca" = "xno"; then
   dnl let's not keep "no" as path name, blank it instead
   ca=""
 else
-  AC_DEFINE_UNQUOTED(CURL_CA_BUNDLE, $ca, [CA bundle full path name])
+  AC_DEFINE_UNQUOTED(CURL_CA_BUNDLE, "$ca", [CA bundle full path name])
 fi
 
 CURL_CA_BUNDLE="$ca"
