@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.342 2004-03-01 09:43:42 bagder Exp $
+ * $Id: url.c,v 1.343 2004-03-01 16:28:00 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2411,7 +2411,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if(conn->resume_from) {
     if(!conn->bits.use_range) {
       /* if it already was in use, we just skip this */
-      snprintf(resumerange, sizeof(resumerange), "%Od-",
+      snprintf(resumerange, sizeof(resumerange), CURL_FORMAT_OFF_T "-",
 	       conn->resume_from);
       conn->range=strdup(resumerange); /* tell ourselves to fetch this range */
       conn->bits.rangestringalloc = TRUE; /* mark as allocated */
@@ -2941,7 +2941,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      */
     conn->resume_from = data->set.set_resume_from;
     if (conn->resume_from) {
-      snprintf(resumerange, sizeof(resumerange), "%Od-",
+      snprintf(resumerange, sizeof(resumerange), CURL_FORMAT_OFF_T "-",
 	       conn->resume_from);
       if (conn->bits.rangestringalloc == TRUE)
         free(conn->range);

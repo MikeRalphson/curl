@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.52 2004-01-29 13:56:45 bagder Exp $
+ * $Id: progress.c,v 1.53 2004-03-01 16:28:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -240,7 +240,8 @@ int Curl_pgrsUpdate(struct connectdata *conn)
     if (!data->progress.callback) {
       if(conn->resume_from)
         fprintf(data->set.err,
-		"** Resuming transfer from byte position %Od\n",
+		"** Resuming transfer from byte position " CURL_FORMAT_OFF_T
+                "\n",
                 conn->resume_from);
       fprintf(data->set.err,
               "  %% Total    %% Received %% Xferd  Average Speed          Time             Curr.\n"
