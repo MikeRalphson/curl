@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/timeval.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-02-16 00:01:07 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -42,6 +42,7 @@
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <time.h>
+#include <winsock.h>
 #else
 #include <sys/time.h>
 #endif
