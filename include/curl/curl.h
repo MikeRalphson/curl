@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.158 2002-08-22 19:46:16 bagder Exp $
+ * $Id: curl.h,v 1.159 2002-08-26 23:13:25 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -197,6 +197,8 @@ typedef enum {
   CURLE_SEND_ERROR,              /* 55 - failed sending network data */
   CURLE_RECV_ERROR,              /* 56 - failure in receiving network data */
   CURLE_SHARE_IN_USE,            /* 57 - share is in use */
+  CURLE_SSL_INSECURE,            /* 58 - connect attempt without certificate
+                                    but SSL_INSECURE not explicitly allowed */
   CURL_LAST /* never use! */
 } CURLcode;
 
@@ -570,6 +572,9 @@ typedef enum {
   
   /* Provide a CURLShare for mutexing non-ts data */
   CINIT(SHARE, OBJECTPOINT, 100),
+
+  /* Explicitly allow insecure SSL connects */
+  CINIT(SSL_INSECURE, LONG, 101),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

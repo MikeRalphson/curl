@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.119 2002-08-22 19:38:50 bagder Exp $
+ * $Id: urldata.h,v 1.120 2002-08-26 23:13:26 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -136,14 +136,17 @@ struct ssl_config_data {
   long version;          /* what version the client wants to use */
   long certverifyresult; /* result from the certificate verification */
   long verifypeer;       /* set TRUE if this is desired */
-  long verifyhost;       /* 0: no verif, 1: check that CN exists, 2: CN must match hostname */
+  long verifyhost;       /* 0: no verify
+                            1: check that CN exists
+                            2: CN must match hostname */
   char *CApath;          /* DOES NOT WORK ON WINDOWS */
   char *CAfile;          /* cerficate to verify peer against */
   char *random_file;     /* path to file containing "random" data */
   char *egdsocket;       /* path to file containing the EGD daemon socket */
   char *cipher_list;     /* list of ciphers to use */
+  bool allow_insecure;   /* allow connects without any CA certificate */
 
-  long numsessions;                 /* SSL session id cache size */
+  long numsessions;      /* SSL session id cache size */
 };
 
 /****************************************************************************

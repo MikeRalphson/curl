@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.223 2002-08-26 17:20:29 bagder Exp $
+ * $Id: url.c,v 1.224 2002-08-26 23:13:26 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1004,10 +1004,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     break;
   case CURLOPT_CAPATH:
     /*
-     * Set CA path info  for SSL connection. Specify directory name of the CA certificates
-     * which have been prepared using openssl c_rehash utility.
+     * Set CA path info for SSL connection. Specify directory name of the CA
+     * certificates which have been prepared using openssl c_rehash utility.
      */
-    data->set.ssl.CApath = va_arg(param, char *); /*This does not work on windows.*/
+    /* This does not work on windows. */
+    data->set.ssl.CApath = va_arg(param, char *);
     break;
   case CURLOPT_TELNETOPTIONS:
     /*
@@ -1046,6 +1047,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
       data->share = set;
       data->share->dirty++;
     }
+    break;
+
+  case CURLOPT_SSL_INSECURE:
+    data->set.ssl.allow_insecure = va_arg(param, long)?TRUE:FALSE;
     break;
 
   default:
@@ -2034,6 +2039,17 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     failf(data, "Unsupported protocol: %s", conn->protostr);
     return CURLE_UNSUPPORTED_PROTOCOL;
   }
+
+  if(conn->protocol & PROT_SSL) {
+    /* If SSL is requested, require security level info */
+
+    if(!data->set.ssl.allow_insecure &&
+       !(data->set.ssl.CAfile || data->set.ssl.CApath)) {
+      failf(data, "Insecure SSL connect attempted without explicit permission granted");
+      return CURLE_SSL_INSECURE;
+    }
+  }
+
 
   /*************************************************************
    * Figure out the remote port number

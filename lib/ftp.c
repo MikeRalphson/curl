@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.153 2002-08-26 22:00:01 bagder Exp $
+ * $Id: ftp.c,v 1.154 2002-08-26 23:13:26 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -711,8 +711,7 @@ CURLcode ftp_cwd(struct connectdata *conn, char *path)
   CURLcode result;
   
   FTPSENDF(conn, "CWD %s", path);
-  nread = Curl_GetFTPResponse(
-                              conn->data->state.buffer, conn, &ftpcode);
+  nread = Curl_GetFTPResponse(conn->data->state.buffer, conn, &ftpcode);
   if (nread < 0)
     return CURLE_OPERATION_TIMEOUTED;
 
