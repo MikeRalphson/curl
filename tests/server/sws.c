@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.27 2003-03-16 10:46:52 bagder Exp $
+ * $Id: sws.c,v 1.28 2003-04-03 13:43:15 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -198,8 +198,11 @@ void storerequest(char *reqbuf)
     fwrite(reqbuf, 1, strlen(reqbuf), dump);
 
     fclose(dump);
+    logmsg("Wrote request input to " REQUEST_DUMP);
   }
-
+  else {
+    logmsg("Failed to write request input to " REQUEST_DUMP);
+  }
 }
 
 
