@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.221 2002-08-12 09:43:21 bagder Exp $
+ * $Id: url.c,v 1.222 2002-08-13 14:20:47 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -177,6 +177,10 @@ CURLcode Curl_close(struct SessionHandle *data)
   /* Close down all open SSL info and sessions */
   Curl_SSL_Close_All(data);
 #endif
+
+  /* No longer a dirty share, if it exists */
+  if (data->share)
+    data->share->dirty--;
 
   if(data->state.auth_host)
     free(data->state.auth_host);
@@ -1030,6 +1034,18 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * even when using a timeout.
      */
     data->set.no_signal = va_arg(param, long) ? TRUE : FALSE;
+    break;
+
+  case CURLOPT_SHARE:
+    {
+      curl_share *set;
+      set = va_arg(param, curl_share *);
+      if(data->share)
+        data->share->dirty--;
+
+      data->share = set;
+      data->share->dirty++;
+    }
     break;
 
   default:
