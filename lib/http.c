@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.15 $
- * $Date: 2000-07-25 21:16:32 $
+ * $Revision: 1.16 $
+ * $Date: 2000-07-28 07:55:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -293,10 +293,7 @@ CURLcode http(struct connectdata *conn)
   }
 
   if(!checkheaders(data, "Host:")) {
-    if(data->port != PORT_HTTP)
-      data->ptr_host = maprintf("Host: %s:%d\r\n", host, data->port);
-    else
-      data->ptr_host = maprintf("Host: %s\r\n", host);
+    data->ptr_host = maprintf("Host: %s:%d\r\n", host, data->remote_port);
   }
 
   if(!checkheaders(data, "Pragma:"))
