@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.37 2001-01-24 12:10:10 bagder Exp $
+ * $Id: urldata.h,v 1.38 2001-01-24 14:03:48 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -165,7 +165,7 @@ struct connectdata {
   char proto[64];  /* store the protocol string in this buffer */
   char gname[257]; /* store the hostname in this buffer */
   char *name;      /* host name pointer to fool around with */
-  char *path;      /* formerly staticly this size: URL_MAX_LENGTH */
+  char *path;      /* allocated buffer to store the URL's path part in */
   char *ppath;
   long bytecount;
   struct timeval now; /* current time */
