@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.4 2004-03-25 08:22:03 bagder Exp $
+# $Id: testcurl.pl,v 1.5 2004-03-25 11:39:29 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -50,7 +50,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog $buildl
 use vars qw($name $email $desc $confopts);
 
 # version of this script
-$version='$Revision: 1.4 $';
+$version='$Revision: 1.5 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -194,7 +194,7 @@ if (-d $CURLDIR) {
     # time we run this test
     unlink "$CURLDIR/lib/getdate.c";
     unlink "$CURLDIR/src/hugehelp.c";
-  } elsif (!$CVS && -f "$CURLDIR/testcurl.pl") {
+  } elsif (!$CVS && -f "$CURLDIR/tests/testcurl.pl") {
     logit "curl is verified to be a fine daily source dir"
   } else {
     mydie "curl is not a daily source dir or checked out from CVS!"
