@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.41 2004-03-09 11:24:36 bagder Exp $
+# $Id: testcurl.sh,v 1.42 2004-05-18 09:22:41 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.41 $'
+version='$Revision: 1.42 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -136,6 +136,7 @@ log "CFLAGS = $CFLAGS"
 log "CC = $CC"
 log "version = $version"
 log "date = `date -u`"
+log "testscript = obsolete shell version, use tests/testcurl.pl instead!"
 
 # Make $pwd to become the path without newline. We'll use that in order to cut
 # off that path from all possible logs and error messages etc.
