@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.145 2002-06-12 07:44:22 bagder Exp $
+ * $Id: ftp.c,v 1.146 2002-06-12 22:05:28 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -656,18 +656,19 @@ CURLcode Curl_ftp_done(struct connectdata *conn)
   sclose(conn->secondarysocket);
   conn->secondarysocket = -1;
 
-  /* now let's see what the server says about the transfer we
-     just performed: */
-  nread = Curl_GetFTPResponse(buf, conn, &ftpcode);
-  if(nread < 0)
-    return CURLE_OPERATION_TIMEOUTED;
+  if(!data->set.no_body) {
+    /* now let's see what the server says about the transfer we just
+       performed: */
+    nread = Curl_GetFTPResponse(buf, conn, &ftpcode);
+    if(nread < 0)
+      return CURLE_OPERATION_TIMEOUTED;
 
-  if(!data->set.no_body && !conn->bits.resume_done) {  
-
-    /* 226 Transfer complete, 250 Requested file action okay, completed. */
-    if((ftpcode != 226) && (ftpcode != 250)) {
-      failf(data, "server did not report OK, got %d", ftpcode);
-      return CURLE_FTP_WRITE_ERROR;
+    if(!conn->bits.resume_done) {  
+      /* 226 Transfer complete, 250 Requested file action okay, completed. */
+      if((ftpcode != 226) && (ftpcode != 250)) {
+        failf(data, "server did not report OK, got %d", ftpcode);
+        return CURLE_FTP_WRITE_ERROR;
+      }
     }
   }
 
