@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.204 2003-10-18 20:14:33 bagder Exp $
+ * $Id: ftp.c,v 1.205 2003-10-24 12:58:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -558,6 +558,9 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
     char *dir = (char *)malloc(nread+1);
     char *store=dir;
     char *ptr=&buf[4]; /* start on the first letter */
+
+    if(!dir)
+      return CURLE_OUT_OF_MEMORY;
     
     /* Reply format is like
        257<space>"<directory-name>"<space><commentary> and the RFC959 says
@@ -565,7 +568,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
        The directory name can contain any character; embedded double-quotes
        should be escaped by double-quotes (the "quote-doubling" convention).
     */
-    if(dir && ('\"' == *ptr)) {
+    if('\"' == *ptr) {
       /* it started good */
       ptr++;
       while(ptr && *ptr) {
