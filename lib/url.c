@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.240 2002-11-07 08:45:10 bagder Exp $
+ * $Id: url.c,v 1.241 2002-11-11 08:40:38 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1768,6 +1768,16 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      timeout checks before the transfer has started for real. The start time
      is later set "for real" using Curl_pgrsStartNow(). */
   conn->data->progress.start = conn->created; 
+
+  conn->upload_chunky =
+    ((conn->protocol&PROT_HTTP) &&
+     data->set.upload &&
+     (data->set.infilesize == -1) &&
+     (data->set.httpversion != CURL_HTTP_VERSION_1_0))?
+    /* HTTP, upload, unknown file size and not HTTP 1.0 */
+    TRUE:
+  /* else, no chunky upload */
+  FALSE;
 
   /***********************************************************
    * We need to allocate memory to store the path in. We get the size of the

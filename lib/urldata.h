@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.130 2002-11-05 10:51:46 bagder Exp $
+ * $Id: urldata.h,v 1.131 2002-11-11 08:40:38 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -285,6 +285,8 @@ struct Curl_transfer_keeper {
   fd_set wkeepfd;
   int keepon;
 
+  bool upload_done; /* set to TRUE when doing chunked transfer-encoding upload
+                       and we're uploading the last chunk */
 };
 
 
@@ -450,6 +452,9 @@ struct connectdata {
 
   bool do_more; /* this is set TRUE if the ->curl_do_more() function is
                    supposed to be called, after ->curl_do() */
+
+  bool upload_chunky; /* set TRUE if we are doing chunked transfer-encoding
+                         on upload */
 };
 
 /* The end of connectdata. 08/27/02 jhrg */
