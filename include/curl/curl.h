@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.183 2003-01-08 15:50:06 bagder Exp $
+ * $Id: curl.h,v 1.184 2003-01-09 10:26:29 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -928,9 +928,11 @@ typedef void (*curl_unlock_function)(CURL *handle,
 typedef void CURLSH;
 
 typedef enum {
-  CURLSH_OK,  /* all is fine */
-  CURLSH_BAD_OPTION, /* 1 */
-  CURLSH_LAST /* never use */
+  CURLSHE_OK,  /* all is fine */
+  CURLSHE_BAD_OPTION, /* 1 */
+  CURLSHE_IN_USE,     /* 2 */
+  CURLSHE_INVALID,    /* 3 */
+  CURLSHE_LAST /* never use */
 } CURLSHcode;
 
 typedef enum {
