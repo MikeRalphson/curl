@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.156 2004-06-24 07:43:49 bagder Exp $
+ * $Id: hostip.c,v 1.157 2004-06-24 08:08:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -555,6 +555,6 @@ Curl_addrinfo *Curl_addrinfo_copy(void *org, int port)
 {
   struct hostent *orig = org;
 
-  return Curl_he2ai(orig, port);
+  return Curl_he2ai(orig, (unsigned short)port);
 }
 #endif /* CURLRES_ADDRINFO_COPY */
