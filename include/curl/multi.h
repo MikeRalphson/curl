@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.7 2003-01-22 18:50:51 bagder Exp $
+ * $Id: multi.h,v 1.8 2003-02-04 18:12:41 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -73,7 +73,7 @@ typedef enum {
 
 typedef enum {
   CURLMSG_NONE, /* first, not used */
-  CURLMSG_DONE, /* This easy handle has completed. 'whatever' points to
+  CURLMSG_DONE, /* This easy handle has completed. 'result' contains
                    the CURLcode of the transfer */
   CURLMSG_LAST /* last, not used */
 } CURLMSG;
