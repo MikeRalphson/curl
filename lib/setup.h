@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/setup.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-01-17 17:29:42 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -85,10 +85,10 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #endif
 
 #ifndef STDC_HEADERS /* no standard C headers! */
-#include "stdcheaders.h"
+#include "curl/stdcheaders.h"
 #else
 #ifdef _AIX
-#include "stdcheaders.h"
+#include "curl/stdcheaders.h"
 #endif
 #endif
 
