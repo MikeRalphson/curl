@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.440 2005-01-19 09:36:45 bagder Exp $
+ * $Id: url.c,v 1.441 2005-01-21 09:32:33 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1360,19 +1360,12 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     break;
 
   /*********** 3rd party transfer options ***********/
-  case CURLOPT_SOURCE_HOST:
+  case CURLOPT_SOURCE_URL:
     /*
-     * Use SOURCE HOST
+     * SOURCE URL
      */
-    data->set.source_host = va_arg(param, char *);
-    data->set.printhost = (data->set.source_host != NULL);
-    break;
-
-  case CURLOPT_SOURCE_PORT:
-    /*
-     * Use SOURCE PORT
-     */
-    data->set.source_port = va_arg(param, char *);
+    data->set.source_url = va_arg(param, char *);
+    data->set.printhost = (data->set.source_url != NULL);
     break;
 
   case CURLOPT_SOURCE_USERPWD:
@@ -1382,18 +1375,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     data->set.source_userpwd = va_arg(param, char *);
     break;
 
-  case CURLOPT_SOURCE_PATH:
+  case CURLOPT_SOURCE_QUOTE:
     /*
-     * Use SOURCE PATH
+     * List of RAW FTP commands to use after a connect
      */
-    data->set.source_path = va_arg(param, char *);
-    break;
-
-  case CURLOPT_PASV_HOST:
-    /*
-     * Indicates whether source or target host is passive
-     */
-    data->set.pasvHost = va_arg(param, long)?CURL_SOURCE_PASV:CURL_TARGET_PASV;
+    data->set.source_quote = va_arg(param, struct curl_slist *);
     break;
 
   case CURLOPT_SOURCE_PREQUOTE:
