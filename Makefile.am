@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.15 2001-03-23 14:29:10 bagder Exp $
+# $Id: Makefile.am,v 1.16 2001-04-17 12:33:02 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -7,6 +7,8 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
 EXTRA_DIST = \
 	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt \
 	config-win32.h reconf packages/README Makefile.dist
+
+bin_SCRIPTS = curl-config
 
 SUBDIRS = docs lib src include tests packages perl php
 
