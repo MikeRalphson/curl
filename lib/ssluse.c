@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.77 2003-08-19 07:51:09 bagder Exp $
+ * $Id: ssluse.c,v 1.78 2003-08-19 09:56:16 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -437,7 +437,11 @@ void Curl_SSL_cleanup(void)
     ENGINE_cleanup();
 #endif
 
+#ifdef HAVE_CRYPTO_CLEANUP_ALL_EX_DATA
+    /* this function was not present in 0.9.6b, but was added sometimes
+       later */
     CRYPTO_cleanup_all_ex_data();
+#endif
 
     init_ssl=0; /* not inited any more */
   }
