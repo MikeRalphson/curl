@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.85 2004-12-16 18:09:27 bagder Exp $
+ * $Id: formdata.c,v 1.86 2004-12-22 20:12:15 danf Exp $
  ***************************************************************************/
 
 /*
@@ -1539,7 +1539,7 @@ void curl_formfree(struct curl_httppost *form)
 char *Curl_FormBoundary(void)
 {
   char *retstring;
-  static int randomizer=0; /* this is just so that two boundaries within
+  static int randomizer;   /* this is just so that two boundaries within
                               the same form won't be identical */
   size_t i;
 

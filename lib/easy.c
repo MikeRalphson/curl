@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.65 2004-12-05 23:59:32 bagder Exp $
+ * $Id: easy.c,v 1.66 2004-12-22 20:12:15 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -165,8 +165,8 @@ static void idna_init (void)
 #endif  /* USE_LIBIDN */
 
 /* true globals -- for curl_global_init() and curl_global_cleanup() */
-static unsigned int  initialized = 0;
-static long          init_flags  = 0;
+static unsigned int  initialized;
+static long          init_flags;
 
 /*
  * If a memory-using function (like curl_getenv) is used before
