@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.164 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: url.c,v 1.165 2001-10-12 12:32:20 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1055,14 +1055,14 @@ ConnectionKillOne(struct SessionHandle *data)
        * Set higher score for the age passed since the connection
        * was used.
        */
-      score = Curl_tvlong(now) - Curl_tvlong(conn->now);
+      score = Curl_tvdiff(now, conn->now);
       break;
     case CURLCLOSEPOLICY_OLDEST:
       /*
        * Set higher score for the age passed since the connection
        * was created.
        */
-      score = Curl_tvlong(now) - Curl_tvlong(conn->created);
+      score = Curl_tvdiff(now, conn->created);
       break;
     }
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: speedcheck.c,v 1.12 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: speedcheck.c,v 1.13 2001-10-12 12:32:20 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -51,7 +51,8 @@ CURLcode Curl_speedcheck(struct SessionHandle *data,
        for "low speed time" seconds we consider that enough reason
        to abort the download. */
     
-    if( Curl_tvdiff(now, data->state.keeps_speed) > data->set.low_speed_time) {
+    if( (Curl_tvdiff(now, data->state.keeps_speed)/1000) >
+        data->set.low_speed_time) {
       /* we have been this slow for long enough, now die */
       failf(data,
 	    "Operation too slow. "

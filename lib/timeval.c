@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.9 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: timeval.c,v 1.10 2001-10-12 12:32:20 bagder Exp $
  *****************************************************************************/
 
 #ifdef WIN32
@@ -69,9 +69,10 @@ struct timeval Curl_tvnow (void)
  * Make sure that the first argument is the more recent time, as otherwise
  * we'll get a weird negative time-diff back...
  */
-double Curl_tvdiff (struct timeval t1, struct timeval t2)
+long Curl_tvdiff (struct timeval t1, struct timeval t2)
 {
- return (double)(t1.tv_sec - t2.tv_sec) + ((t1.tv_usec-t2.tv_usec)/1000000.0);
+  return (t1.tv_sec*1000 + t1.tv_usec/1000)-
+    (t2.tv_sec*1000 + t2.tv_usec/1000);
 }
 
 long Curl_tvlong (struct timeval t1)
