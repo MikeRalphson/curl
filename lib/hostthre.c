@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.7 2004-06-10 11:06:21 bagder Exp $
+ * $Id: hostthre.c,v 1.8 2004-06-24 07:43:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -469,7 +469,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
           hostname, port, Curl_strerror(conn,WSAGetLastError()));
     return NULL;
   }
-  return h;
+  return Curl_he2ai(h, port);
 }
 #endif /* CURLRES_IPV4 */
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.239 2004-06-22 06:50:41 bagder Exp $
+ * $Id: transfer.c,v 1.240 2004-06-24 07:43:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -870,13 +870,6 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                     return CURLE_OUT_OF_MEMORY;
                 }
               }
-#if 0 /* for consideration */
-              else {
-                /* This is a Location: but we have not been instructed to
-                   follow it */
-                infof(data, "We ignore this location header as instructed\n");
-              }
-#endif
             }
 #endif   /* CURL_DISABLE_HTTP */
 

@@ -1,8 +1,8 @@
 /***************************************************************************
- *                                  _   _ ____  _     
- *  Project                     ___| | | |  _ \| |    
- *                             / __| | | | |_) | |    
- *                            | (__| |_| |  _ <| |___ 
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
  * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
@@ -10,7 +10,7 @@
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at http://curl.haxx.se/docs/copyright.html.
- * 
+ *
  * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
  * furnished to do so, under the terms of the COPYING file.
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.34 2004-05-11 11:30:23 bagder Exp $
+ * $Id: if2ip.c,v 1.35 2004-06-24 07:43:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -64,7 +64,7 @@
 #include <sys/sockio.h>
 #endif
 
-#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL) 
+#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
 #include "inet_ntoa_r.h"
 #endif
 
@@ -84,7 +84,7 @@ char *Curl_if2ip(const char *interface, char *buf, int buf_size)
 {
   int dummy;
   char *ip=NULL;
-  
+
   if(!interface)
     return NULL;
 

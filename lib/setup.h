@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.67 2004-06-14 21:40:11 bagder Exp $
+ * $Id: setup.h,v 1.68 2004-06-24 07:43:49 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -268,19 +268,6 @@ typedef int curl_socket_t;
 #else
 #define USE_THREADING_GETHOSTBYNAME  /* Cygwin uses alarm() function */
 #endif
-#endif
-
-/*
- * Curl_addrinfo MUST be used for name resolving information.
- * Information regarding a single IP witin a Curl_addrinfo MUST be stored in
- * a Curl_ipconnect struct.
- */
-#ifdef ENABLE_IPV6
-typedef struct addrinfo Curl_addrinfo;
-typedef struct addrinfo Curl_ipconnect;
-#else
-typedef struct hostent Curl_addrinfo;
-typedef struct in_addr Curl_ipconnect;
 #endif
 
 #ifdef mpeix
