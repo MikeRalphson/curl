@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.83 2001-12-11 13:13:01 bagder Exp $
+ * $Id: http.c,v 1.84 2002-01-14 23:14:59 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -235,6 +235,7 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
   int subversion=0;
   struct SessionHandle *data=conn->data;
   CURLcode result;
+  int res;
 
   int nread;   /* total size read */
   int perline; /* count bytes per line */
@@ -317,8 +318,12 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
        * to read, but when we use Curl_read() it may do so. Do confirm
        * that this is still ok and then remove this comment!
        */
-      if(CURLE_OK != Curl_read(conn, tunnelsocket, ptr, BUFSIZE-nread,
-                               &gotbytes))
+      res= Curl_read(conn, tunnelsocket, ptr, BUFSIZE-nread,
+                     &gotbytes);
+      if(res< 0)
+        /* EWOULDBLOCK */
+        continue; /* go loop yourself */
+      else if(res)
         keepon = FALSE;
       else if(gotbytes <= 0) {
         keepon = FALSE;

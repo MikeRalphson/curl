@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.75 2002-01-07 22:46:38 bagder Exp $
+ * $Id: transfer.c,v 1.76 2002-01-14 23:14:59 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -173,7 +173,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 {
   struct Curl_transfer_keeper *k = &conn->keep;
   struct SessionHandle *data = conn->data;
-  CURLcode result;
+  int result;
   ssize_t nread; /* number of bytes read */
   int didwhat=0;
 
@@ -181,17 +181,20 @@ CURLcode Curl_readwrite(struct connectdata *conn,
     if((k->keepon & KEEP_READ) &&
        FD_ISSET(conn->sockfd, &k->readfd)) {
 
-      if ((k->bytecount == 0) && (k->writebytecount == 0))
-        Curl_pgrsTime(data, TIMER_STARTTRANSFER);
-
-      didwhat |= KEEP_READ;
-
       /* read! */
       result = Curl_read(conn, conn->sockfd, k->buf,
                          BUFSIZE -1, &nread);
 
-      if(result)
+      if(0>result)
+        break; /* get out of loop */
+      if(result>0)
         return result;
+
+      if ((k->bytecount == 0) && (k->writebytecount == 0))
+        Curl_pgrsTime(data, TIMER_STARTTRANSFER);
+
+
+      didwhat |= KEEP_READ;
 
       /* NULL terminate, allowing string ops to be used */
       if (0 < (signed int) nread)
