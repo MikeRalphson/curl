@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.72 2004-07-01 07:28:36 bagder Exp $
+ * $Id: progress.c,v 1.73 2004-07-02 11:56:26 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -274,13 +274,13 @@ int Curl_pgrsUpdate(struct connectdata *conn)
 
   /* The average download speed this far */
   data->progress.dlspeed = (curl_off_t)
-    (data->progress.downloaded/(data->progress.timespent>0?
-                               data->progress.timespent:1));
+    ((double)data->progress.downloaded/
+     (data->progress.timespent>0?data->progress.timespent:1));
 
   /* The average upload speed this far */
   data->progress.ulspeed = (curl_off_t)
-    (data->progress.uploaded/(data->progress.timespent>0?
-                              data->progress.timespent:1));
+    ((double)data->progress.uploaded/
+     (data->progress.timespent>0?data->progress.timespent:1));
 
   if(data->progress.lastshow == Curl_tvlong(now))
     return 0; /* never update this more than once a second if the end isn't
@@ -332,7 +332,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
         /* the 'amount' value is bigger than would fit in 32 bits if
            multiplied with 1000, so we use the double math for this */
         data->progress.current_speed = (curl_off_t)
-          (amount/(span_ms/1000.0));
+          ((double)amount/(span_ms/1000.0));
       else
         /* the 'amount' value is small enough to fit within 32 bits even
            when multiplied with 1000 */
