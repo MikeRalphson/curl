@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.146 2004-04-21 11:18:42 bagder Exp $
+ * $Id: hostip.c,v 1.147 2004-04-23 14:04:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1531,12 +1531,15 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
     }
     else
       rc = CURLE_OPERATION_TIMEDOUT;
+  }
 
-    destroy_thread_data(&conn->async);
+  destroy_thread_data(&conn->async);
+
+  if (CURLE_OK != rc)
     /* close the connection, since we can't return failure here without
        cleaning up this connection properly */
     Curl_disconnect(conn);
-  }
+
   return (rc);
 }
 
