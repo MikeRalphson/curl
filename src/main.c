@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.264 2004-05-10 14:45:11 bagder Exp $
+ * $Id: main.c,v 1.265 2004-05-12 08:22:04 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -107,6 +107,9 @@
 
 /* The last #include file should be: */
 #ifdef CURLDEBUG
+#ifndef CURLTOOLDEBUG
+#define MEMDEBUG_NODEFINES
+#endif
 /* This is low-level hard-hacking memory leak tracking and similar. Using
    the library level code from this client-side is ugly, but we do this
    anyway for convenience. */

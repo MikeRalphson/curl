@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.33 2004-04-06 07:48:29 bagder Exp $
+ * $Id: urlglob.c,v 1.34 2004-05-12 08:22:04 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -35,9 +35,8 @@
 
 #include "urlglob.h"
 
-
-#ifdef CURLDEBUG
-#include "../lib/memdebug.h"
+#if defined(CURLDEBUG) && defined(CURLTOOLDEBUG)
+#include "memdebug.h"
 #endif
 
 typedef enum {

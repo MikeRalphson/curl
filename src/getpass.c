@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.6 2004-03-10 16:03:12 bagder Exp $
+ * $Id: getpass.c,v 1.7 2004-05-12 08:22:04 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -94,8 +94,8 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 #endif
 
 /* The last #include file should be: */
-#ifdef CURLDEBUG
-#include "../lib/memdebug.h"
+#if defined(CURLDEBUG) && defined(CURLTOOLDEBUG)
+#include "memdebug.h"
 #endif
 
 char *getpass_r(const char *prompt, char *buffer, size_t buflen)

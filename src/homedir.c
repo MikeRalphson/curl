@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: homedir.c,v 1.4 2004-01-29 13:54:08 bagder Exp $
+ * $Id: homedir.c,v 1.5 2004-05-12 08:22:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -42,8 +42,8 @@
 
 #include "homedir.h"
 
-#ifdef CURLDEBUG
-#include "../lib/memdebug.h"
+#if defined(CURLDEBUG) && defined(CURLTOOLDEBUG)
+#include "memdebug.h"
 #endif
 
 static
