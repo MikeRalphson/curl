@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.h,v 1.2 2003-05-22 16:23:27 bagder Exp $
+ * $Id: http_digest.h,v 1.3 2003-05-22 22:39:38 bagder Exp $
  ***************************************************************************/
 
 typedef enum {
@@ -43,4 +43,6 @@ CURLdigest Curl_input_digest(struct connectdata *conn, char *header);
 CURLcode Curl_output_digest(struct connectdata *conn,
                             unsigned char *request,
                             unsigned char *uripath);
+void Curl_digest_cleanup(struct SessionHandle *data);
+
 #endif

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.154 2003-05-22 16:09:55 bagder Exp $
+ * $Id: urldata.h,v 1.155 2003-05-22 22:39:39 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -671,6 +671,7 @@ struct UserDefined {
   char *set_proxy;   /* proxy to use */
   long use_port;     /* which port to use (when not using default) */
   char *userpwd;     /* <user:password>, if used */
+  bool httpdigest;   /* if HTTP Digest is enabled */
   char *set_range;   /* range, if used. See README for detailed specification
                         on this syntax. */
   long followlocation; /* as in HTTP Location: */
