@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.31 $
- * $Date: 2000-11-17 14:21:07 $
+ * $Revision: 1.32 $
+ * $Date: 2000-11-20 09:40:09 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -181,7 +181,7 @@ typedef enum {
 
 #define CURL_ERROR_SIZE 256
 
-/* maximum URL length we deal with */
+/* maximum URL length we deal with in headers */
 #define URL_MAX_LENGTH 4096 
 #define URL_MAX_LENGTH_TXT "4095"
 
