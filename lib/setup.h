@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.66 2004-06-02 11:36:07 bagder Exp $
+ * $Id: setup.h,v 1.67 2004-06-14 21:40:11 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -305,7 +305,7 @@ typedef struct in_addr Curl_ipconnect;
 /* This could benefit from additional checks that some of the used/important
    header files are present as well before we define the USE_* define. */
 #define USE_LIBIDN
-#define LIBIDN_REQUIRED_VERSION "0.4.5"
+#define LIBIDN_REQUIRED_VERSION "0.4.1"
 #endif
 
 #endif /* __CONFIG_H */
