@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.10 2001-01-24 09:01:32 bagder Exp $
+ * $Id: getenv.c,v 1.11 2001-08-06 12:19:26 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -27,6 +27,10 @@
 
 #ifdef WIN32
 #include <windows.h>
+#endif
+
+#ifdef VMS
+#include <unixlib.h>
 #endif
 
 #ifdef MALLOCDEBUG
@@ -44,8 +48,16 @@ char *GetEnv(char *variable)
   if (temp != NULL)
     ExpandEnvironmentStrings(temp, env, sizeof(env));
 #else
+#ifdef	VMS
+  char *env = getenv(variable);
+  if (env && strcmp("HOME",variable) == 0) {
+	env = decc$translate_vms(env);
+  }
+/*  printf ("Getenv: %s=%s\n",variable,env); */
+#else
   /* no length control */
   char *env = getenv(variable);
+#endif
 #endif
   return (env && env[0])?strdup(env):NULL;
 }

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.22 2001-05-30 11:06:33 bagder Exp $
+ * $Id: hostip.c,v 1.23 2001-08-06 12:21:09 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -27,6 +27,7 @@
 #include <errno.h>
 
 #define _REENTRANT
+
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>
@@ -45,6 +46,10 @@
 #endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
+#endif
+#ifdef	VMS
+#include <inet.h>
+#include <stdlib.h>
 #endif
 #endif
 
