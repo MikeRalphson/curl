@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.245 2004-11-26 16:08:15 giva Exp $
+ * $Id: urldata.h,v 1.246 2004-12-06 16:36:50 giva Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -865,7 +865,6 @@ struct UserDefined {
   char *key;            /* private key */
   char *key_type;       /* format for private key (default: PEM) */
   char *key_passwd;     /* plain text private key password */
-  char *crypto_engine;  /* name of the crypto engine to use */
   char *cookiejar;      /* dump all cookies to this file */
   bool cookiesession;   /* new cookie session? */
   bool crlf;            /* convert crlf on ftp upload(?) */
