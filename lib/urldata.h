@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.180 2003-10-18 20:14:33 bagder Exp $
+ * $Id: urldata.h,v 1.181 2003-11-07 13:26:00 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -779,8 +779,6 @@ struct UserDefined {
   curl_progress_callback fprogress;  /* function for progress information */
   curl_debug_callback fdebug;      /* function that write informational data */
   void *progress_client; /* pointer to pass to the progress callback */
-  curl_passwd_callback fpasswd;      /* call for password */
-  void *passwd_client;               /* pass to the passwd callback */
   long timeout;         /* in seconds, 0 means no timeout */
   long connecttimeout;  /* in seconds, 0 means no timeout */
   long ftp_response_timeout; /* in seconds, 0 means no timeout */
