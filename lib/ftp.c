@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.75 2001-08-15 06:52:42 bumblebury Exp $
+ * $Id: ftp.c,v 1.76 2001-08-15 06:54:16 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -600,8 +600,7 @@ CURLcode Curl_ftp_done(struct connectdata *conn)
 }
 
 
-
-static CURLCode _ftp_sendquote(struct connectdata *conn, struct curl_slist *quote)
+static CURLcode _ftp_sendquote(struct connectdata *conn, struct curl_slist *quote)
 {
   struct curl_slist *item;
   ssize_t            nread;
