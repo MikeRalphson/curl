@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.39 2004-02-26 11:46:17 bagder Exp $
+# $Id: ftpserver.pl,v 1.40 2004-03-01 07:16:45 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -282,7 +282,9 @@ sub RETR_command {
     if($testno =~ /^verifiedserver$/) {
         # this is the secret command that verifies that this actually is
         # the curl test server
-        print "150 Binary junk (10 bytes).\r\n";
+        my $response = "WE ROOLZ: $$\r\n";
+        my $len = length($response);
+        print "150 Binary junk ($len bytes).\r\n";
         print SOCK "WE ROOLZ: $$\r\n";
         close(SOCK);
         print "226 File transfer complete\r\n";
