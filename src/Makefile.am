@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.49 2004-04-26 21:15:48 bagder Exp $
+# $Id: Makefile.am,v 1.50 2004-07-14 14:18:31 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -50,7 +50,7 @@ EXTRA_DIST = mkhelp.pl makefile.dj Makefile.vc6 Makefile.b32 Makefile.m32 \
 	Makefile.riscos config.h.in macos/curl.mcp.xml.sit.hqx		  \
 	macos/MACINSTALL.TXT macos/src/curl_GUSIConfig.cpp		  \
 	macos/src/macos_main.cpp config-amigaos.h makefile.amiga curl.rc  \
-	Makefile.netware config-netware.h
+	Makefile.netware
 
 MANPAGE=$(top_srcdir)/docs/curl.1
 README=$(top_srcdir)/docs/MANUAL

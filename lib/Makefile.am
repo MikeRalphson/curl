@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.97 2004-07-04 08:45:25 bagder Exp $
+# $Id: Makefile.am,v 1.98 2004-07-14 14:18:31 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -30,7 +30,7 @@ EXTRA_DIST = getdate.y Makefile.b32 Makefile.b32.resp Makefile.m32	\
   ca-bundle.crt README.encoding README.memoryleak README.ares		\
   README.curlx makefile.dj config.dj libcurl.framework.make		\
   libcurl.plist libcurl.rc config-amigaos.h amigaos.c amigaos.h		\
-  makefile.amiga config-netware.h Makefile.netware nwlib.c libcurl.imp	\
+  makefile.amiga Makefile.netware nwlib.c libcurl.imp	\
   msvcproj.head msvcproj.foot
 
 CLEANFILES = $(DSP) getdate.c
