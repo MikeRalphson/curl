@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.6 2004-05-11 11:30:23 bagder Exp $
+ * $Id: hostthre.c,v 1.7 2004-06-10 11:06:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -142,7 +142,7 @@ static void dump_addrinfo (struct connectdata *conn, const struct addrinfo *ai)
 
     trace_it("    fam %2d, CNAME %s, ",
              ai->ai_family, ai->ai_canonname ? ai->ai_canonname : "<none>");
-    if (Curl_printable_address(ai->ai_family, ai->ai_addr, buf, sizeof(buf)))
+    if (Curl_printable_address(ai, buf, sizeof(buf)))
       trace_it("%s\n", buf);
     else
       trace_it("failed; %s\n", Curl_strerror(conn,WSAGetLastError()));
