@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.55 2002-02-25 14:08:51 bagder Exp $
+# $Id: runtests.pl,v 1.56 2002-02-28 12:36:25 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -73,6 +73,9 @@ my $listonly;     # only list the tests
 my $pwd;          # current working directory
 
 chomp($pwd = `pwd`);
+
+# enable memory debugging if curl is compiled with it
+$ENV{'CURL_MEMDEBUG'} = 1;
 
 #######################################################################
 # Return the pid of the server as found in the given pid file
@@ -171,7 +174,7 @@ sub runhttpserver {
         }
     }
 
-    if($pid) {
+    if($pid > 0) {
         my $res = kill (9, $pid); # die!
         if(!$res) {
             print "Failed to kill our HTTP test server, do it manually and",
