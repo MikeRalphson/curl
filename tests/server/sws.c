@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.38 2004-01-07 09:19:37 bagder Exp $
+ * $Id: sws.c,v 1.39 2004-01-30 09:27:27 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -262,6 +262,10 @@ static int get_request(int sock, int *part, int *open)
 
   if (offset >= REQBUFSIZ) {
     logmsg("Request buffer overflow, closing connection");
+    /* dump the request to an external file anyway */
+    reqbuf[REQBUFSIZ-1]=0;
+    storerequest(reqbuf);
+
     return DOCNUMBER_INTERNAL;
   }
   reqbuf[offset]=0;
