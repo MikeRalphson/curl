@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.74 2001-01-24 14:44:05 bagder Exp $
+ * $Id: url.c,v 1.75 2001-01-25 12:23:57 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -545,67 +545,6 @@ RETSIGTYPE alarmfunc(int signal)
   return;
 }
 #endif
-
-CURLcode curl_write(CURLconnect *c_conn, char *buf, size_t amount,
-                   size_t *n)
-{
-  struct connectdata *conn = (struct connectdata *)c_conn;
-  struct UrlData *data;
-  size_t bytes_written;
-
-  if(!n || !conn || (conn->handle != STRUCT_CONNECT))
-    return CURLE_FAILED_INIT;
-  data = conn->data;
-
-#ifdef USE_SSLEAY
-  if (data->ssl.use) {
-    bytes_written = SSL_write(data->ssl.handle, buf, amount);
-  }
-  else {
-#endif
-#ifdef KRB4
-    if(conn->sec_complete)
-      bytes_written = sec_write(conn, conn->writesockfd, buf, amount);
-    else
-#endif
-      bytes_written = swrite(conn->writesockfd, buf, amount);
-#ifdef USE_SSLEAY
-  }
-#endif /* USE_SSLEAY */
-
-  *n = bytes_written;
-  return CURLE_OK;
-}
-
-CURLcode curl_read(CURLconnect *c_conn, char *buf, size_t buffersize,
-                   size_t *n)
-{
-  struct connectdata *conn = (struct connectdata *)c_conn;
-  struct UrlData *data;
-  size_t nread;
-
-  if(!n || !conn || (conn->handle != STRUCT_CONNECT))
-    return CURLE_FAILED_INIT;
-  data = conn->data;
-
-#ifdef USE_SSLEAY
-  if (data->ssl.use) {
-    nread = SSL_read (data->ssl.handle, buf, buffersize);
-  }
-  else {
-#endif
-#ifdef KRB4
-    if(conn->sec_complete)
-      nread = sec_read(conn, conn->sockfd, buf, buffersize);
-    else
-#endif
-      nread = sread (conn->sockfd, buf, buffersize);
-#ifdef USE_SSLEAY
-  }
-#endif /* USE_SSLEAY */
-  *n = nread;
-  return CURLE_OK;
-}
 
 CURLcode curl_disconnect(CURLconnect *c_connect)
 {
