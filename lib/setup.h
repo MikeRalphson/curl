@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/setup.h,v $
- * $Revision: 1.5 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.6 $
+ * $Date: 2000-08-24 14:27:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -40,7 +40,7 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
-#include <stdio.h>
+
 
 #if !defined(WIN32) && defined(_WIN32)
 /* This _might_ be a good Borland fix. Please report whether this works or
@@ -57,6 +57,7 @@
 #endif
 #endif
 
+#include <stdio.h>
 #ifndef OS
 #ifdef WIN32
 #define OS "win32"
