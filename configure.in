@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.100 2002-07-29 23:00:16 bagder Exp $
+dnl $Id: configure.in,v 1.101 2002-08-13 11:45:34 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -661,7 +661,8 @@ AC_CHECK_FUNCS( socket \
                 geteuid \
                 dlopen \
                 utime \
-                sigsetjmp
+                sigsetjmp \
+                poll
 )
 
 dnl sigsetjmp() might be a macro and no function so if it isn't found already
