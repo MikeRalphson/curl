@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.19 2002-09-03 11:53:01 bagder Exp $
+ * $Id: sendf.h,v 1.20 2002-12-10 13:08:22 bagder Exp $
  ***************************************************************************/
 
 CURLcode Curl_sendf(int fd, struct connectdata *, const char *fmt, ...);
@@ -29,13 +29,6 @@ void Curl_failf(struct SessionHandle *, const char *fmt, ...);
 
 #define infof Curl_infof
 #define failf Curl_failf
-
-struct send_buffer {
-  char *buffer;
-  size_t size_max;
-  size_t size_used;
-};
-typedef struct send_buffer send_buffer;
 
 #define CLIENTWRITE_BODY   1
 #define CLIENTWRITE_HEADER 2
