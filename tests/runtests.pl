@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.53 2002-02-25 12:14:24 bagder Exp $
+# $Id: runtests.pl,v 1.54 2002-02-25 12:45:20 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -140,14 +140,18 @@ sub runhttpserver {
     my $RUNNING;
     my $pid;
 
+    $pid = checkserver ($HTTPPIDFILE);
+
     # verify if our/any server is running on this port
     my $data=`$CURL --silent -i $HOSTIP:$HOSTPORT/verifiedserver`;
 
     if ( $data =~ /WE ROOLZ(: |)(\d*)/ ) {
-        $pid = 0+$2;
+        if($2) {
+            $pid = 0+$2;
+        }
 
         if(!$pid) {
-            print "Test server already running with unkown pid! Use it...\n";
+            print "Test server already running with unknown pid! Use it...\n";
             return;
         }
 
