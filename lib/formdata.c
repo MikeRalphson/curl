@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.77 2004-10-01 11:27:14 bagder Exp $
+ * $Id: formdata.c,v 1.78 2004-10-05 06:49:09 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -931,7 +931,7 @@ void curl_formfree(struct curl_httppost *form)
   required to be reentrant is not required to be thread-safe.
 
 */
-char *basename(char *path)
+static char *basename(char *path)
 {
   /* Ignore all the details above for now and make a quick and simple
      implementaion here */
