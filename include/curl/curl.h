@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.50 2001-02-01 07:59:46 bagder Exp $
+ * $Id: curl.h,v 1.51 2001-02-04 20:03:30 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -676,7 +676,10 @@ typedef enum {
   CURLINFO_SSL_VERIFYRESULT = CURLINFO_LONG   + 13,
   CURLINFO_FILETIME         = CURLINFO_LONG   + 14,
 
-  CURLINFO_LASTONE          = 15
+  CURLINFO_CONTENT_LENGTH_DOWNLOAD   = CURLINFO_DOUBLE + 15,
+  CURLINFO_CONTENT_LENGTH_UPLOAD     = CURLINFO_DOUBLE + 16,
+
+  CURLINFO_LASTONE          = 17
 } CURLINFO;
 
 /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.6 2001-01-03 09:29:34 bagder Exp $
+ * $Id: getinfo.c,v 1.7 2001-02-04 20:03:30 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -102,6 +102,12 @@ CURLcode curl_getinfo(CURL *curl, CURLINFO info, ...)
     break;
   case CURLINFO_SSL_VERIFYRESULT:
     *param_longp = data->ssl.certverifyresult;
+    break;
+  case CURLINFO_CONTENT_LENGTH_DOWNLOAD:
+    *param_doublep = data->progress.size_dl;
+    break;
+  case CURLINFO_CONTENT_LENGTH_UPLOAD:
+    *param_doublep = data->progress.size_ul;
     break;
   default:
     return CURLE_BAD_FUNCTION_ARGUMENT;
