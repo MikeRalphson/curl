@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.41 2004-02-13 07:05:15 bagder Exp $
+ * $Id: sws.c,v 1.42 2004-02-20 07:19:18 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -47,6 +47,8 @@
 #endif
 #include <netdb.h>
 
+#include "getpart.h"
+
 #ifndef FALSE
 #define FALSE 0
 #endif
@@ -54,10 +56,8 @@
 #define TRUE 1
 #endif
 
-const char *
-spitout(FILE *stream,
-        const char *main,
-        const char *sub, int *size);
+int ProcessRequest(char *request);
+void storerequest(char *reqbuf);
 
 #define DEFAULT_PORT 8999
 
