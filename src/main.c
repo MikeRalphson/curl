@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.170 2003-04-14 14:54:18 bagder Exp $
+ * $Id: main.c,v 1.171 2003-04-24 06:34:31 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -363,7 +363,7 @@ static void help(void)
        "    --capath <directory> CA directory (made using c_rehash) to verify\n"
        "                    peer against (SSL)\n"
        "    --ciphers <list> What SSL ciphers to use (SSL)\n"
-       "    --compressed    Request a compressed response (using deflate).");
+       "    --compressed    Request a compressed response (using deflate or gzip).");
   puts("    --connect-timeout <seconds> Maximum time allowed for connection\n"
        "    --create-dirs   Create the necessary local directory hierarchy\n"
        "    --crlf          Convert LF to CRLF in upload. Useful for MVS (OS/390)\n"
@@ -2942,7 +2942,7 @@ operate(struct Configurable *config, int argc, char *argv[])
 
       /* new in curl 7.10 */
       curl_easy_setopt(curl, CURLOPT_ENCODING, 
-                       (config->encoding) ? "deflate" : NULL);
+                       (config->encoding) ? "deflate, gzip" : NULL);
 
       res = curl_easy_perform(curl);
         
