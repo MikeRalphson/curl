@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.38 $
- * $Date: 2000-12-18 16:13:37 $
+ * $Revision: 1.39 $
+ * $Date: 2000-12-19 09:06:36 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -733,6 +733,12 @@ CURLcode _ftp(struct connectdata *conn)
 
     if ( h ) {
       if( (portsock = socket(AF_INET, SOCK_STREAM, 0)) >= 0 ) {
+
+        /* we set the secondary socket variable to this for now, it
+           is only so that the cleanup function will close it in case
+           we fail before the true secondary stuff is made */
+        data->secondarysocket = portsock;
+
         memset((char *)&sa, 0, sizeof(sa));
         memcpy((char *)&sa.sin_addr,
                h->h_addr,
