@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-01-19 21:57:48 $
+ * $Revision: 1.4 $
+ * $Date: 2000-01-31 22:20:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -475,7 +475,6 @@ UrgError curl_urlget(UrgTag tag, ...)
 	/***
 	 *DANG* this is an RFC 2068 violation. The URL is supposed
 	 to be absolute and this doesn't seem to be that!
-	 At least the Zeus HTTP server seem to do this.
 	 ***
 	 Instead, we have to TRY to append this new path to the old URL
 	 to the right of the host part. Oh crap, this is doomed to cause
@@ -533,8 +532,6 @@ UrgError curl_urlget(UrgTag tag, ...)
 
       infof(data, "Follows Location: to new URL: '%s'\n", data->url);
 
-      data->port = 0; /* clear the port number so that we don't make any silly
-                         assumptions for the new URL! */
       /* clean up the sockets and SSL stuff from the previous "round" */
       urlfree(data, FALSE);
 
