@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.35 2004-05-03 15:01:34 bagder Exp $
+ * $Id: ldap.c,v 1.36 2004-05-05 14:08:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -164,7 +164,11 @@ static dynafunc DynaGetFunction(const char *name)
 
 #if defined(HAVE_DLOPEN) || defined(HAVE_LIBDL)
   if (libldap) {
-    func = (dynafunc)dlsym(libldap, name);
+    /* This typecast magic below was brought by Joe Halpin. In ISO C, you
+     * cannot typecast a data pointer to a function pointer, but that's
+     * exactly what we need to do here to avoid compiler warnings on picky
+     * compilers! */
+    *(void**) (&func) = dlsym(libldap, name);
   }
 #elif defined(WIN32)
   if (libldap) {
