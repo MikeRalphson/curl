@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.172 2001-11-06 19:33:14 bagder Exp $
+ * $Id: url.c,v 1.173 2001-11-07 12:56:13 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1930,6 +1930,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 #ifdef HAVE_SIGACTION
     struct sigaction sigact;
     sigaction(SIGALRM, NULL, &sigact);
+    keep_sigact = sigact;
     sigact.sa_handler = alarmfunc;
 #ifdef SA_RESTART
     /* HPUX doesn't have SA_RESTART but defaults to that behaviour! */
