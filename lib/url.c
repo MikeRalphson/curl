@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.396 2004-06-24 07:43:49 bagder Exp $
+ * $Id: url.c,v 1.397 2004-06-24 09:14:59 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1881,10 +1881,10 @@ static int handleSock5Proxy(const char *proxy_name,
 
       if(4 == sscanf( buf, "%hu.%hu.%hu.%hu",
                       &ip[0], &ip[1], &ip[2], &ip[3])) {
-        socksreq[4] = ip[0];
-        socksreq[5] = ip[1];
-        socksreq[6] = ip[2];
-        socksreq[7] = ip[3];
+        socksreq[4] = (unsigned char)ip[0];
+        socksreq[5] = (unsigned char)ip[1];
+        socksreq[6] = (unsigned char)ip[2];
+        socksreq[7] = (unsigned char)ip[3];
       }
       else
         hp = NULL; /* fail! */
