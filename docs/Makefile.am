@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.14 2001-08-28 08:55:12 bagder Exp $
+# $Id: Makefile.am,v 1.15 2001-09-17 22:24:35 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -12,6 +12,7 @@ man_MANS = \
 	curl_easy_init.3 \
 	curl_easy_perform.3 \
 	curl_easy_setopt.3 \
+	curl_easy_duphandle.3 \
 	curl_formparse.3 \
 	curl_formadd.3 \
 	curl_formfree.3 \
@@ -39,6 +40,7 @@ HTMLPAGES = \
 	curl_easy_init.html \
 	curl_easy_perform.html \
 	curl_easy_setopt.html \
+	curl_easy_duphandle.html \
 	curl_formadd.html \
 	curl_formparse.html \
 	curl_formfree.html \
