@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.203 2004-03-13 17:11:42 bagder Exp $
+ * $Id: http.c,v 1.204 2004-03-14 18:15:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -456,7 +456,7 @@ static size_t readmoredata(char *buffer,
   /* make sure that a HTTP request is never sent away chunked! */
   conn->bits.forbidchunk= (http->sending == HTTPSEND_REQUEST)?TRUE:FALSE;
 
-  if(http->postsize <= fullsize) {
+  if(http->postsize <= (curl_off_t)fullsize) {
     memcpy(buffer, http->postdata, (size_t)http->postsize);
     fullsize = (size_t)http->postsize;
 
@@ -1586,7 +1586,7 @@ CURLcode Curl_http(struct connectdata *conn)
       /* store the size of the postfields */
       postsize = data->set.postfieldsize?
         data->set.postfieldsize:
-        (data->set.postfields?strlen(data->set.postfields):0);
+        (data->set.postfields?(curl_off_t)strlen(data->set.postfields):0);
       
       if(!conn->bits.upload_chunky) {
         /* We only set Content-Length and allow a custom Content-Length if
