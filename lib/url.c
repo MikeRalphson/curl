@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-02-21 23:51:09 $
+ * $Revision: 1.9 $
+ * $Date: 2000-03-01 22:05:11 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1052,6 +1052,7 @@ static UrgError _urlget(struct UrlData *data)
       return URG_COULDNT_RESOLVE_PROXY;
     }
   }
+  pgrsTime(data, TIMER_NAMELOOKUP);
 
   data->firstsocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -1148,6 +1149,7 @@ static UrgError _urlget(struct UrlData *data)
        return URG_SSL_CONNECT_ERROR;
      }
   }
+  pgrsTime(data, TIMER_CONNECT);
 
   now = tvnow(); /* time this *after* the connect is done */
   bytecount = 0;
