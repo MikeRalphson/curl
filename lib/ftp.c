@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.89 2001-09-13 12:52:58 bagder Exp $
+ * $Id: ftp.c,v 1.90 2001-09-14 12:18:46 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -632,7 +632,7 @@ CURLcode _ftp_cwd(struct connectdata *conn, char *path)
     return CURLE_OPERATION_TIMEOUTED;
 
   if (ftpcode != 250) {
-    failf(conn->data, "Couldn't change back to directory %s", path);
+    failf(conn->data, "Couldn't cd to %s", path);
     return CURLE_FTP_ACCESS_DENIED;
   }
 
