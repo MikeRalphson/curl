@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.38 2004-01-29 13:53:34 bagder Exp $
+# $Id: Makefile.am,v 1.39 2004-01-29 15:48:28 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -51,18 +51,21 @@ EXTRA_DIST = mkhelp.pl curlmsg.msg makefile.dj \
 MANPAGE=$(top_srcdir)/docs/curl.1
 README=$(top_srcdir)/docs/MANUAL
 MKHELP=$(top_srcdir)/src/mkhelp.pl
+HUGE=hugehelp.c
 
 if HAVE_LIBZ
 # This generates the hugehelp.c file in both uncompressed and compressed formats
-hugehelp.c: $(README) $(MANPAGE)  mkhelp.pl
-	echo '#include "config.h"' > hugehelp.c
-	echo '#ifndef HAVE_LIBZ' >> hugehelp.c
-	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(README) >> hugehelp.c
-	echo '#else' >> hugehelp.c
-	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) -c $(README) >> hugehelp.c
-	echo '#endif /* HAVE_LIBZ */' >> hugehelp.c
+$(HUGE): $(README) $(MANPAGE)  mkhelp.pl
+	echo '#ifdef HAVE_CONFIG_H' > $(HUGE)
+	echo '#include "config.h"' >> $(HUGE)
+	echo '#endif' >> $(HUGE)
+	echo '#ifndef HAVE_LIBZ' >> $(HUGE)
+	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(README) >> $(HUGE)
+	echo '#else' >> $(HUGE)
+	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) -c $(README) >> $(HUGE)
+	echo '#endif /* HAVE_LIBZ */' >> $(HUGE)
 else
 # This generates the hugehelp.c file uncompressed only
-hugehelp.c: $(README) $(MANPAGE)  mkhelp.pl
-	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(README) > hugehelp.c
+$(HUGE): $(README) $(MANPAGE)  mkhelp.pl
+	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(README) > $(HUGE)
 endif
