@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.12 2002-04-15 11:19:03 bagder Exp $
+ * $Id: formdata.h,v 1.13 2002-06-12 21:40:59 bagder Exp $
  *****************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -44,6 +44,10 @@ typedef struct FormInfo {
   long contentslength;
   char *contenttype;
   long flags;
+
+		/* CMC: Added support for buffer uploads */
+  char *buffer;      /* pointer to existing buffer used for file upload */
+	long bufferlength;   
 
   char *showfilename; /* The file name to show. If not set, the actual
                          file name will be used */
