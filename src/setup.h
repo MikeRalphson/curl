@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.6 2001-01-03 09:29:34 bagder Exp $
+ * $Id: setup.h,v 1.7 2001-09-17 14:10:38 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -44,7 +44,7 @@
 #define OS "unknown"
 #endif
 
-#ifndef fileno /* sunos 4 have this as a macro! */
+#if !defined(fileno) && !defined(WIN32) /* sunos 4 have this as a macro! */
 int fileno( FILE *stream);
 #endif
 
