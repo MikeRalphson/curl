@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.58 2004-06-10 07:17:28 bagder Exp $
+ * $Id: file.c,v 1.59 2004-06-21 14:07:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -218,7 +218,12 @@ static CURLcode file_upload(struct connectdata *conn)
     Curl_pgrsSetUploadSize(data, data->set.infilesize);
 
   while (res == CURLE_OK) {
-    nread = Curl_fillreadbuffer(conn, BUFSIZE);
+    int readcount;
+    res = Curl_fillreadbuffer(conn, BUFSIZE, &readcount);
+    if(res)
+      return res;
+
+    nread = (size_t)readcount;
 
     if (nread <= 0)
       break;
