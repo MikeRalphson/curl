@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.200 2002-04-12 08:18:38 bagder Exp $
+ * $Id: url.c,v 1.201 2002-04-12 10:03:59 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2276,10 +2276,11 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if(-1 == conn->firstsocket) {
     /* Connect only if not already connected! */
     result = ConnectPlease(conn);
+    Curl_pgrsTime(data, TIMER_CONNECT); /* connect done, good or bad */
+
     if(CURLE_OK != result)
       return result;
 
-    Curl_pgrsTime(data, TIMER_CONNECT); /* we're connected */
     if(data->set.verbose)
       verboseconnect(conn);
 
