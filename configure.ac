@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.84 2004-05-25 11:59:32 bagder Exp $
+dnl $Id: configure.ac,v 1.85 2004-06-03 14:37:14 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1364,6 +1364,8 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
  ],
        AC_MSG_RESULT(no)
 )
+
+AM_CONDITIONAL(CROSSCOMPILING, test x$cross_compiling = xyes)
 
 AC_CONFIG_FILES([Makefile \
 	   docs/Makefile \
