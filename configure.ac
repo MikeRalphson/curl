@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.75 2004-04-26 13:42:39 bagder Exp $
+dnl $Id: configure.ac,v 1.76 2004-04-26 15:31:43 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -939,7 +939,9 @@ case "$LIBIDN" in
        AC_CHECK_LIB(idn, idna_to_ascii_lz, ,
                     [
                     dnl if there was a given path, try it
+                    nolibidn="true"
                     if test "x$LIBIDN" != "x"; then
+                      nolibidn="" dnl reset to test again
                       oldLDFLAGS=$LDFLAGS
                       oldCPPFLAGS=$CPPFLAGS
                       LDFLAGS="$LDFLAGS -L$LIBIDN/lib"
