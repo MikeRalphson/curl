@@ -1,5 +1,5 @@
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.63 2003-12-22 10:53:55 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.64 2004-01-05 14:46:56 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "22 Dec 2003" "libcurl 7.11.0" "libcurl Manual"
 .SH NAME
@@ -283,9 +283,9 @@ a .netrc file in the current user's home directory. (Added in 7.10.9)
 Pass a char * as parameter, which should be [user name]:[password] to use for
 the connection. Use \fICURLOPT_HTTPAUTH\fP to decide authentication method.
 
-When using HTTP and \fCURLOPT_FOLLOWLOCATION\fP, libcurl might perform several
-requests to possibly different hosts. libcurl will only send this user and
-password information to hosts using the initial host name (unless
+When using HTTP and \fICURLOPT_FOLLOWLOCATION\fP, libcurl might perform
+several requests to possibly different hosts. libcurl will only send this user
+and password information to hosts using the initial host name (unless
 \fICURLOPT_UNRESTRICTED_AUTH\fP is set), so if libcurl follows locations to
 other hosts it will not send the user and password to those. This is enforced
 to prevent accidental information leakage.
