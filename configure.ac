@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.22 2003-10-07 22:00:02 bagder Exp $
+dnl $Id: configure.ac,v 1.23 2003-10-09 08:09:07 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -12,7 +12,7 @@ This configure script may be copied, distributed and modified under the
 terms of the curl license; see COPYING for more details])
 
 AC_CONFIG_SRCDIR([lib/urldata.h])
-AM_CONFIG_HEADER(lib/config.h src/config.h tests/server/config.h )
+AM_CONFIG_HEADER(lib/config.h src/config.h)
 AM_MAINTAINER_MODE
 
 dnl SED is needed by some of the tools
