@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.38 2001-05-10 11:29:47 bagder Exp $
+ * $Id: transfer.c,v 1.39 2001-05-11 06:10:48 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -910,6 +910,7 @@ CURLcode Curl_perform(CURL *curl)
       
         /* TBD: set the URL with curl_setopt() */
         data->url = newurl;
+        newurl = NULL; /* don't free! */
 
         data->bits.urlstringalloc = TRUE; /* the URL is allocated */
 

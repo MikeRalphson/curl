@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.122 2001-05-10 09:31:48 bagder Exp $
+ * $Id: url.c,v 1.123 2001-05-11 06:10:48 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2233,6 +2233,12 @@ CURLcode Curl_done(struct connectdata *conn)
     conn->bits.rangestringalloc = FALSE;
   }
 
+  /* Cleanup possible redirect junk */
+  if(conn->newurl) {
+    free(conn->newurl);
+    conn->newurl = NULL;
+  }
+ 
   /* this calls the protocol-specific function pointer previously set */
   if(conn->curl_done)
     result = conn->curl_done(conn);
