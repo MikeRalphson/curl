@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.24 2003-08-14 11:53:09 bagder Exp $
+ * $Id: urlglob.c,v 1.25 2003-08-14 13:37:55 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -472,6 +472,7 @@ char *glob_match_url(char *filename, URLGlob *glob)
           break;
         default:
           printf("internal error: invalid pattern type (%d)\n", pat.type);
+          free(target);
           return NULL;
         }
       }
