@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.2 2002-12-12 13:39:02 bagder Exp $
+# $Id: Makefile.am,v 1.3 2002-12-12 13:44:26 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -18,8 +18,3 @@ lib500_DEPENDENCIES = $(LIBDIR)/libcurl.la
 lib501_SOURCES = lib501.c first.c test.h
 lib501_LDADD = $(LIBDIR)/libcurl.la
 lib501_DEPENDENCIES = $(LIBDIR)/libcurl.la
-
-setup:
-	for file in lib*.c; do \
-	  echo $$file; \
-	done
