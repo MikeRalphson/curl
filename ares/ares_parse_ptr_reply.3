@@ -1,4 +1,4 @@
-.\" $Id: ares_parse_ptr_reply.3,v 1.1 2003-10-07 21:54:04 bagder Exp $
+.\" $Id: ares_parse_ptr_reply.3,v 1.2 2004-04-01 06:10:56 bagder Exp $
 .\"
 .\" Copyright 1998 by the Massachusetts Institute of Technology.
 .\"
@@ -21,11 +21,9 @@ ares_parse_ptr_reply \- Parse a reply to a DNS query of type PTR into a hostent
 .nf
 .B #include <ares.h>
 .PP
-.B
-int ares_parse_ptr_reply(const unsigned char *\fIabuf\fB, int \fIalen\fB,
-.B
- 	const void *\fIaddr\fP, int \fIaddrlen\fP, int \fIfamily\fP,
-.B	struct hostent **\fIhost\fB);
+.B int ares_parse_ptr_reply(const unsigned char *\fIabuf\fP, int \fIalen\fP,
+.B 	const void *\fIaddr\fP, int \fIaddrlen\fP, int \fIfamily\fP,
+.B	struct hostent **\fIhost\fP);
 .fi
 .SH DESCRIPTION
 The
