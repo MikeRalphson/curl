@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.60 2001-04-18 07:25:11 bagder Exp $
+ * $Id: http.c,v 1.61 2001-05-07 12:38:28 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -718,8 +718,7 @@ CURLcode Curl_http(struct connectdata *conn)
       http->storefread = data->fread; /* backup */
       http->in = data->in; /* backup */
           
-      data->fread =
-        (size_t (*)(char *, size_t, size_t, FILE *))
+      data->fread = (curl_read_callback)
         Curl_FormReader; /* set the read function to read from the
                             generated form data */
       data->in = (FILE *)&http->form;
