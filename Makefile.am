@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.34 2002-09-05 08:24:21 bagder Exp $
+# $Id: Makefile.am,v 1.35 2002-10-14 07:39:49 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -17,6 +17,9 @@ dist-hook:
 
 html:
 	cd docs; make html
+
+pdf:
+	cd docs; make pdf
 
 check: test
 
