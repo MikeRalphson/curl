@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.140 2003-01-08 15:50:52 bagder Exp $
+ * $Id: urldata.h,v 1.141 2003-01-09 16:47:09 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -569,6 +569,9 @@ struct UrlState {
   char passwd[MAX_CURL_PASSWORD_LENGTH];
   char proxyuser[MAX_CURL_USER_LENGTH];
   char proxypasswd[MAX_CURL_PASSWORD_LENGTH];
+
+  bool passwdgiven; /* set TRUE if an application-provided password has been
+                       set */
 
   struct timeval keeps_speed; /* for the progress meter really */
 
