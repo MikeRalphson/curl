@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.130 2004-05-17 07:59:10 bagder Exp $
+# $Id: runtests.pl,v 1.131 2004-05-17 10:51:51 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -462,9 +462,9 @@ sub runftpserver {
                 $pid = 0+$1;
             }
         }
-        if(!$pid || ($took > 2)) {
+        if(!$pid && $data[0]) {
             # this is not a known server
-            print "RUN: Unknown server on our favourite port: $FTPPORT\n";
+            print "RUN: Unknown server on our favourite FTP port: $FTPPORT\n";
             return -1;
         }
     }
