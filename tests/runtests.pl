@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.19 2001-01-27 18:50:54 bagder Exp $
+# $Id: runtests.pl,v 1.20 2001-01-29 15:07:28 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -507,6 +507,7 @@ sub singletest {
     unlink($STDOUT);
     unlink($STDERR);
 
+    unlink("$LOGDIR/upload.$NUMBER");  # remove upload leftovers
     unlink($CURLOUT); # remove the downloaded results
     unlink($FTPDCMD); # remove the instructions for this test
 
