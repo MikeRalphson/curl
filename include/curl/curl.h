@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.248 2004-04-26 07:04:40 bagder Exp $
+ * $Id: curl.h,v 1.249 2004-04-26 14:06:51 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -41,7 +41,7 @@
 # include <time.h>
 #endif /* defined (vms) */
 
-#include "types.h"
+typedef void CURL;
 
 #ifdef  __cplusplus
 extern "C" {
