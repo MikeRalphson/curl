@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.71 2001-12-04 09:14:41 bagder Exp $
+ * $Id: transfer.c,v 1.71.2.1 2001-12-13 12:59:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -896,17 +896,8 @@ Transfer(struct connectdata *c_conn)
   return CURLE_OK;
 }
 
-CURLcode Curl_perform(struct SessionHandle *data)
+CURLcode Curl_pretransfer(struct SessionHandle *data)
 {
-  CURLcode res;
-  struct connectdata *conn=NULL;
-  bool port=TRUE; /* allow data->set.use_port to set port to use */
-  char *newurl = NULL; /* possibly a new URL to follow to! */
-#ifdef HAVE_SIGNAL
-  /* storage for the previous bag^H^H^HSIGPIPE signal handler :-) */
-  void (*prev_signal)(int sig);
-#endif
-
   if(!data->change.url)
     /* we can't do anything wihout URL */
     return CURLE_URL_MALFORMAT;
@@ -922,15 +913,44 @@ CURLcode Curl_perform(struct SessionHandle *data)
   data->state.this_is_a_follow = FALSE; /* reset this */
   data->state.errorbuf = FALSE; /* no error has occurred */
 
+ /* Allow data->set.use_port to set which port to use. This needs to be
+  * disabled for example when we follow Location: headers to URLs using
+  * different ports! */
+  data->state.allow_port = TRUE;
+
 #if defined(HAVE_SIGNAL) && defined(SIGPIPE)
   /*************************************************************
    * Tell signal handler to ignore SIGPIPE
    *************************************************************/
-  prev_signal = signal(SIGPIPE, SIG_IGN);
+  data->state.prev_signal = signal(SIGPIPE, SIG_IGN);
 #endif  
 
   Curl_initinfo(data); /* reset session-specific information "variables" */
   Curl_pgrsStartNow(data);
+
+  return CURLE_OK;
+}
+
+CURLcode Curl_posttransfer(struct SessionHandle *data)
+{
+#if defined(HAVE_SIGNAL) && defined(SIGPIPE)
+  /* restore the signal handler for SIGPIPE before we get back */
+  signal(SIGPIPE, data->state.prev_signal);
+#endif  
+
+  return CURLE_OK;
+}
+
+CURLcode Curl_perform(struct SessionHandle *data)
+{
+  CURLcode res;
+  CURLcode res2;
+  struct connectdata *conn=NULL;
+  char *newurl = NULL; /* possibly a new URL to follow to! */
+
+  res = Curl_pretransfer(data);
+  if(res)
+    return res;
 
   /*
    * It is important that there is NO 'return' from this function any any
@@ -941,30 +961,9 @@ CURLcode Curl_perform(struct SessionHandle *data)
 
   do {
     Curl_pgrsTime(data, TIMER_STARTSINGLE);
-    res = Curl_connect(data, &conn, port);
+    res = Curl_connect(data, &conn);
     if(res == CURLE_OK) {
       res = Curl_do(conn);
-
-      if((CURLE_WRITE_ERROR == res) && conn->bits.reuse) {
-        /* This was a re-use of a connection and we got a write error in the
-         * DO-phase. Then we DISCONNECT this connection and have another
-         * attempt to CONNECT and then DO again! The retry cannot possibly
-         * find another connection to re-use, since we only keep one possible
-         * connection for each.
-         */
-
-        infof(data, "The re-used connection seems dead, get a new one\n");
-
-        conn->bits.close = TRUE; /* enforce close of this connetion */
-        res = Curl_done(conn);   /* we are so done with this */
-        if(CURLE_OK == res) {
-          /* Now, redo the connect */
-          res = Curl_connect(data, &conn, port);
-          if(CURLE_OK == res)
-            /* ... finally back to actually retry the DO phase */
-            res = Curl_do(conn);
-        }
-      }
 
       if(res == CURLE_OK) {
         CURLcode res2; /* just a local extra result container */
@@ -1009,9 +1008,6 @@ CURLcode Curl_perform(struct SessionHandle *data)
         */
         char prot[16]; /* URL protocol string storage */
         char letter;   /* used for a silly sscanf */
-
-        port=TRUE; /* by default we use the user set port number even after
-                      a Location: */
 
 	if (data->set.maxredirs && (data->set.followlocation >= data->set.maxredirs)) {
 	  failf(data,"Maximum (%d) redirects followed", data->set.maxredirs);
@@ -1101,10 +1097,9 @@ CURLcode Curl_perform(struct SessionHandle *data)
           free(url_clone);
           newurl = newest;
         }
-        else {
-          /* This is an absolute URL, don't use the custom port number */
-          port = FALSE;
-        }
+        else
+          /* This is an absolute URL, don't allow the custom port number */
+          data->state.allow_port = FALSE;
 
         if(data->change.url_alloc)
           free(data->change.url);
@@ -1182,10 +1177,11 @@ CURLcode Curl_perform(struct SessionHandle *data)
   if(newurl)
     free(newurl);
 
-#if defined(HAVE_SIGNAL) && defined(SIGPIPE)
-  /* restore the signal handler for SIGPIPE before we get back */
-  signal(SIGPIPE, prev_signal);
-#endif  
+  /* run post-transfer uncondionally, but don't clobber the return code if
+     we already have an error code recorder */
+  res2 = Curl_posttransfer(data);
+  if(!res && res2)
+    res = res2;
 
   return res;
 }

@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2000, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2001, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * In order to be useful for every potential user, curl and libcurl are
  * dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -20,9 +20,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.h,v 1.5 2001-08-30 22:48:34 bagder Exp $
+ * $Id: transfer.h,v 1.5.2.1 2001-12-13 12:59:45 bagder Exp $
  *****************************************************************************/
 CURLcode Curl_perform(struct SessionHandle *data);
+
+CURLcode Curl_pretransfer(struct SessionHandle *data);
+CURLcode Curl_posttransfer(struct SessionHandle *data);
 
 /* This sets up a forthcoming transfer */
 CURLcode 

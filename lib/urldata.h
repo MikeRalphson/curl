@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.92 2001-12-03 13:48:59 bagder Exp $
+ * $Id: urldata.h,v 1.92.2.1 2001-12-13 12:59:50 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -454,6 +454,13 @@ struct UrlState {
   bool errorbuf; /* Set to TRUE if the error buffer is already filled in.
                     This must be set to FALSE every time _easy_perform() is
                     called. */
+
+#ifdef HAVE_SIGNAL
+  /* storage for the previous bag^H^H^HSIGPIPE signal handler :-) */
+  void (*prev_signal)(int sig);
+#endif
+  bool allow_port; /* Is set.use_port allowed to take effect or not. This
+                      is always set TRUE when curl_easy_perform() is called. */
 };
 
 
