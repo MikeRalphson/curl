@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.117 2001-04-23 06:11:08 bagder Exp $
+ * $Id: url.c,v 1.118 2001-04-25 21:24:27 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -930,7 +930,7 @@ ConnectionExists(struct UrlData *data,
 
       if(strequal(needle->protostr, check->protostr) &&
          strequal(needle->name, check->name) &&
-         (needle->port == check->port) ) {
+         (needle->remote_port == check->remote_port) ) {
         bool dead;
         if(strequal(needle->protostr, "FTP")) {
           /* This is FTP, verify that we're using the same name and
