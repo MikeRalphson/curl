@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.268 2004-11-09 14:02:58 giva Exp $
+ * $Id: curl.h,v 1.269 2004-11-12 11:45:05 giva Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -51,8 +51,7 @@ extern "C" {
  * Decorate exportable functions for Win32 and Netware DLL linking.
  * This avoids using a .def file for building libcurl.dll.
  */
-#if (defined(WIN32) || defined(_WIN32) || defined(NETWARE)) && \
-   !defined(CURL_STATICLIB)
+#if (defined(WIN32) || defined(_WIN32)) && !defined(CURL_STATICLIB)
 #if defined(BUILDING_LIBCURL)
 #define CURL_EXTERN  __declspec(dllexport)
 #else
