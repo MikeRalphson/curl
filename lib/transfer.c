@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.119 2002-10-18 15:28:33 bagder Exp $
+ * $Id: transfer.c,v 1.120 2002-10-21 12:07:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1373,7 +1373,7 @@ CURLcode Curl_follow(struct SessionHandle *data,
       return CURLE_OUT_OF_MEMORY; /* go out from this */
 
     sprintf(newest, "%s%s%s", url_clone,
-            (('/' == useurl[0]) || !*protsep)?"":"/",
+            (('/' == useurl[0]) || (protsep && !*protsep))?"":"/",
             useurl);
     free(newurl); /* newurl is the allocated pointer */
     free(url_clone);
