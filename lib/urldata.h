@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.226 2004-05-17 06:50:32 bagder Exp $
+ * $Id: urldata.h,v 1.227 2004-05-24 07:13:49 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -527,7 +527,6 @@ struct connectdata {
     char *userpwd; /* free later if not NULL! */
     char *rangeline; /* free later if not NULL! */
     char *ref; /* free later if not NULL! */
-    char *cookie; /* free later if not NULL! */
     char *host; /* free later if not NULL */
     char *cookiehost; /* free later if not NULL */
   } allocptr;
