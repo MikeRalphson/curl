@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.163 2004-10-10 03:32:01 bagder Exp $
+ * $Id: hostip.c,v 1.164 2004-11-18 14:04:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -174,7 +174,8 @@ void Curl_global_host_cache_dtor(void)
 int Curl_num_addresses(const Curl_addrinfo *addr)
 {
   int i;
-  for (i = 0; addr; addr = addr->ai_next, i++);
+  for (i = 0; addr; addr = addr->ai_next, i++)
+    ;  /* empty loop */
   return i;
 }
 
