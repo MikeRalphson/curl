@@ -21,14 +21,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.h,v 1.7 2001-03-02 07:44:22 bagder Exp $
+ * $Id: ftp.h,v 1.8 2001-08-14 08:25:08 bagder Exp $
  *****************************************************************************/
 CURLcode Curl_ftp(struct connectdata *conn);
 CURLcode Curl_ftp_done(struct connectdata *conn);
 CURLcode Curl_ftp_connect(struct connectdata *conn);
 CURLcode Curl_ftp_disconnect(struct connectdata *conn);
 
-size_t Curl_ftpsendf(int fd, struct connectdata *, char *fmt, ...);
+size_t Curl_ftpsendf(int fd, struct connectdata *, const char *fmt, ...);
 
 /* The kerberos stuff needs this: */
 int Curl_GetFTPResponse(int sockfd, char *buf,
