@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostasyn.c,v 1.5 2004-06-24 14:39:52 bagder Exp $
+ * $Id: hostasyn.c,v 1.6 2004-10-03 21:32:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -115,7 +115,6 @@ static void addrinfo_callback(void *arg, /* "struct connectdata *" */
   struct connectdata *conn = (struct connectdata *)arg;
   struct Curl_dns_entry *dns = NULL;
 
-  conn->async.done = TRUE;
   conn->async.status = status;
 
   if(CURL_ASYNC_SUCCESS == status) {
@@ -146,6 +145,11 @@ static void addrinfo_callback(void *arg, /* "struct connectdata *" */
   }
 
   conn->async.dns = dns;
+
+ /* Set async.done TRUE last in this function since it may be used multi-
+    threaded and once this is TRUE the other thread may read fields from the
+    async struct */
+  conn->async.done = TRUE;
 
   /* ipv4: The input hostent struct will be freed by ares when we return from
      this function */
