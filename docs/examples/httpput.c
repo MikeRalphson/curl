@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: httpput.c,v 1.3 2003-12-18 07:52:31 bagder Exp $
+ * $Id: httpput.c,v 1.4 2003-12-18 18:05:10 bagder Exp $
  */
 
 #include <stdio.h>
@@ -85,8 +85,9 @@ int main(int argc, char **argv)
     /* now specify which file to upload */
     curl_easy_setopt(curl, CURLOPT_READDATA, hd_src);
 
-    /* and give the size of the upload (optional) */
-    curl_easy_setopt(curl, CURLOPT_INFILESIZE, file_info.st_size);
+    /* and give the size of the upload, make sure that we don't accidentally
+       pass a larger variable type than "long". */
+    curl_easy_setopt(curl, CURLOPT_INFILESIZE, (long) file_info.st_size);
 
     /* Now run off and do what you've been told! */
     res = curl_easy_perform(curl);
