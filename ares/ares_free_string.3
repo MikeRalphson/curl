@@ -1,4 +1,4 @@
-.\" $Id: ares_free_string.3,v 1.1 2003-10-07 21:54:04 bagder Exp $
+.\" $Id: ares_free_string.3,v 1.2 2004-02-04 07:50:18 bagder Exp $
 .\"
 .\" Copyright 2000 by the Massachusetts Institute of Technology.
 .\"
@@ -14,14 +14,14 @@
 .\" this software for any purpose.  It is provided "as is"
 .\" without express or implied warranty.
 .\"
-.TH ARES_FREE_STRING 3 "4 January 2000"
+.TH ARES_FREE_STRING 3 "4 February 2004"
 .SH NAME
 ares_free_string \- Free strings allocated by ares functions
 .SH SYNOPSIS
 .nf
 .B #include <ares.h>
 .PP
-.B void ares_free_string(char *\fIstr\fP)
+.B void ares_free_string(void *\fIstr\fP)
 .fi
 .SH DESCRIPTION
 The
