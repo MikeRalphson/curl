@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.283 2003-06-26 11:30:59 bagder Exp $
+ * $Id: url.c,v 1.284 2003-07-04 16:29:23 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -723,6 +723,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     }
     data->set.set_url = va_arg(param, char *);
     data->change.url = data->set.set_url;
+    data->change.url_changed = TRUE;
     break;
   case CURLOPT_PORT:
     /*
@@ -1090,6 +1091,18 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Enable verification of the CN contained in the peer certificate
      */
     data->set.ssl.verifyhost = va_arg(param, long);
+    break;
+  case CURLOPT_SSL_CTX_FUNCTION:
+    /*
+     * Set a SSL_CTX callback
+     */
+       data->set.ssl.fsslctx = va_arg(param, curl_ssl_ctx_callback);
+    break;
+  case CURLOPT_SSL_CTX_DATA:
+    /*
+     * Set a SSL_CTX callback parameter pointer
+     */
+    data->set.ssl.fsslctxp = va_arg(param, void *);
     break;
   case CURLOPT_CAINFO:
     /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.163 2003-06-26 11:30:26 bagder Exp $
+ * $Id: transfer.c,v 1.164 2003-07-04 16:29:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1889,9 +1889,29 @@ CURLcode Curl_perform(struct SessionHandle *data)
    * performed after this do-while loop.
    */
 
-  do {
-    Curl_pgrsTime(data, TIMER_STARTSINGLE);
-    res = Curl_connect(data, &conn);
+  do {  
+    int urlchanged = FALSE;
+    do {
+      Curl_pgrsTime(data, TIMER_STARTSINGLE);
+      data->change.url_changed = FALSE;
+      res = Curl_connect(data, &conn);
+
+      /* If a callback (or something) has altered the URL we should use within
+         the Curl_connect(), we detect it here and act as if we are redirected
+         to the new URL */
+      urlchanged = data->change.url_changed;
+      if ((CURLE_OK == res) && urlchanged) {
+        char *newurl;
+        res = Curl_done(conn);
+        if(CURLE_OK == res) {
+          newurl = strdup(data->change.url);
+          res = Curl_follow(data, newurl);
+          if(res)
+            free(newurl);
+        }
+      }
+    } while (urlchanged && res == CURLE_OK) ; 
+
     if(res == CURLE_OK) {
       res = Curl_do(&conn);
 

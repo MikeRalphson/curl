@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.74 2003-06-26 11:22:12 bagder Exp $
+ * $Id: ssluse.c,v 1.75 2003-07-04 16:29:23 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -831,6 +831,15 @@ Curl_SSLConnect(struct connectdata *conn)
   else
     SSL_CTX_set_verify(conn->ssl.ctx, SSL_VERIFY_NONE, cert_verify_callback);
 
+  /* give application a chance to interfere with SSL set up. */
+  if (data->set.ssl.fsslctx) {
+    CURLcode callbackresult = (*data->set.ssl.fsslctx)(data, conn->ssl.ctx,
+                                                       data->set.ssl.fsslctxp);
+    if (callbackresult != CURLE_OK) {
+      failf(data,"error signaled by ssl ctx callback");
+      return callbackresult;
+    }
+  }
 
   /* Lets make an SSL structure */
   conn->ssl.handle = SSL_new (conn->ssl.ctx);

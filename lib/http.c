@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.139 2003-06-26 11:24:55 bagder Exp $
+ * $Id: http.c,v 1.140 2003-07-04 16:29:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -616,6 +616,9 @@ CURLcode Curl_http_done(struct connectdata *conn)
   /* set the proper values (possibly modified on POST) */
   conn->fread = data->set.fread; /* restore */
   conn->fread_in = data->set.in; /* restore */
+
+  if (http == NULL) 
+    return CURLE_OK;
 
   if(http->send_buffer) {
     send_buffer *buff = http->send_buffer;
