@@ -20,9 +20,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.h,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: strequal.h,v 1.5 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
-int strequal(const char *first, const char *second);
-int strnequal(const char *first, const char *second, size_t max);
+int Curl_strequal(const char *first, const char *second);
+int Curl_strnequal(const char *first, const char *second, size_t max);
+
+#define strequal(a,b) Curl_strequal(a,b)
+#define strnequal(a,b,c) Curl_strnequal(a,b,c)
 
 #endif

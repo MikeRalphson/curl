@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.9 2001-01-03 09:29:34 bagder Exp $
+ * $Id: dict.c,v 1.10 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -80,12 +80,12 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
-CURLcode dict_done(struct connectdata *conn)
+CURLcode Curl_dict_done(struct connectdata *conn)
 {
   return CURLE_OK;
 }
 
-CURLcode dict(struct connectdata *conn)
+CURLcode Curl_dict(struct connectdata *conn)
 {
   int nth;
   char *word;

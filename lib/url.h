@@ -20,8 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: url.h,v 1.5 2001-01-05 10:11:43 bagder Exp $
  *****************************************************************************/
-int GetLine(int sockfd, char *buf, struct UrlData *data);
+
+/* empty */
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: download.c,v 1.13 2001-01-03 09:29:34 bagder Exp $
+ * $Id: download.c,v 1.14 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -58,7 +58,6 @@
 #endif
 
 #include "progress.h"
-#include "speedcheck.h"
 #include "sendf.h"
 
 #include <curl/types.h>
@@ -69,7 +68,7 @@
    <butlerm@xmission.com>. */
 
 CURLcode 
-Transfer(CURLconnect *c_conn,
+Curl_Transfer(CURLconnect *c_conn,
          /* READ stuff */
 	  int sockfd,		/* socket to read from or -1 */
 	  int size,		/* -1 if unknown at this point */

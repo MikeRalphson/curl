@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.57 2001-01-03 09:29:34 bagder Exp $
+ * $Id: main.c,v 1.58 2001-01-05 10:11:43 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -690,7 +690,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           /* we already have a string, we append this one
              with a separating &-letter */
           char *oldpost=config->postfields;
-          config->postfields=maprintf("%s&%s", oldpost, postdata);
+          config->postfields=aprintf("%s&%s", oldpost, postdata);
           free(oldpost);
           free(postdata);
         }

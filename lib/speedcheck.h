@@ -20,15 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: speedcheck.h,v 1.6 2001-01-03 09:29:34 bagder Exp $
+ * $Id: speedcheck.h,v 1.7 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
 #include "timeval.h"
 
-void speedinit(struct UrlData *data);
-CURLcode speedcheck(struct UrlData *data,
-                    struct timeval now);
+void Curl_speedinit(struct UrlData *data);
+CURLcode Curl_speedcheck(struct UrlData *data,
+                         struct timeval now);
 
 #endif

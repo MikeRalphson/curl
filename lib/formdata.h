@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: formdata.h,v 1.5 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 /* plain and simple linked list with lines to send */
 struct FormData {
@@ -36,23 +36,19 @@ struct Form {
 	       been sent in a previous invoke */
 };
 
-int FormParse(char *string,
-	      struct HttpPost **httppost,
-	      struct HttpPost **last_post);
+int Curl_FormInit(struct Form *form, struct FormData *formdata );
 
-int FormInit(struct Form *form, struct FormData *formdata );
-
-struct FormData *getFormData(struct HttpPost *post,
-			     int *size);
+struct FormData *Curl_getFormData(struct HttpPost *post,
+                                  int *size);
 
 /* fread() emulation */
-int FormReader(char *buffer,
-	       size_t size,
-	       size_t nitems,
-	       FILE *mydata);
+int Curl_FormReader(char *buffer,
+                    size_t size,
+                    size_t nitems,
+                    FILE *mydata);
 
-char *MakeFormBoundary(void);
+char *Curl_FormBoundary(void);
 
-void FormFree(struct FormData *);
+void Curl_FormFree(struct FormData *);
 
 #endif

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.3 2001-01-03 09:29:34 bagder Exp $
+ * $Id: cookie.h,v 1.4 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -63,10 +63,10 @@ struct CookieInfo {
 #define MAX_NAME 256
 #define MAX_NAME_TXT "255"
 
-struct Cookie *cookie_add(struct CookieInfo *, bool, char *);
-struct CookieInfo *cookie_init(char *);
-struct Cookie *cookie_getlist(struct CookieInfo *, char *, char *, bool);
-void cookie_freelist(struct Cookie *);
-void cookie_cleanup(struct CookieInfo *);
+struct Cookie *Curl_cookie_add(struct CookieInfo *, bool, char *);
+struct CookieInfo *Curl_cookie_init(char *);
+struct Cookie *Curl_cookie_getlist(struct CookieInfo *, char *, char *, bool);
+void Curl_cookie_freelist(struct Cookie *);
+void Curl_cookie_cleanup(struct CookieInfo *);
 
 #endif

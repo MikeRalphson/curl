@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.10 2001-01-03 09:29:34 bagder Exp $
+ * $Id: memdebug.c,v 1.11 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -135,7 +135,7 @@ int curl_sclose(int sockfd, int line, char *source)
   int res=sclose(sockfd);
   fprintf(logfile?logfile:stderr, "FD %s:%d sclose(%d)\n",
           source, line, sockfd);
-  return sockfd;
+  return res;
 }
 
 FILE *curl_fopen(char *file, char *mode, int line, char *source)

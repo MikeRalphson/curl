@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.8 2001-01-03 09:29:34 bagder Exp $
+ * $Id: getenv.c,v 1.9 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -33,6 +33,7 @@
 #include "memdebug.h"
 #endif
 
+static
 char *GetEnv(char *variable)
 {
 #ifdef WIN32

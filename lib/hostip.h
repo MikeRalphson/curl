@@ -20,9 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.6 2001-01-03 09:29:34 bagder Exp $
+ * $Id: hostip.h,v 1.7 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
-struct hostent *GetHost(struct UrlData *data, char *hostname, char **bufp );
+struct hostent *Curl_gethost(struct UrlData *data,
+                             char *hostname,
+                             char **bufp);
 
 #endif

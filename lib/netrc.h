@@ -20,9 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.h,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: netrc.h,v 1.5 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
-int ParseNetrc(char *host,
-	       char *login,
-	       char *password);
+int Curl_parsenetrc(char *host,
+                    char *login,
+                    char *password);
 #endif

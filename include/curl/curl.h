@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.40 2001-01-05 06:30:18 bagder Exp $
+ * $Id: curl.h,v 1.41 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -435,8 +435,10 @@ typedef enum {
 
    NOTE: they return TRUE if the strings match *case insensitively*.
  */
-extern int (strequal)(const char *s1, const char *s2);
-extern int (strnequal)(const char *s1, const char *s2, size_t n);
+extern int (Curl_strequal)(const char *s1, const char *s2);
+extern int (Curl_strnequal)(const char *s1, const char *s2, size_t n);
+#define strequal(a,b) Curl_strequal(a,b)
+#define strnequal(a,b,c) Curl_strnequal(a,b,c)
 
 /* external form function */
 int curl_formparse(char *string,

@@ -20,10 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.h,v 1.4 2001-01-03 09:29:34 bagder Exp $
+ * $Id: getenv.h,v 1.5 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
-/* Unix and Win32 getenv function call */
-char *GetEnv(char *variable);
+#include <curl/curl.h>
 
 #endif

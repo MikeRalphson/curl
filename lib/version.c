@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.7 2001-01-03 09:29:34 bagder Exp $
+ * $Id: version.c,v 1.8 2001-01-05 10:11:43 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -33,9 +33,6 @@ char *curl_version(void)
 {
   static char version[200];
   char *ptr;
-#if defined(USE_SSLEAY)
-  static char sub[2];
-#endif
   strcpy(version, LIBCURL_NAME " " LIBCURL_VERSION );
   ptr=strchr(version, '\0');
 
@@ -47,17 +44,19 @@ char *curl_version(void)
           (SSLEAY_VERSION_NUMBER>>20)&0xff,
           (SSLEAY_VERSION_NUMBER>>12)&0xf);
 #else
-  if(SSLEAY_VERSION_NUMBER&0x0f) {
-    sub[0]=(SSLEAY_VERSION_NUMBER&0x0f) + 'a' -1;
+  {
+    char sub[2];
+    if(SSLEAY_VERSION_NUMBER&0x0f) {
+      sub[0]=(SSLEAY_VERSION_NUMBER&0x0f) + 'a' -1;
+    }
+    else
+      sub[0]=0;
+
+    sprintf(ptr, " (SSL %x.%x.%x%s)",
+            (SSLEAY_VERSION_NUMBER>>12)&0xff,
+            (SSLEAY_VERSION_NUMBER>>8)&0xf,
+            (SSLEAY_VERSION_NUMBER>>4)&0xf, sub);
   }
-  else
-    sub[0]=0;
-
-  sprintf(ptr, " (SSL %x.%x.%x%s)",
-          (SSLEAY_VERSION_NUMBER>>12)&0xff,
-          (SSLEAY_VERSION_NUMBER>>8)&0xf,
-          (SSLEAY_VERSION_NUMBER>>4)&0xf, sub);
-
 #endif
   ptr=strchr(ptr, '\0');
 #endif

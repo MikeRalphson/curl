@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.10 2001-01-03 09:29:34 bagder Exp $
+ * $Id: ldap.c,v 1.11 2001-01-05 10:11:42 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -117,18 +117,18 @@ static void * DynaGetFunction(char *name)
 static int WriteProc(void *param, char *text, int len)
 {
   struct UrlData *data = (struct UrlData *)param;
-  client_write(data, CLIENTWRITE_BODY, text, 0);
+  Curl_client_write(data, CLIENTWRITE_BODY, text, 0);
   return 0;
 }
 
-CURLcode ldap_done(struct connectdata *conn)
+CURLcode Curl_ldap_done(struct connectdata *conn)
 {
   return CURLE_OK;
 }
 
 /***********************************************************************
  */
-CURLcode ldap(struct connectdata *conn)
+CURLcode Curl_ldap(struct connectdata *conn)
 {
   CURLcode status = CURLE_OK;
   int rc;
