@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.20 2003-09-15 21:11:22 bagder Exp $
+ * $Id: http_ntlm.c,v 1.21 2003-10-05 15:03:37 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -62,7 +62,7 @@
 #define DES_set_key des_set_key
 #define DES_ecb_encrypt des_ecb_encrypt
 
-/* This is how things were done in the old days */#define DESKEY(x) x
+/* This is how things were done in the old days */
 #define DESKEY(x) x
 #define DESKEYARG(x) x
 #else
