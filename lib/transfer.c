@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.229 2004-05-12 08:00:21 bagder Exp $
+ * $Id: transfer.c,v 1.230 2004-05-12 09:02:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2029,6 +2029,9 @@ CURLcode Curl_perform(struct SessionHandle *data)
         if(CURLE_OK == res)
           res = res2;
       }
+      else
+        /* Curl_do() failed, clean up left-overs in the done-call */
+        res2 = Curl_done(conn);
 
       /*
        * Important: 'conn' cannot be used here, since it may have been closed
