@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.44 2003-07-23 11:39:05 bagder Exp $
+# $Id: Makefile.am,v 1.45 2003-08-06 22:15:12 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -83,3 +83,8 @@ cygwinbin:
 install-data-hook:
 	cd include && $(MAKE) install
 	cd docs && $(MAKE) install
+
+# We extend the standard uninstall with a custom hook:
+uninstall-hook:
+	cd include && $(MAKE) uninstall
+	cd docs && $(MAKE) uninstall
