@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.23 2001-06-12 18:22:52 bagder Exp $
+ * $Id: ssluse.c,v 1.24 2001-06-29 07:38:11 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -230,7 +230,7 @@ int cert_verify_callback(int ok, X509_STORE_CTX *ctx)
   err_cert=X509_STORE_CTX_get_current_cert(ctx);
   X509_NAME_oneline(X509_get_subject_name(err_cert),buf,256);
 
-  return 1;
+  return ok;
 }
 
 #endif
