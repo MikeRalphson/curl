@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.231 2003-11-23 15:36:24 bagder Exp $
+ * $Id: curl.h,v 1.232 2003-11-24 07:15:37 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -29,7 +29,7 @@
 
 /* This is the version number of the libcurl package from which this header
    file origins: */
-#define LIBCURL_VERSION "7.10.9-CVS"
+#define LIBCURL_VERSION "7.11.0-CVS"
 
 /* This is the numeric version of the libcurl version number, meant for easier
    parsing and comparions by programs. The LIBCURL_VERSION_NUM define will
@@ -45,13 +45,13 @@
    always a greater number in a more recent release. It makes comparisons with
    greater than and less than work.
 */
-#define LIBCURL_VERSION_NUM 0x070a09
+#define LIBCURL_VERSION_NUM 0x070b00
 
 /* The numeric version number is also available "in parts" by using these
    defines: */
 #define LIBCURL_VERSION_MAJOR 7
-#define LIBCURL_VERSION_MINOR 10
-#define LIBCURL_VERSION_PATCH 9
+#define LIBCURL_VERSION_MINOR 11
+#define LIBCURL_VERSION_PATCH 0
 
 #include <stdio.h>
 
