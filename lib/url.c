@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.273 2003-04-30 19:58:36 bagder Exp $
+ * $Id: url.c,v 1.274 2003-05-09 07:39:29 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -284,6 +284,7 @@ CURLcode Curl_open(struct SessionHandle **curl)
 
   data->set.httpreq = HTTPREQ_GET; /* Default HTTP request */
   data->set.ftp_use_epsv = TRUE;   /* FTP defaults to EPSV operations */
+  data->set.ftp_use_eprt = TRUE;   /* FTP defaults to EPRT operations */
 
   data->set.dns_cache_timeout = 60; /* Timeout every 60 seconds by default */
 
@@ -634,10 +635,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     data->set.ftp_use_port = data->set.ftpport?1:0;
     break;
 
+  case CURLOPT_FTP_USE_EPRT:
+    data->set.ftp_use_eprt = va_arg(param, long)?TRUE:FALSE;
+    break;
+
   case CURLOPT_FTP_USE_EPSV:
     data->set.ftp_use_epsv = va_arg(param, long)?TRUE:FALSE;
     break;
-
+    
   case CURLOPT_HTTPHEADER:
     /*
      * Set a list with HTTP headers to use (or replace internals with)
