@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.66 2002-12-12 13:42:21 bagder Exp $
+# $Id: runtests.pl,v 1.67 2002-12-12 16:46:45 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -584,7 +584,7 @@ sub singletest {
     }
     else {
         if (!@validstdout) {
-            $out="--output $CURLOUT ";
+            $out=" --output $CURLOUT ";
         }
     }
 
