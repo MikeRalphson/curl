@@ -1,4 +1,4 @@
-.\" $Id: ares_version.3,v 1.1 2004-01-29 12:07:48 bagder Exp $
+.\" $Id: ares_version.3,v 1.2 2004-02-03 09:16:40 bagder Exp $
 .\"
 .\" Copyright 2004 by Daniel Stenberg
 .\"
@@ -34,6 +34,8 @@ argument. If you pass a NULL, no integer is attempted to be returned.
 The integer is built up as 24bit number, with 8 separate bits used for major
 number, minor number and patch number. This makes a version string such as
 1.2.3 will be returned as the hexadecimal number 0x010203 (decimal 66051).
+.SH NOTES
+This function is not compatible with ares.
 .SH AUTHOR
 Daniel Stenberg
 
