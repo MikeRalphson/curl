@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.233 2004-05-17 08:05:46 bagder Exp $
+ * $Id: transfer.c,v 1.234 2004-05-25 21:47:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -125,8 +125,7 @@ static struct timeval notimeout={0,0};
  * This function will call the read callback to fill our buffer with data
  * to upload.
  */
-static int fillbuffer(struct connectdata *conn,
-                      int bytes)
+int Curl_fillreadbuffer(struct connectdata *conn, int bytes)
 {
   int buffersize = bytes;
   int nread;
@@ -1124,7 +1123,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               break;
             }
 
-            nread = fillbuffer(conn, BUFSIZE);
+            nread = Curl_fillreadbuffer(conn, BUFSIZE);
           }
           else
             nread = 0; /* we're done uploading/reading */

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.227 2004-05-24 07:13:49 bagder Exp $
+ * $Id: urldata.h,v 1.228 2004-05-25 21:47:29 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -272,7 +272,10 @@ struct FTP {
  * FILE unique setup
  ***************************************************************************/
 struct FILEPROTO {
-  int fd; /* open file descriptor to read from! */
+  char *path; /* the path we operate on */
+  char *freepath; /* pointer to the allocated block we must free, this might
+                     differ from the 'path' pointer */
+  int fd;     /* open file descriptor to read from! */
 };
 
 /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.386 2004-05-25 12:00:15 bagder Exp $
+ * $Id: url.c,v 1.387 2004-05-25 21:47:29 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2711,7 +2711,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->protocol |= PROT_FILE;
 
     conn->curl_do = Curl_file;
-    /* no done() function */
+    conn->curl_done = Curl_file_done;
 
     /* anyway, this is supposed to be the connect function so we better
        at least check that the file is present here! */
