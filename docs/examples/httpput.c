@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: httpput.c,v 1.6 2004-11-22 14:41:24 bagder Exp $
+ * $Id: httpput.c,v 1.7 2005-01-19 10:09:15 bagder Exp $
  */
 
 #include <stdio.h>
@@ -19,6 +19,9 @@
  * line argument to the URL also given on the command line.
  *
  * This example also uses its own read callback.
+ *
+ * Here's an article on how to setup a PUT handler for Apache:
+ * http://www.apacheweek.com/features/put
  */
 
 size_t read_callback(void *ptr, size_t size, size_t nmemb, void *stream)
