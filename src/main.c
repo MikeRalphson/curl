@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-02-21 23:52:13 $
+ * $Revision: 1.8 $
+ * $Date: 2000-03-01 22:44:46 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -654,7 +654,21 @@ static int getparameter(char *flag, /* f or -long-flag */
       return URG_FAILED_INIT;
     case 'w':
       /* get the output string */
-      GetStr(&config->writeout, nextarg);
+      if('@' == *nextarg) {
+        /* the data begins with a '@' letter, it means that a file name
+           or - (stdin) follows */
+        FILE *file;
+        nextarg++; /* pass the @ */
+        if(strequal("-", nextarg))
+          file = stdin;
+        else 
+          file = fopen(nextarg, "r");
+        config->writeout = file2string(file);
+        if(file && (file != stdin))
+          fclose(stdin);
+      }
+      else 
+        GetStr(&config->writeout, nextarg);
       break;
     case 'x':
       /* proxy */
