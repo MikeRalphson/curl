@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.42 2001-01-08 10:00:15 bagder Exp $
+ * $Id: ftp.c,v 1.43 2001-01-08 16:22:55 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -76,6 +76,9 @@
 #include "security.h"
 #include "krb4.h"
 #endif
+
+#define _MPRINTF_REPLACE /* use our functions only */
+#include <curl/mprintf.h>
 
 /* The last #include file should be: */
 #ifdef MALLOCDEBUG
