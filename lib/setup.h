@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.56 2004-03-10 08:08:02 bagder Exp $
+ * $Id: setup.h,v 1.57 2004-03-10 08:15:50 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -113,11 +113,7 @@ typedef unsigned char bool;
 #endif
 
 #ifndef OS
-#ifdef WIN32
-#define OS "win32"
-#else
-#define OS "unknown"
-#endif
+#error "There is no OS string defined!"
 #endif
 
 #if defined(HAVE_X509_H) && defined(HAVE_SSL_H) && defined(HAVE_RSA_H) && \
