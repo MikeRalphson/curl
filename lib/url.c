@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.375 2004-05-11 21:17:03 bagder Exp $
+ * $Id: url.c,v 1.376 2004-05-12 07:56:01 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -886,7 +886,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     break;
   case CURLOPT_ENCODING:
     /*
-     * String to use at the value of Accept-Encoding header. 08/28/02 jhrg
+     * String to use at the value of Accept-Encoding header.
      *
      * If the encoding is set to "" we use an Accept-Encoding header that
      * encompasses all the encodings we support.
