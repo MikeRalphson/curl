@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.122 2004-05-05 06:11:13 bagder Exp $
+# $Id: runtests.pl,v 1.123 2004-05-05 14:34:35 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1081,7 +1081,7 @@ sub singletest {
 
     if($dumped_core) {
         print "core dumped!\n";
-        if($gdb) {
+        if(0+ && $gdb) {
             print "running gdb for post-mortem analysis:\n";
             open(GDBCMD, ">log/gdbcmd2");
             print GDBCMD "bt\n";
