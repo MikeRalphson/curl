@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.31 2003-04-01 07:10:08 bagder Exp $
+# $Id: ftpserver.pl,v 1.32 2003-04-01 08:42:14 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -221,6 +221,7 @@ sub RETR_command {
         if($verbose) {
             print STDERR "FTPD: We returned proof we are the test server\n";
         }
+        logmsg "we returned proof that we are the test server\n";
         return 0;
     }
 
