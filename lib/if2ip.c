@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/if2ip.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-25 15:18:34 $
+ * $Revision: 1.4 $
+ * $Date: 2000-05-26 13:57:11 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -66,7 +66,7 @@
 #include <netdb.h>
 #endif
 
-#include HAVE_SYS_TIME_H
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 
