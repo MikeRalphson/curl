@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-02-01 23:52:11 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -754,7 +754,8 @@ UrgError _ftp(struct UrlData *data,
        size prior to the actual upload. */
 
     ProgressInit(data, data->infilesize);
-    result = Upload(data, data->secondarysocket, bytecountp);
+    result = Transfer(data, -1, -1, FALSE, NULL, /* no download */
+                      data->secondarysocket, bytecountp);
     if(result)
       return result;
       
@@ -977,8 +978,9 @@ UrgError _ftp(struct UrlData *data,
       infof(data, "Getting file with size: %d\n", size);
 
       /* FTP download: */
-      result=Download(data, data->secondarysocket, size, FALSE,
-                      bytecountp);
+      result=Transfer(data, data->secondarysocket, size, FALSE,
+                      bytecountp,
+                      -1, NULL); /* no upload here */
       if(result)
         return result;
 
