@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.51 2001-02-22 23:32:02 bagder Exp $
+ * $Id: http.c,v 1.52 2001-02-22 23:41:15 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -390,11 +390,15 @@ CURLcode Curl_http(struct connectdata *conn)
   char *host = conn->name;
   long *bytecount = &conn->bytecount;
 
-  http = (struct HTTP *)malloc(sizeof(struct HTTP));
-  if(!http)
-    return CURLE_OUT_OF_MEMORY;
-  memset(http, 0, sizeof(struct HTTP));
-  conn->proto.http = http;
+  if(!conn->proto.http) {
+    /* Only allocate this struct if we don't already have it! */
+
+    http = (struct HTTP *)malloc(sizeof(struct HTTP));
+    if(!http)
+      return CURLE_OUT_OF_MEMORY;
+    memset(http, 0, sizeof(struct HTTP));
+    conn->proto.http = http;
+  }
 
   if ( (conn->protocol&(PROT_HTTP|PROT_FTP)) &&
        data->bits.upload) {
