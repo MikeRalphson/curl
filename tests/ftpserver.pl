@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.14 2001-01-22 16:16:18 bagder Exp $
+# $Id: ftpserver.pl,v 1.15 2001-03-05 14:03:20 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to excersive curl, it is not meant to become a fully working
@@ -350,6 +350,10 @@ for ( $waitedpid = 0;
     &customize(); # read test control instructions
 
     print @welcome;
+    if($verbose) {
+        print STDERR "OUT:\n";
+        print STDERR @welcome;
+    }
     my $state="fresh";
 
     while(1) {
