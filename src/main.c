@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.59 2001-01-08 07:37:44 bagder Exp $
+ * $Id: main.c,v 1.60 2001-01-08 14:48:34 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -1530,7 +1530,7 @@ operate(struct Configurable *config, int argc, char *argv[])
     /* save outfile pattern before expansion */
     outfiles = urlnode->outfile?strdup(urlnode->outfile):NULL;
 
-    if (outfiles && strequal(outfiles, "-") && urlnum > 1) {
+    if (!outfiles || strequal(outfiles, "-") && urlnum > 1) {
       /* multiple files extracted to stdout, insert separators! */
       separator = 1;
     }
