@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.57 2004-03-10 08:15:50 bagder Exp $
+ * $Id: setup.h,v 1.58 2004-03-10 10:19:32 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -110,10 +110,6 @@ typedef unsigned char bool;
 
 #ifdef __TANDEM /* for nsr-tandem-nsk systems */
 #include <floss.h>
-#endif
-
-#ifndef OS
-#error "There is no OS string defined!"
 #endif
 
 #if defined(HAVE_X509_H) && defined(HAVE_SSL_H) && defined(HAVE_RSA_H) && \
