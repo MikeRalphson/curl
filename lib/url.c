@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.31 $
- * $Date: 2000-08-11 18:08:50 $
+ * $Revision: 1.32 $
+ * $Date: 2000-08-17 15:40:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -83,9 +83,6 @@
 #include <sys/select.h>
 #endif
 
-#ifndef HAVE_VPRINTF
-#error "We can't compile without vprintf() support!"
-#endif
 #ifndef HAVE_SELECT
 #error "We can't compile without select() support!"
 #endif
