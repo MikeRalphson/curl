@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.20 $
- * $Date: 2000-09-14 14:14:03 $
+ * $Revision: 1.21 $
+ * $Date: 2000-09-18 21:53:21 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -144,6 +144,8 @@ typedef enum {
   CURLE_HTTP_RANGE_ERROR, /* The RANGE "command" didn't seem to work */
 
   CURLE_HTTP_POST_ERROR,
+
+  CURLE_HTTP_PORT_FAILED, /* HTTP Interface operation failed */
 
   CURLE_SSL_CONNECT_ERROR, /* something was wrong when connecting with SSL */
 
@@ -384,6 +386,9 @@ typedef enum {
   /* tunnel non-http operations through a HTTP proxy */
   CINIT(HTTPPROXYTUNNEL, LONG, 61),
 
+  /* Set the interface string to use as outgoing network interface */
+  CINIT(INTERFACE, OBJECTPOINT, 62),
+
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
 
@@ -432,8 +437,8 @@ char *curl_getenv(char *variable);
 char *curl_version(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.2.1"
-#define LIBCURL_VERSION_NUM 0x070201
+#define LIBCURL_VERSION "7.3-pre2"
+#define LIBCURL_VERSION_NUM 0x070300
 
 /* linked-list structure for the CURLOPT_QUOTE option */
 struct curl_slist {
