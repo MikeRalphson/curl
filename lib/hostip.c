@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.162 2004-10-06 07:50:18 bagder Exp $
+ * $Id: hostip.c,v 1.163 2004-10-10 03:32:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -378,9 +378,7 @@ int Curl_resolv(struct connectdata *conn,
   int wait;
   struct SessionHandle *data = conn->data;
   CURLcode result;
-
-  /* default to failure */
-  int rc = CURLRESOLV_ERROR;
+  int rc;
   *entry = NULL;
 
 #ifdef HAVE_SIGSETJMP
@@ -412,6 +410,8 @@ int Curl_resolv(struct connectdata *conn,
 
   /* free the allocated entry_id again */
   free(entry_id);
+
+  rc = CURLRESOLV_ERROR; /* default to failure */
 
   if (!dns) {
     /* The entry was not in the cache. Resolve it to IP address */
