@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.65 2004-05-24 07:53:25 bagder Exp $
+ * $Id: setup.h,v 1.66 2004-06-02 11:36:07 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -261,7 +261,8 @@ typedef int curl_socket_t;
 #error "ares does not yet support IPv6. Disable IPv6 or ares and rebuild"
 #endif
 
-#if defined(WIN32) && !defined(__CYGWIN__) && !defined(USE_ARES)
+#if defined(WIN32) && !defined(__CYGWIN__) && !defined(USE_ARES) && \
+    !defined(__LCC__)  /* lcc-win32 doesn't have _beginthreadex() */
 #ifdef ENABLE_IPV6
 #define USE_THREADING_GETADDRINFO
 #else
