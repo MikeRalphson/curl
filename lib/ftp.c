@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.264 2004-07-04 21:35:12 bagder Exp $
+ * $Id: ftp.c,v 1.265 2004-07-04 21:48:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1330,7 +1330,7 @@ CURLcode ftp_use_port(struct connectdata *conn)
   if (addr || sa_filled_in) {
     portsock = socket(AF_INET, SOCK_STREAM, 0);
     if(CURL_SOCKET_BAD != portsock) {
-      int size;
+      socklen_t size;
 
       /* we set the secondary socket variable to this for now, it
          is only so that the cleanup function will close it in case

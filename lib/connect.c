@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.112 2004-07-01 08:10:21 bagder Exp $
+ * $Id: connect.c,v 1.113 2004-07-04 21:48:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -336,7 +336,7 @@ static CURLcode bindlocal(struct connectdata *conn,
         Curl_resolv_unlock(data, h);
         /* we don't need it anymore after this function has returned */
 
-        if( bind(sockfd, addr->ai_addr, addr->ai_addrlen) >= 0) {
+        if( bind(sockfd, addr->ai_addr, (socklen_t)addr->ai_addrlen) >= 0) {
           /* we succeeded to bind */
 #ifdef ENABLE_IPV6
           struct sockaddr_in6 add;
