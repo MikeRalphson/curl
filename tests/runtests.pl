@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.129 2004-05-13 07:52:33 bagder Exp $
+# $Id: runtests.pl,v 1.130 2004-05-17 07:59:10 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -448,24 +448,24 @@ sub runftpserver {
         print "RUN: Check port $FTPPORT for our own FTP server\n"
             if ($verbose);
 
-
         my $time=time();
         # check if this is our server running on this port:
-        my $data=`$CURL -m4 --silent -i ftp://$HOSTIP:$FTPPORT/verifiedserver 2>/dev/null`;
+        my @data=`$CURL -m4 --silent ftp://$HOSTIP:$FTPPORT/verifiedserver 2>/dev/null`;
+        my $line;
 
         # if this took more than 2 secs, we assume it "hung" on a weird server
         my $took = time()-$time;
-        
-        if ( $data =~ /WE ROOLZ: (\d+)/ ) {
-            # this is our test server with a known pid!
-            $pid = 0+$1;
-        }
-        else {
-            if($data || ($took > 2)) {
-                # this is not a known server
-                print "RUN: Unknown server on our favourite port: $FTPPORT\n";
-                return -1;
+
+        foreach $line (@data) {
+            if ( $line =~ /WE ROOLZ: (\d+)/ ) {
+                # this is our test server with a known pid!
+                $pid = 0+$1;
             }
+        }
+        if(!$pid || ($took > 2)) {
+            # this is not a known server
+            print "RUN: Unknown server on our favourite port: $FTPPORT\n";
+            return -1;
         }
     }
 
@@ -490,21 +490,30 @@ sub runftpserver {
     system($cmd);
 
     my $verified;
+    $pid = 0;
     for(1 .. 10) {
         # verify that our server is up and running:
-        my $data=`$CURL --silent -i ftp://$HOSTIP:$FTPPORT/verifiedserver 2>/dev/null`;
-
-        if ( $data =~ /WE ROOLZ: (\d+)/ ) {
-            $pid = 0+$1;
-            $verified = 1;
-            last;
+        my $line;
+        my $cmd="$CURL --silent ftp://$HOSTIP:$FTPPORT/verifiedserver 2>/dev/null";
+        print "$cmd\n" if($verbose);
+        my @data = `$cmd`;
+        foreach $line (@data) {
+            print STDERR "We read: $_";
+            if ( $line =~ /WE ROOLZ: (\d+)/ ) {
+                $pid = 0+$1;
+                $verified = 1;
+                last;
+            }
         }
-        else {
+        if(!$pid) {
             if($verbose) {
                 print STDERR "RUN: Retrying FTP server existence in 3 sec\n";
             }
             sleep(3);
             next;
+        }
+        else {
+            last;
         }
     }
     if(!$verified) {
