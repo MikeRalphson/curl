@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.67 2001-05-22 21:17:58 bagder Exp $
+dnl $Id: configure.in,v 1.68 2001-05-28 14:58:07 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -6,6 +6,11 @@ AM_CONFIG_HEADER(config.h src/config.h)
 
 VERSION=`sed -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curl.h`
 AM_INIT_AUTOMAKE(curl,$VERSION)
+
+dnl
+dnl we extract the numerical version for curl-config only
+VERSIONNUM=`sed -ne 's/^#define LIBCURL_VERSION_NUM 0x\(.*\)/\1/p' ${srcdir}/include/curl/curl.h`
+AC_SUBST(VERSIONNUM)
 
 dnl
 dnl Detect the canonical host and target build environment
