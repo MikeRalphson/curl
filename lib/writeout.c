@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/writeout.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-03-02 23:01:56 $
+ * $Revision: 1.4 $
+ * $Date: 2000-03-16 11:41:56 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -101,6 +101,9 @@ void WriteOut(struct UrlData *data)
               switch(replacements[i].id) {
               case VAR_EFFECTIVE_URL:
                 fprintf(stream, "%s", data->url?data->url:"");
+                break;
+              case VAR_HTTP_CODE:
+                fprintf(stream, "%03d", data->progress.httpcode);
                 break;
               case VAR_TOTAL_TIME:
                 fprintf(stream, "%.3f", data->progress.timespent);
