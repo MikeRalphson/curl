@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.112 2001-11-27 00:50:52 bagder Exp $
+ * $Id: ftp.c,v 1.113 2001-11-28 12:16:52 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -815,7 +815,7 @@ ftp_pasv_verbose(struct connectdata *conn,
   char hostent_buf[8192];
 
 #if defined(HAVE_INET_ADDR)
-  unsigned long address;
+  in_addr_t address;
 # if defined(HAVE_GETHOSTBYADDR_R)
   int h_errnop;
 # endif
