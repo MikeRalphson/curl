@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.238 2004-07-01 07:30:19 bagder Exp $
+ * $Id: http.c,v 1.239 2004-07-28 21:13:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1351,6 +1351,8 @@ CURLcode Curl_http(struct connectdata *conn)
     }
   }
 
+  Curl_safefree(conn->allocptr.host);
+
   ptr = checkheaders(data, "Host:");
   if(ptr && !data->state.this_is_a_follow) {
     /* If we have a given custom Host: header, we extract the host name in
@@ -1374,10 +1376,10 @@ CURLcode Curl_http(struct connectdata *conn)
       memcpy(conn->allocptr.cookiehost, start, len);
       conn->allocptr.cookiehost[len]=0;
     }
+
+    conn->allocptr.host = NULL;
   }
   else {
-    Curl_safefree(conn->allocptr.host);
-
     /* When building Host: headers, we must put the host name within
        [brackets] if the host name is a plain IPv6-address. RFC2732-style. */
 
