@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.107 2002-04-25 19:00:59 bagder Exp $
+ * $Id: urldata.h,v 1.108 2002-05-02 22:13:35 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -248,6 +248,10 @@ struct Curl_transfer_keeper {
   char *buf;
   char *uploadbuf;
   int maxfd;
+
+  /* pointers to the actual descriptors we check */
+  fd_set *readfdp;
+  fd_set *writefdp;
 
   /* the file descriptors to play with */
   fd_set readfd;
