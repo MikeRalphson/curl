@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.19 $
- * $Date: 2000-05-26 13:58:10 $
+ * $Revision: 1.20 $
+ * $Date: 2000-05-29 23:09:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -832,16 +832,21 @@ static int parseconfig(char *filename,
   char configbuffer[4096];
   char filebuffer[256];
   bool usedarg;
+  char *home=NULL;
   
   if(!filename || !*filename) {
     /* NULL or no file name attempts to load .curlrc from the homedir! */
 
 #define CURLRC DOT_CHAR "curlrc"
 
-    char *home = curl_GetEnv("HOME"); /* portable environment reader */
+    home = curl_GetEnv("HOME"); /* portable environment reader */
 
-    if(!home || (strlen(home)>(sizeof(filebuffer)-strlen(CURLRC))))
+    if(!home)
       return CURLE_OK;
+    if(strlen(home)>(sizeof(filebuffer)-strlen(CURLRC))) {
+      free(home);
+      return CURLE_OK;
+    }
 
     sprintf(filebuffer, "%s%s%s", home, DIR_CHAR, CURLRC);
 
@@ -909,6 +914,8 @@ static int parseconfig(char *filename,
     if(file != stdin)
       fclose(file);
   }
+  if(home)
+    free(home);
   return CURLE_OK;
 }
 
