@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.235 2004-02-17 13:46:00 bagder Exp $
+ * $Id: main.c,v 1.236 2004-02-19 08:13:20 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -99,12 +99,14 @@
 #include <sys/poll.h>
 #endif
 
+#include <strtoofft.h> /* header from the libcurl directory */
+
 /* The last #include file should be: */
 #ifdef CURLDEBUG
 /* This is low-level hard-hacking memory leak tracking and similar. Using
    the library level code from this client-side is ugly, but we do this
    anyway for convenience. */
-#include "../lib/memdebug.h"
+#include "memdebug.h"
 #endif
 
 #define DEFAULT_MAXREDIRS  50L
@@ -1011,12 +1013,8 @@ static int str2offset(curl_off_t *val, char *str)
 #define LLONG_MIN (curl_off_t)0x8000000000000000LL
 #endif
 
-#ifdef HAVE_STRTOLL
-  *val = strtoll(str, NULL, 0);
-#else
   /* this is a duplicate of the function that is also used in libcurl */
-  *val = Curl_strtoll(str, NULL, 0);
-#endif
+  *val = strtoofft(str, NULL, 0);
 
   if ((*val == LLONG_MAX || *val == LLONG_MIN) && errno == ERANGE)
     return 1;
