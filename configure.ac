@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.64 2004-03-25 15:10:01 bagder Exp $
+dnl $Id: configure.ac,v 1.65 2004-03-25 15:48:54 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -957,16 +957,24 @@ else
   CURL_CHECK_STRERROR_R()
 
   AC_CHECK_FUNCS( gmtime_r )
-
 fi
 
 dnl for recent AIX versions, we skip all the thread-safe checks above since
-dnl they claim a thread-safe libc using the standard API. But the man page
-dnl says strerror() is not thread-safe, so we check for this only!
+dnl they claim a thread-safe libc using the standard API. But there are
+dnl some functions still not thread-safe. Check for these!
+
+dnl Let's hope this split URL remains working:
+dnl http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/aixprggd/ \
+dnl genprogc/thread_quick_ref.htm
 
 if test "x$RECENTAIX" = "xyes"; then
+  dnl is there a localtime_r()
+  CURL_CHECK_LOCALTIME_R()
+
   dnl is there a strerror_r()
   CURL_CHECK_STRERROR_R()
+
+  AC_CHECK_FUNCS( gmtime_r )
 fi
 
 
