@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.178 2003-10-16 14:08:59 bagder Exp $
+ * $Id: transfer.c,v 1.179 2003-10-17 13:11:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -578,6 +578,11 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             /* check for Content-Length: header lines to get size */
             if (checkprefix("Content-Length:", k->p) &&
                 sscanf (k->p+15, " %ld", &k->contentlength)) {
+              if (data->set.max_filesize && k->contentlength > 
+                  data->set.max_filesize) {
+                failf(data, "Maximum file size exceeded");
+                return CURLE_FILESIZE_EXCEEDED;
+              }
               conn->size = k->contentlength;
               Curl_pgrsSetDownloadSize(data, k->contentlength);
             }

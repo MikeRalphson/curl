@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.202 2003-10-17 09:26:28 bagder Exp $
+ * $Id: ftp.c,v 1.203 2003-10-17 13:11:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1777,8 +1777,13 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
          downloads and when talking to servers that don't give away the size
          in the RETR response line. */
       result = ftp_getsize(conn, ftp->file, &foundsize);
-      if(CURLE_OK == result)
+      if(CURLE_OK == result) {
+        if (data->set.max_filesize && foundsize > data->set.max_filesize) {
+          failf(data, "Maximum file size exceeded");
+          return CURLE_FILESIZE_EXCEEDED;
+        }
         downloadsize = foundsize;
+      }
 
       if(conn->resume_from) {
 

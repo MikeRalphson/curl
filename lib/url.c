@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.308 2003-10-17 09:28:00 bagder Exp $
+ * $Id: url.c,v 1.309 2003-10-17 13:11:03 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1236,6 +1236,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set a list of aliases for HTTP 200 in response header
      */
     data->set.http200aliases = va_arg(param, struct curl_slist *);
+    break;
+
+  case CURLOPT_MAXFILESIZE:
+    /*
+     * Set the maximum size of a file to download.
+     */
+    data->set.max_filesize = va_arg(param, long);
     break;
 
   default:
