@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.107 2004-10-18 13:37:18 bagder Exp $
+dnl $Id: configure.ac,v 1.108 2004-11-01 22:50:59 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -710,11 +710,17 @@ else
   case "$OPT_SSL" in
   yes)
     dnl --with-ssl (without path) used
-    PKGTEST="yes"
+    if test x$cross_compiling != xyes; then
+      dnl only do pkg-config magic when not cross-compiling
+      PKGTEST="yes"
+    fi
     EXTRA_SSL=/usr/local/ssl ;;
   off)
     dnl no --with-ssl option given, just check default places
-    PKGTEST="yes"
+    if test x$cross_compiling != xyes; then
+      dnl only do pkg-config magic when not cross-compiling
+      PKGTEST="yes"
+    fi
     EXTRA_SSL= ;;
   *)
     dnl check the given --with-ssl spot
