@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.155 2002-12-03 12:41:10 bagder Exp $
+ * $Id: main.c,v 1.156 2002-12-05 11:25:36 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -3051,6 +3051,7 @@ static int create_dir_hierarchy(char *outfile)
   char *outdup;
   char *dirbuildup;
   int result=0;
+  extern int errno;
   
   outdup = strdup(outfile);
   dirbuildup = malloc(sizeof(char) * strlen(outfile));
