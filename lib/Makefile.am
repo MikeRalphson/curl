@@ -1,11 +1,11 @@
 #
-# $Id: Makefile.am,v 1.49 2002-10-21 06:49:42 bagder Exp $
+# $Id: Makefile.am,v 1.50 2002-11-13 22:16:44 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
 
 EXTRA_DIST = getdate.y Makefile.b32 Makefile.b32.resp Makefile.m32	    \
-       Makefile.vc6 Makefile.riscos libcurl.def dllinit.c curllib.dsp	    \
+       Makefile.vc6 Makefile.riscos libcurl.def curllib.dsp	    \
        curllib.dsw config-vms.h config-win32.h config-riscos.h config-mac.h \
        config.h.in ca-bundle.crt README.encoding README.memoryleak
 
