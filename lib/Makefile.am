@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.3 2000-02-01 23:52:43 bagder Exp $
+# $Id: Makefile.am,v 1.4 2000-02-21 23:53:36 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -22,7 +22,8 @@ dict.h         getdate.c      if2ip.h        speedcheck.h   urldata.h \
 download.c     getdate.h      ldap.c         ssluse.c       version.c \
 download.h     getenv.c       ldap.h         ssluse.h       \
 escape.c       getenv.h       mprintf.c      telnet.c       \
-escape.h       getpass.c      netrc.c        telnet.h       
+escape.h       getpass.c      netrc.c        telnet.h       \
+writeout.c writeout.h
 
 # Say $(srcdir), so GNU make does not report an ambiguity with the .y.c rule.
 $(srcdir)/getdate.c: getdate.y
