@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.162 2003-01-30 05:15:57 bagder Exp $
+ * $Id: main.c,v 1.163 2003-01-30 14:48:07 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2464,17 +2464,19 @@ operate(struct Configurable *config, int argc, char *argv[])
    * We support the environment variable thing for non-Windows platforms
    * too. Just for the sake of it.
    */
-  if (! config->cacert) {
+  if (!config->cacert &&
+      !config->capath &&
+      !config->insecure_ok) {
     env = curl_getenv("CURL_CA_BUNDLE");
     if(env) {
       GetStr(&config->cacert, env);
       free(env);
     }
-  }
 #if defined(WIN32) && !defined(__CYGWIN32__)
-  if (! config->cacert)
-    FindWin32CACert(config, "curl-ca-bundle.crt");
+    else
+      FindWin32CACert(config, "curl-ca-bundle.crt");
 #endif
+  }
 
   if (config->postfields) {
     if (config->use_httpget) {
