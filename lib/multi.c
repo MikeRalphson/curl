@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.35 2003-09-11 22:14:29 bagder Exp $
+ * $Id: multi.c,v 1.36 2003-09-21 23:10:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -375,6 +375,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
         
         if(CURLE_OK != easy->result) {
           /* failure detected */
+          Curl_disconnect(easy->easy_conn); /* disconnect properly */
           easy->easy_conn = NULL;           /* no more connection */
           break;
         }
