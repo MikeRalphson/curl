@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.85 2003-03-19 09:16:59 bagder Exp $
+ * $Id: hostip.c,v 1.86 2003-04-03 16:11:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -239,7 +239,7 @@ struct Curl_dns_entry *Curl_resolv(struct SessionHandle *data,
      will generate a signal and we will siglongjmp() from that here */
   if(!data->set.no_signal && sigsetjmp(curl_jmpenv, 1)) {
     /* this is coming from a siglongjmp() */
-    failf(data, "name lookup time-outed");
+    failf(data, "name lookup timed out");
     return NULL;
   }
 #endif
