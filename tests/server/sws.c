@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.62 2004-12-12 20:14:25 giva Exp $
+ * $Id: sws.c,v 1.63 2004-12-13 11:31:01 giva Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -85,7 +85,7 @@
 static void win32_cleanup(void);
 
 #if defined(ENABLE_IPV6) && defined(__MINGW32__)
-const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;
+const struct in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};
 #endif
 #endif
 
