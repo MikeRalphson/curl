@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.86 2004-06-02 14:06:49 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.87 2004-06-03 11:19:35 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "12 Mar 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -964,5 +964,9 @@ standard for details.
 CURLE_OK (zero) means that the option was set properly, non-zero means an
 error occurred as \fI<curl/curl.h>\fP defines. See the \fIlibcurl-errors(3)\fP
 man page for the full list with descriptions.
+
+If you try to set an option that libcurl doesn't know about, perhaps because
+the library is too old to support it or the option was removed in a recent
+version, this function will return \fICURLE_FAILED_INIT\fP.
 .SH "SEE ALSO"
 .BR curl_easy_init "(3), " curl_easy_cleanup "(3), "
