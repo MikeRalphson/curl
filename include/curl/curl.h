@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.171 2002-09-30 19:51:05 bagder Exp $
+ * $Id: curl.h,v 1.172 2002-10-01 08:57:49 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -606,6 +606,7 @@ typedef enum {
   /* two convenient "aliases" that follow the name scheme better */
 #define CURLOPT_WRITEDATA CURLOPT_FILE
 #define CURLOPT_READDATA  CURLOPT_INFILE 
+#define CURLOPT_HEADERDATA CURLOPT_WRITEHEADER
 
 
   /* These enums are for use with the CURLOPT_HTTP_VERSION option. */
@@ -792,7 +793,7 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.10-pre2"
+#define LIBCURL_VERSION "7.10"
 #define LIBCURL_VERSION_NUM 0x070a00
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
