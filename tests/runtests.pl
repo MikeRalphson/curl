@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.111 2004-03-01 16:24:54 bagder Exp $
+# $Id: runtests.pl,v 1.112 2004-03-29 09:26:31 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -659,12 +659,51 @@ sub checkcurl {
 
         if($_ =~ /^curl/) {
             $curl = $_;
-
             $curl =~ s/^(.*)(libcurl.*)/$1/g;
             $libcurl = $2;
+            if($curl =~ /mingw32/) {
+                # This is a windows minw32 build, we need to translate the
+                # given path to the "actual" windows path.
 
-           if ($curl =~ /win32/)
-           {
+                my @m = `mount`;
+                my $matchlen;
+                my $bestmatch;
+                my $mount;
+
+# example mount output:
+# C:\DOCUME~1\Temp on /tmp type user (binmode,noumount)
+# c:\ActiveState\perl on /perl type user (binmode)
+# C:\msys\1.0\bin on /usr/bin type user (binmode,cygexec,noumount)
+# C:\msys\1.0\bin on /bin type user (binmode,cygexec,noumount)
+
+                foreach $mount (@m) {
+                    if( $mount =~ /(.*) on ([^ ]*) type /) {
+                        my ($mingw, $real)=($2, $1);
+                        if($pwd =~ /^$mingw/) {
+                            # the path we got from pwd starts with the path
+                            # we found on this line in the mount output
+
+                            my $len = length($real);
+                            if($len > $matchlen) {
+                                # we remember the match that is the longest
+                                $matchlen = $len;
+                                $bestmatch = $real;
+                            }
+                        }
+                    }
+                }
+                if(!$matchlen) {
+                    print "Serious error, can't find our \"real\" path!\n";
+                }
+                else {
+                    # now prepend the prefix from the mount command to build
+                    # our "actual path"
+                    $pwd = "$bestmatch$pwd";
+                }
+                $pwd =~ s#\\#/#g;
+            }
+            elsif ($curl =~ /win32/)
+            {
                # Native Windows builds don't understand the
                # output of cygwin's pwd.  It will be
                # something like /cygdrive/c/<some path>.
