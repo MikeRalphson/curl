@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.347 2004-03-04 12:57:12 bagder Exp $
+ * $Id: url.c,v 1.348 2004-03-10 16:01:49 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1378,7 +1378,7 @@ CURLcode Curl_disconnect(struct connectdata *conn)
  * be dead. Most commonly this happens when the server has closed the
  * connection due to inactivity.
  */
-static bool SocketIsDead(int sock)
+static bool SocketIsDead(curl_socket_t sock)
 {
   int sval;
   bool ret_val = TRUE;
@@ -1386,7 +1386,7 @@ static bool SocketIsDead(int sock)
   struct timeval to;
 
   FD_ZERO(&check_set);
-  FD_SET(sock,&check_set);
+  FD_SET(sock, &check_set);
 
   to.tv_sec = 0;
   to.tv_usec = 0;

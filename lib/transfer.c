@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.208 2004-03-09 22:52:50 bagder Exp $
+ * $Id: transfer.c,v 1.209 2004-03-10 16:01:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1368,7 +1368,10 @@ void Curl_single_fdset(struct connectdata *conn,
   }
   if(conn->keep.keepon & KEEP_WRITE) {
     FD_SET(conn->writesockfd, write_fd_set);
-    if(conn->writesockfd > *max_fd)
+
+    /* since sockets are curl_socket_t nowadays, we typecast it to int here
+       to compare it nicely */
+    if((int)conn->writesockfd > *max_fd)
       *max_fd = conn->writesockfd;
     conn->keep.writefdp = write_fd_set; /* store the address of the set */
   }
