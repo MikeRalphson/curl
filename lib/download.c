@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-03-16 11:38:32 $
+ * $Revision: 1.9 $
+ * $Date: 2000-03-23 10:41:16 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -194,7 +194,14 @@ Transfer (struct UrlData *data,
 
       switch (select (maxfd, &readfd, &writefd, NULL, &interval)) {
       case -1:			/* select() error, stop reading */
-	keepon = 0; /* no more read or write */
+#ifdef EINTR
+        /* The EINTR is not serious, and it seems you might get this more
+           ofen when using the lib in a multi-threaded environment! */
+        if(errno == EINTR)
+          ;
+        else
+#endif
+          keepon = 0; /* no more read or write */
 	continue;
       case 0:			/* timeout */
 	break;
