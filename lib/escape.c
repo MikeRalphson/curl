@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.32 2004-05-12 13:04:30 bagder Exp $
+ * $Id: escape.c,v 1.33 2004-05-13 15:16:36 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -126,5 +126,6 @@ char *curl_unescape(const char *string, int length)
    the library's memory system */
 void curl_free(void *p)
 {
-  free(p);
+  if(p)
+    free(p);
 }
