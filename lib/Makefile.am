@@ -1,12 +1,12 @@
 #
-# $Id: Makefile.am,v 1.17 2001-02-12 08:21:45 bagder Exp $
+# $Id: Makefile.am,v 1.18 2001-02-19 09:29:40 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = getdate.y \
        Makefile.b32 Makefile.b32.resp Makefile.m32 Makefile.vc6 \
-       libcurl.def dllinit.c
+       libcurl.def dllinit.c curllib.dsp curllib.dsw
 
 lib_LTLIBRARIES = libcurl.la
 
