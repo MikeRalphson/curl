@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.264 2003-03-25 14:23:12 bagder Exp $
+ * $Id: url.c,v 1.265 2003-03-31 03:42:01 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1272,6 +1272,11 @@ ConnectionExists(struct SessionHandle *data,
     if(!check)
       /* NULL pointer means not filled-in entry */
       continue;
+
+    if((needle->protocol&PROT_SSL) != (check->protocol&PROT_SSL))
+      /* don't do mixed SSL and non-SSL connections */
+      continue;
+
     if(!needle->bits.httpproxy || needle->protocol&PROT_SSL) {
       /* The requested connection does not use a HTTP proxy or it
          uses SSL. */
