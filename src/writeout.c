@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.15 2003-01-16 21:08:13 bagder Exp $
+ * $Id: writeout.c,v 1.16 2003-02-28 12:20:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -108,7 +108,7 @@ void ourWriteOut(CURL *curl, char *writeinfo)
           keepit=*end;
           *end=0; /* zero terminate */
           for(i=0; replacements[i].name; i++) {
-            if(strequal(ptr, replacements[i].name)) {
+            if(curl_strequal(ptr, replacements[i].name)) {
               switch(replacements[i].id) {
               case VAR_EFFECTIVE_URL:
                 if((CURLE_OK ==
