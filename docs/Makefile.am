@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.29 2003-11-05 15:51:25 bagder Exp $
+# $Id: Makefile.am,v 1.30 2004-03-02 08:28:23 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -18,6 +18,8 @@ PDFPAGES = \
 	curl-config.pdf
 
 SUBDIRS = examples libcurl
+
+CLEANFILES = $(HTMLPAGES) $(PDFPAGES)
 
 EXTRA_DIST = MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS SSLCERTS	\
 	     README.win32 RESOURCES TODO TheArtOfHttpScripting THANKS	\
