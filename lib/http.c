@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.36 $
- * $Date: 2000-11-20 08:53:21 $
+ * $Revision: 1.37 $
+ * $Date: 2000-11-21 09:31:03 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -455,7 +455,7 @@ CURLcode http(struct connectdata *conn)
         /* we require a colon for this to be a true header */
 
         ptr++; /* pass the colon */
-        while(*ptr && isspace(*ptr))
+        while(*ptr && isspace((int)*ptr))
           ptr++;
 
         if(*ptr) {
