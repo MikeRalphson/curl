@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: getinmemory.c,v 1.8 2004-11-02 08:26:55 bagder Exp $
+ * $Id: getinmemory.c,v 1.9 2005-02-04 23:53:12 bagder Exp $
  *
  * Example source code to show how the callback function can be used to
  * download data into a chunk of memory instead of storing it in a file.
@@ -37,7 +37,7 @@ void *myrealloc(void *ptr, size_t size)
 size_t
 WriteMemoryCallback(void *ptr, size_t size, size_t nmemb, void *data)
 {
-  register int realsize = size * nmemb;
+  size_t realsize = size * nmemb;
   struct MemoryStruct *mem = (struct MemoryStruct *)data;
 
   mem->memory = (char *)myrealloc(mem->memory, mem->size + realsize + 1);
