@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.70 2004-06-10 07:46:24 bagder Exp $
+ * $Id: formdata.c,v 1.71 2004-06-13 08:59:37 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1466,6 +1466,12 @@ CURLFORMcode curl_formadd(struct curl_httppost **httppost,
   (void)httppost;
   (void)last_post;
   return CURL_FORMADD_DISABLED;
+}
+
+void curl_formfree(struct curl_httppost *form)
+{
+  (void)form;
+  /* does nothing HTTP is disabled */
 }
 
 #endif  /* CURL_DISABLE_HTTP */
