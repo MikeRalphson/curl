@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.130 2003-03-25 15:54:06 bagder Exp $
+dnl $Id: configure.ac,v 1.1 2003-03-25 15:56:33 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
