@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.452 2005-03-15 21:00:46 danf Exp $
+ * $Id: url.c,v 1.453 2005-04-04 12:30:03 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1503,11 +1503,12 @@ CURLcode Curl_disconnect(struct connectdata *conn)
   Curl_safefree(conn->allocptr.cookiehost);
   Curl_safefree(conn->ip_addr_str);
 
-#if defined(USE_ARES) || defined(USE_THREADING_GETHOSTBYNAME) || \
-    defined(USE_THREADING_GETADDRINFO)
-  /* possible left-overs from the async name resolve */
+  /* possible left-overs from the async name resolvers */
+#if defined(USE_ARES)
   Curl_safefree(conn->async.hostname);
   Curl_safefree(conn->async.os_specific);
+#elif defined(CURLRES_THREADED)
+  Curl_destroy_thread_data(&conn->async);
 #endif
 
   Curl_free_ssl_config(&conn->ssl_config);

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.41 2005-02-09 13:06:40 bagder Exp $
+ * $Id: hostip.h,v 1.42 2005-04-04 12:30:03 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -239,6 +239,12 @@ const char *Curl_printable_address(const Curl_addrinfo *ip,
 struct Curl_dns_entry *
 Curl_cache_addr(struct SessionHandle *data, Curl_addrinfo *addr,
                 char *hostname, int port);
+
+/*
+ * Curl_destroy_thread_data() cleans up async resolver data.
+ * Complementary of ares_destroy.
+ */
+void Curl_destroy_thread_data(struct Curl_async *async);
 
 #ifndef INADDR_NONE
 #define CURL_INADDR_NONE (in_addr_t) ~0
