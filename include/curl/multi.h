@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.2 2002-07-31 23:18:27 bagder Exp $
+ * $Id: multi.h,v 1.3 2002-08-13 15:03:57 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -55,7 +55,7 @@
 #include <sys/time.h>
 #endif
 
-#include <curl/curl.h>
+#include "curl.h"
 
 typedef void CURLM;
 
