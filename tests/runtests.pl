@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.101 2003-11-13 10:05:44 bagder Exp $
+# $Id: runtests.pl,v 1.102 2003-11-24 07:17:16 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -1181,6 +1181,8 @@ sub startservers {
                 $run{'ftp'}=$pid;
             }
             if(!$run{'ftps'}) {
+                return 2;
+
                 $pid = runftpsserver($verbose);
                 if($pid <= 0) {
                     return 2;
