@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.51 2005-01-25 21:45:03 bagder Exp $
+# $Id: ftpserver.pl,v 1.52 2005-01-26 23:18:31 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -488,7 +488,8 @@ sub PORT_command {
         print "500 silly you, go away\r\n";
         return 0;
     }
-    my $iaddr = inet_aton("$1.$2.$3.$4");
+    #my $iaddr = inet_aton("$1.$2.$3.$4");
+    my $iaddr = inet_aton("127.0.0.1"); # always use localhost
 
     my $port = ($5<<8)+$6;
 
