@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.11 2001-04-23 07:54:12 bagder Exp $
+ * $Id: version.c,v 1.12 2001-04-24 06:12:07 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -41,12 +41,12 @@ char *curl_version(void)
 #if (SSLEAY_VERSION_NUMBER >= 0x906000)
   {
     char sub[2];
-    sub[1]=0;
+    sub[1]='\0';
     if(SSLEAY_VERSION_NUMBER&0xff0) {
       sub[0]=((SSLEAY_VERSION_NUMBER>>4)&0xff) + 'a' -1;
     }
     else
-      sub[0]=0;
+      sub[0]='\0';
 
     sprintf(ptr, " (OpenSSL %lx.%lx.%lx%s)",
             (SSLEAY_VERSION_NUMBER>>28)&0xf,
@@ -64,12 +64,12 @@ char *curl_version(void)
 #else
   {
     char sub[2];
-    sub[1]=0;
+    sub[1]='\0';
     if(SSLEAY_VERSION_NUMBER&0x0f) {
       sub[0]=(SSLEAY_VERSION_NUMBER&0x0f) + 'a' -1;
     }
     else
-      sub[0]=0;
+      sub[0]='\0';
 
     sprintf(ptr, " (SSL %x.%x.%x%s)",
             (SSLEAY_VERSION_NUMBER>>12)&0xff,
