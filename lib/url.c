@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.327 2004-01-22 11:54:00 bagder Exp $
+ * $Id: url.c,v 1.328 2004-01-22 12:45:50 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -716,7 +716,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * If known, this should inform curl about the file size of the
      * to-be-uploaded file.
      */
-    data->set.infilesize = va_arg(param, off_t);
+    data->set.infilesize = va_arg(param, curl_off_t);
     break;
   case CURLOPT_LOW_SPEED_LIMIT:
     /*
@@ -966,7 +966,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Resume transfer at the give file position
      */
-    data->set.set_resume_from = va_arg(param, off_t);
+    data->set.set_resume_from = va_arg(param, curl_off_t);
     break;
   case CURLOPT_DEBUGFUNCTION:
     /*
@@ -1279,7 +1279,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Set the maximum size of a file to download.
      */
-    data->set.max_filesize = va_arg(param, off_t);
+    data->set.max_filesize = va_arg(param, curl_off_t);
     break;
 
   default:
