@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.22 $
- * $Date: 2000-06-16 13:17:07 $
+ * $Revision: 1.23 $
+ * $Date: 2000-06-20 09:28:09 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -217,6 +217,9 @@ void urlfree(struct UrlData *data, bool totally)
 
     if(data->headerbuff)
       free(data->headerbuff);
+
+    if(data->free_referer)
+      free(data->referer);
 
     cookie_cleanup(data->cookies);
 
@@ -420,6 +423,9 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
   case CURLOPT_REFERER:
     data->referer = va_arg(param, char *);
     data->bits.http_set_referer = (data->referer && *data->referer)?1:0;
+    break;
+  case CURLOPT_AUTOREFERER:
+    data->bits.http_auto_referer = va_arg(param, long)?1:0;
     break;
   case CURLOPT_PROXY:
     data->proxy = va_arg(param, char *);
