@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.42 2004-02-19 08:13:20 bagder Exp $
+# $Id: Makefile.am,v 1.43 2004-02-20 15:39:37 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -78,5 +78,7 @@ endif
 else # USE_MANUAL
 # built-in manual has been disabled, make a blank file
 $(HUGE):
-	echo "/* explicitly disabled */" >$(HUGE)
+	echo "/* built-in manual is disabled, blank function */" > $(HUGE)
+	echo '#include "hugehelp.h"' >> $(HUGE)
+	echo "void hugehelp(void) {}" >>$(HUGE)
 endif
