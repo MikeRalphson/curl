@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.232 2004-01-30 08:51:25 bagder Exp $
+ * $Id: main.c,v 1.233 2004-02-09 08:31:52 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -933,8 +933,9 @@ typedef enum {
   PARAM_LAST
 } ParameterError;
 
-static const char *param2text(ParameterError error)
+static const char *param2text(int res)
 {
+  ParameterError error = (ParameterError)res;
   switch(error) {
   case PARAM_GOT_EXTRA_PARAMETER:
     return "had unsupported trailing garbage";
