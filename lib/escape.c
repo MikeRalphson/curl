@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.9 2001-01-03 09:29:34 bagder Exp $
+ * $Id: escape.c,v 1.10 2001-03-09 15:11:39 bagder Exp $
  *****************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -78,7 +78,7 @@ char *curl_unescape(char *string, int length)
    char *ns = malloc(alloc);
    unsigned char in;
    int index=0;
-   int hex;
+   unsigned int hex;
    char querypart=FALSE; /* everything to the right of a '?' letter is
                             the "query part" where '+' should become ' '.
                             RFC 2316, section 3.10 */
