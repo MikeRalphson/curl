@@ -5,16 +5,13 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: getinmemory.c,v 1.3 2003-03-10 17:01:11 bagder Exp $
+ * $Id: getinmemory.c,v 1.4 2003-11-19 08:19:20 bagder Exp $
  *
  * Example source code to show how the callback function can be used to
  * download data into a chunk of memory instead of storing it in a file.
  *
  * This exact source code has not been verified to work.
  */
-
-/* to make this work under windows, use the win32-functions from the
-   win32socket.c file as well */
 
 #include <stdio.h>
 
@@ -50,6 +47,8 @@ int main(int argc, char **argv)
 
   chunk.memory=NULL; /* we expect realloc(NULL, size) to work */
   chunk.size = 0;    /* no data at this point */
+
+  curl_global_init(CURL_GLOBAL_ALL);
 
   /* init the curl session */
   curl_handle = curl_easy_init();
