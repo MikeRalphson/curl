@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.127 2002-09-13 12:40:36 bagder Exp $
+ * $Id: urldata.h,v 1.128 2002-10-17 07:10:39 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -582,6 +582,8 @@ struct DynamicStatic {
   bool proxy_alloc; /* http proxy string is malloc()'ed */
   char *referer;    /* referer string */
   bool referer_alloc; /* referer sting is malloc()ed */
+  struct curl_slist *cookielist; /* list of cookie files set by
+                                    curl_easy_setopt(COOKIEFILE) calls */
 };
 
 /*
