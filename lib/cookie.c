@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.19 2001-09-07 04:01:32 bumblebury Exp $
+ * $Id: cookie.c,v 1.20 2001-09-10 07:43:08 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -600,7 +600,7 @@ int Curl_cookie_output(struct CookieInfo *c, char *dumphere)
   FILE *out;
   bool use_stdout=FALSE;
 
-  if(0 == c->numcookies)
+  if((NULL == c) || (0 == c->numcookies))
     /* If there are no known cookies, we don't write or even create any
        destination file */
     return 0;
