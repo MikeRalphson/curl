@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.65 $
- * $Date: 2000-11-22 13:50:17 $
+ * $Revision: 1.66 $
+ * $Date: 2000-11-28 09:05:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -477,6 +477,9 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
     break;
   case CURLOPT_TIMEOUT:
     data->timeout = va_arg(param, long);
+    break;
+  case CURLOPT_MAXREDIRS:
+    data->maxredirs = va_arg(param, long);
     break;
   case CURLOPT_USERAGENT:
     data->useragent = va_arg(param, char *);

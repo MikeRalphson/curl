@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.34 $
- * $Date: 2000-11-22 12:57:16 $
+ * $Revision: 1.35 $
+ * $Date: 2000-11-28 09:05:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -417,6 +417,7 @@ struct UrlData {
   /* stuff related to HTTP */
 
   long followlocation;
+  long maxredirs; /* maximum no. of http(s) redirects to follow */
   char *referer;
   bool free_referer; /* set TRUE if 'referer' points to a string we
                         allocated */

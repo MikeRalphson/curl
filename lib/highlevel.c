@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.23 $
- * $Date: 2000-11-22 13:50:17 $
+ * $Revision: 1.24 $
+ * $Date: 2000-11-28 09:05:47 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -624,11 +624,17 @@ CURLcode curl_transfer(CURL *curl)
 
       if((res == CURLE_OK) && data->newurl) {
         /* Location: redirect
-
+ 
            This is assumed to happen for HTTP(S) only!
-         */
+        */
         char prot[16];
         char path[URL_MAX_LENGTH];
+	if (data->maxredirs && (data->followlocation >= data->maxredirs)) {
+	  failf(data,"Maximum (%d) redirects followed", data->maxredirs);
+          curl_disconnect(c_connect);
+          res=CURLE_TOO_MANY_REDIRECTS;
+	  break;
+	}
 
         /* mark the next request as a followed location: */
         data->bits.this_is_a_follow = TRUE;
