@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.15 2001-03-05 14:03:20 bagder Exp $
+# $Id: ftpserver.pl,v 1.16 2001-04-24 21:09:53 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to excersive curl, it is not meant to become a fully working
@@ -289,7 +289,15 @@ sub PORT_command {
         return 0;
     }
     my $iaddr = inet_aton("$1.$2.$3.$4");
-    my $paddr = sockaddr_in(($5<<8)+$6, $iaddr);
+
+    my $port = ($5<<8)+$6;
+
+    if(!$port || $port > 65535) {
+        print STDERR "very illegal PORT number: $port\n";
+        return 1;
+    }
+
+    my $paddr = sockaddr_in($port, $iaddr);
     my $proto   = getprotobyname('tcp') || 6;
 
     socket(SOCK, PF_INET, SOCK_STREAM, $proto) || die "major failure";
