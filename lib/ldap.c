@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-09 22:23:55 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -89,7 +89,13 @@ static void DynaOpen(void)
      * liblber.so automatically, but since it does not we will
      * handle it here by opening liblber.so as global.
      */
-    dlopen("liblber.so", RTLD_LAZY | RTLD_GLOBAL);
+    dlopen("liblber.so",
+#ifdef RTLD_LAZY_GLOBAL /* It turns out some systems use this: */
+           RTLD_LAZY_GLOBAL
+#else
+           RTLD_LAZY | RTLD_GLOBAL
+#endif
+           );
     libldap = dlopen("libldap.so", RTLD_LAZY);
   }
 #endif
