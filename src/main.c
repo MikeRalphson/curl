@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.116 2002-03-11 15:20:56 bagder Exp $
+ * $Id: main.c,v 1.117 2002-03-13 09:20:59 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
