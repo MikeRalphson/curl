@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.9 2001-01-05 10:11:42 bagder Exp $
+ * $Id: getenv.c,v 1.10 2001-01-24 09:01:32 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -41,12 +41,13 @@ char *GetEnv(char *variable)
   char env[MAX_PATH]; /* MAX_PATH is from windef.h */
   char *temp = getenv(variable);
   env[0] = '\0';
-  ExpandEnvironmentStrings(temp, env, sizeof(env));
+  if (temp != NULL)
+    ExpandEnvironmentStrings(temp, env, sizeof(env));
 #else
   /* no length control */
   char *env = getenv(variable);
 #endif
-  return env?strdup(env):NULL;
+  return (env && env[0])?strdup(env):NULL;
 }
 
 char *curl_getenv(char *v)
