@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.17 2001-03-05 14:52:23 bagder Exp $
+ * $Id: telnet.c,v 1.18 2001-03-14 14:11:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -745,7 +745,7 @@ static int check_telnet_options(struct connectdata *conn)
 
   /* Add the user name as an environment variable if it
      was given on the command line */
-  if(data->bits.user_passwd)
+  if(conn->bits.user_passwd)
   {
     char *buf = malloc(256);
     sprintf(buf, "USER,%s", data->user);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.13 2001-02-20 17:35:52 bagder Exp $
+ * $Id: dict.c,v 1.14 2001-03-14 14:11:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -100,7 +100,7 @@ CURLcode Curl_dict(struct connectdata *conn)
   char *path = conn->path;
   long *bytecount = &conn->bytecount;
 
-  if(data->bits.user_passwd) {
+  if(conn->bits.user_passwd) {
     /* AUTH is missing */
   }
 

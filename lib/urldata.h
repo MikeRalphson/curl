@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.55 2001-03-13 07:53:59 bagder Exp $
+ * $Id: urldata.h,v 1.56 2001-03-14 14:11:11 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -183,6 +183,8 @@ struct ConnectBits {
   bool reuse; /* if set, this is a re-used connection */
   bool chunk; /* if set, this is a chunked transfer-encoding */
   bool httpproxy; /* if set, this transfer is done through a http proxy */
+  bool user_passwd;       /* do we use user+password for this connection? */
+  bool proxy_user_passwd; /* user+password for the proxy? */
 };
 
 /*
@@ -391,12 +393,10 @@ struct Configbits {
   bool httpproxy;
   bool mute;
   bool no_body;
-  bool proxy_user_passwd;
   bool set_port;
   bool set_range;
   bool upload;
   bool use_netrc;
-  bool user_passwd;
   bool verbose;
   bool this_is_a_follow; /* this is a followed Location: request */
   bool krb4; /* kerberos4 connection requested */
