@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.1 2002-01-03 10:22:59 bagder Exp $
+ * $Id: llist.c,v 1.2 2002-01-18 10:30:51 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,10 @@ curl_llist_alloc(curl_llist_dtor dtor)
 {
   curl_llist *list;
 
-  list = malloc(sizeof(curl_llist));
+  list = (curl_llist *)malloc(sizeof(curl_llist));
+  if(NULL == list)
+    return NULL;
+
   curl_llist_init(list, dtor);
 
   return list;
