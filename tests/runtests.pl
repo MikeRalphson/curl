@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.9 2000-11-17 15:15:48 bagder Exp $
+# $Id: runtests.pl,v 1.10 2000-11-17 15:34:33 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -224,9 +224,7 @@ sub compare {
 
     $res = comparefiles($first, $sec);
     if ($res != 0) {
-        if(!$short) {
-            print " $text FAILED";
-        }
+        print " $text FAILED";
         return 1;
     }
 
