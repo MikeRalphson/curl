@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.185 2003-12-02 13:27:29 bagder Exp $
+ * $Id: urldata.h,v 1.186 2003-12-03 07:52:01 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -306,7 +306,6 @@ struct ConnectBits {
 struct Curl_transfer_keeper {
   int bytecount;                /* total number of bytes read */
   int writebytecount;           /* number of bytes written */
-  long contentlength;           /* size of incoming data */
   struct timeval start;         /* transfer started at this time */
   struct timeval now;           /* current time */
   bool header;	                /* incoming data has HTTP header */
