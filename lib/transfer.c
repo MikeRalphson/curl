@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.102 2002-06-15 21:00:54 bagder Exp $
+ * $Id: transfer.c,v 1.103 2002-07-29 22:23:55 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -589,7 +589,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
           }
           else if(data->cookies &&
                   strnequal("Set-Cookie:", k->p, 11)) {
-            Curl_cookie_add(data->cookies, TRUE, k->p+12, conn->name);
+            Curl_cookie_add(data->cookies, TRUE, k->p+11, conn->name);
           }
           else if(strnequal("Last-Modified:", k->p,
                             strlen("Last-Modified:")) &&
