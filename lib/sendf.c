@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.21 2001-03-09 15:14:22 bagder Exp $
+ * $Id: sendf.c,v 1.22 2001-03-13 13:22:58 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -120,7 +120,7 @@ void curl_slist_free_all(struct curl_slist *list)
 }
 
 
-/* infof() is for info message along the way */
+/* Curl_infof() is for info message along the way */
 
 void Curl_infof(struct UrlData *data, char *fmt, ...)
 {
@@ -133,7 +133,7 @@ void Curl_infof(struct UrlData *data, char *fmt, ...)
   }
 }
 
-/* failf() is for messages stating why we failed, the LAST one will be
+/* Curl_failf() is for messages stating why we failed, the LAST one will be
    returned for the user (if requested) */
 
 void Curl_failf(struct UrlData *data, char *fmt, ...)
@@ -142,7 +142,7 @@ void Curl_failf(struct UrlData *data, char *fmt, ...)
   va_start(ap, fmt);
   if(data->errorbuffer)
     vsnprintf(data->errorbuffer, CURL_ERROR_SIZE, fmt, ap);
-  else {
+  else if(!data->bits.mute) {
     /* no errorbuffer receives this, write to data->err instead */
     vfprintf(data->err, fmt, ap);
     fprintf(data->err, "\n");
