@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.39 2002-08-13 14:20:47 bagder Exp $
+# $Id: Makefile.am,v 1.40 2002-08-22 14:28:15 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -16,7 +16,7 @@ lib_LTLIBRARIES = libcurl.la
 # we use srcdir/lib for the lib-private header files
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/lib -I$(top_srcdir)/lib
 
-libcurl_la_LDFLAGS = -no-undefined -version-info 2:2:0
+libcurl_la_LDFLAGS = -version-info 2:2:0
 # This flag accepts an argument of the form current[:revision[:age]]. So,
 # passing -version-info 3:12:1 sets current to 3, revision to 12, and age to
 # 1.
