@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.172 2003-03-11 18:58:21 bagder Exp $
+ * $Id: ftp.c,v 1.173 2003-04-03 14:16:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -933,6 +933,7 @@ ftp_pasv_verbose(struct connectdata *conn,
 #  endif
         
 # else
+  (void)hostent_buf; /* avoid compiler warning */
   answer = gethostbyaddr((char *) &address, sizeof(address), AF_INET);
 # endif
 #else
@@ -961,7 +962,7 @@ ftp_pasv_verbose(struct connectdata *conn,
 #else
   const int niflags = NI_NUMERICHOST | NI_NUMERICSERV;
 #endif
-  port = 0; /* unused, prevent warning */
+  (void)port; /* prevent compiler warning */
   if (getnameinfo(addr->ai_addr, addr->ai_addrlen,
                   nbuf, sizeof(nbuf), sbuf, sizeof(sbuf), niflags)) {
     snprintf(nbuf, sizeof(nbuf), "?");
