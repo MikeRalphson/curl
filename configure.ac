@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.62 2004-03-18 10:03:34 bagder Exp $
+dnl $Id: configure.ac,v 1.63 2004-03-24 08:45:58 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -951,6 +951,9 @@ else
 
   dnl is there a localtime_r()
   CURL_CHECK_LOCALTIME_R()
+
+  dnl is there a strerror_r()
+  CURL_CHECK_STRERROR_R()
 
   AC_CHECK_FUNCS( gmtime_r )
 
