@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.100 2004-10-01 06:36:11 bagder Exp $
+dnl $Id: configure.ac,v 1.101 2004-10-03 20:50:47 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -972,7 +972,7 @@ case "$LIBIDN" in
        if test "x$nolibidn" != "xtrue"; then
          curl_idn_msg="enabled"
          dnl different versions of libidn have different setups of these:
-         AC_CHECK_FUNCS( idn_free )
+         AC_CHECK_FUNCS( idn_free idna_strerror )
          AC_CHECK_HEADERS( idn-free.h )
        fi
                     
