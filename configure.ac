@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.7 2003-06-10 12:22:20 bagder Exp $
+dnl $Id: configure.ac,v 1.8 2003-06-12 12:53:38 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -683,6 +683,9 @@ case "$OPT_ZLIB" in
     )
     ;;
 esac
+
+dnl set variable for use in automakefile(s)
+AM_CONDITIONAL(HAVE_LIBZ, test x"$HAVE_LIBZ" = x1)
 
 dnl Default is to try the thread-safe versions of a few functions
 OPT_THREAD=on
