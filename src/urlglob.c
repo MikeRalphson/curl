@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/urlglob.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-10-09 11:13:18 $
+ * $Revision: 1.7 $
+ * $Date: 2000-10-12 09:12:24 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -220,6 +220,24 @@ int glob_url(URLGlob** glob, char* url, int *urlnum)
   *urlnum = glob_word(url, 1);
   *glob = glob_expand;
   return CURLE_OK;
+}
+
+void glob_cleanup(URLGlob* glob) {
+  int i, elem;
+
+  for (i = glob->size - 1; i >= 0; --i) {
+    if (!(i & 1)) {	/* even indexes contain literals */
+      free(glob->literal[i/2]);
+    } else {		/* odd indexes contain sets or ranges */
+      if (glob->pattern[i/2].type == UPTSet) {
+	for (elem = glob->pattern[i/2].content.Set.size - 1; elem >= 0; --elem) {
+	  free(glob->pattern[i/2].content.Set.elements[elem]);
+	}
+	free(glob->pattern[i/2].content.Set.elements);
+      }
+    }
+  }
+  free(glob);
 }
 
 char *next_url(URLGlob *glob)
