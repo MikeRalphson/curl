@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.61 2004-09-28 22:26:47 bagder Exp $
+ * $Id: easy.c,v 1.62 2004-10-04 10:36:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -391,11 +391,6 @@ void curl_easy_cleanup(CURL *curl)
   if(!data)
     return;
 
-  if ( ! (data->share && data->share->hostcache) ) {
-    if ( !Curl_global_host_cache_use(data)) {
-      Curl_hash_destroy(data->hostcache);
-    }
-  }
   Curl_close(data);
 }
 

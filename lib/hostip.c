@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.160 2004-06-24 15:05:39 bagder Exp $
+ * $Id: hostip.c,v 1.161 2004-10-04 10:36:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -263,8 +263,9 @@ void Curl_hostcache_prune(struct SessionHandle *data)
 {
   time_t now;
 
-  if(data->set.dns_cache_timeout == -1)
-    /* cache forever means never prune! */
+  if((data->set.dns_cache_timeout == -1) || !data->hostcache)
+    /* cache forever means never prune, and NULL hostcache means
+       we can't do it */
     return;
 
   if(data->share)
@@ -459,7 +460,11 @@ int Curl_resolv(struct connectdata *conn,
     }
   }
   else {
+    if(data->share)
+      Curl_share_lock(data, CURL_LOCK_DATA_DNS, CURL_LOCK_ACCESS_SINGLE);
     dns->inuse++; /* we use it! */
+    if(data->share)
+      Curl_share_unlock(data, CURL_LOCK_DATA_DNS);
     rc = CURLRESOLV_RESOLVED;
   }
 
