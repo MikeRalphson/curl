@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/urlglob.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-05-22 14:18:58 $
+ * $Revision: 1.6 $
+ * $Date: 2000-10-09 11:13:18 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -44,6 +44,10 @@
 #include <ctype.h>
 #include <curl/curl.h>
 #include "urlglob.h"
+
+#ifdef MALLOCDEBUG
+#include "../lib/memdebug.h"
+#endif
 
 char glob_buffer[URL_MAX_LENGTH];
 URLGlob *glob_expand;
