@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.33 2002-09-03 11:54:28 bagder Exp $
+# $Id: Makefile.am,v 1.34 2002-09-05 08:24:21 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -62,7 +62,7 @@ rpm:
 pkgadd:
 	umask 022 ; \
 	make install DESTDIR=`/bin/pwd`/packages/Solaris/root ; \
-	cat LEGAL MITX.txt MPL-1.1.txt > $(srcdir)/packages/Solaris/copyright ; \
+	cat COPYING > $(srcdir)/packages/Solaris/copyright ; \
 	cd $(srcdir)/packages/Solaris && $(MAKE) package
 
 #
