@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.233 2004-06-24 07:43:49 bagder Exp $
+ * $Id: urldata.h,v 1.234 2004-07-01 07:43:20 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -876,7 +876,7 @@ struct UserDefined {
 
   struct curl_slist *http200aliases; /* linked list of aliases for http200 */
 
-  int ip_version;
+  long ip_version;
 
   curl_off_t max_filesize; /* Maximum file size to download */
 
