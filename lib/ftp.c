@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.143 2002-06-11 11:13:01 bagder Exp $
+ * $Id: ftp.c,v 1.144 2002-06-11 12:35:03 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -656,12 +656,13 @@ CURLcode Curl_ftp_done(struct connectdata *conn)
   sclose(conn->secondarysocket);
   conn->secondarysocket = -1;
 
+  /* now let's see what the server says about the transfer we
+     just performed: */
+  nread = Curl_GetFTPResponse(buf, conn, &ftpcode);
+  if(nread < 0)
+    return CURLE_OPERATION_TIMEOUTED;
+
   if(!data->set.no_body && !conn->bits.resume_done) {  
-    /* now let's see what the server says about the transfer we
-       just performed: */
-    nread = Curl_GetFTPResponse(buf, conn, &ftpcode);
-    if(nread < 0)
-      return CURLE_OPERATION_TIMEOUTED;
 
     /* 226 Transfer complete, 250 Requested file action okay, completed. */
     if((ftpcode != 226) && (ftpcode != 250)) {
@@ -1787,6 +1788,7 @@ CURLcode ftp_perform(struct connectdata *conn)
       }
       infof(data, "range-download from %d to %d, totally %d bytes\n",
             from, to, totalsize);
+      conn->bits.resume_done = TRUE; /* to prevent some error due to this */
     }
 
     if((data->set.ftp_list_only) || !ftp->file) {
