@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.82 2005-03-17 20:32:59 danf Exp $
+ * $Id: setup.h,v 1.83 2005-03-19 00:44:55 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -160,7 +160,7 @@ typedef unsigned char bool;
 #define WIN32_LEAN_AND_MEAN  /* Prevent including <winsock*.h> in <windows.h> */
 #endif
 
-#if HAVE_WINSOCK2_H
+#ifdef HAVE_WINSOCK2_H
 #include <winsock2.h>        /* required by telnet.c */
 #endif
 
