@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.96 2002-04-15 11:19:03 bagder Exp $
+ * $Id: http.c,v 1.97 2002-04-22 23:53:15 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -781,16 +781,16 @@ CURLcode Curl_http(struct connectdata *conn)
       strcpy(buf, "no strftime() support");
 #endif
       switch(data->set.timecondition) {
-      case TIMECOND_IFMODSINCE:
+      case CURL_TIMECOND_IFMODSINCE:
       default:
         add_bufferf(req_buffer,
                     "If-Modified-Since: %s\r\n", buf);
         break;
-      case TIMECOND_IFUNMODSINCE:
+      case CURL_TIMECOND_IFUNMODSINCE:
         add_bufferf(req_buffer,
                     "If-Unmodified-Since: %s\r\n", buf);
         break;
-      case TIMECOND_LASTMOD:
+      case CURL_TIMECOND_LASTMOD:
         add_bufferf(req_buffer,
                     "Last-Modified: %s\r\n", buf);
         break;
