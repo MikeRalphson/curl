@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ssluse.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-03-02 23:01:35 $
+ * $Revision: 1.4 $
+ * $Date: 2000-03-16 11:41:27 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -169,7 +169,7 @@ UrgSSLConnect (struct UrlData *data)
 #endif
     {
       /* We need to seed the PRNG properly! */
-#ifdef WIN32
+#ifdef HAVE_RAND_SCREEN
       /* This one gets a random value by reading the currently shown screen */
       RAND_screen();
 #else
