@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.54 2003-05-22 16:09:54 bagder Exp $
+# $Id: Makefile.am,v 1.55 2003-06-10 12:22:23 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -68,7 +68,7 @@ strequal.h easy.c security.h security.c krb4.c krb4.h memdebug.c	\
 memdebug.h inet_ntoa_r.h http_chunks.c http_chunks.h strtok.c strtok.h	\
 connect.c connect.h llist.c llist.h hash.c hash.h multi.c		\
 content_encoding.c content_encoding.h share.c share.h http_digest.c \
-md5.c md5.h http_digest.h
+md5.c md5.h http_digest.h http_negotiate.c http_negotiate.h
 
 noinst_HEADERS = setup.h transfer.h
 

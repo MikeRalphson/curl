@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.135 2003-06-06 14:58:26 bagder Exp $
+ * $Id: http.c,v 1.136 2003-06-10 12:22:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -688,6 +688,14 @@ CURLcode Curl_http(struct connectdata *conn)
     conn->allocptr.uagent=NULL;
   }
 
+#ifdef GSSAPI
+  if (data->state.negotiate.context && 
+      !GSS_ERROR(data->state.negotiate.status)) {
+     result = Curl_output_negotiate(conn);
+     if (result)
+	return result;
+  } else
+#endif
   if(data->state.digest.nonce) {
     result = Curl_output_digest(conn,
                                 (unsigned char *)request,

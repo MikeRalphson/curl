@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.198 2003-05-27 12:51:15 bagder Exp $
+ * $Id: curl.h,v 1.199 2003-06-10 12:22:23 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -628,6 +628,10 @@ typedef enum {
   /* Set this to a non-zero value to enable HTTP Digest Authentication.
      You should use this in combination with CURLOPT_USERPWD. */
   CINIT(HTTPDIGEST, LONG, 107),
+
+  /* Set this to a non-zero value to enable HTTP Negotiate Authentication.
+     You should use this in combination with CURLOPT_USERPWD. */
+  CINIT(HTTPNEGOTIATE, LONG, 108),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
