@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.269 2004-05-25 14:44:25 bagder Exp $
+ * $Id: main.c,v 1.270 2004-06-08 21:56:30 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2904,7 +2904,7 @@ operate(struct Configurable *config, int argc, char *argv[])
   }
 
   /* loop through the list of given URLs */
-  while(urlnode && !res) {
+  while(urlnode) {
     char *dourl;
 
     /* get the full URL (it might be NULL) */
