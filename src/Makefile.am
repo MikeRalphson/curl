@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.26 2003-06-12 12:54:34 bagder Exp $
+# $Id: Makefile.am,v 1.27 2003-07-30 07:33:41 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -46,4 +46,8 @@ MKHELP=$(top_srcdir)/src/mkhelp.pl
 # This generates the hugehelp.c file
 hugehelp.c: $(README) $(MANPAGE)  mkhelp.pl
 	rm -f hugehelp.c
-	$(NROFF) -man $(MANPAGE) | $(PERL) -s $(MKHELP) $(MKHELPOPT) $(README) > hugehelp.c
+	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(MKHELPOPT) $(README) > hugehelp.c
+
+# for distribution, generate an uncompressed help file!
+dist-hook:
+	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(README) > $(distdir)/hugehelp.c
