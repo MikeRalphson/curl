@@ -20,9 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.h,v 1.1 2001-08-15 06:52:33 bagder Exp $
+ * $Id: getinfo.h,v 1.2 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
-CURLcode Curl_getinfo(struct UrlData *data, CURLINFO info, ...);
-CURLcode Curl_initinfo(struct UrlData *data);
+CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...);
+CURLcode Curl_initinfo(struct SessionHandle *data);
 
 #endif

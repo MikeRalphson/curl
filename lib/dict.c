@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.15 2001-08-14 08:18:35 bagder Exp $
+ * $Id: dict.c,v 1.16 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -90,7 +90,7 @@ CURLcode Curl_dict(struct connectdata *conn)
   char *nthdef = NULL; /* This is not part of the protocol, but required
                           by RFC 2229 */
   CURLcode result=CURLE_OK;
-  struct UrlData *data=conn->data;
+  struct SessionHandle *data=conn->data;
 
   char *path = conn->path;
   long *bytecount = &conn->bytecount;

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.h,v 1.12 2001-04-18 07:25:11 bagder Exp $
+ * $Id: progress.h,v 1.13 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
 
 #include "timeval.h"
@@ -37,13 +37,13 @@ typedef enum {
 } timerid;
   
 void Curl_pgrsDone(struct connectdata *);
-void Curl_pgrsStartNow(struct UrlData *data);
-void Curl_pgrsSetDownloadSize(struct UrlData *data, double size);
-void Curl_pgrsSetUploadSize(struct UrlData *data, double size);
-void Curl_pgrsSetDownloadCounter(struct UrlData *data, double size);
-void Curl_pgrsSetUploadCounter(struct UrlData *data, double size);
+void Curl_pgrsStartNow(struct SessionHandle *data);
+void Curl_pgrsSetDownloadSize(struct SessionHandle *data, double size);
+void Curl_pgrsSetUploadSize(struct SessionHandle *data, double size);
+void Curl_pgrsSetDownloadCounter(struct SessionHandle *data, double size);
+void Curl_pgrsSetUploadCounter(struct SessionHandle *data, double size);
 int Curl_pgrsUpdate(struct connectdata *);
-void Curl_pgrsTime(struct UrlData *data, timerid timer);
+void Curl_pgrsTime(struct SessionHandle *data, timerid timer);
 
 
 /* Don't show progress for sizes smaller than: */

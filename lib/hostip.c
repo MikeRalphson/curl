@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.23 2001-08-06 12:21:09 bagder Exp $
+ * $Id: hostip.c,v 1.24 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -89,7 +89,7 @@ static char *MakeIP(unsigned long num,char *addr, int addr_len)
 }
 
 #ifdef ENABLE_IPV6
-struct addrinfo *Curl_getaddrinfo(struct UrlData *data,
+struct addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
 			       char *hostname,
 			       int port)
 {
@@ -119,7 +119,7 @@ struct addrinfo *Curl_getaddrinfo(struct UrlData *data,
 #define INADDR_NONE (unsigned long) ~0
 #endif
 
-struct hostent *Curl_gethost(struct UrlData *data,
+struct hostent *Curl_gethost(struct SessionHandle *data,
                              char *hostname,
                              char **bufp)
 {

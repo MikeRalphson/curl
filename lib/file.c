@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.19 2001-08-14 08:22:27 bagder Exp $
+ * $Id: file.c,v 1.20 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -142,8 +142,8 @@ CURLcode Curl_file(struct connectdata *conn)
   struct stat statbuf;
   ssize_t expected_size=-1;
   ssize_t nread;
-  struct UrlData *data = conn->data;
-  char *buf = data->buffer;
+  struct SessionHandle *data = conn->data;
+  char *buf = data->state.buffer;
   int bytecount = 0;
   struct timeval start = Curl_tvnow();
   struct timeval now = start;

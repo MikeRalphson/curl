@@ -20,12 +20,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.12 2001-08-14 08:34:55 bagder Exp $
+ * $Id: sendf.h,v 1.13 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
 
 size_t Curl_sendf(int fd, struct connectdata *, const char *fmt, ...);
-void Curl_infof(struct UrlData *, const char *fmt, ...);
-void Curl_failf(struct UrlData *, const char *fmt, ...);
+void Curl_infof(struct SessionHandle *, const char *fmt, ...);
+void Curl_failf(struct SessionHandle *, const char *fmt, ...);
 
 #define infof Curl_infof
 #define failf Curl_failf
@@ -41,7 +41,7 @@ typedef struct send_buffer send_buffer;
 #define CLIENTWRITE_HEADER 2
 #define CLIENTWRITE_BOTH   (CLIENTWRITE_BODY|CLIENTWRITE_HEADER)
 
-CURLcode Curl_client_write(struct UrlData *data, int type, char *ptr,
+CURLcode Curl_client_write(struct SessionHandle *data, int type, char *ptr,
                            size_t len);
 
 /* internal read-function, does plain socket, SSL and krb4 */

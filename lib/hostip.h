@@ -20,15 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.8 2001-02-05 23:04:44 bagder Exp $
+ * $Id: hostip.h,v 1.9 2001-08-30 22:48:34 bagder Exp $
  *****************************************************************************/
 
 struct addrinfo;
-struct addrinfo *Curl_getaddrinfo(struct UrlData *data,
+struct addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
                              char *hostname,
                              int port);
 
-struct hostent *Curl_gethost(struct UrlData *data,
+struct hostent *Curl_gethost(struct SessionHandle *data,
                              char *hostname,
                              char **bufp);
 
