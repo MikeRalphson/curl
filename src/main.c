@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.272 2004-06-24 14:40:16 bagder Exp $
+ * $Id: main.c,v 1.273 2004-06-27 21:51:54 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2243,7 +2243,7 @@ static void parseconfig(const char *filename,
 
 static void go_sleep(long ms)
 {
-#ifdef HAVE_POLL
+#ifdef HAVE_POLL_FINE
   /* portable subsecond "sleep" */
   poll((void *)0, 0, ms);
 #else
@@ -2259,7 +2259,7 @@ static void go_sleep(long ms)
   struct timeval timeout;
 
   timeout.tv_sec = ms/1000;
-  ms -= ms/1000;
+  ms = ms%1000;
   timeout.tv_usec = ms * 1000;
 
   select(0, NULL,  NULL, NULL, &timeout);
