@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: postit2.c,v 1.2 2003-11-19 08:21:34 bagder Exp $
+ * $Id: postit2.c,v 1.3 2004-03-28 21:41:10 bagder Exp $
  *
  * Example code that uploads a file name 'foo' to a remote script that accepts
  * "HTML form based" (as described in RFC1738) uploads using HTTP POST.
@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
   CURL *curl;
   CURLcode res;
 
-  struct HttpPost *formpost=NULL;
-  struct HttpPost *lastptr=NULL;
+  struct curl_httppost *formpost=NULL;
+  struct curl_httppost *lastptr=NULL;
   struct curl_slist *headerlist=NULL;
   char buf[] = "Expect:";
 
