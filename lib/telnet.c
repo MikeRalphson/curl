@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.50 2004-01-29 13:56:45 bagder Exp $
+ * $Id: telnet.c,v 1.51 2004-02-05 09:38:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -741,7 +741,7 @@ static void printsub(struct SessionHandle *data,
   }
 }
 
-static int check_telnet_options(struct connectdata *conn)
+static CURLcode check_telnet_options(struct connectdata *conn)
 {
   struct curl_slist *head;
   char option_keyword[128];
