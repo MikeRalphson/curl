@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.29 2003-04-29 18:03:30 bagder Exp $
+ * $Id: multi.c,v 1.30 2003-06-13 06:48:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,6 +30,9 @@
 #endif
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
+#endif
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
 #endif
 
 #include <curl/curl.h>

@@ -18,12 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.8 2003-02-06 19:28:17 bagder Exp $
+ * $Id: share.c,v 1.9 2003-06-13 06:48:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include <stdarg.h>
 #include <stdlib.h>
+#include <string.h>
 #include <curl/curl.h>
 #include "urldata.h"
 #include "share.h"
