@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.299 2004-12-16 16:49:14 giva Exp $
+ * $Id: main.c,v 1.300 2004-12-17 18:31:40 giva Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -237,7 +237,7 @@ static int ftruncate64 (int fd, curl_off_t where)
   if (_lseeki64(fd, where, SEEK_SET) < 0)
      return -1;
 
-  if (_write(fd, 0, 0) < 0)
+  if (write(fd, 0, 0) < 0)
      rc = -1;
   _lseeki64(fd, curr, SEEK_SET);
   return rc;
