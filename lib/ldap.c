@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.40 2004-07-04 21:38:36 bagder Exp $
+ * $Id: ldap.c,v 1.41 2004-09-22 08:01:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -350,8 +350,8 @@ CURLcode Curl_ldap(struct connectdata *conn)
       Curl_client_write(data, CLIENTWRITE_BODY, (char *)"\n", 1);
 
       (*ldap_memfree)(attribute);
-      (*ldap_memfree)(dn);
     }
+    (*ldap_memfree)(dn);
     if (ber)
        (*ber_free)(ber, 0);
   }
