@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.320 2003-12-15 14:48:41 bagder Exp $
+ * $Id: url.c,v 1.321 2003-12-15 17:33:49 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3226,6 +3226,8 @@ CURLcode Curl_done(struct connectdata *conn)
   Curl_hash_apply(data->hostcache,
                   NULL, Curl_scan_cache_used);
 #endif
+
+  Curl_hostcache_prune(data); /* kill old DNS cache entries */
 
   /* this calls the protocol-specific function pointer previously set */
   if(conn->curl_done)

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.26 2003-10-04 14:50:45 bagder Exp $
+ * $Id: hostip.h,v 1.27 2003-12-15 17:33:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -76,6 +76,9 @@ void Curl_freeaddrinfo(Curl_addrinfo *freeaddr);
 
 /* free cached name info */
 void Curl_freednsinfo(void *freethis);
+
+/* prune old entries from the DNS cache */
+void Curl_hostcache_prune(struct SessionHandle *data);
 
 #ifdef CURLDEBUG
 void curl_freeaddrinfo(struct addrinfo *freethis,
