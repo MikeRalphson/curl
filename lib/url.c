@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.13 $
- * $Date: 2000-04-04 18:08:34 $
+ * $Revision: 1.14 $
+ * $Date: 2000-04-08 19:29:58 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1109,7 +1109,7 @@ static UrgError _urlget(struct UrlData *data)
     data->ptr_proxyuserpwd = maprintf("Proxy-authorization: Basic %s\015\012",
 				      authorization);
   }
-  if(data->conf & (CONF_HTTPS|CONF_HTTP)) {
+  if(data->conf & (CONF_HTTPS|CONF_HTTP|CONF_PROXY)) {
     if(data->useragent) {
       data->ptr_uagent = maprintf("User-Agent: %s\015\012", data->useragent);
     }
