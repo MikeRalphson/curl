@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.44 2002-01-04 13:20:17 bagder Exp $
+# $Id: runtests.pl,v 1.45 2002-01-08 09:32:41 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -483,9 +483,17 @@ sub singletest {
         writearray($filename, \@inputfile);
     }
 
+    my %cmdhash = getpartattr("client", "command");
+
     my $out="";
-    if (!@validstdout) {
-        $out="--output $CURLOUT ";
+
+    if($cmdhash{'option'} eq "no-output") {
+        #print "*** We don't slap on --output\n";
+    }
+    else {
+        if (!@validstdout) {
+            $out="--output $CURLOUT ";
+        }
     }
 
     # run curl, add -v for debug information output
@@ -832,7 +840,9 @@ if($testthis[0] ne "") {
 # Output curl version and host info being tested
 #
 
-displaydata();
+if(!$listonly) {
+    displaydata();
+}
 
 #######################################################################
 # clear and create logging directory:
