@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.299 2003-08-17 13:32:37 bagder Exp $
+ * $Id: url.c,v 1.300 2003-08-28 11:28:55 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1177,7 +1177,8 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      */
     data->set.buffer_size = va_arg(param, long);
 
-    if(data->set.buffer_size> (BUFSIZE -1 ))
+    if((data->set.buffer_size> (BUFSIZE -1 )) ||
+       (data->set.buffer_size < 1))
       data->set.buffer_size = 0; /* huge internal default */
 
     break;
