@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.136 2004-07-26 15:45:03 bagder Exp $
+# $Id: runtests.pl,v 1.137 2004-08-23 14:40:43 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1147,7 +1147,7 @@ sub singletest {
     }
 
     my %replyattr = getpartattr("reply", "data");
-    if(!$replyattr{'nocheck'} && @reply) {
+    if(!$replyattr{'nocheck'} && (@reply || $replyattr{'sendzero'})) {
         # verify the received data
         my @out = loadarray($CURLOUT);
         $res = compare("data", \@out, \@reply);

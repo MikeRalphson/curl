@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.45 2004-06-17 08:06:03 bagder Exp $
+# $Id: ftpserver.pl,v 1.46 2004-08-23 14:40:43 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -318,7 +318,9 @@ sub RETR_command {
         $size += length($_);
     }
 
-    if($size) {
+    my %hash = getpartattr("reply", "data");
+
+    if($size || $hash{'sendzero'}) {
     
         if($rest) {
             # move read pointer forward
