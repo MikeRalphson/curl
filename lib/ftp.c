@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.50 2001-02-08 13:52:38 bagder Exp $
+ * $Id: ftp.c,v 1.51 2001-02-09 07:14:28 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -282,8 +282,10 @@ int Curl_GetFTPResponse(int sockfd, char *buf,
          */
         if(CURLE_OK != Curl_read(conn, sockfd, ptr, 1, &keepon))
           keepon = FALSE;
-        else if(keepon <= 0)
+        else if(keepon <= 0) {
           error = SELECT_ERROR;
+          failf(data, "Connection aborted");
+        }
         else if ((*ptr == '\n') || (*ptr == '\r'))
           keepon = FALSE;
       }
