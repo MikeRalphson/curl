@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.92.2.3 2001-12-18 14:43:15 bagder Exp $
+ * $Id: urldata.h,v 1.92.2.4 2002-01-02 17:42:25 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -619,7 +619,10 @@ struct UserDefined {
   bool hide_progress;
   bool http_fail_on_error;
   bool http_follow_location;
+
   bool http_include_header;
+#define include_header http_include_header
+
   bool http_set_referer;
   bool http_auto_referer; /* set "correct" referer when following location: */
   bool no_body;
