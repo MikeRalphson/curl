@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.15 2001-11-02 13:04:23 bagder Exp $
+ * $Id: setup.h,v 1.16 2001-11-06 19:33:13 bagder Exp $
  *****************************************************************************/
 
 
@@ -110,13 +110,13 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #define sclose(x) closesocket(x)
 #define sread(x,y,z) recv(x,y,z,0)
 #define swrite(x,y,z) (size_t)send(x,y,z,0)
-#define myalarm(x) /* win32 is a silly system */
+#undef HAVE_ALARM
 #else
      /* gcc-for-win is still good :) */
 #define sclose(x) close(x)
 #define sread(x,y,z) recv(x,y,z,0)
 #define swrite(x,y,z) send(x,y,z,0)
-#define myalarm(x) alarm(x)
+#define HAVE_ALARM
 #endif
 
 #define PATH_CHAR     ";"
@@ -127,7 +127,7 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #define sclose(x) close(x)
 #define sread(x,y,z) recv(x,y,z,0)
 #define swrite(x,y,z) send(x,y,z,0)
-#define myalarm(x) alarm(x)
+#define HAVE_ALARM
 
 #define PATH_CHAR     ":"
 #define DIR_CHAR      "/"
