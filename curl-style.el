@@ -1,5 +1,5 @@
 ;;;; Emacs Lisp help for writing curl code. ;;;;
-;;;; $Id: curl-style.el,v 1.9 2004-05-17 06:54:20 bagder Exp $
+;;;; $Id: curl-style.el,v 1.10 2004-05-19 08:16:08 bagder Exp $
 
 ;;; The curl hacker's C conventions.
 ;;; See the sample.emacs file on how this file can be made to take
@@ -34,7 +34,7 @@
   ;; c-mode-base-map because of inheritance ...
   (define-key c-mode-base-map "\M-q" 'c-fill-paragraph)
   (setq c-recognize-knr-p nil)
-  (add-hook 'write-file-hooks 'delete-trailing-whitespace)
+  ;;; (add-hook 'write-file-hooks 'delete-trailing-whitespace t)
   (setq show-trailing-whitespace t)
   )
 
