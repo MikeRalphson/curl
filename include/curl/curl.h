@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.258 2004-06-08 14:13:50 bagder Exp $
+ * $Id: curl.h,v 1.259 2004-06-09 08:21:11 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -965,6 +965,7 @@ typedef enum {
   CURL_FORMADD_UNKNOWN_OPTION,
   CURL_FORMADD_INCOMPLETE,
   CURL_FORMADD_ILLEGAL_ARRAY,
+  CURL_FORMADD_DISABLED, /* libcurl was built with this disabled */
 
   CURL_FORMADD_LAST /* last */
 } CURLFORMcode;
