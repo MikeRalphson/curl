@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.241 2004-07-01 08:10:21 bagder Exp $
+ * $Id: transfer.c,v 1.242 2004-07-16 21:01:16 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -668,12 +668,21 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             if ((k->httpcode != 416) &&
                 checkprefix("Content-Length:", k->p)) {
               contentlength = curlx_strtoofft(k->p+15, NULL, 10);
-              if (data->set.max_filesize && contentlength >
-                  data->set.max_filesize) {
+              if (data->set.max_filesize &&
+                  contentlength > data->set.max_filesize) {
                 failf(data, "Maximum file size exceeded");
                 return CURLE_FILESIZE_EXCEEDED;
               }
-              conn->size = contentlength;
+              if(contentlength >= 0)
+                conn->size = contentlength;
+              else {
+                /* Negative Content-Length is really odd, and we know it
+                   happens for example when older Apache servers send large
+                   files */
+                conn->bits.close = TRUE;
+                infof(data, "Negative content-length: %" FORMAT_OFF_T
+                      ", closing after transfer\n", contentlength);
+              }
             }
             /* check for Content-Type: header lines to get the mime-type */
             else if (checkprefix("Content-Type:", k->p)) {
@@ -1278,15 +1287,15 @@ CURLcode Curl_readwrite(struct connectdata *conn,
   if(Curl_pgrsUpdate(conn))
     result = CURLE_ABORTED_BY_CALLBACK;
   else
-    result = Curl_speedcheck (data, k->now);
+    result = Curl_speedcheck(data, k->now);
   if (result)
     return result;
 
   if (data->set.timeout &&
       ((Curl_tvdiff(k->now, k->start)/1000) >= data->set.timeout)) {
-    failf (data, "Operation timed out with %" FORMAT_OFF_T
-           " out of %" FORMAT_OFF_T " bytes received",
-           k->bytecount, conn->size);
+    failf(data, "Operation timed out with %" FORMAT_OFF_T
+          " out of %" FORMAT_OFF_T " bytes received",
+          k->bytecount, conn->size);
     return CURLE_OPERATION_TIMEOUTED;
   }
 
