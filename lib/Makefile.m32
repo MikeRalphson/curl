@@ -1,4 +1,6 @@
 #############################################################
+# $Id: Makefile.m32,v 1.10 2001-08-09 09:10:13 bagder Exp $
+#
 ## Makefile for building libcurl.a with MingW32 (GCC-2.95) and
 ## optionally OpenSSL (0.9.6)
 ## Use: make -f Makefile.m32

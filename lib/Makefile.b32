@@ -1,4 +1,6 @@
 ############################################################
+# $Id: Makefile.b32,v 1.5 2001-08-09 09:10:13 bagder Exp $
+#
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
 #  'lib' directory
