@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.17 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: netrc.c,v 1.18 2002-01-18 13:04:48 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -157,7 +157,7 @@ int Curl_parsenetrc(char *host,
 	  }
 	  else if(state_password) {
 	    strncpy(password, tok, PASSWORDSIZE-1);
-#if _NETRC_DEBUG
+#ifdef _NETRC_DEBUG
 	    printf("PASSWORD: %s\n", password);
 #endif
 	    state_password=0;

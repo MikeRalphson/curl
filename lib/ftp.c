@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.127 2002-01-18 12:56:10 bagder Exp $
+ * $Id: ftp.c,v 1.128 2002-01-18 13:04:48 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -358,7 +358,7 @@ int Curl_GetFTPResponse(char *buf,
   if(!error)
     code = atoi(buf);
 
-#if KRB4
+#ifdef KRB4
   /* handle the security-oriented responses 6xx ***/
   /* FIXME: some errorchecking perhaps... ***/
   switch(code) {
