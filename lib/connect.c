@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.127 2005-01-29 13:07:16 bagder Exp $
+ * $Id: connect.c,v 1.128 2005-01-29 22:38:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -98,6 +98,7 @@
 #include "connect.h"
 #include "memory.h"
 #include "select.h"
+#include "url.h" /* for Curl_safefree() */
 
 /* The last #include file should be: */
 #include "memdebug.h"
