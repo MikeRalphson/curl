@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.41 2001-01-05 10:11:42 bagder Exp $
+ * $Id: ftp.c,v 1.42 2001-01-08 10:00:15 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <ctype.h>
 #include <errno.h>
 
