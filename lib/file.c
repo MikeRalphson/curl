@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.50 2004-03-05 09:40:16 bagder Exp $
+ * $Id: file.c,v 1.51 2004-03-05 11:39:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -84,6 +84,7 @@
 #include "file.h"
 #include "speedcheck.h"
 #include "getinfo.h"
+#include "transfer.h" /* for Curl_readwrite_init() */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
