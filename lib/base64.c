@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.8 2001-08-03 13:51:44 bagder Exp $
+ * $Id: base64.c,v 1.9 2001-08-14 09:25:15 bagder Exp $
  *****************************************************************************/
 
 /* Base64 encoding/decoding
@@ -37,6 +37,10 @@
 #endif
 #include <stdlib.h>
 #include <string.h>
+
+#define _MPRINTF_REPLACE /* use our functions only */
+#include <curl/mprintf.h>
+
 #include "base64.h"
 
 #ifdef MALLOCDEBUG
