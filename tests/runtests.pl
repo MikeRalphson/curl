@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.106 2004-01-13 08:57:02 bagder Exp $
+# $Id: runtests.pl,v 1.107 2004-02-12 14:40:08 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -39,7 +39,7 @@ my $FTPSPORT=8821;  # this is the FTPS server port
 my $CURL="../src/curl"; # what curl executable to run on the tests
 my $DBGCURL=$CURL; #"../src/.libs/curl";  # alternative for debugging
 my $LOGDIR="log";
-my $TESTDIR="data";
+my $TESTDIR="$srcdir/data";
 my $LIBDIR="./libtest";
 my $SERVERIN="$LOGDIR/server.input"; # what curl sent the server
 my $CURLLOG="$LOGDIR/curl.log"; # all command lines run
@@ -354,6 +354,10 @@ sub runhttpserver {
     }
 
     my $flag=$debugprotocol?"-v ":"";
+    my $dir=$ENV{'srcdir'};
+    if($dir) {
+        $flag .= "-d \"$dir\" ";
+    }
     $cmd="$perl $srcdir/httpserver.pl $flag $HOSTPORT &";
     system($cmd);
     if($verbose) {
@@ -690,6 +694,9 @@ sub checkcurl {
                 $ssl_version=1;
             }
         }
+    }
+    if(!$curl) {
+        die "couldn't run curl!"
     }
 
     my $hostname=`hostname`;
