@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.17 2004-03-17 12:46:45 bagder Exp $
+ * $Id: multi.h,v 1.18 2004-03-24 22:53:42 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -202,6 +202,17 @@ CURLMcode curl_multi_cleanup(CURLM *multi_handle);
  */
 CURLMsg *curl_multi_info_read(CURLM *multi_handle,
                               int *msgs_in_queue);
+
+/*
+ * NAME curl_multi_strerror()
+ *
+ * DESCRIPTION
+ *
+ * The curl_multi_strerror function may be used to turn a CURLMcode value
+ * into the equivalent human readable error string.  This is useful
+ * for printing meaningful error messages.
+ */
+const char *curl_multi_strerror(CURLMcode);
 
 #ifdef __cplusplus
 } /* end of extern "C" */
