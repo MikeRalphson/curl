@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.62 2001-05-07 11:17:18 bagder Exp $
+ * $Id: urldata.h,v 1.63 2001-05-11 11:38:13 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -188,6 +188,9 @@ struct ConnectBits {
 
   bool use_range;
   bool rangestringalloc; /* the range string is malloc()'ed */
+
+  bool resume_done; /* nothing was transfered, resumed transfer already
+                       complete */
 };
 
 /*
