@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.229 2002-09-09 11:23:34 bagder Exp $
+ * $Id: url.c,v 1.230 2002-09-11 10:32:37 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2279,8 +2279,10 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if((1 == sscanf(conn->name, "[%*39[0-9a-fA-F:.]%c", &endbracket)) &&
      (']' == endbracket)) {
     /* this is a RFC2732-style specified IP-address */
+    conn->bits.ipv6_ip = TRUE;
 
     conn->name++; /* pass the starting bracket */ 
+    conn->hostname++;
     tmp = strchr(conn->name, ']');
     *tmp = 0; /* zero terminate */
     tmp++; /* pass the ending bracket */

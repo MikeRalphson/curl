@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.37 2002-09-03 11:53:00 bagder Exp $
+ * $Id: connect.c,v 1.38 2002-09-11 10:32:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -463,7 +463,11 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
   }
 
   hostname = data->change.proxy?conn->proxyhost:conn->hostname;
-  infof(data, "About to connect() to %s:%d\n", hostname, port);
+  infof(data, "About to connect() to %s%s%s:%d\n",
+        conn->bits.ipv6_ip?"[":"",
+        hostname,
+        conn->bits.ipv6_ip?"]":"",
+        port);
 
 #ifdef ENABLE_IPV6
   /*
