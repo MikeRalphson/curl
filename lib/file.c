@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-11-27 12:04:51 $
+ * $Revision: 1.12 $
+ * $Date: 2000-11-29 08:17:12 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -155,9 +155,6 @@ CURLcode file(struct connectdata *conn)
      this is both more efficient than the former call to download() and
      it avoids problems with select() and recv() on file descriptors
      in Winsock */
-#if 0
-  ProgressInit (data, expected_size);
-#endif
   if(expected_size != -1)
     pgrsSetDownloadSize(data, expected_size);
 
