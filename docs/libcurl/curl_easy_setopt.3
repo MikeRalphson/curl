@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.73 2004-02-09 13:51:52 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.74 2004-02-19 10:21:54 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "22 Jan 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -271,7 +271,7 @@ name.
 Pass a long, this sets the timeout in seconds. Name resolves will be kept in
 memory for this number of seconds. Set to zero (0) to completely disable
 caching, or set to -1 to make the cached entries remain forever. By default,
-libcurl caches info for 60 seconds.
+libcurl caches this info for 60 seconds.
 .IP CURLOPT_DNS_USE_GLOBAL_CACHE
 Pass a long. If the value is non-zero, it tells curl to use a global DNS cache
 that will survive between easy handle creations and deletions. This is not
