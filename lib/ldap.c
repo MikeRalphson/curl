@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.21 2002-06-11 11:13:01 bagder Exp $
+ * $Id: ldap.c,v 1.22 2002-06-12 07:45:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -148,7 +148,7 @@ CURLcode Curl_ldap(struct connectdata *conn)
   int ldaptext;
   struct SessionHandle *data=conn->data;
   
-  infof(data, "LDAP: %s %s\n", data->change.url);
+  infof(data, "LDAP: %s\n", data->change.url);
 
   DynaOpen();
   if (libldap == NULL) {
