@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.22 2001-08-21 09:14:31 bagder Exp $
+# $Id: Makefile.am,v 1.23 2001-09-05 06:56:24 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -8,7 +8,7 @@ EXTRA_DIST =						\
 	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt	\
 	config-win32.h reconf Makefile.dist		\
 	curl-config.in build_vms.com config-riscos.h	\
-	config-vms.h
+	config-vms.h curl-mode.el
 
 bin_SCRIPTS = curl-config
 
