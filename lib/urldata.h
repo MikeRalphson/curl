@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.72 2001-08-29 09:32:18 bagder Exp $
+ * $Id: urldata.h,v 1.73 2001-08-29 09:36:41 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -130,6 +130,7 @@ struct curl_ssl_session {
   char *name;       /* host name for which this ID was used */
   void *sessionid;  /* as returned from the SSL layer */
   long age;         /* just a number, the higher the more recent */
+  unsigned short remote_port; /* remote port to connect to */
 };
 
 struct ssl_config_data {
