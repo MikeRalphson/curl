@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.78 2004-04-27 12:08:53 bagder Exp $
+dnl $Id: configure.ac,v 1.79 2004-05-05 06:57:49 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1109,6 +1109,7 @@ AC_CHECK_SIZEOF(curl_off_t, ,[
 #include <stdio.h>
 #include "$srcdir/include/curl/curl.h"
 ])
+AC_CHECK_SIZEOF(size_t)
 
 AC_CHECK_TYPE(long long,
    [AC_DEFINE(HAVE_LONGLONG, 1, [if your compiler supports 'long long'])])
