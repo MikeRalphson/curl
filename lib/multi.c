@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.37 2003-10-04 14:50:45 bagder Exp $
+ * $Id: multi.c,v 1.38 2003-10-13 12:21:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -369,6 +369,11 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
           /* Perform the next step in the connection phase, and then move on
              to the WAITCONNECT state */
           easy->result = Curl_async_resolved(easy->easy_conn);
+
+          if(CURLE_OK != easy->result)
+            /* if Curl_async_resolved() returns failure, the connection struct
+               is already freed and gone */
+            easy->easy_conn = NULL;           /* no more connection */
 
           easy->state = CURLM_STATE_WAITCONNECT;
         }
