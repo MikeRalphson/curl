@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl -w
 #***************************************************************************
 #                                  _   _ ____  _
 #  Project                     ___| | | |  _ \| |
@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.3 2004-03-24 21:28:31 bagder Exp $
+# $Id: testcurl.pl,v 1.4 2004-03-25 08:22:03 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -50,7 +50,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog $buildl
 use vars qw($name $email $desc $confopts);
 
 # version of this script
-$version='$Revision: 1.3 $';
+$version='$Revision: 1.4 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl
