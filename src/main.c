@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.13 $
- * $Date: 2000-04-04 17:42:43 $
+ * $Revision: 1.14 $
+ * $Date: 2000-05-09 12:29:28 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -961,12 +961,16 @@ int main(int argc, char *argv[])
     return URG_FAILED_INIT;
   }
 #if 0
-    fprintf(stderr, "URL: %s PROXY: %s\n", url, config.proxy?config.proxy:"none");
+  fprintf(stderr, "URL: %s PROXY: %s\n", url, config.proxy?config.proxy:"none");
 #endif
 
 #ifdef GLOBURL
-  urlnum = glob_url(&urls, url);	/* expand '{...}' and '[...]' expressions and return
-					   total number of URLs in pattern set */
+  /* expand '{...}' and '[...]' expressions and return total number of URLs
+     in pattern set */
+  res = glob_url(&urls, url, &urlnum);
+  if(res != URG_OK)
+    return res;
+
   outfiles = config.outfile;		/* save outfile pattern befor expansion */
   if (!outfiles && !config.remotefile && urlnum > 1) {
 #ifdef CURL_SEPARATORS
