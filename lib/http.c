@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.106 2002-09-13 12:40:36 bagder Exp $
+ * $Id: http.c,v 1.107 2002-09-23 12:47:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -449,23 +449,21 @@ CURLcode Curl_http_connect(struct connectdata *conn)
 CURLcode Curl_http_done(struct connectdata *conn)
 {
   struct SessionHandle *data;
-  long *bytecount = &conn->bytecount;
   struct HTTP *http;
 
   data=conn->data;
   http=conn->proto.http;
 
   if(HTTPREQ_POST_FORM == data->set.httpreq) {
-    *bytecount = http->readbytecount + http->writebytecount;
+    conn->bytecount = http->readbytecount + http->writebytecount;
       
     Curl_formclean(http->sendit); /* Now free that whole lot */
 
     data->set.fread = http->storefread; /* restore */
     data->set.in = http->in; /* restore */
   }
-  else if(HTTPREQ_PUT == data->set.httpreq) {
-    *bytecount = http->readbytecount + http->writebytecount;
-  }
+  else if(HTTPREQ_PUT == data->set.httpreq)
+    conn->bytecount = http->readbytecount + http->writebytecount;
 
   if(0 == (http->readbytecount + conn->headerbytecount)) {
     /* nothing was read from the HTTP server, this can't be right
@@ -487,7 +485,6 @@ CURLcode Curl_http(struct connectdata *conn)
   struct Cookie *co=NULL; /* no cookies from start */
   char *ppath = conn->ppath; /* three previous function arguments */
   char *host = conn->name;
-  long *bytecount = &conn->bytecount;
 
   if(!conn->proto.http) {
     /* Only allocate this struct if we don't already have it! */
