@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.28 $
- * $Date: 2000-07-28 07:56:06 $
+ * $Revision: 1.29 $
+ * $Date: 2000-07-31 21:31:27 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -142,12 +142,12 @@ void curl_free(void)
 {
 }
 
-void urlfree(struct UrlData *data, bool totally)
+void static urlfree(struct UrlData *data, bool totally)
 {
 #ifdef USE_SSLEAY
   if (data->use_ssl) {
     if(data->ssl) {
-      SSL_shutdown(data->ssl);
+      (void)SSL_shutdown(data->ssl);
       SSL_set_connect_state(data->ssl);
 
       SSL_free (data->ssl);
