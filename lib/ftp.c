@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.305 2005-03-04 23:52:06 bagder Exp $
+ * $Id: ftp.c,v 1.306 2005-03-08 08:09:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1741,7 +1741,11 @@ static CURLcode ftp_state_mdtm_resp(struct connectdata *conn,
       /* If we asked for a time of the file and we actually got one as well,
          we "emulate" a HTTP-style header in our output. */
 
-      if(data->set.get_filetime && (data->info.filetime>=0) ) {
+      if(conn->bits.no_body &&
+         data->set.include_header &&
+         ftp->file &&
+         data->set.get_filetime &&
+         (data->info.filetime>=0) ) {
         struct tm *tm;
         time_t clock = (time_t)data->info.filetime;
 #ifdef HAVE_GMTIME_R
@@ -1763,7 +1767,7 @@ static CURLcode ftp_state_mdtm_resp(struct connectdata *conn,
         result = Curl_client_write(data, CLIENTWRITE_BOTH, buf, 0);
         if(result)
           return result;
-      }
+      } /* end of a ridiculous amount of conditionals */
     }
     break;
   default:

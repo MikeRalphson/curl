@@ -5,7 +5,7 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.27 2004-12-14 21:22:51 bagder Exp $
+# $Id: Makefile.am,v 1.28 2005-03-08 08:09:14 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -40,7 +40,7 @@ SUPPORTFILES = first.c test.h
 # These are all libcurl test programs
 noinst_PROGRAMS = lib500 lib501 lib502 lib503 lib504 lib505 lib506 lib507 \
   lib508 lib509 lib510 lib511 lib512 lib513 lib514 lib515 lib516 lib517 \
-  lib518 lib519
+  lib518 lib519 lib520
 
 lib500_SOURCES = lib500.c $(SUPPORTFILES)
 lib500_LDADD = $(LIBDIR)/libcurl.la
@@ -121,3 +121,7 @@ lib518_DEPENDENCIES = $(LIBDIR)/libcurl.la
 lib519_SOURCES = lib519.c $(SUPPORTFILES)
 lib519_LDADD = $(LIBDIR)/libcurl.la
 lib519_DEPENDENCIES = $(LIBDIR)/libcurl.la
+
+lib520_SOURCES = lib520.c $(SUPPORTFILES)
+lib520_LDADD = $(LIBDIR)/libcurl.la
+lib520_DEPENDENCIES = $(LIBDIR)/libcurl.la
