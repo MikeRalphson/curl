@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.253 2005-01-10 10:07:07 bagder Exp $
+ * $Id: urldata.h,v 1.254 2005-01-11 20:22:44 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -410,15 +410,6 @@ struct Curl_transfer_keeper {
   char *uploadbuf;
   curl_socket_t maxfd;
 
-  /* pointers to the actual descriptors we check */
-  fd_set *readfdp;
-  fd_set *writefdp;
-
-  /* the file descriptors to play with */
-  fd_set readfd;
-  fd_set writefd;
-  fd_set rkeepfd;
-  fd_set wkeepfd;
   int keepon;
 
   bool upload_done; /* set to TRUE when doing chunked transfer-encoding upload
