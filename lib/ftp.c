@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.94 2001-09-28 08:58:18 bagder Exp $
+ * $Id: ftp.c,v 1.95 2001-09-28 09:02:57 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -757,9 +757,7 @@ ftp_pasv_verbose(struct connectdata *conn,
 #ifdef HAVE_INET_NTOA_R
   char ntoa_buf[64];
 #endif
-#ifndef ENABLE_IPV6
   char hostent_buf[8192];
-#endif
 
 #if defined(HAVE_INET_ADDR)
   unsigned long address;
@@ -832,6 +830,7 @@ ftp_pasv_verbose(struct connectdata *conn,
 #else
   const int niflags = NI_NUMERICHOST | NI_NUMERICSERV;
 #endif
+  port = 0; /* unused, prevent warning */
   if (getnameinfo(addr->ai_addr, addr->ai_addrlen,
                   nbuf, sizeof(nbuf), sbuf, sizeof(sbuf), niflags)) {
     snprintf(nbuf, sizeof(nbuf), "?");
@@ -840,8 +839,8 @@ ftp_pasv_verbose(struct connectdata *conn,
         
   if (getnameinfo(addr->ai_addr, addr->ai_addrlen,
                   hbuf, sizeof(hbuf), NULL, 0, 0)) {
-    infof(conn->data, "Connecting to %s port %s\n", nbuf, sbuf);
-  } 
+    infof(conn->data, "Connecting to %s (%s) port %s\n", nbuf, newhost, sbuf);
+  }
   else {
     infof(conn->data, "Connecting to %s (%s) port %s\n", hbuf, nbuf, sbuf);
   }
