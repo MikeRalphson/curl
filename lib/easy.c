@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.42 2003-10-14 12:00:45 bagder Exp $
+ * $Id: easy.c,v 1.43 2003-10-14 13:10:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -80,6 +80,10 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
+/* The last #include file should be: */
+#ifdef CURLDEBUG
+#include "memdebug.h"
+#endif
 
 /* Silly win32 socket initialization functions */
 
