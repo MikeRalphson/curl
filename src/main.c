@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.120 2002-03-19 14:58:35 bagder Exp $
+ * $Id: main.c,v 1.121 2002-03-27 22:53:06 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1225,7 +1225,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           if(strequal("-", nextarg))
             file = stdin;
           else 
-            file = fopen(nextarg, "r");
+            file = fopen(nextarg, "rb");
 
           if(subletter == 'b') /* forced binary */
             postdata = file2memory(file, &config->postfieldsize);
