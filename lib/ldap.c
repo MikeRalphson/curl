@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.9 $
+ * $Date: 2000-11-22 12:55:24 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -134,8 +134,7 @@ static void * DynaGetFunction(char *name)
 static int WriteProc(void *param, char *text, int len)
 {
   struct UrlData *data = (struct UrlData *)param;
-
-  data->fwrite(text, 1, strlen(text), data->out);
+  client_write(data, CLIENTWRITE_BODY, text, 0);
   return 0;
 }
 

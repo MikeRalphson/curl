@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/telnet.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-10-30 11:53:40 $
+ * $Revision: 1.7 $
+ * $Date: 2000-11-22 12:56:27 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -713,8 +713,8 @@ void telrcv(struct UrlData *data,
 	 {
 	    break;   /* Ignore \0 after CR */
 	 }
-	 
-	 data->fwrite((char *)&c, 1, 1, data->out);
+
+	 client_write(data, CLIENTWRITE_BODY, (char *)&c, 1);
 	 continue;
 
       case TS_DATA:
@@ -728,7 +728,7 @@ void telrcv(struct UrlData *data,
 	    telrcv_state = TS_CR;
 	 }
 
-	 data->fwrite((char *)&c, 1, 1, data->out);
+	 client_write(data, CLIENTWRITE_BODY, (char *)&c, 1);
 	 continue;
 
       case TS_IAC:
@@ -752,8 +752,8 @@ void telrcv(struct UrlData *data,
 	   telrcv_state = TS_SB;
 	   continue;
 	case IAC:
-	   data->fwrite((char *)&c, 1, 1, data->out);
-	   break;
+          client_write(data, CLIENTWRITE_BODY, (char *)&c, 1);
+          break;
 	case DM:
 	case NOP:
 	case GA:
