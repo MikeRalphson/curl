@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.1 2004-04-26 07:20:11 bagder Exp $
+ * $Id: hostares.c,v 1.2 2004-04-26 11:56:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -132,7 +132,6 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
 {
   fd_set read_fds, write_fds;
   struct timeval tv={0,0};
-  int count;
   struct SessionHandle *data = conn->data;
   int nfds;
 
@@ -141,8 +140,8 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
 
   nfds = ares_fds(data->state.areschannel, &read_fds, &write_fds);
 
-  count = select(nfds, &read_fds, &write_fds, NULL,
-                 (struct timeval *)&tv);
+  (void)select(nfds, &read_fds, &write_fds, NULL,
+               (struct timeval *)&tv);
 
   /* Call ares_process() unconditonally here, even if we simply timed out
      above, as otherwise the ares name resolve won't timeout! */
