@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.208 2004-03-30 06:38:52 bagder Exp $
+ * $Id: urldata.h,v 1.209 2004-03-30 13:00:53 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -173,6 +173,7 @@ struct digestdata {
   char *cnonce;
   char *realm;
   int algo;
+  bool stale; /* set true for re-negotiation */
 };
 
 typedef enum {
