@@ -18,8 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.13 2004-11-29 18:26:09 bagder Exp $
+ * $Id: getpart.c,v 1.14 2004-11-29 21:44:23 bagder Exp $
  ***************************************************************************/
+
+#include "setup.h"
 
 #include <stdio.h>
 #include <ctype.h>
