@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.h,v 1.6 2002-04-13 01:56:22 bumblebury Exp $
+ * $Id: hash.h,v 1.7 2002-04-17 20:13:55 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -53,6 +53,7 @@ int curl_hash_find(curl_hash *, char *, size_t, void **p);
 void curl_hash_apply(curl_hash *h, void *user, void (*cb)(void *, curl_hash_element *));
 int curl_hash_count(curl_hash *h);
 void curl_hash_clean(curl_hash *h);
+void curl_hash_clean_with_criterium(curl_hash *h, void *user, int (*comp)(void *, void *));
 void curl_hash_destroy(curl_hash *h);
 
 #define curl_hash_update curl_hash_add

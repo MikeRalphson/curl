@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.8 2002-04-13 01:56:22 bumblebury Exp $
+ * $Id: hash.c,v 1.9 2002-04-17 20:13:55 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -248,6 +248,26 @@ curl_hash_clean(curl_hash *h)
   free(h->table);
 }
 /* }}} */
+
+/* {{{ void curl_hash_clean_with_criterium (curl_hash *, void *, int (*)(void *, void *))
+ */
+void
+curl_hash_clean_with_criterium(curl_hash *h, void *user, int (*comp)(void *, void *))
+{
+  curl_llist_element *le;
+  int i;
+
+  for (i = 0; i < h->slots; ++i) {
+    for (le = CURL_LLIST_HEAD(h->table[i]);
+         le != NULL;
+         le = CURL_LLIST_NEXT(le)) {
+      if (comp(user, ((curl_hash_element *) CURL_LLIST_VALP(le))->ptr)) {
+        curl_llist_remove(h->table[i], le, (void *) h);
+        --h->size;
+      }
+    }
+  }
+}
 
 /* {{{ int curl_hash_count (curl_hash *)
  */
