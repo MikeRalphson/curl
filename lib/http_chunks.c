@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.2 2001-03-07 23:51:41 bagder Exp $
+ * $Id: http_chunks.c,v 1.3 2001-03-12 15:20:35 bagder Exp $
  *****************************************************************************/
 #include "setup.h"
 
@@ -115,10 +115,15 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
           ch->hexindex++;
         }
         else {
-          return 1; /* longer hex than we support */
+          return CHUNKE_TOO_LONG_HEX; /* longer hex than we support */
         }
       }
       else {
+        if(0 == ch->hexindex) {
+          /* This is illegal data, we received junk where we expected
+             a hexadecimal digit. */
+          return CHUNKE_ILLEGAL_HEX;
+        }
         /* length and datap are unmodified */
         ch->hexbuffer[ch->hexindex]=0;
         ch->datasize=strtoul(ch->hexbuffer, NULL, 16);
@@ -127,7 +132,9 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       break;
 
     case CHUNK_POSTHEX:
-      /* just a lame state waiting for CRLF to arrive */
+      /* In this state, we're waiting for CRLF to arrive. We support
+         this to allow so called chunk-extensions to show up here
+         before the CRLF comes. */
       if(*datap == '\r')
         ch->state = CHUNK_CR;
       length--;
