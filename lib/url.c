@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.271 2003-04-11 16:08:41 bagder Exp $
+ * $Id: url.c,v 1.272 2003-04-11 16:23:06 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1984,8 +1984,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if(conn->path[0] == '?') {
     /* We need this function to deal with overlapping memory areas. We know
        that the memory area 'path' points to is 'urllen' bytes big and that
-       is bigger than the path. */
-    memmove(&conn->path[1], conn->path, strlen(conn->path));
+       is bigger than the path. Use +1 to move the zero byte too. */
+    memmove(&conn->path[1], conn->path, strlen(conn->path)+1);
     conn->path[0] = '/';
   }
 
