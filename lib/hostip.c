@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.159 2004-06-24 11:54:11 bagder Exp $
+ * $Id: hostip.c,v 1.160 2004-06-24 15:05:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -197,30 +197,6 @@ const char *Curl_printable_address(const Curl_addrinfo *ip,
 #endif
 
   return Curl_inet_ntop(af, af == AF_INET ? ip4 : ip6, buf, bufsize);
-}
-
-/*
- * Count the number of characters that an integer would use in a string
- * (base 10).
- */
-static int _num_chars(int i)
-{
-  int chars = 0;
-
-  /* While the number divided by 10 is greater than one,
-   * re-divide the number by 10, and increment the number of
-   * characters by 1.
-   *
-   * this relies on the fact that for every multiple of 10,
-   * a new digit is added onto every number
-   */
-  do {
-    chars++;
-
-    i = (int) i / 10;
-  } while (i >= 1);
-
-  return chars;
 }
 
 /*
