@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.29 2003-06-26 11:22:12 bagder Exp $
+ * $Id: getinfo.c,v 1.30 2003-08-11 23:15:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -105,6 +105,9 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     break;
   case CURLINFO_HTTP_CODE:
     *param_longp = data->info.httpcode;
+    break;
+  case CURLINFO_HTTP_CONNECTCODE:
+    *param_longp = data->info.httpproxycode;
     break;
   case CURLINFO_FILETIME:
     *param_longp = data->info.filetime;

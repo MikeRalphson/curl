@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.149 2003-08-11 11:47:45 bagder Exp $
+ * $Id: http.c,v 1.150 2003-08-11 23:15:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -555,6 +555,8 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
 
   if(error)
     return CURLE_RECV_ERROR;
+
+  data->info.httpproxycode = httperror;
 
   if(200 != httperror) {
     if(407 == httperror)

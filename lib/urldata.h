@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.171 2003-08-11 11:47:45 bagder Exp $
+ * $Id: urldata.h,v 1.172 2003-08-11 23:15:41 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -566,6 +566,7 @@ struct connectdata {
  */
 struct PureInfo {
   int httpcode;
+  int httpproxycode;
   int httpversion;
   long filetime; /* If requested, this is might get set. Set to -1 if the time
                     was unretrievable. We cannot have this of type time_t,
