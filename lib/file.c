@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.16 2001-03-14 08:28:19 bagder Exp $
+ * $Id: file.c,v 1.17 2001-04-18 07:25:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -183,11 +183,11 @@ CURLcode Curl_file(struct connectdata *conn)
       return res;
 
     now = Curl_tvnow();
-    if(Curl_pgrsUpdate(data))
+    if(Curl_pgrsUpdate(conn))
       res = CURLE_ABORTED_BY_CALLBACK;
   }
   now = Curl_tvnow();
-  if(Curl_pgrsUpdate(data))
+  if(Curl_pgrsUpdate(conn))
     res = CURLE_ABORTED_BY_CALLBACK;
 
   close(fd);
