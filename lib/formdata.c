@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.78 2004-10-05 06:49:09 bagder Exp $
+ * $Id: formdata.c,v 1.79 2004-10-05 06:55:09 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -113,7 +113,7 @@ Content-Disposition: form-data; name="FILECONTENT"
 #include <stdarg.h>
 #include <time.h>
 #include <sys/stat.h>
-#ifdef HAVE_LIBGEN_H
+#if defined(HAVE_LIBGEN_H) && defined(HAVE_BASENAME)
 #include <libgen.h>
 #endif
 #include "formdata.h"
