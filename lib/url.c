@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.181 2001-12-20 15:58:22 bagder Exp $
+ * $Id: url.c,v 1.182 2002-01-03 10:22:59 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -939,9 +939,6 @@ CURLcode Curl_disconnect(struct connectdata *conn)
 
   if(conn->proto.generic)
     free(conn->proto.generic);
-
-  if(conn->hostent_buf) /* host name info */
-    Curl_freeaddrinfo(conn->hostent_buf);
 
   if(conn->newurl)
     free(conn->newurl);
@@ -2060,8 +2057,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     /* Resolve target host right on */
     if(!conn->hostaddr) {
       /* it might already be set if reusing a connection */
-      conn->hostaddr = Curl_getaddrinfo(data, conn->name, conn->port,
-                                        &conn->hostent_buf);
+      conn->hostaddr = Curl_resolv(data, conn->name, conn->port,
+                                   &conn->hostent_buf);
     }
     if(!conn->hostaddr) {
       failf(data, "Couldn't resolve host '%s'", conn->name);
@@ -2075,8 +2072,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
     /* resolve proxy */
     /* it might already be set if reusing a connection */
-    conn->hostaddr = Curl_getaddrinfo(data, conn->proxyhost, conn->port,
-                                      &conn->hostent_buf);
+    conn->hostaddr = Curl_resolv(data, conn->proxyhost, conn->port,
+                                 &conn->hostent_buf);
 
     if(!conn->hostaddr) {
       failf(data, "Couldn't resolve proxy '%s'", conn->proxyhost);

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.29 2001-11-27 07:27:32 bagder Exp $
+# $Id: Makefile.am,v 1.30 2002-01-03 10:22:59 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -56,7 +56,8 @@ escape.c       mprintf.c      telnet.c       \
 escape.h       getpass.c      netrc.c        telnet.h       \
 getinfo.c getinfo.h transfer.c strequal.c strequal.h easy.c \
 security.h security.c krb4.c krb4.h memdebug.c memdebug.h inet_ntoa_r.h \
-http_chunks.c http_chunks.h strtok.c strtok.h connect.c connect.h
+http_chunks.c http_chunks.h strtok.c strtok.h connect.c connect.h \
+llist.c llist.h hash.c hash.h
 
 noinst_HEADERS = setup.h transfer.h
 

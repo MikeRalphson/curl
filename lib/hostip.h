@@ -20,12 +20,20 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.12 2001-10-04 13:25:12 bagder Exp $
+ * $Id: hostip.h,v 1.13 2002-01-03 10:22:59 bagder Exp $
  *****************************************************************************/
 
 struct addrinfo;
 struct hostent;
 struct SessionHandle;
+
+void Curl_host_cache_init(void);
+void Curl_host_cache_dtor(void);
+
+Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
+			   char *hostname,
+			   int port,
+			   char **bufp);
 
 /* Get name info */
 Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
