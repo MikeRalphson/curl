@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.129 2005-02-17 14:45:03 bagder Exp $
+ * $Id: connect.c,v 1.130 2005-03-14 15:43:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -364,6 +364,9 @@ static CURLcode bindlocal(struct connectdata *conn,
     return CURLE_OK;
 
   } /* end of device selection support */
+#else
+  (void)conn;
+  (void)sockfd;
 #endif /* end of HAVE_INET_NTOA */
 
   return CURLE_HTTP_PORT_FAILED;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.307 2005-03-14 00:00:45 bagder Exp $
+ * $Id: ftp.c,v 1.308 2005-03-14 15:43:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1062,7 +1062,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
       /* we set the secondary socket variable to this for now, it
          is only so that the cleanup function will close it in case
          we fail before the true secondary stuff is made */
-      if(-1 != conn->sock[SECONDARYSOCKET])
+      if(CURL_SOCKET_BAD != conn->sock[SECONDARYSOCKET])
         sclose(conn->sock[SECONDARYSOCKET]);
       conn->sock[SECONDARYSOCKET] = portsock;
 
