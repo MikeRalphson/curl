@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.50 2001-01-31 13:53:31 bagder Exp $
+dnl $Id: configure.in,v 1.51 2001-02-01 07:58:49 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -26,6 +26,25 @@ dnl The install stuff has already been taken care of by the automake stuff
 dnl AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
+dnl ************************************************************
+dnl lame option to switch on debug options
+dnl
+AC_MSG_CHECKING([whether to enable debug options])
+AC_ARG_ENABLE(debug,
+[  --enable-debug		Enable pedantic debug options
+  --disable-debug		Disable debug options],
+[ case "$enableval" in
+  no)
+       AC_MSG_RESULT(no)
+       ;;
+  *)   AC_MSG_RESULT(yes)
+
+    CPPFLAGS="$CPPFLAGS -DMALLOCDEBUG"
+    CFLAGS="-Wall -pedantic -g" 
+       ;;
+  esac ],
+       AC_MSG_RESULT(no)
+)
 
 
 dnl
