@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.124 2001-05-11 06:40:04 bagder Exp $
+ * $Id: url.c,v 1.125 2001-05-15 07:21:13 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2043,6 +2043,21 @@ static CURLcode Connect(struct UrlData *data,
 
     free(old_conn);          /* we don't need this anymore */
 
+    /*
+     * If we're doing a resumed transfer, we need to setup our stuff
+     * properly.
+     */
+    conn->resume_from = data->set_resume_from;
+    if (conn->resume_from) {
+        snprintf(resumerange, sizeof(resumerange), "%d-", conn->resume_from);
+        if (conn->bits.rangestringalloc == TRUE) 
+            free(conn->range);
+        
+        /* tell ourselves to fetch this range */
+        conn->range = strdup(resumerange);
+        conn->bits.rangestringalloc = TRUE; /* mark range string allocated */
+    }
+    
     *in_connect = conn;      /* return this instead! */
 
     infof(data, "Re-using existing connection! (#%d)\n", conn->connectindex);
