@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-02-15 23:59:03 $
+ * $Revision: 1.6 $
+ * $Date: 2000-03-01 21:56:23 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -142,6 +142,8 @@ Transfer (struct UrlData *data,
 
 #define KEEP_READ  1
 #define KEEP_WRITE 2
+
+  pgrsTime(data, TIMER_PRETRANSFER);
 
   if (!getheader) {
     header = FALSE;
@@ -341,6 +343,7 @@ Transfer (struct UrlData *data,
                     failf (data, "The requested file was not found");
                     return URG_HTTP_NOT_FOUND;
                   }
+                  data->progress.httpcode = code;
                 }
                 else {
                   header = FALSE;	/* this is not a header line */
