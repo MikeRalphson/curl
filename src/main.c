@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.310 2005-02-09 13:06:40 bagder Exp $
+ * $Id: main.c,v 1.311 2005-03-04 00:12:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2609,6 +2609,10 @@ static int myprogress (void *clientp,
     bar->initial_size; /* expected transfer size */
   curl_off_t point = (curl_off_t)dlnow + (curl_off_t)ulnow +
     bar->initial_size; /* we've come this far */
+
+  if(point > total)
+    /* we have got more than the expected total! */
+    total = point;
 
   bar->calls++; /* simply count invokes */
 
