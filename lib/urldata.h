@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.13 $
- * $Date: 2000-06-16 13:17:44 $
+ * $Revision: 1.14 $
+ * $Date: 2000-06-20 11:23:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -252,6 +252,7 @@ struct Configbits {
   bool http_post;
   bool http_put;
   bool http_set_referer;
+  bool http_auto_referer; /* set "correct" referer when following location: */
   bool httpproxy;
   bool mute;
   bool no_body;
@@ -335,6 +336,9 @@ struct UrlData {
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */
   char *postfields; /* if POST, set the fields' values here */
+
+  bool free_referer; /* set TRUE if 'referer' points to a string we
+                        allocated */
   char *referer;
   char *useragent;   /* User-Agent string */
 
