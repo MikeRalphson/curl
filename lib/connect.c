@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.4 2001-10-01 22:42:46 bagder Exp $
+ * $Id: connect.c,v 1.5 2001-10-01 22:50:03 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -176,6 +176,8 @@ CURLcode Curl_connecthost(struct connectdata *conn,
   /*
    * Connecting with IPv6 support is so much easier and cleanly done
    */
+  port =0; /* we already have port in the 'remotehost' struct */
+
   if(sockfd != -1)
     /* don't use any previous one, it might be of wrong type */
     sclose(sockfd);
