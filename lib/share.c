@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.2 2002-09-03 11:53:01 bagder Exp $
+ * $Id: share.c,v 1.3 2003-01-08 15:50:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -44,7 +44,7 @@
 
 #define CURL_SHARE_GET(__handle) (((struct SessionHandle *) (__handle))->share)
 
-curl_share *
+CURLSH *
 curl_share_init (void)
 {
   curl_share *share = (curl_share *) malloc (sizeof (curl_share));

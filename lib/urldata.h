@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.139 2003-01-07 16:16:20 bagder Exp $
+ * $Id: urldata.h,v 1.140 2003-01-08 15:50:52 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -765,7 +765,7 @@ struct UserDefined {
 
 struct SessionHandle {
   curl_hash *hostcache;
-  curl_share *share;           /* Share, handles global variable mutexing */
+  struct Curl_share *share;    /* Share, handles global variable mutexing */
   struct UserDefined set;      /* values set by the libcurl user */
   struct DynamicStatic change; /* possibly modified userdefined data */
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.249 2003-01-07 16:16:06 bagder Exp $
+ * $Id: url.c,v 1.250 2003-01-08 15:50:52 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -101,6 +101,7 @@
 #include "strequal.h"
 #include "escape.h"
 #include "strtok.h"
+#include "share.h"
 
 /* And now for the protocols */
 #include "ftp.h"
@@ -1071,8 +1072,8 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
 
   case CURLOPT_SHARE:
     {
-      curl_share *set;
-      set = va_arg(param, curl_share *);
+      struct Curl_share *set;
+      set = va_arg(param, struct Curl_share *);
       if(data->share)
         data->share->dirty--;
 
