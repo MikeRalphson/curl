@@ -5,7 +5,7 @@
 #                            | (__| |_| |  _ <| |___ 
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # In order to be useful for every potential user, curl and libcurl are
 # dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.15 2003-12-10 13:51:42 bagder Exp $
+# $Id: Makefile.dist,v 1.16 2004-01-13 07:42:11 bagder Exp $
 #############################################################################
 
 all:
