@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.25 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: easy.c,v 1.26 2001-10-19 11:57:50 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -292,6 +292,12 @@ CURL *curl_easy_duphandle(CURL *incurl)
 
   outcurl->progress.flags    = data->progress.flags;
   outcurl->progress.callback = data->progress.callback;
+
+  if(data->cookies)
+    /* If cookies are enabled in the parent handle, we enable them
+       in the clone as well! */
+    outcurl->cookies = Curl_cookie_init(data->cookies->filename,
+                                        outcurl->cookies);
 
   /* duplicate all values in 'change' */
   if(data->change.url) {
