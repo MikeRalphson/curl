@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: reconf,v 1.2 2000-01-10 23:36:14 bagder Exp $
+# $Id: reconf,v 1.3 2000-08-30 11:54:57 bagder Exp $
 #
 # re autoconf/automake shell script
 #
@@ -9,8 +9,7 @@ die(){
 	echo "$@" ; exit
 }
 
-aclocal    || die "ahhhhh"
-autoheader || die "ahhhhh"
-automake   || die "ahhhhh"
-autoconf   || die "ahhhhh"
-
+aclocal -I .	|| die "ahhhhh"
+autoheader	|| die "ahhhhh"
+automake	|| die "ahhhhh"
+autoconf	|| die "ahhhhh"
