@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.277 2003-05-22 22:38:46 bagder Exp $
+ * $Id: url.c,v 1.278 2003-05-23 06:44:24 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -107,6 +107,7 @@
 #include "strtok.h"
 #include "share.h"
 #include "content_encoding.h"
+#include "http_digest.h"
 
 /* And now for the protocols */
 #include "ftp.h"
