@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.174 2001-11-07 14:13:29 bagder Exp $
+ * $Id: url.c,v 1.175 2001-11-12 14:08:42 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1543,6 +1543,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->protocol |= PROT_HTTP;
     conn->curl_do = Curl_http;
     conn->curl_done = Curl_http_done;
+    conn->curl_connect = Curl_http_connect;
   }
   else if (strequal(conn->protostr, "HTTPS")) {
 #ifdef USE_SSLEAY
