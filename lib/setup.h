@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.48 2004-03-01 16:23:35 bagder Exp $
+ * $Id: setup.h,v 1.49 2004-03-02 07:25:08 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -80,12 +80,11 @@ typedef unsigned char bool;
 #endif
 #endif /* HAVE_LONGLONG */
 
-/* We set up our internal prefered CURL_FORMAT_OFF_T here */
-#undef CURL_FORMAT_OFF_T
-#if SIZEOF_CURL_OFF_T > 4
-#define CURL_FORMAT_OFF_T "%lld"
+/* We set up our internal prefered (CURL_)FORMAT_OFF_T here */
+#if defined(SIZEOF_CURL_OFF_T) && (SIZEOF_CURL_OFF_T > 4)
+#define FORMAT_OFF_T "%lld"
 #else
-#define CURL_FORMAT_OFF_T "%ld"
+#define FORMAT_OFF_T "%ld"
 #endif
 
 
