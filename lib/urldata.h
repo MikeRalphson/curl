@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.223 2004-05-07 18:46:28 bagder Exp $
+ * $Id: urldata.h,v 1.224 2004-05-12 08:00:21 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -337,7 +337,7 @@ struct Curl_transfer_keeper {
   int headerline;		/* counts header lines to better track the
                                    first one */
   char *hbufp;			/* points at *end* of header line */
-  int hbuflen;
+  size_t hbuflen;
   char *str;			/* within buf */
   char *str_start;		/* within buf */
   char *end_ptr;		/* within buf */
@@ -704,7 +704,7 @@ struct UrlState {
   long numconnects; /* size of the 'connects' array */
 
   char *headerbuff; /* allocated buffer to store headers in */
-  int headersize;   /* size of the allocation */
+  size_t headersize;   /* size of the allocation */
 
   char buffer[BUFSIZE+1]; /* download buffer */
   char uploadbuffer[BUFSIZE+1]; /* upload buffer */
