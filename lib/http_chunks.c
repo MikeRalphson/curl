@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.21 2004-01-07 09:19:35 bagder Exp $
+ * $Id: http_chunks.c,v 1.22 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -34,6 +34,7 @@
 #include "sendf.h"   /* for the client write stuff */
 
 #include "content_encoding.h"   /* 08/29/02 jhrg */
+#include "http.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -99,8 +100,8 @@ void Curl_httpchunk_init(struct connectdata *conn)
  */
 CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
                               char *datap,
-                              size_t length,
-                              size_t *wrote)
+                              ssize_t length,
+                              ssize_t *wrote)
 {
   CURLcode result=CURLE_OK;
   struct Curl_chunker *ch = &conn->proto.http->chunk;

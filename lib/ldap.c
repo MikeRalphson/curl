@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.29 2004-01-07 09:19:35 bagder Exp $
+ * $Id: ldap.c,v 1.30 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -49,6 +49,7 @@
 #include "sendf.h"
 #include "escape.h"
 #include "transfer.h"
+#include "ldap.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.31 2004-01-22 12:45:50 bagder Exp $
+ * $Id: dict.c,v 1.32 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -74,6 +74,7 @@
 
 #include "progress.h"
 #include "strequal.h"
+#include "dict.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>

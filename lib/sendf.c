@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.73 2004-01-07 09:19:35 bagder Exp $
+ * $Id: sendf.c,v 1.74 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -189,7 +189,7 @@ CURLcode Curl_sendf(int sockfd, struct connectdata *conn,
   write_len = strlen(s);
   sptr = s;
 
-  do {
+  while (1) {
     /* Write the buffer to the socket */
     res = Curl_write(conn, sockfd, sptr, write_len, &bytes_written);
 
@@ -207,8 +207,7 @@ CURLcode Curl_sendf(int sockfd, struct connectdata *conn,
     }
     else
       break;
-
-  } while(1);
+  }
 
   free(s); /* free the output string */
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.221 2004-01-22 12:45:50 bagder Exp $
+ * $Id: ftp.c,v 1.222 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2388,7 +2388,7 @@ CURLcode Curl_ftpsendf(struct connectdata *conn,
   bytes_written=0;
   write_len = strlen(s);
 
-  do {
+  while(1) {
     res = Curl_write(conn, conn->sock[FIRSTSOCKET], sptr, write_len,
                      &bytes_written);
 
@@ -2404,7 +2404,7 @@ CURLcode Curl_ftpsendf(struct connectdata *conn,
     }
     else
       break;
-  } while(1);
+  }
 
   return res;
 }

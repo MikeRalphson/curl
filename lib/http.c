@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.182 2004-01-28 17:07:22 bagder Exp $
+ * $Id: http.c,v 1.183 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -193,11 +193,11 @@ void Curl_http_auth_act(struct connectdata *conn)
  * authentication method.
  */
 
-CURLcode http_auth_headers(struct connectdata *conn,
-                           char *request,
-                           char *path,
-                           bool *ready) /* set TRUE when the auth phase is
-                                           done and ready to do the *actual*
+static CURLcode http_auth_headers(struct connectdata *conn,
+                                  char *request,
+                                  char *path,
+                                  bool *ready) /* set TRUE when the auth phase
+                                           is done and ready to do the *actual*
                                            request */
 {
   CURLcode result = CURLE_OK;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.28 2004-01-07 09:19:35 bagder Exp $
+ * $Id: escape.c,v 1.29 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -44,7 +44,7 @@ char *curl_escape(const char *string, int length)
   char *testing_ptr = NULL;
   unsigned char in;
   int newlen = alloc;
-  int index=0;
+  int strindex=0;
 
   length = alloc-1;
   while(length--) {
@@ -65,17 +65,17 @@ char *curl_escape(const char *string, int length)
           ns = testing_ptr;
         }
       }
-      sprintf(&ns[index], "%%%02X", in);
+      sprintf(&ns[strindex], "%%%02X", in);
 
-      index+=3;
+      strindex+=3;
     }
     else {
       /* just copy this */
-      ns[index++]=in;
+      ns[strindex++]=in;
     }
     string++;
   }
-  ns[index]=0; /* terminate it */
+  ns[strindex]=0; /* terminate it */
   return ns;
 }
 
@@ -88,7 +88,7 @@ char *curl_unescape(const char *string, int length)
   int alloc = (length?length:(int)strlen(string))+1;
   char *ns = malloc(alloc);
   unsigned char in;
-  int index=0;
+  int strindex=0;
   unsigned int hex;
  
   if( !ns ) {
@@ -112,10 +112,10 @@ char *curl_unescape(const char *string, int length)
       alloc-=2;
     }
     
-    ns[index++] = in;
+    ns[strindex++] = in;
     string++;
   }
-  ns[index]=0; /* terminate it */
+  ns[strindex]=0; /* terminate it */
   return ns;
 }
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.40 2004-01-22 13:11:35 bagder Exp $
+ * $Id: file.c,v 1.41 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -81,6 +81,7 @@
 #include "progress.h"
 #include "sendf.h"
 #include "escape.h"
+#include "file.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.33 2004-01-07 09:19:35 bagder Exp $
+ * $Id: getinfo.c,v 1.34 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -26,6 +26,7 @@
 #include <curl/curl.h>
 
 #include "urldata.h"
+#include "getinfo.h"
 
 #include <stdio.h>
 #include <string.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.28 2004-01-16 07:09:28 bagder Exp $
+ * $Id: if2ip.c,v 1.29 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -71,6 +71,8 @@
 #define	IOCTL_3_ARGS
 #include <inet.h>
 #endif
+
+#include "if2ip.h"
 
 /* The last #include file should be: */
 #ifdef CURLDEBUG

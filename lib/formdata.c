@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.51 2004-01-07 09:19:35 bagder Exp $
+ * $Id: formdata.c,v 1.52 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -118,6 +118,9 @@ Content-Disposition: form-data; name="FILECONTENT"
 
 #include <time.h>
 
+#ifndef CURL_OLDSTYLE 
+#define CURL_OLDSTYLE 1 /* enable deprecated prototype for curl_formparse */
+#endif
 #include <curl/curl.h>
 #include "formdata.h"
 

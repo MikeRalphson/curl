@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.10 2004-01-16 09:17:05 bagder Exp $
+ * $Id: content_encoding.c,v 1.11 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -32,6 +32,7 @@
 #include <curl/curl.h>
 #include <curl/types.h>
 #include "sendf.h"
+#include "content_encoding.h"
 
 #define DSIZ 0x10000             /* buffer size for decompressed data */
 

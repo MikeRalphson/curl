@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.22 2004-01-07 09:19:35 bagder Exp $
+ * $Id: getenv.c,v 1.23 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -34,6 +34,8 @@
 #ifdef VMS
 #include <unixlib.h>
 #endif
+
+#include <curl/curl.h>
 
 #ifdef CURLDEBUG
 #include "memdebug.h"

@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.29 2004-01-22 12:45:50 bagder Exp $
+ * $Id: mprintf.c,v 1.30 2004-01-29 13:56:45 bagder Exp $
  *
  *************************************************************************
  *
@@ -39,6 +39,8 @@
 #include <string.h>
 
 #include <curl/curl.h> /* for the curl_off_t type */
+
+#include <curl/mprintf.h>
 
 #ifndef SIZEOF_LONG_DOUBLE
 #define SIZEOF_LONG_DOUBLE 0

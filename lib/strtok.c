@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtok.c,v 1.12 2004-01-07 09:19:35 bagder Exp $
+ * $Id: strtok.c,v 1.13 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -26,6 +26,8 @@
 #ifndef HAVE_STRTOK_R
 #include <stddef.h>
 #include <string.h>
+
+#include "strtok.h"
 
 char *
 Curl_strtok_r(char *ptr, const char *sep, char **end)

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.69 2004-01-15 09:54:30 bagder Exp $
+ * $Id: connect.c,v 1.70 2004-01-29 13:56:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -76,6 +76,7 @@
 #include "urldata.h"
 #include "sendf.h"
 #include "if2ip.h"
+#include "connect.h"
 
 /* The last #include file should be: */
 #ifdef CURLDEBUG
