@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.405 2004-08-10 13:21:32 bagder Exp $
+ * $Id: url.c,v 1.406 2004-08-16 13:25:30 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3346,14 +3346,6 @@ static CURLcode SetupConnection(struct connectdata *conn,
       if(!conn->allocptr.uagent)
         return CURLE_OUT_OF_MEMORY;
     }
-  }
-
-  if(data->set.encoding) {
-    Curl_safefree(conn->allocptr.accept_encoding);
-    conn->allocptr.accept_encoding =
-      aprintf("Accept-Encoding: %s\015\012", data->set.encoding);
-    if(!conn->allocptr.accept_encoding)
-      return CURLE_OUT_OF_MEMORY;
   }
 
   conn->bytecount = 0;

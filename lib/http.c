@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.240 2004-08-16 07:24:25 bagder Exp $
+ * $Id: http.c,v 1.241 2004-08-16 13:25:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1324,6 +1324,15 @@ CURLcode Curl_http(struct connectdata *conn)
 
   if(data->set.cookie && !checkheaders(data, "Cookie:"))
     addcookies = data->set.cookie;
+
+  if(!checkheaders(data, "Accept-Encoding:") &&
+     data->set.encoding) {
+    Curl_safefree(conn->allocptr.accept_encoding);
+    conn->allocptr.accept_encoding =
+      aprintf("Accept-Encoding: %s\015\012", data->set.encoding);
+    if(!conn->allocptr.accept_encoding)
+      return CURLE_OUT_OF_MEMORY;
+  }
 
   if(!conn->bits.upload_chunky && (httpreq != HTTPREQ_GET)) {
     /* not a chunky transfer yet, but data is to be sent */
