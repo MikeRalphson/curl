@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.40 2004-03-03 14:46:37 bagder Exp $
+# $Id: testcurl.sh,v 1.41 2004-03-09 11:24:36 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.40 $'
+version='$Revision: 1.41 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -180,6 +180,11 @@ cd $CURLDIR
 
 # Do the CVS thing, or not...
 if [ $CVS -eq 1 ]; then
+
+  # this is a temporary fix to make things work again, remove later
+  log "remove ares/aclocal.m4"
+  rm -f ares/aclocal.m4
+
   log "update from CVS"
 
   cvsup() {
