@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.41 2002-08-30 07:50:59 bagder Exp $
+# $Id: Makefile.am,v 1.42 2002-08-30 11:02:49 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -72,5 +72,5 @@ $(srcdir)/getdate.c: getdate.y
 
 install-data-hook:
 	@if test -n "@CURL_CA_BUNDLE@"; then \
-	  @INSTALL_DATA@ ca-bundle.crt @CURL_CA_BUNDLE@; \
+	  @INSTALL_DATA@ ca-bundle.crt $(DESTDIR)@CURL_CA_BUNDLE@; \
         fi
