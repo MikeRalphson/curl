@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.135 2002-12-09 15:37:59 bagder Exp $
+ * $Id: urldata.h,v 1.136 2002-12-09 16:05:58 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -165,6 +165,8 @@ struct HTTP {
   /* For FORM posting */
   struct Form form;
   struct Curl_chunker chunk;
+
+  char *postdata; /* for regular POSTs */
 };
 
 /****************************************************************************
