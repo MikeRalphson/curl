@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.134 2004-06-17 08:06:03 bagder Exp $
+# $Id: runtests.pl,v 1.135 2004-06-22 07:09:47 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1161,8 +1161,22 @@ sub singletest {
     }
 
     if(@protocol) {
-        # verify the sent request
-        my @out = loadarray($SERVERIN);
+        my @out;
+        my $retry = 5;
+
+        # Verify the sent request. Sometimes, like in test 513 on some hosts,
+        # curl will return back faster than the server writes down the request
+        # to its file, so we might need to wait here for a while to see if the
+        # file gets written a bit later.
+
+        while($retry--) {
+            @out = loadarray($SERVERIN);
+
+            if(!$out[0]) {
+                # nothing there yet, wait a while and try again
+                sleep(1);
+            }
+        }
 
         # what to cut off from the live protocol sent by curl
         my @strip = getpart("verify", "strip");
