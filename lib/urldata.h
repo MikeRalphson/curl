@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.33 $
- * $Date: 2000-11-20 08:53:21 $
+ * $Revision: 1.34 $
+ * $Date: 2000-11-22 12:57:16 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -250,6 +250,8 @@ struct Progress {
   double t_connect;
   double t_pretransfer;
   int httpcode;
+  time_t filetime; /* If requested, this is might get set. It may be 0 if
+                      the time was unretrievable */
 
 #define CURR_TIME 5
 
@@ -287,6 +289,7 @@ struct FTP {
 };
 
 struct Configbits {
+  bool get_filetime;
   bool tunnel_thru_httpproxy;
   bool ftp_append;
   bool ftp_ascii;
