@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.16 $
- * $Date: 2000-07-28 07:55:21 $
+ * $Revision: 1.17 $
+ * $Date: 2000-07-29 22:21:10 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -61,6 +61,7 @@
 #endif
 #include <netinet/in.h>
 #include <sys/time.h>
+
 #include <sys/resource.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -360,7 +361,18 @@ CURLcode http(struct connectdata *conn)
     if(data->timecondition) {
       struct tm *thistime;
 
+#ifdef HAVE_LOCALTIME_R
+      extern struct tm *localtime_r(time_t *, struct tm *);
+      /* thread-safe version */
+      struct tm keeptime;
+      thistime = localtime_r(&data->timevalue, &keeptime);
+#else
       thistime = localtime(&data->timevalue);
+#endif
+      if(NULL == thistime) {
+        failf(data, "localtime() failed!");
+        return CURLE_OUT_OF_MEMORY;
+      }
 
 #ifdef HAVE_STRFTIME
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */

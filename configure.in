@@ -1,8 +1,8 @@
-dnl $Id: configure.in,v 1.18 2000-07-26 09:30:55 bagder Exp $
+dnl $Id: configure.in,v 1.19 2000-07-29 22:21:10 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
-AM_INIT_AUTOMAKE(curl,"7.0.8beta")
+AM_INIT_AUTOMAKE(curl,"7.0.10beta")
 AM_PROG_LIBTOOL
 
 dnl
@@ -287,6 +287,7 @@ AC_CHECK_FUNCS( socket \
                 gethostbyname_r \
                 gethostbyaddr \
                 gethostbyaddr_r \
+                localtime_r \
                 getservbyname \
                 gettimeofday \
                 inet_addr \
