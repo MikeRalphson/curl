@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.256 2004-05-26 08:54:36 bagder Exp $
+ * $Id: ftp.c,v 1.257 2004-06-02 11:34:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2564,7 +2564,7 @@ CURLcode Curl_ftp_disconnect(struct connectdata *conn)
  *
  * Calls failf()
  */
-CURLcode ftp_mkd(struct connectdata *conn, char *path)
+static CURLcode ftp_mkd(struct connectdata *conn, char *path)
 {
   CURLcode result=CURLE_OK;
   int ftpcode; /* for ftp status */
