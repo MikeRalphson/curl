@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.259 2003-02-24 14:50:20 bagder Exp $
+ * $Id: url.c,v 1.260 2003-02-28 15:50:05 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -83,8 +83,12 @@
 #error "We can't compile without socket() support!"
 #endif
 
+
 #endif
 
+#ifdef HAVE_OPENSSL_ENGINE_H
+#include <openssl/engine.h>
+#endif
 #include "urldata.h"
 #include "netrc.h"
 
