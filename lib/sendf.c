@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.60 2003-03-11 19:07:41 bagder Exp $
+ * $Id: sendf.c,v 1.61 2003-03-11 19:12:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -274,7 +274,7 @@ CURLcode Curl_write(struct connectdata *conn, int sockfd,
          may be EWOULDBLOCK or on some systems EAGAIN when it returned
          due to its inability to send off data without blocking. We
          therefor treat both error codes the same here */
-      if((EWOULDBLOCK == errno) || ((EAGAIN == errno))
+      if((EWOULDBLOCK == errno) || (EAGAIN == errno))
 #endif
       {
         /* this is just a case of EWOULDBLOCK */
