@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.172 2003-05-09 07:39:50 bagder Exp $
+ * $Id: main.c,v 1.173 2003-05-12 12:45:57 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2952,7 +2952,7 @@ operate(struct Configurable *config, int argc, char *argv[])
 
       /* new in curl 7.10 */
       curl_easy_setopt(curl, CURLOPT_ENCODING, 
-                       (config->encoding) ? "deflate, gzip" : NULL);
+                       (config->encoding) ? "" : NULL);
 
       res = curl_easy_perform(curl);
         
