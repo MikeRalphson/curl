@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.61 2003-08-05 15:22:15 bagder Exp $
+# $Id: Makefile.am,v 1.62 2003-08-06 22:14:16 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -90,8 +90,7 @@ $(srcdir)/getdate.c: getdate.y
 	  $(YACC) $(YFLAGS) getdate.y; \
 	  mv -f y.tab.c getdate.c
 
-$(srcdir)/ca-bundle.h: Makefile.in Makefile
-	cd $(srcdir) && \
+$(top_builddir)/ca-bundle.h: Makefile.in Makefile
 	echo "/* The file is generated automaticly */" > $@
 if CABUNDLE
 	echo '#define CURL_CA_BUNDLE @CURL_CA_BUNDLE@' >> $@
@@ -108,4 +107,5 @@ install-data-hook:
 # this hook is mainly for non-unix systems to build even if configure
 # isn't run
 dist-hook:
+	chmod 0666 $(distdir)/ca-bundle.h
 	echo "/* ca bundle path set in here*/" > $(distdir)/ca-bundle.h
