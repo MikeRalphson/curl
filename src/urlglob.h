@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.h,v 1.7 2001-01-03 09:29:34 bagder Exp $
+ * $Id: urlglob.h,v 1.8 2001-01-08 07:37:44 bagder Exp $
  *****************************************************************************/
 typedef enum {UPTSet=1,UPTCharRange,UPTNumRange} URLPatternType;
 
@@ -50,6 +50,7 @@ typedef struct {
   int size;
   int urllen;
   char *glob_buffer;
+  char beenhere;
 } URLGlob;
 
 int glob_url(URLGlob**, char*, int *);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.11 2001-01-03 09:29:34 bagder Exp $
+ * $Id: urlglob.c,v 1.12 2001-01-08 07:37:44 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -213,6 +213,7 @@ int glob_url(URLGlob** glob, char* url, int *urlnum)
   glob_expand->size = 0;
   glob_expand->urllen = strlen(url);
   glob_expand->glob_buffer = glob_buffer;
+  glob_expand->beenhere=0;
   *urlnum = glob_word(glob_expand, url, 1);
   *glob = glob_expand;
   return CURLE_OK;
@@ -240,15 +241,14 @@ void glob_cleanup(URLGlob* glob)
 
 char *next_url(URLGlob *glob)
 {
-  static int beenhere = 0;
   char *buf = glob->glob_buffer;
   URLPattern *pat;
   char *lit;
   signed int i;
   int carry;
 
-  if (!beenhere)
-    beenhere = 1;
+  if (!glob->beenhere)
+    glob->beenhere = 1;
   else {
     carry = 1;
 
