@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.23 2005-03-15 07:35:36 bagder Exp $
+# $Id: testcurl.pl,v 1.24 2005-03-15 12:13:37 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -28,10 +28,11 @@
 
 # testcurl.pl is the master script to use for automatic testing of CVS-curl.
 # This is written for the purpose of being run from a crontab job or similar
-# at a regular interval. The output will be suitable to be mailed automaticly
-# to "curl-autocompile@haxx.se" to be dealt with automatically.  The most
-# current build status (with a resonable backlog) will be published on the
-# curl site, at http://curl.haxx.se/auto/
+# at a regular interval. The output is suitable to be mailed to
+# curl-autocompile@haxx.se to be dealt with automatically (make sure the
+# subject includes the word "autobuild" as the mail gets silently discarded
+# otherwise).  The most current build status (with a resonable backlog) will
+# be published on the curl site, at http://curl.haxx.se/auto/
 
 # USAGE:
 # testcurl.pl [options] [curl-daily-name] > output
@@ -65,7 +66,7 @@ use vars qw($name $email $desc $confopts $setupfile $mktarball $nocvsup
             $crosscompile);
 
 # version of this script
-$version='$Revision: 1.23 $';
+$version='$Revision: 1.24 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
