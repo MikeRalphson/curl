@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.259 2005-01-21 09:32:33 bagder Exp $
+ * $Id: http.c,v 1.260 2005-02-06 12:43:40 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1274,7 +1274,6 @@ CURLcode Curl_http_done(struct connectdata *conn,
 {
   struct SessionHandle *data;
   struct HTTP *http;
-  (void)status; /* no use for us */
 
   data=conn->data;
   http=conn->proto.http;
@@ -1291,7 +1290,7 @@ CURLcode Curl_http_done(struct connectdata *conn,
 
     free(buff->buffer);
     free(buff);
-    http->send_buffer = NULL; /* cleaer the pointer */
+    http->send_buffer = NULL; /* clear the pointer */
   }
 
   if(HTTPREQ_POST_FORM == data->set.httpreq) {
@@ -1306,6 +1305,9 @@ CURLcode Curl_http_done(struct connectdata *conn,
   }
   else if(HTTPREQ_PUT == data->set.httpreq)
     conn->bytecount = http->readbytecount + http->writebytecount;
+
+  if (status != CURLE_OK)
+    return (status);
 
   if(!conn->bits.retry &&
      ((http->readbytecount +
