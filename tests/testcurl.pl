@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.12 2004-07-05 23:07:59 gknauf Exp $
+# $Id: testcurl.pl,v 1.13 2004-07-05 23:35:49 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.12 $';
+$version='$Revision: 1.13 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -357,14 +357,14 @@ if ($gnulikebuild) {
 }
 
 logit "display lib/config$confsuffix.h";
-open(F, "lib/config$confsuffix.h") or die;
+open(F, "lib/config$confsuffix.h") or die "lib/config$confsuffix.h: $!";
 while (<F>) {
   print if /^ *#/;
 }
 close(F);
 
 logit "display src/config$confsuffix.h";
-open(F, "src/config$confsuffix.h") or die;
+open(F, "src/config$confsuffix.h") or die "src/config$confsuffix.h: $!";
 while (<F>) {
   print if /^ *#/;
 }
