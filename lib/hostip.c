@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-29 22:51:13 $
+ * $Revision: 1.4 $
+ * $Date: 2000-05-30 22:27:39 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -120,10 +120,22 @@ struct hostent *GetHost(struct UrlData *data,
   else {
     int h_errnop;
     memset(buf,0,buf_size);	/* workaround for gethostbyname_r bug in qnx nto */
+#if (GETHOSTBYNAME_R_NARGS < 6)
+    /* Solaris, IRIX and more */
     if ((h = gethostbyname_r(hostname,
                              (struct hostent *)buf,buf +
                              sizeof(struct hostent),buf_size -
-                             sizeof(struct hostent),&h_errnop)) == NULL ) {
+                             sizeof(struct hostent),&h_errnop)) == NULL )
+#else
+      /* Linux */
+      if( gethostbyname_r(hostname,
+                          (struct hostent *)buf,buf +
+                          sizeof(struct hostent),buf_size -
+                          sizeof(struct hostent),
+                          &h, /* DIFFERENCE */
+                          &h_errnop))
+#endif
+      {
       infof(data, "gethostbyname_r(2) failed for %s\n", hostname);
     }
 #else
