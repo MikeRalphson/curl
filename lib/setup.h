@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.60 2004-03-21 22:44:52 bagder Exp $
+ * $Id: setup.h,v 1.61 2004-03-26 13:47:46 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -164,6 +164,17 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN  /* Prevent including <winsock*.h> in <windows.h> */
+#endif
+
+#if (defined(ENABLE_IPV6) || defined(CURLDEBUG)) && defined(_MSC_VER) && \
+    (!defined(_WIN32_WINNT) || _WIN32_WINNT < 0x0500)
+/*
+ * Needed to pull in the real getaddrinfo() and not the inline version
+ * in <wspiAPI.H> which doesn't support IPv6 (IPv4 only). <wspiAPI.H> is
+ * included from <ws2tcpip.h> for <= 0x0500 SDKs.
+ */
+#undef  _WIN32_WINNT
+#define _WIN32_WINNT 0x0501
 #endif
 
 #include <winsock2.h>        /* required by telnet.c */
