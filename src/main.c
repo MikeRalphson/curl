@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.253 2004-04-14 12:00:53 bagder Exp $
+ * $Id: main.c,v 1.254 2004-04-22 15:26:30 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -767,7 +767,7 @@ static int formparse(char *input,
   contents = malloc(strlen(input));
   contents[0] = '\000';
  
-  if(1 <= sscanf(input, "%255[^=]=%[^\n]", name, contents)) {
+  if(1 <= sscanf(input, "%255[^=]=%s", name, contents)) {
     /* the input was using the correct format */
     contp = contents;
 
