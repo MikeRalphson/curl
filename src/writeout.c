@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.11 2002-05-10 14:37:39 bagder Exp $
+ * $Id: writeout.c,v 1.12 2002-05-17 07:57:13 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -26,6 +26,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif
