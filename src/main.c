@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.45 $
- * $Date: 2000-11-17 14:03:58 $
+ * $Revision: 1.46 $
+ * $Date: 2000-11-17 15:32:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -365,7 +365,6 @@ static char *my_get_token(const char *line);
 static void GetStr(char **string,
 		   char *value)
 {
-  fprintf(stderr, "called\n");
   if(*string)
     free(*string);
   if(value && *value)
@@ -1404,7 +1403,7 @@ int main(int argc, char *argv[])
     return res;
 
   /* save outfile pattern befor expansion */
-  outfiles = strdup(config.outfile);
+  outfiles = config.outfile?strdup(config.outfile):NULL;
 
   if (!outfiles && !config.remotefile && urlnum > 1) {
 #ifdef CURL_SEPARATORS
