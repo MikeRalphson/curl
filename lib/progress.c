@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.54 2004-03-02 07:25:39 bagder Exp $
+ * $Id: progress.c,v 1.55 2004-03-02 09:31:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -60,11 +60,11 @@ static char *max5data(double bytes, char *max5)
 #define ONE_GIGABYTE (1024*1024*1024)
 
   if(bytes < 100000) {
-    sprintf(max5, "%5Od", (curl_off_t)bytes);
+    sprintf(max5, "%5" FORMAT_OFF_T, (curl_off_t)bytes);
     return max5;
   }
   if(bytes < (10000*ONE_KILOBYTE)) {
-    sprintf(max5, "%4Odk", (curl_off_t)bytes/ONE_KILOBYTE);
+    sprintf(max5, "%4" FORMAT_OFF_T "k", (curl_off_t)bytes/ONE_KILOBYTE);
     return max5;
   }
   if(bytes < (100*ONE_MEGABYTE)) {
@@ -74,13 +74,13 @@ static char *max5data(double bytes, char *max5)
   }
 #if SIZEOF_CURL_OFF_T > 4
   if((curl_off_t)bytes < ((curl_off_t)10000*ONE_MEGABYTE)) {
-    sprintf(max5, "%4OdM", (curl_off_t)bytes/ONE_MEGABYTE);
+    sprintf(max5, "%4" FORMAT_OFF_T "M", (curl_off_t)bytes/ONE_MEGABYTE);
     return max5;
   }
   /* 10000 MB - 8589934587 GB !! */
   sprintf(max5, "%4.1fG", bytes/ONE_GIGABYTE);
 #else
-  sprintf(max5, "%4OdM", (curl_off_t)bytes/ONE_MEGABYTE);
+  sprintf(max5, "%4" FORMAT_OFF_T "M", (curl_off_t)bytes/ONE_MEGABYTE);
 #endif
 
   return max5;
@@ -240,7 +240,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
     if (!data->progress.callback) {
       if(conn->resume_from)
         fprintf(data->set.err,
-		"** Resuming transfer from byte position " FORMAT_OFF_T
+		"** Resuming transfer from byte position %" FORMAT_OFF_T
                 "\n",
                 conn->resume_from);
       fprintf(data->set.err,

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.49 2004-03-02 07:25:08 bagder Exp $
+ * $Id: setup.h,v 1.50 2004-03-02 09:31:19 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -82,11 +82,10 @@ typedef unsigned char bool;
 
 /* We set up our internal prefered (CURL_)FORMAT_OFF_T here */
 #if defined(SIZEOF_CURL_OFF_T) && (SIZEOF_CURL_OFF_T > 4)
-#define FORMAT_OFF_T "%lld"
+#define FORMAT_OFF_T "lld"
 #else
-#define FORMAT_OFF_T "%ld"
+#define FORMAT_OFF_T "ld"
 #endif
-
 
 #ifdef NEED_REENTRANT
 /* Solaris machines needs _REENTRANT set for a few function prototypes and

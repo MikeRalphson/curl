@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.45 2004-03-02 07:25:39 bagder Exp $
+ * $Id: file.c,v 1.46 2004-03-02 09:31:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -191,7 +191,7 @@ CURLcode Curl_file(struct connectdata *conn)
      date. */
   if(data->set.no_body && data->set.include_header && fstated) {
     CURLcode result;
-    sprintf(buf, "Content-Length: " FORMAT_OFF_T "\r\n", expected_size);
+    sprintf(buf, "Content-Length: %" FORMAT_OFF_T "\r\n", expected_size);
     result = Curl_client_write(data, CLIENTWRITE_BOTH, buf, 0);
     if(result)
       return result;
