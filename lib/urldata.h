@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.87 2001-11-02 22:30:34 bagder Exp $
+ * $Id: urldata.h,v 1.88 2001-11-20 15:00:50 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -374,7 +374,7 @@ struct Progress {
   int width; /* screen width at download start */
   int flags; /* see progress.h */
 
-  long timespent;
+  double timespent;
 
   double dlspeed;
   double ulspeed;
@@ -382,6 +382,7 @@ struct Progress {
   double t_nslookup;
   double t_connect;
   double t_pretransfer;
+  double t_starttransfer;
 
   struct timeval start;
   struct timeval t_startsingle;

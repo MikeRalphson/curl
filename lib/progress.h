@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.h,v 1.13 2001-08-30 22:48:34 bagder Exp $
+ * $Id: progress.h,v 1.14 2001-11-20 15:00:50 bagder Exp $
  *****************************************************************************/
 
 #include "timeval.h"
@@ -31,6 +31,7 @@ typedef enum {
   TIMER_NAMELOOKUP,
   TIMER_CONNECT,
   TIMER_PRETRANSFER,
+  TIMER_STARTTRANSFER,
   TIMER_POSTRANSFER,
   TIMER_STARTSINGLE,
   TIMER_LAST /* must be last */

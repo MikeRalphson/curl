@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.69 2001-11-07 14:13:29 bagder Exp $
+ * $Id: transfer.c,v 1.70 2001-11-20 15:00:50 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -305,6 +305,8 @@ Transfer(struct connectdata *c_conn)
         }
 	break;
       default:
+        if ((bytecount == 0) && (writebytecount == 0))
+          Curl_pgrsTime(data, TIMER_STARTTRANSFER);
         if((keepon & KEEP_READ) && FD_ISSET(conn->sockfd, &readfd)) {
           /* read! */
           urg = Curl_read(conn, conn->sockfd, buf, BUFSIZE -1, &nread);
