@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.1 2004-03-23 16:07:02 bagder Exp $
+# $Id: testcurl.pl,v 1.2 2004-03-24 10:52:21 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -50,7 +50,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog $buildl
 use vars qw($name $email $desc $confopts);
 
 # version of this script
-$version='$Revision: 1.1 $';
+$version='$Revision: 1.2 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -299,7 +299,7 @@ if ($gnulikebuild) {
 }
 
 # change to build dir
-chdir "../$build";
+chdir "$pwd/$build";
 
 if ($gnulikebuild) {
   # run configure script
@@ -347,7 +347,7 @@ if (grepfile("define USE_ARES", $gnulikebuild ? "lib/config.h" : "lib/config-win
   }
 
   # cd back to the curl build dir
-  chdir "..";
+  chdir "$pwd/$build";
 }
 
 logit "run make";
