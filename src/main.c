@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.103 2001-11-29 19:42:51 bagder Exp $
+ * $Id: main.c,v 1.104 2001-11-30 09:26:06 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1464,7 +1464,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
     }
     hit = -1;
 
-  } while(!singleopt && *++parse && !*usedarg);
+  } while(!longopt && !singleopt && *++parse && !*usedarg);
 
   return PARAM_OK;
 }
