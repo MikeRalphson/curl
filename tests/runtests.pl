@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.95 2003-10-24 13:00:19 bagder Exp $
+# $Id: runtests.pl,v 1.96 2003-10-27 06:40:48 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -156,8 +156,8 @@ sub torture {
             $testcmd = "gdb $CURL -x log/gdbcmd";
         }
 
-        print "Torture test $c starting up\n",
-        " CMD: $testcmd\n";
+        print "Torture test $c:\n";
+        print " CMD: $testcmd\n" if($verbose);
         
         # memanalyze -v is our friend, get the number of allocations made
         my $count;
