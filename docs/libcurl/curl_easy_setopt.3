@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.87 2004-06-03 11:19:35 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.88 2004-06-09 08:05:23 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "12 Mar 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -695,10 +695,11 @@ want. It should be in the format "X-Y", where X or Y may be left out. HTTP
 transfers also support several intervals, separated with commas as in
 \fI"X-Y,N-M"\fP. Using this kind of multiple intervals will cause the HTTP
 server to send the response document in pieces (using standard MIME separation
-techniques).
+techniques). Pass a NULL to this option to disable the use of ranges.
 .IP CURLOPT_RESUME_FROM
 Pass a long as parameter. It contains the offset in number of bytes that you
-want the transfer to start from.
+want the transfer to start from. Set this option to 0 to make the transfer
+start from the beginning (effectively disabling resume).
 .IP CURLOPT_RESUME_FROM_LARGE
 Pass an curl_off_t as parameter. It contains the offset in number of bytes
 that you want the transfer to start from. (Added in 7.11.0)
