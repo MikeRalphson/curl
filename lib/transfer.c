@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.19 2001-03-12 13:58:03 bagder Exp $
+ * $Id: transfer.c,v 1.20 2001-03-12 15:21:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -577,9 +577,9 @@ Transfer(struct connectdata *c_conn)
                 /* we're done reading chunks! */
                 keepon &= ~KEEP_READ; /* read no more */
 
-                /* There are now possibly bytes at the end of the str buffer
-                   that weren't written to the client, but we don't care
-                   about them right now. */
+                /* There are now possibly N number of bytes at the end of the
+                   str buffer that weren't written to the client, but we don't
+                   care about them right now. */
               }
               /* If it returned OK, we just keep going */
             }
