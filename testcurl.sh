@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.39 2004-03-02 09:50:37 bagder Exp $
+# $Id: testcurl.sh,v 1.40 2004-03-03 14:46:37 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.39 $'
+version='$Revision: 1.40 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -274,6 +274,10 @@ if [ -f src/curl ]; then
 else
   die "src/curl was not created"
 fi
+
+log "display curl --version output"
+
+./src/curl --version
 
 log "run make test-full"
 make test-full 2>&1 | sed -e "s:$pwd::g" | tee $buildlog
