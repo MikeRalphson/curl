@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.187 2004-02-09 12:46:41 bagder Exp $
+ * $Id: http.c,v 1.188 2004-02-23 08:22:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -127,7 +127,7 @@ static CURLcode Curl_output_basic(struct connectdata *conn)
 
   sprintf(data->state.buffer, "%s:%s", conn->user, conn->passwd);
   if(Curl_base64_encode(data->state.buffer, strlen(data->state.buffer),
-                        &authorization) >= 0) {
+                        &authorization) > 0) {
     if(conn->allocptr.userpwd)
       free(conn->allocptr.userpwd);
     conn->allocptr.userpwd = aprintf( "Authorization: Basic %s\015\012",
@@ -147,7 +147,7 @@ static CURLcode Curl_output_basic_proxy(struct connectdata *conn)
   sprintf(data->state.buffer, "%s:%s",
           conn->proxyuser, conn->proxypasswd);
   if(Curl_base64_encode(data->state.buffer, strlen(data->state.buffer),
-                        &authorization) >= 0) {
+                        &authorization) > 0) {
     Curl_safefree(conn->allocptr.proxyuserpwd);
     conn->allocptr.proxyuserpwd =
       aprintf("Proxy-authorization: Basic %s\015\012", authorization);
