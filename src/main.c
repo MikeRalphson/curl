@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.135 2002-06-15 21:02:11 bagder Exp $
+ * $Id: main.c,v 1.136 2002-06-15 21:08:07 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -367,7 +367,7 @@ static void help(void)
        "    --krb4 <level>  Enable krb4 with specified security level (F)\n"
        " -K/--config        Specify which config file to read\n"
        " -l/--list-only     List only names of an FTP directory (F)\n"
-       "   /--limit-rate <rate> Limit how fast transfers to allow");
+       "    --limit-rate <rate> Limit how fast transfers to allow");
   puts(" -L/--location      Follow Location: hints (H)\n"
        " -m/--max-time <seconds> Maximum time allowed for the transfer\n"
        " -M/--manual        Display huge help text\n"
