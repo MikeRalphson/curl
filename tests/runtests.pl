@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.91 2003-08-14 12:59:54 bagder Exp $
+# $Id: runtests.pl,v 1.92 2003-09-12 15:41:14 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -86,6 +86,19 @@ chomp($pwd = `pwd`);
 # enable memory debugging if curl is compiled with it
 $ENV{'CURL_MEMDEBUG'} = 1;
 $ENV{'HOME'}=$pwd;
+
+##########################################################################
+# Clear all possible '*_proxy' environment variables for various protocols
+# to prevent them to interfere with our testing!
+
+my $protocol;
+foreach $protocol (('ftp', 'http', 'ftps', 'https', 'gopher', 'no')) {
+    my $proxy = "${protocol}_proxy";
+    # clear lowercase version
+    $ENV{$proxy}=undef;
+    # clear uppercase version
+    $ENV{uc($proxy)}=undef;
+}
 
 #######################################################################
 # Return the pid of the server as found in the given pid file
