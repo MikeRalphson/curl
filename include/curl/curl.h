@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.12 $
- * $Date: 2000-07-25 07:38:08 $
+ * $Revision: 1.13 $
+ * $Date: 2000-07-25 12:21:22 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -76,6 +76,7 @@ struct HttpPost {
 			    link should link to following files */
   long flags;     /* as defined below */
 #define HTTPPOST_FILENAME (1<<0) /* specified content is a file name */
+#define HTTPPOST_READFILE (1<<1) /* specified content is a file name */
 };
 
 typedef int (*curl_progress_callback)(void *clientp,
