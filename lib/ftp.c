@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.27 $
- * $Date: 2000-10-30 11:53:40 $
+ * $Revision: 1.28 $
+ * $Date: 2000-11-10 11:28:01 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1062,8 +1062,8 @@ CURLcode _ftp(struct connectdata *conn)
           data->infilesize -= data->resume_from;
 
           if(data->infilesize <= 0) {
-            infof(data, "File already completely uploaded\n");
-            return CURLE_OK;
+            failf(data, "File already completely uploaded\n");
+            return CURLE_FTP_COULDNT_STOR_FILE;
           }
         }
         /* we've passed, proceed as normal */
