@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.350 2004-03-12 08:55:51 bagder Exp $
+ * $Id: url.c,v 1.351 2004-03-25 13:37:19 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1301,6 +1301,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set the maximum size of a file to download.
      */
     data->set.max_filesize = va_arg(param, curl_off_t);
+    break;
+
+  case CURLOPT_TCP_NODELAY:
+    /*
+     * Enable or disable TCP_NODELAY, which will disable/enable the Nagle
+     * algorithm
+     */
+    data->tcp_nodelay = va_arg(param, long);
     break;
 
   default:

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.206 2004-03-24 22:45:37 bagder Exp $
+ * $Id: urldata.h,v 1.207 2004-03-25 13:37:19 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -908,6 +908,9 @@ struct SessionHandle {
 #if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
   ENGINE*  engine;
 #endif /* USE_SSLEAY */
+
+  /* This tells CreateConnection() whether to enable TCP_NODELAY or not */
+  int tcp_nodelay;
 };
 
 #define LIBCURL_NAME "libcurl"

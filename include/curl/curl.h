@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.245 2004-03-24 22:53:42 bagder Exp $
+ * $Id: curl.h,v 1.246 2004-03-25 13:37:19 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -761,6 +761,9 @@ typedef enum {
 
   /* The _LARGE version of the standard POSTFIELDSIZE option */
   CINIT(POSTFIELDSIZE_LARGE, OFF_T, 120),
+
+  /* Enable/disable the TCP Nagle algorithm */
+  CINIT(TCP_NODELAY, LONG, 121),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
