@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.32 2004-12-15 10:33:51 bagder Exp $
+ * $Id: setup.h,v 1.33 2004-12-15 14:05:07 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -69,10 +69,9 @@
 #define FALSE 0
 #endif
 
-#ifndef __cplusplus
-#ifndef typedef_bool
+#if !defined(__cplusplus) && !defined(__BEOS__) && !defined(typedef_bool)
 typedef char bool;
-#endif
+#define typedef_bool
 #endif
 
 #ifndef OS
