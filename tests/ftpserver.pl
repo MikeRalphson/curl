@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.16 2001-04-24 21:09:53 bagder Exp $
+# $Id: ftpserver.pl,v 1.17 2001-05-14 12:09:47 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to excersive curl, it is not meant to become a fully working
@@ -45,7 +45,7 @@ listen(Server,SOMAXCONN) || die "listen: $!";
 
 #print "FTP server started on port $port\n";
 
-open(PID, ">.ftpserver.pid");
+open(PID, ">.ftp.pid");
 print PID $$;
 close(PID);
 
