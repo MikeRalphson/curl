@@ -29,7 +29,7 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.1 $
+ * $Revision: 1.1.1.1 $
  * $Date: 1999-12-29 14:21:31 $
  * $Author: bagder $
  * $State: Exp $

@@ -31,7 +31,7 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/upload.h,v $
- * $Revision: 1.1 $
+ * $Revision: 1.1.1.1 $
  * $Date: 1999-12-29 14:21:39 $
  * $Author: bagder $
  * $State: Exp $

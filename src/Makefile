@@ -12,7 +12,7 @@
 # PARTICULAR PURPOSE.
 
 #
-# $Id: Makefile,v 1.1 1999-12-29 14:22:27 bagder Exp $
+# $Id: Makefile,v 1.1.1.1 1999-12-29 14:22:27 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)

@@ -55,7 +55,7 @@ diff -cr curl-6.3.1-org/configure.in curl-6.3.1/configure.in
 --- curl-6.3.1/configure.in	Thu Dec  9 14:34:36 1999
 ***************
 *** 1,7 ****
-  dnl $Id: curl_631_general.patch,v 1.1 1999-12-29 14:21:14 bagder Exp $
+  dnl $Id: curl_631_general.patch,v 1.1.1.1 1999-12-29 14:21:14 bagder Exp $
   dnl Process this file with autoconf to produce a configure script.
   AC_INIT(lib/urldata.h)
 ! AM_CONFIG_HEADER(config.h)
@@ -63,7 +63,7 @@ diff -cr curl-6.3.1-org/configure.in curl-6.3.1/configure.in
   
   dnl Checks for programs.
 --- 1,7 ----
-  dnl $Id: curl_631_general.patch,v 1.1 1999-12-29 14:21:14 bagder Exp $
+  dnl $Id: curl_631_general.patch,v 1.1.1.1 1999-12-29 14:21:14 bagder Exp $
   dnl Process this file with autoconf to produce a configure script.
   AC_INIT(lib/urldata.h)
 ! AM_CONFIG_HEADER(config.h src/config.h)

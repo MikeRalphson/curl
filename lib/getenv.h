@@ -43,7 +43,7 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/getenv.h,v $
- * $Revision: 1.1 $
+ * $Revision: 1.1.1.1 $
  * $Date: 1999-12-29 14:21:30 $
  * $Author: bagder $
  * $State: Exp $
@@ -51,8 +51,8 @@
  *
  * ------------------------------------------------------------
  * $Log: getenv.h,v $
- * Revision 1.1  1999-12-29 14:21:30  bagder
- * Initial revision
+ * Revision 1.1.1.1  1999-12-29 14:21:30  bagder
+ * new
  *
  * Revision 1.3  1999/09/06 06:59:40  dast
  * Changed email info

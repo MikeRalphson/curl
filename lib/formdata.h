@@ -44,7 +44,7 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/formdata.h,v $
- * $Revision: 1.1 $
+ * $Revision: 1.1.1.1 $
  * $Date: 1999-12-29 14:21:22 $
  * $Author: bagder $
  * $State: Exp $
@@ -52,8 +52,8 @@
  *
  * ------------------------------------------------------------
  * $Log: formdata.h,v $
- * Revision 1.1  1999-12-29 14:21:22  bagder
- * Initial revision
+ * Revision 1.1.1.1  1999-12-29 14:21:22  bagder
+ * new
  *
  * Revision 1.4  1999/09/06 06:59:40  dast
  * Changed email info

@@ -29,7 +29,7 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.1 $
+ * $Revision: 1.1.1.1 $
  * $Date: 1999-12-29 14:22:30 $
  * $Author: bagder $
  * $State: Exp $

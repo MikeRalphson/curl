@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.1 1999-12-29 14:21:30 bagder Exp $
+ * $Id: getpass.c,v 1.1.1.1 1999-12-29 14:21:30 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
