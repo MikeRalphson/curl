@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.17 $
- * $Date: 2000-05-22 14:18:58 $
+ * $Revision: 1.18 $
+ * $Date: 2000-05-22 17:20:29 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -62,6 +62,10 @@
 
 /* This is now designed to have its own local setup.h */
 #include "setup.h"
+
+#ifdef WIN32
+#include <winsock.h>
+#endif
 
 #include "version.h"
 
@@ -122,7 +126,7 @@ static void win32_cleanup(void)
   WSACleanup();
 }
 
-static UrgError win32_init(void)
+static CURLcode win32_init(void)
 {
   WORD wVersionRequested;  
   WSADATA wsaData; 
