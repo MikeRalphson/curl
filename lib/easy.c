@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.18 2001-08-15 06:51:37 bagder Exp $
+ * $Id: easy.c,v 1.19 2001-08-17 10:19:26 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -75,6 +75,7 @@
 #include "transfer.h"
 #include "ssluse.h"
 #include "url.h"
+#include "getinfo.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
