@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.21 2001-05-28 14:12:58 bagder Exp $
+# $Id: Makefile.am,v 1.22 2001-05-29 19:17:03 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -59,7 +59,7 @@ escape.c       mprintf.c      telnet.c       \
 escape.h       getpass.c      netrc.c        telnet.h       \
 getinfo.c transfer.c strequal.c strequal.h easy.c \
 security.h security.c krb4.c krb4.h memdebug.c memdebug.h inet_ntoa_r.h \
-http_chunks.c http_chunks.h
+http_chunks.c http_chunks.h strtok.c strtok.h
 
 noinst_HEADERS = setup.h transfer.h
 
