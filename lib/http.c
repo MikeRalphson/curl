@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.219 2004-05-04 07:52:53 bagder Exp $
+ * $Id: http.c,v 1.220 2004-05-04 13:39:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1430,19 +1430,22 @@ CURLcode Curl_http(struct connectdata *conn)
         char *newurl;
         
         newurl = malloc(urllen + newlen - currlen + 1);
-
-        /* copy the part before the host name */
-        memcpy(newurl, url, ptr - url);
-        /* append the new host name instead of the old */
-        memcpy(newurl + (ptr - url), conn->host.name, newlen);
-        /* append the piece after the host name */
-        memcpy(newurl + newlen + (ptr - url),
-               ptr + currlen, /* copy the trailing zero byte too */
-               urllen - (ptr-url) - currlen + 1);
-        if(data->change.url_alloc)
-          free(data->change.url);
-        data->change.url = newurl;
-        data->change.url_alloc = TRUE;
+        if(newurl) {
+          /* copy the part before the host name */
+          memcpy(newurl, url, ptr - url);
+          /* append the new host name instead of the old */
+          memcpy(newurl + (ptr - url), conn->host.name, newlen);
+          /* append the piece after the host name */
+          memcpy(newurl + newlen + (ptr - url),
+                 ptr + currlen, /* copy the trailing zero byte too */
+                 urllen - (ptr-url) - currlen + 1);
+          if(data->change.url_alloc)
+            free(data->change.url);
+          data->change.url = newurl;
+          data->change.url_alloc = TRUE;
+        }
+        else
+          return CURLE_OUT_OF_MEMORY;
       }
     }
     ppath = data->change.url;
