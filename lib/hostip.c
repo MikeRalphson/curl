@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.59 2002-04-22 13:31:16 bagder Exp $
+ * $Id: hostip.c,v 1.60 2002-04-22 23:53:49 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -333,7 +333,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
     /* This seems to be an IPv6-capable stack, use PF_UNSPEC for the widest
      * possible checks. And close the socket again.
      */
-    close(s);
+    sclose(s);
  
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = pf;
