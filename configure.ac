@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.33 2003-12-10 13:37:00 bagder Exp $
+dnl $Id: configure.ac,v 1.34 2003-12-10 15:25:49 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -849,6 +849,7 @@ AC_CHECK_HEADERS(
         sys/time.h \
         sys/select.h \
         sys/socket.h \
+        assert.h \
         unistd.h \
         malloc.h \
         stdlib.h \
