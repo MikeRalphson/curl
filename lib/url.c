@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.326 2004-01-11 22:56:37 bagder Exp $
+ * $Id: url.c,v 1.327 2004-01-22 11:54:00 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -682,7 +682,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Set to make us do HTTP POST
      */
-    data->set.httppost = va_arg(param, struct HttpPost *);
+    data->set.httppost = va_arg(param, struct curl_httppost *);
     if(data->set.httppost)
       data->set.httpreq = HTTPREQ_POST_FORM;
     break;
