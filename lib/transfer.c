@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.196 2004-01-30 12:08:18 bagder Exp $
+ * $Id: transfer.c,v 1.197 2004-01-30 12:41:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1908,6 +1908,8 @@ CURLcode Curl_perform(struct SessionHandle *data)
                to retry! */
             infof(data, "Connection reset, retrying a fresh connect\n");
             newurl = strdup(conn->data->change.url);
+
+            conn->bits.close = TRUE; /* close this connection */
           }
           else
             /*
