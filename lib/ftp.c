@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.205 2003-10-24 12:58:59 bagder Exp $
+ * $Id: ftp.c,v 1.206 2003-10-30 09:06:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2103,8 +2103,8 @@ CURLcode ftp_perform(struct connectdata *conn,
 #else
       tm = localtime((time_t *)&data->info.filetime);
 #endif
-      /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
-      strftime(buf, BUFSIZE-1, "Last-Modified: %a, %d %b %Y %H:%M:%S GMT\r\n",
+      /* format: "Tue, 15 Nov 1994 12:45:26" */
+      strftime(buf, BUFSIZE-1, "Last-Modified: %a, %d %b %Y %H:%M:%S\r\n",
                tm);
       result = Curl_client_write(data, CLIENTWRITE_BOTH, buf, 0);
       if(result)
