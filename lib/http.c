@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.13 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.14 $
+ * $Date: 2000-07-25 07:28:28 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -269,9 +269,12 @@ CURLcode http(struct connectdata *conn)
     http->sendit = getFormData(data->httppost, &http->postsize);
   }
 
-  if(!checkheaders(data, "Host:"))
-    data->ptr_host = maprintf("Host: %s\r\n", host);
-
+  if(!checkheaders(data, "Host:")) {
+    if(data->port != PORT_HTTP)
+      data->ptr_host = maprintf("Host: %s:%d\r\n", host, data->port);
+    else
+      data->ptr_host = maprintf("Host: %s\r\n", host);
+  }
 
   if(!checkheaders(data, "Pragma:"))
     http->p_pragma = "Pragma: no-cache\r\n";
