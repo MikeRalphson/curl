@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.41 $
- * $Date: 2000-10-03 11:03:55 $
+ * $Revision: 1.42 $
+ * $Date: 2000-10-03 22:04:04 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -483,9 +483,11 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
   case CURLOPT_WRITEFUNCTION:
     data->fwrite = va_arg(param, curl_write_callback);
     break;
+#if 0
   case CURLOPT_WRITEINFO:
     data->writeinfo = va_arg(param, char *);
     break;
+#endif
   case CURLOPT_READFUNCTION:
     data->fread = va_arg(param, curl_read_callback);
     break;
