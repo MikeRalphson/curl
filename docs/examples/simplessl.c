@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: simplessl.c,v 1.4 2002-11-22 07:39:15 bagder Exp $
+ * $Id: simplessl.c,v 1.5 2003-05-20 12:44:55 bagder Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
   FILE *headerfile;
 
   const char *pCertFile = "testcert.pem";
-  const char *pCACertFile="cacert.pem"
+  const char *pCACertFile="cacert.pem";
 
   const char *pKeyName;
   const char *pKeyType;
