@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.124 2004-12-13 08:34:46 bagder Exp $
+dnl $Id: configure.ac,v 1.125 2004-12-19 09:36:54 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -808,6 +808,9 @@ else
 
     if test X"$OPENSSL_ENABLED" = X"1"; then
        AC_DEFINE(USE_SSLEAY, 1, [if SSL is enabled])
+
+       dnl is there a pkcs12.h header present?
+       AC_CHECK_HEADERS(openssl/pkcs12.h)
     fi
     USE_SSLEAY="$OPENSSL_ENABLED"
     AC_SUBST(USE_SSLEAY)
