@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.82 2001-05-28 21:50:00 bagder Exp $
+ * $Id: curl.h,v 1.83 2001-05-30 08:00:29 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -573,6 +573,9 @@ typedef enum {
   CURLCLOSEPOLICY_LAST /* last, never use this */
 } curl_closepolicy;
 
+#define CURL_GLOBAL_NOT_SSL (1<<0)
+#define CURL_GLOBAL_NOTHING CURL_GLOBAL_NOT_SSL
+#define CURL_GLOBAL_DEFAULT 0
 
 #ifdef  __cplusplus
 }
