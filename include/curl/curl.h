@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.48 2001-01-29 11:36:09 bagder Exp $
+ * $Id: curl.h,v 1.49 2001-01-31 13:54:12 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -554,7 +554,7 @@ CURLcode curl_setopt(CURL *handle, CURLoption option, ...);
 CURLcode curl_close(CURL *curl); /* the opposite of curl_open() */
 
 CURLcode curl_read(CURLconnect *c_conn, char *buf, size_t buffersize,
-                   size_t *n);
+                   ssize_t *n);
 CURLcode curl_write(CURLconnect *c_conn, char *buf, size_t amount,
                     size_t *n);
 

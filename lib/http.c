@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.45 2001-01-29 07:24:20 bagder Exp $
+ * $Id: http.c,v 1.46 2001-01-31 13:54:12 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -214,7 +214,7 @@ CURLcode add_buffer(send_buffer *in, void *inptr, size_t size)
 static
 int GetLine(int sockfd, char *buf, struct connectdata *conn)
 {
-  size_t nread;
+  ssize_t nread;
   int read_rc=1;
   char *ptr;
   struct UrlData *data=conn->data;

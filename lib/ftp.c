@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.45 2001-01-25 12:17:07 bagder Exp $
+ * $Id: ftp.c,v 1.46 2001-01-31 13:54:12 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -221,7 +221,7 @@ int Curl_GetFTPResponse(int sockfd, char *buf,
                         int *ftpcode)
 {
   int nread;
-  size_t keepon=TRUE;
+  ssize_t keepon=TRUE;
   char *ptr;
   int timeout = 3600; /* in seconds */
   struct timeval interval;
