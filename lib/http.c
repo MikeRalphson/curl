@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.157 2003-09-04 13:07:09 bagder Exp $
+ * $Id: http.c,v 1.158 2003-09-11 22:21:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -312,7 +312,8 @@ CURLcode Curl_http_auth(struct connectdata *conn,
     start++;
 
 #ifdef GSSAPI
-  if (checkprefix("GSS-Negotiate", start)) {
+  if (checkprefix("GSS-Negotiate", start) ||
+      checkprefix("Negotiate", start)) {
     *availp |= CURLAUTH_GSSNEGOTIATE;
     if(data->state.authwant == CURLAUTH_GSSNEGOTIATE) {
       /* if exactly this is wanted, go */
