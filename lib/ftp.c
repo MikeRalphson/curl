@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.263 2004-07-01 07:43:20 bagder Exp $
+ * $Id: ftp.c,v 1.264 2004-07-04 21:35:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1561,7 +1561,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
      * We don't want to rely on a former host lookup that might've expired
      * now, instead we remake the lookup here and now!
      */
-    rc = Curl_resolv(conn, conn->proxy.name, conn->port, &addr);
+    rc = Curl_resolv(conn, conn->proxy.name, (int)conn->port, &addr);
     if(rc == CURLRESOLV_PENDING)
       rc = Curl_wait_for_resolv(conn, &addr);
 
