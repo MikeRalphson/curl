@@ -1,10 +1,10 @@
 #
-# $Id: Makefile.am,v 1.2 2000-01-10 23:36:15 bagder Exp $
+# $Id: Makefile.am,v 1.3 2000-05-22 14:18:58 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
 # CFLAGS = -Wall -pedantic
-CPPFLAGS = -DGLOBURL -DCURL_SEPARATORS
+#CPPFLAGS = -DGLOBURL -DCURL_SEPARATORS
 
 INCLUDES = -I$(top_srcdir)/include
 

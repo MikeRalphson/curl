@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/formdata.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -59,6 +59,8 @@
 #include "setup.h"
 #include <curl/curl.h>
 #include "formdata.h"
+
+#include "strequal.h"
 
 /* Length of the random boundary string. The risk of this being used
    in binary data is very close to zero, 64^32 makes
@@ -377,7 +379,7 @@ void FormFree(struct FormData *form)
     free(form->line); /* free the line */
     free(form);       /* free the struct */
 
-  } while(form=next); /* continue */
+  } while((form=next)); /* continue */
 }
 
 struct FormData *getFormData(struct HttpPost *post,
@@ -513,11 +515,16 @@ struct FormData *getFormData(struct HttpPost *post,
 
 int FormInit(struct Form *form, struct FormData *formdata )
 {
-  form->data = formdata;
-  form->sent = 0;
-
   if(!formdata)
     return 1; /* error */
+  
+  /* First, make sure that we'll send a nice terminating sequence at the end
+   * of the post. We *DONT* add this string to the size of the data since this
+   * is actually AFTER the data. */
+  AddFormDataf(&formdata, "\r\n\r\n");
+
+  form->data = formdata;
+  form->sent = 0;
 
   return 0;
 }

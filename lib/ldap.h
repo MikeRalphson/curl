@@ -32,14 +32,15 @@
  * 	http://www.fts.frontec.se/~dast/curl/
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/ldap.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
-UrgError ldap(struct UrlData *data, char *path, long *bytecount);
+CURLcode ldap(struct connectdata *conn);
+CURLcode ldap_done(struct connectdata *conn);
 
 #endif /* __LDAP_H */

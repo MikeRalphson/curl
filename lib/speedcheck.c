@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/speedcheck.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -48,7 +48,7 @@
 #include "sendf.h"
 #include "speedcheck.h"
 
-UrgError speedcheck(struct UrlData *data,
+CURLcode speedcheck(struct UrlData *data,
                     struct timeval now)
 {
   static struct timeval keeps_speed;
@@ -69,13 +69,13 @@ UrgError speedcheck(struct UrlData *data,
 	    "Less than %d bytes/sec transfered the last %d seconds",
 	    data->low_speed_limit,
 	    data->low_speed_time);
-      return URG_OPERATION_TIMEOUTED;
+      return CURLE_OPERATION_TIMEOUTED;
     }
   }
   else {
     /* we keep up the required speed all right */
     keeps_speed = now;
   }
-  return URG_OK;
+  return CURLE_OK;
 }
 

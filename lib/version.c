@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/version.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -58,7 +58,7 @@ char *curl_version(void)
 #ifdef USE_SSLEAY
 
 #if (SSLEAY_VERSION_NUMBER >= 0x900000)
-  sprintf(ptr, " (SSL %x.%x.%x)",
+  sprintf(ptr, " (SSL %lx.%lx.%lx)",
           (SSLEAY_VERSION_NUMBER>>28)&0xff,
           (SSLEAY_VERSION_NUMBER>>20)&0xff,
           (SSLEAY_VERSION_NUMBER>>12)&0xf);

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/writeout.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-03-16 11:41:56 $
+ * $Revision: 1.5 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -41,6 +41,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "strequal.h"
 #include "writeout.h"
 
 typedef enum {

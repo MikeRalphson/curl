@@ -1,5 +1,5 @@
-#ifndef __SPEEDCHECK_H
-#define __SPEEDCHECK_H
+#ifndef __CURL_TYPES_H
+#define __CURL_TYPES_H
 /*****************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -30,21 +30,16 @@
  *
  * 	http://curl.haxx.nu
  *
- * $Source: /cvsroot/curl/curl/lib/speedcheck.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Source: /cvsroot/curl/curl/include/curl/types.h,v $
+ * $Revision: 1.1 $
+ * $Date: 2000-05-22 14:12:12 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+typedef void CURL;
+typedef void CURLconnect;
 
-#include "setup.h"
-
-#include "timeval.h"
-
-CURLcode speedcheck(struct UrlData *data,
-                    struct timeval now);
-
-#endif
+#endif /* __CURL_TYPES_H */

@@ -1,3 +1,5 @@
+#ifndef __WRITEOUT_H
+#define __WRITEOUT_H
 /*****************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -29,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/writeout.h,v $
- * $Revision: 1.1 $
- * $Date: 2000-02-21 23:52:53 $
+ * $Revision: 1.2 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -41,3 +43,5 @@
 #include "urldata.h"
 
 void WriteOut(struct UrlData *data);
+
+#endif

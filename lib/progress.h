@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/progress.h,v $
- * $Revision: 1.5 $
- * $Date: 2000-04-11 21:48:33 $
+ * $Revision: 1.6 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -52,13 +52,14 @@ typedef enum {
   TIMER_LAST /* must be last */
 } timerid;
   
+void pgrsDone(struct UrlData *data);
 void pgrsMode(struct UrlData *data, int mode);
 void pgrsStartNow(struct UrlData *data);
 void pgrsSetDownloadSize(struct UrlData *data, double size);
 void pgrsSetUploadSize(struct UrlData *data, double size);
 void pgrsSetDownloadCounter(struct UrlData *data, double size);
-     void pgrsSetUploadCounter(struct UrlData *data, double size);
-void pgrsUpdate(struct UrlData *data);
+void pgrsSetUploadCounter(struct UrlData *data, double size);
+int pgrsUpdate(struct UrlData *data);
 void pgrsTime(struct UrlData *data, timerid timer);
 
 

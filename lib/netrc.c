@@ -41,8 +41,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/netrc.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-05-22 14:15:06 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -56,6 +56,7 @@
 
 #include "setup.h"
 #include "getenv.h"
+#include "strequal.h"
 
 /* Debug this single source file with:
    'make netrc' then run './netrc'!
