@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ldap.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-05-22 19:04:18 $
+ * $Revision: 1.6 $
+ * $Date: 2000-05-22 19:09:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -98,6 +98,7 @@ static void DynaOpen(void)
 #else
            /* and some systems don't have the RTLD_GLOBAL symbol */
            RTLD_LAZY
+#endif
 #endif
            );
     libldap = dlopen("libldap.so", RTLD_LAZY);
