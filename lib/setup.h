@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.62 2004-04-17 11:33:14 bagder Exp $
+ * $Id: setup.h,v 1.63 2004-04-26 07:20:11 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -261,8 +261,12 @@ typedef int curl_socket_t;
 #error "ares does not yet support IPv6. Disable IPv6 or ares and rebuild"
 #endif
 
-#if defined(WIN32) && !defined(__CYGWIN32__) && !defined(USE_ARES) && !defined(ENABLE_IPV6)
+#if defined(WIN32) && !defined(__CYGWIN__) && !defined(USE_ARES)
+#ifdef ENABLE_IPV6
+#define USE_THREADING_GETADDRINFO
+#else
 #define USE_THREADING_GETHOSTBYNAME  /* Cygwin uses alarm() function */
+#endif
 #endif
 
 /*
@@ -294,6 +298,12 @@ typedef struct in_addr Curl_ipconnect;
 
 #ifdef NETWARE
 #undef HAVE_ALARM
+#endif
+
+#ifdef HAVE_LIBIDN
+/* This could benefit from additional checks that some of the used/important
+   header files are present as well before we define the USE_* define. */
+#define USE_LIBIDN
 #endif
 
 #endif /* __CONFIG_H */

@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.26 2004-02-26 14:52:51 bagder Exp $
+ * $Id: memdebug.h,v 1.27 2004-04-26 07:20:11 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -84,9 +84,12 @@ int curl_fclose(FILE *file, int line, const char *source);
  curl_accept(sock,addr,len,__LINE__,__FILE__)
 
 #define getaddrinfo(host,serv,hint,res) \
-  curl_getaddrinfo(host,serv,hint,res,__LINE__,__FILE__)
+  curl_dogetaddrinfo(host,serv,hint,res,__LINE__,__FILE__)
+#define getnameinfo(sa,salen,host,hostlen,serv,servlen,flags) \
+  curl_dogetnameinfo(sa,salen,host,hostlen,serv,servlen,flags, __LINE__, \
+  __FILE__)
 #define freeaddrinfo(data) \
-  curl_freeaddrinfo(data,__LINE__,__FILE__)
+  curl_dofreeaddrinfo(data,__LINE__,__FILE__)
 
 /* sclose is probably already defined, redefine it! */
 #undef sclose

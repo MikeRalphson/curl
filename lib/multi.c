@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.49 2004-03-30 13:02:31 bagder Exp $
+ * $Id: multi.c,v 1.50 2004-04-26 07:20:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -251,8 +251,7 @@ CURLMcode curl_multi_fdset(CURLM *multi_handle,
       break;
     case CURLM_STATE_WAITRESOLVE:
       /* waiting for a resolve to complete */
-      Curl_multi_ares_fdset(easy->easy_conn, read_fd_set, write_fd_set,
-                            &this_max_fd);
+      Curl_fdset(easy->easy_conn, read_fd_set, write_fd_set, &this_max_fd);
       if(this_max_fd > *max_fd)
         *max_fd = this_max_fd;
       break;
@@ -413,7 +412,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
                                          easy->easy_conn->sock[FIRSTSOCKET],
                                          &connected);
         if(connected)
-          easy->result = Curl_protocol_connect(easy->easy_conn, NULL);
+          easy->result = Curl_protocol_connect(easy->easy_conn);
 
         if(CURLE_OK != easy->result) {
           /* failure detected */

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.86 2004-04-07 07:30:40 bagder Exp $
+# $Id: Makefile.am,v 1.87 2004-04-26 07:20:11 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -93,7 +93,8 @@ libcurl_la_SOURCES = arpa_telnet.h file.c netrc.h timeval.c base64.c	\
   content_encoding.c content_encoding.h share.c share.h http_digest.c	\
   md5.c md5.h http_digest.h http_negotiate.c http_negotiate.h		\
   http_ntlm.c http_ntlm.h ca-bundle.h inet_pton.c inet_pton.h		\
-  strtoofft.c strtoofft.h strerror.c strerror.h
+  strtoofft.c strtoofft.h strerror.c strerror.h hostares.c hostasyn.c	\
+  hostip4.c hostip6.c hostsyn.c hostthre.c inet_ntop.c inet_ntop.h
 
 noinst_HEADERS = setup.h transfer.h
 
