@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.36 2003-10-30 07:32:04 bagder Exp $
+ * $Id: sws.c,v 1.37 2003-11-24 16:12:41 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -350,6 +350,13 @@ static int get_request(int sock, int *part, int *open)
         if(!strncmp(doc, "bad", 3))
           /* if the host name starts with bad, we fake an error here */
           test_no = DOCNUMBER_BADCONNECT;
+        else if(!strncmp(doc, "test", 4)) {
+          char *ptr = strchr(doc, ':');
+          if(ptr)
+            test_no = atoi(ptr+1);
+          else
+            test_no = DOCNUMBER_CONNECT;
+        }
         else
           test_no = DOCNUMBER_CONNECT;
       }
