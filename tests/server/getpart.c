@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.15 2005-02-22 12:10:30 bagder Exp $
+ * $Id: getpart.c,v 1.16 2005-02-24 18:54:23 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -61,11 +61,11 @@ char *appendstring(char *string, /* original string */
 {
   size_t len = strlen(buffer);
   size_t needed_len = len + *stringlen + 1;
-  unsigned char *buf64=NULL;
+  char *buf64=NULL;
 
   if(base64) {
     /* decode the given buffer first */
-    len = Curl_base64_decode(buffer, &buf64); /* updated len */
+    len = Curl_base64_decode(buffer, (unsigned char**)&buf64); /* updated len */
     buffer = buf64;
     needed_len = len + *stringlen + 1; /* recalculate */
   }
@@ -79,8 +79,11 @@ char *appendstring(char *string, /* original string */
       string = newptr;
       *stralloc = newsize;
     }
-    else
+    else {
+      if(buf64)
+        free(buf64);
       return NULL;
+    }
   }
   /* memcpy to support binary blobs */
   memcpy(&string[*stringlen], buffer, len);
