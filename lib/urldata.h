@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.244 2004-11-26 14:57:01 giva Exp $
+ * $Id: urldata.h,v 1.245 2004-11-26 16:08:15 giva Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -847,9 +847,9 @@ struct UserDefined {
   curl_read_callback fread;          /* function that reads the input */
   curl_progress_callback fprogress;  /* function for progress information */
   curl_debug_callback fdebug;      /* function that write informational data */
-  curl_ioctl_callback ioctrl;      /* function for I/O control */
+  curl_ioctl_callback ioctl;       /* function for I/O control */
   void *progress_client; /* pointer to pass to the progress callback */
-  void *ioctrl_client;  /* pointer to pass to the ioctrl callback */
+  void *ioctl_client;   /* pointer to pass to the ioctl callback */
   long timeout;         /* in seconds, 0 means no timeout */
   long connecttimeout;  /* in seconds, 0 means no timeout */
   long ftp_response_timeout; /* in seconds, 0 means no timeout */

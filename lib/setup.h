@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.74 2004-11-11 09:26:09 bagder Exp $
+ * $Id: setup.h,v 1.75 2004-11-26 16:08:16 giva Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -208,7 +208,6 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #define sread(x,y,z)      read_s(x,y,z)
 #define swrite(x,y,z)     write_s(x,y,z)
 #define select(n,r,w,x,t) select_s(n,r,w,x,t)
-#define ioctl(x,y,z) ioctlsocket(x,y,(char *)(z))
 #define IOCTL_3_ARGS
 #include <tcp.h>
 #ifdef word
