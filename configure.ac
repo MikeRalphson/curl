@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.28 2003-12-02 10:11:48 bagder Exp $
+dnl $Id: configure.ac,v 1.29 2003-12-02 13:27:05 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -478,7 +478,7 @@ then
       AC_CHECK_FUNCS(krb_get_our_ip_for_realm)
 
       dnl add define KRB4
-      AC_DEFINE(KRB4, 1,
+      AC_DEFINE(HAVE_KRB4, 1,
       [if you have the Kerberos4 libraries (including -ldes)])
 
       dnl substitute it too!
