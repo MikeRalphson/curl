@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.112 2001-04-11 06:41:54 bagder Exp $
+ * $Id: url.c,v 1.113 2001-04-11 06:59:00 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1232,7 +1232,7 @@ static CURLcode ConnectPlease(struct UrlData *data,
   FD_ZERO (&connectfd);
   FD_SET(conn->firstsocket, &connectfd);
   if (conn->data->connecttimeout > 0) {
-	nonblock = 1;
+    nonblock = 1;
   }
   ioctlsocket(conn->firstsocket, FIONBIO, &nonblock);
 #endif
@@ -1241,14 +1241,18 @@ static CURLcode ConnectPlease(struct UrlData *data,
               sizeof(conn->serv_addr)
               ) < 0) {
 #if defined(WIN32)
-	  conntimeout.tv_sec = conn->data->connecttimeout;
-	  conntimeout.tv_usec = 0;	
-	  if(-1 != select (conn->firstsocket + 1, NULL, &connectfd, NULL, &conntimeout)) {
-		  if (FD_ISSET(conn->firstsocket, &connectfd))
-			  return CURLE_OK;
-		  else
-			  errno = EINTR;
-	  }
+    conntimeout.tv_sec = conn->data->connecttimeout;
+    conntimeout.tv_usec = 0;	
+    if(-1 != select (conn->firstsocket + 1, NULL, &connectfd, NULL, &conntimeout)) {
+      if (FD_ISSET(conn->firstsocket, &connectfd)) {
+        /* shut off non-blocking again */
+        nonblock = 0;
+        ioctlsocket(conn->firstsocket, FIONBIO, &nonblock);
+        return CURLE_OK;
+      }
+      else
+        errno = EINTR;
+    }
 #endif
     switch(errno) {
 #ifdef ECONNREFUSED
