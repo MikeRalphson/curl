@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.331 2004-01-26 16:16:44 bagder Exp $
+ * $Id: url.c,v 1.332 2004-02-02 10:13:54 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -116,7 +116,7 @@
 #include "ldap.h"
 #include "url.h"
 #include "connect.h"
-#include "ca-bundle.h"
+#include <ca-bundle.h>
 
 #include <curl/types.h>
 
