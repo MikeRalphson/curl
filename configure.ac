@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.130 2005-01-18 14:34:50 bagder Exp $
+dnl $Id: configure.ac,v 1.131 2005-02-11 19:34:05 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1254,7 +1254,6 @@ AC_CHECK_FUNCS( strtoll \
                 strdup \
                 strstr \
                 strtok_r \
-                strftime \
                 uname \
                 strcasecmp \
                 stricmp \
