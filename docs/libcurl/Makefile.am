@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.3 2002-04-12 10:10:36 bagder Exp $
+# $Id: Makefile.am,v 1.4 2002-09-25 12:21:08 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -21,6 +21,7 @@ man_MANS = \
 	curl_version.3 \
 	curl_escape.3 \
 	curl_unescape.3 \
+	curl_free.3 \
 	curl_strequal.3 \
 	curl_strnequal.3 \
 	curl_mprintf.3 \
@@ -54,6 +55,7 @@ HTMLPAGES = \
 	curl_version.html \
 	curl_escape.html \
 	curl_unescape.html \
+	curl_free.html \
 	curl_strequal.html \
 	curl_strnequal.html \
 	curl_mprintf.html \
