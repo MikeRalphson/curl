@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.267 2004-08-11 08:39:48 bagder Exp $
+ * $Id: ftp.c,v 1.268 2004-09-11 19:19:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -903,6 +903,10 @@ CURLcode ftp_sendquote(struct connectdata *conn, struct curl_slist *quote)
   return CURLE_OK;
 }
 
+#ifdef NEW_DATE_PARSE
+extern const char *Curl_month[];
+#endif
+
 /***********************************************************************
  *
  * ftp_getfiletime()
@@ -935,9 +939,17 @@ CURLcode ftp_getfiletime(struct connectdata *conn, char *file)
                      &year, &month, &day, &hour, &minute, &second)) {
         /* we have a time, reformat it */
         time_t secs=time(NULL);
+#ifdef NEW_DATE_PARSE
+        /* using the new date parser */
+        snprintf(buf, sizeof(conn->data->state.buffer),
+                 "%s %02d %02d:%02d:%02d %04d GMT",
+                 Curl_month[month-1], day, hour, minute, second, year);
+#else
+        /* using the good old yacc/bison yuck */
         snprintf(buf, sizeof(conn->data->state.buffer),
                  "%04d%02d%02d %02d:%02d:%02d GMT",
                  year, month, day, hour, minute, second);
+#endif
         /* now, convert this into a time() value: */
         conn->data->info.filetime = curl_getdate(buf, &secs);
       }
