@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.23 2002-11-11 23:03:04 bagder Exp $
+ * $Id: multi.c,v 1.24 2002-11-28 15:48:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -313,9 +313,8 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
         easy->easy_handle->hostcache = Curl_global_host_cache_get();
       }
       else {
-        if (multi->hostcache == NULL) {
-          multi->hostcache = Curl_hash_alloc(7, Curl_freeaddrinfo);
-        }
+        if (multi->hostcache == NULL)
+          multi->hostcache = Curl_hash_alloc(7, Curl_freednsinfo);
 
         easy->easy_handle->hostcache = multi->hostcache;
       }
