@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.246 2002-11-22 16:59:40 bagder Exp $
+ * $Id: url.c,v 1.247 2002-12-09 15:37:58 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1788,6 +1788,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     TRUE:
   /* else, no chunky upload */
   FALSE;
+
+  conn->fread = data->set.fread;
+  conn->fread_in = data->set.in;
 
   /***********************************************************
    * We need to allocate memory to store the path in. We get the size of the

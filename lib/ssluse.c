@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.56 2002-09-03 11:53:01 bagder Exp $
+ * $Id: ssluse.c,v 1.57 2002-12-09 15:37:55 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -275,7 +275,8 @@ int cert_stuff(struct connectdata *conn,
       if (SSL_CTX_use_PrivateKey_file(conn->ssl.ctx,
                                       key_file,
                                       file_type) != 1) {
-        failf(data, "unable to set private key file\n");
+        failf(data, "unable to set private key file: '%s' type %s\n",
+              key_file, key_type?key_type:"PEM");
         return 0;
       }
       break;
