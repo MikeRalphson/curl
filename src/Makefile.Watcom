@@ -2,7 +2,7 @@
 #  Watcom / OpenWatcom / Win32 makefile for cURL.
 #  G. Vanem <giva@bgnett.no>
 #
-# $Id: Makefile.Watcom,v 1.1 2005-01-08 16:07:01 giva Exp $
+# $Id: Makefile.Watcom,v 1.2 2005-01-11 14:52:42 giva Exp $
 
 #
 # Set to 1 to use static lib.
@@ -17,7 +17,7 @@ CFLAGS = -3r -mf -d3 -hc -zff -zgf -zq -zm -s -fr=con -w2 -fpi -oilrtfm     &
          -dSIZEOF_CURL_OFF_T=8 -dCURLDEBUG -dCURLTOOLDEBUG -dENABLE_IPV6    &
          -dHAVE_WINSOCK2_H -I..\include -I..\lib
 
-!if "STATIC" == "0"
+!ifeq STATIC 0
 LIBCURL = ..\lib\libcurl_wc_imp.lib
 
 !else
