@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.185 2003-11-24 07:15:37 bagder Exp $
+ * $Id: transfer.c,v 1.186 2003-12-02 10:12:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1457,7 +1457,7 @@ CURLcode Curl_pretransfer(struct SessionHandle *data)
   * different ports! */
   data->state.allow_port = TRUE;
 
-#if defined(HAVE_SIGNAL) && defined(SIGPIPE)
+#if defined(HAVE_SIGNAL) && defined(SIGPIPE) && !defined(HAVE_MSG_NOSIGNAL)
   /*************************************************************
    * Tell signal handler to ignore SIGPIPE
    *************************************************************/
@@ -1473,7 +1473,7 @@ CURLcode Curl_pretransfer(struct SessionHandle *data)
 
 CURLcode Curl_posttransfer(struct SessionHandle *data)
 {
-#if defined(HAVE_SIGNAL) && defined(SIGPIPE)
+#if defined(HAVE_SIGNAL) && defined(SIGPIPE) && !defined(HAVE_MSG_NOSIGNAL)
   /* restore the signal handler for SIGPIPE before we get back */
   if(!data->set.no_signal)
     signal(SIGPIPE, data->state.prev_signal);
