@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.14 2001-05-30 11:06:56 bagder Exp $
+ * $Id: cookie.c,v 1.15 2001-08-14 08:17:29 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -169,9 +169,9 @@ Curl_cookie_add(struct CookieInfo *c,
             co->name = strdup(name);
             co->value = strdup(what);
           }
-          else
-            ;/* this is the second (or more) name we don't know
-                about! */
+          /*
+            else this is the second (or more) name we don't know
+            about! */
         }
         else {
           /* this is an "illegal" <what>=<this> pair */
@@ -182,8 +182,9 @@ Curl_cookie_add(struct CookieInfo *c,
                   what)) {
           if(strequal("secure", what))
             co->secure = TRUE;
-          else
-            ; /* unsupported keyword without assign! */
+          /* else,
+             unsupported keyword without assign! */
+
         }
       }
       if(!semiptr)
