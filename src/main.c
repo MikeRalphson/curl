@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.137 2002-08-05 11:15:57 bagder Exp $
+ * $Id: main.c,v 1.138 2002-08-13 12:12:08 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1878,8 +1878,26 @@ static int parseconfig(const char *filename,
 
 static void go_sleep(long ms)
 {
+#ifdef HAVE_POLL
   /* portable subsecond "sleep" */
   poll((void *)0, 0, ms);
+#else
+  /* systems without poll() need other solutions */
+
+#ifdef WIN32
+  /* Windows offers a millisecond sleep */
+  Sleep(ms);
+#else
+  /* Other systems must use select() for this */
+  struct timeval timeout;
+
+  timeout.tv_sec = 0;
+  timeout.tv_usec = ms * 1000;
+
+  select(0, NULL,  NULL, NULL, &timeout);
+#endif
+
+#endif
 }
 
 struct OutStruct {
