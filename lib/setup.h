@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.36 2003-12-02 10:12:44 bagder Exp $
+ * $Id: setup.h,v 1.37 2003-12-02 22:05:23 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -116,10 +116,11 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #endif
 #endif
 
-#ifdef HAVE_MSG_NOSIGNAL
+#ifdef MSG_NOSIGNAL
 /* If we have the MSG_NOSIGNAL define, we make sure to use that in the forth
    argument to send() and recv() */
 #define SEND_4TH_ARG MSG_NOSIGNAL
+#define HAVE_MSG_NOSIGNAL 1 /* we have MSG_NOSIGNAL */
 #else
 #define SEND_4TH_ARG 0
 #endif
