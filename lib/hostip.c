@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.67 2002-06-10 13:26:02 bagder Exp $
+ * $Id: hostip.c,v 1.68 2002-06-11 15:10:19 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -54,6 +54,10 @@
 #include <inet.h>
 #include <stdlib.h>
 #endif
+#endif
+
+#ifdef HAVE_SETJMP_H
+#include <setjmp.h>
 #endif
 
 #include "urldata.h"
@@ -191,6 +195,11 @@ hostcache_prune(curl_hash *hostcache, int cache_timeout, int now)
   return (__v); \
 }
 
+#ifdef HAVE_SIGSETJMP
+/* Beware this is a global and unique instance */
+sigjmp_buf curl_jmpenv;
+#endif
+
 Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
                            char *hostname,
                            int port)
@@ -200,6 +209,14 @@ Curl_addrinfo *Curl_resolv(struct SessionHandle *data,
   ssize_t entry_len;
   time_t now;
   char *bufp;
+
+#ifdef HAVE_SIGSETJMP
+  if(sigsetjmp(curl_jmpenv, 1) != 0) {
+    /* this is coming from a siglongjmp() */
+    failf(data, "name lookup time-outed");
+    return NULL;
+  }
+#endif
 
   /* If the host cache timeout is 0, we don't do DNS cach'ing
      so fall through */
