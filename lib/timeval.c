@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.12 2002-03-19 07:54:55 bagder Exp $
+ * $Id: timeval.c,v 1.13 2002-06-03 12:46:32 bagder Exp $
  *****************************************************************************/
 
 #ifdef WIN32
@@ -32,22 +32,36 @@
 int
 gettimeofday (struct timeval *tp, void *nothing)
 {
- SYSTEMTIME st;
- time_t tt;
- struct tm tmtm;
- /* mktime converts local to UTC */
- GetLocalTime (&st);
- tmtm.tm_sec = st.wSecond;
- tmtm.tm_min = st.wMinute;
- tmtm.tm_hour = st.wHour;
- tmtm.tm_mday = st.wDay;
- tmtm.tm_mon = st.wMonth - 1;
- tmtm.tm_year = st.wYear - 1900;
- tmtm.tm_isdst = -1;
- tt = mktime (&tmtm);
- tp->tv_sec = tt;
- tp->tv_usec = st.wMilliseconds * 1000;
- return 1;
+#ifdef WITHOUT_MM_LIB
+  SYSTEMTIME st;
+  time_t tt;
+  struct tm tmtm;
+  /* mktime converts local to UTC */
+  GetLocalTime (&st);
+  tmtm.tm_sec = st.wSecond;
+  tmtm.tm_min = st.wMinute;
+  tmtm.tm_hour = st.wHour;
+  tmtm.tm_mday = st.wDay;
+  tmtm.tm_mon = st.wMonth - 1;
+  tmtm.tm_year = st.wYear - 1900;
+  tmtm.tm_isdst = -1;
+  tt = mktime (&tmtm);
+  tp->tv_sec = tt;
+  tp->tv_usec = st.wMilliseconds * 1000;
+#else
+  /**
+   ** The earlier time calculations using GetLocalTime
+   ** had a time resolution of 10ms.The timeGetTime, part
+   ** of multimedia apis offer a better time resolution
+   ** of 1ms.Need to link against winmm.lib for this
+   **/
+  unsigned long Ticks = 0;
+  Ticks = timeGetTime();
+  tp->tv_sec = Ticks%1000;
+  tp->tv_usec = (Ticks - (tp->tv_sec*1000))*1000;
+  
+#endif
+  return 1;
 }
 #define HAVE_GETTIMEOFDAY
 #endif
