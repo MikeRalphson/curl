@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.282 2004-12-05 23:33:33 bagder Exp $
+ * $Id: ftp.c,v 1.283 2004-12-07 10:00:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -677,12 +677,14 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
       if(result)
         return result;
 
-      if(ftpcode == 200)
+      if(ftpcode/100 == 2)
         /* We have enabled SSL for the data connection! */
         conn->ssl[SECONDARYSOCKET].use = TRUE;
-
       /* FTP servers typically responds with 500 if they decide to reject
          our 'P' request */
+      else if(data->set.ftp_ssl> CURLFTPSSL_CONTROL)
+        /* we failed and bails out */
+        return CURLE_FTP_SSL_FAILED;
     }
   }
 
