@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.41 2004-01-22 12:01:59 bagder Exp $
+dnl $Id: configure.ac,v 1.42 2004-01-29 15:38:27 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -849,6 +849,7 @@ AC_CHECK_HEADERS(
         sys/time.h \
         sys/select.h \
         sys/socket.h \
+        sys/ioctl.h \
         assert.h \
         unistd.h \
         malloc.h \
@@ -1013,6 +1014,9 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
     CFLAGS="$CFLAGS -g" 
     if test "$GCC" = "yes"; then
        CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wundef -Wpointer-arith -Wnested-externs"
+
+       dnl here's a more aggressive set to use:
+       dnl CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wundef -Wpointer-arith -Wnested-externs -Wcast-align -Winline -Wstrict-prototypes -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wfloat-equal -Wsign-compare -Wunreachable-code"
     fi
     dnl strip off optimizer flags
     NEWFLAGS=""
