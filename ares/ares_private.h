@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.11 2004-10-06 07:50:18 bagder Exp $ */
+/* $Id: ares_private.h,v 1.12 2004-11-09 18:10:51 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -164,5 +164,9 @@ int ares__read_line(FILE *fp, char **buf, int *bufsize);
    libcurl lowlevel code from within library is ugly and only works when
    c-ares is built and linked with a similarly debug-build libcurl, but we do
    this anyway for convenience. */
+#ifndef CURL_EXTERN
+/* ugly hack to make this compile */
+#define CURL_EXTERN
+#endif
 #include "../lib/memdebug.h"
 #endif
