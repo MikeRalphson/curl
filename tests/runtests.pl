@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.60 2002-05-21 22:39:09 bagder Exp $
+# $Id: runtests.pl,v 1.61 2002-06-11 15:11:41 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -471,6 +471,14 @@ sub singletest {
 
     if (@replycheck) {
         # we use this file instead to check the final output against
+
+        my %hash = getpartattr("reply", "datacheck");
+        if($hash{'nonewline'}) {
+            # Yes, we must cut off the final newline from the final line
+            # of the datacheck
+            chomp($replycheck[$#replycheck]);
+        }
+    
         @reply=@replycheck;
     }
 
