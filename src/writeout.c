@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.6 2001-04-19 11:24:29 bagder Exp $
+ * $Id: writeout.c,v 1.7 2001-08-14 09:17:21 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -49,7 +49,7 @@ typedef enum {
 } replaceid;
 
 struct variable {
-  char *name;
+  const char *name;
   replaceid id;
 };
 
@@ -67,7 +67,7 @@ static struct variable replacements[]={
   {"size_upload", VAR_SIZE_UPLOAD},
   {"speed_download", VAR_SPEED_DOWNLOAD},
   {"speed_upload", VAR_SPEED_UPLOAD},
-  {NULL}
+  {NULL, 0}
 };
 
 void ourWriteOut(CURL *curl, char *writeinfo)
