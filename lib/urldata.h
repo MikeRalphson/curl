@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.19 $
- * $Date: 2000-09-14 14:05:01 $
+ * $Revision: 1.20 $
+ * $Date: 2000-09-18 21:54:08 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -356,6 +356,7 @@ struct UrlData {
   char *useragent;   /* User-Agent string */
 
   char *ftpport; /* port to send with the PORT command */
+  char *device;  /* Interface to use */
 
   /* function that stores the output:*/
   curl_write_callback fwrite;

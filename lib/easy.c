@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/easy.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-08-24 14:26:33 $
+ * $Revision: 1.6 $
+ * $Date: 2000-09-18 21:54:08 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -109,6 +109,9 @@ CURL *curl_easy_init(void)
     return NULL;
 
   data->interf = CURLI_EASY; /* mark it as an easy one */
+  /* SAC */
+  data->device = NULL;
+
   return data;
 }
 
