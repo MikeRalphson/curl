@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.16 2003-04-11 08:49:21 bagder Exp $
+ * $Id: http_chunks.c,v 1.17 2003-04-11 16:23:43 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -186,10 +186,14 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
           break;
 
         case DEFLATE: 
+          /* update conn->keep.str to point to the chunk data. */
+          conn->keep.str = datap;
           result = Curl_unencode_deflate_write(conn->data, &conn->keep, piece);
           break;
 
         case GZIP:
+          /* update conn->keep.str to point to the chunk data. */
+          conn->keep.str = datap;
           result = Curl_unencode_gzip_write(conn->data, &conn->keep, piece);
           break;
 
