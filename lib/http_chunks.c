@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.24 2004-05-11 11:30:23 bagder Exp $
+ * $Id: http_chunks.c,v 1.25 2004-05-12 07:54:44 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -33,7 +33,7 @@
 #include "urldata.h" /* it includes http_chunks.h */
 #include "sendf.h"   /* for the client write stuff */
 
-#include "content_encoding.h"   /* 08/29/02 jhrg */
+#include "content_encoding.h"
 #include "http.h"
 #include "memory.h"
 
@@ -178,8 +178,6 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       piece = (ch->datasize >= length)?length:ch->datasize;
 
       /* Write the data portion available */
-      /* Added content-encoding here; untested but almost identical to the
-         tested code in transfer.c. 08/29/02 jhrg */
 #ifdef HAVE_LIBZ
       switch (conn->keep.content_encoding) {
         case IDENTITY:
@@ -193,13 +191,15 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
         case DEFLATE: 
           /* update conn->keep.str to point to the chunk data. */
           conn->keep.str = datap;
-          result = Curl_unencode_deflate_write(conn->data, &conn->keep, piece);
+          result = Curl_unencode_deflate_write(conn->data, &conn->keep,
+                                               (ssize_t)piece);
           break;
 
         case GZIP:
           /* update conn->keep.str to point to the chunk data. */
           conn->keep.str = datap;
-          result = Curl_unencode_gzip_write(conn->data, &conn->keep, piece);
+          result = Curl_unencode_gzip_write(conn->data, &conn->keep,
+                                            (ssize_t)piece);
           break;
 
         case COMPRESS:
