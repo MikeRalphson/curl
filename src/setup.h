@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.27 2004-03-02 09:13:28 bagder Exp $
+ * $Id: setup.h,v 1.28 2004-03-03 09:27:18 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -61,6 +61,10 @@
 #endif
 
 #include <stdio.h>
+
+#ifdef __TANDEM
+#include <floss.h>
+#endif
 
 #ifndef TRUE
 #define TRUE 1

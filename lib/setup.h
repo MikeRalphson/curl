@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.50 2004-03-02 09:31:19 bagder Exp $
+ * $Id: setup.h,v 1.51 2004-03-03 09:27:19 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -99,6 +99,10 @@ typedef unsigned char bool;
 #include <assert.h>
 #endif
 #include <errno.h>
+
+#ifdef __TANDEM /* for nsr-tandem-nsk systems */
+#include <floss.h>
+#endif
 
 #ifndef OS
 #ifdef WIN32
