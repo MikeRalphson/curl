@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.451 2005-03-14 00:00:45 bagder Exp $
+ * $Id: url.c,v 1.452 2005-03-15 21:00:46 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -104,7 +104,6 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "base64.h"
 #include "ssluse.h"
 #include "hostip.h"
-#include "if2ip.h"
 #include "transfer.h"
 #include "sendf.h"
 #include "progress.h"

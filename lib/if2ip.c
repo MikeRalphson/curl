@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.39 2005-03-14 15:51:10 bagder Exp $
+ * $Id: if2ip.c,v 1.40 2005-03-15 21:00:46 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -65,10 +65,6 @@
 #include <sys/sockio.h>
 #endif
 
-#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
-#include "inet_ntoa_r.h"
-#endif
-
 #ifdef VMS
 #include <inet.h>
 #endif
@@ -113,12 +109,7 @@ char *Curl_if2ip(const char *interface, char *buf, int buf_size)
 
       struct sockaddr_in *s = (struct sockaddr_in *)&req.ifr_dstaddr;
       memcpy(&in, &(s->sin_addr.s_addr), sizeof(in));
-#if defined(HAVE_INET_NTOA_R)
-      ip = inet_ntoa_r(in,buf,buf_size);
-#else
-      ip = strncpy(buf,inet_ntoa(in),buf_size);
-      ip[buf_size - 1] = 0;
-#endif
+      ip = Curl_inet_ntop(s->sin_family, &in, buf, buf_size);
     }
     sclose(dummy);
   }

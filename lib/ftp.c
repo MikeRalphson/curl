@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.308 2005-03-14 15:43:23 bagder Exp $
+ * $Id: ftp.c,v 1.309 2005-03-15 21:00:46 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1524,7 +1524,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
                       &separator[2],
                       &num,
                       &separator[3])) {
-        char sep1 = separator[0];
+        const char sep1 = separator[0];
         int i;
 
         /* The four separators should be identical, or else this is an oddly
@@ -1539,7 +1539,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
           newport = num;
 
           /* use the same IP we are already connected to */
-          snprintf(newhost, NEWHOST_BUFSIZE, "%s", conn->ip_addr_str, newhost);
+          snprintf(newhost, NEWHOST_BUFSIZE, "%s", conn->ip_addr_str);
         }
       }
       else
