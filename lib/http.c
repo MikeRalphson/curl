@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.255 2004-12-05 23:59:32 bagder Exp $
+ * $Id: http.c,v 1.256 2004-12-10 14:45:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -219,8 +219,15 @@ static CURLcode perhapsrewind(struct connectdata *conn)
 {
   struct HTTP *http = conn->proto.http;
   struct SessionHandle *data = conn->data;
-  curl_off_t bytessent = http->writebytecount;
+  curl_off_t bytessent;
   curl_off_t expectsend = -1; /* default is unknown */
+
+  if(!http)
+    /* If this is still NULL, we have not reach very far and we can
+       safely skip this rewinding stuff */
+    return CURLE_OK;
+
+  bytessent = http->writebytecount;
 
   /* figure out how much data we are expected to send */
   switch(data->set.httpreq) {
