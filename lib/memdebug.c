@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.41 2004-03-08 11:33:49 bagder Exp $
+ * $Id: memdebug.c,v 1.42 2004-05-05 06:57:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -90,6 +90,9 @@ static bool countcheck(const char *func, int line, const char *source)
     if(!memsize) {
       if(logfile && source)
         fprintf(logfile, "LIMIT %s:%d %s reached memlimit\n",
+                source, line, func);
+      if(source)
+        fprintf(stderr, "LIMIT %s:%d %s reached memlimit\n",
                 source, line, func);
       return TRUE; /* RETURN ERROR! */
     }
