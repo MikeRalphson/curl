@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.129 2002-05-07 13:13:17 bagder Exp $
+ * $Id: main.c,v 1.130 2002-05-10 15:59:42 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1951,7 +1951,7 @@ void dump(const char *text,
     /* without the hex output, we can fit more on screen */
     width = 0x40;
 
-  fprintf(stream, "%s %d (0x%x) bytes\n", text, size, size);
+  fprintf(stream, "%s, %d bytes (0x%x)\n", text, size, size);
 
   for(i=0; i<size; i+= width) {
 
@@ -1965,12 +1965,22 @@ void dump(const char *text,
         else
           fputs("   ", stream);
     }
-    for(c = 0; (c < width) && (i+c < size); c++)
+
+    for(c = 0; (c < width) && (i+c < size); c++) {
+      /* check for 0D0A; if found, skip past and start a new line of output */
+      if (nohex && (i+c+1 < size) && ptr[i+c]==0x0D && ptr[i+c+1]==0x0A) {
+        i+=(c+2-width);
+        break;
+      }
       fprintf(stream, "%c",
               (ptr[i+c]>=0x20) && (ptr[i+c]<0x80)?ptr[i+c]:'.');
-    
+      /* check again for 0D0A, to avoid an extra \n if it's at width */
+      if (nohex && (i+c+2 < size) && ptr[i+c+1]==0x0D && ptr[i+c+2]==0x0A) {
+        i+=(c+3-width);
+        break;
+      }
+    }
     fputc('\n', stream); /* newline */
-
   }
 }
 
