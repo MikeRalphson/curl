@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.213 2003-11-07 17:19:57 bagder Exp $
+ * $Id: main.c,v 1.214 2003-11-13 07:14:23 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2366,6 +2366,7 @@ int myprogress (void *clientp,
     sprintf( outline, format, line, percent );
     fprintf( bar->out, "\r%s", outline );
   }
+  fflush(bar->out);
   bar->prev = point;
 
   return 0;
