@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.449 2005-03-10 23:15:30 bagder Exp $
+ * $Id: url.c,v 1.450 2005-03-11 05:49:04 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -130,6 +130,7 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "url.h"
 #include "connect.h"
 #include "inet_ntop.h"
+#include "http_ntlm.h"
 #include <ca-bundle.h>
 
 #if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.39 2005-03-10 23:15:30 bagder Exp $
+ * $Id: http_ntlm.c,v 1.40 2005-03-11 05:49:04 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -762,6 +762,8 @@ Curl_ntlm_cleanup(struct connectdata *conn)
 #ifdef USE_WINDOWS_SSPI
   ntlm_sspi_cleanup(&conn->ntlm);
   ntlm_sspi_cleanup(&conn->proxyntlm);
+#else
+  (void)conn;
 #endif
 }
 
