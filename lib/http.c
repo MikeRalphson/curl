@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.231 2004-06-03 14:42:08 bagder Exp $
+ * $Id: http.c,v 1.232 2004-06-13 09:08:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1279,13 +1279,12 @@ CURLcode Curl_http(struct connectdata *conn)
       case HTTPREQ_PUT:
         request = (char *)"PUT";
         break;
+      default: /* this should never happen */
       case HTTPREQ_GET:
         request = (char *)"GET";
         break;
       case HTTPREQ_HEAD:
         request = (char *)"HEAD";
-        break;
-      default: /* this should never happen */
         break;
       }
     }
