@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.105 2002-09-11 10:32:37 bagder Exp $
+ * $Id: http.c,v 1.106 2002-09-13 12:40:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -965,7 +965,8 @@ CURLcode Curl_http(struct connectdata *conn)
         failf(data, "Failed sending HTTP POST request");
       else
         result =
-          Curl_Transfer(conn, conn->firstsocket, -1, TRUE, bytecount,
+          Curl_Transfer(conn, conn->firstsocket, -1, TRUE,
+                        &http->readbytecount,
                         data->set.postfields?-1:conn->firstsocket,
                         data->set.postfields?NULL:&http->writebytecount);
       break;
@@ -981,7 +982,8 @@ CURLcode Curl_http(struct connectdata *conn)
         failf(data, "Failed sending HTTP request");
       else
         /* HTTP GET/HEAD download: */
-        result = Curl_Transfer(conn, conn->firstsocket, -1, TRUE, bytecount,
+        result = Curl_Transfer(conn, conn->firstsocket, -1, TRUE,
+                               &http->readbytecount,
                                -1, NULL); /* nothing to upload */
     }
     if(result)
