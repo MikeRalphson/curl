@@ -32,8 +32,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.h,v $
- * $Revision: 1.4 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.5 $
+ * $Date: 2000-07-25 21:16:51 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -41,8 +41,11 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
+/* protocol-specific functions set up to be called by the main engine */
+
 CURLcode http(struct connectdata *conn);
 CURLcode http_done(struct connectdata *conn);
 CURLcode http_connect(struct connectdata *conn);
+CURLcode http_close(struct connectdata *conn);
 
 #endif
