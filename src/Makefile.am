@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.16 2002-02-20 23:24:04 bagder Exp $
+# $Id: Makefile.am,v 1.17 2002-02-22 15:12:17 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
@@ -33,7 +33,10 @@ EXTRA_DIST = mkhelp.pl curlmsg.msg \
 	macos/curl.mcp.xml.sit.hqx \
 	macos/MACINSTALL.TXT \
 	macos/src/curl_GUSIConfig.cpp \
-	macos/src/macos_main.cpp
+	macos/src/macos_main.cpp \
+	config-win32.h \
+	config-mac.h \
+	config-vms.h	
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
