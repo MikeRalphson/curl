@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.6 2004-11-21 12:42:28 bagder Exp $
+ * $Id: ftpupload.c,v 1.7 2005-01-20 14:24:56 bagder Exp $
  */
 
 #include <stdio.h>
@@ -78,8 +78,12 @@ int main(int argc, char **argv)
        DLL may not use the variable's memory when passed in to it from an app
        like this. */
 
-    /* and give the size of the upload (optional) */
-    curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE, file_info.st_size);
+    /* Set the size of the file to upload (optional).  If you give a *_LARGE
+       option you MUST make sure that the type of the passed-in argument is a
+       curl_off_t. If you use CURLOPT_INFILESIZE (without _LARGE) you must
+       make sure that to pass in a type 'long' argument. */
+    curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                     (curl_off_t)file_info.st_size);
 
     /* Now run off and do what you've been told! */
     res = curl_easy_perform(curl);
