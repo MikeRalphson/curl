@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.220 2004-04-21 08:49:14 bagder Exp $
+ * $Id: transfer.c,v 1.221 2004-04-22 20:07:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1499,6 +1499,7 @@ CURLcode Curl_pretransfer(struct SessionHandle *data)
   /* set preferred authentication, default to basic */
 
   data->state.authstage = 0; /* initialize authentication later */
+  data->state.authproblem = FALSE;
 
   /* If there was a list of cookie files to read and we haven't done it before,
      do it now! */
