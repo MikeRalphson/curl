@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.44 2003-10-14 12:00:45 bagder Exp $
+ * $Id: telnet.c,v 1.45 2003-10-18 20:24:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -753,8 +753,7 @@ static int check_telnet_options(struct connectdata *conn)
      was given on the command line */
   if(conn->bits.user_passwd)
   {
-    char *buf = malloc(256);
-    sprintf(buf, "USER,%s", conn->user);
+    snprintf(option_arg, sizeof(option_arg), "USER,%s", conn->user);
     tn->telnet_vars = curl_slist_append(tn->telnet_vars, buf);
 
     tn->us_preferred[CURL_TELOPT_NEW_ENVIRON] = CURL_YES;
