@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.44 2001-02-22 23:32:02 bagder Exp $
+ * $Id: urldata.h,v 1.45 2001-03-02 07:42:35 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -179,6 +179,8 @@ struct FTP {
   char *urlpath; /* the originally given path part of the URL */
   char *dir;     /* decoded directory */
   char *file;    /* decoded file */
+
+  char *entrypath; /* the PWD reply when we logged on */
 };
 
 /*
@@ -186,6 +188,7 @@ struct FTP {
  */
 struct ConnectBits {
   bool close; /* if set, we close the connection after this request */
+  bool reuse; /* if set, this is a re-used connection */
 };
 
 /*
@@ -258,6 +261,11 @@ struct connectdata {
    * after the connect() and everything is done, as a step in the connection.
    */ 
   CURLcode (*curl_connect)(struct connectdata *connect);
+
+  /* This function *MAY* be set to a protocol-dependent function that is run
+   * by the curl_disconnect(), as a step in the disconnection.
+   */ 
+  CURLcode (*curl_disconnect)(struct connectdata *connect);
 
   /* This function *MAY* be set to a protocol-dependent function that is run
    * in the curl_close() function if protocol-specific cleanups are required.
