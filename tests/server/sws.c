@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.40 2004-02-12 14:40:09 bagder Exp $
+ * $Id: sws.c,v 1.41 2004-02-13 07:05:15 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -73,7 +73,7 @@ spitout(FILE *stream,
 #define TEST_DATA_PATH "%s/data/test%d"
 
 /* global variable, where to find the 'data' dir */
-char *path=".";
+const char *path=".";
 
 enum {
   DOCNUMBER_QUIT    = -6,
