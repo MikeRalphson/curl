@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.312 2005-03-05 00:54:17 danf Exp $
+ * $Id: main.c,v 1.313 2005-03-07 18:59:04 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3773,10 +3773,16 @@ operate(struct Configurable *config, int argc, char *argv[])
                 /* truncate file at the position where we started appending */
 #ifdef HAVE_FTRUNCATE
                 ftruncate( fileno(outs.stream), outs.init);
-#endif
                 /* now seek to the end of the file, the position where we
-                   just truncated the file */
-                fseek(outs.stream, outs.init, SEEK_SET);
+                   just truncated the file in a large file-safe way */
+                fseek(outs.stream, 0, SEEK_END);
+#else
+                /* ftruncate is not available, so just reposition the file
+                   to the location we would have truncated it. This won't
+                   work properly with large files on 32-bit systems, but
+                   most of those will have ftruncate. */
+                fseek(outs.stream, (long)outs.init, SEEK_SET);
+#endif
                 outs.bytes = 0; /* clear for next round */
               }
               continue;
