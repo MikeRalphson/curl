@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.117 2002-10-17 07:10:39 bagder Exp $
+ * $Id: transfer.c,v 1.118 2002-10-18 13:51:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -660,9 +660,11 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             while(*ptr && !isspace((int)*ptr))
               ptr++;
             backup = *ptr; /* store the ending letter */
-            *ptr = '\0';   /* zero terminate */
-            conn->newurl = strdup(start); /* clone string */
-            *ptr = backup; /* restore ending letter */
+            if(ptr != start) {
+              *ptr = '\0';   /* zero terminate */
+              conn->newurl = strdup(start); /* clone string */
+              *ptr = backup; /* restore ending letter */
+            }
           }
 
           /*
