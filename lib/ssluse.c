@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.115 2004-10-06 07:50:18 bagder Exp $
+ * $Id: ssluse.c,v 1.116 2004-11-15 11:27:03 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1273,7 +1273,7 @@ Curl_SSLConnect(struct connectdata *conn,
       long has_passed;
 
       /* Evaluate in milliseconds how much time that has passed */
-      has_passed = Curl_tvdiff(Curl_tvnow(), data->progress.start);
+      has_passed = Curl_tvdiff(Curl_tvnow(), data->progress.t_startsingle);
 
       /* get the most strict timeout of the ones converted to milliseconds */
       if(data->set.timeout &&

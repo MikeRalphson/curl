@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.422 2004-11-12 09:18:14 bagder Exp $
+ * $Id: url.c,v 1.423 2004-11-15 11:27:03 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2258,11 +2258,6 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   conn->bits.use_range = data->set.set_range?TRUE:FALSE; /* range status */
   conn->range = data->set.set_range;              /* clone the range setting */
   conn->resume_from = data->set.set_resume_from;   /* inherite resume_from */
-
-  /* Set the start time temporary to this creation time to allow easier
-     timeout checks before the transfer has started for real. The start time
-     is later set "for real" using Curl_pgrsStartNow(). */
-  conn->data->progress.start = conn->created;
 
   conn->bits.user_passwd = data->set.userpwd?1:0;
   conn->bits.proxy_user_passwd = data->set.proxyuserpwd?1:0;
