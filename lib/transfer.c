@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.37 2001-05-03 10:45:39 bagder Exp $
+ * $Id: transfer.c,v 1.38 2001-05-10 11:29:47 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -517,8 +517,14 @@ Transfer(struct connectdata *c_conn)
                 char *start=p;
                 char backup;
 
-                start += 10; /* pass "Location: " */
+                start += 9; /* pass "Location:" */
+
+                /* Skip spaces and tabs. We do this to support multiple
+                   white spaces after the "Location:" keyword. */
+                while(*start && isspace((int)*start ))
+                  start++;
                 ptr = start; /* start scanning here */
+
                 /* scan through the string to find the end */
                 while(*ptr && !isspace((int)*ptr))
                   ptr++;
