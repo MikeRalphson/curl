@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2001, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * In order to be useful for every potential user, curl and libcurl are
  * dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.121 2002-01-29 10:49:32 bagder Exp $
+ * $Id: curl.h,v 1.122 2002-01-31 14:24:55 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -272,7 +272,7 @@ typedef enum {
   /* Set cookie in request: */
   CINIT(COOKIE, OBJECTPOINT, 22),
 
-  /* This points to a linked list of headers, struct HttpHeader kind */
+  /* This points to a linked list of headers, struct curl_slist kind */
   CINIT(HTTPHEADER, OBJECTPOINT, 23),
 
   /* This points to a linked list of post entries, struct HttpPost */
@@ -613,8 +613,8 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.9.3"
-#define LIBCURL_VERSION_NUM 0x070903
+#define LIBCURL_VERSION "7.9.4-pre1"
+#define LIBCURL_VERSION_NUM 0x070904
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
 struct curl_slist {
