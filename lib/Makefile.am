@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.75 2003-11-06 15:09:30 bagder Exp $
+# $Id: Makefile.am,v 1.76 2003-11-10 09:28:22 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -85,7 +85,7 @@ http_ntlm.c http_ntlm.h ca-bundle.h inet_pton.c inet_pton.h
 
 noinst_HEADERS = setup.h transfer.h
 
-BUILT_SOURCES = $(srcdir)/getdate.c $(srcdir)/ca-bundle.h
+BUILT_SOURCES = $(srcdir)/getdate.c $(top_builddir)/lib/ca-bundle.h
 
 # Say $(srcdir), so GNU make does not report an ambiguity with the .y.c rule.
 $(srcdir)/getdate.c: getdate.y
@@ -93,7 +93,7 @@ $(srcdir)/getdate.c: getdate.y
 	  $(YACC) $(YFLAGS) getdate.y; \
 	  mv -f y.tab.c getdate.c
 
-$(srcdir)/ca-bundle.h: Makefile.in Makefile
+$(top_builddir)/lib/ca-bundle.h: Makefile.in Makefile
 	@if test -f $@; then \
 	  chmod 0644 $@; \
 	fi
