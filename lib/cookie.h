@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.7 2001-09-26 07:08:30 bagder Exp $
+ * $Id: cookie.h,v 1.8 2002-02-20 13:46:53 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -38,7 +38,7 @@ struct Cookie {
   char *value;       /* name = <this> */
   char *path;	      /* path = <this> */
   char *domain;      /* domain = <this> */
-  time_t expires;    /* expires = <this> */
+  long expires;    /* expires = <this> */
   char *expirestr;   /* the plain text version */
 
   char field1;       /* read from a cookie file, 1 => FALSE, 2=> TRUE */

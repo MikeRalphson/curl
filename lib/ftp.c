@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.128 2002-01-18 13:04:48 bagder Exp $
+ * $Id: ftp.c,v 1.129 2002-02-20 13:46:53 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -55,6 +55,7 @@
 #include <netdb.h>
 #endif
 #ifdef	VMS
+#include <in.h>
 #include <inet.h>
 #endif
 #endif
@@ -1575,7 +1576,7 @@ CURLcode ftp_perform(struct connectdata *conn)
       struct tm buffer;
       tm = (struct tm *)localtime_r(&data->info.filetime, &buffer);
 #else
-      tm = localtime(&data->info.filetime);
+      tm = localtime((unsigned long *)&data->info.filetime);
 #endif
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
       strftime(buf, BUFSIZE-1, "Last-Modified: %a, %d %b %Y %H:%M:%S %Z\r\n",

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.17 2002-01-29 10:49:32 bagder Exp $
+ * $Id: getinfo.c,v 1.18 2002-02-20 13:46:54 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -30,6 +30,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+
+#ifdef	VMS
+#include	<stdlib.h>
+#endif
 
 /*
  * This is supposed to be called in the beginning of a permform() session
@@ -44,6 +48,7 @@ CURLcode Curl_initinfo(struct SessionHandle *data)
   pro->t_connect = 0;
   pro->t_pretransfer = 0;
   pro->t_starttransfer = 0;
+  pro->timespent = 0;
 
   info->httpcode = 0;
   info->httpversion=0;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.25 2002-02-18 10:05:18 bagder Exp $
+ * $Id: connect.c,v 1.26 2002-02-20 13:46:53 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -47,6 +47,10 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h> /* required for free() prototype, without it, this crashes
                        on macos 68K */
+#endif
+#ifdef	VMS
+#include <in.h>
+#include <inet.h>
 #endif
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.52 2002-02-18 23:12:37 bagder Exp $
+ * $Id: hostip.c,v 1.53 2002-02-20 13:46:55 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -50,6 +50,7 @@
 #include <stdlib.h>	/* required for free() prototypes */
 #endif
 #ifdef	VMS
+#include <in.h>
 #include <inet.h>
 #include <stdlib.h>
 #endif
@@ -510,7 +511,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
       /* we make a copy of the hostent right now, right here, as the
          static one we got a pointer to might get removed when we don't
          want/expect that */
-      h = pack_hostent(buf, h);
+      h = pack_hostent((char *)buf, h);
 #endif
   }
   return (h);

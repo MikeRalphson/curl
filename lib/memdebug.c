@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.19 2001-11-28 23:19:17 bagder Exp $
+ * $Id: memdebug.c,v 1.20 2002-02-20 13:46:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -168,7 +168,10 @@ int curl_fclose(FILE *file, int line, const char *source)
             source, line, file);
   return res;
 }
-
+#else
+#ifdef VMS
+int VOID_VAR_MEMDEBUG;	
+#endif
 #endif /* MALLOCDEBUG */
 
 /*
