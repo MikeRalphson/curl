@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.153 2003-09-04 10:08:53 bagder Exp $
+ * $Id: http.c,v 1.154 2003-09-04 10:18:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -175,10 +175,9 @@ void Curl_http_auth_act(struct connectdata *conn)
       data->state.authwant = CURLAUTH_NONE; /* none */
 
     if(data->state.authwant)
-      conn->newurl = strdup(data->change.url); /* clone string */
-    
-    data->state.authavail = CURLAUTH_NONE; /* clear it here */
+      conn->newurl = strdup(data->change.url); /* clone URL */
   }
+  data->state.authavail = CURLAUTH_NONE; /* clear it here */
 }
 
 /*
@@ -827,7 +826,8 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
               else if(2 == sscanf(line_start, "HTTP/1.%d %d",
                                   &subversion,
                                   &httpcode)) {
-                ;
+                /* store the HTTP code */
+                data->info.httpproxycode = httpcode;                
               }
               /* put back the letter we blanked out before */
               line_start[perline]= letter;
@@ -849,9 +849,6 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
     Curl_http_auth_act(conn);
   
   } while(conn->newurl);
-
-  /* store the HTTP code after the looping is done */
-  data->info.httpproxycode = httpcode;
 
   if(200 != httpcode) {
     failf(data, "Received HTTP code %d from proxy after CONNECT", httpcode);
