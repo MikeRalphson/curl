@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.14 2001-08-14 08:31:27 bagder Exp $
+ * $Id: memdebug.c,v 1.15 2001-08-14 09:24:48 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -58,7 +58,7 @@
 FILE *logfile;
 
 /* this sets the log file name */
-void curl_memdebug(char *logname)
+void curl_memdebug(const char *logname)
 {
   logfile = fopen(logname, "w");
 }
