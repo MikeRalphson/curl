@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.58 2004-06-30 12:05:07 bagder Exp $
+ * $Id: cookie.c,v 1.59 2004-07-26 15:42:07 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -261,7 +261,7 @@ Curl_cookie_add(struct SessionHandle *data,
               /* Received and skipped a cookie with a domain using too few
                  dots. */
               badcookie=TRUE; /* mark this as a bad cookie */
-              infof(data, "skipped cookie with illegal dotcount domain: %s",
+              infof(data, "skipped cookie with illegal dotcount domain: %s\n",
                     whatptr);
             }
             else {
@@ -289,7 +289,7 @@ Curl_cookie_add(struct SessionHandle *data,
                    is not a domain to which the current host belongs. Mark as
                    bad. */
                 badcookie=TRUE;
-                infof(data, "skipped cookie with bad tailmatch domain: %s",
+                infof(data, "skipped cookie with bad tailmatch domain: %s\n",
                       whatptr);
               }
             }
