@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.40 2005-03-15 21:00:46 danf Exp $
+ * $Id: if2ip.c,v 1.41 2005-03-16 02:25:12 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -69,6 +69,7 @@
 #include <inet.h>
 #endif
 
+#include "inet_ntop.h"
 #include "memory.h"
 
 /* The last #include file should be: */

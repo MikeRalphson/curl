@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: inet_ntop.h,v 1.1 2004-04-26 07:20:11 bagder Exp $
+ * $Id: inet_ntop.h,v 1.2 2005-03-16 02:25:12 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -31,7 +31,7 @@
 #include <arpa/inet.h>
 #endif
 #else
-const char *Curl_inet_ntop(int af, const void *addr, char *buf, size_t size);
+char *Curl_inet_ntop(int af, const void *addr, char *buf, size_t size);
 #endif
 
 #endif /* __INET_NTOP_H */
