@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.10 2000-11-10 09:18:25 bagder Exp $
+ * $Id: getpass.c,v 1.11 2000-12-05 08:04:04 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -71,7 +71,7 @@
 #  define perror(x) fprintf(stderr, "Error in: %s\n", x)
 #endif
 
-char *getpass_r(const char *prompt, char *buffer, int buflen)
+char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 {
   FILE *infp;
   FILE *outfp;
