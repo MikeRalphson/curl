@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.434 2004-12-16 21:27:23 danf Exp $
+ * $Id: url.c,v 1.435 2004-12-17 12:26:18 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3067,7 +3067,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     if(Curl_parsenetrc(conn->host.name,
                        user, passwd,
                        data->set.netrc_file)) {
-      infof(data, "Couldn't find host %s in the .netrc file, using defaults\n",
+      infof(data, "Couldn't find host %s in the " DOT_CHAR "netrc file, using defaults\n",
             conn->host.name);
     }
     else
