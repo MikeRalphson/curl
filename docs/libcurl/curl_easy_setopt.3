@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.95 2004-08-23 14:04:38 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.96 2004-08-23 14:41:54 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "12 Mar 2004" "libcurl 7.11.1" "libcurl Manual"
@@ -92,6 +92,9 @@ multiplied with \fInmemb\fP, it will not be zero terminated. Return the number
 of bytes actually taken care of. If that amount differs from the amount passed
 to your function, it'll signal an error to the library and it will abort the
 transfer and return \fICURLE_WRITE_ERROR\fP.
+
+This function may be called with zero bytes data if the transfered file is
+empty.
 
 Set the \fIstream\fP argument with the \fICURLOPT_WRITEDATA\fP option.
 
