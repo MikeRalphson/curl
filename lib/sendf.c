@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.74 2004-01-29 13:56:45 bagder Exp $
+ * $Id: sendf.c,v 1.75 2004-01-30 12:08:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -420,6 +420,7 @@ int Curl_read(struct connectdata *conn,
 
     if(-1 == nread) {
       int err = Curl_ourerrno();
+      conn->sockerror = err;
 #ifdef WIN32
       if(WSAEWOULDBLOCK == err)
 #else

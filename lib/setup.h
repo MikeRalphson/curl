@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.43 2004-01-29 15:35:42 bagder Exp $
+ * $Id: setup.h,v 1.44 2004-01-30 12:08:18 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -254,6 +254,16 @@ typedef struct in_addr Curl_ipconnect;
 
 #ifdef mpeix
 #define IOCTL_3_ARGS
+#endif
+
+#ifndef ECONNRESET
+#ifdef WSAECONNRESET
+#define ECONNRESET WSAECONNRESET
+#else
+/* This will effectively prevent the code from working in this particular
+   aspect, but it still compile fine! */
+#define ECONNRESET 10000
+#endif
 #endif
 
 #endif /* __CONFIG_H */
