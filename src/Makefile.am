@@ -1,14 +1,17 @@
 #
-# $Id: Makefile.am,v 1.8 2000-10-02 06:32:05 bagder Exp $
+# $Id: Makefile.am,v 1.9 2000-10-09 11:24:49 bagder Exp $
 #
 
 # Some flags needed when trying to cause warnings ;-)
-# CFLAGS = -Wall -pedantic
+# CFLAGS = -g -DMALLOCDEBUG # -Wall -pedantic
 #CPPFLAGS = -DGLOBURL -DCURL_SEPARATORS
 
 INCLUDES = -I$(top_srcdir)/include
 
-bin_PROGRAMS = curl
+bin_PROGRAMS = curl #memtest
+
+#memtest_SOURCES = memtest.c
+#memtest_LDADD = $(top_srcdir)/lib/libcurl.la
 
 curl_SOURCES = main.c hugehelp.c urlglob.c writeout.c
 curl_LDADD = $(top_srcdir)/lib/libcurl.la
