@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.39 2001-01-26 15:52:01 bagder Exp $
+ * $Id: urldata.h,v 1.40 2001-02-05 23:04:44 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -159,9 +159,13 @@ struct connectdata {
 #define PROT_LDAP    (1<<7)
 #define PROT_FILE    (1<<8)
 
+#ifdef ENABLE_IPV6
+  struct addrinfo *res;
+#else
   char *hostent_buf; /* pointer to allocated memory for name info */
   struct hostent *hp;
   struct sockaddr_in serv_addr;
+#endif
   char proto[64];  /* store the protocol string in this buffer */
   char gname[257]; /* store the hostname in this buffer */
   char *name;      /* host name pointer to fool around with */
