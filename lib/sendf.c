@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.89 2004-07-29 07:30:38 bagder Exp $
+ * $Id: sendf.c,v 1.90 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -33,7 +33,7 @@
 #endif
 
 #ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>	/* required for send() & recv() prototypes */
+#include <sys/socket.h> /* required for send() & recv() prototypes */
 #endif
 
 #ifdef HAVE_UNISTD_H
@@ -59,7 +59,7 @@
 /* returns last node in linked list */
 static struct curl_slist *slist_get_last(struct curl_slist *list)
 {
-  struct curl_slist	*item;
+  struct curl_slist     *item;
 
   /* if caller passed us a NULL, return now */
   if (!list)
@@ -83,8 +83,8 @@ static struct curl_slist *slist_get_last(struct curl_slist *list)
 struct curl_slist *curl_slist_append(struct curl_slist *list,
                                      const char *data)
 {
-  struct curl_slist	*last;
-  struct curl_slist	*new_item;
+  struct curl_slist     *last;
+  struct curl_slist     *new_item;
 
   new_item = (struct curl_slist *) malloc(sizeof(struct curl_slist));
   if (new_item) {
@@ -114,8 +114,8 @@ struct curl_slist *curl_slist_append(struct curl_slist *list,
 /* be nice and clean up resources */
 void curl_slist_free_all(struct curl_slist *list)
 {
-  struct curl_slist	*next;
-  struct curl_slist	*item;
+  struct curl_slist     *next;
+  struct curl_slist     *item;
 
   if (!list)
     return;

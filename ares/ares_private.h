@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.10 2004-09-26 18:20:58 bagder Exp $ */
+/* $Id: ares_private.h,v 1.11 2004-10-06 07:50:18 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -33,10 +33,10 @@
 #define writev(s,v,c)     writev_s(s,v,c)
 #endif
 
-#define	DEFAULT_TIMEOUT		5
-#define DEFAULT_TRIES		4
+#define DEFAULT_TIMEOUT         5
+#define DEFAULT_TRIES           4
 #ifndef INADDR_NONE
-#define	INADDR_NONE 0xffffffff
+#define INADDR_NONE 0xffffffff
 #endif
 
 #if defined(WIN32) && !defined(WATT32)
@@ -56,15 +56,15 @@
 #elif defined(NETWARE)
 
 #define PATH_RESOLV_CONF "sys:/etc/resolv.cfg"
-#define PATH_HOSTS		"sys:/etc/hosts"
+#define PATH_HOSTS              "sys:/etc/hosts"
 
 #else
 
-#define PATH_RESOLV_CONF	"/etc/resolv.conf"
+#define PATH_RESOLV_CONF        "/etc/resolv.conf"
 #ifdef ETC_INET
-#define PATH_HOSTS		"/etc/inet/hosts"
+#define PATH_HOSTS              "/etc/inet/hosts"
 #else
-#define PATH_HOSTS		"/etc/hosts"
+#define PATH_HOSTS              "/etc/hosts"
 #endif
 
 #endif

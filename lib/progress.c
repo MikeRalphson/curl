@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.74 2004-08-10 06:41:13 bagder Exp $
+ * $Id: progress.c,v 1.75 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -256,7 +256,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
     if (!data->progress.callback) {
       if(conn->resume_from)
         fprintf(data->set.err,
-		"** Resuming transfer from byte position %" FORMAT_OFF_T
+                "** Resuming transfer from byte position %" FORMAT_OFF_T
                 "\n",
                 conn->resume_from);
       fprintf(data->set.err,

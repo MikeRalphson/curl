@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.26 2004-06-13 08:32:57 bagder Exp $
+ * $Id: strequal.c,v 1.27 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -135,6 +135,6 @@ size_t Curl_strlcat(char *dst, const char *src, size_t siz)
   }
   *d = '\0';
 
-  return(dlen + (s - src));	/* count does not include NUL */
+  return(dlen + (s - src));     /* count does not include NUL */
 }
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.63 2004-08-17 12:00:39 bagder Exp $
+ * $Id: file.c,v 1.64 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -148,7 +148,7 @@ CURLcode Curl_file_connect(struct connectdata *conn)
     if (actual_path[i] == '/')
       actual_path[i] = '\\';
 
-  fd = open(actual_path, O_RDONLY | O_BINARY);	/* no CR/LF translation! */
+  fd = open(actual_path, O_RDONLY | O_BINARY);  /* no CR/LF translation! */
   file->path = actual_path;
 #else
   fd = open(real_path, O_RDONLY);

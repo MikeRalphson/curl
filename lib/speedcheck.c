@@ -1,8 +1,8 @@
 /***************************************************************************
- *                                  _   _ ____  _     
- *  Project                     ___| | | |  _ \| |    
- *                             / __| | | | |_) | |    
- *                            | (__| |_| |  _ <| |___ 
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
  * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
@@ -10,7 +10,7 @@
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at http://curl.haxx.se/docs/copyright.html.
- * 
+ *
  * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
  * furnished to do so, under the terms of the COPYING file.
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: speedcheck.c,v 1.19 2004-01-07 09:19:35 bagder Exp $
+ * $Id: speedcheck.c,v 1.20 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -47,15 +47,15 @@ CURLcode Curl_speedcheck(struct SessionHandle *data,
     /* We are now below the "low speed limit". If we are below it
        for "low speed time" seconds we consider that enough reason
        to abort the download. */
-    
+
     if( (Curl_tvdiff(now, data->state.keeps_speed)/1000) >
         data->set.low_speed_time) {
       /* we have been this slow for long enough, now die */
       failf(data,
-	    "Operation too slow. "
-	    "Less than %d bytes/sec transfered the last %d seconds",
-	    data->set.low_speed_limit,
-	    data->set.low_speed_time);
+            "Operation too slow. "
+            "Less than %d bytes/sec transfered the last %d seconds",
+            data->set.low_speed_limit,
+            data->set.low_speed_time);
       return CURLE_OPERATION_TIMEOUTED;
     }
   }

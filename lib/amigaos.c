@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: amigaos.c,v 1.2 2004-01-07 09:19:35 bagder Exp $
+ * $Id: amigaos.c,v 1.3 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "amigaos.h"
@@ -30,7 +30,7 @@ void amiga_cleanup()
 {
   if(SocketBase)
     CloseLibrary(SocketBase);
-	
+
   SocketBase = NULL;
 }
 
@@ -38,12 +38,12 @@ BOOL amiga_init()
 {
   if(!SocketBase)
     SocketBase = OpenLibrary("bsdsocket.library", 4);
-	
+
   if(!SocketBase) {
     fprintf(stderr, "No TCP/IP Stack running!\n\a");
     return FALSE;
   }
-	
+
   atexit(amiga_cleanup);
   return TRUE;
 }

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.22 2004-07-31 07:36:01 bagder Exp $
+ * $Id: http_digest.c,v 1.23 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -314,7 +314,7 @@ CURLcode Curl_output_digest(struct connectdata *conn,
 
       A2       = Method ":" digest-uri-value
 
-	  If the "qop" value is "auth-int", then A2 is:
+          If the "qop" value is "auth-int", then A2 is:
 
       A2       = Method ":" digest-uri-value ":" H(entity-body)
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.10 2004-06-30 11:32:16 bagder Exp $
+ * $Id: hostip4.c,v 1.11 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -47,12 +47,12 @@
 #include <arpa/inet.h>
 #endif
 #ifdef HAVE_STDLIB_H
-#include <stdlib.h>	/* required for free() prototypes */
+#include <stdlib.h>     /* required for free() prototypes */
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>     /* for the close() proto */
 #endif
-#ifdef	VMS
+#ifdef  VMS
 #include <in.h>
 #include <inet.h>
 #include <stdlib.h>

@@ -1,5 +1,5 @@
 ;;;; Emacs Lisp help for writing curl code. ;;;;
-;;;; $Id: curl-style.el,v 1.12 2004-06-29 18:45:52 bagder Exp $
+;;;; $Id: curl-style.el,v 1.13 2004-10-06 07:50:18 bagder Exp $
 
 ;;; The curl hacker's C conventions.
 ;;; See the sample.emacs file on how this file can be made to take
@@ -20,6 +20,13 @@
     )
   "Curl C Programming Style")
 
+(defun curl-code-cleanup ()
+  "no docs"
+  (interactive)
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace)
+)
+
 ;; Customizations for all of c-mode, c++-mode, and objc-mode
 (defun curl-c-mode-common-hook ()
   "Curl C mode hook"
@@ -33,7 +40,7 @@
   ;; keybindings for C, C++, and Objective-C.  We can put these in
   ;; c-mode-base-map because of inheritance ...
   (define-key c-mode-base-map "\M-q" 'c-fill-paragraph)
-  (define-key c-mode-base-map "\M-m" 'delete-trailing-whitespace)
+  (define-key c-mode-base-map "\M-m" 'curl-code-cleanup)
   (setq c-recognize-knr-p nil)
   ;;; (add-hook 'write-file-hooks 'delete-trailing-whitespace t)
   (setq show-trailing-whitespace t)

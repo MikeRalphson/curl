@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: amigaos.h,v 1.3 2004-01-13 08:35:57 bagder Exp $
+ * $Id: amigaos.h,v 1.4 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #ifndef LIBCURL_AMIGAOS_H
@@ -36,10 +36,10 @@
 
 #include "config-amigaos.h"
 
-#define select(args...)	WaitSelect( args, NULL)
-#define inet_ntoa(x)	Inet_NtoA( x ## .s_addr)
-#define ioctl(a,b,c,d)	IoctlSocket( (LONG)a, (ULONG)b, (char*)c)
-#define _AMIGASF	1
+#define select(args...) WaitSelect( args, NULL)
+#define inet_ntoa(x)    Inet_NtoA( x ## .s_addr)
+#define ioctl(a,b,c,d)  IoctlSocket( (LONG)a, (ULONG)b, (char*)c)
+#define _AMIGASF        1
 
 extern void amiga_cleanup();
 extern BOOL amiga_init();

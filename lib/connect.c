@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.116 2004-09-30 21:01:23 bagder Exp $
+ * $Id: connect.c,v 1.117 2004-10-06 07:50:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -67,7 +67,7 @@
 #undef in_addr_t
 #define in_addr_t unsigned long
 #endif
-#ifdef	VMS
+#ifdef VMS
 #include <in.h>
 #include <inet.h>
 #endif
@@ -362,8 +362,8 @@ static CURLcode bindlocal(struct connectdata *conn,
 
       } /* end of if  h */
       else {
-	failf(data,"could't find my own IP address (%s)", myhost);
-	return CURLE_HTTP_PORT_FAILED;
+        failf(data,"could't find my own IP address (%s)", myhost);
+        return CURLE_HTTP_PORT_FAILED;
       }
     } /* end of inet_addr */
 
