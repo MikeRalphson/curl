@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.245 2004-03-12 08:03:31 bagder Exp $
+ * $Id: main.c,v 1.246 2004-03-17 07:22:04 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -124,11 +124,11 @@ struct pollfd {
 int poll (struct pollfd *, int, int);
 #endif /* __DJGPP__ */
 
-#ifndef __cplusplus        /* (rabe) */
+#ifndef __cplusplus
 #ifndef typedef_bool
 typedef char bool;
 #endif
-#endif                     /* (rabe) */
+#endif
 
 #define CURL_PROGRESS_STATS 0 /* default progress display */
 #define CURL_PROGRESS_BAR   1
