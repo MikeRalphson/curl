@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.313 2003-10-29 09:53:22 bagder Exp $
+ * $Id: url.c,v 1.314 2003-11-11 14:30:45 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -506,6 +506,12 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Parse the $HOME/.netrc file
      */
     data->set.use_netrc = va_arg(param, long);
+    break;
+  case CURLOPT_NETRC_FILE:
+    /*
+     * Use this file instead of the $HOME/.netrc file
+     */
+    data->set.netrc_file = va_arg(param, char *);
     break;
   case CURLOPT_FOLLOWLOCATION:
     /*
@@ -2758,7 +2764,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
   if (data->set.use_netrc != CURL_NETRC_IGNORED) {
     if(Curl_parsenetrc(conn->hostname,
-                       user, passwd)) {
+                       user, passwd,
+                       data->set.netrc_file)) {
       infof(data, "Couldn't find host %s in the .netrc file, using defaults",
             conn->hostname);
     }

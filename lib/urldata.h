@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.181 2003-11-07 13:26:00 bagder Exp $
+ * $Id: urldata.h,v 1.182 2003-11-11 14:30:45 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -854,6 +854,8 @@ struct UserDefined {
   bool upload;
   enum CURL_NETRC_OPTION
        use_netrc;        /* defined in include/curl.h */
+  char *netrc_file;      /* if not NULL, use this instead of trying to find
+                            $HOME/.netrc */
   bool verbose;
   bool krb4;             /* kerberos4 connection requested */
   bool reuse_forbid;     /* forbidden to be reused, close after use */

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.229 2003-11-06 11:33:08 bagder Exp $
+ * $Id: curl.h,v 1.230 2003-11-11 14:30:45 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -692,6 +692,12 @@ typedef enum {
   /* Set this option to limit the size of a file that will be downloaded from
      an HTTP or FTP server. */
   CINIT(MAXFILESIZE, LONG, 114),
+
+  /* Set this option to the file name of your .netrc file you want libcurl
+     to parse (using the CURLOPT_NETRC option). If not set, libcurl will do
+     a poor attempt to find the user's home directory and check for a .netrc
+     file in there. */
+  CINIT(NETRC_FILE, OBJECTPOINT, 115),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
