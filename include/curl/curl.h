@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.246 2004-03-25 13:37:19 bagder Exp $
+ * $Id: curl.h,v 1.247 2004-04-23 06:29:41 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -783,12 +783,12 @@ typedef enum {
 
 #ifndef CURL_NO_OLDIES /* define this to test if your app builds with all
                           the obsolete stuff removed! */
-#define CURLOPT_HTTPREQUEST    0
+#define CURLOPT_HTTPREQUEST    -1
 #define CURLOPT_FTPASCII       CURLOPT_TRANSFERTEXT
-#define CURLOPT_MUTE           0
-#define CURLOPT_PASSWDFUNCTION 0
-#define CURLOPT_PASSWDDATA     0
-#define CURLOPT_CLOSEFUNCTION  0
+#define CURLOPT_MUTE           -2
+#define CURLOPT_PASSWDFUNCTION -3
+#define CURLOPT_PASSWDDATA     -4
+#define CURLOPT_CLOSEFUNCTION  -5
 
 #else
 /* This is set if CURL_NO_OLDIES is defined at compile-time */
