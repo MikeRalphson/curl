@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.143 2004-11-25 22:21:50 bagder Exp $
+# $Id: runtests.pl,v 1.144 2004-11-26 08:41:39 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -668,6 +668,7 @@ sub checkcurl {
 
     unlink($memdump); # remove this if there was one left
 
+    my $feat;
     my $curl;
     my $libcurl;
     my @version=`$CURL --version 2>/dev/null`;
@@ -740,7 +741,7 @@ sub checkcurl {
             # at this point
         }
         elsif($_ =~ /^Features: (.*)/i) {
-            my $feat = $1;
+            $feat = $1;
             if($feat =~ /debug/i) {
                 # debug is a listed "feature", use that knowledge
                 $curl_debug = 1;
@@ -788,7 +789,7 @@ sub checkcurl {
     print "********* System characteristics ******** \n",
     "* $curl\n",
     "* $libcurl\n",
-    "* Features: $feat\n"
+    "* Features: $feat\n",
     "* Host: $hostname",
     "* System: $hosttype";
 
