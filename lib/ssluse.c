@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.124 2004-12-18 10:42:48 bagder Exp $
+ * $Id: ssluse.c,v 1.125 2004-12-19 09:37:32 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -90,10 +90,9 @@
 #undef HAVE_ENGINE_LOAD_FOUR_ARGS
 #endif
 
-#if OPENSSL_VERSION_NUMBER >= 0x00903001L
+#if (OPENSSL_VERSION_NUMBER >= 0x00903001L) && defined(HAVE_OPENSSL_PKCS12_H)
 /* OpenSSL has PKCS 12 support */
 #define HAVE_PKCS12_SUPPORT
-#include <openssl/pkcs12.h>
 #else
 /* OpenSSL/SSLEay does not have PKCS12 support */
 #undef HAVE_PKCS12_SUPPORT

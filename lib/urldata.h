@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.251 2004-12-16 21:27:23 danf Exp $
+ * $Id: urldata.h,v 1.252 2004-12-19 09:37:32 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -60,6 +60,9 @@
 #include "openssl/err.h"
 #ifdef HAVE_OPENSSL_ENGINE_H
 #include <openssl/engine.h>
+#endif
+#ifdef HAVE_OPENSSL_PKCS12_H
+#include <openssl/pkcs12.h>
 #endif
 #else
 #include "rsa.h"
