@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.19 2003-09-19 12:56:22 bagder Exp $
+dnl $Id: configure.ac,v 1.20 2003-09-21 22:13:23 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -511,14 +511,12 @@ AC_MSG_CHECKING([if GSSAPI support is requested])
 if test x"$want_gss" = xyes; then
   if test -z "$GSSAPI_INCS"; then
      if test -f "$GSSAPI_ROOT/bin/krb5-config"; then
-        gss_cppflags=`$GSSAPI_ROOT/bin/krb5-config --cflags gssapi`
-	CPPFLAGS="$CPPFLAGS $gss_cppflags"
+        GSSAPI_INCS=`$GSSAPI_ROOT/bin/krb5-config --cflags gssapi`
      else
-        CPPFLAGS="$GSSAPI_ROOT/include"
+        GSSAPI_INCS=="-I$GSSAPI_ROOT/include"
      fi
-  else
-     CPPFLAGS="$CPPFLAGS $GSSAPI_INCS"
   fi
+  CPPFLAGS="$CPPFLAGS $GSSAPI_INCS"
   
   if test -z "$GSSAPI_LIB_DIR"; then
      if test -f "$GSSAPI_ROOT/bin/krb5-config"; then
@@ -533,6 +531,12 @@ if test x"$want_gss" = xyes; then
 
   AC_MSG_RESULT(yes)
   AC_DEFINE(HAVE_GSSAPI, 1, [if you have the gssapi libraries])
+
+  if test -n "$GSSAPI_INCS"; then
+    # cut off the preceding -I from the include path
+    GSSAPI_INCS=`echo $GSSAPI_INCS | sed -e s/^-I//g`
+  fi
+
   if test -f "$GSSAPI_INCS/gssapi.h"; then
       AC_DEFINE(HAVE_GSSHEIMDAL, 1, [if you have the Heimdal gssapi libraries])
   else
