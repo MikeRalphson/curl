@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.105 2004-06-22 21:25:53 bagder Exp $
+ * $Id: connect.c,v 1.106 2004-06-23 06:14:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -608,6 +608,8 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
   /*
    * Connecting with a getaddrinfo chain
    */
+  (void)port; /* the port number is already included in the getaddrinfo
+                 struct */
   for (curr_addr = remotehost->addr, aliasindex=0; curr_addr;
        curr_addr = curr_addr->ai_next, aliasindex++) {
     sockfd = socket(curr_addr->ai_family, curr_addr->ai_socktype,
