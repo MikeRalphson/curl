@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.40 2003-02-24 18:14:51 bagder Exp $
+# $Id: Makefile.am,v 1.41 2003-03-31 11:37:47 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -13,6 +13,7 @@ SUBDIRS = docs lib src include tests packages
 
 # create a root makefile in the distribution:
 dist-hook:
+	rm -rf $(top_builddir)/tests/log
 	cp $(srcdir)/Makefile.dist $(distdir)/Makefile
 
 html:
