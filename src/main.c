@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.154 2002-12-03 11:12:18 bagder Exp $
+ * $Id: main.c,v 1.155 2002-12-03 12:41:10 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -413,6 +413,7 @@ static void help(void)
        " -2/--sslv2         Force usage of SSLv2 (H)\n"
        " -3/--sslv3         Force usage of SSLv3 (H)");
   puts(" -#/--progress-bar  Display transfer progress as a progress bar");
+}
 
 struct LongShort {
   const char *letter;
