@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.113 2002-03-08 12:05:57 bagder Exp $
+ * $Id: main.c,v 1.114 2002-03-08 15:18:03 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -455,6 +455,7 @@ struct Configurable {
   char *writeout; /* %-styled format string to output */
 
   FILE *errors; /* if stderr redirect is requested */
+  bool errors_fopened;
 
   struct curl_slist *quote;
   struct curl_slist *postquote;
@@ -1031,8 +1032,10 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       config->crlf = TRUE;
       break;
     case '8': /* there is no short letter for this */
-      if(strcmp(nextarg, "-"))
+      if(strcmp(nextarg, "-")) {
         config->errors = fopen(nextarg, "wt");
+        config->errors_fopened = TRUE;
+      }
       else
         config->errors = stdout;
       break;
@@ -2487,9 +2490,7 @@ operate(struct Configurable *config, int argc, char *argv[])
   /* cleanup the curl handle! */
   curl_easy_cleanup(curl);
 
-  if((config->errors != stderr) &&
-     (config->errors != stdout))
-    /* it wasn't directed to stdout or stderr so close the file! */
+  if(config->errors_fopened)
     fclose(config->errors);
 
   main_free(); /* cleanup */
