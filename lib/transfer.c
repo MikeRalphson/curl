@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.92 2002-04-15 13:47:06 bagder Exp $
+ * $Id: transfer.c,v 1.93 2002-04-16 07:59:20 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1312,6 +1312,8 @@ CURLcode Curl_perform(struct SessionHandle *data)
            */
           break;
         }
+        Curl_pgrsTime(data, TIMER_REDIRECT);
+        Curl_pgrsResetTimes(data);
         continue;
       }
     }

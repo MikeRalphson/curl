@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.105 2002-04-12 07:21:11 bagder Exp $
+ * $Id: urldata.h,v 1.106 2002-04-16 07:59:20 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -451,6 +451,7 @@ struct Progress {
   double t_connect;
   double t_pretransfer;
   double t_starttransfer;
+  double t_redirect;
 
   struct timeval start;
   struct timeval t_startsingle;

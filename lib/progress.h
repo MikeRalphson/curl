@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.h,v 1.15 2002-03-19 07:54:55 bagder Exp $
+ * $Id: progress.h,v 1.16 2002-04-16 07:59:20 bagder Exp $
  *****************************************************************************/
 
 #include "timeval.h"
@@ -34,6 +34,7 @@ typedef enum {
   TIMER_STARTTRANSFER,
   TIMER_POSTRANSFER,
   TIMER_STARTSINGLE,
+  TIMER_REDIRECT,
   TIMER_LAST /* must be last */
 } timerid;
   
@@ -44,6 +45,7 @@ void Curl_pgrsSetUploadSize(struct SessionHandle *data, double size);
 void Curl_pgrsSetDownloadCounter(struct SessionHandle *data, double size);
 void Curl_pgrsSetUploadCounter(struct SessionHandle *data, double size);
 int Curl_pgrsUpdate(struct connectdata *);
+void Curl_pgrsResetTimes(struct SessionHandle *data);
 void Curl_pgrsTime(struct SessionHandle *data, timerid timer);
 
 
