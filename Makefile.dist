@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.22 2004-06-22 18:26:23 gknauf Exp $
+# $Id: Makefile.dist,v 1.23 2004-07-06 01:52:32 gknauf Exp $
 ###########################################################################
 
 all:
@@ -54,6 +54,12 @@ vc:
 vc-ssl:
 	cd lib
 	nmake /f Makefile.vc6 cfg=release-ssl
+	cd ..\src
+	nmake /f Makefile.vc6 cfg=release-ssl
+
+vc-ssl-zlib:
+	cd lib
+	nmake /f Makefile.vc6 cfg=release-ssl-zlib
 	cd ..\src
 	nmake /f Makefile.vc6 cfg=release-ssl
 
