@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/getinfo.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-10-30 11:53:40 $
+ * $Revision: 1.4 $
+ * $Date: 2000-11-06 15:31:10 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -94,16 +94,13 @@ CURLcode curl_getinfo(CURL *curl, CURLINFO info, ...)
     *param_doublep = data->progress.timespent;
     break;
   case CURLINFO_NAMELOOKUP_TIME:
-    *param_doublep = tvdiff(data->progress.t_nslookup,
-                            data->progress.start);
+    *param_doublep = data->progress.t_nslookup;
     break;
   case CURLINFO_CONNECT_TIME:
-    *param_doublep =  tvdiff(data->progress.t_connect,
-                             data->progress.start);
+    *param_doublep = data->progress.t_connect;
     break;
   case CURLINFO_PRETRANSFER_TIME:
-    *param_doublep =  tvdiff(data->progress.t_pretransfer,
-                             data->progress.start);
+    *param_doublep =  data->progress.t_pretransfer;
     break;
   case CURLINFO_SIZE_UPLOAD:
     *param_doublep =  data->progress.uploaded;

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.18 $
- * $Date: 2000-10-17 14:53:03 $
+ * $Revision: 1.19 $
+ * $Date: 2000-11-06 15:31:10 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -625,6 +625,7 @@ CURLcode curl_transfer(CURL *curl)
   pgrsStartNow(data);
 
   do {
+    pgrsTime(data, TIMER_STARTSINGLE);
     res = curl_connect(curl, (CURLconnect **)&c_connect);
     if(res == CURLE_OK) {
       res = curl_do(c_connect);
@@ -635,12 +636,17 @@ CURLcode curl_transfer(CURL *curl)
       }
 
       if((res == CURLE_OK) && data->newurl) {
-        /* Location: redirect */
+        /* Location: redirect
+
+           This is assumed to happen for HTTP(S) only!
+         */
         char prot[16];
         char path[URL_MAX_LENGTH];
 
         /* mark the next request as a followed location: */
         data->bits.this_is_a_follow = TRUE;
+
+        data->proto.http->followlocation++; /* count location-followers */
 
         if(data->bits.http_auto_referer) {
           /* We are asked to automatically set the previous URL as the
