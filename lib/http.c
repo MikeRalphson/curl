@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.213 2004-04-22 20:07:41 bagder Exp $
+ * $Id: http.c,v 1.214 2004-04-22 21:27:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -399,6 +399,7 @@ CURLcode Curl_http_auth(struct connectdata *conn,
       if (neg == 0) {
         conn->newurl = strdup(data->change.url);
         data->state.authproblem = (conn->newurl == NULL);
+      }
       else {
         infof(data, "Authentication problem. Ignoring this.\n");
         data->state.authproblem = TRUE;
