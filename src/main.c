@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.297 2004-12-15 03:03:45 danf Exp $
+ * $Id: main.c,v 1.298 2004-12-15 10:33:51 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -135,12 +135,6 @@ char **__crt0_glob_function (char *arg)
   return (char**)0;
 }
 #endif /* __DJGPP__ */
-
-#ifndef __cplusplus
-#ifndef typedef_bool
-typedef char bool;
-#endif
-#endif
 
 #define CURL_PROGRESS_STATS 0 /* default progress display */
 #define CURL_PROGRESS_BAR   1
