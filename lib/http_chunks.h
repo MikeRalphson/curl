@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.h,v 1.10 2004-01-29 13:56:45 bagder Exp $
+ * $Id: http_chunks.h,v 1.11 2004-03-04 15:25:06 bagder Exp $
  ***************************************************************************/
 /*
  * The longest possible hexadecimal number we support in a chunked transfer.
@@ -81,8 +81,8 @@ struct Curl_chunker {
   char hexbuffer[ MAXNUM_SIZE + 1];
   int hexindex;
   ChunkyState state;
-  ssize_t datasize;
-  ssize_t dataleft; /* untouched data amount at the end of the last buffer */
+  size_t datasize;
+  size_t dataleft; /* untouched data amount at the end of the last buffer */
 };
 
 #endif
