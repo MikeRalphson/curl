@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.64 2001-05-31 13:50:28 bagder Exp $
+ * $Id: urldata.h,v 1.65 2001-08-03 11:52:53 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -382,12 +382,6 @@ typedef enum {
 /* This struct is for boolean settings that define how to behave during
    this session. */
 struct Configbits {
-  /* these four request types mirror the httpreq field */
-  bool http_formpost;
-  bool http_post;
-  bool http_put;
-  bool http_get;
-
   bool get_filetime;
   bool tunnel_thru_httpproxy;
   bool ftp_append;
