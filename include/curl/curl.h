@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.137 2002-04-12 11:39:27 bagder Exp $
+ * $Id: curl.h,v 1.138 2002-04-14 17:29:35 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -209,7 +209,7 @@ typedef enum {
 #ifdef CINIT
 #undef CINIT
 #endif
-#ifdef __STDC__
+#if defined(__STDC__) || defined(_MSC_VER)
 #define CINIT(name,type,number) CURLOPT_ ## name = CURLOPTTYPE_ ## type + number
 #else
 /* The macro "##" is ISO C, we assume pre-ISO C doesn't support it. */
@@ -595,7 +595,8 @@ int curl_formparse(char *, struct curl_httppost **,
 #ifdef CFINIT
 #undef CFINIT
 #endif
-#ifdef __STDC__
+
+#if defined(__STDC__) || defined(_MSC_VER)
 #define CFINIT(name) CURLFORM_ ## name
 #else
 /* The macro "##" is ISO C, we assume pre-ISO C doesn't support it. */
