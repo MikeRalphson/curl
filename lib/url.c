@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.397 2004-06-24 09:14:59 bagder Exp $
+ * $Id: url.c,v 1.398 2004-06-30 11:09:16 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -488,6 +488,9 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Do not include the body part in the output data stream.
      */
     data->set.opt_no_body = va_arg(param, long)?TRUE:FALSE;
+    if(data->set.opt_no_body)
+      /* in HTTP lingo, this means using the HEAD request */
+      data->set.httpreq = HTTPREQ_HEAD;
     break;
   case CURLOPT_FAILONERROR:
     /*
