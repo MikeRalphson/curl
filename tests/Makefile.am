@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.34 2004-05-17 10:54:00 bagder Exp $
+# $Id: Makefile.am,v 1.35 2004-06-03 14:38:07 bagder Exp $
 ###########################################################################
 EXTRA_DIST = ftpserver.pl httpserver.pl httpsserver.pl runtests.pl \
 	     ftpsserver.pl getpart.pm FILEFORMAT README \
@@ -33,14 +33,26 @@ CLEANFILES = .http.pid .https.pid .ftp.pid .ftps.pid
 curl:
 	@cd $(top_builddir) && $(MAKE)
 
+if CROSSCOMPILING
+TEST = @echo "NOTICE: we can't run the tests when cross-compiling!"
+TEST_Q = $(TEST)
+TEST_F = $(TEST)
+TEST_T = $(TEST)
+else # if not cross-compiling:
+TEST = srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl
+TEST_Q = $(TEST) -s -a
+TEST_F = $(TEST) -a -p
+TEST_T = $(TEST) -t
+endif
+
 test: all
-	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl
+	$(TEST)
 
 quiet-test: all
-	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl -s -a
+	$(TEST_Q)
 
 full-test: all
-	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl -a -p
+	$(TEST_F)
 
 torture-test: all
-	srcdir=$(srcdir) $(PERL) $(PERLFLAGS) $(srcdir)/runtests.pl -t
+	$(TEST_T)
