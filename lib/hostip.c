@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.99 2003-09-14 21:17:54 bagder Exp $
+ * $Id: hostip.c,v 1.100 2003-09-19 15:16:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -653,7 +653,7 @@ static Curl_addrinfo *my_getaddrinfo(struct connectdata *conn,
   struct addrinfo hints, *res;
   int error;
   char sbuf[NI_MAXSERV];
-  int s, pf = PF_UNSPEC;
+  int s, pf;
   struct SessionHandle *data = conn->data;
 
   *waitp=0; /* don't wait, we have the response now */
@@ -665,11 +665,27 @@ static Curl_addrinfo *my_getaddrinfo(struct connectdata *conn,
      * when PF_UNSPEC is used, so thus we switch to a mere PF_INET lookup if
      * the stack seems to be a non-ipv6 one. */
     pf = PF_INET;
-  else
+  else {
     /* This seems to be an IPv6-capable stack, use PF_UNSPEC for the widest
      * possible checks. And close the socket again.
      */
     sclose(s);
+
+    /*
+     * Check if a more limited name resolve has been requested.
+     */
+    switch(data->set.ip_version) {
+    case CURL_IPRESOLVE_V4:
+      pf = PF_INET;
+      break;
+    case CURL_IPRESOLVE_V6:
+      pf = PF_INET6;
+      break;
+    default:
+      pf = PF_UNSPEC;
+      break;
+    }
+  }
  
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = pf;
