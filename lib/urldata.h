@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.198 2004-03-03 09:26:00 bagder Exp $
+ * $Id: urldata.h,v 1.199 2004-03-03 13:12:30 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -221,7 +221,7 @@ struct HTTP {
     curl_read_callback fread; /* backup storage for fread pointer */
     void *fread_in;           /* backup storage for fread_in pointer */
     char *postdata;
-    int postsize;
+    size_t postsize;
   } backup;
 
   enum {
