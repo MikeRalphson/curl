@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.356 2004-04-13 07:37:28 bagder Exp $
+ * $Id: url.c,v 1.357 2004-04-13 10:42:32 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1316,7 +1316,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Enable or disable TCP_NODELAY, which will disable/enable the Nagle
      * algorithm
      */
-    data->set.tcp_nodelay = va_arg(param, long);
+    data->set.tcp_nodelay = (bool)va_arg(param, long);
     break;
 
   default:
