@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.124 2004-05-05 20:12:59 bagder Exp $
+# $Id: runtests.pl,v 1.125 2004-05-10 06:29:52 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -372,7 +372,7 @@ sub runhttpserver {
     my $verified;
     for(1 .. 10) {
         # verify that our server is up and running:
-        my $data=`$CURL --silent -i $HOSTIP:$HOSTPORT/verifiedserver 2>/dev/null`;
+        my $data=`$CURL --silent $HOSTIP:$HOSTPORT/verifiedserver 2>/dev/null`;
 
         if ( $data =~ /WE ROOLZ: (\d+)/ ) {
             $pid = 0+$1;
