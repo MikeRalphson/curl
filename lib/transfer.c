@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.108 2002-09-03 11:53:01 bagder Exp $
+ * $Id: transfer.c,v 1.109 2002-09-09 11:23:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -767,7 +767,6 @@ CURLcode Curl_readwrite(struct connectdata *conn,
            * the name says read, this function both reads and writes away
            * the data. The returned 'nread' holds the number of actual
            * data it wrote to the client.  */
-          /* Handle chunking here? 08/27/02 jhrg */
           CHUNKcode res =
             Curl_httpchunk_read(conn, k->str, nread, &nread);
 
