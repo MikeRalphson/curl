@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.15 2001-06-05 11:27:40 bagder Exp $
+ * $Id: formdata.c,v 1.16 2001-06-25 09:39:35 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -115,7 +115,7 @@ int FormParse(char *input,
   struct HttpPost *subpost; /* a sub-node */
   unsigned int i;
 
-  if(1 <= sscanf(input, "%255[^ =] = %4095[^\n]", name, contents)) {
+  if(1 <= sscanf(input, "%255[^=]=%4095[^\n]", name, contents)) {
     /* the input was using the correct format */
     contp = contents;
 
