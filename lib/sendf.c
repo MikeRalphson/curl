@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.90 2004-10-06 07:50:18 bagder Exp $
+ * $Id: sendf.c,v 1.91 2004-10-12 07:24:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -308,6 +308,9 @@ CURLcode Curl_write(struct connectdata *conn,
         )
         /* this is just a case of EWOULDBLOCK */
         bytes_written=0;
+      else
+        failf(conn->data, "Send failure: %s",
+              Curl_strerror(conn, err));
     }
 #ifdef USE_SSLEAY
   }
