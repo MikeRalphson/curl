@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.21 2002-10-07 13:38:59 bagder Exp $
+ * $Id: multi.c,v 1.22 2002-10-18 15:27:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -430,8 +430,10 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
         if(easy->easy_conn->newurl) {
           easy->result = Curl_follow(easy->easy_handle,
                                      strdup(easy->easy_conn->newurl));
-          if(CURLE_OK == easy->result)
+          if(CURLE_OK == easy->result) {
             easy->state = CURLM_STATE_CONNECT;
+            result = CURLM_CALL_MULTI_PERFORM;
+          }
         }
         else {
           easy->state = CURLM_STATE_DONE;
