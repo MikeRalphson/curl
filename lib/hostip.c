@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.69 2002-06-26 08:03:46 bagder Exp $
+ * $Id: hostip.c,v 1.70 2002-06-26 15:39:23 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -530,8 +530,8 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
         struct hostent hostentry;
         char *h_addr_list[2];
         struct in_addr addrentry;
-        char h_name[1];
-    } *buf = (struct namebuf *)malloc(sizeof(struct namebuf)+128);
+        char h_name[128];
+    } *buf = (struct namebuf *)malloc(sizeof(struct namebuf));
     if(!buf)
       return NULL; /* major failure */
     *bufp = (char *)buf;
@@ -545,8 +545,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
     h->h_addrtype = AF_INET;
     h->h_length = sizeof(*addrentry);
     h->h_name = &buf->h_name[0];
-    MakeIP(ntohl(in), h->h_name,
-           sizeof(struct namebuf)+128 - (long)(h->h_name) + (long)buf);
+    MakeIP(ntohl(in), h->h_name, sizeof(buf->h_name));
   }
 #if defined(HAVE_GETHOSTBYNAME_R)
   else {
