@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.81 2005-03-15 21:00:46 danf Exp $
+ * $Id: setup.h,v 1.82 2005-03-17 20:32:59 danf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -276,7 +276,7 @@ typedef int curl_socket_t;
 
 #define LIBIDN_REQUIRED_VERSION "0.4.1"
 
-#ifdef __UCLIBC_MAJOR__
+#ifdef __UCLIBC__
 #define HAVE_INET_NTOA_R_2_ARGS 1
 #endif
 
