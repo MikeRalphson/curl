@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.10 2000-09-28 10:27:43 bagder Exp $
+# $Id: Makefile.am,v 1.11 2000-10-02 06:32:31 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -23,7 +23,7 @@ download.c     getdate.h      ldap.c         ssluse.c       version.c \
 download.h     getenv.c       ldap.h         ssluse.h       \
 escape.c       getenv.h       mprintf.c      telnet.c       \
 escape.h       getpass.c      netrc.c        telnet.h       \
-writeout.c writeout.h highlevel.c strequal.c strequal.h easy.c \
+getinfo.c highlevel.c strequal.c strequal.h easy.c \
 security.h security.c krb4.c
 
 # Say $(srcdir), so GNU make does not report an ambiguity with the .y.c rule.
