@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.36 2002-11-11 22:38:32 bagder Exp $
+# $Id: Makefile.am,v 1.37 2003-01-21 10:32:40 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -25,6 +25,9 @@ check: test
 
 test:
 	@(cd tests; $(MAKE) quiet-test)
+
+test-full:
+	@(cd tests; $(MAKE) test)
 
 #
 # Build source and binary rpms. For rpm-3.0 and above, the ~/.rpmmacros
