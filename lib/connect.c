@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.78 2004-03-04 15:32:18 bagder Exp $
+ * $Id: connect.c,v 1.79 2004-03-08 11:36:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -169,7 +169,7 @@ int Curl_nonblock(int sockfd,    /* operate on this */
  */
 static
 int waitconnect(int sockfd, /* socket */
-                int timeout_msec)
+                long timeout_msec)
 {
   fd_set fd;
   fd_set errfd;
