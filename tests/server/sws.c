@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.35 2003-10-09 08:12:43 bagder Exp $
+ * $Id: sws.c,v 1.36 2003-10-30 07:32:04 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -537,6 +537,8 @@ int main(int argc, char *argv[])
 
 #ifdef HAVE_SIGNAL
   signal(SIGPIPE, sigpipe_handler);
+#endif
+#ifdef HAVE_SIGINTERRUPT
   siginterrupt(SIGPIPE, 1);
 #endif
 
