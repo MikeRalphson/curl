@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.29 2002-01-19 11:08:05 bagder Exp $
+ * $Id: formdata.c,v 1.30 2002-01-29 20:30:56 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -235,7 +235,6 @@ int FormParse(char *input,
 	    
 	    if(2 != sscanf(type, "%127[^/]/%127[^,\n]",
 			   major, minor)) {
-	      fprintf(stderr, "Illegally formatted content-type field!\n");
               free(contents);
 	      return 2; /* illegal content-type syntax! */
 	    }
@@ -371,7 +370,6 @@ int FormParse(char *input,
 
   }
   else {
-    fprintf(stderr, "Illegally formatted input field!\n");
     free(contents);
     return 1;
   }
@@ -841,7 +839,6 @@ FORMcode FormAdd(struct HttpPost **httppost,
         break;
       }
     default:
-      fprintf (stderr, "got unknown CURLFORM_OPTION: %d\n", option);
       return_value = FORMADD_UNKNOWN_OPTION;
     }
   }
@@ -1069,7 +1066,7 @@ struct FormData *Curl_getFormData(struct HttpPost *post,
   do {
 
     /* boundary */
-    size += AddFormDataf(&form, "\r\n--%s\r\n", boundary);
+    size += AddFormDataf(&form, "--%s\r\n", boundary);
 
     size += AddFormData(&form,
                         "Content-Disposition: form-data; name=\"", 0);
