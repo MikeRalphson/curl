@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.64 2004-10-16 13:54:40 bagder Exp $
+ * $Id: cookie.c,v 1.65 2004-12-05 23:59:32 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -80,7 +80,7 @@ Example set of cookies:
 
 #include "setup.h"
 
-#ifndef CURL_DISABLE_HTTP
+#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_COOKIES)
 
 #include <stdlib.h>
 #include <string.h>
@@ -878,4 +878,4 @@ int Curl_cookie_output(struct CookieInfo *c, char *dumphere)
   return 0;
 }
 
-#endif /* CURL_DISABLE_HTTP */
+#endif /* CURL_DISABLE_HTTP || CURL_DISABLE_COOKIES */

@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.120 2004-11-24 15:49:43 bagder Exp $
+dnl $Id: configure.ac,v 1.121 2004-12-05 23:59:32 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1502,6 +1502,25 @@ AC_HELP_STRING([--disable-crypto-auth],[Disable cryptographic authentication]),
        AC_MSG_RESULT(no)
        AC_DEFINE(CURL_DISABLE_CRYPTO_AUTH, 1, [to disable cryptographic authentication])
        AC_SUBST(CURL_DISABLE_CRYPTO_AUTH)
+       ;;
+  *)   AC_MSG_RESULT(yes)
+       ;;
+  esac ],
+       AC_MSG_RESULT(yes)
+)
+
+dnl ************************************************************
+dnl disable cookies support
+dnl
+AC_MSG_CHECKING([whether to enable support for cookies])
+AC_ARG_ENABLE(cookies,
+AC_HELP_STRING([--enable-cookies],[Enable cookies support])
+AC_HELP_STRING([--disable-cookies],[Disable cookies support]),
+[ case "$enableval" in
+  no)
+       AC_MSG_RESULT(no)
+       AC_DEFINE(CURL_DISABLE_COOKIES, 1, [to disable cookies support])
+       AC_SUBST(CURL_DISABLE_COOKIES)
        ;;
   *)   AC_MSG_RESULT(yes)
        ;;
