@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.54 2004-05-17 06:53:41 bagder Exp $
+ * $Id: multi.c,v 1.55 2004-05-17 08:04:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -342,8 +342,11 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
             else
               free(gotourl);
           }
-          else
+          else {
             easy->result = CURLE_OUT_OF_MEMORY;
+            easy->state = CURLM_STATE_COMPLETED;
+            break;
+          }
         }
       }
 
