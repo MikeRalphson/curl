@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.215 2004-04-20 07:53:24 bagder Exp $
+ * $Id: urldata.h,v 1.216 2004-04-21 08:49:14 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -577,8 +577,6 @@ struct connectdata {
                                single requests! */
   struct ntlmdata proxyntlm; /* NTLM data for proxy */
 
-  int sockerror; /* errno stored by Curl_read() if the underlying layer returns
-                    error */
   char syserr_buf [256]; /* buffer for Curl_strerror() */
 
 #if defined(USE_ARES) || defined(USE_THREADING_GETHOSTBYNAME)
