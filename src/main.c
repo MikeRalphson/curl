@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.196 2003-08-14 13:38:19 bagder Exp $
+ * $Id: main.c,v 1.197 2003-08-14 15:01:52 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2505,6 +2505,11 @@ operate(struct Configurable *config, int argc, char *argv[])
     curl_free(env);
     curl_memdebug("memdump");
   }
+  env = curl_getenv("CURL_MEMLIMIT");
+  if(env) {
+    curl_memlimit(atoi(env));
+    curl_free(env);
+  }
 #endif
 
   /* we get libcurl info right away */
@@ -3057,7 +3062,8 @@ operate(struct Configurable *config, int argc, char *argv[])
                        config->headerfile?&heads:NULL);
       curl_easy_setopt(curl, CURLOPT_COOKIEFILE, config->cookiefile);
       /* cookie jar was added in 7.9 */
-      curl_easy_setopt(curl, CURLOPT_COOKIEJAR, config->cookiejar);
+      if(config->cookiejar)
+        curl_easy_setopt(curl, CURLOPT_COOKIEJAR, config->cookiejar);
       /* cookie session added in 7.9.7 */
       curl_easy_setopt(curl, CURLOPT_COOKIESESSION, config->cookiesession);
 
