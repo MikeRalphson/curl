@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.261 2004-06-21 14:04:36 bagder Exp $
+ * $Id: curl.h,v 1.262 2004-09-10 21:46:58 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -941,8 +941,8 @@ typedef enum {
 
 /* structure to be used as parameter for CURLFORM_ARRAY */
 struct curl_forms {
-	CURLformoption		option;
-	const char		*value;
+  CURLformoption option;
+  const char     *value;
 };
 
 /* use this for multipart formpost building */
