@@ -31,14 +31,16 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/timeval.h,v $
- * $Revision: 1.4 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.5 $
+ * $Date: 2000-08-24 14:28:11 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include "setup.h"
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <time.h>
@@ -47,7 +49,6 @@
 #include <sys/time.h>
 #endif
 
-#include "setup.h"
 
 #ifndef HAVE_GETTIMEOFDAY
 #if !defined(_WINSOCKAPI_) && !defined(__MINGW32__)
