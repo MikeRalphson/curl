@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.1 2004-07-05 13:53:27 gknauf Exp $
+# $Id: Makefile.m32,v 1.2 2004-07-05 21:44:09 gknauf Exp $
 #
 ## Makefile for building libcares.a with MingW32 (GCC-3.2)
 ## Use: make -f Makefile.m32 [demos]
@@ -19,9 +19,9 @@ LIB=libcares.a
 CC=gcc
 #CPPFLAGS=@CPPFLAGS@
 WARN_FLAGS=-Wall
-CFLAGS=-O2 -DMINGW32
+CFLAGS=-O2
 CFLAGS+=${WARN_CFLAGS} ${ERROR_CFLAGS}
-#DEFS=-DWIN32
+DEFS=-DMINGW32
 LDFLAGS=-s
 LIBS=-lwsock32
 ALL_CFLAGS=${CPPFLAGS} ${CFLAGS} ${DEFS}
