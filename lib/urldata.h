@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.142 2003-01-16 21:08:13 bagder Exp $
+ * $Id: urldata.h,v 1.143 2003-01-20 12:52:34 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -598,7 +598,7 @@ struct UrlState {
   struct curl_ssl_session *session; /* array of 'numsessions' size */
   long sessionage;                  /* number of the most recent session */
 
-  char scratch[BUFSIZE*2]; /* huge buffer when doing upload CRLF replacing */
+  char *scratch; /* huge buffer[BUFSIZE*2] when doing upload CRLF replacing */
   bool errorbuf; /* Set to TRUE if the error buffer is already filled in.
                     This must be set to FALSE every time _easy_perform() is
                     called. */
