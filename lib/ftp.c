@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.232 2004-03-02 09:31:18 bagder Exp $
+ * $Id: ftp.c,v 1.233 2004-03-03 13:17:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -151,7 +151,7 @@ static CURLcode AllowServerConnect(struct connectdata *conn)
   }
 
   /* we give the server 60 seconds to connect to us, or a custom timeout */
-  dt.tv_sec = timeout?timeout:60;
+  dt.tv_sec = (int)(timeout?timeout:60);
   dt.tv_usec = 0;
 
   switch (select(sock+1, &rdset, NULL, NULL, &dt)) {
@@ -216,7 +216,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
   bool keepon=TRUE;
   ssize_t gotbytes;
   char *ptr;
-  int timeout;              /* timeout in seconds */
+  long timeout;              /* timeout in seconds */
   struct timeval interval;
   fd_set rkeepfd;
   fd_set readfd;
