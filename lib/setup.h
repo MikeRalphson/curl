@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.59 2004-03-17 12:46:46 bagder Exp $
+ * $Id: setup.h,v 1.60 2004-03-21 22:44:52 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -46,10 +46,6 @@
 #endif
 #endif
 
-#ifdef VMS
-/* hand-modified VMS config.h! */
-#include "config-vms.h"
-#endif
 #ifdef NETWARE
 /* hand-modified NetWare config.h! */
 #include "config-netware.h"
@@ -134,11 +130,7 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #endif
 
 #ifndef STDC_HEADERS /* no standard C headers! */
-#ifdef	VMS
-#include "../include/curl/stdcheaders.h"
-#else
 #include <curl/stdcheaders.h>
-#endif
 #endif
 
 #if defined(CURLDEBUG) && defined(HAVE_ASSERT_H)
@@ -274,10 +266,6 @@ typedef struct addrinfo Curl_ipconnect;
 #else
 typedef struct hostent Curl_addrinfo;
 typedef struct in_addr Curl_ipconnect;
-#endif
-
-#ifdef VMS
-#define IOCTL_3_ARGS
 #endif
 
 #ifdef mpeix

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.29 2004-03-17 12:46:48 bagder Exp $
+ * $Id: setup.h,v 1.30 2004-03-21 22:46:07 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -31,11 +31,7 @@
 #endif
 
 #ifdef HAVE_CONFIG_H
-#ifdef VMS
-#include "config-vms.h"
-#else
 #include "config.h" /* the configure script results */
-#endif
 #else
 #ifdef WIN32
 /* include the hand-modified win32 adjusted config.h! */
