@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.137 2004-04-01 07:04:58 bagder Exp $
+ * $Id: hostip.c,v 1.138 2004-04-01 08:40:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -617,7 +617,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
     timeout = conn->data->set.timeout;
 
   /* Wait for the name resolve query to complete. */
-  while (timeout > 0) {
+  while (1) {
     int nfds=0;
     fd_set read_fds, write_fds;
     struct timeval *tvp, tv, store;
@@ -641,6 +641,11 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
     ares_process(data->state.areschannel, &read_fds, &write_fds);
 
     timeout -= Curl_tvdiff(Curl_tvnow(), now)/1000; /* spent time */
+    if (timeout < 0) {
+      /* our timeout, so we cancel the ares operation */
+      ares_cancel(data->state.areschannel);
+      break;
+    }
   }
 
   /* Operation complete, if the lookup was successful we now have the entry
