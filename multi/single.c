@@ -20,26 +20,20 @@
 int main(int argc, char **argv)
 {
   CURL *http_handle;
-  CURL *ftp_handle;
   CURLM *multi_handle;
 
   int still_running; /* keep number of running handles */
 
   http_handle = curl_easy_init();
-  ftp_handle  = curl_easy_init();
 
   /* set the options (I left out a few, you'll get the point anyway) */
-  curl_easy_setopt(http_handle, CURLOPT_URL, "http://website.com");
-
-  curl_easy_setopt(ftp_handle, CURLOPT_URL, "ftp://ftpsite.com");
-  curl_easy_setopt(ftp_handle, CURLOPT_UPLOAD, TRUE);
+  curl_easy_setopt(http_handle, CURLOPT_URL, "http://www.haxx.se/");
 
   /* init a multi stack */
   multi_handle = curl_multi_init();
 
   /* add the individual transfers */
   curl_multi_add_handle(multi_handle, http_handle);
-  curl_multi_add_handle(multi_handle, ftp_handle);
 
   /* we start some action by calling perform right away */
   while(CURLM_CALL_MULTI_PERFORM ==
@@ -85,8 +79,6 @@ int main(int argc, char **argv)
   curl_multi_cleanup(multi_handle);
 
   curl_easy_cleanup(http_handle);
-  curl_easy_cleanup(ftp_handle);
-
 
   return 0;
 }
