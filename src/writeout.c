@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/writeout.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-10-04 13:08:17 $
+ * $Revision: 1.3 $
+ * $Date: 2000-11-21 09:38:41 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -44,6 +44,8 @@
 #include <curl/curl.h>
 #include <curl/types.h>
 #include <curl/easy.h>
+
+#define _MPRINTF_REPLACE /* we want curl-functions instead of native ones */
 #include <curl/mprintf.h>
 
 #include "writeout.h"
@@ -174,6 +176,8 @@ void ourWriteOut(CURL *curl, char *writeinfo)
                 if(CURLE_OK ==
                    curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD, &doubleinfo))
                   fprintf(stream, "%.3f", doubleinfo);
+                break;
+              default:
                 break;
               }
               break;
