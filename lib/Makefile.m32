@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.30 2004-11-09 14:00:56 giva Exp $
+# $Id: Makefile.m32,v 1.31 2004-11-19 15:15:52 giva Exp $
 #
 ## Makefile for building libcurl.a with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.7)
@@ -26,7 +26,7 @@ STRIP = strip -g
 ## Nothing more to do below this line!
 
 INCLUDES = -I. -I../include
-CFLAGS = -g -O2 -DMINGW32 -DBUILDING_LIBCURL
+CFLAGS = -g -O2 -DMINGW32 -DBUILDING_LIBCURL -DHAVE_LONGLONG
 ifdef SSL
   INCLUDES += -I"$(OPENSSL_PATH)/outinc" -I"$(OPENSSL_PATH)/outinc/openssl"
   CFLAGS += -DUSE_SSLEAY -DHAVE_OPENSSL_ENGINE_H
