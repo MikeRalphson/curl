@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.42 2002-01-30 15:11:47 bagder Exp $
+ * $Id: sendf.c,v 1.43 2002-01-30 21:49:29 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -326,7 +326,7 @@ int Curl_read(struct connectdata *conn,
         /* if there's data pending, then we re-invoke SSL_read() */
         break;
       }
-    } while(1);
+    } while(loop);
     if(loop && SSL_pending(conn->ssl.handle))
       return -1; /* basicly EWOULDBLOCK */
   }
