@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.49 2005-01-20 22:05:44 bagder Exp $
+# $Id: ftpserver.pl,v 1.50 2005-01-20 22:47:31 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -55,7 +55,6 @@ sub ftpmsg {
   open(INPUT, ">>log/server$ftpdnum.input") ||
     logmsg "failed to open log/server$ftpdnum.input\n";
 
-  INPUT->autoflush(1);
   print INPUT @_;
   close(INPUT);
 
@@ -297,7 +296,7 @@ sub SIZE_command {
 }
 
 sub RETR_command {
-    my $testno = $_[0];
+    my ($testno) = @_;
 
     logmsg "RETR file \"$testno\"\n";
 
@@ -317,6 +316,8 @@ sub RETR_command {
         logmsg "we returned proof that we are the test server\n";
         return 0;
     }
+
+    $testno =~ s/^([^0-9]*)//;
 
     loadtest("$srcdir/data/test$testno");
 
