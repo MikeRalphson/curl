@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.48 2004-11-08 14:20:14 giva Exp $
+ * $Id: mprintf.c,v 1.49 2004-12-14 20:17:58 danf Exp $
  *
  *************************************************************************
  *
@@ -1132,10 +1132,6 @@ int curl_msprintf(char *buffer, const char *format, ...)
   *buffer=0; /* we terminate this with a zero byte */
   return retcode;
 }
-
-#ifndef WIN32 /* not needed on win32 */
-extern int fputc(int, FILE *);
-#endif
 
 int curl_mprintf(const char *format, ...)
 {
