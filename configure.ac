@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.91 2004-08-11 07:11:35 bagder Exp $
+dnl $Id: configure.ac,v 1.92 2004-08-11 07:14:34 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -102,6 +102,7 @@ AC_MSG_RESULT($need_no_undefined)
 AM_CONDITIONAL(NO_UNDEFINED, test x$need_no_undefined = xyes)
 
 AC_MSG_CHECKING([if we need -mimpure-text])
+mimpure=no
 case $host in
   *-*-solaris2*)
     if test "$GCC" = "yes"; then
@@ -109,13 +110,13 @@ case $host in
     fi
     ;;
   *)
-    mimpure=no
     ;;
 esac
 AC_MSG_RESULT($mimpure)
 AM_CONDITIONAL(MIMPURE, test x$mimpure = xyes)
 
 AC_MSG_CHECKING([if we need _XOPEN_SOURCE defined to 500])
+xopen=no
 case $host in
   mips-sgi-irix*)
     if test "$GCC" != "yes"; then
@@ -124,7 +125,6 @@ case $host in
     fi
     ;;
   *)
-    xopen=no
     ;;
 esac
 AC_MSG_RESULT($xopen)
