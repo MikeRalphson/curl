@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.55 2001-03-06 00:04:58 bagder Exp $
+dnl $Id: configure.in,v 1.56 2001-03-09 15:21:00 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -693,6 +693,9 @@ AC_CHECK_SIZEOF(long long, 4)
 # check for ssize_t
 AC_CHECK_TYPE(ssize_t, int)
 
+# check for socklen_t (getsockname() wants that)
+AC_CHECK_TYPE(socklen_t, int)
+
 dnl Get system canonical name
 AC_CANONICAL_HOST
 AC_DEFINE_UNQUOTED(OS, "${host}")
@@ -764,6 +767,5 @@ AC_OUTPUT( Makefile \
 	   packages/Linux/Makefile \
 	   packages/Linux/RPM/Makefile \
 	   packages/Linux/RPM/curl.spec \
-	   packages/Linux/RPM/curl-ssl.spec \
-           tiny/Makefile )
+	   packages/Linux/RPM/curl-ssl.spec )
 
