@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.127 2004-03-03 13:07:32 bagder Exp $
+ * $Id: hostip.c,v 1.128 2004-03-09 21:42:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -98,10 +98,16 @@ static struct hostent* pack_hostent(char** buf, struct hostent* orig);
 #endif
 
 #ifdef USE_THREADING_GETHOSTBYNAME
+#ifdef DEBUG_THREADING_GETHOSTBYNAME
+/* If this is defined, provide tracing */
 #define TRACE(args)  \
  do { trace_it("%u: ", __LINE__); trace_it args; } while (0)
 
 static void trace_it (const char *fmt, ...);
+#else
+#define TRACE(x)
+#endif
+
 static struct hostent* pack_hostent (char** buf, struct hostent* orig);
 static bool init_gethostbyname_thread (struct connectdata *conn,
                                        const char *hostname, int port);
@@ -1166,20 +1172,22 @@ static Curl_addrinfo *my_getaddrinfo(struct connectdata *conn,
 
 
 #if defined(USE_THREADING_GETHOSTBYNAME)
+#ifdef DEBUG_THREADING_GETHOSTBYNAME
 static void trace_it (const char *fmt, ...)
 {
   static int do_trace = -1;
   va_list args;
 
   if (do_trace == -1)
-     do_trace = getenv("CURL_TRACE") ? 1 : 0;
+    do_trace = getenv("CURL_TRACE") ? 1 : 0;
   if (!do_trace)
-     return;
+    return;
   va_start (args, fmt);
   vfprintf (stderr, fmt, args);
   fflush (stderr);
   va_end (args);
 }
+#endif
 
 /* For builds without ARES/USE_IPV6, create a resolver thread and wait on it.
  */
