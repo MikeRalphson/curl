@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.224 2004-05-12 08:00:21 bagder Exp $
+ * $Id: urldata.h,v 1.225 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -482,7 +482,7 @@ struct connectdata {
   /* These two functions MUST be set by the curl_connect() function to be
      be protocol dependent */
   CURLcode (*curl_do)(struct connectdata *);
-  CURLcode (*curl_done)(struct connectdata *);
+  CURLcode (*curl_done)(struct connectdata *, CURLcode);
 
   /* If the curl_do() function is better made in two halves, this
    * curl_do_more() function will be called afterwards, if set. For example

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.60 2004-05-11 11:30:23 bagder Exp $
+ * $Id: telnet.c,v 1.61 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1063,9 +1063,11 @@ void telrcv(struct connectdata *conn,
   }
 }
 
-CURLcode Curl_telnet_done(struct connectdata *conn)
+CURLcode Curl_telnet_done(struct connectdata *conn, CURLcode status)
 {
   struct TELNET *tn = (struct TELNET *)conn->proto.telnet;
+  (void)status; /* unused */
+
   curl_slist_free_all(tn->telnet_vars);
 
   free(conn->proto.telnet);

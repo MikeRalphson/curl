@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.377 2004-05-12 08:26:56 bagder Exp $
+ * $Id: url.c,v 1.378 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3229,6 +3229,8 @@ static CURLcode SetupConnection(struct connectdata *conn,
       Curl_safefree(conn->allocptr.uagent);
       conn->allocptr.uagent =
         aprintf("User-Agent: %s\015\012", data->set.useragent);
+      if(!conn->allocptr.uagent)
+        return CURLE_OUT_OF_MEMORY;
     }
   }
 
@@ -3236,6 +3238,8 @@ static CURLcode SetupConnection(struct connectdata *conn,
     Curl_safefree(conn->allocptr.accept_encoding);
     conn->allocptr.accept_encoding =
       aprintf("Accept-Encoding: %s\015\012", data->set.encoding);
+    if(!conn->allocptr.accept_encoding)
+      return CURLE_OUT_OF_MEMORY;
   }
 
   conn->bytecount = 0;
@@ -3340,7 +3344,9 @@ CURLcode Curl_async_resolved(struct connectdata *conn)
 }
 
 
-CURLcode Curl_done(struct connectdata *conn)
+CURLcode Curl_done(struct connectdata *conn,
+                   CURLcode status) /* an error if this is called after an
+                                       error was detected */
 {
   struct SessionHandle *data=conn->data;
   CURLcode result;
@@ -3371,7 +3377,7 @@ CURLcode Curl_done(struct connectdata *conn)
 
   /* this calls the protocol-specific function pointer previously set */
   if(conn->curl_done)
-    result = conn->curl_done(conn);
+    result = conn->curl_done(conn, status);
   else
     result = CURLE_OK;
 
@@ -3423,7 +3429,7 @@ CURLcode Curl_do(struct connectdata **connp)
       infof(data, "Re-used connection seems dead, get a new one\n");
 
       conn->bits.close = TRUE; /* enforce close of this connection */
-      result = Curl_done(conn);   /* we are so done with this */
+      result = Curl_done(conn, result); /* we are so done with this */
 
       /* conn is no longer a good pointer */
 

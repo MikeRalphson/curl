@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.226 2004-05-11 11:30:23 bagder Exp $
+ * $Id: http.c,v 1.227 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1172,10 +1172,12 @@ CURLcode Curl_http_connect(struct connectdata *conn)
  * has been performed.
  */
 
-CURLcode Curl_http_done(struct connectdata *conn)
+CURLcode Curl_http_done(struct connectdata *conn,
+                        CURLcode status)
 {
   struct SessionHandle *data;
   struct HTTP *http;
+  (void)status; /* no use for us */
 
   data=conn->data;
   http=conn->proto.http;

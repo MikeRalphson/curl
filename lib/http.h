@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.22 2004-05-04 07:52:53 bagder Exp $
+ * $Id: http.h,v 1.23 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 bool Curl_compareheader(char *headerline,     /* line to check */
@@ -35,7 +35,7 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
 
 /* protocol-specific functions set up to be called by the main engine */
 CURLcode Curl_http(struct connectdata *conn);
-CURLcode Curl_http_done(struct connectdata *conn);
+CURLcode Curl_http_done(struct connectdata *, CURLcode);
 CURLcode Curl_http_connect(struct connectdata *conn);
 
 /* The following functions are defined in http_chunks.c */

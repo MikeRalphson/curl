@@ -21,10 +21,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.h,v 1.11 2004-01-07 09:19:35 bagder Exp $
+ * $Id: telnet.h,v 1.12 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_TELNET
 CURLcode Curl_telnet(struct connectdata *conn);
-CURLcode Curl_telnet_done(struct connectdata *conn);
+CURLcode Curl_telnet_done(struct connectdata *conn, CURLcode);
 #endif
 #endif

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.18 2004-04-26 07:20:11 bagder Exp $
+ * $Id: url.h,v 1.19 2004-05-12 12:06:39 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -35,7 +35,7 @@ CURLcode Curl_connect(struct SessionHandle *, struct connectdata **,
 CURLcode Curl_async_resolved(struct connectdata *conn);
 CURLcode Curl_do(struct connectdata **);
 CURLcode Curl_do_more(struct connectdata *);
-CURLcode Curl_done(struct connectdata *);
+CURLcode Curl_done(struct connectdata *, CURLcode);
 CURLcode Curl_disconnect(struct connectdata *);
 CURLcode Curl_protocol_connect(struct connectdata *conn);
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
