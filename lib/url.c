@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.298 2003-08-14 14:20:03 bagder Exp $
+ * $Id: url.c,v 1.299 2003-08-17 13:32:37 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1016,12 +1016,18 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set data write callback
      */
     data->set.fwrite = va_arg(param, curl_write_callback);
+    if(!data->set.fwrite)
+      /* When set to NULL, reset to our internal default function */
+      data->set.fwrite = (curl_write_callback)fwrite;
     break;
   case CURLOPT_READFUNCTION:
     /*
      * Read data callback
      */
     data->set.fread = va_arg(param, curl_read_callback);
+    if(!data->set.fread)
+      /* When set to NULL, reset to our internal default function */
+      data->set.fread = (curl_read_callback)fread;
     break;
   case CURLOPT_SSLCERT:
     /*
