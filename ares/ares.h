@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.12 2004-11-11 12:25:40 giva Exp $ */
+/* $Id: ares.h,v 1.13 2005-03-10 23:30:34 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -137,12 +137,13 @@ int ares_expand_string(const unsigned char *encoded, const unsigned char *abuf,
                      int alen, unsigned char **s, long *enclen);
 int ares_parse_a_reply(const unsigned char *abuf, int alen,
                        struct hostent **host);
+int ares_parse_aaaa_reply(const unsigned char *abuf, int alen,
+                       struct hostent **host);
 int ares_parse_ptr_reply(const unsigned char *abuf, int alen, const void *addr,
                          int addrlen, int family, struct hostent **host);
 void ares_free_string(void *str);
 void ares_free_hostent(struct hostent *host);
 const char *ares_strerror(int code);
-void ares_free_errmem(char *mem);
 
 #ifdef  __cplusplus
 }
