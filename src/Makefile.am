@@ -1,10 +1,12 @@
 #
-# $Id: Makefile.am,v 1.18 2002-02-25 14:08:19 bagder Exp $
+# $Id: Makefile.am,v 1.19 2002-02-27 15:09:23 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
 
-INCLUDES = -I$(top_srcdir)/include
+# we use srcdir/include for the static global include files
+# we use builddir/src for the generated src/config.h file to get found
+INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/src
 
 bin_PROGRAMS = curl #memtest
 
