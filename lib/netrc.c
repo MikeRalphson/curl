@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.26 2003-11-11 14:30:45 bagder Exp $
+ * $Id: netrc.c,v 1.27 2003-11-24 11:41:26 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -92,6 +92,8 @@ int Curl_parsenetrc(char *host,
   char state_password=0;   /* Found a password keyword */
   char state_our_login=0;  /* With specific_login, found *our* login name */
 
+#define NETRC DOT_CHAR "netrc"
+
 #ifdef CURLDEBUG
   {
     /* This is a hack to allow testing.
@@ -101,14 +103,13 @@ int Curl_parsenetrc(char *host,
     char *override = curl_getenv("CURL_DEBUG_NETRC");
 
     if (override) {
-      printf("NETRC: overridden .netrc file: %s\n", home);
+      printf("NETRC: overridden " NETRC " file: %s\n", home);
       netrcfile = override;
       netrc_alloc = TRUE;
     }
   }
 #endif /* CURLDEBUG */
   if(!netrcfile) {
-#define NETRC DOT_CHAR "netrc"
 #if defined(HAVE_GETPWUID) && defined(HAVE_GETEUID)
     struct passwd *pw;
     pw= getpwuid(geteuid());
@@ -121,7 +122,7 @@ int Curl_parsenetrc(char *host,
     }
 #endif
   
-    if(NULL == pw) {
+    if(!home) {
       home = curl_getenv("HOME"); /* portable environment reader */
       if(!home)
         return -1;
