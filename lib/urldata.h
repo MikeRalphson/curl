@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.230 2004-06-03 11:41:05 bagder Exp $
+ * $Id: urldata.h,v 1.231 2004-06-15 08:45:22 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -319,6 +319,9 @@ struct ConnectBits {
                          This is implicit when SSL-protocols are used through
                          proxies, but can also be enabled explicitly by
                          apps */
+  bool authprobe;     /* set TRUE when this transfer is done to probe for auth
+                         types, as when asking for "any" type when speaking
+                         HTTP */
 };
 
 struct hostname {
