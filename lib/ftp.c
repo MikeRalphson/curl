@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-02-14 22:57:42 $
+ * $Revision: 1.6 $
+ * $Date: 2000-03-16 11:39:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -244,13 +244,7 @@ static int GetLastResponse(int sockfd, char *buf,
 char *getmyhost(void)
 {
   static char myhost[256];
-#if !defined(WIN32) && !defined(HAVE_UNAME) && !defined(HAVE_GETHOSTNAME)
-  /* We have no means of finding the local host name! */
-  strcpy(myhost, "localhost");
-#endif
-#if defined(WIN32) || !defined(HAVE_UNAME)
-  gethostname(myhost, 256);
-#else
+#ifdef HAVE_UNAME
   struct utsname ugnm;
 
   if (uname(&ugnm) < 0)
@@ -258,6 +252,13 @@ char *getmyhost(void)
 
   (void) strncpy(myhost, ugnm.nodename, 255);
   myhost[255] = '\0';
+#endif
+#ifdef HAVE_GETHOSTNAME
+  gethostname(myhost, 256);
+#endif
+#if !defined(HAVE_UNAME) && !defined(HAVE_GETHOSTNAME)
+  /* We have no means of finding the local host name! */
+  strcpy(myhost, "localhost");
 #endif
   return myhost;
 }
@@ -425,7 +426,8 @@ UrgError _ftp(struct UrlData *data,
     }
     if(data->writeheader) {
       /* the header is requested to be written to this file */
-      if(strlen(buf) != fwrite (buf, 1, strlen(buf), data->writeheader)) {
+      if(strlen(buf) != data->fwrite (buf, 1, strlen(buf),
+                                      data->writeheader)) {
         failf (data, "Failed writing output");
         return URG_WRITE_ERROR;
       }
@@ -583,7 +585,7 @@ UrgError _ftp(struct UrlData *data,
         struct hostent * answer;
 
         unsigned long address;
-#if defined(HAVE_INET_ADDR) || defined(WIN32)
+#if defined(HAVE_INET_ADDR)
         address = inet_addr(newhost);
         answer = gethostbyaddr((char *) &address, sizeof(address), 
                                AF_INET);
