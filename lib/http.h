@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.17 2003-01-16 21:08:13 bagder Exp $
+ * $Id: http.h,v 1.18 2003-08-11 11:47:45 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 bool Curl_compareheader(char *headerline,     /* line to check */
@@ -42,5 +42,6 @@ CURLcode Curl_http_connect(struct connectdata *conn);
 void Curl_httpchunk_init(struct connectdata *conn);
 CHUNKcode Curl_httpchunk_read(struct connectdata *conn, char *datap,
                               ssize_t length, ssize_t *wrote);
+void Curl_http_auth_stage(struct SessionHandle *data, int stage);
 #endif
 #endif

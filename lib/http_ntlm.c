@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.16 2003-07-22 09:59:36 bagder Exp $
+ * $Id: http_ntlm.c,v 1.17 2003-08-11 11:47:45 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -551,7 +551,10 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
       return CURLE_OUT_OF_MEMORY; /* FIX TODO */
 
     ntlm->state = NTLMSTATE_TYPE3; /* we sent a type-3 */
-    
+
+    /* Switch to web authentication after proxy authentication is done */
+    if (proxy)
+      Curl_http_auth_stage(conn->data, 401);
   }
   break;
 
