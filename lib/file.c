@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-11-13 07:51:23 $
+ * $Revision: 1.10 $
+ * $Date: 2000-11-22 12:51:18 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -170,10 +170,11 @@ CURLcode file(struct connectdata *conn)
        Windows systems if the target is stdout. Use -O or -o parameters
        to prevent CR/LF translation (this then goes to a binary mode
        file descriptor). */
-    if(nread != data->fwrite (buf, 1, nread, data->out)) {
-      failf (data, "Failed writing output");
-      return CURLE_WRITE_ERROR;
-    }
+
+    res = client_write(data, CLIENTWRITE_BODY, buf, nread);
+    if(res)
+      return res;
+
     now = tvnow();
     if(pgrsUpdate(data))
       res = CURLE_ABORTED_BY_CALLBACK;
