@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.51 2001-03-09 15:19:42 bagder Exp $
+ * $Id: urldata.h,v 1.52 2001-03-09 15:58:36 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -344,6 +344,7 @@ struct Progress {
   double t_connect;
   double t_pretransfer;
   int httpcode;
+  int httpversion;
   time_t filetime; /* If requested, this is might get set. It may be 0 if
                       the time was unretrievable */
 
