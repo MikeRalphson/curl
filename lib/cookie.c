@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.41 2003-01-29 10:14:20 bagder Exp $
+ * $Id: cookie.c,v 1.42 2003-03-31 15:59:17 bumblebury Exp $
  ***************************************************************************/
 
 /***
@@ -76,6 +76,7 @@ Example set of cookies:
     Session_Key@6791a9e0-901a-11d0-a1c8-9b012c88aa77=none;expires=Monday,
     13-Jun-1988 03:04:55 GMT; domain=.fidelity.com; path=/; secure
 ****/
+
 
 #include "setup.h"
 
