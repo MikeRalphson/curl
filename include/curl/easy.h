@@ -31,16 +31,25 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/easy.h,v $
- * $Revision: 1.1 $
- * $Date: 2000-05-22 14:12:12 $
+ * $Revision: 1.2 $
+ * $Date: 2000-09-07 11:34:08 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+#ifdef  __cplusplus
+extern "C" {
+#endif
+
 CURL *curl_easy_init(void);
 CURLcode curl_easy_setopt(CURL *curl, CURLoption option, ...);
 CURLcode curl_easy_perform(CURL *curl);
 void curl_easy_cleanup(CURL *curl);
+
+#ifdef  __cplusplus
+}
+#endif
+
 #endif
