@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.244 2004-03-08 12:56:18 bagder Exp $
+ * $Id: main.c,v 1.245 2004-03-12 08:03:31 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2642,6 +2642,8 @@ operate(struct Configurable *config, int argc, char *argv[])
   }
 #endif
 
+  memset(&outs,0,sizeof(outs));
+
   /* we get libcurl info right away */
   curlinfo = curl_version_info(CURLVERSION_NOW);
 
@@ -2946,6 +2948,8 @@ operate(struct Configurable *config, int argc, char *argv[])
               config->resume_from = 0;
           }
         
+	  outs.filename = outfile;
+
           if(config->resume_from) {
             /* open file for output: */
             outs.stream=(FILE *) fopen(outfile, config->resume_from?"ab":"wb");
@@ -2955,7 +2959,6 @@ operate(struct Configurable *config, int argc, char *argv[])
             }
           }
           else {
-            outs.filename = outfile;
             outs.stream = NULL; /* open when needed */
           }
         }
