@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.15 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.16 $
+ * $Date: 2000-07-25 07:32:22 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -303,6 +303,9 @@ struct UrlData {
   /*************** Session - specific items ************/
   char *proxy; /* if proxy, set it here, set CONF_PROXY to use this */
   char *proxyuserpwd;  /* Proxy <user:password>, if used */
+  long proxyport; /* If non-zero, use this port number by default. If the
+                     proxy string features a ":[port]" that one will override
+                     this. */
 
   /*************** Request - specific items ************/
 
