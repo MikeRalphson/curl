@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.16 2003-08-19 09:56:39 bagder Exp $
+dnl $Id: configure.ac,v 1.17 2003-08-19 15:38:20 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -933,7 +933,7 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
     CPPFLAGS="$CPPFLAGS -DCURLDEBUG"
     CFLAGS="$CFLAGS -g" 
     if test "$GCC" = "yes"; then
-       CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wundef -Wpointer-arith -Wnested-externs"
+       CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wundef -Wpointer-arith -Wnested-externs"
     fi
     dnl strip off optimizer flags
     NEWFLAGS=""
