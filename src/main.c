@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.145 2002-09-03 11:53:01 bagder Exp $
+ * $Id: main.c,v 1.146 2002-09-04 13:43:20 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2598,7 +2598,7 @@ operate(struct Configurable *config, int argc, char *argv[])
         config->conf |= CONF_NOPROGRESS;
     
 
-      if (urlnum > 1) {
+      if (urlnum > 1 && !(config->conf&CONF_MUTE)) {
         fprintf(stderr, "\n[%d/%d]: %s --> %s\n",
                 i+1, urlnum, url, outfile ? outfile : "<stdout>");
         if (separator)
