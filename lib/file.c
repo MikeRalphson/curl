@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.52 2004-03-10 16:20:33 bagder Exp $
+ * $Id: file.c,v 1.53 2004-04-06 15:14:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -196,7 +196,7 @@ CURLcode Curl_file(struct connectdata *conn)
   /* If we have selected NOBODY and HEADER, it means that we only want file
      information. Which for FILE can't be much more than the file size and
      date. */
-  if(data->set.no_body && data->set.include_header && fstated) {
+  if(conn->bits.no_body && data->set.include_header && fstated) {
     CURLcode result;
     sprintf(buf, "Content-Length: %" FORMAT_OFF_T "\r\n", expected_size);
     result = Curl_client_write(data, CLIENTWRITE_BOTH, buf, 0);

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.209 2004-03-30 13:00:53 bagder Exp $
+ * $Id: urldata.h,v 1.210 2004-04-06 15:14:11 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -302,6 +302,7 @@ struct ConnectBits {
                          call */
   bool retry;         /* this connection is about to get closed and then
                          re-attempted at another connection. */
+  bool no_body;       /* CURLOPT_NO_BODY (or similar) was set */
 };
 
 /*
@@ -644,6 +645,7 @@ typedef enum {
   HTTPREQ_POST,
   HTTPREQ_POST_FORM, /* we make a difference internally */
   HTTPREQ_PUT,
+  HTTPREQ_HEAD,
   HTTPREQ_CUSTOM,
   HTTPREQ_LAST /* last in list */
 } Curl_HttpReq;
@@ -866,7 +868,7 @@ struct UserDefined {
 
   bool http_set_referer;
   bool http_auto_referer; /* set "correct" referer when following location: */
-  bool no_body;
+  bool opt_no_body;      /* as set with CURLOPT_NO_BODY */
   bool set_port;
   bool upload;
   enum CURL_NETRC_OPTION
