@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.48 2003-01-23 05:38:20 bagder Exp $
+ * $Id: connect.c,v 1.49 2003-02-04 23:48:46 jpbl Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -248,7 +248,7 @@ static CURLcode bindlocal(struct connectdata *conn,
       if ( h ) {
         Curl_addrinfo *addr = h->addr;
 
-        Curl_resolv_unlock(h);
+        Curl_resolv_unlock(data, h);
         /* we don't need it anymore after this function has returned */
 
 #ifdef ENABLE_IPV6

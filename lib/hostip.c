@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.82 2003-01-29 10:14:22 bagder Exp $
+ * $Id: hostip.c,v 1.83 2003-02-04 23:48:46 jpbl Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -64,6 +64,7 @@
 #include "sendf.h"
 #include "hostip.h"
 #include "hash.h"
+#include "share.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -211,6 +212,10 @@ void Curl_scan_cache_used(void *user, void *ptr)
 #define HOSTCACHE_RETURN(dns) \
 { \
   free(entry_id); \
+  if(data->share) \
+  {               \
+    Curl_share_unlock(data, CURL_LOCK_DATA_DNS); \
+  }               \
   return dns; \
 }
 
@@ -245,7 +250,12 @@ struct Curl_dns_entry *Curl_resolv(struct SessionHandle *data,
   /* If we can't create the entry id, fail */
   if (!entry_id)
     return NULL;
-  
+
+  if(data->share)
+  {
+    Curl_share_lock(data, CURL_LOCK_DATA_DNS, CURL_LOCK_ACCESS_SINGLE);
+  }
+
   /* See if its already in our dns cache */
   dns = Curl_hash_pick(data->hostcache, entry_id, entry_len+1);
 
@@ -282,6 +292,19 @@ struct Curl_dns_entry *Curl_resolv(struct SessionHandle *data,
                   now);
 
   HOSTCACHE_RETURN(dns);
+}
+
+void Curl_resolv_unlock(struct SessionHandle *data, struct Curl_dns_entry *dns)
+{
+  if(data->share)
+  {
+    Curl_share_lock(data, CURL_LOCK_DATA_DNS, CURL_LOCK_ACCESS_SINGLE);
+  }
+  dns->inuse--;
+  if(data->share)
+  {
+    Curl_share_unlock(data, CURL_LOCK_DATA_DNS);
+  }
 }
 
 /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.169 2003-01-29 10:54:39 bagder Exp $
+ * $Id: ftp.c,v 1.170 2003-02-04 23:48:46 jpbl Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1233,7 +1233,7 @@ CURLcode ftp_use_port(struct connectdata *conn)
 
   if(h)
     /* when we return from here, we can forget about this */
-    Curl_resolv_unlock(h);
+    Curl_resolv_unlock(data, h);
 
   if ( h || sa_filled_in) {
     if( (portsock = socket(AF_INET, SOCK_STREAM, 0)) >= 0 ) {
@@ -1497,7 +1497,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
                             &conninfo,
                             connected);
 
-  Curl_resolv_unlock(addr); /* we're done using this address */
+  Curl_resolv_unlock(data, addr); /* we're done using this address */
 
   /*
    * When this is used from the multi interface, this might've returned with
