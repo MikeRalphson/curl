@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.93 2001-03-02 15:34:15 bagder Exp $
+ * $Id: url.c,v 1.94 2001-03-03 17:50:01 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1561,7 +1561,7 @@ static CURLcode _connect(CURL *curl,
     if(!conn->hp) {
 #ifdef ENABLE_IPV6
       /* it might already be set if reusing a connection */
-      conn->hp = Curl_getaddrinfo(data, conn->name, data->port);
+      conn->hp = Curl_getaddrinfo(data, conn->name, conn->port);
 #else
       /* it might already be set if reusing a connection */
       conn->hp = Curl_gethost(data, conn->name, &conn->hostent_buf);
