@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.89 2001-08-15 07:22:32 bagder Exp $
+ * $Id: main.c,v 1.90 2001-08-19 17:09:06 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -314,10 +314,10 @@ static void help(void)
        " -f/--fail          Fail silently (no output at all) on errors (H)\n"
        " -F/--form <name=content> Specify HTTP POST data (H)\n"
        " -g/--globoff       Disable URL sequences and ranges using {} and []\n"
-       " -G/--get           HTTP GET(H)\n"
-       " -h/--help          This help text\n"
-       " -H/--header <line> Custom header to pass to server. (H)");
-  puts(" -i/--include       Include the HTTP-header in the output (H)\n"
+       " -G/--get           Send the -d data with a HTTP GET (H)\n");
+  puts(" -h/--help          This help text\n"
+       " -H/--header <line> Custom header to pass to server. (H)"
+       " -i/--include       Include the HTTP-header in the output (H)\n"
        " -I/--head          Fetch document info only (HTTP HEAD/FTP SIZE)\n"
        "    --interface <interface> Specify the interface to be used\n"
        "    --krb4 <level>  Enable krb4 with specified security level (F)\n"
@@ -1856,6 +1856,14 @@ operate(struct Configurable *config, int argc, char *argv[])
           printf("%s%s\n", CURLseparator, url);
       }
       if (httpgetfields) {
+        /* Find out whether the url contains a file name */
+        char *pc =strstr(url, "://");
+        if(pc)
+          pc+=3;
+        else
+          pc=url;
+        pc = strrchr(pc, '/');
+
         /*
          * Then append ? followed by the get fields to the url.
          */
@@ -1864,7 +1872,14 @@ operate(struct Configurable *config, int argc, char *argv[])
           helpf("out of memory\n");
           return CURLE_OUT_OF_MEMORY;
         }
-        sprintf(urlbuffer, "%s?%s", url, httpgetfields);
+        /* Append  / before the ? to create a well-formed url
+           if the url contains a hostname only
+        */
+        if (pc)
+          sprintf(urlbuffer, "%s?%s", url, httpgetfields);
+        else
+          sprintf(urlbuffer, "%s/?%s", url, httpgetfields);
+ 
         free(url); /* free previous URL */
         url = urlbuffer; /* use our new URL instead! */
       }
