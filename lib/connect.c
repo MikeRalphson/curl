@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.114 2004-08-04 12:38:01 bagder Exp $
+ * $Id: connect.c,v 1.115 2004-09-19 14:27:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -745,6 +745,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
   if (sockfd == CURL_SOCKET_BAD) {
     /* no good connect was made */
     *sockconn = CURL_SOCKET_BAD;
+    failf(data, "couldn't connect to host");
     return CURLE_COULDNT_CONNECT;
   }
 
