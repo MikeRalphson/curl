@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.14 2001-04-06 05:52:23 bagder Exp $
+ * $Id: formdata.c,v 1.15 2001-06-05 11:27:40 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -634,11 +634,16 @@ int main(int argc, char **argv)
 
   form=Curl_getFormData(httppost, &size);
 
-  FormInit(&formread, form);
+  Curl_FormInit(&formread, form);
 
-  while(nread = FormReader(buffer, 1, sizeof(buffer), (FILE *)&formread)) {
+  do {
+    nread = Curl_FormReader(buffer, 1, sizeof(buffer),
+                            (FILE *)&formread);
+
+    if(-1 == nread)
+      break;
     fwrite(buffer, nread, 1, stderr);
-  }
+  } while(1);
 
   fprintf(stderr, "size: %d\n", size);
 
