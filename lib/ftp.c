@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.87 2001-09-05 02:49:04 bumblebury Exp $
+ * $Id: ftp.c,v 1.88 2001-09-07 03:30:30 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -1830,10 +1830,9 @@ CURLcode Curl_ftp_disconnect(struct connectdata *conn)
 }
 
 /*
- * Local variables:
- * tab-width: 2
- * c-basic-offset: 2
- * End:
+ * local variables:
+ * eval: (load-file "../curl-mode.el")
+ * end:
  * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
  * vim<600: et sw=2 ts=2 sts=2 tw=78
  */
