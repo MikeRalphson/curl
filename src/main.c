@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.209 2003-10-31 09:22:25 bagder Exp $
+ * $Id: main.c,v 1.210 2003-10-31 09:49:10 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -500,7 +500,7 @@ struct Configurable {
   bool resume_from_current;
   bool disable_epsv;
   bool disable_eprt;
-  int resume_from;
+  long resume_from;
   char *postfields;
   long postfieldsize;
   char *referer;
@@ -513,8 +513,8 @@ struct Configurable {
   char *iface;
   unsigned short porttouse;
   char *range;
-  int low_speed_limit;
-  int low_speed_time;
+  long low_speed_limit;
+  long low_speed_time;
   bool showerror;
   char *userpwd;
   char *proxyuserpwd;
@@ -1060,7 +1060,7 @@ static void cleanarg(char *str)
  * The string must start with a digit to be valid.
  */
 
-static int str2num(int *val, char *str)
+static int str2num(long *val, char *str)
 {
   int retcode = 0;
   if(isdigit((int)*str))
