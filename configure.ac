@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.116 2004-11-11 22:01:53 bagder Exp $
+dnl $Id: configure.ac,v 1.117 2004-11-11 23:13:59 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1513,7 +1513,7 @@ AC_MSG_NOTICE([Configured to build curl/libcurl:
   zlib support:    ${curl_zlib_msg}
   krb4 support:    ${curl_krb4_msg}
   GSSAPI support:  ${curl_gss_msg}
-  SNPEGO support:  ${curl_spnego_msg}
+  SPNEGO support:  ${curl_spnego_msg}
   c-ares support:  ${curl_ares_msg}
   ipv6 support:    ${curl_ipv6_msg}
   IDN support:     ${curl_idn_msg}
