@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.44 2004-01-30 12:08:18 bagder Exp $
+ * $Id: setup.h,v 1.45 2004-02-02 11:59:42 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -83,6 +83,7 @@ typedef unsigned char bool;
 #ifdef HAVE_ASSERT_H
 #include <assert.h>
 #endif
+#include <errno.h>
 
 #ifndef OS
 #ifdef WIN32
