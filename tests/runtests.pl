@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.109 2004-02-20 07:14:58 bagder Exp $
+# $Id: runtests.pl,v 1.110 2004-02-26 09:19:59 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -489,6 +489,7 @@ sub runftpserver {
     
     # now (re-)start our server:
     my $flag=$debugprotocol?"-v ":"";
+    $flag .= "-s \"$srcdir\"";
     my $cmd="$perl $srcdir/ftpserver.pl $flag $FTPPORT &";
     if($verbose) {
         print "CMD: $cmd\n";
