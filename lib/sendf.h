@@ -20,10 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.13 2001-08-30 22:48:34 bagder Exp $
+ * $Id: sendf.h,v 1.14 2001-10-31 15:08:16 bagder Exp $
  *****************************************************************************/
 
-size_t Curl_sendf(int fd, struct connectdata *, const char *fmt, ...);
+CURLcode Curl_sendf(int fd, struct connectdata *, const char *fmt, ...);
 void Curl_infof(struct SessionHandle *, const char *fmt, ...);
 void Curl_failf(struct SessionHandle *, const char *fmt, ...);
 
