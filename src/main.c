@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.166 2003-03-12 14:20:16 bagder Exp $
+ * $Id: main.c,v 1.167 2003-03-29 11:03:30 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2442,7 +2442,7 @@ operate(struct Configurable *config, int argc, char *argv[])
     }
   }
 
-  if(!config->url_list) {
+  if(!config->url_list || !config->url_list->url) {
     helpf("no URL specified!\n");
     return CURLE_FAILED_INIT;
   }
