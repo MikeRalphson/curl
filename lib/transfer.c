@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.23 2001-03-19 07:47:57 bagder Exp $
+ * $Id: transfer.c,v 1.24 2001-03-22 19:14:35 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -736,6 +736,9 @@ CURLcode Curl_perform(CURL *curl)
   struct UrlData *data = (struct UrlData *)curl;
   struct connectdata *conn=NULL;
   bool port=TRUE; /* allow data->use_port to set port to use */
+
+  data->followlocation=0; /* reset the location-follow counter */
+  data->bits.this_is_a_follow = FALSE; /* reset this */
 
   Curl_pgrsStartNow(data);
 
