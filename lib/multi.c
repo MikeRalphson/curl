@@ -18,15 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.9 2002-03-19 07:54:55 bagder Exp $
+ * $Id: multi.c,v 1.10 2002-03-20 10:54:17 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
-
-#include "multi.h" /* will become <curl/multi.h> soon */
 
 #include "urldata.h"
 #include "transfer.h"
