@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.444 2005-01-29 13:07:17 bagder Exp $
+ * $Id: url.c,v 1.445 2005-01-30 12:42:15 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2182,7 +2182,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      to not have to modify everything at once, we allocate a temporary
      connection data struct and fill in for comparison purposes. */
 
-  conn = (struct connectdata *)malloc(sizeof(struct connectdata));
+  conn = (struct connectdata *)calloc(sizeof(struct connectdata), 1);
   if(!conn) {
     *in_connect = NULL; /* clear the pointer */
     return CURLE_OUT_OF_MEMORY;
@@ -2191,9 +2191,6 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      parent can cleanup any possible allocs we may have done before
      any failure */
   *in_connect = conn;
-
-  /* we have to init the struct */
-  memset(conn, 0, sizeof(struct connectdata));
 
   /* and we setup a few fields in case we end up actually using this struct */
   conn->data = data;           /* remember our daddy */
@@ -2249,6 +2246,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if(NULL == conn->host.rawalloc)
     return CURLE_OUT_OF_MEMORY;
   conn->host.name = conn->host.rawalloc;
+  conn->host.name[0] = 0;
 
   /*************************************************************
    * Parse the URL.
