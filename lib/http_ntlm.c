@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.17 2003-08-11 11:47:45 bagder Exp $
+ * $Id: http_ntlm.c,v 1.18 2003-08-11 14:55:30 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -46,6 +46,7 @@
 #include "base64.h"
 #include "http_ntlm.h"
 #include "url.h"
+#include "http.h" /* for Curl_http_auth_stage() */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
