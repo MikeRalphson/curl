@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.151 2002-06-13 14:37:16 bagder Exp $
+ * $Id: curl.h,v 1.152 2002-06-15 21:06:17 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -558,6 +558,9 @@ typedef enum {
   /* The CApath directory used to validate the peer certificate
      this option is used only if SSL_VERIFYPEER is true */
   CINIT(CAPATH, OBJECTPOINT, 97),
+
+  /* Instruct libcurl to use a smaller receive buffer */
+  CINIT(BUFFERSIZE, LONG, 98),
   
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
