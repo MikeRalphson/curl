@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.5 2003-09-19 12:56:24 bagder Exp $
+ * $Id: http_negotiate.c,v 1.6 2003-11-27 09:52:44 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -175,7 +175,7 @@ int Curl_input_negotiate(struct connectdata *conn, char *header)
       return -1;
     input_token.length = rawlen;
 
-#ifdef SPNEGO /* Handle SPNEGO */
+#ifdef HAVE_SPNEGO /* Handle SPNEGO */
     if (checkprefix("Negotiate", header)) {
         ASN1_OBJECT *   object            = NULL;
         int             rc                = 1;
@@ -257,7 +257,7 @@ CURLcode Curl_output_negotiate(struct connectdata *conn)
   char *encoded = NULL;
   int len;
 
-#ifdef SPNEGO /* Handle SPNEGO */
+#ifdef HAVE_SPNEGO /* Handle SPNEGO */
   if (checkprefix("Negotiate",neg_ctx->protocol)) {
     ASN1_OBJECT *   object            = NULL;
     int             rc                = 1;
