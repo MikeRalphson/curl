@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.193 2003-08-08 09:55:16 bagder Exp $
+ * $Id: ftp.c,v 1.194 2003-08-10 17:11:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2114,7 +2114,7 @@ CURLcode ftp_perform(struct connectdata *conn,
   else {
     /* We have chosen (this is default) to use the PASV command */
     result = ftp_use_pasv(conn, connected);
-    if(connected)
+    if(!result && *connected)
       infof(data, "Connected the data stream with PASV!\n");
   }
   
