@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.81 2001-10-04 14:05:12 bagder Exp $
+dnl $Id: configure.in,v 1.82 2001-10-11 07:41:52 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -533,7 +533,6 @@ AC_CHECK_FUNCS( socket \
                 strcmpi \
                 gethostname \
                 gethostbyaddr \
-                getservbyname \
                 gettimeofday \
                 inet_addr \
                 inet_ntoa \
