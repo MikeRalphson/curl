@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.141 2004-11-22 22:26:46 bagder Exp $
+# $Id: runtests.pl,v 1.142 2004-11-23 09:50:16 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -887,6 +887,21 @@ sub singletest {
     if(!$serverproblem) {
         $serverproblem = serverfortest($testnum);
     }
+
+    if(!$serverproblem) {
+        my @precheck = getpart("client", "precheck");
+        my $cmd = $precheck[0];
+        chomp $cmd;
+        if($cmd) {
+            my @o = `$cmd 2>/dev/null`;
+            if($o[0]) {
+                $serverproblem = 15;
+                $why = $o[0];
+                chomp $why;
+            }
+        }
+    }
+
 
     if($serverproblem) {
         # there's a problem with the server, don't run
