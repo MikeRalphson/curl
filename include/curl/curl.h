@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.219 2003-09-21 23:22:40 bagder Exp $
+ * $Id: curl.h,v 1.220 2003-10-03 13:13:53 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1079,7 +1079,7 @@ typedef enum {
 
 typedef void (*curl_lock_function)(CURL *handle,
                                    curl_lock_data data,
-                                   curl_lock_access access,
+                                   curl_lock_access locktype,
                                    void *userptr);
 typedef void (*curl_unlock_function)(CURL *handle,
                                      curl_lock_data data,
