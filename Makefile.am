@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.46 2003-09-22 21:39:37 bagder Exp $
+# $Id: Makefile.am,v 1.47 2003-10-30 12:48:19 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -13,10 +13,14 @@ bin_SCRIPTS = curl-config
 SUBDIRS = lib src
 DIST_SUBDIRS = $(SUBDIRS) tests include packages docs
 
-# create a root makefile in the distribution:
 dist-hook:
 	rm -rf $(top_builddir)/tests/log
-	cp $(srcdir)/Makefile.dist $(distdir)/Makefile
+	find $(distdir) -name "*.dist" -exec rm {} \;
+	(distit=`find $(srcdir) -name "*.dist"`; \
+	for file in $$distit; do \
+	  strip=`echo $$file | sed -e s/^$(srcdir)// -e s/\.dist//`; \
+	  cp $$file $(distdir)$$strip; \
+	done)
 
 html:
 	cd docs; make html
