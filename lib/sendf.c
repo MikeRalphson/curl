@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.43 2002-01-30 21:49:29 bagder Exp $
+ * $Id: sendf.c,v 1.44 2002-02-05 15:33:00 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -310,7 +310,7 @@ int Curl_read(struct connectdata *conn,
     do {
       nread = SSL_read(conn->ssl.handle, buf, buffersize);
 
-      if(nread > 0)
+      if(nread >= 0)
         /* successful read */
         break;
 
