@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.117 2004-11-19 08:52:33 bagder Exp $
+ * $Id: ssluse.c,v 1.118 2004-11-22 13:28:44 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1374,7 +1374,7 @@ Curl_SSLConnect(struct connectdata *conn,
       break;
 
     while(1) {
-      what = Curl_select(readfd, writefd, timeout_ms);
+      what = Curl_select(readfd, writefd, (int)timeout_ms);
       if(what > 0)
         /* reabable or writable, go loop in the outer loop */
         break;

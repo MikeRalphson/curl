@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.122 2004-11-19 08:52:33 bagder Exp $
+ * $Id: connect.c,v 1.123 2004-11-22 13:28:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -212,7 +212,7 @@ int waitconnect(curl_socket_t sockfd, /* socket */
 #endif
 
   /* now select() until we get connect or timeout */
-  rc = Curl_select(CURL_SOCKET_BAD, sockfd, timeout_msec);
+  rc = Curl_select(CURL_SOCKET_BAD, sockfd, (int)timeout_msec);
   if(-1 == rc)
     /* error, no connect here, try next */
     return WAITCONN_SELECT_ERROR;
