@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.6.2.1 2001-12-13 12:58:41 bagder Exp $
+ * $Id: multi.c,v 1.6.2.2 2001-12-17 23:43:16 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -266,7 +266,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       break;
     case CURLM_STATE_PERFORM:
       /* read/write data if it is ready to do so */
-      easy->result = Curl_readwrite(easy->easy_handle, &done);
+      easy->result = Curl_readwrite(easy->easy_conn, &done);
       /* hm, when we follow redirects, we may need to go back to the CONNECT
          state */
       /* after the transfer is done, go DONE */
