@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/setup.h,v $
- * $Revision: 1.6 $
- * $Date: 2000-08-24 14:27:51 $
+ * $Revision: 1.7 $
+ * $Date: 2000-10-09 21:36:38 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -56,6 +56,10 @@
 #include "../config-win32.h"
 #endif
 #endif
+
+#ifndef __cplusplus        /* (rabe) */
+typedef char bool;
+#endif                     /* (rabe) */
 
 #include <stdio.h>
 #ifndef OS
