@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.142 2004-11-23 09:50:16 bagder Exp $
+# $Id: runtests.pl,v 1.143 2004-11-25 22:21:50 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -95,6 +95,7 @@ my $gdb = checkcmd("gdb");
 my $ssl_version; # set if libcurl is built with SSL support
 my $large_file;  # set if libcurl is built with large file support
 my $has_idn;     # set if libcurl is built with IDN support
+my $has_ipv6;    # set if libcurl is built with IPv6 support
 my $has_getrlimit;  # set if system has getrlimit()
 
 my $skipped=0;  # number of tests skipped; reported in main loop
@@ -758,6 +759,9 @@ sub checkcurl {
                 # IDN support
                 $has_idn=1;
             }
+            if($feat =~ /IPv6/i) {
+                $has_ipv6 = 1;
+            }
         }
     }
     if(!$curl) {
@@ -784,6 +788,7 @@ sub checkcurl {
     print "********* System characteristics ******** \n",
     "* $curl\n",
     "* $libcurl\n",
+    "* Features: $feat\n"
     "* Host: $hostname",
     "* System: $hosttype";
 
@@ -870,6 +875,11 @@ sub singletest {
         }
         elsif($f eq "idn") {
             if($has_idn) {
+                next;
+            }
+        }
+        elsif($f eq "ipv6") {
+            if($has_ipv6) {
                 next;
             }
         }
@@ -1257,6 +1267,16 @@ sub singletest {
             chomp $_;
             @out = striparray( $_, \@out);
             @protstrip= striparray( $_, \@protstrip);
+        }
+
+        # what parts to cut off from the protocol
+        my @strippart = getpart("verify", "strippart");
+        my $strip;
+        for $strip (@strippart) {
+            chomp $strip;
+            for(@out) {
+                eval $strip;
+            }
         }
 
         $res = compare("protocol", \@out, \@protstrip);
