@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.184 2003-06-26 11:33:29 bagder Exp $
+ * $Id: main.c,v 1.185 2003-07-04 17:16:34 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2063,6 +2063,7 @@ struct OutStruct {
 
 int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
 {
+  int rc;
   struct OutStruct *out=(struct OutStruct *)stream;
   struct Configurable *config = out->config;
   if(out && !out->stream) {
@@ -2070,12 +2071,6 @@ int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
     out->stream=fopen(out->filename, "wb");
     if(!out->stream)
       return -1; /* failure */
-    if(config->nobuffer) {
-      /* disable output buffering */
-#ifdef HAVE_SETVBUF
-      setvbuf(out->stream, NULL, _IONBF, 0);
-#endif
-    }
   }
 
   if(config->recvpersecond) {
@@ -2098,7 +2093,13 @@ int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
     config->lastrecvtime = now;
   }
 
-  return fwrite(buffer, size, nmemb, out->stream);
+  rc = fwrite(buffer, size, nmemb, out->stream);
+  
+  if(config->nobuffer)
+    /* disable output buffering */
+    fflush(out->stream);
+  
+  return rc;
 }
 
 struct InStruct {
