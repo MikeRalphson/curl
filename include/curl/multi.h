@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.15 2004-01-07 09:19:34 bagder Exp $
+ * $Id: multi.h,v 1.16 2004-02-26 16:23:29 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -52,7 +52,7 @@
 #endif
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
-#include <winsock.h>
+#include <winsock2.h>
 #else
 
 #ifdef _AIX
