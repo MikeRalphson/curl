@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.63 2003-05-01 13:36:28 bagder Exp $
+ * $Id: sendf.c,v 1.64 2003-05-06 08:19:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -278,7 +278,7 @@ CURLcode Curl_write(struct connectdata *conn, int sockfd,
          may be EWOULDBLOCK or on some systems EAGAIN when it returned
          due to its inability to send off data without blocking. We
          therefor treat both error codes the same here */
-      if((EWOULDBLOCK == err) || (EAGAIN == err))
+      if((EWOULDBLOCK == err) || (EAGAIN == err) || (EINTR == err))
 #endif
       {
         /* this is just a case of EWOULDBLOCK */
@@ -399,7 +399,7 @@ int Curl_read(struct connectdata *conn,
 #ifdef WIN32
       if(WSAEWOULDBLOCK == err)
 #else
-      if(EWOULDBLOCK == err)
+      if((EWOULDBLOCK == err) || (EAGAIN == err) || (EINTR == err))
 #endif
         return -1;
     }
