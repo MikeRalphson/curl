@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.237 2004-07-01 06:08:06 bagder Exp $
+ * $Id: http.c,v 1.238 2004-07-01 07:30:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -761,7 +761,7 @@ CURLcode add_buffer_send(send_buffer *in,
       conn->fread = (curl_read_callback)readmoredata;
       conn->fread_in = (void *)conn;
       http->postdata = ptr;
-      http->postsize = size;
+      http->postsize = (curl_off_t)size;
 
       http->send_buffer = in;
       http->sending = HTTPSEND_REQUEST;
