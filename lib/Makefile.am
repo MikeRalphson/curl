@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.46 2002-10-04 14:26:10 bagder Exp $
+# $Id: Makefile.am,v 1.47 2002-10-07 09:04:50 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -73,7 +73,7 @@ $(srcdir)/getdate.c: getdate.y
 install-data-hook:
 	@if test -n "@CURL_CA_BUNDLE@"; then \
 	  $(mkinstalldirs) `dirname $(DESTDIR)@CURL_CA_BUNDLE@`; \
-	  @INSTALL_DATA@ ca-bundle.crt $(DESTDIR)@CURL_CA_BUNDLE@; \
+	  @INSTALL_DATA@ $(srcdir)/ca-bundle.crt $(DESTDIR)@CURL_CA_BUNDLE@; \
         fi
 
 # this hook is mainly for non-unix systems to build even if configure
