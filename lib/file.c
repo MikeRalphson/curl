@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.51 2004-03-05 11:39:19 bagder Exp $
+ * $Id: file.c,v 1.52 2004-03-10 16:20:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -242,7 +242,7 @@ CURLcode Curl_file(struct connectdata *conn)
      it avoids problems with select() and recv() on file descriptors
      in Winsock */
   if(fstated)
-    Curl_pgrsSetDownloadSize(data, (double)expected_size);
+    Curl_pgrsSetDownloadSize(data, expected_size);
 
   if(conn->resume_from)
     lseek(fd, conn->resume_from, SEEK_SET);
@@ -268,7 +268,7 @@ CURLcode Curl_file(struct connectdata *conn)
     if(res)
       return res;
 
-    Curl_pgrsSetDownloadCounter(data, (double)bytecount);
+    Curl_pgrsSetDownloadCounter(data, bytecount);
 
     if(Curl_pgrsUpdate(conn))
       res = CURLE_ABORTED_BY_CALLBACK;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.237 2004-03-10 15:24:56 bagder Exp $
+ * $Id: ftp.c,v 1.238 2004-03-10 16:20:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1821,7 +1821,7 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
     /* When we know we're uploading a specified file, we can get the file
        size prior to the actual upload. */
 
-    Curl_pgrsSetUploadSize(data, (double)data->set.infilesize);
+    Curl_pgrsSetUploadSize(data, data->set.infilesize);
 
     result = Curl_Transfer(conn, -1, -1, FALSE, NULL, /* no download */
                            SECONDARYSOCKET, bytecountp);

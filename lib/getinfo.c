@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.34 2004-01-29 13:56:45 bagder Exp $
+ * $Id: getinfo.c,v 1.35 2004-03-10 16:20:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -135,10 +135,10 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     *param_doublep = data->progress.t_starttransfer;
     break;
   case CURLINFO_SIZE_UPLOAD:
-    *param_doublep =  data->progress.uploaded;
+    *param_doublep =  (double)data->progress.uploaded;
     break;
   case CURLINFO_SIZE_DOWNLOAD:
-    *param_doublep = data->progress.downloaded;
+    *param_doublep = (double)data->progress.downloaded;
     break;
   case CURLINFO_SPEED_DOWNLOAD:
     *param_doublep =  data->progress.dlspeed;
@@ -150,10 +150,10 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     *param_longp = data->set.ssl.certverifyresult;
     break;
   case CURLINFO_CONTENT_LENGTH_DOWNLOAD:
-    *param_doublep = data->progress.size_dl;
+    *param_doublep = (double)data->progress.size_dl;
     break;
   case CURLINFO_CONTENT_LENGTH_UPLOAD:
-    *param_doublep = data->progress.size_ul;
+    *param_doublep = (double)data->progress.size_ul;
     break;
   case CURLINFO_REDIRECT_TIME:
     *param_doublep =  data->progress.t_redirect;

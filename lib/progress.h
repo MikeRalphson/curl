@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.h,v 1.19 2004-01-07 09:19:35 bagder Exp $
+ * $Id: progress.h,v 1.20 2004-03-10 16:20:33 bagder Exp $
  ***************************************************************************/
 
 #include "timeval.h"
@@ -40,10 +40,10 @@ typedef enum {
   
 void Curl_pgrsDone(struct connectdata *);
 void Curl_pgrsStartNow(struct SessionHandle *data);
-void Curl_pgrsSetDownloadSize(struct SessionHandle *data, double size);
-void Curl_pgrsSetUploadSize(struct SessionHandle *data, double size);
-void Curl_pgrsSetDownloadCounter(struct SessionHandle *data, double size);
-void Curl_pgrsSetUploadCounter(struct SessionHandle *data, double size);
+void Curl_pgrsSetDownloadSize(struct SessionHandle *data, curl_off_t size);
+void Curl_pgrsSetUploadSize(struct SessionHandle *data, curl_off_t size);
+void Curl_pgrsSetDownloadCounter(struct SessionHandle *data, curl_off_t size);
+void Curl_pgrsSetUploadCounter(struct SessionHandle *data, curl_off_t size);
 int Curl_pgrsUpdate(struct connectdata *);
 void Curl_pgrsResetTimes(struct SessionHandle *data);
 void Curl_pgrsTime(struct SessionHandle *data, timerid timer);
