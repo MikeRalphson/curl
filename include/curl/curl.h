@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.168 2002-09-25 12:27:37 bagder Exp $
+ * $Id: curl.h,v 1.169 2002-09-25 15:38:48 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -926,9 +926,16 @@ typedef struct {
 typedef struct {
   const char *version;      /* LIBCURL_VERSION */
   unsigned int version_num; /* LIBCURL_VERSION_NUM */
+  int features;             /* bitmask, see defines below */
+  char *ssl_version;        /* human readable string */
+  long ssl_version_num;     /* number */
+  char *libz_version;       /* human readable string */
   /* protocols is terminated by an entry with a NULL protoname */
-  curl_runtime_protocol_info *protocols;
+  const curl_runtime_protocol_info *protocols;
 } curl_version_info_data;
+
+#define CURL_VERSION_IPV6      (1<<0)
+#define CURL_VERSION_KERBEROS4 (1<<1)
 
 /* returns a pointer to a static copy of the version info struct */
 const curl_version_info_data *curl_version_info(void);
