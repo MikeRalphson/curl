@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.18 $
- * $Date: 2000-05-22 17:20:29 $
+ * $Revision: 1.19 $
+ * $Date: 2000-05-26 13:58:10 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -941,7 +941,7 @@ int my_fwrite(void *buffer, size_t size, size_t nmemb, FILE *stream)
 
 int main(int argc, char *argv[])
 {
-  char errorbuffer[URLGET_ERROR_SIZE];
+  char errorbuffer[CURL_ERROR_SIZE];
 
   struct OutStruct outs;
   struct OutStruct heads;
