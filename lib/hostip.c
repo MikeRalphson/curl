@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.70 2002-06-26 15:39:23 bagder Exp $
+ * $Id: hostip.c,v 1.71 2002-08-08 22:44:43 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -630,7 +630,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
 
       ret = gethostbyname_r(hostname,
                             (struct hostent *)buf,
-                            (struct hostent_data *)(buf + sizeof(struct hostent)));
+                            (struct hostent_data *)((char *)buf + sizeof(struct hostent)));
     else
       ret = -1; /* failure, too smallish buffer size */
     
