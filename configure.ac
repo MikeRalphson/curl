@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.31 2003-12-08 10:00:21 bagder Exp $
+dnl $Id: configure.ac,v 1.32 2003-12-08 13:37:38 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -768,7 +768,6 @@ case "$OPT_ZLIB" in
       AC_CHECK_LIB(z, gzread,
                    [HAVE_LIBZ="1"
                    AC_SUBST(HAVE_LIBZ)
-                   LIBS="$LIBS -lz"
                    AC_DEFINE(HAVE_ZLIB_H, 1, [if you have the zlib.h header file])
                    AC_DEFINE(HAVE_LIBZ, 1, [If zlib is available])],
                    [ CPPFLAGS=$_cppflags
