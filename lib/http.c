@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.43 2001-01-26 15:49:39 bagder Exp $
+ * $Id: http.c,v 1.44 2001-01-27 18:57:07 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -429,8 +429,21 @@ CURLcode Curl_http(struct connectdata *conn)
       }
     }
   }
-  if((data->bits.set_range) && !checkheaders(data, "Range:")) {
-    data->ptr_rangeline = aprintf("Range: bytes=%s\015\012", data->range);
+  if(data->bits.set_range) {
+    /*
+     * A range is selected. We use different headers whether we're downloading
+     * or uploading and we always let customized headers override our internal
+     * ones if any such are specified.
+     */
+    if((data->httpreq == HTTPREQ_GET) &&
+       !checkheaders(data, "Range:")) {
+      data->ptr_rangeline = aprintf("Range: bytes=%s\015\012", data->range);
+    }
+    else if((data->httpreq != HTTPREQ_GET) &&
+            !checkheaders(data, "Content-Range:")) {
+      data->ptr_rangeline = aprintf("Content-Range: bytes=%s\015\012",
+                                    data->range);
+    }
   }
   if((data->bits.http_set_referer) && !checkheaders(data, "Referer:")) {
     data->ptr_ref = aprintf("Referer: %s\015\012", data->referer);
