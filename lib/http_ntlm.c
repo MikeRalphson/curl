@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.28 2004-03-08 16:20:51 bagder Exp $
+ * $Id: http_ntlm.c,v 1.29 2004-03-22 13:51:46 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -77,7 +77,7 @@
 #endif
 
 /* Define this to make the type-3 message include the NT response message */
-#undef USE_NTRESPONSES
+#define USE_NTRESPONSES 1
 
 /*
   (*) = A "security buffer" is a triplet consisting of two shorts and one
