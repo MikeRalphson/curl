@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.420 2004-11-02 10:12:23 bagder Exp $
+ * $Id: url.c,v 1.421 2004-11-11 23:11:04 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -317,6 +317,7 @@ CURLcode Curl_open(struct SessionHandle **curl)
     data->set.fread = (curl_read_callback)fread;
 
     data->set.infilesize = -1; /* we don't know any size */
+    data->set.postfieldsize = -1;
 
     data->state.current_speed = -1; /* init to negative == impossible */
 
@@ -657,11 +658,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
 
   case CURLOPT_POSTFIELDS:
     /*
-     * A string with POST data. Makes curl HTTP POST.
+     * A string with POST data. Makes curl HTTP POST. Even if it is NULL.
      */
     data->set.postfields = va_arg(param, char *);
-    if(data->set.postfields)
-      data->set.httpreq = HTTPREQ_POST;
+    data->set.httpreq = HTTPREQ_POST;
     break;
 
   case CURLOPT_POSTFIELDSIZE:
@@ -685,8 +685,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Set to make us do HTTP POST
      */
     data->set.httppost = va_arg(param, struct curl_httppost *);
-    if(data->set.httppost)
-      data->set.httpreq = HTTPREQ_POST_FORM;
+    data->set.httpreq = HTTPREQ_POST_FORM;
     break;
 
   case CURLOPT_REFERER:

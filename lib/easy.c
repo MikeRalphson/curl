@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.63 2004-11-02 10:12:22 bagder Exp $
+ * $Id: easy.c,v 1.64 2004-11-11 23:11:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -555,6 +555,7 @@ void curl_easy_reset(CURL *curl)
   data->set.fread = (curl_read_callback)fread;
 
   data->set.infilesize = -1; /* we don't know any size */
+  data->set.postfieldsize = -1;
 
   data->state.current_speed = -1; /* init to negative == impossible */
 

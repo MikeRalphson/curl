@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.23 2004-06-30 11:09:16 bagder Exp $
+# $Id: Makefile.am,v 1.24 2004-11-11 23:11:04 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -39,7 +39,7 @@ SUPPORTFILES = first.c test.h
 
 # These are all libcurl test programs
 noinst_PROGRAMS = lib500 lib501 lib502 lib503 lib504 lib505 lib506 lib507 \
-  lib508 lib509 lib510 lib511 lib512 lib513 lib514
+  lib508 lib509 lib510 lib511 lib512 lib513 lib514 lib515 lib516
 
 lib500_SOURCES = lib500.c $(SUPPORTFILES)
 lib500_LDADD = $(LIBDIR)/libcurl.la
@@ -100,3 +100,11 @@ lib513_DEPENDENCIES = $(LIBDIR)/libcurl.la
 lib514_SOURCES = lib514.c $(SUPPORTFILES)
 lib514_LDADD = $(LIBDIR)/libcurl.la
 lib514_DEPENDENCIES = $(LIBDIR)/libcurl.la
+
+lib515_SOURCES = lib515.c $(SUPPORTFILES)
+lib515_LDADD = $(LIBDIR)/libcurl.la
+lib515_DEPENDENCIES = $(LIBDIR)/libcurl.la
+
+lib516_SOURCES = lib516.c $(SUPPORTFILES)
+lib516_LDADD = $(LIBDIR)/libcurl.la
+lib516_DEPENDENCIES = $(LIBDIR)/libcurl.la
