@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.147 2002-09-23 13:22:47 bagder Exp $
+ * $Id: main.c,v 1.148 2002-10-11 17:44:36 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1774,7 +1774,7 @@ static int parseconfig(const char *filename,
       case '\n':
       case '*':
       case '\0':
-        free(line);
+        free(aline);
         continue;
       }
 
