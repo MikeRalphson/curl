@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/progress.h,v $
- * $Revision: 1.8 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.9 $
+ * $Date: 2000-11-06 15:32:16 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -49,6 +49,7 @@ typedef enum {
   TIMER_CONNECT,
   TIMER_PRETRANSFER,
   TIMER_POSTRANSFER,
+  TIMER_STARTSINGLE,
   TIMER_LAST /* must be last */
 } timerid;
   

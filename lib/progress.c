@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/progress.c,v $
- * $Revision: 1.16 $
- * $Date: 2000-09-25 21:49:37 $
+ * $Revision: 1.17 $
+ * $Date: 2000-11-06 15:32:16 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -124,14 +124,24 @@ void pgrsTime(struct UrlData *data, timerid timer)
   case TIMER_NONE:
     /* mistake filter */
     break;
+  case TIMER_STARTSINGLE:
+    /* This is set at the start of a single fetch, there may be several
+       fetches within an operation, why we add all other times relative
+       to this one */
+    data->progress.t_startsingle = tvnow();
+    break;
+
   case TIMER_NAMELOOKUP:
-    data->progress.t_nslookup = tvnow();
+    data->progress.t_nslookup += tvdiff(tvnow(),
+                                        data->progress.t_startsingle);
     break;
   case TIMER_CONNECT:
-    data->progress.t_connect = tvnow();
+    data->progress.t_connect += tvdiff(tvnow(),
+                                       data->progress.t_startsingle);
     break;
   case TIMER_PRETRANSFER:
-    data->progress.t_pretransfer = tvnow();
+    data->progress.t_pretransfer += tvdiff(tvnow(),
+                                           data->progress.t_startsingle);
     break;
   case TIMER_POSTRANSFER:
     /* this is the normal end-of-transfer thing */
