@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: httpsserver.pl,v 1.1 2001-04-24 21:09:53 bagder Exp $
+# $Id: httpsserver.pl,v 1.2 2001-09-17 08:41:01 bagder Exp $
 # This is the HTTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -43,7 +43,7 @@ do {
 
 my $path = `pwd`;
 chomp $path;
-my $cmd = "$stunnel -p $path/data/stunnel.pem -P $path/.https.pid -d $port -r $http";
+my $cmd = "$stunnel -p $path/stunnel.pem -P $path/.https.pid -d $port -r $http";
 
 if($verbose) {
     print "$cmd\n";
