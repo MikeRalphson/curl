@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.7 2001-01-04 10:37:07 bagder Exp $
+# $Id: Makefile.dist,v 1.8 2001-03-15 12:34:40 bagder Exp $
 #############################################################################
 
 all:
@@ -30,16 +30,16 @@ ssl:
 	make
 
 borland:
-	cd lib; make -f Makefile.b32
-	cd src; make -f Makefile.b32
+	cd lib & make -f Makefile.b32
+	cd src & make -f Makefile.b32
 
 mingw32:
-	cd lib; make -f Makefile.m32
-	cd src; make -f Makefile.m32
+	cd lib & make -f Makefile.m32
+	cd src & make -f Makefile.m32
 
 mingw32-ssl:
-	cd lib; make -f Makefile.m32 SSL=1
-	cd src; make -f Makefile.m32 SSL=1
+	cd lib & make -f Makefile.m32 SSL=1
+	cd src & make -f Makefile.m32 SSL=1
 
 vc:
 	cd lib
