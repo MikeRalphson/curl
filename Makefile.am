@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.10 2001-01-08 16:31:29 bagder Exp $
+# $Id: Makefile.am,v 1.11 2001-01-08 17:38:23 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -9,6 +9,10 @@ EXTRA_DIST = \
 	config-win32.h reconf packages/README
 
 SUBDIRS = docs lib src include tests packages
+
+# create a root makefile in the distribution:
+dist-hook:
+	cp Makefile.dist $(distdir)/Makefile
 
 test:
 	@(cd tests; make quiet-test)
