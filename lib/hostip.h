@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.22 2003-02-04 23:48:46 jpbl Exp $
+ * $Id: hostip.h,v 1.23 2003-05-13 12:12:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -78,5 +78,12 @@ int curl_getaddrinfo(char *hostname, char *service,
                      struct addrinfo **result,
                      int line, const char *source);
 #endif
+
+#ifndef INADDR_NONE
+#define CURL_INADDR_NONE (in_addr_t) ~0
+#else
+#define CURL_INADDR_NONE INADDR_NONE
+#endif
+
 
 #endif
