@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/strequal.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-05-22 14:09:31 $
+ * $Revision: 1.3 $
+ * $Date: 2000-06-14 14:26:20 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -47,7 +47,7 @@ int strequal(const char *first, const char *second)
 #elif defined(HAVE_STRCMPI)
   return !strcmpi(first, second);
 #elif defined(HAVE_STRICMP)
-  return !strcmpi(first, second);
+  return !stricmp(first, second);
 #else
   while (*first && *second) {
     if (toupper(*first) != toupper(*second)) {
