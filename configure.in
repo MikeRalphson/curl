@@ -1,9 +1,9 @@
-dnl $Id: configure.in,v 1.42 2000-12-11 07:38:47 bagder Exp $
+dnl $Id: configure.in,v 1.43 2001-01-04 10:28:47 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
 
-VERSION=`sed -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' include/curl/curl.h`
+VERSION=`sed -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curl.h`
 AM_INIT_AUTOMAKE(curl,$VERSION)
 AM_PROG_LIBTOOL
 
