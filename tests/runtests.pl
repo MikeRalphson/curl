@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.127 2004-05-11 11:30:24 bagder Exp $
+# $Id: runtests.pl,v 1.128 2004-05-11 18:57:03 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -635,7 +635,7 @@ sub checkcurl {
 
     my $curl;
     my $libcurl;
-    my @version=`strace $CURL --version 2>fump`;
+    my @version=`$CURL --version 2>/dev/null`;
     for(@version) {
         chomp;
 
