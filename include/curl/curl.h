@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.131 2002-03-19 07:54:55 bagder Exp $
+ * $Id: curl.h,v 1.132 2002-03-19 10:35:02 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -684,9 +684,10 @@ typedef enum {
   CURLINFO_LASTONE          = 19
 } CURLINFO;
 
-/* unfortunately, the easy.h include file needs the options and info stuff
-   before it can be included! */
+/* unfortunately, the easy.h and multi.h include files need options and info
+  stuff before they can be included! */
 #include <curl/easy.h> /* nothing in curl is fun without the easy stuff */
+#include <curl/multi.h>
 
 typedef enum {
   CURLCLOSEPOLICY_NONE, /* first, never use this */
