@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.129 2004-03-10 09:36:43 bagder Exp $
+ * $Id: hostip.c,v 1.130 2004-03-17 12:46:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -58,6 +58,11 @@
 
 #ifdef HAVE_SETJMP_H
 #include <setjmp.h>
+#endif
+
+#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
+#undef in_addr_t
+#define in_addr_t unsigned long
 #endif
 
 #include "urldata.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.239 2004-03-11 13:13:35 bagder Exp $
+ * $Id: ftp.c,v 1.240 2004-03-17 12:46:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -63,6 +63,11 @@
 
 #if defined(WIN32) && defined(__GNUC__) || defined(__MINGW32__)
 #include <errno.h>
+#endif
+
+#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
+#undef in_addr_t
+#define in_addr_t unsigned long
 #endif
 
 #include <curl/curl.h>

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.28 2004-03-03 09:27:18 bagder Exp $
+ * $Id: setup.h,v 1.29 2004-03-17 12:46:48 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -40,6 +40,10 @@
 #ifdef WIN32
 /* include the hand-modified win32 adjusted config.h! */
 #include "config-win32.h"
+#endif
+#ifdef NETWARE
+/* hand-modified NetWare config.h! */
+#include "config-netware.h"
 #endif
 #ifdef macintosh
 /* this is not the same as Mac OS X */

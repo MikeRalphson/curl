@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.246 2004-03-17 07:22:04 bagder Exp $
+ * $Id: main.c,v 1.247 2004-03-17 12:46:48 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -53,6 +53,10 @@
 
 #if defined(WIN32)&&!defined(__CYGWIN32__)
 #include <winsock2.h>
+#endif
+
+#ifdef __NOVELL_LIBC__
+#include <screen.h>
 #endif
 
 #ifdef TIME_WITH_SYS_TIME
@@ -379,8 +383,13 @@ static void help(void)
     " -#/--progress-bar  Display transfer progress as a progress bar",
     NULL
   };
-  for(i=0; helptext[i]; i++)
+  for(i=0; helptext[i]; i++) {
     puts(helptext[i]);
+#ifdef __NOVELL_LIBC__
+    if (i && ((i % 23) == 0))
+      pressanykey();
+#endif
+  }
 }
 
 struct LongShort {
@@ -3450,6 +3459,9 @@ int main(int argc, char *argv[])
   res = operate(&config, argc, argv);
   free_config_fields(&config);
 
+#ifdef __NOVELL_LIBC__
+  pressanykey();
+#endif
 #ifdef	VMS
   if (res > CURL_LAST) res = CURL_LAST;	/* If CURL_LAST exceeded then */
   return (vms_cond[res]|vms_show);      /* curlmsg.h is out of sync.  */

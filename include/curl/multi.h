@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.16 2004-02-26 16:23:29 bagder Exp $
+ * $Id: multi.h,v 1.17 2004-03-17 12:46:45 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -55,10 +55,10 @@
 #include <winsock2.h>
 #else
 
-#ifdef _AIX
 /* HP-UX systems version 9, 10 and 11 lack sys/select.h and so does oldish
    libc5-based Linux systems. Only include it on system that are known to
    require it! */
+#if defined(_AIX) || defined(NETWARE)
 #include <sys/select.h>
 #endif
 

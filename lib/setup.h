@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.58 2004-03-10 10:19:32 bagder Exp $
+ * $Id: setup.h,v 1.59 2004-03-17 12:46:46 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -49,6 +49,10 @@
 #ifdef VMS
 /* hand-modified VMS config.h! */
 #include "config-vms.h"
+#endif
+#ifdef NETWARE
+/* hand-modified NetWare config.h! */
+#include "config-netware.h"
 #endif
 #ifdef macintosh
 /* hand-modified MacOS config.h! */
@@ -288,6 +292,10 @@ typedef struct in_addr Curl_ipconnect;
    aspect, but it still compile fine! */
 #define ECONNRESET 10000
 #endif
+#endif
+
+#ifdef NETWARE
+#undef HAVE_ALARM
 #endif
 
 #endif /* __CONFIG_H */

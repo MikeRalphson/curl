@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.81 2004-03-11 13:13:35 bagder Exp $
+ * $Id: connect.c,v 1.82 2004-03-17 12:46:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -51,6 +51,13 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h> /* required for free() prototype, without it, this crashes
                        on macos 68K */
+#endif
+#if (defined(HAVE_FIONBIO) && defined(__NOVELL_LIBC__))
+#include <sys/filio.h>
+#endif
+#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
+#undef in_addr_t
+#define in_addr_t unsigned long
 #endif
 #ifdef	VMS
 #include <in.h>
