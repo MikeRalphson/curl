@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.92 2004-03-10 08:43:01 bagder Exp $
+ * $Id: ssluse.c,v 1.93 2004-03-11 12:57:04 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1169,7 +1169,7 @@ Curl_SSLConnect(struct connectdata *conn,
         return CURLE_OPERATION_TIMEDOUT;
       }
       else {
-#ifdef EINTR
+#if !defined(WIN32) && defined(EINTR)
         /* For platforms without EINTR all errnos are bad */
         if (errno == EINTR)
           continue; /* retry the select() */
