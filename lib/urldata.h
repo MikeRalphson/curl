@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.75 2001-09-01 10:20:12 bagder Exp $
+ * $Id: urldata.h,v 1.76 2001-09-06 08:32:01 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -139,9 +139,7 @@ struct ssl_config_data {
   char *random_file;     /* path to file containing "random" data */
   char *egdsocket;       /* path to file containing the EGD daemon socket */
 
-  struct curl_ssl_session *session; /* array of 'numsessions' size */
   long numsessions;                 /* SSL session id cache size */
-  long sessionage;                  /* number of the most recent session */
 };
 
 /****************************************************************************
@@ -437,6 +435,9 @@ struct UrlState {
                       following not keep sending user+password... This is
                       strdup() data.
                     */
+
+  struct curl_ssl_session *session; /* array of 'numsessions' size */
+  long sessionage;                  /* number of the most recent session */
 };
 
 
