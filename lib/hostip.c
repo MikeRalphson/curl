@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.145 2004-04-20 09:46:10 bagder Exp $
+ * $Id: hostip.c,v 1.146 2004-04-21 11:18:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -48,6 +48,9 @@
 #endif
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>	/* required for free() prototypes */
+#endif
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>     /* for the close() proto */
 #endif
 #ifdef	VMS
 #include <in.h>
