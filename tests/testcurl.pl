@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.9 2004-07-05 21:32:18 gknauf Exp $
+# $Id: testcurl.pl,v 1.10 2004-07-05 21:41:28 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile);
 
 # version of this script
-$version='$Revision: 1.9 $';
+$version='$Revision: 1.10 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -457,6 +457,11 @@ if ($gnulikebuild) {
   }
 } else {
   print "TESTDONE: 1 tests out of 0 (dummy message)\n"; # dummy message to feign success
+}
+
+# simple way to create a tarball just before the build is deleted.
+if (-f '../mktarball') {
+  system('../mktarball');
 }
 
 # mydie to cleanup
