@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.215 2003-12-02 13:40:12 bagder Exp $
+ * $Id: ftp.c,v 1.216 2003-12-03 08:26:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1829,7 +1829,7 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
               conn->maxdownload);
       }
       infof(data, "range-download from %d to %d, totally %d bytes\n",
-            from, to, totalsize);
+            from, to, conn->maxdownload);
       ftp->dont_check = TRUE; /* dont check for successful transfer */
     }
 
@@ -2040,6 +2040,9 @@ CURLcode Curl_ftp_nextconnect(struct connectdata *conn)
 	if(result)
 	  return result;
       }
+
+      if(size > conn->maxdownload)
+        size = conn->size = conn->maxdownload;
 
       infof(data, "Getting file with size: %d\n", size);
 
