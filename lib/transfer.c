@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.60 2001-10-12 12:30:06 bagder Exp $
+ * $Id: transfer.c,v 1.61 2001-10-17 12:24:51 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -926,6 +926,8 @@ CURLcode Curl_perform(struct SessionHandle *data)
     if(res == CURLE_OK) {
       res = Curl_do(conn);
       if(res == CURLE_OK) {
+        CURLcode res2; /* just a local extra result container */
+
         if(conn->protocol&PROT_FTPS)
           /* FTPS, disable ssl while transfering data */
           conn->ssl.use = FALSE;
@@ -934,15 +936,19 @@ CURLcode Curl_perform(struct SessionHandle *data)
           /* FTPS, enable ssl again after havving transferred data */
           conn->ssl.use = TRUE;
 
-        if(res == CURLE_OK) {
+        if(res == CURLE_OK)
           /*
            * We must duplicate the new URL here as the connection data
            * may be free()ed in the Curl_done() function.
            */
           newurl = conn->newurl?strdup(conn->newurl):NULL;
 
-          res = Curl_done(conn);
-        }
+        /* Always run Curl_done(), even if some of the previous calls
+           failed, but return the previous (original) error code */
+        res2 = Curl_done(conn);
+
+        if(CURLE_OK == res)
+          res = res2;
       }
 
       /*
