@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.71 2003-11-24 07:15:37 bagder Exp $
+ * $Id: sendf.c,v 1.72 2003-12-02 13:27:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -48,7 +48,7 @@
 #define _MPRINTF_REPLACE /* use the internal *printf() functions */
 #include <curl/mprintf.h>
 
-#ifdef KRB4
+#ifdef HAVE_KRB4
 #include "security.h"
 #endif
 #include <string.h>
@@ -278,12 +278,12 @@ CURLcode Curl_write(struct connectdata *conn,
 #else
   (void)conn;
 #endif
-#ifdef KRB4
+#ifdef HAVE_KRB4
     if(conn->sec_complete) {
       bytes_written = Curl_sec_write(conn, sockfd, mem, len);
     }
     else
-#endif /* KRB4 */
+#endif /* HAVE_KRB4 */
     {
       bytes_written = swrite(sockfd, mem, len);
     }
@@ -412,7 +412,7 @@ int Curl_read(struct connectdata *conn,
     (void)conn;
 #endif
     *n=0; /* reset amount to zero */
-#ifdef KRB4
+#ifdef HAVE_KRB4
     if(conn->sec_complete)
       nread = Curl_sec_read(conn, sockfd, buf, buffersize);
     else

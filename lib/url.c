@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.318 2003-12-02 06:25:41 bagder Exp $
+ * $Id: url.c,v 1.319 2003-12-02 13:27:29 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -127,7 +127,7 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
-#ifdef KRB4
+#ifdef HAVE_KRB4
 #include "security.h"
 #endif
 

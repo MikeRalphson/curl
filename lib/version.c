@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.28 2003-09-19 12:56:24 bagder Exp $
+ * $Id: version.c,v 1.29 2003-12-02 13:27:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -102,7 +102,7 @@ char *curl_version(void)
   (void)num; /* no compiler warning please */
 #endif
 
-#ifdef KRB4
+#ifdef HAVE_KRB4
   sprintf(ptr, " krb4");
   ptr += strlen(ptr);
 #endif
@@ -167,7 +167,7 @@ static curl_version_info_data version_info = {
 #ifdef ENABLE_IPV6
   | CURL_VERSION_IPV6
 #endif
-#ifdef KRB4
+#ifdef HAVE_KRB4
   | CURL_VERSION_KERBEROS4
 #endif
 #ifdef USE_SSLEAY
