@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: postit.c,v 1.1 2001-02-08 08:26:54 bagder Exp $
+ * $Id: postit.c,v 1.2 2001-02-20 13:56:39 bagder Exp $
  *
  * Example code that uploads a file name 'foo' to a remote script that accepts
  * "HTML form based" (as described in RFC1738) uploads using HTTP POST.
@@ -20,6 +20,9 @@
  *
  * This exact source code has not been verified to work.
  */
+
+/* to make this work under windows, use the win32-functions from the
+   win32socket.c file as well */
 
 #include <stdio.h>
 

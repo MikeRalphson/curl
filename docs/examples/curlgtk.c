@@ -1,4 +1,12 @@
-/* curlgtk.c */
+/*****************************************************************************
+ *                                  _   _ ____  _     
+ *  Project                     ___| | | |  _ \| |    
+ *                             / __| | | | |_) | |    
+ *                            | (__| |_| |  _ <| |___ 
+ *                             \___|\___/|_| \_\_____|
+ *
+ * $Id: curlgtk.c,v 1.2 2001-02-20 13:56:39 bagder Exp $
+ */
 /* Copyright (c) 2000 David Odin (aka DindinX) for MandrakeSoft */
 /* an attempt to use the curl library in concert with a gtk-threaded application */
 
