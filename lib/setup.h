@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.55 2004-03-10 07:03:13 bagder Exp $
+ * $Id: setup.h,v 1.56 2004-03-10 08:08:02 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -81,8 +81,15 @@ typedef unsigned char bool;
 #endif
 #endif /* HAVE_LONGLONG */
 
+#ifndef SIZEOF_CURL_OFF_T
+/* If we don't know the size here, we assume a conservative size: 4. When
+   building libcurl, the actual size of this variable should be define in the
+   config*.h file. */
+#define SIZEOF_CURL_OFF_T 4
+#endif
+
 /* We set up our internal prefered (CURL_)FORMAT_OFF_T here */
-#if defined(SIZEOF_CURL_OFF_T) && (SIZEOF_CURL_OFF_T > 4)
+#if SIZEOF_CURL_OFF_T > 4
 #define FORMAT_OFF_T "lld"
 #else
 #define FORMAT_OFF_T "ld"
@@ -271,10 +278,6 @@ typedef struct addrinfo Curl_ipconnect;
 #else
 typedef struct hostent Curl_addrinfo;
 typedef struct in_addr Curl_ipconnect;
-#endif
-
-#ifndef SIZEOF_CURL_OFF_T
-#define SIZEOF_CURL_OFF_T sizeof(curl_off_t)
 #endif
 
 #ifdef VMS
