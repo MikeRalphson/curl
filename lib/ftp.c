@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.180 2003-05-13 12:11:31 bagder Exp $
+ * $Id: ftp.c,v 1.181 2003-05-14 06:31:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -238,7 +238,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
 
     if(!ftp->cache) {
       readfd = rkeepfd;		   /* set every lap */
-      interval.tv_sec = timeout;
+      interval.tv_sec = 1; /* use 1 second timeout intervals */
       interval.tv_usec = 0;
 
       switch (select (sockfd+1, &readfd, NULL, NULL, &interval)) {
@@ -247,9 +247,10 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
         failf(data, "Transfer aborted due to select() error: %d", errno);
         break;
       case 0: /* timeout */
-        result = CURLE_OPERATION_TIMEDOUT;
-        failf(data, "Transfer aborted due to timeout");
-        break;
+        if(Curl_pgrsUpdate(conn))
+          return CURLE_ABORTED_BY_CALLBACK;
+        continue; /* just continue in our loop for the timeout duration */
+
       default:
         break;
       }
@@ -2116,6 +2117,11 @@ CURLcode Curl_ftp(struct connectdata *conn)
   /* the ftp struct is already inited in ftp_connect() */
   ftp = conn->proto.ftp;
   conn->size = -1; /* make sure this is unknown at this point */
+
+  Curl_pgrsSetUploadCounter(data, 0);
+  Curl_pgrsSetDownloadCounter(data, 0);
+  Curl_pgrsSetUploadSize(data, 0);
+  Curl_pgrsSetDownloadSize(data, 0);
 
   /*  fixed : initialize ftp->dirs[xxx] to NULL !
       is done in Curl_ftp_connect() */

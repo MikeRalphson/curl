@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.44 2003-01-29 10:14:23 bagder Exp $
+ * $Id: progress.c,v 1.45 2003-05-14 06:31:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -172,18 +172,20 @@ void Curl_pgrsSetUploadCounter(struct SessionHandle *data, double size)
 
 void Curl_pgrsSetDownloadSize(struct SessionHandle *data, double size)
 {
-  if(size > 0) {
-    data->progress.size_dl = size;
+  data->progress.size_dl = size;
+  if(size > 0)
     data->progress.flags |= PGRS_DL_SIZE_KNOWN;
-  }
+  else
+    data->progress.flags &= ~PGRS_DL_SIZE_KNOWN;
 }
 
 void Curl_pgrsSetUploadSize(struct SessionHandle *data, double size)
 {
-  if(size > 0) {
-    data->progress.size_ul = size;
+  data->progress.size_ul = size;
+  if(size > 0)
     data->progress.flags |= PGRS_UL_SIZE_KNOWN;
-  }
+  else
+    data->progress.flags &= ~PGRS_UL_SIZE_KNOWN;
 }
 
 /* EXAMPLE OUTPUT to follow:
