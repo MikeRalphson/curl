@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.21 2004-05-04 13:40:30 bagder Exp $
+ * $Id: hash.c,v 1.22 2004-05-10 08:57:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -127,9 +127,17 @@ mk_hash_element(char *key, size_t key_len, const void *p)
     (curl_hash_element *) malloc(sizeof(curl_hash_element));
 
   if(he) {
-    he->key = strdup(key);
-    he->key_len = key_len;
-    he->ptr = (void *) p;
+    char *dup = strdup(key);
+    if(dup) {
+      he->key = dup;
+      he->key_len = key_len;
+      he->ptr = (void *) p;
+    }
+    else {
+      /* failed to duplicate the key, free memory and fail */
+      free(he);
+      he = NULL;
+    }
   }
   return he;
 }
