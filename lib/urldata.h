@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.205 2004-03-23 16:01:31 bagder Exp $
+ * $Id: urldata.h,v 1.206 2004-03-24 22:45:37 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -572,6 +572,8 @@ struct connectdata {
 
   int sockerror; /* errno stored by Curl_read() if the underlying layer returns
                     error */
+  char syserr_buf [256]; /* buffer for Curl_strerror() */
+
 #if defined(USE_ARES) || defined(USE_THREADING_GETHOSTBYNAME)
   /* data used for the asynch name resolve callback */
   struct Curl_async async;
