@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.223 2004-04-26 14:02:51 bagder Exp $
+ * $Id: transfer.c,v 1.224 2004-04-27 13:56:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -805,7 +805,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                               /* If there is a custom-set Host: name, use it
                                  here, or else use real peer host name. */
                               conn->allocptr.cookiehost?
-                              conn->allocptr.cookiehost:conn->hostname,
+                              conn->allocptr.cookiehost:conn->host.name,
                               conn->path);
               Curl_share_unlock(data, CURL_LOCK_DATA_COOKIE);
             }

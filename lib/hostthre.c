@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.3 2004-04-26 14:18:42 bagder Exp $
+ * $Id: hostthre.c,v 1.4 2004-04-27 13:56:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -375,12 +375,12 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
   if (!conn->async.dns) {
     /* a name was not resolved */
     if (td->thread_status == (DWORD)-1 || conn->async.status == NO_DATA) {
-      failf(data, "Resolving host timed out: %s", conn->hostname);
+      failf(data, "Resolving host timed out: %s", conn->host.name);
       rc = CURLE_OPERATION_TIMEDOUT;
     }
     else if(conn->async.done) {
       failf(data, "Could not resolve host: %s; %s",
-            conn->hostname, Curl_strerror(conn,conn->async.status));
+            conn->host.name, Curl_strerror(conn,conn->async.status));
       rc = CURLE_COULDNT_RESOLVE_HOST;
     }
     else

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.7 2004-01-07 09:19:35 bagder Exp $
+ * $Id: http_negotiate.c,v 1.8 2004-04-27 13:56:23 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -71,10 +71,10 @@ get_gss_name(struct connectdata *conn, gss_name_t *server)
   else
     service = "http";
 
-  token.length = strlen(service) + 1 + strlen(conn->hostname) + 1;
+  token.length = strlen(service) + 1 + strlen(conn->host.name) + 1;
   if (token.length + 1 > sizeof(name))
     return EMSGSIZE;
-  sprintf(name, "%s@%s", service, conn->hostname);
+  sprintf(name, "%s@%s", service, conn->host.name);
 
   token.value = (void *) name;
   major_status = gss_import_name(&minor_status,

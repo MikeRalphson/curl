@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.252 2004-04-26 14:18:00 bagder Exp $
+ * $Id: ftp.c,v 1.253 2004-04-27 13:56:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -489,7 +489,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   if (data->set.tunnel_thru_httpproxy) {
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
     result = Curl_ConnectHTTPProxyTunnel(conn, FIRSTSOCKET,
-                                         conn->hostname, conn->remote_port);
+                                         conn->host.name, conn->remote_port);
     if(CURLE_OK != result)
       return result;
   }
@@ -1619,7 +1619,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
           newport = num;
 
           /* we should use the same host we already are connected to */
-          newhostp = conn->hostname;
+          newhostp = conn->host.name;
         }
       }                      
       else
@@ -1641,7 +1641,7 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
      * We don't want to rely on a former host lookup that might've expired
      * now, instead we remake the lookup here and now!
      */
-    rc = Curl_resolv(conn, conn->proxyhost, conn->port, &addr);
+    rc = Curl_resolv(conn, conn->proxy.name, conn->port, &addr);
     if(rc == CURLRESOLV_PENDING)
       rc = Curl_wait_for_resolv(conn, &addr);
 
