@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.165 2003-02-28 12:20:08 bagder Exp $
+ * $Id: main.c,v 1.166 2003-03-12 14:20:16 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2657,19 +2657,28 @@ operate(struct Configurable *config, int argc, char *argv[])
           else
             filep = config->infile;
 
-          urlbuffer=(char *)malloc(strlen(url) + strlen(filep) + 3);
-          if(!urlbuffer) {
-            helpf("out of memory\n");
-            return CURLE_OUT_OF_MEMORY;
+          /* URL encode the file name */
+          filep = curl_escape(filep, 0 /* use strlen */);
+
+          if(filep) {
+
+            urlbuffer=(char *)malloc(strlen(url) + strlen(filep) + 3);
+            if(!urlbuffer) {
+              helpf("out of memory\n");
+              return CURLE_OUT_OF_MEMORY;
+            }
+            if(ptr)
+              /* there is a trailing slash on the URL */
+              sprintf(urlbuffer, "%s%s", url, filep);
+            else
+              /* thers is no trailing slash on the URL */
+              sprintf(urlbuffer, "%s/%s", url, filep);
+            
+            curl_free(filep);
+
+            free(url);
+            url = urlbuffer; /* use our new URL instead! */
           }
-          if(ptr)
-            /* there is a trailing slash on the URL */
-            sprintf(urlbuffer, "%s%s", url, filep);
-          else
-            /* thers is no trailing slash on the URL */
-            sprintf(urlbuffer, "%s/%s", url, filep);
-          
-          url = urlbuffer; /* use our new URL instead! */
         }
 /*VMS??-- Reading binary from files can be a problem... */
 /*VMS??   Only FIXED, VAR etc WITHOUT implied CC will work */
