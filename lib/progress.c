@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.48 2004-01-07 09:19:35 bagder Exp $
+ * $Id: progress.c,v 1.49 2004-01-15 13:08:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -62,7 +62,7 @@ static char *max5data(double bytes, char *max5)
     sprintf(max5, "%5d", (int)bytes);
     return max5;
   }
-  if(bytes < (9999*ONE_KILOBYTE)) {
+  if(bytes < (10000*ONE_KILOBYTE)) {
     sprintf(max5, "%4dk", (int)bytes/ONE_KILOBYTE);
     return max5;
   }
