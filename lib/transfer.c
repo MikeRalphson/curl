@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.57 2001-09-28 11:04:43 bagder Exp $
+ * $Id: transfer.c,v 1.58 2001-10-01 11:35:29 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -219,8 +219,6 @@ Transfer(struct connectdata *c_conn)
   maxfd = (conn->sockfd>conn->writesockfd?conn->sockfd:conn->writesockfd)+1;
 
   hbufp = data->state.headerbuff;
-
-  myalarm (0);			/* switch off the alarm-style timeout */
 
   now = Curl_tvnow();
   start = now;
@@ -1127,7 +1125,7 @@ CURLcode Curl_perform(struct SessionHandle *data)
   if(newurl)
     free(newurl);
 
-  /* make sure the alarm is switched off! */
+  /* make absolutely sure the alarm is switched off! */
   if(data->set.timeout || data->set.connecttimeout)
     myalarm(0);
 

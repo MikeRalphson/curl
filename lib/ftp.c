@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.96 2001-09-28 09:15:19 bagder Exp $
+ * $Id: ftp.c,v 1.97 2001-10-01 11:35:29 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -352,8 +352,6 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   struct FTP *ftp;
   CURLcode result;
   int ftpcode;
-
-  myalarm(0); /* switch off the alarm stuff */
 
   ftp = (struct FTP *)malloc(sizeof(struct FTP));
   if(!ftp)
