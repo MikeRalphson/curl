@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.280 2004-11-27 09:27:48 bagder Exp $
+ * $Id: ftp.c,v 1.281 2004-11-29 21:25:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1184,6 +1184,16 @@ CURLcode ftp_use_port(struct connectdata *conn)
     return CURLE_FTP_PORT_FAILED;
   }
 
+#ifdef PF_INET6
+  if(!conn->bits.ftp_use_eprt &&
+     (conn->ip_addr->ai_family == PF_INET6)) {
+    /* EPRT is disabled but we are connected to a IPv6 host, so we ignore the
+       request! */
+    conn->bits.ftp_use_eprt = TRUE;
+  }
+#endif
+
+
   for (fcmd = EPRT; fcmd != DONE; fcmd++) {
     int lprtaf, eprtaf;
     int alen=0, plen=0;
@@ -1511,6 +1521,15 @@ CURLcode ftp_use_pasv(struct connectdata *conn,
      in the IPv6 case means 5*8-1 = 39 letters */
   char newhost[48];
   char *newhostp=NULL;
+
+#ifdef PF_INET6
+  if(!conn->bits.ftp_use_epsv &&
+     (conn->ip_addr->ai_family == PF_INET6)) {
+    /* EPSV is disabled but we are connected to a IPv6 host, so we ignore the
+       request! */
+    conn->bits.ftp_use_epsv = TRUE;
+  }
+#endif
 
   for (modeoff = (conn->bits.ftp_use_epsv?0:1);
        mode[modeoff]; modeoff++) {
