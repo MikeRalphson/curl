@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.2 2003-03-25 22:40:43 bagder Exp $
+dnl $Id: configure.ac,v 1.3 2003-03-26 19:05:24 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -465,10 +465,10 @@ if test "$PKGCONFIG" != "no" ; then
   if test "$SSL_EXISTS" -eq "0"; then
     SSL_LIBS=`$PKGCONFIG --libs-only-l openssl 2>/dev/null`
     SSL_LDFLAGS=`$PKGCONFIG --libs-only-L openssl 2>/dev/null`
-    SSL_CFLAGS=`$PKGCONFIG --cflags openssl 2>/dev/null`
+    SSL_CPPFLAGS=`$PKGCONFIG --cflags-only-I openssl 2>/dev/null`
 
     LIBS="$LIBS $SSL_LIBS"
-    CFLAGS="$CFLAGS $SSL_CFLAGS"
+    CPPFLAGS="$CPPFLAGS $SSL_CPPFLAGS"
     LDFLAGS="$LDFLAGS $SSL_LDFLAGS"
 
     AC_MSG_RESULT([yes])
