@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.113 2002-11-15 14:11:20 bagder Exp $
+dnl $Id: configure.in,v 1.114 2002-11-28 13:29:42 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -543,8 +543,7 @@ case "$OPT_ZLIB" in
 
     AC_CHECK_HEADER(zlib.h,[
       AC_CHECK_LIB(z, gzread,
-                   [AM_CONDITIONAL(CONTENT_ENCODING, true)
-                   HAVE_LIBZ="1"
+                   [HAVE_LIBZ="1"
                    AC_SUBST(HAVE_LIBZ)
                    LIBS="$LIBS -lz"
                    AC_DEFINE(HAVE_ZLIB_H, 1, [if you have the zlib.h header file])
