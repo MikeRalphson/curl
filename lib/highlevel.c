@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.14 $
- * $Date: 2000-10-04 13:07:43 $
+ * $Revision: 1.15 $
+ * $Date: 2000-10-06 11:06:20 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -107,7 +107,6 @@
 #include "getpass.h"
 #include "progress.h"
 #include "getdate.h"
-#include "writeout.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
