@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.8 2004-09-15 07:28:04 bagder Exp $
+ * $Id: parsedate.c,v 1.9 2004-09-20 13:21:48 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -224,11 +224,11 @@ static time_t Curl_parsedate(const char *date)
   time_t t = 0;
   int wdaynum=-1;  /* day of the week number, 0-6 (mon-sun) */
   int monnum=-1;   /* month of the year number, 0-11 */
-  long mdaynum=-1; /* day of month, 1 - 31 */
+  int mdaynum=-1; /* day of month, 1 - 31 */
   int hournum=-1;
   int minnum=-1;
   int secnum=-1;
-  long yearnum=-1;
+  int yearnum=-1;
   int tzoff=-1;
   struct tm tm;
   enum assume dignext = DATE_MDAY;
@@ -273,7 +273,7 @@ static time_t Curl_parsedate(const char *date)
     }
     else if(isdigit((int)*date)) {
       /* a digit */
-      long val;
+      int val;
       char *end;
       if((secnum == -1) &&
          (3 == sscanf(date, "%02d:%02d:%02d", &hournum, &minnum, &secnum))) {
@@ -282,7 +282,7 @@ static time_t Curl_parsedate(const char *date)
         found = TRUE;
       }
       else {
-        val = strtol(date, &end, 10);
+        val = (int)strtol(date, &end, 10);
 
         if((tzoff == -1) &&
            ((end - date) == 4) &&
