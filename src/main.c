@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.251 2004-04-07 07:23:52 bagder Exp $
+ * $Id: main.c,v 1.252 2004-04-07 07:30:41 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1035,7 +1035,7 @@ static int str2offset(curl_off_t *val, char *str)
 #endif
 
   /* this is a duplicate of the function that is also used in libcurl */
-  *val = strtoofft(str, NULL, 0);
+  *val = curlx_strtoofft(str, NULL, 0);
 
   if ((*val == LLONG_MAX || *val == LLONG_MIN) && errno == ERANGE)
     return 1;
@@ -1319,7 +1319,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         {
           /* We support G, M, K too */
           char *unit;
-          curl_off_t value = strtoofft(nextarg, &unit, 0);
+          curl_off_t value = curlx_strtoofft(nextarg, &unit, 0);
           switch(nextarg[strlen(nextarg)-1]) {
           case 'G':
           case 'g':

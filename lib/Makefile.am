@@ -18,17 +18,17 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.85 2004-04-06 14:07:04 bagder Exp $
+# $Id: Makefile.am,v 1.86 2004-04-07 07:30:40 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
-EXTRA_DIST = getdate.y Makefile.b32 Makefile.b32.resp Makefile.m32	\
-  Makefile.vc6 Makefile.riscos libcurl.def curllib.dsp curllib.dsw	\
-  config-vms.h config-win32.h config-riscos.h config-mac.h config.h.in	\
-  ca-bundle.crt README.encoding README.memoryleak README.ares		\
-  makefile.dj config.dj libcurl.framework.make libcurl.plist		\
-  libcurl.rc config-amigaos.h amigaos.c amigaos.h makefile.amiga	\
-  config-netware.h Makefile.netware nwlib.c libcurl.imp
+EXTRA_DIST = getdate.y Makefile.b32 Makefile.b32.resp Makefile.m32	   \
+  Makefile.vc6 Makefile.riscos libcurl.def curllib.dsp curllib.dsw	   \
+  config-vms.h config-win32.h config-riscos.h config-mac.h config.h.in	   \
+  ca-bundle.crt README.encoding README.memoryleak README.ares README.curlx \
+  makefile.dj config.dj libcurl.framework.make libcurl.plist libcurl.rc	   \
+  config-amigaos.h amigaos.c amigaos.h makefile.amiga config-netware.h	   \
+  Makefile.netware nwlib.c libcurl.imp
 
 lib_LTLIBRARIES = libcurl.la
 
