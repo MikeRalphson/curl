@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/escape.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:14 $
+ * $Revision: 1.3 $
+ * $Date: 2000-03-20 10:22:12 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -47,7 +47,7 @@
 
 char *curl_escape(char *string)
 {
-   int alloc=strlen(string);
+   int alloc=strlen(string)+1;
    char *ns = malloc(alloc);
    unsigned char in;
    int newlen = alloc;
@@ -83,7 +83,7 @@ char *curl_escape(char *string)
 
 char *curl_unescape(char *string)
 {
-   int alloc = strlen(string);
+   int alloc = strlen(string)+1;
    char *ns = malloc(alloc);
    unsigned char in;
    int index=0;
