@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.8 2001-01-05 10:11:43 bagder Exp $
+ * $Id: version.c,v 1.9 2001-01-23 08:16:59 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -61,8 +61,18 @@ char *curl_version(void)
   ptr=strchr(ptr, '\0');
 #endif
 
+#if defined(KRB4) || defined(ENABLE_IPV6)
+  strcat(ptr, " (");
+  ptr+=2;
 #ifdef KRB4
-  sprintf(ptr, " (krb4 enabled)");
+  sprintf(ptr, "krb4 ");
+  ptr += strlen(ptr);
+#endif
+#ifdef ENABLE_IPV6
+  sprintf(ptr, "ipv6 ");
+  ptr += strlen(ptr);
+#endif
+  sprintf(ptr, "enabled)");
   ptr += strlen(ptr);
 #endif
 
