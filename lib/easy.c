@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.69 2005-01-29 22:26:38 bagder Exp $
+ * $Id: easy.c,v 1.70 2005-02-09 23:04:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -201,7 +201,8 @@ CURLcode curl_global_init(long flags)
   Curl_ccalloc = (curl_calloc_callback)calloc;
 
   if (flags & CURL_GLOBAL_SSL)
-    Curl_SSL_init();
+    if (!Curl_SSL_init())
+      return CURLE_FAILED_INIT;
 
   if (flags & CURL_GLOBAL_WIN32)
     if (win32_init() != CURLE_OK)

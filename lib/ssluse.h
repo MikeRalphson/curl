@@ -20,12 +20,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.20 2004-12-14 14:20:21 giva Exp $
+ * $Id: ssluse.h,v 1.21 2005-02-09 23:04:51 bagder Exp $
  ***************************************************************************/
 #include "urldata.h"
 CURLcode Curl_SSLConnect(struct connectdata *conn, int sockindex);
 
-void Curl_SSL_init(void);    /* Global SSL init */
+int Curl_SSL_init(void);    /* Global SSL init */
 void Curl_SSL_cleanup(void); /* Global SSL cleanup */
 
 /* init the SSL session ID cache */
