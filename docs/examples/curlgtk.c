@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: curlgtk.c,v 1.2 2001-02-20 13:56:39 bagder Exp $
+ * $Id: curlgtk.c,v 1.3 2002-03-11 15:00:57 bagder Exp $
  */
 /* Copyright (c) 2000 David Odin (aka DindinX) for MandrakeSoft */
 /* an attempt to use the curl library in concert with a gtk-threaded application */
@@ -26,7 +26,11 @@ size_t my_read_func(void *ptr, size_t size, size_t nmemb, FILE *stream)
   return fread(ptr, size, nmemb, stream);
 }
 
-int my_progress_func(GtkWidget *Bar, int t, int d)
+int my_progress_func(GtkWidget *Bar,
+                     double t, /* dltotal */
+                     double d, /* dlnow */
+                     double ultotal,
+                     double ulnow)
 {
 /*  printf("%d / %d (%g %%)\n", d, t, d*100.0/t);*/
   gdk_threads_enter();
@@ -50,6 +54,7 @@ void *curl_thread(void *ptr)
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_FILE, outfile);
     curl_easy_setopt(curl, CURLOPT_READFUNCTION, my_read_func);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, FALSE);
     curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, my_progress_func);
     curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, Bar);
     
