@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.38 2004-02-18 12:22:56 bagder Exp $
+ * $Id: memdebug.c,v 1.39 2004-02-20 16:22:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -255,5 +255,8 @@ int curl_fclose(FILE *file, int line, const char *source)
 #else
 #ifdef VMS
 int VOID_VAR_MEMDEBUG;	
-#endif
+#else
+/* we provide a fake do-nothing function here to avoid compiler warnings */
+void curl_memdebug(void) {}
+#endif /* VMS */
 #endif /* CURLDEBUG */
