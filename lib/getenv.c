@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/getenv.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-05-29 23:07:22 $
+ * $Revision: 1.5 $
+ * $Date: 2000-06-05 08:24:37 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -60,7 +60,7 @@ char *GetEnv(char *variable)
   return env?strdup(env):NULL;
 }
 
-char *curl_GetEnv(char *v)
+char *curl_getenv(char *v)
 {
   return GetEnv(v);
 }
