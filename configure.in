@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.41 2000-11-10 14:42:06 bagder Exp $
+dnl $Id: configure.in,v 1.42 2000-12-11 07:38:47 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -397,7 +397,8 @@ else
   	AC_MSG_RESULT([defaults (or given in environment)])
   else
 	test X"$OPT_SSL" = Xyes && OPT_SSL=/usr/local/ssl
-	LIBS="$LIBS -L$OPT_SSL/lib"
+        dnl	LIBS="$LIBS -L$OPT_SSL/lib"
+        LDFLAGS="$LDFLAGS -L$OPT_SSL/lib"
 	CPPFLAGS="$CPPFLAGS -I$OPT_SSL/include/openssl -I$OPT_SSL/include"
 	AC_MSG_RESULT([$OPT_SSL])
   fi
