@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.13 2003-05-27 12:34:48 bagder Exp $
+ * $Id: multi.h,v 1.14 2003-06-05 14:04:44 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -54,10 +54,14 @@
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>
 #else
-#ifndef __hpux
-/* HP-UX systems version 9, 10 and 11 lack this header */
+
+#ifdef _AIX
+/* HP-UX systems version 9, 10 and 11 lack sys/select.h and so does oldish
+   libc5-based Linux systems. Only include it on system that are known to
+   require it! */
 #include <sys/select.h>
 #endif
+
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/types.h>
