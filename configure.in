@@ -1,8 +1,8 @@
-dnl $Id: configure.in,v 1.4 2000-03-02 23:02:58 bagder Exp $
+dnl $Id: configure.in,v 1.5 2000-03-13 09:12:18 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
-AM_INIT_AUTOMAKE(curl,"6.5pre1")
+AM_INIT_AUTOMAKE(curl,"6.5pre2")
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -188,9 +188,9 @@ AC_CHECK_FUNCS( socket \
 
 
 
-dnl AC_PATH_PROG( PERL, perl, , 
-dnl  $PATH:/usr/local/bin/perl:/usr/bin/:/usr/local/bin )
-dnl AC_SUBST(PERL)
+AC_PATH_PROG( PERL, perl, , 
+  $PATH:/usr/local/bin/perl:/usr/bin/:/usr/local/bin )
+AC_SUBST(PERL)
 
 AC_PATH_PROGS( NROFF, gnroff nroff, , 
   $PATH:/usr/bin/:/usr/local/bin )
