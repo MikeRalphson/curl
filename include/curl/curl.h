@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.66 2001-03-14 11:25:44 bagder Exp $
+ * $Id: curl.h,v 1.67 2001-03-15 14:37:41 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -424,6 +424,11 @@ typedef enum {
 
   /* Set to the Entropy Gathering Daemon socket pathname */
   CINIT(EGDSOCKET, OBJECTPOINT, 77),
+
+  /* Time-out connect operations after this amount of seconds, if connects
+     are OK within this time, then fine... This only aborts the connect
+     phase. [Only works on unix-style/SIGALRM operating systems] */
+  CINIT(CONNECTTIMEOUT, LONG, 78),
 
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
