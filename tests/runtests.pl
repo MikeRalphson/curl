@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.71 2003-01-21 10:14:25 bagder Exp $
+# $Id: runtests.pl,v 1.72 2003-01-21 10:29:07 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -296,7 +296,7 @@ sub runftpsserver {
     }
 
     my $flag=$debugprotocol?"-v ":"";
-    my $cmd="$perl $srcdir/ftpsserver.pl $flag -r $FTPPORT $FTPSPORT &";
+    my $cmd="$perl $srcdir/ftpsserver.pl $flag -d $srcdir -r $FTPPORT $FTPSPORT &";
     system($cmd);
     if($verbose) {
         print "CMD: $cmd\n";
