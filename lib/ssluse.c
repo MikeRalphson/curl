@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.45 2002-01-08 23:23:24 bagder Exp $
+ * $Id: ssluse.c,v 1.46 2002-01-09 09:38:37 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -552,9 +552,9 @@ int Curl_SSL_Close_All(struct SessionHandle *data)
 static int Store_SSL_Session(struct connectdata *conn)
 {
   SSL_SESSION *ssl_sessionid;
-  struct curl_ssl_session *store;
   int i;
   struct SessionHandle *data=conn->data; /* the mother of all structs */
+  struct curl_ssl_session *store = &data->state.session[0];
   int oldest_age=data->state.session[0].age; /* zero if unused */
 
   /* ask OpenSSL, say please */
@@ -568,7 +568,8 @@ static int Store_SSL_Session(struct connectdata *conn)
      the oldest if necessary) */
 
   /* find an empty slot for us, or find the oldest */
-  for(i=0; (i<data->set.ssl.numsessions) && data->state.session[i].sessionid; i++) {
+  for(i=1; (i<data->set.ssl.numsessions) &&
+        data->state.session[i].sessionid; i++) {
     if(data->state.session[i].age < oldest_age) {
       oldest_age = data->state.session[i].age;
       store = &data->state.session[i];
