@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.2 2002-03-19 10:19:56 bagder Exp $
+# $Id: Makefile.am,v 1.3 2002-04-12 10:10:36 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -34,7 +34,8 @@ man_MANS = \
 	curl_multi_init.3 \
 	curl_multi_perform.3 \
 	curl_multi_remove_handle.3 \
-	libcurl-multi.3
+	libcurl-multi.3 \
+	libcurl-errors.3
 
 HTMLPAGES = \
 	curl_easy_cleanup.html \
@@ -67,6 +68,7 @@ HTMLPAGES = \
 	curl_multi_perform.html \
 	curl_multi_remove_handle.html \
 	libcurl-multi.html \
+	libcurl-errors.html \
 	index.html
 
 EXTRA_DIST = $(man_MANS) $(HTMLPAGES)
