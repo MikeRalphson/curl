@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.329 2004-01-23 08:29:56 bagder Exp $
+ * $Id: url.c,v 1.330 2004-01-23 08:36:03 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2853,7 +2853,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     /* get the user+password information from the old_conn struct since it may
      * be new for this request even when we re-use an existing connection */
     conn->bits.user_passwd = old_conn->bits.user_passwd;
-    conn->bits.proxy_user_passwd = conn->bits.proxy_user_passwd;
+    conn->bits.proxy_user_passwd = old_conn->bits.proxy_user_passwd;
 
     /* If we speak over a proxy, we need to copy the host name too, as it
        might be another remote host even when re-using a connection */
