@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.9 2004-07-11 08:30:23 gknauf Exp $ */
+/* $Id: ares.h,v 1.10 2004-08-20 13:45:26 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -27,11 +27,14 @@
 #include <sys/select.h>
 #endif
 
-#ifdef WIN32
-#include <winsock.h>
-#include <windows.h>
+#if defined(WATT32)
+  #include <netinet/in.h>
+  #include <tcp.h>
+#elif defined(WIN32)
+  #include <winsock.h>
+  #include <windows.h>
 #else
-#include <netinet/in.h>
+  #include <netinet/in.h>
 #endif
 
 #define ARES_SUCCESS		0

@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.8 2004-07-22 22:18:45 bagder Exp $ */
+/* $Id: ares_private.h,v 1.9 2004-08-20 13:45:26 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -18,9 +18,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-#ifdef WIN32
-
-#else
+#if !defined(WIN32) || defined(WATT32)
 #include <netinet/in.h>
 /* We define closesocket() here so that we can use this function all over
    the source code for closing sockets. */
@@ -41,7 +39,7 @@
 #define	INADDR_NONE 0xffffffff
 #endif
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(WATT32)
 
 #define IsNT ((int)GetVersion()>0)
 #define WIN_NS_9X      "System\\CurrentControlSet\\Services\\VxD\\MSTCP"
