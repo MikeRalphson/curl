@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.4 2003-04-06 12:29:45 bagder Exp $
+dnl $Id: configure.ac,v 1.5 2003-05-04 16:07:19 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -349,15 +349,17 @@ dnl Check if the operating system allows programs to write to their own argv[]
 dnl **********************************************************************
 
 AC_MSG_CHECKING([if argv can be written to])
-AC_TRY_RUN([
+AC_RUN_IFELSE([[
 int main(int argc, char ** argv) {
 	argv[0][0] = ' ';
 	return (argv[0][0] == ' ')?0:1;
 }
-	],
+	]],
 	AC_DEFINE(HAVE_WRITABLE_ARGV, 1, [Define this symbol if your OS supports changing the contents of argv])
 	AC_MSG_RESULT(yes),
-	AC_MSG_RESULT(no)
+	AC_MSG_RESULT(no),
+        AC_MSG_RESULT(no)
+        AC_MSG_WARN([the previous check could not be made default was used])
 )
 
 dnl **********************************************************************
