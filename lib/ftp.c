@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.182 2003-05-23 11:14:09 bagder Exp $
+ * $Id: ftp.c,v 1.183 2003-06-26 06:52:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -94,7 +94,7 @@
 #include <curl/mprintf.h>
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
@@ -2061,7 +2061,7 @@ CURLcode ftp_perform(struct connectdata *conn,
       struct tm buffer;
       tm = (struct tm *)localtime_r(&data->info.filetime, &buffer);
 #else
-      tm = localtime((unsigned long *)&data->info.filetime);
+      tm = localtime(&data->info.filetime);
 #endif
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
       strftime(buf, BUFSIZE-1, "Last-Modified: %a, %d %b %Y %H:%M:%S GMT\r\n",
