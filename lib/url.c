@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.394 2004-06-18 06:20:43 bagder Exp $
+ * $Id: url.c,v 1.395 2004-06-22 15:23:01 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1940,6 +1940,11 @@ static CURLcode ConnectPlease(struct connectdata *conn,
 {
   CURLcode result;
   Curl_ipconnect *addr;
+  struct SessionHandle *data = conn->data;
+  char *hostname = data->change.proxy?conn->proxy.name:conn->host.name;
+
+  infof(data, "About to connect() to %s port %d\n",
+        hostname, conn->port);
 
   /*************************************************************
    * Connect to server/proxy
