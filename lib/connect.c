@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.54 2003-05-01 13:37:05 bagder Exp $
+ * $Id: connect.c,v 1.55 2003-05-12 13:06:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -213,7 +213,11 @@ static CURLcode bindlocal(struct connectdata *conn,
     char myhost[256] = "";
     in_addr_t in;
 
-    if(Curl_if2ip(data->set.device, myhost, sizeof(myhost))) {
+    /* First check if the given name is an IP address */
+    in=inet_addr(data->set.device);
+      
+    if((in == INADDR_NONE) &&
+       Curl_if2ip(data->set.device, myhost, sizeof(myhost))) {
       /*
        * We now have the numerical IPv4-style x.y.z.w in the 'myhost' buffer
        */
