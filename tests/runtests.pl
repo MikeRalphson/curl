@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.72 2003-01-21 10:29:07 bagder Exp $
+# $Id: runtests.pl,v 1.73 2003-01-27 13:51:35 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -445,6 +445,15 @@ sub singletest {
         return -1;
     }
 
+    my $serverproblem = serverfortest($testnum);
+
+    if($serverproblem) {
+        # there's a problem with the server, don't run
+        # this particular server, but count it as "skipped"
+        $skipped++;
+        return -1;
+    }
+
     {
         my %hash = getpartattr("client");
         my $requires = $hash{'requires'};
@@ -460,7 +469,7 @@ sub singletest {
             }else {
                 print "$testnum requires $requires, which is not set; skipping\n";
                 $skipped++;
-                return 0;  # look successful
+                return -1;  # return test-not-run
             }
         }
     }
@@ -1042,20 +1051,14 @@ my $total=0;
 
 foreach $testnum (split(" ", $TESTCASES)) {
 
-    my $serverproblem = serverfortest($testnum);
-
-    if($serverproblem) {
-        # there's a problem with the server, don't run
-        # this particular server, but count it as "skipped"
-        $skipped++;
+    my $error = singletest($testnum);
+    if(-1 == $error) {
+        # not a test we can run
         next;
     }
 
-    my $error = singletest($testnum);
-    if(-1 != $error) {
-        # valid test case number
-        $total++;
-    }
+    $total++; # number of tests we've run
+
     if($error>0) {
         $failed.= "$testnum ";
         if(!$anyway) {
@@ -1065,7 +1068,7 @@ foreach $testnum (split(" ", $TESTCASES)) {
         }
     }
     elsif(!$error) {
-        $ok++;
+        $ok++; # successful test counter
     }
 
     # loop for next test
