@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.122 2002-04-04 22:29:18 bagder Exp $
+ * $Id: main.c,v 1.123 2002-04-05 15:04:04 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1604,26 +1604,27 @@ static int parseconfig(char *filename,
 {
   int res;
   FILE *file;
-  char filebuffer[256];
+  char filebuffer[512];
   bool usedarg;
-  char *home=NULL;
+  char *home;
   
   if(!filename || !*filename) {
     /* NULL or no file name attempts to load .curlrc from the homedir! */
 
 #define CURLRC DOT_CHAR "curlrc"
 
+    filename = CURLRC;          /* sensible default */
     home = curl_getenv("HOME"); /* portable environment reader */
-    if(!home)
-      return 0;
-    if(strlen(home)>(sizeof(filebuffer)-strlen(CURLRC))) {
-      free(home);
-      return 0;
+    if(home) {
+      if(strlen(home)<(sizeof(filebuffer)-strlen(CURLRC))) {
+
+        snprintf(filebuffer, sizeof(filebuffer),
+                 "%s%s%s", home, DIR_CHAR, CURLRC);
+
+        filename = filebuffer;
+      }
+      free(home); /* we've used it, now free it */
     }
-
-    sprintf(filebuffer, "%s%s%s", home, DIR_CHAR, CURLRC);
-
-    filename = filebuffer;
   }
 
   if(strcmp(filename,"-"))
@@ -1770,8 +1771,6 @@ static int parseconfig(char *filename,
     if(file != stdin)
       fclose(file);
   }
-  if(home)
-    free(home);
   return 0;
 }
 
