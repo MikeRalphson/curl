@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.24 2004-07-11 12:31:29 gknauf Exp $
+# $Id: Makefile.dist,v 1.25 2004-07-14 11:39:29 gknauf Exp $
 ###########################################################################
 
 all:
@@ -30,8 +30,10 @@ ssl:
 	make
 
 borland:
-	cd lib & make -f Makefile.b32
-	cd src & make -f Makefile.b32
+	cd lib
+	make -f Makefile.b32
+	cd ..\src
+	make -f Makefile.b32
 
 mingw32:
 	cd lib & make -f Makefile.m32 ZLIB=1
