@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.2 2004-03-24 10:52:21 bagder Exp $
+# $Id: testcurl.pl,v 1.3 2004-03-24 21:28:31 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -50,7 +50,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog $buildl
 use vars qw($name $email $desc $confopts);
 
 # version of this script
-$version='$Revision: 1.2 $';
+$version='$Revision: 1.3 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -212,7 +212,7 @@ rmtree "buildlog-*";
 foreach (glob("$CURLDIR/buildlog-*")) { unlink $_; }
 
 # create a dir to build in
-mkdir $build;
+mkdir $build, 0777;
 
 if (-d $build) {
   logit "build dir $build was created fine";
