@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.89 2001-11-27 07:27:32 bagder Exp $
+ * $Id: urldata.h,v 1.90 2001-11-28 23:20:14 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -567,6 +567,7 @@ struct UserDefined {
   bool reuse_forbid;     /* forbidden to be reused, close after use */
   bool reuse_fresh;      /* do not re-use an existing connection  */
   bool expect100header;  /* TRUE if we added Expect: 100-continue */
+  bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
 };
 
 /*
