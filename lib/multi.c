@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.43 2004-02-05 09:37:04 bagder Exp $
+ * $Id: multi.c,v 1.44 2004-03-04 16:13:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -331,13 +331,16 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
         char *gotourl;
         Curl_posttransfer(easy->easy_handle);
 
-        gotourl = strdup(easy->easy_handle->change.url);
-        easy->easy_handle->change.url_changed = FALSE;
-        easy->result = Curl_follow(easy->easy_handle, gotourl);
-        if(CURLE_OK == easy->result)
-          easy->state = CURLM_STATE_CONNECT;
-        else
-          free(gotourl);
+        easy->result = Curl_done(easy->easy_conn);
+        if(CURLE_OK == easy->result) {
+          gotourl = strdup(easy->easy_handle->change.url);
+          easy->easy_handle->change.url_changed = FALSE;
+          easy->result = Curl_follow(easy->easy_handle, gotourl);
+          if(CURLE_OK == easy->result)
+            easy->state = CURLM_STATE_CONNECT;
+          else
+            free(gotourl);
+        }
       }
     
       easy->easy_handle->change.url_changed = FALSE;
@@ -503,7 +506,9 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
           if(easy->easy_conn->newurl) {
             char *newurl = easy->easy_conn->newurl;
             easy->easy_conn->newurl = NULL;
-            easy->result = Curl_follow(easy->easy_handle, newurl);
+            easy->result = Curl_done(easy->easy_conn);
+            if(easy->result == CURLE_OK)
+              easy->result = Curl_follow(easy->easy_handle, newurl);
             if(CURLE_OK == easy->result) {
               easy->state = CURLM_STATE_CONNECT;
               result = CURLM_CALL_MULTI_PERFORM;
