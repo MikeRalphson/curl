@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.322 2003-12-19 08:03:15 bagder Exp $
+ * $Id: url.c,v 1.323 2003-12-19 08:10:09 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1256,6 +1256,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Make FTP transfers attempt to use SSL/TLS.
      */
     data->set.ftp_ssl = va_arg(param, long);
+    break;
+
+  case CURLOPT_IPRESOLVE:
+    data->set.ip_version = va_arg(param, long);
     break;
 
   default:
