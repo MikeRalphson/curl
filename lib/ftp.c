@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.199 2003-09-11 22:05:23 bagder Exp $
+ * $Id: ftp.c,v 1.200 2003-10-04 15:25:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2234,6 +2234,8 @@ CURLcode Curl_ftp(struct connectdata *conn)
       /* since we didn't connect now, we want do_more to get called */
       conn->bits.do_more = TRUE;
   }
+  else
+    freedirs(ftp);
 
   return retcode;
 }
