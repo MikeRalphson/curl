@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.72 2003-05-01 13:37:36 bagder Exp $
+ * $Id: ssluse.c,v 1.73 2003-06-02 13:27:03 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -785,6 +785,16 @@ Curl_SSLConnect(struct connectdata *conn)
     failf(data, "SSL: couldn't create a context!");
     return CURLE_OUT_OF_MEMORY;
   }
+
+  /* OpenSSL contains code to work-around lots of bugs and flaws in various
+     SSL-implementations. SSL_CTX_set_options() is used to enabled those
+     work-arounds. The man page for this option states that SSL_OP_ALL enables
+     ll the work-arounds and that "It is usually safe to use SSL_OP_ALL to
+     enable the bug workaround options if compatibility with somewhat broken
+     implementations is desired."
+
+  */
+  SSL_CTX_set_options(conn->ssl.ctx, SSL_OP_ALL);
     
   if(data->set.cert) {
     if (!cert_stuff(conn,
