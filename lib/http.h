@@ -21,11 +21,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.9 2001-01-05 10:11:42 bagder Exp $
+ * $Id: http.h,v 1.10 2001-01-25 12:24:34 bagder Exp $
  *****************************************************************************/
 
 /* ftp can use this as well */
-CURLcode Curl_ConnectHTTPProxyTunnel(struct UrlData *data, int tunnelsocket,
+CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
+                                     int tunnelsocket,
                                      char *hostname, int remote_port);
 
 /* protocol-specific functions set up to be called by the main engine */
