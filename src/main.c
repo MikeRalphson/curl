@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.64 2001-01-11 08:01:24 bagder Exp $
+ * $Id: main.c,v 1.65 2001-01-19 12:14:09 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -1579,7 +1579,9 @@ operate(struct Configurable *config, int argc, char *argv[])
       /* multiple files extracted to stdout, insert separators! */
       separator = 1;
     }
-    for (i = 0; (url = urls?next_url(urls):(i?NULL:url)); ++i) {
+    for(i = 0;
+        (url = urls?next_url(urls):(i?NULL:strdup(url)));
+        i++) {
       char *outfile;
       outfile = outfiles?strdup(outfiles):NULL;
  
