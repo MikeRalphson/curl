@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.101 2003-10-04 14:50:45 bagder Exp $
+ * $Id: hostip.c,v 1.102 2003-10-05 15:03:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -812,11 +812,11 @@ static void hostcache_fixoffset(struct hostent *h, int offset)
   h->h_name=(char *)((long)h->h_name+offset);
   if(h->h_aliases) {
     /* only relocate aliases if there are any! */
-  h->h_aliases=(char **)((long)h->h_aliases+offset);
-  while(h->h_aliases[i]) {
-    h->h_aliases[i]=(char *)((long)h->h_aliases[i]+offset);
-    i++;
-  }
+    h->h_aliases=(char **)((long)h->h_aliases+offset);
+    while(h->h_aliases[i]) {
+      h->h_aliases[i]=(char *)((long)h->h_aliases[i]+offset);
+      i++;
+    }
   }
 
   h->h_addr_list=(char **)((long)h->h_addr_list+offset);
