@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.h,v $
- * $Revision: 1.4 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.5 $
+ * $Date: 2000-09-21 08:47:48 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -40,7 +40,6 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
-extern struct hostent *GetHost(struct UrlData *data, char *hostname, char *buf, int buf_size );
-extern char *MakeIP(unsigned long num,char *addr, int addr_len);
+struct hostent *GetHost(struct UrlData *data, char *hostname, char **bufp );
 
 #endif
