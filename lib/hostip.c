@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.113 2004-01-07 09:19:35 bagder Exp $
+ * $Id: hostip.c,v 1.114 2004-01-14 09:05:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -348,8 +348,7 @@ int Curl_resolv(struct connectdata *conn,
           rc = 1; /* no info yet */
       }
     }
-    else
-    {
+    else {
       if(data->share)
         Curl_share_lock(data, CURL_LOCK_DATA_DNS, CURL_LOCK_ACCESS_SINGLE);
 
@@ -359,15 +358,15 @@ int Curl_resolv(struct connectdata *conn,
       if(data->share)
         Curl_share_unlock(data, CURL_LOCK_DATA_DNS);
 
-      if(!dns) {
+      if(!dns)
         /* returned failure, bail out nicely */
         Curl_freeaddrinfo(addr);
-      }
       else
         rc = 0;
     }
   }
-
+  else
+    rc = 0;
 
   *entry = dns;
 
