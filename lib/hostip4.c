@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.11 2004-10-06 07:50:18 bagder Exp $
+ * $Id: hostip4.c,v 1.12 2004-10-06 07:52:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -161,7 +161,7 @@ Curl_addrinfo *Curl_ip2addr(in_addr_t num, char *hostname, int port)
   h->h_aliases = NULL;
 
   /* Now store the dotted version of the address */
-  snprintf(h->h_name, 16, "%s", hostname);
+  snprintf((char *)h->h_name, 16, "%s", hostname);
 
   ai = Curl_he2ai(h, port);
 
