@@ -29,14 +29,16 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/file.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-08-23 07:24:17 $
+ * $Revision: 1.8 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include "setup.h"
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -48,8 +50,6 @@
 #include <sys/stat.h>
 
 #include <errno.h>
-
-#include "setup.h"
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>

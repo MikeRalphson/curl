@@ -29,14 +29,16 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/highlevel.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-08-17 15:39:50 $
+ * $Revision: 1.10 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include "setup.h"
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -49,7 +51,6 @@
 
 #include <errno.h>
 
-#include "setup.h"
 #include "strequal.h"
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)

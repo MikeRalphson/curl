@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.10 $
- * $Date: 2000-08-24 12:33:17 $
+ * $Revision: 1.11 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,11 +38,11 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
+#include "setup.h"
+
 #include <string.h>
 #include <malloc.h>
 #include <errno.h>
-
-#include "setup.h"
 
 #define _REENTRANT
 

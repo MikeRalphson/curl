@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/formdata.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-07-25 12:21:22 $
+ * $Revision: 1.8 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -49,6 +49,8 @@
 
  */
 
+#include "setup.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -56,7 +58,6 @@
 
 #include <time.h>
 
-#include "setup.h"
 #include <curl/curl.h>
 #include "formdata.h"
 

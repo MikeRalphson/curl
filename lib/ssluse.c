@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ssluse.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.7 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -43,7 +43,7 @@
  * Linas Vepstas <linas@linas.org> and Sampo Kellomaki <sampo@iki.fi>
  */
 
-
+#include "setup.h"
 #include <string.h>
 #include <stdlib.h>
 

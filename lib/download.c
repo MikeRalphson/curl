@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/download.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.12 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,11 +38,11 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
+#include "setup.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-#include "setup.h"
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>

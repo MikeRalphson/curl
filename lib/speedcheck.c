@@ -29,14 +29,16 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/speedcheck.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.5 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include "setup.h"
 
 #include <stdio.h>
 #if defined(__MINGW32__)

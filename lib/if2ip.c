@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/if2ip.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-08-24 12:33:17 $
+ * $Revision: 1.10 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,11 +38,12 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
+#include "setup.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "setup.h"
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>

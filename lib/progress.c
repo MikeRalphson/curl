@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/progress.c,v $
- * $Revision: 1.14 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.15 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,8 +38,9 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
-#include <string.h>
 #include "setup.h"
+
+#include <string.h>
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #if defined(__MINGW32__)

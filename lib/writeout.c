@@ -29,14 +29,16 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/Attic/writeout.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-08-15 21:54:38 $
+ * $Revision: 1.8 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include "setup.h"
 
 #include <stdio.h>
 #include <string.h>

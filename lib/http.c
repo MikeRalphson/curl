@@ -29,14 +29,16 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.22 $
- * $Date: 2000-08-24 12:33:17 $
+ * $Revision: 1.23 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
  *
  * ------------------------------------------------------------
  ****************************************************************************/
+
+#include "setup.h"
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -49,7 +51,6 @@
 
 #include <errno.h>
 
-#include "setup.h"
 
 #ifdef NEED_REENTRANT
 #define _REENTRANT /* Necessary to use in Solaris, since the silly guys at Sun

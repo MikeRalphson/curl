@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.c,v $
- * $Revision: 1.5 $
- * $Date: 2000-08-24 12:33:17 $
+ * $Revision: 1.6 $
+ * $Date: 2000-08-24 14:26:33 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -38,11 +38,11 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
+#include "setup.h"
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-
-#include "setup.h"
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
