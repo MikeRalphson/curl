@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.32 2002-02-07 14:34:34 bagder Exp $
+# $Id: Makefile.am,v 1.33 2002-02-22 07:51:23 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -7,7 +7,8 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
 EXTRA_DIST = getdate.y \
        Makefile.b32 Makefile.b32.resp Makefile.m32 Makefile.vc6 \
        libcurl.def dllinit.c curllib.dsp curllib.dsw \
-       config-vms.h config-win32.h config-riscos.h config-mac.h
+       config-vms.h config-win32.h config-riscos.h config-mac.h \
+       config.h.in
 
 lib_LTLIBRARIES = libcurl.la
 
