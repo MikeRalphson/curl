@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.201 2004-03-10 16:20:33 bagder Exp $
+ * $Id: urldata.h,v 1.202 2004-03-11 21:48:15 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -609,7 +609,7 @@ struct Progress {
   curl_off_t downloaded; /* transfered so far */
   curl_off_t uploaded; /* transfered so far */
 
-  double current_speed; /* uses the currently fastest transfer */
+  curl_off_t current_speed; /* uses the currently fastest transfer */
 
   bool callback;  /* set when progress callback is used */
   int width; /* screen width at download start */
@@ -617,8 +617,8 @@ struct Progress {
 
   double timespent;
 
-  double dlspeed;
-  double ulspeed;
+  curl_off_t dlspeed;
+  curl_off_t ulspeed;
 
   double t_nslookup;
   double t_connect;
