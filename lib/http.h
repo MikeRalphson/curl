@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.24 2004-06-15 08:45:22 bagder Exp $
+ * $Id: http.h,v 1.25 2004-11-05 14:43:35 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 bool Curl_compareheader(char *headerline,     /* line to check */
@@ -56,6 +56,15 @@ int Curl_http_should_fail(struct connectdata *conn);
    to not having one selected. The other CURLAUTH_* defines are present in the
    public curl/curl.h header. */
 #define CURLAUTH_PICKNONE (1<<30) /* don't use auth */
+
+/* MAX_INITIAL_POST_SIZE indicates the number of kilobytes that will be sent
+   in the initial part of a multi-part POST message. This is primarily for
+   OpenVMS where the maximum number of bytes allowed per I/O is 64K.  For
+   other systems that do not define this, the default is (as it was
+   previously) 100K. */
+#ifndef MAX_INITIAL_POST_SIZE
+#define MAX_INITIAL_POST_SIZE (100*1024)
+#endif
 
 #endif
 #endif
