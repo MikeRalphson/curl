@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.6 2004-09-13 20:40:27 bagder Exp $
+ * $Id: parsedate.c,v 1.7 2004-09-13 20:49:27 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -84,15 +84,13 @@
 
 #include <curl/curl.h>
 
-#include "parsedate.h"
-
 static time_t Curl_parsedate(const char *date);
 
 static const char *wkday[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 static const char *weekday[] = { "Monday", "Tuesday", "Wednesday", "Thursday",
                                  "Friday", "Saturday", "Sunday" };
-const char *Curl_month[]= { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                            "Aug", "Sep", "Oct", "Nov", "Dec" };
+static const char *month[]= { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                              "Aug", "Sep", "Oct", "Nov", "Dec" };
 
 struct tzinfo {
   const char *name;
@@ -177,7 +175,7 @@ static int checkmonth(char *check)
   const char **what;
   bool found= FALSE;
 
-  what = &Curl_month[0];
+  what = &month[0];
   for(i=0; i<12; i++) {
     if(curl_strequal(check, what[0])) {
       found=TRUE;
