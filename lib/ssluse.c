@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.108 2004-06-30 09:22:48 bagder Exp $
+ * $Id: ssluse.c,v 1.109 2004-06-30 11:53:34 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -261,7 +261,9 @@ int cert_stuff(struct connectdata *conn,
        * If password has been given, we store that in the global
        * area (*shudder*) for a while:
        */
-      strcpy(global_passwd, data->set.key_passwd);
+      size_t len = strlen(data->set.key_passwd);
+      if(len < sizeof(global_passwd))
+        memcpy(global_passwd, data->set.key_passwd, len+1);
 #else
       /*
        * We set the password in the callback userdata
