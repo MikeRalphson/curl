@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.30 2003-08-14 22:42:18 bagder Exp $
+ * $Id: setup.h,v 1.31 2003-08-24 14:28:15 bagder Exp $
  ***************************************************************************/
 
 /* MN 06/07/02 */
@@ -169,13 +169,8 @@ defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
 #define DOT_CHAR      "_"
 #endif
 
-#ifdef HAVE_STRCASECMP
-/* this is for "-ansi -Wall -pedantic" to stop complaining! */
-extern int (strcasecmp)(const char *s1, const char *s2);
-extern int (strncasecmp)(const char *s1, const char *s2, size_t n);
 #ifndef fileno /* sunos 4 have this as a macro! */
 int fileno( FILE *stream);
-#endif
 #endif
 
 #endif
