@@ -18,14 +18,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.11 2001-02-06 09:12:39 bagder Exp $
+ * $Id: strequal.c,v 1.12 2001-03-14 08:47:56 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
 
-int Curl_strequal(const char *first, const char *second)
+int curl_strequal(const char *first, const char *second)
 {
 #if defined(HAVE_STRCASECMP)
   return !strcasecmp(first, second);
@@ -45,7 +45,7 @@ int Curl_strequal(const char *first, const char *second)
 #endif
 }
 
-int Curl_strnequal(const char *first, const char *second, size_t max)
+int curl_strnequal(const char *first, const char *second, size_t max)
 {
 #if defined(HAVE_STRCASECMP)
   return !strncasecmp(first, second, max);
