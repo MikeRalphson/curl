@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.113 2004-11-11 09:26:09 bagder Exp $
+dnl $Id: configure.ac,v 1.114 2004-11-11 14:41:37 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -968,16 +968,19 @@ case "$LIBIDN" in
 
        idn=""
        dnl if there is a given path, check that FIRST
-       if test "x$LIBIDN" != "xyes"; then
-          oldLDFLAGS=$LDFLAGS
-          oldCPPFLAGS=$CPPFLAGS
-          LDFLAGS="$LDFLAGS -L$LIBIDN/lib"
-          CPPFLAGS="$CPPFLAGS -I$LIBIDN/include"
-          idn="yes"
-          AC_CHECK_LIB(idn, idna_to_ascii_4i, ,
-                       idn=""
-                       LDFLAGS=$oldLDFLAGS
-                       CPPFLAGS=$oldCPPFLAGS)
+       if test -n "$LIBIDN"; then
+         if test "x$LIBIDN" != "xyes"; then
+            AC_MSG_WARN([moo moo $LIBIDN])
+            oldLDFLAGS=$LDFLAGS
+            oldCPPFLAGS=$CPPFLAGS
+            LDFLAGS="$LDFLAGS -L$LIBIDN/lib"
+            CPPFLAGS="$CPPFLAGS -I$LIBIDN/include"
+            idn="yes"
+            AC_CHECK_LIB(idn, idna_to_ascii_4i, ,
+                         idn=""
+                         LDFLAGS=$oldLDFLAGS
+                         CPPFLAGS=$oldCPPFLAGS)
+         fi
        fi
 
        if test "x$idn" != "xyes"; then
