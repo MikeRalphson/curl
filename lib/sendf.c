@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.85 2004-06-03 11:41:05 bagder Exp $
+ * $Id: sendf.c,v 1.86 2004-06-07 07:01:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -469,10 +469,26 @@ int Curl_debug(struct SessionHandle *data, curl_infotype type,
   int rc;
   if(data->set.printhost && host) {
     char buffer[160];
-    snprintf(buffer, sizeof(buffer), "[Chunk to/from %s]", host);
-    rc = showit(data, CURLINFO_TEXT, buffer, strlen(buffer));
-    if(rc)
-      return rc;
+    char *t=NULL;
+    switch (type) {
+    case CURLINFO_HEADER_IN:
+    case CURLINFO_DATA_IN:
+      t = "from";
+      break;
+    case CURLINFO_HEADER_OUT:
+    case CURLINFO_DATA_OUT:
+      t = "to";
+      break;
+    default:
+      break;
+    }
+
+    if(t) {
+      snprintf(buffer, sizeof(buffer), "[Data %s %s]", t, host);
+      rc = showit(data, CURLINFO_TEXT, buffer, strlen(buffer));
+      if(rc)
+        return rc;
+    }
   }
   rc = showit(data, type, ptr, size);
   return rc;
