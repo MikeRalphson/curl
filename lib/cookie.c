@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.26 2001-10-30 12:08:17 bagder Exp $
+ * $Id: cookie.c,v 1.27 2002-01-07 14:56:15 bagder Exp $
  *****************************************************************************/
 
 /***
@@ -377,8 +377,15 @@ Curl_cookie_add(struct CookieInfo *c,
 
         free(co);   /* free the newly alloced memory */
         co = clist; /* point to the previous struct instead */
-      }
 
+        /* We have replaced a cookie, now skip the rest of the list but
+           make sure the 'lastc' pointer is properly set */
+        do {
+          lastc = clist;
+          clist = clist->next;
+        } while(clist);
+        break;
+      }
     }
     lastc = clist;
     clist = clist->next;
