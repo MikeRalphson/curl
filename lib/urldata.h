@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.143 2003-01-20 12:52:34 bagder Exp $
+ * $Id: urldata.h,v 1.144 2003-02-24 16:53:57 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -281,9 +281,13 @@ struct Curl_transfer_keeper {
                                    Content-Range: header */
   int httpcode;		        /* error code from the 'HTTP/1.? XXX' line */
   int httpversion;		/* the HTTP version*10 */
-  bool write_after_100_header;  /* should we enable the write after
-                                   we received a 100-continue/timeout
-                                   or directly */
+  struct timeval start100;      /* time stamp to wait for the 100 code from */
+  bool write_after_100_header;  /* TRUE = we enable the write after we
+                                   received a 100-continue/timeout or
+                                   FALSE = directly */
+  bool wait100_after_headers;   /* TRUE = after the request-headers have been
+                                   sent off properly, we go into the wait100
+                                   state, FALSE = don't */
   int content_encoding;  	/* What content encoding. sec 3.5, RFC2616. */
 
 #define IDENTITY 0		/* No encoding */

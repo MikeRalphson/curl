@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.119 2003-01-29 10:14:22 bagder Exp $
+ * $Id: http.c,v 1.120 2003-02-24 16:53:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -232,7 +232,7 @@ CURLcode add_buffer_send(send_buffer *in,
       
       return CURLE_OK;
     }
-
+    http->sending = HTTPSEND_BODY;
     /* the full buffer was sent, clean up and return */
   }
   if(in->buffer)
