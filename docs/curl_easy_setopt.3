@@ -1,8 +1,8 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.37 2001-05-31 13:55:13 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.38 2001-06-01 07:33:38 bagder Exp $
 .\"
-.TH curl_easy_setopt 3 "31 May 2001" "libcurl 7.8" "libcurl Manual"
+.TH curl_easy_setopt 3 "1 June 2001" "libcurl 7.8" "libcurl Manual"
 .SH NAME
 curl_easy_setopt - Set curl easy-session options
 .SH SYNOPSIS
@@ -495,7 +495,7 @@ Pass a long. It should contain the maximum time in seconds that you allow the
 connection to the server to take.  This only limits the connection phase, once
 it has connected, this option is of no more use. Set to zero to disable
 connection timeout (it will then only timeout on the system's internal
-timeouts). This option doesn't work in win32 systems.  See also the
+timeouts). See also the
 .I CURLOPT_TIMEOUT
 option.
 .PP
