@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.20 $
- * $Date: 2000-06-08 15:11:39 $
+ * $Revision: 1.21 $
+ * $Date: 2000-06-13 08:11:45 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -233,13 +233,11 @@ CURLcode curl_close(CURL *curl)
   
   void *protocol = data->proto.generic;
 
-  /* total session cleanup */
+  /* total session cleanup (frees 'data' as well!)*/
   urlfree(data, TRUE);
 
   if(protocol)
     free(protocol);
-
-  free(data);
 
   return CURLE_OK;
 }
