@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.11 2005-02-08 12:36:13 giva Exp $
+ * $Id: hostares.c,v 1.12 2005-02-08 19:03:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -291,7 +291,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
 
     /* areschannel is already setup in the Curl_open() function */
     ares_gethostbyname(data->state.areschannel, hostname, PF_INET,
-                       (ares_callback)Curl_addrinfo4_callback, conn);
+                       (ares_host_callback)Curl_addrinfo4_callback, conn);
 
     *waitp = TRUE; /* please wait for the response */
   }
