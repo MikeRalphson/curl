@@ -18,13 +18,19 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.6 2001-12-13 07:16:27 bagder Exp $
+ * $Id: multi.c,v 1.6.2.1 2001-12-13 12:58:41 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
+#include <stdlib.h>
+#include <string.h>
 #include <curl/curl.h>
 
 #include "multi.h" /* will become <curl/multi.h> soon */
+
+#include "urldata.h"
+#include "transfer.h"
+#include "url.h"
 
 struct Curl_message {
   /* the 'CURLMsg' is the part that is visible to the external user */
@@ -48,7 +54,9 @@ struct Curl_one_easy {
   struct Curl_one_easy *next;
   struct Curl_one_easy *prev;
   
-  CURL *easy_handle; /* this is the easy handle for this unit */
+  struct SessionHandle *easy_handle; /* the easy handle for this unit */
+  struct connectdata *easy_conn;     /* the "unit's" connection */
+
   CURLMstate state;  /* the handle's state */
   CURLcode result;   /* previous result */
 };
@@ -134,7 +142,7 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
   /* increase the node-counter */
   multi->num_easy++;
 
-  return CURLM_OK;
+  return CURLM_CALL_MULTI_PERFORM;
 }
 
 CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
@@ -239,8 +247,9 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       }
       break;
     case CURLM_STATE_CONNECT:
-      /* connect */
-      easy->result = Curl_connect(easy->easy_handle);     
+      /* Connect. We get a connection identifier filled in. */
+      easy->result = Curl_connect(easy->easy_handle, &easy->easy_conn);
+
       /* after connect, go DO */
       if(CURLE_OK == easy->result) {
         easy->state = CURLM_STATE_DO;
@@ -249,7 +258,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       break;
     case CURLM_STATE_DO:
       /* Do the fetch or put request */
-      easy->result = Curl_do(easy->easy_handle);
+      easy->result = Curl_do(&easy->easy_conn);
       /* after do, go PERFORM */
       if(CURLE_OK == easy->result) {
         easy->state = CURLM_STATE_PERFORM;
@@ -269,7 +278,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       break;
     case CURLM_STATE_DONE:
       /* post-transfer command */
-      easy->result = Curl_done(easy->easy_handle);
+      easy->result = Curl_done(easy->easy_conn);
       /* after we have DONE what we're supposed to do, go COMPLETED */
       if(CURLE_OK == easy->result)
         easy->state = CURLM_STATE_COMPLETED;

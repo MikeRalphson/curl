@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.4 2001-12-13 07:16:27 bagder Exp $
+ * $Id: multi.h,v 1.4.2.1 2001-12-13 12:58:41 bagder Exp $
  *****************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -50,7 +50,7 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
-#include <curl/types.h>
+#include <curl/curl.h>
 
 typedef void CURLM;
 
