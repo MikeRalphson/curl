@@ -1,12 +1,12 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.59 2002-05-21 22:20:56 bagder Exp $
+# $Id: runtests.pl,v 1.60 2002-05-21 22:39:09 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
 #######################################################################
 # These should be the only variables that might be needed to get edited:
 
-#use strict;
+use strict;
 #use warnings;
 
 @INC=(@INC, $ENV{'srcdir'}, ".");
@@ -449,6 +449,7 @@ sub singletest {
         my $requires = $hash{'requires'};
 
         if (defined($requires)) {
+            no strict "refs";
             my $value=${$requires};
 #            print "This test requires '$requires' with value '$value' \n";
 
