@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/progress.c,v $
- * $Revision: 1.11 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.12 $
+ * $Date: 2000-05-29 23:07:22 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -387,6 +387,7 @@ void ProgressInit(struct UrlData *data, int max/*, int options, int moremax*/)
   /* 20000318 mgs */
   int scr_size [2];
 #endif
+  char *colp;
 
   if(data->conf&(CONF_NOPROGRESS|CONF_MUTE))
     return;
@@ -399,8 +400,11 @@ void ProgressInit(struct UrlData *data, int max/*, int options, int moremax*/)
   /* 20000318 mgs
    * OS/2 users most likely won't have this env var set, and besides that
    * we're using our own way to determine screen width */
-  if (curl_GetEnv("COLUMNS") != NULL)
-    width = atoi(curl_GetEnv("COLUMNS"));
+  colp = curl_GetEnv("COLUMNS");
+  if (colp != NULL) {
+    width = atoi(colp);
+    free(colp);
+  }
   else
     width = 79;
 #else

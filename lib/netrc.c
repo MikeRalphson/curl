@@ -41,8 +41,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/netrc.c,v $
- * $Revision: 1.3 $
- * $Date: 2000-05-22 14:15:06 $
+ * $Revision: 1.4 $
+ * $Date: 2000-05-29 23:07:22 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -95,8 +95,13 @@ int ParseNetrc(char *host,
 
 #define NETRC DOT_CHAR "netrc"
 
-  if(!home || (strlen(home)>(sizeof(netrcbuffer)-strlen(NETRC))))
+  if(!home)
     return -1;
+
+  if(strlen(home)>(sizeof(netrcbuffer)-strlen(NETRC))) {
+    free(home);
+    return -1;
+  }
 
   sprintf(netrcbuffer, "%s%s%s", home, DIR_CHAR, NETRC);
 
@@ -161,6 +166,8 @@ int ParseNetrc(char *host,
 
     fclose(file);
   }
+
+  free(home);
 
   return retcode;
 }
