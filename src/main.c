@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.107 2002-01-03 08:07:29 bagder Exp $
+ * $Id: main.c,v 1.108 2002-01-28 19:22:40 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1450,10 +1450,8 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       GetStr(&config->proxy, nextarg);
       break;
     case 'X':
-      /* HTTP request */
+      /* set custom request */
       GetStr(&config->customrequest, nextarg);
-      if(SetHTTPrequest(HTTPREQ_CUSTOM, &config->httpreq))
-        return PARAM_BAD_USE;
       break;
     case 'y':
       /* low speed time */
