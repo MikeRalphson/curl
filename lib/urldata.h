@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.63 2001-05-11 11:38:13 bagder Exp $
+ * $Id: urldata.h,v 1.64 2001-05-31 13:50:28 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -401,7 +401,6 @@ struct Configbits {
   bool http_set_referer;
   bool http_auto_referer; /* set "correct" referer when following location: */
   bool httpproxy;
-  bool mute;
   bool no_body;
   bool set_port;
   bool set_range;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.129 2001-05-30 12:51:24 bagder Exp $
+ * $Id: url.c,v 1.130 2001-05-31 13:50:28 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -232,7 +232,6 @@ CURLcode Curl_open(CURL **curl, char *url)
     data->httpreq = HTTPREQ_GET; /* Default HTTP request */
 
     /* make libcurl quiet by default: */
-    data->bits.mute = TRUE; /* CURLOPT_MUTE changes this */
     data->bits.hide_progress = TRUE;  /* CURLOPT_NOPROGRESS changes these */
     data->progress.flags |= PGRS_HIDE;
 
@@ -439,12 +438,15 @@ CURLcode Curl_setopt(CURL *curl, CURLoption option, ...)
     if(data->bits.http_put)
       data->httpreq = HTTPREQ_PUT;
     break;
+#if 0
+    /* obsolete stuff, kept here a while for informational purposes */
   case CURLOPT_MUTE:
     /*
      * Stay absolutely quiet.
      */
     data->bits.mute = va_arg(param, long)?TRUE:FALSE;
     break;
+#endif
   case CURLOPT_TIMECONDITION:
     /*
      * Set HTTP time condition. This must be one of the defines in the

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.23 2001-04-10 06:49:33 bagder Exp $
+ * $Id: sendf.c,v 1.24 2001-05-31 13:50:28 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -142,11 +142,6 @@ void Curl_failf(struct UrlData *data, char *fmt, ...)
   va_start(ap, fmt);
   if(data->errorbuffer)
     vsnprintf(data->errorbuffer, CURL_ERROR_SIZE, fmt, ap);
-  else if(!data->bits.mute) {
-    /* no errorbuffer receives this, write to data->err instead */
-    vfprintf(data->err, fmt, ap);
-    fprintf(data->err, "\n");
-  }
   va_end(ap);
 }
 
