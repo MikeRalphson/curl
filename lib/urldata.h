@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.76 2001-09-06 08:32:01 bagder Exp $
+ * $Id: urldata.h,v 1.77 2001-09-11 22:21:26 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -138,6 +138,7 @@ struct ssl_config_data {
   char *CAfile;          /* cerficate to verify peer against */
   char *random_file;     /* path to file containing "random" data */
   char *egdsocket;       /* path to file containing the EGD daemon socket */
+  char *cipher_list;     /* list of ciphers to use */
 
   long numsessions;                 /* SSL session id cache size */
 };
