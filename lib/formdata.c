@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.43 2002-10-28 21:52:00 bagder Exp $
+ * $Id: formdata.c,v 1.44 2002-11-29 08:12:20 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1319,7 +1319,7 @@ int Curl_FormReader(char *buffer,
   wantedsize = size * nitems;
 
   if(!form->data)
-    return -1; /* nothing, error, empty */
+    return 0; /* nothing, error, empty */
 
   do {
   
