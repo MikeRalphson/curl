@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.18 2001-03-14 10:15:42 bagder Exp $
+ * $Id: ssluse.c,v 1.19 2001-04-24 21:41:29 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -36,6 +36,11 @@
 
 #ifdef USE_SSLEAY
 #include <openssl/rand.h>
+
+/* The last #include file should be: */
+#ifdef MALLOCDEBUG
+#include "memdebug.h"
+#endif
 
 static char global_passwd[64];
 
