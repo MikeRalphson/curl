@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.54 2004-06-15 10:28:56 bagder Exp $
+ * $Id: sws.c,v 1.55 2004-06-21 14:00:11 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -482,6 +482,10 @@ static int get_request(int sock, struct httprequest *req)
         return DOCNUMBER_INTERNAL;
       }
       logmsg("Connection closed by client");
+      reqbuf[req->offset]=0;
+
+      /* dump the request receivied so far to the external file */
+      storerequest(reqbuf);
       return DOCNUMBER_INTERNAL;
     }
     req->offset += got;
