@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.c,v 1.2 2004-01-07 09:19:35 bagder Exp $
+ * $Id: strtoofft.c,v 1.3 2004-01-22 14:31:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -35,15 +35,15 @@ static int get_char(char c, int base);
  * Emulated version of the strtoll function.  This extracts a long long
  * value from the given input string and returns it.
  */
-long long
+curl_off_t
 Curl_strtoll(const char *nptr, char **endptr, int base)
 {
   char *end;
   int is_negative = 0;
   int overflow;
   int i;
-  long long value = 0;
-  long long newval;
+  curl_off_t value = 0;
+  curl_off_t newval;
 
   /* Skip leading whitespace. */
   end = (char *)nptr;

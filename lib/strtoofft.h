@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.3 2004-01-22 12:45:50 bagder Exp $
+ * $Id: strtoofft.h,v 1.4 2004-01-22 14:31:46 bagder Exp $
  ***************************************************************************/
 
 #ifndef _CURL_STRTOOFFT_R_H
@@ -37,7 +37,7 @@
 #if HAVE_STRTOLL
 #define strtoofft strtoll
 #else
-long long Curl_strtoll(const char *nptr, char **endptr, int base);
+curl_off_t Curl_strtoll(const char *nptr, char **endptr, int base);
 #define strtoofft Curl_strtoll
 #define NEED_CURL_STRTOLL
 #endif
