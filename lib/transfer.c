@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.199 2004-02-06 07:59:16 bagder Exp $
+ * $Id: transfer.c,v 1.200 2004-02-13 07:12:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -213,7 +213,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
   fd_set *readfdp = k->readfdp;
   fd_set *writefdp = k->writefdp;
-  long contentlength;
+  curl_off_t contentlength;
   
   if((k->keepon & KEEP_READ) && !readfdp) {
     /* reading is requested, but no socket descriptor pointer was set */
