@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.275 2004-07-01 14:06:44 bagder Exp $
+ * $Id: main.c,v 1.276 2004-07-02 12:29:15 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2245,7 +2245,7 @@ static void go_sleep(long ms)
 {
 #ifdef HAVE_POLL_FINE
   /* portable subsecond "sleep" */
-  poll((void *)0, 0, ms);
+  poll((void *)0, 0, (int)ms);
 #else
   /* systems without poll() need other solutions */
 
@@ -3494,8 +3494,8 @@ operate(struct Configurable *config, int argc, char *argv[])
           curl_easy_getinfo(curl, CURLINFO_FILETIME, &filetime);
           if(filetime >= 0) {
             struct utimbuf times;
-            times.actime = filetime;
-            times.modtime = filetime;
+            times.actime = (time_t)filetime;
+            times.modtime = (time_t)filetime;
             utime(outs.filename, &times); /* set the time we got */
           }
         }
