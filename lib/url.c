@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.296 2003-08-11 12:25:30 bagder Exp $
+ * $Id: url.c,v 1.297 2003-08-11 12:30:21 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2290,15 +2290,13 @@ static CURLcode CreateConnection(struct SessionHandle *data,
                                  "%" MAX_CURL_PASSWORD_LENGTH_TXT "[^@]",
                                  user, passwd))) {
             /* found user and password, rip them out */
-            if(conn->proxyuser)
-              free(conn->proxyuser);
+            Curl_safefree(conn->proxyuser);
             conn->proxyuser = strdup(user);
 
             if(!conn->proxyuser)
               return CURLE_OUT_OF_MEMORY;
             
-            if(conn->proxypasswd)
-              free(conn->proxypasswd);
+            Curl_safefree(conn->proxypasswd);
             conn->proxypasswd = strdup(passwd);
 
             if(!conn->proxypasswd)
@@ -2882,8 +2880,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
     free(old_conn->user);
     free(old_conn->passwd);
-    free(old_conn->proxyuser);
-    free(old_conn->proxypasswd);
+    Curl_safefree(old_conn->proxyuser);
+    Curl_safefree(old_conn->proxypasswd);
 
     free(old_conn);          /* we don't need this anymore */
 
