@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.201 2003-10-14 12:00:45 bagder Exp $
+ * $Id: ftp.c,v 1.202 2003-10-17 09:26:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -483,7 +483,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
 #endif
   
   /* send USER */
-  FTPSENDF(conn, "USER %s", ftp->user);
+  FTPSENDF(conn, "USER %s", ftp->user?ftp->user:"");
 
   /* wait for feedback */
   result = Curl_GetFTPResponse(&nread, conn, &ftpcode);
@@ -499,7 +499,7 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
   else if(ftpcode == 331) {
     /* 331 Password required for ...
        (the server requires to send the user's password too) */
-    FTPSENDF(conn, "PASS %s", ftp->passwd);
+    FTPSENDF(conn, "PASS %s", ftp->passwd?ftp->passwd:"");
     result = Curl_GetFTPResponse(&nread, conn, &ftpcode);
     if(result)
       return result;
