@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.11 2001-05-28 14:12:43 bagder Exp $
+ * $Id: easy.c,v 1.12 2001-05-29 07:20:31 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -78,8 +78,9 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
-CURLcode curl_global_init(void)
+CURLcode curl_global_init(long flags)
 {
+  flags = 0; /* not currently used */
   Curl_SSL_init();
   return CURLE_OK;
 }
