@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.417 2004-10-07 07:41:44 bagder Exp $
+ * $Id: url.c,v 1.418 2004-10-10 14:36:22 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -376,6 +376,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
 {
   va_list param;
   char *argptr;
+  CURLcode result = CURLE_OK;
 
   va_start(param, option);
 
@@ -1145,11 +1146,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
       }
       else {
         failf(data, "SSL Engine '%s' not found", argptr);
-        return CURLE_SSL_ENGINE_NOTFOUND;
+        result = CURLE_SSL_ENGINE_NOTFOUND;
       }
 #else
       failf(data, "SSL Engine not supported");
-      return CURLE_SSL_ENGINE_NOTFOUND;
+      result = CURLE_SSL_ENGINE_NOTFOUND;
 #endif
     }
     break;
@@ -1424,9 +1425,11 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
 
   default:
     /* unknown tag and its companion, just ignore: */
-    return CURLE_FAILED_INIT; /* correct this */
+    result = CURLE_FAILED_INIT; /* correct this */
+    break;
   }
-  return CURLE_OK;
+  
+  return result;
 }
 
 CURLcode Curl_disconnect(struct connectdata *conn)
