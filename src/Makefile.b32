@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.9 2004-07-15 19:36:30 gknauf Exp $
+# $Id: Makefile.b32,v 1.10 2004-07-15 21:54:10 gknauf Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -45,7 +45,7 @@ LIBCURLLIB = $(TOPDIR)/lib/libcurl.lib
 # If you build with SSL support, set WITH_SSL=1
 DEFINES  = -DNDEBUG -DLIBCURL_BIGENDIAN=0 -DWIN32 -D_CONSOLE -D_MBCS
 !ifdef WITH_ZLIB
-DEFINES  = $(DEFINES) -DHAVE_LIBZ
+DEFINES  = $(DEFINES) -DHAVE_LIBZ -DHAVE_ZLIB_H
 INCDIRS  = $(INCDIRS);$(ZLIB_PATH)
 LINKLIB  = $(LINKLIB) $(ZLIB_PATH)/zlib.lib
 !endif
