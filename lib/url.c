@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.293 2003-08-08 09:13:19 bagder Exp $
+ * $Id: url.c,v 1.294 2003-08-11 09:56:06 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -617,7 +617,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      * Activate the cookie parser. This may or may not already
      * have been made.
      */
-    data->cookies = Curl_cookie_init(NULL, data->cookies,
+    data->cookies = Curl_cookie_init(data, NULL, data->cookies,
                                      data->set.cookiesession);
     break;
 #endif
@@ -1210,7 +1210,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
 
       /* check cookie list is set */
       if(!data->cookies)
-        data->cookies = Curl_cookie_init( NULL, NULL, TRUE );
+        data->cookies = Curl_cookie_init(data, NULL, NULL, TRUE );
       
       /* check for host cache not needed,
        * it will be done by curl_easy_perform */ 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.12 2003-08-11 06:30:02 bagder Exp $
+ * $Id: share.c,v 1.13 2003-08-11 09:56:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -79,7 +79,7 @@ curl_share_setopt(CURLSH *sh, CURLSHoption option, ...)
 
       case CURL_LOCK_DATA_COOKIE:
         if (!share->cookies) {
-          share->cookies = Curl_cookie_init( NULL, NULL, TRUE );
+          share->cookies = Curl_cookie_init(NULL, NULL, NULL, TRUE );
         }
         break;
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.66 2003-06-26 11:22:12 bagder Exp $
+ * $Id: sendf.c,v 1.67 2003-08-11 09:56:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -132,8 +132,8 @@ void curl_slist_free_all(struct curl_slist *list)
 
 void Curl_infof(struct SessionHandle *data, const char *fmt, ...)
 {
-  va_list ap;
-  if(data->set.verbose) {
+  if(data && data->set.verbose) {
+    va_list ap;
     char print_buffer[1024 + 1];
     va_start(ap, fmt);
     vsnprintf(print_buffer, 1024, fmt, ap);
