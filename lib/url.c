@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.110 2001-04-03 10:20:23 bagder Exp $
+ * $Id: url.c,v 1.111 2001-04-10 06:51:25 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -718,6 +718,12 @@ CURLcode Curl_setopt(CURL *curl, CURLoption option, ...)
      * defaults to stderr for normal operations.
      */
     data->err = va_arg(param, FILE *);
+    break;
+  case CURLOPT_HEADERFUNCTION:
+    /*
+     * Set header write callback
+     */
+    data->fwrite_header = va_arg(param, curl_write_callback);
     break;
   case CURLOPT_WRITEFUNCTION:
     /*
