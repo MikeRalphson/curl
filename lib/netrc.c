@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.29 2004-01-29 13:56:45 bagder Exp $
+ * $Id: netrc.c,v 1.30 2004-02-19 09:22:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -111,24 +111,26 @@ int Curl_parsenetrc(char *host,
   }
 #endif /* CURLDEBUG */
   if(!netrcfile) {
-#if defined(HAVE_GETPWUID) && defined(HAVE_GETEUID)
-    struct passwd *pw;
-    pw= getpwuid(geteuid());
-    if (pw) {
-#ifdef	VMS
-      home = decc$translate_vms(pw->pw_dir);
-#else
-      home = pw->pw_dir;
-#endif
-    }
-#endif
-  
-    if(!home) {
-      home = curl_getenv("HOME"); /* portable environment reader */
-      if(!home)
-        return -1;
+    home = curl_getenv("HOME"); /* portable environment reader */
+    if(home) {
       home_alloc = TRUE;
+#if defined(HAVE_GETPWUID) && defined(HAVE_GETEUID)
     }
+    else {
+      struct passwd *pw;
+      pw= getpwuid(geteuid());
+      if (pw) {
+#ifdef	VMS
+        home = decc$translate_vms(pw->pw_dir);
+#else
+        home = pw->pw_dir;
+#endif
+      }
+#endif
+    }
+
+    if(!home)
+      return -1;
 
     netrcfile = curl_maprintf("%s%s%s", home, DIR_CHAR, NETRC);
     if(!netrcfile) {
