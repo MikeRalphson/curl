@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.160 2003-06-12 17:34:27 bagder Exp $
+ * $Id: transfer.c,v 1.161 2003-06-12 17:40:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1631,18 +1631,16 @@ CURLcode Curl_follow(struct SessionHandle *data,
   infof(data, "Issue another request to this URL: '%s'\n", data->change.url);
 
   /*
-   * We get here when the HTTP code is 300-399. We need to perform
+   * We get here when the HTTP code is 300-399 (and 401). We need to perform
    * differently based on exactly what return code there was.
-   * Discussed on the curl mailing list and posted about on the 26th
-   * of January 2001.
    *
-   * News from 7.10.6: we can also get here on a 401, in case we need to
-   * do Digest authentication.
+   * News from 7.10.6: we can also get here on a 401, in case we act on a
+   * HTTP authentication scheme other than Basic.
    */
   switch(data->info.httpcode) {
   case 401:
-    /* Act on a digest authentication, we keep on moving and do the
-       Authorization: Digest header in the HTTP request code snippet */
+    /* Act on an authentication, we keep on moving and do the Authorization:
+       XXXX header in the HTTP request code snippet */
     break;
   case 300: /* Multiple Choices */
   case 306: /* Not used */
