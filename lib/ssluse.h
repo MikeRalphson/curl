@@ -20,12 +20,18 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.8 2001-05-28 14:12:43 bagder Exp $
+ * $Id: ssluse.h,v 1.9 2001-08-28 08:37:54 bagder Exp $
  *****************************************************************************/
 #include "urldata.h"
 CURLcode Curl_SSLConnect(struct connectdata *conn);
-/* Global SSL init */
-void Curl_SSL_init(void);
-/* Global SSL cleanup */
-void Curl_SSL_cleanup(void);
+void Curl_SSL_init(void);    /* Global SSL init */
+void Curl_SSL_cleanup(void); /* Global SSL cleanup */
+
+/* init the SSL session ID cache */
+CURLcode Curl_SSL_InitSessions(struct UrlData *, long);
+void Curl_SSL_Close(struct connectdata *conn); /* close a SSL connection */
+
+/* tell the SSL stuff to close down all open information regarding 
+   connections (and thus session ID caching etc) */
+int Curl_SSL_Close_All(struct UrlData *data);
 #endif

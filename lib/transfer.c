@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.50 2001-08-21 13:18:07 bagder Exp $
+ * $Id: transfer.c,v 1.51 2001-08-28 08:37:54 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -92,6 +92,7 @@
 #include "http.h"
 #include "url.h"
 #include "getinfo.h"
+#include "ssluse.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -895,6 +896,13 @@ CURLcode Curl_perform(struct UrlData *data)
   if(!data->url)
     /* we can't do anything wihout URL */
     return CURLE_URL_MALFORMAT;
+
+#ifdef USE_SSLEAY
+  /* Init the SSL session ID cache here. We do it here since we want to
+     do it after the *_setopt() calls (that could change the size) but
+     before any transfer. */
+  Curl_SSL_InitSessions(data, data->ssl.numsessions);
+#endif
 
   data->followlocation=0; /* reset the location-follow counter */
   data->bits.this_is_a_follow = FALSE; /* reset this */
