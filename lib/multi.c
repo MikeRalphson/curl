@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.11 2002-04-27 22:21:51 bagder Exp $
+ * $Id: multi.c,v 1.12 2002-05-02 18:07:38 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -383,6 +383,9 @@ CURLMcode curl_multi_cleanup(CURLM *multi_handle)
     easy = multi->easy.next;
     while(easy) {
       nexteasy=easy->next;
+      /* clear out the usage of the shared DNS cache */
+      easy->easy_handle->hostcache = NULL;
+
       free(easy);
       easy = nexteasy;
     }
