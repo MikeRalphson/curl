@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.11 2001-01-05 10:11:42 bagder Exp $
+ * $Id: memdebug.c,v 1.12 2001-03-02 07:41:40 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -72,7 +72,7 @@ void *curl_domalloc(size_t size, int line, char *source)
   return mem;
 }
 
-char *curl_dostrdup(char *str, int line, char *source)
+char *curl_dostrdup(const char *str, int line, char *source)
 {
   char *mem;
   size_t len;
