@@ -1,5 +1,4 @@
 /* ============================================================================
- * Copyright (C) 1998 - 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * Redistribution and use are freely permitted provided that:
  *
@@ -22,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.2 2004-01-13 16:07:40 bagder Exp $
+ * $Id: getpass.c,v 1.3 2004-01-13 16:13:32 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -30,8 +29,6 @@
  *
  * Author(s):
  *   Angus Mackay <amackay@gus.ml.org>
- *
- * Contributor(s):
  *   Daniel Stenberg <daniel@haxx.se>
  */
 
@@ -49,19 +46,25 @@
 #include iosbdef
 char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 {
-	long sts;
-	short chan;
-	struct _iosb iosb;
-	$DESCRIPTOR(ttdesc, "TT");
+  long sts;
+  short chan;
+  struct _iosb iosb;
+  $DESCRIPTOR(ttdesc, "TT");
 
-	buffer[0]='\0';
-	if ((sts = sys$assign(&ttdesc, &chan,0,0)) & 1) {
-		if (((sts = sys$qiow(0, chan, IO$_READPROMPT | IO$M_NOECHO, &iosb, 0, 0, buffer, buflen, 0, 0, prompt, strlen(prompt))) & 1) && (iosb.iosb$w_status&1)) {
-			buffer[iosb.iosb$w_bcnt] = '\0';
-		} 
-		sts = sys$dassgn(chan);
-	}
-	return buffer; /* we always return success */
+  buffer[0]='\0';
+  sts = sys$assign(&ttdesc, &chan,0,0);
+  if (sts & 1) {
+    sts = sys$qiow(0, chan,
+                   IO$_READPROMPT | IO$M_NOECHO,
+                   &iosb, 0, 0, buffer, buflen, 0, 0,
+                   prompt, strlen(prompt));
+
+    if((sts & 1) && (iosb.iosb$w_status&1))
+      buffer[iosb.iosb$w_bcnt] = '\0';
+
+    sts = sys$dassgn(chan);
+  }
+  return buffer; /* we always return success */
 }
 #else /* VMS */
 #ifdef HAVE_TERMIOS_H
