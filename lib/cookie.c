@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.52 2004-03-10 09:41:37 bagder Exp $
+ * $Id: cookie.c,v 1.53 2004-05-10 14:04:06 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -704,6 +704,16 @@ struct Cookie *Curl_cookie_getlist(struct CookieInfo *c,
              
              /* point the main to us */
              mainco = newco;
+           }
+           else {
+              /* failure, clear up the allocated chain and return NULL */
+             while(mainco) {
+               co = mainco->next;
+               free(mainco);
+               mainco = co;
+             }
+
+             return NULL;
            }
          }
        }
