@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.102 2004-05-18 07:25:13 bagder Exp $
+ * $Id: ssluse.c,v 1.103 2004-06-13 08:33:26 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -45,6 +45,7 @@
 #include "inet_pton.h"
 #include "ssluse.h"
 #include "connect.h" /* Curl_ourerrno() proto */
+#include "strequal.h"
 
 #ifdef USE_SSLEAY
 #include <openssl/rand.h>
@@ -754,8 +755,8 @@ cert_hostcheck(const char *certname, const char *hostname)
   if(!strchr(certdomain+1, '.'))
     return 0; /* the certificate must have at least another dot in its name */
 
-  /* find 'certdomain' within 'hostname' */
-  tmp = strstr(hostname, certdomain);
+  /* find 'certdomain' within 'hostname', case insensitive */
+  tmp = Curl_strcasestr(hostname, certdomain);
   if(tmp) {
     /* ok the certname's domain matches the hostname, let's check that it's a
        tail-match */
