@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.51 2002-02-18 22:59:26 bagder Exp $
+ * $Id: hostip.c,v 1.52 2002-02-18 23:12:37 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -292,7 +292,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
   char sbuf[NI_MAXSERV];
 
   memset(&hints, 0, sizeof(hints));
-  hints.ai_family = PF_UNSPEC;
+  hints.ai_family = PF_INET;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_CANONNAME;
   snprintf(sbuf, sizeof(sbuf), "%d", port);
