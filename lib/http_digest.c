@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.15 2004-05-06 07:21:19 bagder Exp $
+ * $Id: http_digest.c,v 1.16 2004-05-10 08:09:15 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -329,7 +329,7 @@ CURLcode Curl_output_digest(struct connectdata *conn,
                "nonce=\"%s\", "
                "uri=\"%s\", "
                "cnonce=\"%s\", "
-               "nc=\"%08x\", "
+               "nc=%08x, "
                "qop=\"%s\", "
                "response=\"%s\"",
                proxy?"Proxy-":"",
