@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.21 2003-06-26 11:34:36 bagder Exp $
+ * $Id: urlglob.c,v 1.22 2003-07-23 08:21:21 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -29,7 +29,12 @@
 #include <string.h>
 #include <ctype.h>
 #include <curl/curl.h>
+
+#define _MPRINTF_REPLACE /* we want curl-functions instead of native ones */
+#include <curl/mprintf.h>
+
 #include "urlglob.h"
+
 
 #ifdef CURLDEBUG
 #include "../lib/memdebug.h"
