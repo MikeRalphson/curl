@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.77 2002-11-05 10:51:44 bagder Exp $
+ * $Id: hostip.c,v 1.78 2002-11-11 22:51:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -191,7 +191,7 @@ hostcache_prune(curl_hash *hostcache, int cache_timeout, int now)
                                  hostcache_timestamp_remove);
 }
 
-#ifdef MALLOCDEBUG
+#if defined(MALLOCDEBUG) && defined(AGGRESIVE_TEST)
 /* Called from Curl_done() to check that there's no DNS cache entry with
    a non-zero counter left. */
 void Curl_scan_cache_used(void *user, void *ptr)

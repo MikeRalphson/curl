@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.242 2002-11-11 22:36:00 bagder Exp $
+ * $Id: url.c,v 1.243 2002-11-11 22:51:09 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2854,7 +2854,7 @@ CURLcode Curl_done(struct connectdata *conn)
   if(conn->connect_addr)
     Curl_resolv_unlock(conn->connect_addr); /* done with this */
 
-#ifdef MALLOCDEBUG
+#if defined(MALLOCDEBUG) && defined(AGGRESIVE_TEST)
   /* scan for DNS cache entries still marked as in use */
   Curl_hash_apply(data->hostcache,
                   NULL, Curl_scan_cache_used);
