@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.234 2004-06-18 06:15:26 bagder Exp $
+ * $Id: http.c,v 1.235 2004-06-19 10:10:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -209,13 +209,15 @@ CURLcode Curl_http_auth_act(struct connectdata *conn)
     return data->set.http_fail_on_error?CURLE_HTTP_RETURNED_ERROR:CURLE_OK;
 
   if(conn->bits.user_passwd &&
-     ((conn->keep.httpcode == 401) || conn->bits.authprobe)) {
+     ((conn->keep.httpcode == 401) ||
+      (conn->bits.authprobe && conn->keep.httpcode < 300))) {
     pickhost = pickoneauth(&data->state.authhost);
     if(!pickhost)
       data->state.authproblem = TRUE;
   }
   if(conn->bits.proxy_user_passwd &&
-     ((conn->keep.httpcode == 407) || conn->bits.authprobe) ) {
+     ((conn->keep.httpcode == 407) ||
+      (conn->bits.authprobe && conn->keep.httpcode < 300))) {
     pickproxy = pickoneauth(&data->state.authproxy);
     if(!pickproxy)
       data->state.authproblem = TRUE;
@@ -224,8 +226,9 @@ CURLcode Curl_http_auth_act(struct connectdata *conn)
   if(pickhost || pickproxy)
     conn->newurl = strdup(data->change.url); /* clone URL */
 
-  else if((data->info.httpcode < 400) &&
-          (!data->state.authhost.done)) {
+  else if((conn->keep.httpcode < 300) &&
+          (!data->state.authhost.done) &&
+          conn->bits.authprobe) {
     /* no (known) authentication available,
        authentication is not "done" yet and
        no authentication seems to be required and
