@@ -18,9 +18,12 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: get_ver.awk,v 1.3 2004-06-11 01:36:27 gknauf Exp $
+# * $Id: get_ver.awk,v 1.4 2004-06-11 02:29:16 gknauf Exp $
 # ***************************************************************************
-# fetch libcurl version number from input file and write them to STDOUT
+# awk script which fetches libcurl version number and string from input file
+# and writes them to STDOUT. Here you can get an awk version for Win32:
+# http://www.gknw.com/development/prgtools/awk.zip
+#
 BEGIN {
   while ((getline < ARGV[1]) > 0) {
     if (match ($0, /^#define LIBCURL_VERSION "[^"]+"/)) {
@@ -37,8 +40,6 @@ BEGIN {
     }
   }
   libcurl_ver = libcurl_ver_major "," libcurl_ver_minor "," libcurl_ver_patch;
-
   print "LIBCURL_VERSION = " libcurl_ver "";
   print "LIBCURL_VERSION_STR = " libcurl_ver_str "";
-
 }
