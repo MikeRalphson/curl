@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: simplessl.c,v 1.2 2002-01-13 11:32:36 bagder Exp $
+ * $Id: simplessl.c,v 1.3 2002-01-17 13:45:19 bagder Exp $
  */
 
 #include <stdio.h>
@@ -28,6 +28,9 @@
    4.2. if the format of the key file is DER, set pKeyType to "DER"
 
    !! verify of the server certificate is not implemented here !!
+
+   **** This example only works with libcurl 7.9.3 and later! ****
+
 */
 
 int main(int argc, char **argv)
