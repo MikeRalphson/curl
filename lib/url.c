@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.219 2002-08-05 16:50:55 bagder Exp $
+ * $Id: url.c,v 1.220 2002-08-08 22:52:50 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1022,6 +1022,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     if(data->set.buffer_size> (BUFSIZE -1 ))
       data->set.buffer_size = 0; /* huge internal default */
 
+    break;
+
+  case CURLOPT_NOSIGNAL:
+    /*
+     * The application asks not to set any signal() or alarm() handlers,
+     * even when using a timeout.
+     */
+    data->set.no_signal = va_arg(param, long) ? TRUE : FALSE;
     break;
 
   default:
@@ -2281,7 +2289,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   /*************************************************************
    * Set timeout if that is being used
    *************************************************************/
-  if(data->set.timeout || data->set.connecttimeout) {
+  if((data->set.timeout || data->set.connecttimeout) && !data->set.no_signal) {
     /*************************************************************
      * Set signal handler to catch SIGALRM
      * Store the old value to be able to set it back later!
@@ -2358,7 +2366,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   }
   Curl_pgrsTime(data, TIMER_NAMELOOKUP);
 #ifdef HAVE_ALARM
-  if(data->set.timeout || data->set.connecttimeout) {
+  if((data->set.timeout || data->set.connecttimeout) && !data->set.no_signal) {
 #ifdef HAVE_SIGACTION
     if(keep_copysig) {
       /* we got a struct as it looked before, now put that one back nice

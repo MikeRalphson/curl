@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.153 2002-08-08 22:44:09 bagder Exp $
+ * $Id: curl.h,v 1.154 2002-08-08 22:52:50 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -561,6 +561,9 @@ typedef enum {
 
   /* Instruct libcurl to use a smaller receive buffer */
   CINIT(BUFFERSIZE, LONG, 98),
+
+  /* Instruct libcurl to do not use any signal/alarm handlers, even with timeouts. */
+  CINIT(NOSIGNAL, LONG, 99),
   
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
