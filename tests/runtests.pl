@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.27 2001-04-24 21:46:37 bagder Exp $
+# $Id: runtests.pl,v 1.28 2001-04-26 08:32:12 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -372,11 +372,19 @@ sub displaydata {
     unlink($memdump); # remove this if there was one left
 
     my $version=`$CURL -V`;
+    chomp $version;
+
+    my $curl = $version;
+
+    $curl =~ s/^(.*)(libcurl.*)/$1/g;
+    my $libcurl = $2;
+
     my $hostname=`hostname`;
     my $hosttype=`uname -a`;
 
     print "********* System characteristics ******** \n",
-    "* $version",
+    "* $curl\n",
+    "* $libcurl\n",
     "* Host: $hostname",
     "* System: $hosttype";
 
