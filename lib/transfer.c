@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.18 2001-03-09 16:02:59 bagder Exp $
+ * $Id: transfer.c,v 1.19 2001-03-12 13:58:03 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -396,6 +396,7 @@ Transfer(struct connectdata *c_conn)
                  * Default action for 1.0 is to close.
                  */
                 conn->bits.close = FALSE; /* don't close when done */
+                infof(data, "HTTP/1.0 proxy connection set to keep alive!\n");
               }
               else if (strnequal("Connection: close", p,
                                  strlen("Connection: close"))) {
