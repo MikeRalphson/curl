@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.28 2003-07-05 13:13:49 bagder Exp $
+ * $Id: setup.h,v 1.29 2003-08-05 14:40:59 bagder Exp $
  ***************************************************************************/
 
 /* MN 06/07/02 */
@@ -185,7 +185,7 @@ int fileno( FILE *stream);
  * Information regarding a single IP witin a Curl_addrinfo MUST be stored in
  * a Curl_ipconnect struct.
  */
-#ifdef ENABLE_IPV6
+#if defined(ENABLE_IPV6) && !defined(USE_ARES)
 typedef struct addrinfo Curl_addrinfo;
 typedef struct addrinfo Curl_ipconnect;
 #else

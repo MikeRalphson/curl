@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.168 2003-07-30 07:22:28 bagder Exp $
+ * $Id: urldata.h,v 1.169 2003-08-05 14:40:59 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -88,6 +88,10 @@
 
 #ifdef GSSAPI
 #include <gssapi.h>
+#endif
+
+#ifdef USE_ARES
+#include <ares.h>
 #endif
 
 /* Download buffer size, keep it fairly big for speed reasons */
@@ -364,6 +368,16 @@ struct Curl_transfer_keeper {
   bool ignorebody;  /* we read a response-body but we ignore it! */
 };
 
+#ifdef USE_ARES
+struct Curl_async {
+  char *hostname;
+  int port;
+  struct Curl_dns_entry *dns;
+  bool done;  /* set TRUE when the lookup is complete */
+  int status; /* if done is TRUE, this is the status from the callback */
+};
+#endif
+
 /*
  * The connectdata struct contains all fields and variables that should be
  * unique for an entire connection.
@@ -538,6 +552,11 @@ struct connectdata {
                                because it authenticates connections, not
                                single requests! */
   struct ntlmdata proxyntlm; /* NTLM data for proxy */
+
+#ifdef USE_ARES
+  /* data used for the asynch name resolve callback */
+  struct Curl_async async;
+#endif
 };
 
 /* The end of connectdata. */
@@ -669,6 +688,10 @@ struct UrlState {
 
   long authwant;  /* inherited from what the user set with CURLOPT_HTTPAUTH */
   long authavail; /* what the server reports */
+
+#ifdef USE_ARES
+  ares_channel areschannel; /* for name resolves */
+#endif
 };
 
 
