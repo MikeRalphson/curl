@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.98 2001-03-09 16:50:08 bagder Exp $
+ * $Id: url.c,v 1.99 2001-03-12 09:44:57 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1814,7 +1814,8 @@ CURLcode Curl_connect(struct UrlData *data,
       int index;
       index = conn->connectindex; /* get the index */
       Curl_disconnect(conn);      /* close the connection */
-      data->connects[index]=NULL; /* clear the pointer */
+      if(-1 != index)
+        data->connects[index]=NULL; /* clear the pointer */
     }
   }
   return code;
