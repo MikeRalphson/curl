@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.35 2004-06-24 14:35:45 bagder Exp $
+ * $Id: escape.c,v 1.36 2004-07-01 08:10:21 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -39,14 +39,15 @@
 /* The last #include file should be: */
 #include "memdebug.h"
 
-char *curl_escape(const char *string, int length)
+char *curl_escape(const char *string, int inlength)
 {
-  size_t alloc = (length?(size_t)length:strlen(string))+1;
+  size_t alloc = (inlength?(size_t)inlength:strlen(string))+1;
   char *ns;
   char *testing_ptr = NULL;
   unsigned char in;
   size_t newlen = alloc;
   int strindex=0;
+  size_t length;
 
   ns = malloc(alloc);
   if(!ns)

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.234 2004-07-01 07:43:20 bagder Exp $
+ * $Id: urldata.h,v 1.235 2004-07-01 08:10:21 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -578,7 +578,7 @@ struct connectdata {
 
   /* 'upload_present' is used to keep a byte counter of how much data there is
      still left in the buffer, aimed for upload. */
-  int upload_present;
+  ssize_t upload_present;
 
    /* 'upload_fromhere' is used as a read-pointer when we uploaded parts of a
       buffer, so the next read should read from where this pointer points to,

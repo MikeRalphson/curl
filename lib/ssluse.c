@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.109 2004-06-30 11:53:34 bagder Exp $
+ * $Id: ssluse.c,v 1.110 2004-07-01 08:10:21 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -633,7 +633,7 @@ static int Store_SSL_Session(struct connectdata *conn,
   int i;
   struct SessionHandle *data=conn->data; /* the mother of all structs */
   struct curl_ssl_session *store = &data->state.session[0];
-  int oldest_age=data->state.session[0].age; /* zero if unused */
+  long oldest_age=data->state.session[0].age; /* zero if unused */
   char *clone_host;
 
   clone_host = strdup(conn->host.name);
@@ -1351,7 +1351,7 @@ Curl_SSLConnect(struct connectdata *conn,
       /* we have been connected fine, get out of the connect loop */
       break;
 
-    interval.tv_sec = timeout_ms/1000;
+    interval.tv_sec = (int)(timeout_ms/1000);
     timeout_ms -= interval.tv_sec*1000;
 
     interval.tv_usec = timeout_ms*1000;
