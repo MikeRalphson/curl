@@ -20,9 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.h,v 1.3 2001-05-11 11:38:42 bagder Exp $
+ * $Id: transfer.h,v 1.4 2001-08-15 06:54:51 bagder Exp $
  *****************************************************************************/
-CURLcode Curl_perform(CURL *curl);
+CURLcode Curl_perform(struct UrlData *data);
 
 /* This sets up a forthcoming transfer */
 CURLcode 
