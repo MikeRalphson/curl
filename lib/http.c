@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.62 2001-05-12 09:30:42 bagder Exp $
+ * $Id: http.c,v 1.63 2001-05-31 07:03:04 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -33,13 +33,6 @@
 #include <sys/stat.h>
 
 #include <errno.h>
-
-
-#ifdef NEED_REENTRANT
-#define _REENTRANT /* Necessary to use in Solaris, since the silly guys at Sun
-                      made the localtime_r() prototype dependent on it (or
-                      _POSIX_C_SOURCE or _POSIX_PTHREAD_SEMANTICS). */
-#endif
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <winsock.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.15 2001-03-16 15:44:38 bagder Exp $
+ * $Id: if2ip.c,v 1.16 2001-05-31 07:03:04 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -33,10 +33,6 @@
 #endif
 
 #if ! defined(WIN32) && ! defined(__BEOS__) && !defined(__CYGWIN32__)
-
-#ifdef NEED_REENTRANT
-#define _REENTRANT
-#endif
 
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
