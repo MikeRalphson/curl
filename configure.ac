@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.106 2004-10-10 03:22:45 bagder Exp $
+dnl $Id: configure.ac,v 1.107 2004-10-18 13:37:18 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1121,6 +1121,7 @@ AC_CHECK_HEADERS(
         sys/utime.h \
         sys/poll.h \
         libgen.h \
+        locale.h \
         setjmp.h,
 dnl to do if not found
 [],
@@ -1217,6 +1218,7 @@ AC_CHECK_FUNCS( strtoll \
                 utime \
                 sigsetjmp \
                 basename \
+                setlocale \
                 poll,
 dnl if found
 [],
