@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.6 2001-01-30 11:52:59 bagder Exp $
+ * $Id: transfer.c,v 1.7 2001-01-31 15:05:44 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -160,6 +160,12 @@ _Transfer(struct connectdata *c_conn)
 
   Curl_pgrsTime(data, TIMER_PRETRANSFER);
   Curl_speedinit(data);
+
+  if((conn->sockfd == -1) &&
+     (conn->writesockfd == -1)) {
+    /* nothing to read, nothing to write, we're already OK! */
+    return CURLE_OK;
+  }
 
   if (!conn->getheader) {
     header = FALSE;
