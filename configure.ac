@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.115 2004-11-11 16:34:24 bagder Exp $
+dnl $Id: configure.ac,v 1.116 2004-11-11 22:01:53 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -986,6 +986,7 @@ case "$LIBIDN" in
 
        if test "x$idn" != "xyes"; then
           dnl check with default paths
+          idn="yes"
           AC_CHECK_LIB(idn, idna_to_ascii_lz, ,
                        idn="")
        fi
