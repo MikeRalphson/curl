@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.10 2004-03-10 08:12:09 bagder Exp $
+ * $Id: getpart.c,v 1.11 2004-03-23 08:50:28 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -65,7 +65,7 @@ char *appendstring(char *string, /* original string */
 
 const char *spitout(FILE *stream,
                     const char *main,
-                    const char *sub, int *size)
+                    const char *sub, size_t *size)
 {
   char buffer[8192]; /* big enough for anything */
   char cmain[128]=""; /* current main section */
