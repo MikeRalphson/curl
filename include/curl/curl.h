@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.167 2002-09-25 07:08:41 bagder Exp $
+ * $Id: curl.h,v 1.168 2002-09-25 12:27:37 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -778,6 +778,9 @@ char *curl_version(void);
  * allocated string or NULL if an error occurred.  */
 char *curl_escape(const char *string, int length);
 char *curl_unescape(const char *string, int length);
+/* 20020912 WJM. Provide for a de-allocation in the same translation unit
+   that did the allocation. Added in libcurl 7.10 */
+void curl_free(void *p);
 
 /* curl_global_init() should be invoked exactly once for each application that
    uses libcurl */
