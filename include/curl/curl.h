@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.214 2003-09-03 22:02:41 bagder Exp $
+ * $Id: curl.h,v 1.215 2003-09-04 13:32:55 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1004,9 +1004,11 @@ typedef enum {
   CURLINFO_STARTTRANSFER_TIME = CURLINFO_DOUBLE + 17,
   CURLINFO_CONTENT_TYPE     = CURLINFO_STRING + 18,
   CURLINFO_REDIRECT_TIME    = CURLINFO_DOUBLE + 19,
-  CURLINFO_REDIRECT_COUNT   = CURLINFO_LONG + 20,
+  CURLINFO_REDIRECT_COUNT   = CURLINFO_LONG   + 20,
   CURLINFO_PRIVATE          = CURLINFO_STRING + 21,
   CURLINFO_HTTP_CONNECTCODE = CURLINFO_LONG   + 22,
+  CURLINFO_HTTPAUTH_AVAIL   = CURLINFO_LONG   + 23,
+  CURLINFO_PROXYAUTH_AVAIL  = CURLINFO_LONG   + 24,
   /* Fill in new entries below here! */
 
   CURLINFO_LASTONE          = 23
