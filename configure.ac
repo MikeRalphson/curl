@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.36 2003-12-11 10:19:57 bagder Exp $
+dnl $Id: configure.ac,v 1.37 2003-12-15 13:24:16 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1058,8 +1058,12 @@ AC_HELP_STRING([--disable-ares],[Disable ares for name lookups]),
             AC_CONFIG_SUBDIRS(ares)
             aresinc=`cd $srcdir/ares && pwd`
             CPPFLAGS="$CPPFLAGS -I$aresinc"
-            areslib=`cd ares && pwd`
-            LDFLAGS="$LDFLAGS -L$areslib"
+
+            dnl the pwd= below cannot 'cd' into the ares dir to get the full
+            dnl path to it, since it may not exist yet if we build outside of
+            dnl the source tree
+            pwd=`pwd`
+            LDFLAGS="$LDFLAGS -L$pwd/ares"
          fi
        else
          CPPFLAGS="$CPPFLAGS -I$enableval/include"
