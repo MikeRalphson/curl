@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: multi-app.c,v 1.2 2002-03-19 14:00:47 bagder Exp $
+ * $Id: multi-app.c,v 1.3 2003-01-09 11:43:08 bagder Exp $
  *
  * This is an example application source code using the multi interface.
  */
@@ -83,7 +83,8 @@ int main(int argc, char **argv)
     default:
       /* one or more of curl's file descriptors say there's data to read
          or write */
-      curl_multi_perform(multi_handle, &still_running);
+      while(CURLM_CALL_MULTI_PERFORM ==
+            curl_multi_perform(multi_handle, &still_running));
       break;
     }
   }
