@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.14 2001-03-06 00:04:58 bagder Exp $
+ * $Id: ssluse.c,v 1.15 2001-03-07 17:08:20 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -35,6 +35,7 @@
 #include "formdata.h" /* for the boundary function */
 
 #ifdef USE_SSLEAY
+#include <openssl/rand.h>
 
 static char global_passwd[64];
 
@@ -78,7 +79,6 @@ static
 int random_the_seed(struct connectdata *conn)
 {
   char *buf = conn->data->buffer; /* point to the big buffer */
-  int ret;
   int nread=0;
 
   /* Q: should we add support for a random file name as a libcurl option?
@@ -106,11 +106,13 @@ int random_the_seed(struct connectdata *conn)
 #if defined(HAVE_RAND_EGD) && defined(EGD_SOCKET)
   /* only available in OpenSSL 0.9.5 and later */
   /* EGD_SOCKET is set at configure time */
-  ret = RAND_egd(EGD_SOCKET);
-  if(-1 != ret) {
-    nread += ret;
-    if(seed_enough(conn, nread))
-      return nread;
+  {
+    int ret = RAND_egd(EGD_SOCKET);
+    if(-1 != ret) {
+      nread += ret;
+      if(seed_enough(conn, nread))
+        return nread;
+    }
   }
 #endif
 
