@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.100 2002-01-16 14:53:19 bagder Exp $
+ * $Id: urldata.h,v 1.101 2002-01-29 10:49:32 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -432,6 +432,8 @@ struct PureInfo {
                     the time was unretrievable */
   long header_size;  /* size of read header(s) in bytes */
   long request_size; /* the amount of bytes sent in the request(s) */
+
+  char *contenttype; /* the content type of the object */
 };
 
 

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.120 2002-01-23 18:10:00 bagder Exp $
+ * $Id: curl.h,v 1.121 2002-01-29 10:49:32 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -666,7 +666,11 @@ typedef enum {
 
   CURLINFO_STARTTRANSFER_TIME = CURLINFO_DOUBLE + 17,
 
-  CURLINFO_LASTONE          = 18
+  CURLINFO_CONTENT_TYPE = CURLINFO_STRING + 18,
+
+  /* Fill in new entries here! */
+
+  CURLINFO_LASTONE          = 19
 } CURLINFO;
 
 /* unfortunately, the easy.h include file needs the options and info stuff
