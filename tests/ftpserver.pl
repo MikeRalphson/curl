@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.41 2004-04-15 13:55:37 bagder Exp $
+# $Id: ftpserver.pl,v 1.42 2004-04-19 15:20:30 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -38,15 +38,15 @@ use strict;
 
 require "getpart.pm";
 
-open(FTPLOG, ">log/ftpd.log") ||
-    print STDERR "failed to open log file, runs without logging\n";
-
+# open and close each time to allow removal at any time
 sub logmsg {
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
         localtime(time);
+    open(FTPLOG, ">>log/ftpd.log");
     printf FTPLOG ("%02d:%02d:%02d (%d) ",
                    $hour, $min, $sec, $$);
     print FTPLOG @_;
+    close(FTPLOG);
 }
 
 sub ftpmsg {
@@ -530,7 +530,6 @@ for ( $waitedpid = 0;
     open(STDIN,  "<&Client")   || die "can't dup client to stdin";
     open(STDOUT, ">&Client")   || die "can't dup client to stdout";
     
-    FTPLOG->autoflush(1);
     &customize(); # read test control instructions
 
     print @welcome;
