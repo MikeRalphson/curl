@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.79 2004-05-05 06:57:49 bagder Exp $
+dnl $Id: configure.ac,v 1.80 2004-05-05 09:17:53 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -16,12 +16,22 @@ AM_CONFIG_HEADER(lib/config.h src/config.h)
 AM_MAINTAINER_MODE
 
 dnl SED is needed by some of the tools
-AC_PATH_PROG( SED, sed, , $PATH:/usr/bin:/usr/local/bin)
+AC_PATH_PROG( SED, sed, sed-was-not-found-by-configure,
+              $PATH:/usr/bin:/usr/local/bin)
 AC_SUBST(SED)
 
+if test "x$SED" = "xsed-was-not-found-by-configure"; then
+  AC_MSG_WARN([sed was not found, this may ruin your chances to build fine])
+fi
+
 dnl AR is used by libtool, and try the odd Solaris path too
-AC_PATH_PROG( AR, ar, , $PATH:/usr/bin:/usr/local/bin:/usr/ccs/bin)
+AC_PATH_PROG( AR, ar,
+              ar-was-not-found-by-configure,
+              $PATH:/usr/bin:/usr/local/bin:/usr/ccs/bin)
 AC_SUBST(AR)
+if test "x$AR" = "xar-was-not-found-by-configure"; then
+  AC_MSG_WARN([ar was not found, this may ruin your chances to build fine])
+fi
 
 dnl figure out the libcurl version
 VERSION=`$SED -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curlver.h`
