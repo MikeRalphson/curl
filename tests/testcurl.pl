@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.19 2004-09-15 08:07:20 bagder Exp $
+# $Id: testcurl.pl,v 1.20 2004-10-10 07:51:25 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -55,7 +55,7 @@ use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog
 use vars qw($name $email $desc $confopts $setupfile $mktarball);
 
 # version of this script
-$version='$Revision: 1.19 $';
+$version='$Revision: 1.20 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -352,7 +352,7 @@ chdir "$pwd/$build";
 
 if ($gnulikebuild) {
   # run configure script
-  system("../$CURLDIR/configure $confopts 2>&1");
+  print `../$CURLDIR/configure $confopts 2>&1`;
 
   if (-f "lib/Makefile") {
     logit "configure seems to have finished fine";
