@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.69 2003-10-07 21:46:47 bagder Exp $
+# $Id: Makefile.am,v 1.70 2003-10-13 00:12:06 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -20,8 +20,6 @@ endif
 # we use builddir/lib for the generated lib/config.h file to get found
 # we use srcdir/lib for the lib-private header files
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/lib -I$(top_srcdir)/lib $(ARESINC)
-
-LDFLAGS += -L$(top_srcdir)/lib
 
 VERSION=-version-info 2:2:0
 
