@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.7 2001-02-04 20:03:30 bagder Exp $
+ * $Id: getinfo.c,v 1.8 2001-03-09 15:13:11 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -31,7 +31,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-CURLcode curl_getinfo(CURL *curl, CURLINFO info, ...)
+CURLcode Curl_getinfo(CURL *curl, CURLINFO info, ...)
 {
   va_list arg;
   long *param_longp;
