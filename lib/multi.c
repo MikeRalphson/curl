@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.42 2004-01-12 15:26:33 bagder Exp $
+ * $Id: multi.c,v 1.43 2004-02-05 09:37:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -196,7 +196,7 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
   /* scan through the list and remove the 'curl_handle' */
   easy = multi->easy.next;
   while(easy) {
-    if(easy->easy_handle == curl_handle)
+    if(easy->easy_handle == (struct SessionHandle *)curl_handle)
       break;
     easy=easy->next;
   }
