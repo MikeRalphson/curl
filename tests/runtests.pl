@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.110 2004-02-26 09:19:59 bagder Exp $
+# $Id: runtests.pl,v 1.111 2004-03-01 16:24:54 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -77,6 +77,7 @@ my $stunnel = checkcmd("stunnel");
 my $valgrind = checkcmd("valgrind");
 
 my $ssl_version; # set if libcurl is built with SSL support
+my $large_file;  # set if libcurl is built with large file support
 
 my $skipped=0;  # number of tests skipped; reported in main loop
 my %skipped;    # skipped{reason}=counter, reasons for skip
@@ -694,6 +695,10 @@ sub checkcurl {
                 # ssl enabled
                 $ssl_version=1;
             }
+            if($feat =~ /Largefile/i) {
+                # large file support
+                $large_file=1;
+            }
         }
     }
     if(!$curl) {
@@ -768,6 +773,11 @@ sub singletest {
         }
         elsif($f eq "netrc_debug") {
             if($curl_debug) {
+                next;
+            }
+        }
+        elsif($f eq "large_file") {
+            if($large_file) {
                 next;
             }
         }
