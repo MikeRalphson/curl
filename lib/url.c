@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.82 2001-02-12 08:22:19 bagder Exp $
+ * $Id: url.c,v 1.83 2001-02-13 13:34:16 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -560,6 +560,10 @@ CURLcode curl_disconnect(CURLconnect *c_connect)
   struct connectdata *conn = c_connect;
 
   struct UrlData *data = conn->data;
+
+  if(data->proto.generic)
+    free(data->proto.generic);
+  data->proto.generic=NULL; /* it is gone */
 
 #ifdef ENABLE_IPV6
   if(conn->res) /* host name info */
@@ -1644,7 +1648,13 @@ CURLcode curl_do(CURLconnect *in_conn)
   if(!conn || (conn->handle!= STRUCT_CONNECT)) {
     return CURLE_BAD_FUNCTION_ARGUMENT;
   }
-  if(conn->state != CONN_INIT) {
+  switch(conn->state) {
+  case CONN_INIT:
+  case CONN_DONE:
+    /* these two states are OK */
+    break;
+  default:
+    /* anything else is bad */
     return CURLE_BAD_CALLING_ORDER;
   }
 

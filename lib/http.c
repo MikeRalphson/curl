@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.47 2001-02-07 09:31:03 bagder Exp $
+ * $Id: http.c,v 1.48 2001-02-13 13:34:16 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -374,9 +374,6 @@ CURLcode Curl_http_done(struct connectdata *conn)
   else if(data->bits.http_put) {
     *bytecount = http->readbytecount + http->writebytecount;
   }
-
-  free(http);
-  data->proto.http=NULL; /* it is gone */
 
   return CURLE_OK;
 }

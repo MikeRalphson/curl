@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.51 2001-02-09 07:14:28 bagder Exp $
+ * $Id: ftp.c,v 1.52 2001-02-13 13:34:16 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -544,9 +544,6 @@ CURLcode Curl_ftp_done(struct connectdata *conn)
       qitem = qitem->next;
     }
   }
-
-  free(ftp);
-  data->proto.ftp=NULL; /* it is gone */
 
   return CURLE_OK;
 }
