@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.59 2004-12-02 17:11:09 bagder Exp $
+ * $Id: sws.c,v 1.60 2004-12-09 09:58:25 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -305,6 +305,7 @@ int ProcessRequest(struct httprequest *req)
       stream=fopen(filename, "rb");
       if(!stream) {
         logmsg("Couldn't open test file %d", req->testno);
+        req->open = FALSE; /* closes connection */
         return 0;
       }
       else {
