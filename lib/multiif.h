@@ -20,12 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multiif.h,v 1.1 2005-01-11 15:25:29 bagder Exp $
+ * $Id: multiif.h,v 1.2 2005-02-09 13:06:40 bagder Exp $
  ***************************************************************************/
 
 /*
  * Prototypes for library-wide functions provided by multi.c
  */
 void Curl_multi_rmeasy(void *multi, CURL *data);
-
 #endif /* __MULTIIF_H */

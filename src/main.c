@@ -18,10 +18,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.309 2005-01-27 15:59:01 bagder Exp $
+ * $Id: main.c,v 1.310 2005-02-09 13:06:40 bagder Exp $
  ***************************************************************************/
 
-/* This is now designed to have its own local setup.h */
 #include "setup.h"
 
 #include <stdio.h>
@@ -3726,7 +3725,8 @@ operate(struct Configurable *config, int argc, char *argv[])
                 }
               }
             } /* if CURLE_OK */
-            else if(CURLE_FTP_USER_PASSWORD_INCORRECT == res) {
+            else if((CURLE_FTP_USER_PASSWORD_INCORRECT == res) ||
+                    (CURLE_LOGIN_DENIED == res)) {
               curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response);
 
               if(response/100 == 5)

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostsyn.c,v 1.3 2004-10-06 07:50:18 bagder Exp $
+ * $Id: hostsyn.c,v 1.4 2005-02-09 13:06:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -65,11 +65,6 @@
 
 #ifdef WIN32
 #include <process.h>
-#endif
-
-#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
-#undef in_addr_t
-#define in_addr_t unsigned long
 #endif
 
 #include "urldata.h"
@@ -133,10 +128,10 @@ CURLcode Curl_is_resolved(struct connectdata *conn,
  * It is present here to keep #ifdefs out from multi.c
  */
 
-CURLcode Curl_fdset(struct connectdata *conn,
-                    fd_set *read_fd_set,
-                    fd_set *write_fd_set,
-                    int *max_fdp)
+CURLcode Curl_resolv_fdset(struct connectdata *conn,
+                           fd_set *read_fd_set,
+                           fd_set *write_fd_set,
+                           int *max_fdp)
 {
   (void)conn;
   (void)read_fd_set;

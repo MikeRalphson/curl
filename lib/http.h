@@ -8,7 +8,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.26 2004-11-24 16:11:36 bagder Exp $
+ * $Id: http.h,v 1.27 2005-02-09 13:06:40 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 bool Curl_compareheader(char *headerline,     /* line to check */
@@ -34,9 +34,9 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
                                      char *hostname, int remote_port);
 
 /* protocol-specific functions set up to be called by the main engine */
-CURLcode Curl_http(struct connectdata *conn);
+CURLcode Curl_http(struct connectdata *conn, bool *done);
 CURLcode Curl_http_done(struct connectdata *, CURLcode);
-CURLcode Curl_http_connect(struct connectdata *conn);
+CURLcode Curl_http_connect(struct connectdata *conn, bool *done);
 
 /* The following functions are defined in http_chunks.c */
 void Curl_httpchunk_init(struct connectdata *conn);

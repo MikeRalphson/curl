@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.10 2004-10-06 07:50:18 bagder Exp $
+ * $Id: hostip6.c,v 1.11 2005-02-09 13:06:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -65,11 +65,6 @@
 
 #ifdef WIN32
 #include <process.h>
-#endif
-
-#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
-#undef in_addr_t
-#define in_addr_t unsigned long
 #endif
 
 #include "urldata.h"

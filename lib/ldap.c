@@ -5,7 +5,7 @@
  *                | (__| |_| |  _ <| |___
  *                \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.46 2004-12-17 17:54:21 giva Exp $
+ * $Id: ldap.c,v 1.47 2005-02-09 13:06:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -224,7 +224,7 @@ static void (*ldap_free_urldesc)(LDAPURLDesc *) = _ldap_free_urldesc;
 #endif
 
 
-CURLcode Curl_ldap(struct connectdata *conn)
+CURLcode Curl_ldap(struct connectdata *conn, bool *done)
 {
   CURLcode status = CURLE_OK;
   int rc = 0;
@@ -256,6 +256,7 @@ CURLcode Curl_ldap(struct connectdata *conn)
   int num = 0;
   struct SessionHandle *data=conn->data;
 
+  *done = TRUE; /* unconditionally */
   infof(data, "LDAP local: %s\n", data->change.url);
 
   if (!DynaOpen(&mod_name)) {
