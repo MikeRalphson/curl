@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.18 2004-06-29 11:21:05 bagder Exp $
+ * $Id: connect.h,v 1.19 2004-06-30 09:22:48 bagder Exp $
  ***************************************************************************/
 
 int Curl_nonblock(curl_socket_t sockfd,    /* operate on this */
@@ -38,4 +38,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,
                           );
 
 int Curl_ourerrno(void);
+
+#define DEFAULT_CONNECT_TIMEOUT 300000 /* milliseconds == five minutes */
+
 #endif

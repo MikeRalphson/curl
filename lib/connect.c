@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.110 2004-06-29 11:20:07 bagder Exp $
+ * $Id: connect.c,v 1.111 2004-06-30 09:22:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -100,8 +100,6 @@
 
 /* The last #include file should be: */
 #include "memdebug.h"
-
-#define DEFAULT_CONNECT_TIMEOUT 300000 /* milliseconds == five minutes */
 
 static bool verifyconnect(curl_socket_t sockfd, int *error);
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.107 2004-06-24 11:54:11 bagder Exp $
+ * $Id: ssluse.c,v 1.108 2004-06-30 09:22:48 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1269,7 +1269,7 @@ Curl_SSLConnect(struct connectdata *conn,
     }
     else
       /* no particular time-out has been set */
-      timeout_ms=300000; /* milliseconds, default to five minutes */
+      timeout_ms= DEFAULT_CONNECT_TIMEOUT;
 
 
     FD_ZERO(&writefd);
