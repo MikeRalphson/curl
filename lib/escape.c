@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.26 2003-05-21 15:53:59 bagder Exp $
+ * $Id: escape.c,v 1.27 2003-06-26 06:50:32 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -33,7 +33,7 @@
 #include <string.h>
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
