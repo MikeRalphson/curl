@@ -1,8 +1,8 @@
-/* $Id: ares_version.c,v 1.1 2003-10-24 20:28:04 bagder Exp $ */
+/* $Id: ares_version.c,v 1.2 2004-01-29 12:07:34 bagder Exp $ */
 
 #include "ares_version.h"
 
-char *ares_version(int *version)
+const char *ares_version(int *version)
 {
   if(version)
     *version = ARES_VERSION;
