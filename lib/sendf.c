@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.c,v $
- * $Revision: 1.12 $
- * $Date: 2000-10-30 11:53:40 $
+ * $Revision: 1.13 $
+ * $Date: 2000-11-22 12:53:56 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -179,6 +179,40 @@ size_t ssend(int fd, struct connectdata *conn, void *mem, size_t len)
 
   return bytes_written;
 }
+
+/* client_write() sends data to the write callback(s)
+
+   The bit pattern defines to what "streams" to write to. Body and/or header.
+   The defines are in sendf.h of course.
+ */
+CURLcode client_write(struct UrlData *data,
+                      int type,
+                      char *ptr,
+                      size_t len)
+{
+  size_t wrote;
+
+  if(0 == len)
+    len = strlen(ptr);
+
+  if(type & CLIENTWRITE_BODY) {
+    wrote = data->fwrite(ptr, 1, len, data->out);
+    if(wrote != len) {
+      failf (data, "Failed writing body");
+      return CURLE_WRITE_ERROR;
+    }
+  }
+  if((type & CLIENTWRITE_HEADER) && data->writeheader) {
+    wrote = data->fwrite(ptr, 1, len, data->writeheader);
+    if(wrote != len) {
+      failf (data, "Failed writing header");
+      return CURLE_WRITE_ERROR;
+    }
+  }
+  
+  return CURLE_OK;
+}
+
 
 /*
  * add_buffer_init() returns a fine buffer struct
