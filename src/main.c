@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.146 2002-09-04 13:43:20 bagder Exp $
+ * $Id: main.c,v 1.147 2002-09-23 13:22:47 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2505,11 +2505,12 @@ operate(struct Configurable *config, int argc, char *argv[])
           struct stat fileinfo;
 
 /*VMS?? -- Danger, the filesize is only valid for stream files */
-          if(0 == stat(outfile, &fileinfo)) {
+          if(0 == stat(outfile, &fileinfo))
             /* set offset to current file size: */
             config->resume_from = fileinfo.st_size;
-          }
-          /* else let offset remain 0 */
+          else
+            /* let offset be 0 */
+            config->resume_from = 0;
         }
       
         if(config->resume_from) {
