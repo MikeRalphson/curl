@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.251 2003-01-09 16:47:09 bagder Exp $
+ * $Id: url.c,v 1.252 2003-01-10 16:19:32 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2490,6 +2490,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
         else
           /* no name given, get the password only */
           sscanf(userpass, ":%127[^@]", data->state.passwd);
+
+        /* we have set the password */
+        data->state.passwdgiven = TRUE;
 
         if(data->state.user[0]) {
           char *newname=curl_unescape(data->state.user, 0);
