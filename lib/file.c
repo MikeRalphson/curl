@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.32 2003-08-08 17:12:04 bagder Exp $
+ * $Id: file.c,v 1.33 2003-08-08 17:56:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -125,7 +125,8 @@ CURLcode Curl_file_connect(struct connectdata *conn)
      with a drive letter.
   */
   actual_path = real_path;
-  if (*actual_path == '/' &&
+  if ((actual_path[0] == '/') &&
+      actual_path[1] &&
       (actual_path[2] == ':' || actual_path[2] == '|'))
   {
     actual_path[2] = ':';
