@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.152 2003-09-03 21:51:28 bagder Exp $
+ * $Id: http.c,v 1.153 2003-09-04 10:08:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -196,8 +196,10 @@ CURLcode http_auth_headers(struct connectdata *conn,
   if(!data->state.authstage) {
     if(conn->bits.httpproxy && conn->bits.proxy_user_passwd)
       Curl_http_auth_stage(data, 407);
-    else
+    else if(conn->bits.user_passwd)
       Curl_http_auth_stage(data, 401);
+    else
+      return CURLE_OK; /* no authentication with no user or password */
   }
 
   /* To prevent the user+password to get sent to other than the original
