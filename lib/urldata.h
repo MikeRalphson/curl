@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.202 2004-03-11 21:48:15 bagder Exp $
+ * $Id: urldata.h,v 1.203 2004-03-12 08:55:52 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -780,9 +780,9 @@ struct UserDefined {
   char *useragent;   /* User-Agent string */
   char *encoding;    /* Accept-Encoding string */
   char *postfields;  /* if POST, set the fields' values here */
-  size_t postfieldsize; /* if POST, this might have a size to use instead of
-                           strlen(), and then the data *may* be binary (contain
-                           zero bytes) */
+  curl_off_t postfieldsize; /* if POST, this might have a size to use instead
+                               of strlen(), and then the data *may* be binary
+                               (contain zero bytes) */
   char *ftpport;     /* port to send with the FTP PORT command */
   char *device;      /* network interface to use */
   curl_write_callback fwrite;        /* function that stores the output */

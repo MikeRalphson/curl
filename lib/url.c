@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.349 2004-03-11 13:13:35 bagder Exp $
+ * $Id: url.c,v 1.350 2004-03-12 08:55:51 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -782,10 +782,17 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     break;
   case CURLOPT_POSTFIELDSIZE:
     /*
-     * The size of the POSTFIELD data, if curl should now do a strlen
-     * to find out. Enables binary posts.
+     * The size of the POSTFIELD data to prevent libcurl to do strlen() to
+     * figure it out. Enables binary posts.
      */
     data->set.postfieldsize = va_arg(param, long);
+    break;
+  case CURLOPT_POSTFIELDSIZE_LARGE:
+    /*
+     * The size of the POSTFIELD data to prevent libcurl to do strlen() to
+     * figure it out. Enables binary posts.
+     */
+    data->set.postfieldsize = va_arg(param, curl_off_t);
     break;
   case CURLOPT_REFERER:
     /*

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.242 2004-03-03 12:37:15 bagder Exp $
+ * $Id: curl.h,v 1.243 2004-03-12 08:55:50 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -782,6 +782,9 @@ typedef enum {
      CURLFTPSSL_ALL     - SSL for all communication or fail
   */
   CINIT(FTP_SSL, LONG, 119),
+
+  /* The _LARGE version of the standard POSTFIELDSIZE option */
+  CINIT(POSTFIELDSIZE_LARGE, OFF_T, 120),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
