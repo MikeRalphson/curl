@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.sh,v 1.35 2004-02-25 09:03:09 bagder Exp $
+# $Id: testcurl.sh,v 1.36 2004-02-26 07:58:49 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -42,7 +42,7 @@
 #                 perform a normal CVS build.
 
 # version of this script
-version='$Revision: 1.35 $'
+version='$Revision: 1.36 $'
 fixed=0
 
 # Determine if we're running from CVS or a canned copy of curl
@@ -75,9 +75,9 @@ die(){
       log "removing the $build dir"
       rm -rf "$pwd/$build"
     fi
-    if test -r "$pwd/$buildlog"; then
+    if test -r "$buildlog"; then
       # we have a build log output file left, remove it
-      log "removing the $buildlog file"
+      log "removing the $buildlogname file"
       rm -rf "$buildlog"
     fi
     log "ENDING HERE" # last line logged!
@@ -152,11 +152,15 @@ if [ -d "$CURLDIR" ]; then
   fi
 fi
 build="build-$$"
-buildlog="buildlog-$$"
+buildlogname="buildlog-$$"
+buildlog="$pwd/$buildlogname"
 
 # remove any previous left-overs
 rm -rf build-*
 rm -rf buildlog-*
+
+# this is to remove old build logs that ended up in the wrong dir
+rm -rf $CURLDIR/buildlog-*
 
 # create a dir to build in
 mkdir $build
