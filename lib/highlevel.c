@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: highlevel.c,v 1.27 2001-01-05 10:11:42 bagder Exp $
+ * $Id: highlevel.c,v 1.28 2001-01-10 22:46:26 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -456,14 +456,14 @@ _Transfer(struct connectdata *c_conn)
                     default:
                       if(timeofdoc < data->timevalue) {
                         infof(data,
-                              "The requested document is not new enough");
+                              "The requested document is not new enough\n");
                         return CURLE_OK;
                       }
                       break;
                     case TIMECOND_IFUNMODSINCE:
                       if(timeofdoc > data->timevalue) {
                         infof(data,
-                              "The requested document is not old enough");
+                              "The requested document is not old enough\n");
                         return CURLE_OK;
                       }
                       break;
