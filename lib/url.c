@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.120 2001-05-03 10:53:01 bagder Exp $
+ * $Id: url.c,v 1.121 2001-05-04 07:47:11 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -216,10 +216,10 @@ CURLcode Curl_open(CURL **curl, char *url)
     data->err  = stderr;  /* default stderr to stderr */
 
     /* use fwrite as default function to store output */
-    data->fwrite = (size_t (*)(char *, size_t, size_t, FILE *))fwrite;
+    data->fwrite = (curl_write_callback)fwrite;
 
     /* use fread as default function to read input */
-    data->fread = (size_t (*)(char *, size_t, size_t, FILE *))fread;
+    data->fread = (curl_read_callback)fread;
 
     /* set the default passwd function */
     data->fpasswd = my_getpass;

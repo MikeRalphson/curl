@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.76 2001-04-18 14:06:47 bagder Exp $
+ * $Id: main.c,v 1.77 2001-05-04 07:47:11 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1268,7 +1268,7 @@ struct OutStruct {
   struct Configurable *config;
 };
 
-int my_fwrite(void *buffer, size_t size, size_t nmemb, FILE *stream)
+int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
 {
   struct OutStruct *out=(struct OutStruct *)stream;
   if(out && !out->stream) {
