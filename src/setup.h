@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/setup.h,v $
- * $Revision: 1.2 $
- * $Date: 2000-01-10 23:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2000-03-19 19:55:02 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -82,10 +82,20 @@ int fileno( FILE *stream);
 #define DIR_CHAR      "\\"
 #define DOT_CHAR      "_"
 #else
+#ifdef __EMX__
+/* 20000318 mgs
+ * OS/2 supports leading dots in filenames if the volume is formatted
+ * with JFS or HPFS. */
+#define PATH_CHAR     ";"
+#define DIR_CHAR      "\\"
+#define DOT_CHAR      "."
+#else
+
 #define PATH_CHAR     ":"
 #define DIR_CHAR      "/"
 #define DOT_CHAR      "."
 
+#endif
 #endif
 
 #endif /* __SETUP_H */
