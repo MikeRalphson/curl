@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.39 2004-05-13 10:38:57 bagder Exp $
+ * $Id: ldap.c,v 1.40 2004-07-04 21:38:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -276,7 +276,7 @@ CURLcode Curl_ldap(struct connectdata *conn)
   DYNA_GET_FUNCTION(void (*)(void *), ldap_memfree);
   DYNA_GET_FUNCTION(void (*)(void *, int), ber_free);
 
-  server = (*ldap_init)(conn->host.name, conn->port);
+  server = (*ldap_init)(conn->host.name, (int)conn->port);
   if (server == NULL) {
     failf(data, "LDAP local: Cannot connect to %s:%d",
           conn->host.name, conn->port);
