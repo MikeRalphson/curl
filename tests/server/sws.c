@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.57 2004-10-07 22:57:24 bagder Exp $
+ * $Id: sws.c,v 1.58 2004-11-29 12:10:09 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -80,6 +80,9 @@
 
 static void win32_cleanup(void);
 #endif
+
+/* include memdebug.h last */
+#include "memdebug.h"
 
 #define REQBUFSIZ 150000
 #define REQBUFSIZ_TXT "149999"

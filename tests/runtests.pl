@@ -19,10 +19,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.144 2004-11-26 08:41:39 bagder Exp $
+# $Id: runtests.pl,v 1.145 2004-11-29 12:10:09 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
+use MIME::Base64;
 use strict;
 #use warnings;
 

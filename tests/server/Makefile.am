@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.7 2004-10-07 22:57:24 bagder Exp $
+# $Id: Makefile.am,v 1.8 2004-11-29 12:10:09 bagder Exp $
 ###########################################################################
 # sws is the Silly Web Server
 #
@@ -29,9 +29,16 @@ AUTOMAKE_OPTIONS = foreign
 
 INCLUDES = -I$(top_srcdir)/lib -I$(top_srcdir)/include
 
-noinst_PROGRAMS = sws
+noinst_PROGRAMS = sws getpart
 
-sws_SOURCES= sws.c getpart.c getpart.h $(top_srcdir)/lib/strequal.c
+sws_SOURCES= sws.c getpart.c getpart.h $(top_srcdir)/lib/strequal.c	\
+ $(top_srcdir)/lib/base64.c $(top_srcdir)/lib/mprintf.c			\
+ $(top_srcdir)/lib/memdebug.c
 
-extra_DIST = config.h.in
+extra_DIST = base64.pl
 
+getpart_CPPFLAGS = -DGETPART_TEST
+
+getpart_SOURCES= getpart.c getpart.h $(top_srcdir)/lib/strequal.c	\
+ $(top_srcdir)/lib/base64.c $(top_srcdir)/lib/mprintf.c			\
+ $(top_srcdir)/lib/memdebug.c
