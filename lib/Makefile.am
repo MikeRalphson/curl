@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.14 2001-01-08 10:00:14 bagder Exp $
+# $Id: Makefile.am,v 1.15 2001-01-08 13:39:21 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -58,7 +58,7 @@ download.h     getenv.c       ldap.h         ssluse.h       \
 escape.c       getenv.h       mprintf.c      telnet.c       \
 escape.h       getpass.c      netrc.c        telnet.h       \
 getinfo.c highlevel.c strequal.c strequal.h easy.c \
-security.h security.c krb4.c memdebug.c memdebug.h inet_ntoa_r.h
+security.h security.c krb4.c krb4.h memdebug.c memdebug.h inet_ntoa_r.h
 
 noinst_HEADERS = setup.h highlevel.h
 

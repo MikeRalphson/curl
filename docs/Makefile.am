@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.3 2001-01-08 10:00:14 bagder Exp $
+# $Id: Makefile.am,v 1.4 2001-01-08 13:39:21 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -21,5 +21,6 @@ man_MANS = \
 
 EXTRA_DIST = $(man_MANS) \
 	MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS \
-	LIBCURL README.win32 RESOURCES TODO TheArtOfHttpScripting \
-	examples/README examples/*.c
+	LIBCURL README.win32 RESOURCES TODO TheArtOfHttpScripting
+
+SUBDIRS = examples
