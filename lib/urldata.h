@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.21 $
- * $Date: 2000-09-21 08:50:48 $
+ * $Revision: 1.22 $
+ * $Date: 2000-09-25 21:49:37 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -242,6 +242,11 @@ struct Progress {
   struct timeval t_connect;
   struct timeval t_pretransfer;
   int httpcode;
+
+#define CURR_TIME 5
+
+  double speeder[ CURR_TIME ];
+  int speeder_c;
 };
 
 /****************************************************************************
