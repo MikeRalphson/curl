@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.120 2003-02-24 16:53:53 bagder Exp $
+ * $Id: http.c,v 1.121 2003-03-02 17:43:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -996,6 +996,8 @@ CURLcode Curl_http(struct connectdata *conn)
       }
       headers = headers->next;
     }
+
+    http->postdata = NULL; /* nothing to post at this point */
 
     switch(data->set.httpreq) {
 
