@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.231 2002-09-25 07:08:42 bagder Exp $
+ * $Id: url.c,v 1.232 2002-09-25 11:27:06 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1646,7 +1646,7 @@ CURLcode Curl_protocol_connect(struct connectdata *conn,
                                Curl_addrinfo *hostaddr)
 {
   struct SessionHandle *data = conn->data;
-  CURLcode result;
+  CURLcode result=CURLE_OK;
   
   Curl_pgrsTime(data, TIMER_CONNECT); /* connect done */
 
