@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: htmltitle.cc,v 1.1 2005-01-31 18:22:40 bagder Exp $
+ * $Id: htmltitle.cc,v 1.2 2005-01-31 20:03:01 bagder Exp $
  */
 
 // Get a web page, parse it with libxml.
@@ -266,6 +266,8 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
+  curl_global_init(CURL_GLOBAL_DEFAULT);
+
   // Initialize CURL connection
 
   if (!init(conn, argv[1]))
@@ -278,6 +280,8 @@ int main(int argc, char *argv[])
   // Retrieve content for the URL
 
   code = curl_easy_perform(conn);
+  curl_easy_cleanup(conn);
+
   if (code != CURLE_OK)
   {
     fprintf(stderr, "Failed to get '%s' [%s]\n", argv[1], errorBuffer);
