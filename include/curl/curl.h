@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.100 2001-09-25 06:39:18 bagder Exp $
+ * $Id: curl.h,v 1.101 2001-10-03 08:01:38 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -512,12 +512,22 @@ typedef enum {
   CFINIT(COPYCONTENTS),
   CFINIT(PTRCONTENTS),
   CFINIT(CONTENTSLENGTH),
+  CFINIT(FILECONTENT),
+  CFINIT(ARRAY),
+  CFINIT(ARRAY_START), /* below are the options allowed within a array */
   CFINIT(FILE),
   CFINIT(CONTENTTYPE),
   CFINIT(END),
+  CFINIT(ARRAY_END),   /* up are the options allowed within a array */
 
   CURLFORM_LASTENTRY /* the last unusued */
 } CURLformoption;
+
+/* structure to be used as parameter for CURLFORM_ARRAY */
+struct curl_forms {
+	CURLformoption		option;
+	const char		*value;
+};
 
 /* new external form function */
 int curl_formadd(struct HttpPost **httppost,
@@ -548,8 +558,8 @@ CURLcode curl_global_init(long flags);
 void curl_global_cleanup(void);
 
 /* This is the version number */
-#define LIBCURL_VERSION "7.9"
-#define LIBCURL_VERSION_NUM 0x070900
+#define LIBCURL_VERSION "7.9.1-pre1"
+#define LIBCURL_VERSION_NUM 0x070901
 
 /* linked-list structure for the CURLOPT_QUOTE option (and other) */
 struct curl_slist {
