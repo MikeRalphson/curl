@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.28 2004-01-16 09:17:05 bagder Exp $
+ * $Id: urlglob.c,v 1.29 2004-01-29 13:54:08 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -136,8 +136,11 @@ static GlobCode glob_set(URLGlob *glob, char *pattern, int pos, int *amount)
       ++pos;
     }
   }
+  /* we never reach this point */
+#if 0
   snprintf(globerrormsg, sizeof(globerrormsg), "malformatted pattern");
   return GLOB_ERROR;
+#endif
 }
 
 static GlobCode glob_range(URLGlob *glob, char *pattern, int pos, int *amount)

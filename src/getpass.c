@@ -21,7 +21,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.3 2004-01-13 16:13:32 bagder Exp $
+ * $Id: getpass.c,v 1.4 2004-01-29 13:54:08 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -35,6 +35,8 @@
 #include "setup.h" /* setup.h is required for read() prototype */
 
 #ifndef HAVE_GETPASS_R
+
+#include "getpass.h"
 
 #ifndef WIN32
 #ifdef	VMS
@@ -101,9 +103,9 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
   FILE *infp;
   char infp_fclose = 0;
   FILE *outfp;
-  RETSIGTYPE (*sigint)();
+  RETSIGTYPE (*sigint)(int);
 #ifdef SIGTSTP
-  RETSIGTYPE (*sigtstp)();
+  RETSIGTYPE (*sigtstp)(int);
 #endif
   size_t bytes_read;
   int infd;

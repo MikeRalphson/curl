@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: homedir.c,v 1.3 2004-01-07 09:19:36 bagder Exp $
+ * $Id: homedir.c,v 1.4 2004-01-29 13:54:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -39,6 +39,8 @@
 #ifdef VMS
 #include <unixlib.h>
 #endif
+
+#include "homedir.h"
 
 #ifdef CURLDEBUG
 #include "../lib/memdebug.h"
