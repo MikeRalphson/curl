@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.73 2002-09-03 11:53:00 bagder Exp $
+ * $Id: hostip.c,v 1.74 2002-09-30 08:07:16 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -605,6 +605,8 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
                                &h_errnop))==ERANGE) {
       step_size+=200;
     }
+    if(!h) /* failure */
+      res=1;
     
 #ifdef MALLOCDEBUG
     infof(data, "gethostbyname_r() uses %d bytes\n", step_size);
