@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.22 $
- * $Date: 2000-09-25 21:49:37 $
+ * $Revision: 1.23 $
+ * $Date: 2000-10-03 11:05:09 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -98,6 +98,11 @@
 
 /* Download buffer size, keep it fairly big for speed reasons */
 #define BUFSIZE (1024*50)
+
+/* Upload buffer size, keep it smallish to get faster progress meter
+   updates. This should probably become dynamic and adjust to the upload
+   speed. */
+#define UPLOAD_BUFSIZE (1024*2)
 
 /* Initial size of the buffer to store headers in, it'll be enlarged in case
    of need. */
@@ -174,6 +179,9 @@ struct connectdata {
   char *ppath;
   long bytecount;
   struct timeval now;
+
+  long upload_bufsize; /* adjust as you see fit, never bigger than BUFSIZE
+                          never smaller than UPLOAD_BUFSIZE */
 
   /* These two functions MUST be set by the curl_connect() function to be
      be protocol dependent */
