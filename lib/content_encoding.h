@@ -18,8 +18,18 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.h,v 1.5 2003-04-11 08:49:21 bagder Exp $
+ * $Id: content_encoding.h,v 1.6 2003-05-12 12:45:14 bagder Exp $
  ***************************************************************************/
+#include "setup.h"
+
+/*
+ * Comma-separated list all supported Content-Encodings ('identity' is implied)
+ */
+#ifdef HAVE_LIBZ
+#define ALL_CONTENT_ENCODINGS "deflate, gzip"
+#else
+#define ALL_CONTENT_ENCODINGS "identity"
+#endif
 
 CURLcode Curl_unencode_deflate_write(struct SessionHandle *data, 
                                      struct Curl_transfer_keeper *k, 

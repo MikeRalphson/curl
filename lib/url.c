@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.274 2003-05-09 07:39:29 bagder Exp $
+ * $Id: url.c,v 1.275 2003-05-12 12:45:14 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -106,6 +106,7 @@
 #include "escape.h"
 #include "strtok.h"
 #include "share.h"
+#include "content_encoding.h"
 
 /* And now for the protocols */
 #include "ftp.h"
@@ -825,8 +826,16 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
   case CURLOPT_ENCODING:
     /*
      * String to use at the value of Accept-Encoding header. 08/28/02 jhrg
+     *
+     * If the encoding is set to "" we use an Accept-Encoding header that
+     * encompasses all the encodings we support.
+     * If the encoding is set to NULL we don't send an Accept-Encoding header
+     * and ignore an received Content-Encoding header.
+     *
      */
     data->set.encoding = va_arg(param, char *);
+    if(data->set.encoding && !*data->set.encoding)
+      data->set.encoding = (char*)ALL_CONTENT_ENCODINGS;
     break;
 
   case CURLOPT_USERPWD:

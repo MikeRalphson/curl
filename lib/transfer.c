@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.149 2003-05-12 12:37:05 bagder Exp $
+ * $Id: transfer.c,v 1.150 2003-05-12 12:45:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -893,7 +893,9 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             if(k->badheader < HEADER_ALLBAD) {
               /* This switch handles various content encodings. If there's an
                  error here, be sure to check over the almost identical code
-                 in http_chunks.c. 08/29/02 jhrg */
+                 in http_chunks.c. 08/29/02 jhrg
+                 Make sure that ALL_CONTENT_ENCODINGS contains all the
+                 encodings handled here. */
 #ifdef HAVE_LIBZ
               switch (k->content_encoding) {
               case IDENTITY:
