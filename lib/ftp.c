@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.168 2003-01-29 10:14:21 bagder Exp $
+ * $Id: ftp.c,v 1.169 2003-01-29 10:54:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2060,6 +2060,7 @@ CURLcode Curl_ftp(struct connectdata *conn)
 
   /* the ftp struct is already inited in ftp_connect() */
   ftp = conn->proto.ftp;
+  conn->size = -1; /* make sure this is unknown at this point */
 
   /* We split the path into dir and file parts *before* we URLdecode
      it */
