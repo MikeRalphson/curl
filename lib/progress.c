@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.21 2001-01-22 16:21:05 bagder Exp $
+ * $Id: progress.c,v 1.22 2001-01-25 12:32:40 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -212,13 +212,13 @@ int Curl_pgrsUpdate(struct UrlData *data)
 
   now = Curl_tvnow(); /* what time is it */
 
+  /* The exact time spent so far */
+  data->progress.timespent = Curl_tvdiff (now, data->progress.start);
+
   if(data->progress.lastshow == Curl_tvlong(now))
     return 0; /* never update this more than once a second if the end isn't 
                  reached */
   data->progress.lastshow = now.tv_sec;
-
-  /* The exact time spent so far */
-  data->progress.timespent = Curl_tvdiff (now, data->progress.start);
 
   /* The average download speed this far */
   data->progress.dlspeed = data->progress.downloaded/(data->progress.timespent!=0.0?data->progress.timespent:1.0);
