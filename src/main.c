@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.188 2003-08-06 23:48:08 bagder Exp $
+ * $Id: main.c,v 1.189 2003-08-07 13:20:58 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2469,7 +2469,7 @@ operate(struct Configurable *config, int argc, char *argv[])
   FILE *infd = stdin;
   FILE *headerfilep = NULL;
   char *urlbuffer=NULL;
-  int infilesize=-1; /* -1 means unknown */
+  long infilesize=-1; /* -1 means unknown */
   bool stillflags=TRUE;
 
   bool allocuseragent=FALSE;
