@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.69 2004-07-04 15:37:25 gknauf Exp $
+ * $Id: setup.h,v 1.70 2004-10-02 12:58:27 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -268,16 +268,6 @@ typedef int curl_socket_t;
 
 #ifdef mpeix
 #define IOCTL_3_ARGS
-#endif
-
-#ifndef ECONNRESET
-#ifdef WSAECONNRESET
-#define ECONNRESET WSAECONNRESET
-#else
-/* This will effectively prevent the code from working in this particular
-   aspect, but it still compile fine! */
-#define ECONNRESET 10000
-#endif
 #endif
 
 #ifdef NETWARE
