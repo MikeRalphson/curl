@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.74 2003-03-15 16:43:58 bagder Exp $
+# $Id: runtests.pl,v 1.75 2003-03-15 17:11:13 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -975,6 +975,8 @@ sub serverfortest {
                 runhttpsserver($verbose);
                 $run{'https'}=$HTTPSPIDFILE;
             }
+        }
+        elsif($what eq "none") {
         }
         else {
             warn "we don't support a server for $what";
