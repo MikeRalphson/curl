@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.88 2004-03-25 14:01:01 bagder Exp $
+ * $Id: connect.c,v 1.89 2004-03-26 07:03:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -478,8 +478,7 @@ CURLcode Curl_is_connected(struct connectdata *conn,
 }
 
 static void Curl_setNoDelay(struct connectdata *conn,
-                            curl_socket_t sockfd,
-                            int ip)
+                            curl_socket_t sockfd)
 {
 #ifdef TCP_NODELAY
   struct SessionHandle *data= conn->data;
@@ -488,7 +487,7 @@ static void Curl_setNoDelay(struct connectdata *conn,
     infof(data, "Could not set TCP_NODELAY: %s\n",
           Curl_strerror(conn, Curl_ourerrno()));
   else
-    infof(data,"TCP_NODELAY set for IPv%d\n", ip);
+    infof(data,"TCP_NODELAY set\n");
 #else
   (void)conn;
   (void)sockfd;
@@ -575,7 +574,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
       continue;
 
     else if(data->tcp_nodelay)
-      Curl_setNoDelay(conn, sockfd, 6);
+      Curl_setNoDelay(conn, sockfd);
 #else
   /*
    * Connecting with old style IPv4-only support
@@ -596,7 +595,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
     }
 
     else if(data->tcp_nodelay)
-      Curl_setNoDelay(conn, sockfd, 4);
+      Curl_setNoDelay(conn, sockfd);
 
     /* nasty address work before connect can be made */
     memset((char *) &serv_addr, '\0', sizeof(serv_addr));
