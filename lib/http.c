@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.125 2003-04-30 17:04:53 bagder Exp $
+ * $Id: http.c,v 1.126 2003-04-30 17:12:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -748,8 +748,8 @@ CURLcode Curl_http(struct connectdata *conn)
       start++;
     ptr = start; /* start host-scanning here */
 
-    /* scan through the string to find the end */
-    while(*ptr && !isspace((int)*ptr))
+    /* scan through the string to find the end (space or colon) */
+    while(*ptr && !isspace((int)*ptr) && !(':'==*ptr))
       ptr++;
     
     if(ptr != start) {
