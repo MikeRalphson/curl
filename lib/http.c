@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.87 2002-01-29 20:32:10 bagder Exp $
+ * $Id: http.c,v 1.88 2002-02-07 09:32:40 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -831,7 +831,7 @@ CURLcode Curl_http(struct connectdata *conn)
       data->set.in = (FILE *)&http->form;
 
       add_bufferf(req_buffer,
-                  "Content-Length: %d\r\n", http->postsize-2);
+                  "Content-Length: %d\r\n", http->postsize);
 
       if(!checkheaders(data, "Expect:")) {
         /* if not disabled explicitly we add a Expect: 100-continue
