@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.10 2004-06-24 11:54:11 bagder Exp $
+ * $Id: http_negotiate.c,v 1.11 2004-08-05 18:52:54 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -66,9 +66,9 @@ get_gss_name(struct connectdata *conn, gss_name_t *server)
   /* IIS uses the <service>@<fqdn> form but uses 'http' as the service name */
 
   if (neg_ctx->gss)
-    service = "khttp";
+    service = "KHTTP";
   else
-    service = "http";
+    service = "HTTP";
 
   token.length = strlen(service) + 1 + strlen(conn->host.name) + 1;
   if (token.length + 1 > sizeof(name))
