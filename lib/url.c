@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.126 2001-05-28 14:12:43 bagder Exp $
+ * $Id: url.c,v 1.127 2001-05-29 19:17:39 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1560,6 +1560,7 @@ static CURLcode Connect(struct UrlData *data,
      * checked if the lowercase versions don't exist.
      */
     char *no_proxy=NULL;
+    char *no_proxy_tok_buf;
     char *proxy=NULL;
     char proxy_env[128];
 
@@ -1571,7 +1572,7 @@ static CURLcode Connect(struct UrlData *data,
       /* NO_PROXY wasn't specified or it wasn't just an asterisk */
       char *nope;
 
-      nope=no_proxy?strtok(no_proxy, ", "):NULL;
+      nope=no_proxy?strtok_r(no_proxy, ", ", &no_proxy_tok_buf):NULL;
       while(nope) {
         if(strlen(nope) <= strlen(conn->name)) {
           char *checkn=
@@ -1581,7 +1582,7 @@ static CURLcode Connect(struct UrlData *data,
             break;
           }
         }
-	nope=strtok(NULL, ", ");
+	nope=strtok_r(NULL, ", ", &no_proxy_tok_buf);
       }
       if(!nope) {
 	/* It was not listed as without proxy */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.12 2001-03-16 15:19:36 bagder Exp $
+ * $Id: netrc.c,v 1.13 2001-05-29 19:17:39 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -111,8 +111,9 @@ int Curl_parsenetrc(char *host,
   file = fopen(netrcbuffer, "r");
   if(file) {
     char *tok;
+	char *tok_buf;
     while(fgets(netrcbuffer, sizeof(netrcbuffer), file)) {
-      tok=strtok(netrcbuffer, " \t\n");
+      tok=strtok_r(netrcbuffer, " \t\n", &tok_buf);
       while(tok) {
 	switch(state) {
 	case NOTHING:
@@ -163,7 +164,7 @@ int Curl_parsenetrc(char *host,
 	  }
 	  break;
 	} /* switch (state) */
-	tok = strtok(NULL, " \t\n");
+	tok = strtok_r(NULL, " \t\n", &tok_buf);
       } /* while (tok) */
     } /* while fgets() */
 
