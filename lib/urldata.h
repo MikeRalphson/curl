@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.182 2003-11-11 14:30:45 bagder Exp $
+ * $Id: urldata.h,v 1.183 2003-11-24 07:08:07 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -183,7 +183,7 @@ typedef enum {
   NTLMSTATE_LAST
 } curlntlm;
 
-/* Struct used for Digest challenge-response authentication */
+/* Struct used for NTLM challenge-response authentication */
 struct ntlmdata {
   curlntlm state;
   unsigned char nonce[8];
