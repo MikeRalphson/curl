@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.12 2002-05-02 18:07:38 bagder Exp $
+ * $Id: multi.c,v 1.13 2002-05-02 22:12:14 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -323,6 +323,10 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
       {
         struct Curl_message *msg = (struct Curl_message *)
           malloc(sizeof(struct Curl_message));
+
+        if(!msg)
+          return CURLM_OUT_OF_MEMORY;
+
         msg->extmsg.msg = CURLMSG_DONE;
         msg->extmsg.easy_handle = easy->easy_handle;
         msg->extmsg.data.result = easy->result;
@@ -339,7 +343,9 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
         multi->num_msgs++; /* increase message counter */
           
       }
+      result = CURLM_CALL_MULTI_PERFORM;
       break;
+
     case CURLM_STATE_COMPLETED:
       /* this is a completed transfer, it is likely to still be connected */
 
@@ -364,6 +370,7 @@ CURLMcode curl_multi_perform(CURLM *multi_handle, int *running_handles)
 
     easy = easy->next; /* operate on next handle */
   }
+
   return result;
 }
 
