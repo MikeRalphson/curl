@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.27 2003-11-24 07:15:37 bagder Exp $
+ * $Id: dict.c,v 1.28 2003-12-10 15:27:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -150,7 +150,7 @@ CURLcode Curl_dict(struct connectdata *conn)
     if(result)
       failf(data, "Failed sending DICT request");
     else
-      result = Curl_Transfer(conn, sockfd, -1, FALSE, bytecount,
+      result = Curl_Transfer(conn, FIRSTSOCKET, -1, FALSE, bytecount,
                              -1, NULL); /* no upload */      
     if(result)
       return result;
@@ -196,7 +196,7 @@ CURLcode Curl_dict(struct connectdata *conn)
     if(result)
       failf(data, "Failed sending DICT request");
     else
-      result = Curl_Transfer(conn, sockfd, -1, FALSE, bytecount,
+      result = Curl_Transfer(conn, FIRSTSOCKET, -1, FALSE, bytecount,
                              -1, NULL); /* no upload */
     
     if(result)
@@ -221,7 +221,7 @@ CURLcode Curl_dict(struct connectdata *conn)
       if(result)
         failf(data, "Failed sending DICT request");
       else
-        result = Curl_Transfer(conn, sockfd, -1, FALSE, bytecount,
+        result = Curl_Transfer(conn, FIRSTSOCKET, -1, FALSE, bytecount,
                                -1, NULL);
       if(result)
         return result;
