@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: simple.c,v 1.4 2002-01-09 13:22:31 bagder Exp $
+ * $Id: simple.c,v 1.5 2002-01-09 13:23:01 bagder Exp $
  */
 
 #include <stdio.h>
@@ -18,7 +18,6 @@ int main(void)
 
   curl = curl_easy_init();
   if(curl) {
-    /* what call to write: */
     curl_easy_setopt(curl, CURLOPT_URL, "curl.haxx.se");
     res = curl_easy_perform(curl);
 
