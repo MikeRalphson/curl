@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/urlglob.h,v $
- * $Revision: 1.5 $
- * $Date: 2000-11-21 09:38:41 $
+ * $Revision: 1.6 $
+ * $Date: 2000-12-06 10:10:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -65,11 +65,13 @@ typedef struct {
   char* literal[10];
   URLPattern pattern[9];
   int size;
+  int urllen;
+  char *glob_buffer;
 } URLGlob;
 
 int glob_url(URLGlob**, char*, int *);
 char* next_url(URLGlob*);
-char* match_url(char*, URLGlob); 
+char* match_url(char*, URLGlob *); 
 void glob_cleanup(URLGlob* glob);
 
 #endif

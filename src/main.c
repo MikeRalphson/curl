@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.53 $
- * $Date: 2000-12-04 12:21:18 $
+ * $Revision: 1.54 $
+ * $Date: 2000-12-06 10:10:31 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -1500,7 +1500,7 @@ operate(struct Configurable *config, int argc, char *argv[])
       else {
 	/* fill '#1' ... '#9' terms from URL pattern */
         char *outfile = config->outfile;
-        config->outfile = match_url(config->outfile, *urls);
+        config->outfile = match_url(config->outfile, urls);
         free(outfile);
       }
       
