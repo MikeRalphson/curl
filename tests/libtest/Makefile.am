@@ -1,10 +1,10 @@
 #
-# $Id: Makefile.am,v 1.9 2003-03-12 08:53:44 bagder Exp $
+# $Id: Makefile.am,v 1.10 2003-03-13 15:54:46 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
 
-INCLUDES = -I$(top_srcdir)/include/curl -I$(top_srcdir)/lib
+INCLUDES = -I$(top_srcdir)/include/curl -I$(top_builddir)/lib
 
 LIBDIR = ../../lib
 
