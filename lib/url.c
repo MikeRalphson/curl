@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.208 2002-05-21 22:17:19 bagder Exp $
+ * $Id: url.c,v 1.209 2002-05-21 22:24:56 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2128,6 +2128,10 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     if(old_conn->proxyhost)
       free(old_conn->proxyhost);
     conn = conn_temp;        /* use this connection from now on */
+
+    /* If we speak over a proxy, we need to copy the host name too, as it
+       might be another remote host even when re-using a connection */
+    strcpy(conn->gname, old_conn->gname); /* safe strcpy() */
 
     /* we need these pointers if we speak over a proxy */
     conn->hostname = conn->gname;
