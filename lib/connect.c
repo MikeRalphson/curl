@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.22 2002-01-03 10:22:59 bagder Exp $
+ * $Id: connect.c,v 1.23 2002-01-07 18:38:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -448,8 +448,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
       return CURLE_COULDNT_CONNECT;
     }
 
-    /* now disable the non-blocking mode again */
-    Curl_nonblock(sockfd, FALSE);
+    /* leave the socket in non-blocking mode */
 
     if(addr)
       *addr = ai; /* the address we ended up connected to */
@@ -554,9 +553,8 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
     failf(data, "Couldn't connect to host");
     return CURLE_COULDNT_CONNECT;
   }
-  
-  /* now disable the non-blocking mode again */
-  Curl_nonblock(sockfd, FALSE);
+
+  /* leave the socket in non-blocking mode */
 
   if(addr)
     /* this is the address we've connected to */
