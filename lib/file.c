@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.66 2004-11-09 14:57:11 giva Exp $
+ * $Id: file.c,v 1.67 2004-12-11 18:55:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -340,12 +340,12 @@ CURLcode Curl_file(struct connectdata *conn)
     return result;
   }
 
-  /* Added by Dolbneff A.V & Spiridonoff A.V */
   if (conn->resume_from <= expected_size)
     expected_size -= conn->resume_from;
-  else
-    /* Is this error code suitable in such situation? */
-    return CURLE_FTP_BAD_DOWNLOAD_RESUME;
+  else {
+    failf(data, "failed to resume file:// transfer");
+    return CURLE_BAD_DOWNLOAD_RESUME;
+  }
 
   if (fstated && (expected_size == 0))
     return CURLE_OK;
