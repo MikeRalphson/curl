@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.165 2003-07-15 23:06:02 bagder Exp $
+ * $Id: transfer.c,v 1.166 2003-07-22 09:58:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -754,7 +754,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                 if(data->state.authwant == CURLAUTH_NTLM) {
                   /* NTLM authentication is activated */
                   CURLntlm ntlm =
-                    Curl_input_ntlm(conn, start);
+                    Curl_input_ntlm(conn, FALSE, start);
                   
                   if(CURLNTLM_BAD != ntlm)
                     conn->newurl = strdup(data->change.url); /* clone string */

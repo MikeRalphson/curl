@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.h,v 1.3 2003-07-21 13:16:30 bagder Exp $
+ * $Id: http_ntlm.h,v 1.4 2003-07-22 09:58:57 bagder Exp $
  ***************************************************************************/
 
 typedef enum {
@@ -33,7 +33,7 @@ typedef enum {
 } CURLntlm;
 
 /* this is for ntlm header input */
-CURLntlm Curl_input_ntlm(struct connectdata *conn, char *header);
+CURLntlm Curl_input_ntlm(struct connectdata *conn, bool proxy, char *header);
 
 /* this is for creating ntlm header output */
 CURLcode Curl_output_ntlm(struct connectdata *conn, bool proxy);
