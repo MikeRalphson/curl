@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.117 2004-02-02 16:00:31 bagder Exp $
+ * $Id: hostip.c,v 1.118 2004-02-05 08:34:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -86,8 +86,10 @@ static Curl_addrinfo *my_getaddrinfo(struct connectdata *conn,
                                      char *hostname,
                                      int port,
                                      int *waitp);
+#ifndef ENABLE_IPV6
 #if !defined(HAVE_GETHOSTBYNAME_R) || defined(USE_ARES)
 static struct hostent* pack_hostent(char** buf, struct hostent* orig);
+#endif
 #endif
 
 void Curl_global_host_cache_init(void)
