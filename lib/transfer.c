@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.21 2001-03-13 22:20:14 bagder Exp $
+ * $Id: transfer.c,v 1.22 2001-03-16 15:45:12 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -687,6 +687,11 @@ Transfer(struct connectdata *c_conn)
      (bytecount != contentlength)) {
     failf(data, "transfer closed with %d bytes remaining to read",
           contentlength-bytecount);
+    return CURLE_PARTIAL_FILE;
+  }
+  else if(conn->bits.chunk && conn->proto.http->chunk.datasize) {
+    failf(data, "transfer closed with at least %d bytes remaining",
+          conn->proto.http->chunk.datasize);
     return CURLE_PARTIAL_FILE;
   }
   if(Curl_pgrsUpdate(data))
