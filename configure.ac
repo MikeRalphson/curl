@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.131 2005-02-11 19:34:05 bagder Exp $
+dnl $Id: configure.ac,v 1.132 2005-02-14 23:50:29 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -838,8 +838,12 @@ dnl **********************************************************************
 
   if test X"$OPENSSL_ENABLED" = X"1"; then
     dnl If the ENGINE library seems to be around, check for the OpenSSL engine
-    dnl header, it is kind of "separated" from the main SSL check
-    AC_CHECK_FUNC(ENGINE_init, [ AC_CHECK_HEADERS(openssl/engine.h) ])
+    dnl stuff, it is kind of "separated" from the main SSL check
+    AC_CHECK_FUNC(ENGINE_init,
+              [
+                AC_CHECK_HEADERS(openssl/engine.h)
+                AC_CHECK_FUNCS( ENGINE_load_builtin_engines )
+              ])
 
     AC_MSG_CHECKING([CA cert bundle install path])
 
