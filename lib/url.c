@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.217 2002-06-15 21:00:55 bagder Exp $
+ * $Id: url.c,v 1.218 2002-07-29 22:45:50 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1592,11 +1592,10 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
     /* check for password, if no ask for one */
     if( !data->state.proxypasswd[0] ) {
-      if(!data->set.fpasswd ||
-         data->set.fpasswd( data->set.passwd_client,
-                        "proxy password:",
-                        data->state.proxypasswd,
-                        sizeof(data->state.proxypasswd))) {
+      if(data->set.fpasswd( data->set.passwd_client,
+                            "proxy password:",
+                            data->state.proxypasswd,
+                            sizeof(data->state.proxypasswd))) {
         failf(data, "Bad password from password callback");
         return CURLE_BAD_PASSWORD_ENTERED;
       }
@@ -2171,10 +2170,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   /* if we have a user but no password, ask for one */
   if(conn->bits.user_passwd &&
      !data->state.passwd[0] ) {
-    if(!data->set.fpasswd ||
-      data->set.fpasswd(data->set.passwd_client,
-                       "password:", data->state.passwd,
-                           sizeof(data->state.passwd)))
+    if(data->set.fpasswd(data->set.passwd_client,
+                         "password:", data->state.passwd,
+                         sizeof(data->state.passwd)))
       return CURLE_BAD_PASSWORD_ENTERED;
   }
 
