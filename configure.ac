@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.57 2004-02-20 10:11:50 bagder Exp $
+dnl $Id: configure.ac,v 1.58 2004-02-21 16:56:01 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1203,13 +1203,18 @@ AC_HELP_STRING([--disable-debug],[Disable debug options]),
          dnl we only like gcc less than 5.0, since if it is above that it is
          dnl likely just a compiler that looks like gcc (like icc 8.0)!
          dnl here's the standard setup
-         WARN="-W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wno-format-nonliteral -Wundef -Wpointer-arith -Wnested-externs -Winline -Wmissing-declarations -Wmissing-prototypes -Wsign-compare"
+         WARN="-W -Wall -Wwrite-strings -pedantic -Wno-long-long -Wundef -Wpointer-arith -Wnested-externs -Winline -Wmissing-declarations -Wmissing-prototypes -Wsign-compare"
 
          dnl -Wcast-align is a bit too annoying ;-)
 
          if test "$gccnum" -ge "296"; then
            dnl gcc 2.96 or later
            WARN="$WARN -Wfloat-equal"
+
+           if test "$gccnum" -gt "296"; then
+             dnl this option does not exist in 2.96
+             WARN="$WARN -Wno-format-nonliteral"
+           fi
 
            dnl -Wunreachable-code seems totally unreliable on my gcc 3.3.2 on
            dnl on i686-Linux as it gives us heaps with false positives
