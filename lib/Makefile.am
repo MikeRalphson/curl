@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.16 2001-01-17 13:22:27 bagder Exp $
+# $Id: Makefile.am,v 1.17 2001-02-12 08:21:45 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -55,7 +55,7 @@ dict.c         ftp.h          if2ip.c        speedcheck.c   url.h \
 dict.h         getdate.c      if2ip.h        speedcheck.h   urldata.h \
 getdate.h      ldap.c         ssluse.c       version.c \
 getenv.c       ldap.h         ssluse.h       \
-escape.c       getenv.h       mprintf.c      telnet.c       \
+escape.c       mprintf.c      telnet.c       \
 escape.h       getpass.c      netrc.c        telnet.h       \
 getinfo.c transfer.c strequal.c strequal.h easy.c \
 security.h security.c krb4.c krb4.h memdebug.c memdebug.h inet_ntoa_r.h
