@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.64 2004-04-19 07:18:26 bagder Exp $
+ * $Id: progress.c,v 1.65 2004-05-05 07:45:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -301,10 +301,21 @@ int Curl_pgrsUpdate(struct connectdata *conn)
     if(0 == span_ms)
       span_ms=1; /* at least one millisecond MUST have passed */
 
-    /* Calculate the average speed the last 'countindex' seconds */
-    data->progress.current_speed = (curl_off_t)
-      (data->progress.speeder[nowindex]-
-       data->progress.speeder[checkindex])/((double)span_ms/1000);
+    /* Calculate the average speed the last 'span_ms' milliseconds */
+    {
+      curl_off_t amount = data->progress.speeder[nowindex]-
+        data->progress.speeder[checkindex];
+
+      if(amount > 0xffffffff/1000)
+        /* the 'amount' value is bigger than would fit in 32 bits if
+           multiplied with 1000, so we use the double math for this */
+        data->progress.current_speed = (curl_off_t)
+          (amount/(span_ms/1000.0));
+      else
+        /* the 'amount' value is small enough to fit within 32 bits even
+           when multiplied with 1000 */
+        data->progress.current_speed = amount*1000/span_ms;
+    }
   }
   else
     /* the first second we use the main average */
