@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.42 2004-04-19 15:20:30 bagder Exp $
+# $Id: ftpserver.pl,v 1.43 2004-05-17 08:02:23 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -433,13 +433,32 @@ sub PASV_command {
         printf("229 Entering Passive Mode (|||%d|)\n", $pasvport);
     }
 
-    my $paddr = accept(SOCK, Server2);
-    my($iport,$iaddr) = sockaddr_in($paddr);
-    my $name = gethostbyaddr($iaddr,AF_INET);
 
-    close(Server2); # close the listener when its served its purpose!
+    my $paddr;
+    eval {
+        local $SIG{ALRM} = sub { die "alarm\n" };
+        alarm 2; # assume swift operations!
+        $paddr = accept(SOCK, Server2);
+        alarm 0;
+    };
+    if ($@) {
+        # timed out
+        
+        close(Server2);
+        logmsg "accept failed\n";
+        return;
+    }
+    else {
+        logmsg "accept worked\n";
 
-    logmsg "data connection from $name [", inet_ntoa($iaddr), "] at port $iport\n";
+        my($iport,$iaddr) = sockaddr_in($paddr);
+        my $name = gethostbyaddr($iaddr,AF_INET);
+
+        close(Server2); # close the listener when its served its purpose!
+
+        logmsg "data connection from $name [", inet_ntoa($iaddr),
+        "] at port $iport\n";
+    }
 
     return;
 }
