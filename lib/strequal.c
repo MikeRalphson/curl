@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.17 2001-11-27 07:27:32 bagder Exp $
+ * $Id: strequal.c,v 1.18 2001-12-03 12:57:45 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -63,6 +63,9 @@ int curl_strnequal(const char *first, const char *second, size_t max)
     first++;
     second++;
   }
+  if(0 == max)
+    return 1; /* they are equal this far */
+
   return toupper(*first) == toupper(*second);
 #endif
 }
