@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.433 2004-12-14 21:22:51 bagder Exp $
+ * $Id: url.c,v 1.434 2004-12-16 21:27:23 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1311,7 +1311,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * Set private data pointer.
      */
-    data->set.private = va_arg(param, char *);
+    data->set.private_data = va_arg(param, char *);
     break;
 
   case CURLOPT_MAXFILESIZE:

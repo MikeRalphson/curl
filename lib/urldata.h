@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.250 2004-12-15 01:38:25 danf Exp $
+ * $Id: urldata.h,v 1.251 2004-12-16 21:27:23 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -899,7 +899,7 @@ struct UserDefined {
   int dns_cache_timeout; /* DNS cache timeout */
   long buffer_size;      /* size of receive buffer to use */
 
-  char *private; /* Private data */
+  char *private_data; /* Private data */
 
   struct curl_slist *http200aliases; /* linked list of aliases for http200 */
 
