@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.25 2001-03-22 20:02:52 bagder Exp $
+ * $Id: transfer.c,v 1.26 2001-03-23 07:52:45 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -356,11 +356,10 @@ Transfer(struct connectdata *c_conn)
                   /*
                    * end-of-headers.
                    *
-                   * If we requested a "no body" and this isn't a "close"
-                   * connection, this is a good time to get out and return
-                   * home.
+                   * If we requested a "no body", this is a good time to get
+                   * out and return home.
                    */
-                  if(!conn->bits.close && data->bits.no_body)
+                  if(data->bits.no_body)
                     return CURLE_OK;
                   break;		/* exit header line loop */
                 }
