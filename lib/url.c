@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.6 $
- * $Date: 2000-02-14 23:03:05 $
+ * $Revision: 1.7 $
+ * $Date: 2000-02-16 00:01:50 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -457,6 +457,7 @@ UrgError curl_urlget(UrgTag tag, ...)
     va_end(arg);
 
     pgrsMode(data, data->progress.mode);
+    pgrsStartNow(data);
 
     data-> headerbuff=(char*)malloc(HEADERSIZE);
     if(!data->headerbuff)
