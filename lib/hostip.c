@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.84 2003-03-03 22:23:48 bagder Exp $
+ * $Id: hostip.c,v 1.85 2003-03-19 09:16:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -511,7 +511,7 @@ static struct hostent* pack_hostent(char** buf, struct hostent* orig)
 }
 #endif
 
-static char *MakeIP(unsigned long num,char *addr, int addr_len)
+static char *MakeIP(unsigned long num, char *addr, int addr_len)
 {
 #if defined(HAVE_INET_NTOA) || defined(HAVE_INET_NTOA_R)
   struct in_addr in;
@@ -594,7 +594,7 @@ static Curl_addrinfo *my_getaddrinfo(struct SessionHandle *data,
     h->h_addrtype = AF_INET;
     h->h_length = sizeof(*addrentry);
     h->h_name = &buf->h_name[0];
-    MakeIP(ntohl(in), h->h_name, sizeof(buf->h_name));
+    MakeIP(ntohl(in), (char *)h->h_name, sizeof(buf->h_name));
   }
 #if defined(HAVE_GETHOSTBYNAME_R)
   else {
