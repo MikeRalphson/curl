@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.81 2001-02-08 13:53:13 bagder Exp $
+ * $Id: url.c,v 1.82 2001-02-12 08:22:19 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -748,7 +748,7 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
       /* the name is given, get user+password */
       sscanf(data->userpwd, "%127[^:]:%127[^\n]",
              data->user, data->passwd);
-      }
+    }
     else
       /* no name given, get the password only */
       sscanf(data->userpwd+1, "%127[^\n]", data->passwd);
