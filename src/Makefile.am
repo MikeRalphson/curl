@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.25 2003-05-21 08:08:51 bagder Exp $
+# $Id: Makefile.am,v 1.26 2003-06-12 12:54:34 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -10,6 +10,14 @@ AUTOMAKE_OPTIONS = foreign nostdinc
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/src -I$(top_srcdir)/src
 
 bin_PROGRAMS = curl #memtest
+
+if HAVE_LIBZ
+# libz available, attempt to compress the help data
+MKHELPOPT=-c
+else
+# no libz, don't try to compress
+MKHELPOPT=
+endif
 
 #memtest_SOURCES = memtest.c
 #memtest_LDADD = $(top_srcdir)/lib/libcurl.la
@@ -38,4 +46,4 @@ MKHELP=$(top_srcdir)/src/mkhelp.pl
 # This generates the hugehelp.c file
 hugehelp.c: $(README) $(MANPAGE)  mkhelp.pl
 	rm -f hugehelp.c
-	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP)  $(README) > hugehelp.c
+	$(NROFF) -man $(MANPAGE) | $(PERL) -s $(MKHELP) $(MKHELPOPT) $(README) > hugehelp.c
