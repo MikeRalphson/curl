@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.133 2002-05-28 09:31:48 bagder Exp $
+ * $Id: main.c,v 1.134 2002-06-11 15:09:02 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -347,8 +347,8 @@ static void help(void)
        "    --cacert <file> CA certifciate to verify peer against (SSL)\n"
        "    --capath <directory> CA directory (made using c_rehash) to verify\n"
        "                    peer against (SSL, NOT Windows)\n"
-       "    --ciphers <list> What SSL ciphers to use (SSL)\n"
-       "    --connect-timeout <seconds> Maximum time allowed for connection\n"
+       "    --ciphers <list> What SSL ciphers to use (SSL)");
+  puts("    --connect-timeout <seconds> Maximum time allowed for connection\n"
        " -f/--fail          Fail silently (no output at all) on errors (H)\n"
        " -F/--form <name=content> Specify HTTP POST data (H)\n"
        " -g/--globoff       Disable URL sequences and ranges using {} and []\n"
