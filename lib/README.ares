@@ -1,4 +1,4 @@
-$Id: README.ares,v 1.8 2004-01-04 12:00:11 bagder Exp $
+$Id: README.ares,v 1.9 2004-01-09 07:45:47 bagder Exp $
                                   _   _ ____  _     
                               ___| | | |  _ \| |    
                              / __| | | | |_) | |    
@@ -61,16 +61,6 @@ other projects adig/ahost seem to fail under MSVC).
 
 Next was libcurl. I opened lib/config-win32.h and I added a:
  #define USE_ARES 1
-
-Next thing I added was, near the HAVE_GETTIMEOFDAY checks I added:
-#ifdef USE_ARES
-#define HAVE_GETTIMEOFDAY 1
-#endif
-
-The reason is, it seems curl-ares has a gettimeofday function in it (perhaps
-this should be made static in ares to avoid this kludge?) To prevent a
-duplicate symbol error, I had to make sure libcurl didn't also try and create
-a gettimeofday() function.
 
 Next thing I did was I added the path for the ares includes to the include
 path, and the libares.lib to the libraries.
