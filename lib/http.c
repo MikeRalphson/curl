@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.33 $
- * $Date: 2000-10-20 13:48:38 $
+ * $Revision: 1.34 $
+ * $Date: 2000-11-13 11:29:32 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -394,7 +394,7 @@ CURLcode http(struct connectdata *conn)
       while(co) {
         if(co->value && strlen(co->value)) {
           if(0 == count) {
-            add_bufferf(req_buffer, "Cookie:");
+            add_bufferf(req_buffer, "Cookie: ");
           }
           add_bufferf(req_buffer,
                       "%s%s=%s", count?"; ":"", co->name, co->value);
