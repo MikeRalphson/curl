@@ -1,8 +1,8 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: libcurl-multi.3,v 1.1 2002-03-19 10:16:12 bagder Exp $
+.\" $Id: libcurl-multi.3,v 1.2 2002-03-20 10:11:50 bagder Exp $
 .\"
-.TH libcurl-multi 5 "19 March 2001" "libcurl 7.9.5" "libcurl multi interface"
+.TH libcurl-multi 5 "20 March 2001" "libcurl 7.9.5" "libcurl multi interface"
 .SH NAME
 libcurl-multi \- how to use the multi interface
 .SH DESCRIPTION
@@ -13,6 +13,11 @@ programming with libcurl and the \fIlibcurl(3)\fP man page for an overview of
 the libcurl easy interface.
 
 All functions in the multi interface are prefixed with curl_multi.
+.SH "PLEASE NOTICE"
+The multi interface is a rather new member of the libcurl family. It has not
+yet been very widely used. It may still be a few more bugs lurking in there
+than we are used to. That said, it might also just work in every aspect you
+try it. Please report all bugs and oddities you see.
 .SH "OBJECTIVES"
 The multi interface introduces several new abilities that the easy interface
 refuses to offer. They are mainly:
