@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.409 2004-09-25 21:28:26 bagder Exp $
+ * $Id: url.c,v 1.410 2004-09-28 07:11:32 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1128,7 +1128,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     {
       const char *cpTemp = va_arg(param, char *);
       if (cpTemp && cpTemp[0]) {
-#ifdef HAVE_OPENSSL_ENGINE_H
+#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
         ENGINE *e = ENGINE_by_id(cpTemp);
         if (e) {
           if (data->engine) {
@@ -1152,7 +1152,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
     /*
      * flag to set engine as default.
      */
-#ifdef HAVE_OPENSSL_ENGINE_H
+#if defined(USE_SSLEAY) && defined(HAVE_OPENSSL_ENGINE_H)
     if (data->engine) {
       if (ENGINE_set_default(data->engine, ENGINE_METHOD_ALL) > 0) {
 #ifdef DEBUG
