@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.27 2003-07-30 07:33:41 bagder Exp $
+# $Id: Makefile.am,v 1.28 2003-08-06 22:14:39 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -50,4 +50,5 @@ hugehelp.c: $(README) $(MANPAGE)  mkhelp.pl
 
 # for distribution, generate an uncompressed help file!
 dist-hook:
+	chmod 0666 $(distdir)/hugehelp.c
 	$(NROFF) -man $(MANPAGE) | $(PERL) $(MKHELP) $(README) > $(distdir)/hugehelp.c
