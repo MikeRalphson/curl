@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.51 2002-02-22 15:40:17 bagder Exp $
+# $Id: runtests.pl,v 1.52 2002-02-25 11:12:10 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -850,19 +850,6 @@ EOHELP
 if($testthis[0] ne "") {
     $TESTCASES=join(" ", @testthis);
 }
-
-############################################################################
-#
-# don't let anyone think this works right now
-
-print <<EOM
- ***************************************************************************
-    THIS DOES NOT WORK
- ***************************************************************************
-
-EOM
-    ;
-
 
 #######################################################################
 # Output curl version and host info being tested
