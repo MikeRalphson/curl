@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/hostip.c,v $
- * $Revision: 1.9 $
- * $Date: 2000-08-23 07:24:17 $
+ * $Revision: 1.10 $
+ * $Date: 2000-08-24 12:33:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -69,7 +69,7 @@
 #include "urldata.h"
 #include "sendf.h"
 
-#ifndef HAVE_INET_NTOA_R_DECL
+#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
 #include "inet_ntoa_r.h"
 #endif
 

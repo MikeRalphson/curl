@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.32 $
- * $Date: 2000-08-17 15:40:26 $
+ * $Revision: 1.33 $
+ * $Date: 2000-08-24 12:33:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -420,6 +420,9 @@ CURLcode curl_setopt(CURL *curl, CURLoption option, ...)
     break;
   case CURLOPT_POSTFIELDS:
     data->postfields = va_arg(param, char *);
+    break;
+  case CURLOPT_POSTFIELDSIZE:
+    data->postfieldsize = va_arg(param, long);
     break;
   case CURLOPT_REFERER:
     data->referer = va_arg(param, char *);

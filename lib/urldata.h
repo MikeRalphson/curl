@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/urldata.h,v $
- * $Revision: 1.17 $
- * $Date: 2000-07-25 21:14:12 $
+ * $Revision: 1.18 $
+ * $Date: 2000-08-24 12:33:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -345,6 +345,9 @@ struct UrlData {
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */
   char *postfields; /* if POST, set the fields' values here */
+  long postfieldsize; /* if POST, this might have a size to use instead of
+                         strlen(), and then the data *may* be binary (contain
+                         zero bytes) */
 
   bool free_referer; /* set TRUE if 'referer' points to a string we
                         allocated */

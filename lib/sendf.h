@@ -31,8 +31,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/sendf.h,v $
- * $Revision: 1.3 $
- * $Date: 2000-06-20 15:31:26 $
+ * $Revision: 1.4 $
+ * $Date: 2000-08-24 12:33:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -40,7 +40,8 @@
  * ------------------------------------------------------------
  ****************************************************************************/
 
-int sendf(int fd, struct UrlData *, char *fmt, ...);
+size_t sendf(int fd, struct UrlData *, char *fmt, ...);
+size_t ssend(int fd, struct UrlData *, void *fmt, size_t len);
 void infof(struct UrlData *, char *fmt, ...);
 void failf(struct UrlData *, char *fmt, ...);
 

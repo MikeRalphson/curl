@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.24 2000-08-23 07:23:42 bagder Exp $
+dnl $Id: configure.in,v 1.25 2000-08-24 12:33:17 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -13,12 +13,15 @@ AC_CANONICAL_TARGET
 
 dnl Checks for programs.
 AC_PROG_CC
+
+dnl Check for AIX weirdos
+AC_AIX
+
+AC_SYS_LARGEFILE
 dnl The install stuff has already been taken care of by the automake stuff
 dnl AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
-dnl Check for AIX weirdos
-AC_AIX
 
 dnl **********************************************************************
 dnl Checks for libraries.

@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/if2ip.c,v $
- * $Revision: 1.8 $
- * $Date: 2000-08-23 07:24:17 $
+ * $Revision: 1.9 $
+ * $Date: 2000-08-24 12:33:17 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -82,7 +82,7 @@
 #include <sys/sockio.h>
 #endif
 
-#ifndef HAVE_INET_NTOA_R_DECL
+#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL) 
 #include "inet_ntoa_r.h"
 #endif
 
