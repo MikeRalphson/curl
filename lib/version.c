@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.35 2004-03-08 07:46:26 bagder Exp $
+ * $Id: version.c,v 1.36 2004-04-26 07:14:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -31,6 +31,10 @@
 
 #ifdef USE_ARES
 #include <ares_version.h>
+#endif
+
+#ifdef USE_LIBIDN
+#include <stringprep.h>
 #endif
 
 #ifdef USE_SSLEAY
@@ -95,6 +99,7 @@ char *curl_version(void)
 {
   static char version[200];
   char *ptr;
+  int len = sizeof(version);
   strcpy(version, LIBCURL_NAME "/" LIBCURL_VERSION );
   ptr=strchr(version, '\0');
 
@@ -105,6 +110,7 @@ char *curl_version(void)
     ptr=strchr(version, '\0');
   }
 #endif
+  len -= strlen(version);
 
 #ifdef HAVE_KRB4
   sprintf(ptr, " krb4");
@@ -125,6 +131,10 @@ char *curl_version(void)
 #ifdef USE_ARES
   /* this function is only present in c-ares, not in the original ares */
   sprintf(ptr, " c-ares/%s", ares_version(NULL));
+  ptr += strlen(ptr);
+#endif
+#ifdef USE_LIBIDN
+  sprintf(ptr, " libidn/%s", stringprep_check_version(NULL));
   ptr += strlen(ptr);
 #endif
 
@@ -168,7 +178,7 @@ static const char *protocols[] = {
 };
 
 static curl_version_info_data version_info = {
-  CURLVERSION_SECOND,
+  CURLVERSION_NOW,
   LIBCURL_VERSION,
   LIBCURL_VERSION_NUM,
   OS, /* as found by configure or set by hand at build-time */
@@ -201,6 +211,9 @@ static curl_version_info_data version_info = {
 #if defined(ENABLE_64BIT) && (SIZEOF_CURL_OFF_T > 4)
   | CURL_VERSION_LARGEFILE
 #endif
+#ifdef USE_LIBIDN
+  | CURL_VERSION_IDN
+#endif
   ,
   NULL, /* ssl_version */
   0,    /* ssl_version_num */
@@ -208,6 +221,7 @@ static curl_version_info_data version_info = {
   protocols,
   NULL, /* c-ares version */
   0,    /* c-ares version numerical */
+  NULL, /* libidn version */
 };
 
 curl_version_info_data *curl_version_info(CURLversion stamp)
