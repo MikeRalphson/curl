@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.5 2004-06-10 11:06:21 bagder Exp $
+ * $Id: hostip6.c,v 1.6 2004-06-24 14:39:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -111,8 +111,9 @@ void Curl_freeaddrinfo(Curl_addrinfo *p)
  * address. But this is an ipv6 build and then we don't copy the address, we
  * just return the same pointer!
  */
-Curl_addrinfo *Curl_addrinfo_copy(Curl_addrinfo *source)
+Curl_addrinfo *Curl_addrinfo_copy(void *source, int port)
 {
+  (void) port;
   return source;
 }
 #endif

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.37 2004-06-24 10:43:50 bagder Exp $
+ * $Id: hostip.h,v 1.38 2004-06-24 14:39:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -206,7 +206,7 @@ void Curl_addrinfo4_callback(void *arg,
    resolve, ipv6 */
 void Curl_addrinfo6_callback(void *arg,
                             int status,
-                            struct hostent *hostent);
+                            struct addrinfo *ai);
 
 
 /* [ipv4 only] Creates a Curl_addrinfo struct from a numerical-only IP
