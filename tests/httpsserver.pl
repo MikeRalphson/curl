@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: httpsserver.pl,v 1.4 2003-01-21 10:14:25 bagder Exp $
+# $Id: httpsserver.pl,v 1.5 2003-01-21 15:09:20 bagder Exp $
 # This is the HTTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -69,7 +69,7 @@ print CONF "
 	connect = $target_port
 ";
 close CONF; 
-system("chmod go-rwx $conffile $certfile");	# secure permissions
+#system("chmod go-rwx $conffile $certfile");	# secure permissions
 
 		# works only with stunnel versions < 4.00
 my $cmd="$stunnel -p $certfile -P $pidfile -d $port -r $target_port 2>/dev/null";
