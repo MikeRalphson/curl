@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_setopt.3,v 1.16 2002-08-15 06:13:54 bagder Exp $
+.\" $Id: curl_easy_setopt.3,v 1.17 2002-08-15 08:06:36 bagder Exp $
 .\"
 .TH curl_easy_setopt 3 "5 Aug 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -332,7 +332,8 @@ want the transfer to start from.
 .B CURLOPT_COOKIE
 Pass a pointer to a zero terminated string as parameter. It will be used to
 set a cookie in the http request. The format of the string should be
-\[NAME]=[CONTENTS]; Where NAME is the cookie name.
+NAME=CONTENTS, where NAME is the cookie name and CONTENTS is what the cookie
+should contain.
 
 If you need to set mulitple cookies, you need to set them all using a single
 option and thus you need to concat them all in one single string. Set multiple
