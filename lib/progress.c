@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.71 2004-06-24 11:54:11 bagder Exp $
+ * $Id: progress.c,v 1.72 2004-07-01 07:28:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -366,7 +366,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
      (data->progress.ulspeed>0) &&
      (data->progress.size_ul > 100) ) {
     ulestimate = (long)(data->progress.size_ul / data->progress.ulspeed);
-    ulpercen = (long)(100*(data->progress.uploaded/100) /
+    ulpercen = (int)(100*(data->progress.uploaded/100) /
                       (data->progress.size_ul/100) );
   }
 
@@ -375,7 +375,7 @@ int Curl_pgrsUpdate(struct connectdata *conn)
      (data->progress.dlspeed>0) &&
      (data->progress.size_dl>100)) {
     dlestimate = (long)(data->progress.size_dl / data->progress.dlspeed);
-    dlpercen = (long)(100*(data->progress.downloaded/100) /
+    dlpercen = (int)(100*(data->progress.downloaded/100) /
                       (data->progress.size_dl/100));
   }
 
