@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.249 2004-12-14 14:20:21 giva Exp $
+ * $Id: urldata.h,v 1.250 2004-12-15 01:38:25 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -573,7 +573,7 @@ struct connectdata {
   int sec_complete;
   void *app_data;
 
-  struct Curl_sec_client_mech *mech;
+  const struct Curl_sec_client_mech *mech;
   struct sockaddr_in local_addr;
 
 #endif

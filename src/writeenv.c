@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeenv.c,v 1.8 2004-03-29 12:29:26 bagder Exp $
+ * $Id: writeenv.c,v 1.9 2004-12-15 01:38:25 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -26,12 +26,13 @@
 #ifdef USE_ENVIRONMENT
 
 #include <curl/curl.h>
+#include "writeenv.h"
 
 #ifdef __riscos__
 #include <kernel.h>
 #endif
 
-struct
+static const struct
 {
   const char * name;
   CURLINFO id;

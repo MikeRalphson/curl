@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.25 2004-11-15 11:25:39 bagder Exp $
+ * $Id: writeout.c,v 1.26 2004-12-15 01:38:25 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -68,7 +68,7 @@ struct variable {
 };
 
 
-static struct variable replacements[]={
+static const struct variable replacements[]={
   {"url_effective", VAR_EFFECTIVE_URL},
   {"http_code", VAR_HTTP_CODE},
   {"time_total", VAR_TOTAL_TIME},

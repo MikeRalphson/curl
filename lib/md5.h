@@ -20,10 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: md5.h,v 1.3 2004-01-07 09:19:35 bagder Exp $
+ * $Id: md5.h,v 1.4 2004-12-15 01:38:25 danf Exp $
  ***************************************************************************/
 
 void Curl_md5it(unsigned char *output,
-                unsigned char *input);
+                const unsigned char *input);
 
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.31 2004-06-24 11:54:11 bagder Exp $
+ * $Id: base64.c,v 1.32 2004-12-15 01:38:25 danf Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -110,7 +110,7 @@ size_t Curl_base64_decode(const char *src, char *dest)
 }
 
 /* ---- Base64 Encoding --- */
-static char table64[]=
+static const char table64[]=
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 /*

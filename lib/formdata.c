@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.83 2004-11-02 10:12:23 bagder Exp $
+ * $Id: formdata.c,v 1.84 2004-12-15 01:38:25 danf Exp $
  ***************************************************************************/
 
 /*
@@ -261,7 +261,7 @@ static const char * ContentTypeForFilename (const char *filename,
     const char *extension;
     const char *type;
   };
-  static struct ContentType ctts[]={
+  static const struct ContentType ctts[]={
     {".gif",  "image/gif"},
     {".jpg",  "image/jpeg"},
     {".jpeg", "image/jpeg"},
@@ -1543,7 +1543,7 @@ char *Curl_FormBoundary(void)
                               the same form won't be identical */
   size_t i;
 
-  static char table16[]="abcdef0123456789";
+  static const char table16[]="abcdef0123456789";
 
   retstring = (char *)malloc(BOUNDARY_LENGTH+1);
 
