@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.171 2003-10-24 12:58:29 bagder Exp $
+ * $Id: http.c,v 1.172 2003-10-31 21:43:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1381,10 +1381,6 @@ CURLcode Curl_http(struct connectdata *conn)
 #else
       thistime = gmtime(&data->set.timevalue);
 #endif
-      if(NULL == thistime) {
-        failf(data, "localtime() failed!");
-        return CURLE_OUT_OF_MEMORY;
-      }
 
 #ifdef HAVE_STRFTIME
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
