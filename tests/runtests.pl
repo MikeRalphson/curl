@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.56 2002-02-28 12:36:25 bagder Exp $
+# $Id: runtests.pl,v 1.57 2002-03-01 09:20:03 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -52,7 +52,7 @@ my $memory_debug=0;
 my $memdump="memdump";
 
 # the path to the script that analyzes the memory debug output file:
-my $memanalyze="../memanalyze.pl";
+my $memanalyze="./memanalyze.pl";
 
 my $checkstunnel = &checkstunnel;
 
