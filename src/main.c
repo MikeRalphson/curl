@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.195 2003-08-14 11:53:53 bagder Exp $
+ * $Id: main.c,v 1.196 2003-08-14 13:38:19 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2672,7 +2672,7 @@ operate(struct Configurable *config, int argc, char *argv[])
   }
 
   /* loop through the list of given URLs */
-  while(urlnode) {
+  while(urlnode && !res) {
 
     /* get the full URL (it might be NULL) */
     url=urlnode->url;
@@ -2765,10 +2765,11 @@ operate(struct Configurable *config, int argc, char *argv[])
           free(storefile);
           if(!outfile) {
             /* bad globbing */
-            helpf("bad output glob!\n");
-            return CURLE_FAILED_INIT;
+            fprintf(stderr, "bad output glob!\n");
+            free(url);
+            res = CURLE_FAILED_INIT;
+            break;
           }
-
         }
       
         /* Create the directory hierarchy, if not pre-existant to a multiple
