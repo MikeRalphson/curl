@@ -20,8 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: krb4.h,v 1.5 2002-09-03 11:53:00 bagder Exp $
+ * $Id: krb4.h,v 1.6 2002-12-05 11:26:20 bagder Exp $
  ***************************************************************************/
-void Curl_krb_kauth(struct connectdata *conn);
+CURLcode Curl_krb_kauth(struct connectdata *conn);
 
 #endif
