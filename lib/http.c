@@ -18,11 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.99 2002-06-11 07:20:21 bagder Exp $
+ * $Id: http.c,v 1.100 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
+#ifndef CURL_DISABLE_HTTP
 /* -- WIN32 approved -- */
 #include <stdio.h>
 #include <string.h>
@@ -987,3 +988,4 @@ CURLcode Curl_http(struct connectdata *conn)
  * vim600: fdm=marker
  * vim: et sw=2 ts=2 sts=2 tw=78
  */
+#endif

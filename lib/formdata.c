@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.38 2002-05-21 07:44:28 bagder Exp $
+ * $Id: formdata.c,v 1.39 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
 
 /*
@@ -108,6 +108,8 @@ Content-Disposition: form-data; name="FILECONTENT"
  */
 
 #include "setup.h"
+
+#ifndef CURL_DISABLE_HTTP
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1504,6 +1506,8 @@ int main(int argc, char **argv)
 }
 
 #endif
+
+#endif /* CURL_DISABLE_HTTP */
 
 /*
  * local variables:

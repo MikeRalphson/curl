@@ -18,10 +18,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.10 2002-03-19 07:54:55 bagder Exp $
+ * $Id: http_chunks.c,v 1.11 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
 #include "setup.h"
 
+#ifndef CURL_DISABLE_HTTP
 /* -- WIN32 approved -- */
 #include <stdio.h>
 #include <string.h>
@@ -228,3 +229,4 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
  * vim600: fdm=marker
  * vim: et sw=2 ts=2 sts=2 tw=78
  */
+#endif /* CURL_DISABLE_HTTP */

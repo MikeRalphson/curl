@@ -20,9 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: arpa_telnet.h,v 1.6 2002-03-19 07:54:55 bagder Exp $
+ * $Id: arpa_telnet.h,v 1.7 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
-
+#ifndef CURL_DISABLE_TELNET
 /*
  * Telnet option defines. Add more here if in need.
  */
@@ -97,5 +97,5 @@ static const char *telnetcmds[]=
 #define TELCMD_OK(x) ( ((unsigned int)(x) >= TELCMD_MINIMUM) && \
                        ((unsigned int)(x) <= TELCMD_MAXIMUM) )
 #define TELCMD(x)    telnetcmds[(x)-TELCMD_MINIMUM]
-
+#endif
 #endif

@@ -20,10 +20,20 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.22 2002-03-19 07:54:55 bagder Exp $
+ * $Id: setup.h,v 1.23 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
 
-
+/* MN 06/07/02 */
+/* #define HTTP_ONLY
+*/
+#ifdef HTTP_ONLY
+#define CURL_DISABLE_FTP
+#define CURL_DISABLE_LDAP
+#define CURL_DISABLE_TELNET
+#define CURL_DISABLE_DICT
+#define CURL_DISABLE_FILE
+#define CURL_DISABLE_GOPHER
+#endif
 
 #if !defined(WIN32) && defined(_WIN32)
 /* This _might_ be a good Borland fix. Please report whether this works or

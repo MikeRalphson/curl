@@ -18,11 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.20 2002-03-19 07:54:55 bagder Exp $
+ * $Id: ldap.c,v 1.21 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
+#ifndef CURL_DISABLE_LDAP
 /* -- WIN32 approved -- */
 #include <stdio.h>
 #include <string.h>
@@ -229,3 +230,4 @@ CURLcode Curl_ldap(struct connectdata *conn)
  * vim600: fdm=marker
  * vim: et sw=2 ts=2 sts=2 tw=78
  */
+#endif

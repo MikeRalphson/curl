@@ -18,11 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.24 2002-04-22 23:54:43 bagder Exp $
+ * $Id: file.c,v 1.25 2002-06-11 11:13:01 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
+#ifndef CURL_DISABLE_FILE
 /* -- WIN32 approved -- */
 #include <stdio.h>
 #include <string.h>
@@ -204,3 +205,4 @@ CURLcode Curl_file(struct connectdata *conn)
  * vim600: fdm=marker
  * vim: et sw=2 ts=2 sts=2 tw=78
  */
+#endif
