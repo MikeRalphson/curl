@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.26 2003-07-23 11:39:05 bagder Exp $
+# $Id: Makefile.am,v 1.27 2003-10-13 00:10:45 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -24,7 +24,7 @@ EXTRA_DIST = MANUAL BUGS CONTRIBUTE FAQ FEATURES INTERNALS SSLCERTS	\
 	     VERSIONS KNOWN_BUGS BINDINGS $(man_MANS) $(HTMLPAGES) \
 	     HISTORY INSTALL libcurl-the-guide $(PDFPAGES)
 
-MAN2HTML= gnroff -man $< | man2html >$@
+MAN2HTML= $(NROFF) -man $< | man2html >$@
 
 SUFFIXES = .1 .3 .html .pdf
 
