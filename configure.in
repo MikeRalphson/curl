@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.6 2000-03-14 08:33:15 bagder Exp $
+dnl $Id: configure.in,v 1.7 2000-03-16 11:34:19 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(lib/urldata.h)
 AM_CONFIG_HEADER(config.h src/config.h)
@@ -119,6 +119,8 @@ dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS( \
         unistd.h \
+        malloc.h \
+        stdlib.h \
         arpa/inet.h \
         net/if.h \
         netinet/in.h \
@@ -183,7 +185,8 @@ AC_CHECK_FUNCS( socket \
                 getpass \
                 closesocket \
                 setvbuf \
-                RAND_status
+                RAND_status \
+                RAND_screen
 )
 
 
