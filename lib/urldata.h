@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.108 2002-05-02 22:13:35 bagder Exp $
+ * $Id: urldata.h,v 1.109 2002-05-03 14:50:29 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -83,7 +83,7 @@
 #include "http_chunks.h" /* for the structs and enum stuff */
 
 /* Download buffer size, keep it fairly big for speed reasons */
-#define BUFSIZE (1024*20)
+#define BUFSIZE CURL_MAX_WRITE_SIZE
 
 /* Initial size of the buffer to store headers in, it'll be enlarged in case
    of need. */

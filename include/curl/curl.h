@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.141 2002-04-22 13:33:56 bagder Exp $
+ * $Id: curl.h,v 1.142 2002-05-03 14:50:29 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -85,6 +85,8 @@ typedef int (*curl_progress_callback)(void *clientp,
                                       double dlnow,
                                       double ultotal,
                                       double ulnow);
+
+#define CURL_MAX_WRITE_SIZE 20480
 
 typedef size_t (*curl_write_callback)(char *buffer,
                                       size_t size,
