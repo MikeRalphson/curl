@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.222 2002-08-13 14:20:47 bagder Exp $
+ * $Id: url.c,v 1.223 2002-08-26 17:20:29 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1349,7 +1349,7 @@ static CURLcode ConnectPlease(struct connectdata *conn,
     memcpy((char *)&(conn->serv_addr.sin_addr),
            (struct in_addr *)addr, sizeof(struct in_addr));
     conn->serv_addr.sin_family = hostaddr->h_addrtype;
-    conn->serv_addr.sin_port = htons(conn->port);
+    conn->serv_addr.sin_port = htons((unsigned short)conn->port);
 #endif
   }
 
@@ -2078,7 +2078,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       }
 
       *tmp = '\0'; /* cut off the name there */
-      conn->remote_port = port;
+      conn->remote_port = (unsigned short)port;
     }
   }
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.100 2002-06-11 11:13:01 bagder Exp $
+ * $Id: http.c,v 1.101 2002-08-26 17:20:29 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -552,7 +552,7 @@ CURLcode Curl_http(struct connectdata *conn)
   if(data->cookies) {
     co = Curl_cookie_getlist(data->cookies,
                              host, ppath,
-                             conn->protocol&PROT_HTTPS?TRUE:FALSE);
+                             (conn->protocol&PROT_HTTPS?TRUE:FALSE));
   }
   if (data->change.proxy &&
       !data->set.tunnel_thru_httpproxy &&

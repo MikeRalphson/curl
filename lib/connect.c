@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.35 2002-08-12 12:01:57 bagder Exp $
+ * $Id: connect.c,v 1.36 2002-08-26 17:20:29 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -602,7 +602,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
            (struct in_addr *)remotehost->h_addr_list[aliasindex],
            sizeof(struct in_addr));
     serv_addr.sin_family = remotehost->h_addrtype;
-    serv_addr.sin_port = htons(port);
+    serv_addr.sin_port = htons((unsigned short)port);
   
     rc = connect(sockfd, (struct sockaddr *)&serv_addr,
                  sizeof(serv_addr));
