@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.96 2002-05-02 22:14:31 bagder Exp $
+ * $Id: transfer.c,v 1.97 2002-05-03 12:07:32 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -294,6 +294,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
            *****/
 
           if (('\n' == *k->p) || ('\r' == *k->p)) {
+            int headerlen;
             /* Zero-length header line means end of headers! */
 
             if ('\r' == *k->p)
@@ -341,14 +342,16 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             if (data->set.http_include_header)
               k->writetype |= CLIENTWRITE_BODY;
 
+            headerlen = k->p - data->state.headerbuff;
+
             result = Curl_client_write(data, k->writetype,
                                        data->state.headerbuff,
-                                       k->p - data->state.headerbuff);
+                                       headerlen);
             if(result)
               return result;
 
-            data->info.header_size += k->p - data->state.headerbuff;
-            conn->headerbytecount += k->p - data->state.headerbuff;
+            data->info.header_size += headerlen;
+            conn->headerbytecount += headerlen;
 
             if(!k->header) {
               /*
@@ -591,6 +594,10 @@ CURLcode Curl_readwrite(struct connectdata *conn,
           if (data->set.http_include_header)
             k->writetype |= CLIENTWRITE_BODY;
 
+          if(data->set.verbose)
+            Curl_debug(data, CURLINFO_HEADER_IN,
+                       k->p, k->hbuflen);
+
           result = Curl_client_write(data, k->writetype, k->p,
                                      k->hbuflen);
           if(result)
@@ -679,6 +686,10 @@ CURLcode Curl_readwrite(struct connectdata *conn,
           } /* this is HTTP */
         } /* this is the first time we write a body part */
         k->bodywrites++;
+
+        /* pass data to the debug function before it gets "dechunked" */
+        if(data->set.verbose)
+          Curl_debug(data, CURLINFO_DATA_IN, k->str, nread);
 
         if(conn->bits.chunk) {
           /*
@@ -819,6 +830,11 @@ CURLcode Curl_readwrite(struct connectdata *conn,
         conn->upload_fromhere = k->uploadbuf;
         conn->upload_present = 0; /* no more bytes left */
       }
+
+      if(data->set.verbose)
+        Curl_debug(data, CURLINFO_DATA_OUT, conn->upload_fromhere,
+                   bytes_written);
+      
 
       k->writebytecount += bytes_written;
       Curl_pgrsSetUploadCounter(data, (double)k->writebytecount);
