@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.157 2002-08-13 15:03:57 bagder Exp $
+ * $Id: curl.h,v 1.158 2002-08-22 19:46:16 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -563,14 +563,15 @@ typedef enum {
   /* Instruct libcurl to use a smaller receive buffer */
   CINIT(BUFFERSIZE, LONG, 98),
 
-  /* Instruct libcurl to never use any signal/alarm handlers, even with
-     timeouts. */
+  /* Instruct libcurl to not use any signal/alarm handlers, even when using
+     timeouts. This option is useful for multi-threaded applications.
+     See libcurl-the-guide for more background information. */
   CINIT(NOSIGNAL, LONG, 99),
   
   /* Provide a CURLShare for mutexing non-ts data */
   CINIT(SHARE, OBJECTPOINT, 100),
 
-  CURLOPT_LASTENTRY /* the last unusued */
+  CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
 
   /* two convenient "aliases" that follow the name scheme better */
