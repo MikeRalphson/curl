@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.117 2003-01-20 15:16:56 bagder Exp $
+dnl $Id: configure.in,v 1.118 2003-01-27 14:26:06 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -756,7 +756,7 @@ AC_ARG_ENABLE(debug,
     CPPFLAGS="$CPPFLAGS -DMALLOCDEBUG"
     CFLAGS="$CFLAGS -g" 
     if test "$GCC" = "yes"; then
-       CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wundef -Wpointer-arith -Wcast-align -Wnested-externs"
+       CFLAGS="$CFLAGS -W -Wall -Wwrite-strings -pedantic -Wundef -Wpointer-arith -Wnested-externs"
     fi
     dnl strip off optimizer flags
     NEWFLAGS=""
