@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/http.c,v $
- * $Revision: 1.25 $
- * $Date: 2000-09-15 06:10:52 $
+ * $Revision: 1.26 $
+ * $Date: 2000-09-15 12:55:38 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -146,7 +146,7 @@ CURLcode GetHTTPProxyTunnel(struct UrlData *data, int tunnelsocket,
   int httperror=0;
   int subversion=0;
 
-  infof(data, "Establish HTTP proxy tunnel\n");
+  infof(data, "Establish HTTP proxy tunnel to %s:%d\n", hostname, remote_port);
 
   /* OK, now send the connect statment */
   sendf(tunnelsocket, data,
