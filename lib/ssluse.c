@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.88 2004-01-07 09:19:35 bagder Exp $
+ * $Id: ssluse.c,v 1.89 2004-01-16 09:17:05 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -783,7 +783,7 @@ static CURLcode verifyhost(struct connectdata *conn,
   char peer_CN[257];
   bool matched = FALSE; /* no alternative match yet */
   int target = GEN_DNS; /* target type, GEN_DNS or GEN_IPADD */
-  int addrlen;
+  int addrlen = 0;
   struct SessionHandle *data = conn->data;
   STACK_OF(GENERAL_NAME) *altnames;
 #ifdef ENABLE_IPV6
@@ -809,9 +809,9 @@ static CURLcode verifyhost(struct connectdata *conn,
   altnames = X509_get_ext_d2i(server_cert, NID_subject_alt_name, NULL, NULL);
   
   if(altnames) {
-    int hostlen;
-    int domainlen;
-    char *domain;
+    int hostlen = 0;
+    int domainlen = 0;
+    char *domain = NULL;
     int numalts;
     int i;
         

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.27 2004-01-07 09:19:36 bagder Exp $
+ * $Id: urlglob.c,v 1.28 2004-01-16 09:17:05 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -435,8 +435,8 @@ char *glob_match_url(char *filename, URLGlob *glob)
   int allocsize;
   int stringlen=0;
   char numbuf[18];
-  char *appendthis;
-  int appendlen;
+  char *appendthis = NULL;
+  int appendlen = 0;
 
   /* We cannot use the glob_buffer for storage here since the filename may
    * be longer than the URL we use. We allocate a good start size, then
