@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.68 2001-08-15 06:54:09 bagder Exp $
+ * $Id: urldata.h,v 1.69 2001-08-17 10:13:32 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -314,6 +314,9 @@ struct connectdata {
   struct krb4buffer in_buffer, out_buffer;
   int sec_complete;
   void *app_data;
+
+  struct Curl_sec_client_mech *mech;
+  struct sockaddr_in local_addr;
 
 #endif
 
