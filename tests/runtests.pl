@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.67 2002-12-12 16:46:45 bagder Exp $
+# $Id: runtests.pl,v 1.68 2002-12-13 16:24:57 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -591,7 +591,7 @@ sub singletest {
     my $cmdargs;
     if(!$tool) {
         # run curl, add -v for debug information output
-        $cmdargs ="$out--include -v $cmd";
+        $cmdargs ="$out --include -v $cmd";
     }
     else {
         $cmdargs = " $cmd"; # $cmd is the command line for the test file
