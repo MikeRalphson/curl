@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.31 2004-05-11 11:30:23 bagder Exp $
+ * $Id: escape.c,v 1.32 2004-05-12 13:04:30 bagder Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -39,11 +39,15 @@
 char *curl_escape(const char *string, int length)
 {
   size_t alloc = (length?(size_t)length:strlen(string))+1;  
-  char *ns = malloc(alloc);
+  char *ns;
   char *testing_ptr = NULL;
   unsigned char in;
   size_t newlen = alloc;
   int strindex=0;
+
+  ns = malloc(alloc);
+  if(!ns)
+    return NULL;
 
   length = alloc-1;
   while(length--) {
@@ -90,9 +94,8 @@ char *curl_unescape(const char *string, int length)
   int strindex=0;
   long hex;
  
-  if( !ns ) {
+  if( !ns )
     return NULL;
-  }  
   
   while(--alloc > 0) {
     in = *string;
