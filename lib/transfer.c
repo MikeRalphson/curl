@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.232 2004-05-17 06:50:08 bagder Exp $
+ * $Id: transfer.c,v 1.233 2004-05-17 08:05:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1969,7 +1969,7 @@ CURLcode Curl_perform(struct SessionHandle *data)
          to the new URL */
       urlchanged = data->change.url_changed;
       if ((CURLE_OK == res) && urlchanged) {
-        res = Curl_done(conn, res);
+        res = Curl_done(&conn, res);
         if(CURLE_OK == res) {
           char *gotourl = strdup(data->change.url);
           res = Curl_follow(data, gotourl);
@@ -2026,14 +2026,14 @@ CURLcode Curl_perform(struct SessionHandle *data)
 
         /* Always run Curl_done(), even if some of the previous calls
            failed, but return the previous (original) error code */
-        res2 = Curl_done(conn, res);
+        res2 = Curl_done(&conn, res);
 
         if(CURLE_OK == res)
           res = res2;
       }
       else
         /* Curl_do() failed, clean up left-overs in the done-call */
-        res2 = Curl_done(conn, res);
+        res2 = Curl_done(&conn, res);
 
       /*
        * Important: 'conn' cannot be used here, since it may have been closed
