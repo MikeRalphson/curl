@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.20 2003-06-10 09:42:22 bagder Exp $
+ * $Id: urlglob.c,v 1.21 2003-06-26 11:34:36 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -31,7 +31,7 @@
 #include <curl/curl.h>
 #include "urlglob.h"
 
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "../lib/memdebug.h"
 #endif
 
