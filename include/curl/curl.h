@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.68 2001-03-19 08:42:00 bagder Exp $
+ * $Id: curl.h,v 1.69 2001-03-22 11:40:58 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -474,6 +474,11 @@ char *curl_getenv(char *variable);
 
 /* Returns a static ascii string of the libcurl version. */
 char *curl_version(void);
+
+/* Escape and unescape URL encoding in strings. The functions return a new
+ * allocated string or NULL if an error occurred.  */
+char *curl_escape(char *string, int length);
+char *curl_unescape(char *string, int length);
 
 /* This is the version number */
 #define LIBCURL_VERSION "7.7-beta5"
