@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.18 2001-12-17 23:02:22 bagder Exp $
+ * $Id: setup.h,v 1.19 2002-01-07 22:47:21 bagder Exp $
  *****************************************************************************/
 
 
@@ -52,7 +52,7 @@
 #endif
 
 #ifndef __cplusplus        /* (rabe) */
-typedef char bool;
+typedef unsigned char bool;
 #define typedef_bool
 #endif                     /* (rabe) */
 
