@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.63 2004-03-24 08:45:58 bagder Exp $
+dnl $Id: configure.ac,v 1.64 2004-03-25 15:10:01 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -915,6 +915,7 @@ printf("just fine");
 #endif
 ],
  [ AC_MSG_RESULT([yes])
+   RECENTAIX=yes
    OPT_THREAD=off ],
  [ AC_MSG_RESULT([no]) ]
 )
@@ -958,6 +959,16 @@ else
   AC_CHECK_FUNCS( gmtime_r )
 
 fi
+
+dnl for recent AIX versions, we skip all the thread-safe checks above since
+dnl they claim a thread-safe libc using the standard API. But the man page
+dnl says strerror() is not thread-safe, so we check for this only!
+
+if test "x$RECENTAIX" = "xyes"; then
+  dnl is there a strerror_r()
+  CURL_CHECK_STRERROR_R()
+fi
+
 
 dnl **********************************************************************
 dnl Back to "normal" configuring
