@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.199 2004-03-12 12:07:01 bagder Exp $
+ * $Id: http.c,v 1.200 2004-03-12 13:06:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1620,11 +1620,11 @@ CURLcode Curl_http(struct connectdata *conn)
           if(!conn->bits.upload_chunky)
             /* We're not sending it 'chunked', append it to the request
                already now to reduce the number if send() calls */
-            add_buffer(req_buffer, data->set.postfields, postsize);
+            add_buffer(req_buffer, data->set.postfields, (size_t)postsize);
           else {
             /* Append the POST data chunky-style */
             add_bufferf(req_buffer, "%x\r\n", postsize);
-            add_buffer(req_buffer, data->set.postfields, postsize);
+            add_buffer(req_buffer, data->set.postfields, (size_t)postsize);
             add_buffer(req_buffer, "\r\n0\r\n\r\n", 7); /* end of a chunked
                                                            transfer stream */
           }

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.203 2004-03-12 08:55:52 bagder Exp $
+ * $Id: urldata.h,v 1.204 2004-03-12 13:06:01 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -205,7 +205,7 @@ struct negotiatedata {
  ***************************************************************************/
 struct HTTP {
   struct FormData *sendit;
-  size_t postsize;
+  curl_off_t postsize; /* off_t to handle large file sizes */
   char *postdata;
 
   const char *p_pragma;      /* Pragma: string */
@@ -221,7 +221,7 @@ struct HTTP {
     curl_read_callback fread; /* backup storage for fread pointer */
     void *fread_in;           /* backup storage for fread_in pointer */
     char *postdata;
-    size_t postsize;
+    curl_off_t postsize;
   } backup;
 
   enum {
