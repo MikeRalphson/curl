@@ -30,8 +30,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/memdebug.c,v $
- * $Revision: 1.7 $
- * $Date: 2000-12-18 16:13:37 $
+ * $Revision: 1.8 $
+ * $Date: 2000-12-19 13:23:54 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -149,6 +149,22 @@ int curl_sclose(int sockfd, int line, char *source)
   fprintf(logfile?logfile:stderr, "FD %s:%d sclose(%d)\n",
           source, line, sockfd);
   return sockfd;
+}
+
+FILE *curl_fopen(char *file, char *mode, int line, char *source)
+{
+  FILE *res=(fopen)(file, mode);
+  fprintf(logfile?logfile:stderr, "FILE %s:%d fopen(\"%s\") = %p\n",
+          source, line, file, res);
+  return res;
+}
+
+int curl_fclose(FILE *file, int line, char *source)
+{
+  int res=(fclose)(file);
+  fprintf(logfile?logfile:stderr, "FILE %s:%d fclose(%p)\n",
+          source, line, file);
+  return res;
 }
 
 #endif /* MALLOCDEBUG */
