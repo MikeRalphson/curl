@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.194 2003-08-11 23:13:41 bagder Exp $
+ * $Id: main.c,v 1.195 2003-08-14 11:53:53 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2763,6 +2763,12 @@ operate(struct Configurable *config, int argc, char *argv[])
           char *storefile = outfile;
           outfile = glob_match_url(storefile, urls);
           free(storefile);
+          if(!outfile) {
+            /* bad globbing */
+            helpf("bad output glob!\n");
+            return CURLE_FAILED_INIT;
+          }
+
         }
       
         /* Create the directory hierarchy, if not pre-existant to a multiple
