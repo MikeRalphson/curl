@@ -18,13 +18,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtok.c,v 1.3 2001-08-24 10:25:02 bagder Exp $
+ * $Id: strtok.c,v 1.4 2001-08-26 14:27:07 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
 
 #ifndef HAVE_STRTOK_R
 #include <stddef.h>
+#include <string.h>
 
 char *
 Curl_strtok_r(char *ptr, const char *sep, char **end)
@@ -51,7 +52,7 @@ Curl_strtok_r(char *ptr, const char *sep, char **end)
 
     if (**end) {
       /* the end is not a null byte */
-      **end = '\0';, /* zero terminate it! */
+      **end = '\0';  /* zero terminate it! */
       ++*end;        /* advance the last pointer to beyond the null byte */
     }
 
