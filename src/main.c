@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.4 $
- * $Date: 2000-02-10 23:03:08 $
+ * $Revision: 1.5 $
+ * $Date: 2000-02-14 23:17:59 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -439,14 +439,16 @@ static int getparameter(char *flag, /* f or -long-flag */
       GetStr(&config->useragent, nextarg);
       break;
     case 'b': /* cookie string coming up: */
-      if(strchr(nextarg, '=')) {
+      if(nextarg[0] == '@') {
+        nextarg++;
+      }
+      else if(strchr(nextarg, '=')) {
         /* A cookie string must have a =-letter */
         GetStr(&config->cookie, nextarg);
+        break;
       }
-      else {
-        /* We have a cookie file to read from! */
-        GetStr(&config->cookiefile, nextarg);
-      }
+      /* We have a cookie file to read from! */
+      GetStr(&config->cookiefile, nextarg);
       break;
     case 'B':
       /* use type ASCII when transfering ftp files */
