@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.41 2004-06-24 14:52:51 bagder Exp $
+ * $Id: version.c,v 1.42 2004-12-20 18:23:43 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -146,7 +146,7 @@ char *curl_version(void)
 
 /* data for curl_version_info */
 
-static const char *protocols[] = {
+static const char * const protocols[] = {
 #ifndef CURL_DISABLE_FTP
   "ftp",
 #endif
