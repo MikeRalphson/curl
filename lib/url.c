@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.150 2001-09-18 15:30:38 bagder Exp $
+ * $Id: url.c,v 1.151 2001-09-18 18:33:25 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1704,12 +1704,12 @@ static CURLcode Connect(struct SessionHandle *data,
   } /* if not using proxy */
 
   /*************************************************************
-   * No protocol but proxy usage needs attention
+   * No protocol part in URL was used, add it!
    *************************************************************/
-  if((conn->protocol&PROT_MISSING) && data->change.proxy ) {
-    /* We're guessing prefixes here and since we're told to use a proxy, we
-       need to add the protocol prefix to the URL string before we continue!
-       */
+  if(conn->protocol&PROT_MISSING) {
+    /* We're guessing prefixes here and if we're told to use a proxy or if
+       we're gonna follow a Location: later or... then we need the protocol
+       part added so that we have a valid URL. */
     char *reurl;
 
     reurl = aprintf("%s://%s", conn->protostr, data->change.url);
