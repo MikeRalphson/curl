@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.74 2002-09-30 08:07:16 bagder Exp $
+ * $Id: hostip.c,v 1.75 2002-10-21 13:20:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -597,14 +597,25 @@ Curl_addrinfo *Curl_getaddrinfo(struct SessionHandle *data,
 #endif
 #ifdef HAVE_GETHOSTBYNAME_R_6
     /* Linux */
-    while((res=gethostbyname_r(hostname,
-                               (struct hostent *)buf,
-                               (char *)buf + sizeof(struct hostent),
-                               step_size - sizeof(struct hostent),
-                               &h, /* DIFFERENCE */
-                               &h_errnop))==ERANGE) {
-      step_size+=200;
-    }
+    do {
+      res=gethostbyname_r(hostname,
+			  (struct hostent *)buf,
+			  (char *)buf + sizeof(struct hostent),
+			  step_size - sizeof(struct hostent),
+			  &h, /* DIFFERENCE */
+			  &h_errnop);
+      /* Redhat 8, using glibc 2.2.93 changed the behavior. Now all of a
+         sudden this function seems to be setting EAGAIN if the given buffer
+         size is too small. Previous versions are known to return ERANGE for
+         the same. */
+
+      if((ERANGE == res) || (EAGAIN == res)) {
+	step_size+=200;
+	continue;
+      }
+      break;
+    } while(1);
+
     if(!h) /* failure */
       res=1;
     
