@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.369 2004-05-05 06:57:26 bagder Exp $
+ * $Id: url.c,v 1.370 2004-05-05 07:08:31 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2004,6 +2004,8 @@ static void fix_hostname(struct connectdata *conn, struct hostname *host)
       host->name = host->encalloc;
     }
   }
+#else
+  (void)conn; /* never used */
 #endif
 }
 
