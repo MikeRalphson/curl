@@ -18,8 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.14 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: getenv.c,v 1.15 2001-11-12 10:19:36 bagder Exp $
  *****************************************************************************/
+
+#include "setup.h"
 
 #include <stdio.h>
 #include <stdlib.h>

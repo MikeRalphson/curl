@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.13 2001-10-11 09:32:19 bumblebury Exp $
+ * $Id: mprintf.c,v 1.14 2001-11-12 10:19:36 bagder Exp $
  *
  *************************************************************************
  *
@@ -92,13 +92,12 @@
  *
  ****************************************************************************/
 
-static const char rcsid[] = "@(#)$Id: mprintf.c,v 1.13 2001-10-11 09:32:19 bumblebury Exp $";
-
-/*
+*
  * To test:
  *
  * Use WIDTH, PRECISION and NUMBERED ARGUMENT combined.
  */
+#include "setup.h"
 
 #include <sys/types.h>
 #include <stdio.h>
