@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.239 2004-03-01 12:45:12 bagder Exp $
+ * $Id: main.c,v 1.240 2004-03-01 16:24:26 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1910,7 +1910,8 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           {"GSS-Negotiate", CURL_VERSION_GSSNEGOTIATE},
           {"Debug", CURL_VERSION_DEBUG},
           {"AsynchDNS", CURL_VERSION_ASYNCHDNS},
-          {"SPNEGO", CURL_VERSION_SPNEGO}
+          {"SPNEGO", CURL_VERSION_SPNEGO},
+          {"Largefile", CURL_VERSION_LARGEFILE}
         };
         printf("Features: ");
         for(i=0; i<sizeof(feats)/sizeof(feats[0]); i++) {
