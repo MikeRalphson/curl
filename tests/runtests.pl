@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.68 2002-12-13 16:24:57 bagder Exp $
+# $Id: runtests.pl,v 1.69 2003-01-09 11:26:57 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -777,7 +777,7 @@ sub singletest {
             print "\n** ALERT! memory debuggin without any output file?\n";
         }
         else {
-            my @memdata=`$memanalyze < $memdump`;
+            my @memdata=`$memanalyze $memdump`;
             my $leak=0;
             for(@memdata) {
                 if($_ ne "") {
