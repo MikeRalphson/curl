@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.64 2003-08-07 06:43:11 bagder Exp $
+# $Id: Makefile.am,v 1.65 2003-08-08 11:13:18 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -91,6 +91,7 @@ $(srcdir)/getdate.c: getdate.y
 	  mv -f y.tab.c getdate.c
 
 $(srcdir)/ca-bundle.h: Makefile.in Makefile
+	chmod 0644 $@
 	echo "/* The file is generated automaticly */" > $@
 if CABUNDLE
 	echo '#define CURL_CA_BUNDLE @CURL_CA_BUNDLE@' >> $@
