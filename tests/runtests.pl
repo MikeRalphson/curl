@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: runtests.pl,v 1.33 2001-05-28 15:26:15 bagder Exp $
+# $Id: runtests.pl,v 1.34 2001-06-14 12:16:07 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -470,7 +470,7 @@ sub singletest {
     # run curl, add -v for debug information output
     my $cmdargs="$out--include -v $cmd";
 
-    my @stdintest = getpart("verify", "stdin");
+    my @stdintest = getpart("client", "stdin");
 
     if(@stdintest) {
         my $stdinfile="$LOGDIR/stdin-for-$testnum";
@@ -533,7 +533,9 @@ sub singletest {
         }
     }
 
-    if(@reply) {
+    my %replyattr = getpartattr("reply", "data");
+    if(!$replyattr{'nocheck'} &&
+       @reply) {
         # verify the received data
         my @out = loadarray($CURLOUT);
         $res = compare(\@out, \@reply);
