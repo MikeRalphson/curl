@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.260 2004-06-18 06:20:43 bagder Exp $
+ * $Id: curl.h,v 1.261 2004-06-21 14:04:36 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -143,6 +143,9 @@ typedef size_t (*curl_write_callback)(char *buffer,
                                       size_t nitems,
                                       void *outstream);
 
+/* This is a brand new return code for the read callback that will signal
+   the caller to immediately abort the current transfer. */
+#define CURL_READFUNC_ABORT 0x10000000
 typedef size_t (*curl_read_callback)(char *buffer,
                                      size_t size,
                                      size_t nitems,
