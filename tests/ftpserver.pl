@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: ftpserver.pl,v 1.21 2001-09-13 12:52:24 bagder Exp $
+# $Id: ftpserver.pl,v 1.22 2001-09-14 12:01:21 bagder Exp $
 # This is the FTP server designed for the curl test suite.
 #
 # It is meant to exercise curl, it is not meant to be a fully working
@@ -210,6 +210,7 @@ sub RETR_command {
             # move read pointer forward
             $size -= $rest;
             logmsg "REST $rest was removed from size, makes $size left\n";
+            $rest = 0; # reset REST offset again
         }
         print "150 Binary data connection for $testno () ($size bytes).\r\n";
         logmsg "150 Binary data connection for $testno ($size bytes).\n";
