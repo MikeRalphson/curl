@@ -29,8 +29,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/src/main.c,v $
- * $Revision: 1.23 $
- * $Date: 2000-06-14 12:52:21 $
+ * $Revision: 1.24 $
+ * $Date: 2000-06-14 14:26:53 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -895,6 +895,8 @@ static int parseconfig(char *filename,
           free(tok2);
           break;
         }
+        if(res)
+          break; /* error detected */
       }
 
       free(line);
@@ -945,7 +947,7 @@ int main(int argc, char *argv[])
 
   URLGlob *urls;
   int urlnum;
-  char *outfiles = NULL;
+  char *outfiles;
   int separator = 0;
   
   FILE *infd = stdin;
@@ -955,7 +957,7 @@ int main(int argc, char *argv[])
   bool stillflags=TRUE;
 
   CURL *curl;
-  int res=CURLE_OK;
+  int res;
   int i;
 
   outs.stream = stdout;
@@ -1199,7 +1201,7 @@ int main(int argc, char *argv[])
     config.errors = stderr;
 
 #ifdef WIN32
-  if(!config.outfile && !(config.flags & CONF_GETTEXT)) {
+  if(!config.outfile && !(config.conf & CONF_GETTEXT)) {
     /* We get the output to stdout and we have not got the ASCII/text flag,
        then set stdout to be binary */
     setmode( 1, O_BINARY );
