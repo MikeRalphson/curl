@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.11 2001-08-06 12:19:26 bagder Exp $
+ * $Id: getenv.c,v 1.12 2001-08-14 08:25:47 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -38,7 +38,7 @@
 #endif
 
 static
-char *GetEnv(char *variable)
+char *GetEnv(const char *variable)
 {
 #ifdef WIN32
   /* This shit requires windows.h (HUGE) to be included */
@@ -62,7 +62,7 @@ char *GetEnv(char *variable)
   return (env && env[0])?strdup(env):NULL;
 }
 
-char *curl_getenv(char *v)
+char *curl_getenv(const char *v)
 {
   return GetEnv(v);
 }
