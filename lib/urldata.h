@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.188 2004-01-07 09:19:35 bagder Exp $
+ * $Id: urldata.h,v 1.189 2004-01-11 22:56:37 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -28,6 +28,7 @@
 #include "setup.h"
 
 #define PORT_FTP 21
+#define PORT_FTPS 990
 #define PORT_TELNET 23
 #define PORT_GOPHER 70
 #define PORT_HTTP 80
