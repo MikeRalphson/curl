@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.1 2003-10-16 14:09:39 bagder Exp $
+ * $Id: getpass.c,v 1.2 2004-01-13 16:07:40 bagder Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -203,6 +203,11 @@ char *getpass_r(const char *prompt, char *buffer, int buflen)
       buffer[i] = 0;
       break;
     }
+    else
+      if ( buffer[i] == '\b')
+        /* remove this letter and if this is not the first key, remove the
+           previous one as well */
+        i = i - (i>=1?2:1);
   }
   /* if user didn't hit ENTER, terminate buffer */
   if (i==buflen)
