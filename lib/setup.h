@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.77 2004-12-15 14:05:07 bagder Exp $
+ * $Id: setup.h,v 1.78 2004-12-16 18:09:27 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -133,6 +133,14 @@ typedef unsigned char bool;
 #define SEND_4TH_ARG 0
 #endif
 
+/* To make large file support transparent even on Windows */
+#if defined(WIN32) && (SIZEOF_CURL_OFF_T > 4)
+#define lseek(x,y,z) _lseeki64(x, y, z)
+#define struct_stat struct _stati64
+#define fstat(fd,st) _fstati64(fd,st)
+#else
+#define struct_stat struct stat
+#endif
 
 /* Below we define four functions. They should
    1. close a socket
