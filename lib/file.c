@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.17 2001-04-18 07:25:11 bagder Exp $
+ * $Id: file.c,v 1.18 2001-08-06 12:17:43 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -152,6 +152,7 @@ CURLcode Curl_file(struct connectdata *conn)
   /* get the fd from the connection phase */
   fd = conn->proto.file->fd;
 
+/*VMS?? -- This only works reliable for STREAMLF files */
   if( -1 != fstat(fd, &statbuf)) {
     /* we could stat it, then read out the size */
     expected_size = statbuf.st_size;
@@ -161,16 +162,24 @@ CURLcode Curl_file(struct connectdata *conn)
      this is both more efficient than the former call to download() and
      it avoids problems with select() and recv() on file descriptors
      in Winsock */
+#ifdef	VMS
+  if((signed int)expected_size != -1)
+#else
   if(expected_size != -1)
+#endif
     Curl_pgrsSetDownloadSize(data, expected_size);
 
   while (res == CURLE_OK) {
     nread = read(fd, buf, BUFSIZE-1);
 
-    if (0 <= nread)
+    if ( nread > 0)
       buf[nread] = 0;
 
+#ifdef	VMS
+    if ((signed int)nread <= 0)
+#else
     if (nread <= 0)
+#endif
       break;
     bytecount += nread;
     /* NOTE: The following call to fwrite does CR/LF translation on
