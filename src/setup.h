@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.25 2004-01-14 07:42:10 bagder Exp $
+ * $Id: setup.h,v 1.26 2004-01-23 07:41:05 bagder Exp $
  ***************************************************************************/
 
 #if !defined(WIN32) && defined(__WIN32__)
@@ -110,6 +110,10 @@ int fileno( FILE *stream);
 
 #ifdef __BEOS__
 #define typedef_bool
+#endif
+
+#ifndef SIZEOF_CURL_OFF_T
+#define SIZEOF_CURL_OFF_T sizeof(curl_off_t)
 #endif
 
 #endif /* __SETUP_H */
