@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.116 2004-02-02 15:53:50 bagder Exp $
+ * $Id: hostip.c,v 1.117 2004-02-02 16:00:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -539,9 +539,8 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
       rc = CURLE_OPERATION_TIMEDOUT;
     }
     else if(conn->async.done) {
-      char **dummy=NULL; /* stupid never-used ares-thing */
       failf(data, "Could not resolve host: %s (%s)", conn->name,
-            ares_strerror(conn->async.status, dummy));
+            ares_strerror(conn->async.status));
       rc = CURLE_COULDNT_RESOLVE_HOST;
     }
     else
