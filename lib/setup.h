@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.75 2004-11-26 16:08:16 giva Exp $
+ * $Id: setup.h,v 1.76 2004-12-11 18:47:22 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -111,23 +111,6 @@ typedef unsigned char bool;
 
 #ifdef __TANDEM /* for nsr-tandem-nsk systems */
 #include <floss.h>
-#endif
-
-#if defined(HAVE_X509_H) && defined(HAVE_SSL_H) && defined(HAVE_RSA_H) && \
-defined(HAVE_PEM_H) && defined(HAVE_ERR_H) && defined(HAVE_CRYPTO_H) && \
-defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
-  /* the six important includes files all exist and so do both libs,
-     defined SSLeay usage */
-#define USE_SSLEAY 1
-#endif
-#if defined(HAVE_OPENSSL_X509_H) && defined(HAVE_OPENSSL_SSL_H) && \
-defined(HAVE_OPENSSL_RSA_H) && defined(HAVE_OPENSSL_PEM_H) && \
-defined(HAVE_OPENSSL_ERR_H) && defined(HAVE_OPENSSL_CRYPTO_H) && \
-defined(HAVE_LIBSSL) && defined(HAVE_LIBCRYPTO)
-  /* the six important includes files all exist and so do both libs,
-     defined SSLeay usage */
-#define USE_SSLEAY 1
-#define USE_OPENSSL 1
 #endif
 
 #ifndef STDC_HEADERS /* no standard C headers! */
