@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.101 2002-08-13 11:45:34 bagder Exp $
+dnl $Id: configure.in,v 1.102 2002-08-13 12:12:36 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -255,9 +255,6 @@ fi
 
 dnl socket lib?
 AC_CHECK_FUNC(connect, , AC_CHECK_LIB(socket, connect))
-
-dnl ucb lib?
-AC_CHECK_FUNC(gethostname, , AC_CHECK_LIB(ucb, gethostname))
 
 dnl dl lib?
 AC_CHECK_FUNC(dlclose, , AC_CHECK_LIB(dl, dlopen))
@@ -643,7 +640,6 @@ AC_CHECK_FUNCS( socket \
                 strcasecmp \
                 stricmp \
                 strcmpi \
-                gethostname \
                 gethostbyaddr \
                 gettimeofday \
                 inet_addr \
