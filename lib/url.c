@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.443 2005-01-28 22:14:48 bagder Exp $
+ * $Id: url.c,v 1.444 2005-01-29 13:07:17 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1959,6 +1959,8 @@ static CURLcode ConnectPlease(struct connectdata *conn,
     conn->dns_entry = hostaddr;
     conn->ip_addr = addr;
 
+    Curl_store_ip_addr(conn);
+
     if (conn->data->set.proxytype == CURLPROXY_SOCKS5) {
       return handleSock5Proxy(conn->proxyuser,
                               conn->proxypasswd,
@@ -1982,24 +1984,7 @@ static CURLcode ConnectPlease(struct connectdata *conn,
  */
 static void verboseconnect(struct connectdata *conn)
 {
-  struct SessionHandle *data = conn->data;
-  char addrbuf[256];
-
-  /* Get a printable version of the network address. */
-  if(!conn->bits.reuse) {
-    Curl_printable_address(conn->ip_addr, addrbuf, sizeof(addrbuf));
-
-    /* save the string */
-    if(conn->ip_addr_str)
-      free(conn->ip_addr_str);
-    conn->ip_addr_str = strdup(addrbuf);
-    if(!conn->ip_addr_str)
-      return; /* FAIL */
-  }
-  /* else,
-     Re-used, ip_addr is not safe to access. */
-
-  infof(data, "Connected to %s (%s) port %d\n",
+  infof(conn->data, "Connected to %s (%s) port %d\n",
         conn->bits.httpproxy ? conn->proxy.dispname : conn->host.dispname,
         conn->ip_addr_str, conn->port);
 }

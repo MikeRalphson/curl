@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.258 2005-01-28 22:14:48 bagder Exp $
+ * $Id: urldata.h,v 1.259 2005-01-29 13:07:17 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -293,8 +293,9 @@ struct ConnectBits {
   bool httpproxy;    /* if set, this transfer is done through a http proxy */
   bool user_passwd;    /* do we use user+password for this connection? */
   bool proxy_user_passwd; /* user+password for the proxy? */
-  bool ipv6_ip; /* we communicate with a remove site specified with pure IPv6
+  bool ipv6_ip; /* we communicate with a remote site specified with pure IPv6
                    IP address */
+  bool ipv6;    /* we communicate with a site using an IPv6 address */
   bool use_range;
   bool rangestringalloc; /* the range string is malloc()'ed */
 
@@ -462,8 +463,8 @@ struct connectdata {
 
   /* 'ip_addr_str' is the ip_addr data as a human readable malloc()ed string.
      It remains available as long as the connection does, which is longer than
-     the ip_addr itself. Currently, this is only set (and used) in
-     url.c:verboseconnect(). */
+     the ip_addr itself. Set with Curl_store_ip_addr() when ip_addr has been
+     set. */
   char *ip_addr_str;
 
   char protostr[16];  /* store the protocol string in this buffer */
