@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.3 2004-02-17 07:40:02 bagder Exp $ */
+/* $Id: ares_private.h,v 1.4 2004-02-27 13:21:47 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -57,7 +57,7 @@
 struct send_request {
   /* Remaining data to send */
   const unsigned char *data;
-  int len;
+  size_t len;
 
   /* Next request in queue */
   struct send_request *next;
