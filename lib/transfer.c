@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.147 2003-04-30 17:05:19 bagder Exp $
+ * $Id: transfer.c,v 1.148 2003-05-01 17:49:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -647,12 +647,12 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             else if (checkprefix("Content-Encoding:", k->p) &&
                      data->set.encoding) {
               /*
-               * Process Content-Encoding. Look for the values: identity, gzip,
-               * deflate, compress, x-gzip and x-compress. x-gzip and
+               * Process Content-Encoding. Look for the values: identity,
+               * gzip, deflate, compress, x-gzip and x-compress. x-gzip and
                * x-compress are the same as gzip and compress. (Sec 3.5 RFC
-               * 2616). zlib cannot handle compress, and gzip is not currently
-               * implemented. However, errors are handled further down when the
-               * response body is processed 08/27/02 jhrg */
+               * 2616). zlib cannot handle compress.  However, errors are
+               * handled further down when the response body is processed
+               */
               char *start;
 
               /* Find the first non-space letter */
