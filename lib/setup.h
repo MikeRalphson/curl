@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.46 2004-02-18 08:35:51 bagder Exp $
+ * $Id: setup.h,v 1.47 2004-02-20 16:41:50 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -228,6 +228,10 @@ int fileno( FILE *stream);
 
 #if defined(ENABLE_IPV6) && defined(USE_ARES)
 #error "ares does not yet support IPv6. Disable IPv6 or ares and rebuild"
+#endif
+
+#if defined(WIN32) && !defined(__CYGWIN32__) && !defined(USE_ARES) && !defined(ENABLE_IPV6)
+#define USE_THREADING_GETHOSTBYNAME  /* Cygwin uses alarm() function */
 #endif
 
 /*
