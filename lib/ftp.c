@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.30 $
- * $Date: 2000-11-21 09:30:07 $
+ * $Revision: 1.31 $
+ * $Date: 2000-11-21 15:34:40 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -774,6 +774,9 @@ CURLcode _ftp(struct connectdata *conn)
         free(hostdataptr);
         return CURLE_FTP_PORT_FAILED;
       }
+      if(hostdataptr)
+        /* free the memory used for name lookup */
+        free(hostdataptr);
     }
     else {
       failf(data, "could't find my own IP address (%s)", myhost);
