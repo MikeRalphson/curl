@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.8 2002-12-03 09:32:57 bagder Exp $
+# $Id: Makefile.b32,v 1.9 2003-03-03 22:39:34 bagder Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -61,6 +61,7 @@ SOURCES	   = \
 	strtok.c \
 	connect.c \
         hash.c \
+        share.c \
         llist.c \
         multi.c \
         content_encoding.c
