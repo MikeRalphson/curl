@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.41 2004-09-22 08:01:41 bagder Exp $
+ * $Id: ldap.c,v 1.42 2004-09-26 06:53:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -37,7 +37,7 @@
 #if defined(WIN32)
 # include <windows.h>
 # include <malloc.h>
-# include <WinLdap.h>
+# include <winldap.h>
 #endif
 
 #ifdef HAVE_UNISTD_H
