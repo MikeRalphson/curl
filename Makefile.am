@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.21 2001-08-20 07:10:28 bagder Exp $
+# $Id: Makefile.am,v 1.22 2001-08-21 09:14:31 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -17,6 +17,9 @@ SUBDIRS = docs lib src include tests packages perl php
 # create a root makefile in the distribution:
 dist-hook:
 	cp $(srcdir)/Makefile.dist $(distdir)/Makefile
+
+html:
+	cd docs; make html
 
 check: test
 
