@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.6 2001-10-31 08:44:11 bagder Exp $
+ * $Id: connect.h,v 1.7 2001-11-19 20:08:01 bagder Exp $
  *****************************************************************************/
 
 int Curl_nonblock(int socket,    /* operate on this */
@@ -28,7 +28,7 @@ int Curl_nonblock(int socket,    /* operate on this */
 
 CURLcode Curl_connecthost(struct connectdata *conn,
                           Curl_addrinfo *host, /* connect to this */
-                          long port,      /* connect to this port number */
+                          int port,       /* connect to this port number */
                           int *sockconn,  /* not set if error is returned */
                           Curl_ipconnect **addr /* the one we used */
                           ); /*  index we used */
