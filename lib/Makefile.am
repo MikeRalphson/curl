@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.20 2001-03-14 08:54:18 bagder Exp $
+# $Id: Makefile.am,v 1.21 2001-05-28 14:12:58 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign
@@ -16,7 +16,7 @@ lib_LTLIBRARIES = libcurl.la
 INCLUDES = -I$(top_srcdir)/include
 
 
-libcurl_la_LDFLAGS = -version-info 2:0:0
+libcurl_la_LDFLAGS = -version-info 2:0:1
 # This flag accepts an argument of the form current[:revision[:age]]. So,
 # passing -version-info 3:12:1 sets current to 3, revision to 12, and age to
 # 1.
