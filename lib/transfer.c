@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.186 2003-12-02 10:12:44 bagder Exp $
+ * $Id: transfer.c,v 1.187 2003-12-02 13:40:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1477,6 +1477,8 @@ CURLcode Curl_posttransfer(struct SessionHandle *data)
   /* restore the signal handler for SIGPIPE before we get back */
   if(!data->set.no_signal)
     signal(SIGPIPE, data->state.prev_signal);
+#else
+  (void)data; /* unused parameter */
 #endif  
 
   return CURLE_OK;

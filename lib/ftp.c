@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.214 2003-12-02 13:27:29 bagder Exp $
+ * $Id: ftp.c,v 1.215 2003-12-02 13:40:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -405,7 +405,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
   return result;
 }
 
-static char *ftpauth[]= {
+static const char *ftpauth[]= {
   "SSL", "TLS", NULL
 };
 
