@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.365 2004-04-27 13:56:23 bagder Exp $
+ * $Id: url.c,v 1.366 2004-04-29 11:57:52 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1972,7 +1972,7 @@ static bool is_ASCII_name (const char *hostname)
 static void fix_hostname(struct connectdata *conn, struct hostname *host)
 {
   /* set the name we use to display the host name */
-  conn->host.dispname = conn->host.name;
+  host->dispname = host->name;
 
 #ifdef USE_LIBIDN
   /*************************************************************
@@ -3128,7 +3128,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     else {
       /* This is a proxy that hasn't been resolved yet. */
 
-      /* IDN check */
+      /* IDN-fix the proxy name */
       fix_hostname(conn, &conn->proxy);
 
       /* resolve proxy */
