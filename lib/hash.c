@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.3 2002-01-18 10:30:51 bagder Exp $
+ * $Id: hash.c,v 1.4 2002-01-18 10:36:25 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -102,7 +102,7 @@ curl_hash_alloc(int slots, curl_hash_dtor dtor)
   curl_hash *h;
 
   h = (curl_hash *)malloc(sizeof(curl_hash));
-  if(NULL = h)
+  if(NULL == h)
     return NULL;
 
   curl_hash_init(h, slots, dtor);
