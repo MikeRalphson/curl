@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.9 2003-06-13 07:56:38 bagder Exp $
+ * $Id: http_ntlm.c,v 1.10 2003-06-13 10:15:55 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -367,7 +367,8 @@ CURLcode Curl_output_ntlm(struct connectdata *conn)
       return CURLE_OUT_OF_MEMORY; /* FIX TODO */
   }
   else {
-    /* We are not in the first state, create a type-3 message */
+    if(NTLMSTATE_TYPE2 == data->state.ntlm.state) {
+      /* We received the type-2 already, create a type-3 message */
 
     /*
       My test-IE session sent this type-3:
@@ -557,6 +558,17 @@ CURLcode Curl_output_ntlm(struct connectdata *conn)
     else
       return CURLE_OUT_OF_MEMORY; /* FIX TODO */
 
+      data->state.ntlm.state = NTLMSTATE_TYPE3; /* we sent a type-3 */
+
+    } else 
+      if(NTLMSTATE_TYPE3 == data->state.ntlm.state) {
+        /* connection is already authenticated,
+         * don't send a header in future requests */
+          if(conn->allocptr.userpwd) {
+            free(conn->allocptr.userpwd);
+            conn->allocptr.userpwd=NULL;
+          }
+      }
   }
 
   return CURLE_OK;
