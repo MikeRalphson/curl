@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.215 2002-06-11 15:47:01 bagder Exp $
+ * $Id: url.c,v 1.216 2002-06-14 12:05:20 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1101,7 +1101,7 @@ static bool SocketIsDead(int sock)
   FD_SET(sock,&check_set); 
 
   to.tv_sec = 0; 
-  to.tv_usec = 1; 
+  to.tv_usec = 0; 
 
   sval = select(sock + 1, &check_set, 0, 0, &to);
   if(sval == 0)
