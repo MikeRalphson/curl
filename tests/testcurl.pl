@@ -1,4 +1,4 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env perl
 #***************************************************************************
 #                                  _   _ ____  _
 #  Project                     ___| | | |  _ \| |
@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.5 2004-03-25 11:39:29 bagder Exp $
+# $Id: testcurl.pl,v 1.6 2004-03-25 12:16:42 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -46,11 +46,14 @@ use strict;
 
 use Cwd;
 
+# Turn on warnings (equivalent to -w, which can't be used with /usr/bin/env)
+BEGIN { $^W = 1; }
+
 use vars qw($version $fixed $infixed $CURLDIR $CVS $pwd $build $buildlog $buildlogname $gnulikebuild);
 use vars qw($name $email $desc $confopts);
 
 # version of this script
-$version='$Revision: 1.5 $';
+$version='$Revision: 1.6 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl
