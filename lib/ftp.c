@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.125 2002-01-14 23:14:59 bagder Exp $
+ * $Id: ftp.c,v 1.126 2002-01-16 14:46:00 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -2058,9 +2058,11 @@ CURLcode Curl_ftp(struct connectdata *conn)
 CURLcode Curl_ftpsendf(struct connectdata *conn,
                        const char *fmt, ...)
 {
-  size_t bytes_written;
+  ssize_t bytes_written;
   char s[256];
-  size_t write_len;
+  ssize_t write_len;
+  char *sptr=s;
+  CURLcode res = CURLE_OK;
 
   va_list ap;
   va_start(ap, fmt);
@@ -2074,9 +2076,23 @@ CURLcode Curl_ftpsendf(struct connectdata *conn,
 
   bytes_written=0;
   write_len = strlen(s);
-  Curl_write(conn, conn->firstsocket, s, write_len, &bytes_written);
 
-  return (bytes_written==write_len)?CURLE_OK:CURLE_WRITE_ERROR;
+  do {
+    res = Curl_write(conn, conn->firstsocket, sptr, write_len,
+                     &bytes_written);
+
+    if(CURLE_OK != res)
+      break;
+
+    if(bytes_written != write_len) {
+      write_len -= bytes_written;
+      sptr += bytes_written;
+    }
+    else
+      break;
+  } while(1);
+
+  return res;
 }
 
 /***********************************************************************
