@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.388 2004-05-26 08:54:36 bagder Exp $
+ * $Id: url.c,v 1.389 2004-05-28 09:56:59 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2836,6 +2836,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->proxy.name = conn->proxy.rawalloc;
 
     free(proxydup); /* free the duplicate pointer and not the modified */
+    if(!conn->proxy.rawalloc)
+      return CURLE_OUT_OF_MEMORY;
   }
 
   /*************************************************************
@@ -2964,7 +2966,6 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
     conn->user = strdup(CURL_DEFAULT_USER);
     conn->passwd = strdup(CURL_DEFAULT_PASSWORD);
-
     /* This is the default password, so DON'T set conn->bits.user_passwd */
   }
   else {
@@ -2972,6 +2973,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->user = strdup(user);
     conn->passwd = strdup(passwd);
   }
+  if(!conn->user || !conn->passwd)
+    return CURLE_OUT_OF_MEMORY;
 
   /*************************************************************
    * Check the current list of connections to see if we can
