@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.26 2004-02-23 08:22:43 bagder Exp $
+ * $Id: base64.c,v 1.27 2004-02-23 11:39:21 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -76,7 +76,7 @@ static void decodeQuantum(unsigned char *dest, const char *src)
  * Given a base64 string at src, decode it into the memory pointed to by
  * dest. Returns the length of the decoded data.
  */
-size_t Curl_base64_decode(char *dest, const char *src)
+size_t Curl_base64_decode(const char *src, char *dest)
 {
   int length = 0;
   int equalsTerm = 0;
