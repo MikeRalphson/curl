@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.81 2001-12-07 15:51:59 bagder Exp $
+ * $Id: http.c,v 1.82 2001-12-07 15:56:57 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -737,8 +737,6 @@ CURLcode Curl_http(struct connectdata *conn)
 
 #ifdef HAVE_GMTIME_R
       /* thread-safe version */
-      /* We assume that the presense of localtime_r() proves the presense
-         of gmtime_r() which is a bit ugly but might work */
       struct tm keeptime;
       thistime = (struct tm *)gmtime_r(&data->set.timevalue, &keeptime);
 #else
