@@ -18,28 +18,51 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: get_ver.awk,v 1.4 2004-06-11 02:29:16 gknauf Exp $
+# * $Id: get_ver.awk,v 1.5 2004-07-11 17:59:07 gknauf Exp $
 # ***************************************************************************
 # awk script which fetches libcurl version number and string from input file
 # and writes them to STDOUT. Here you can get an awk version for Win32:
 # http://www.gknw.com/development/prgtools/awk.zip
 #
 BEGIN {
-  while ((getline < ARGV[1]) > 0) {
-    if (match ($0, /^#define LIBCURL_VERSION "[^"]+"/)) {
-      libcurl_ver_str = substr($3, 2, length($3)-2);
+  if (match (ARGV[1], /curlver.h/)) {
+    while ((getline < ARGV[1]) > 0) {
+      if (match ($0, /^#define LIBCURL_VERSION "[^"]+"/)) {
+        libcurl_ver_str = substr($3, 2, length($3)-2);
+      }
+      else if (match ($0, /^#define LIBCURL_VERSION_MAJOR [^"]+/)) {
+        libcurl_ver_major = substr($3, 1, length($3));
+      }
+      else if (match ($0, /^#define LIBCURL_VERSION_MINOR [^"]+/)) {
+        libcurl_ver_minor = substr($3, 1, length($3));
+      }
+      else if (match ($0, /^#define LIBCURL_VERSION_PATCH [^"]+/)) {
+        libcurl_ver_patch = substr($3, 1, length($3));
+      }
     }
-    else if (match ($0, /^#define LIBCURL_VERSION_MAJOR [^"]+/)) {
-      libcurl_ver_major = substr($3, 1, length($3));
-    }
-    else if (match ($0, /^#define LIBCURL_VERSION_MINOR [^"]+/)) {
-      libcurl_ver_minor = substr($3, 1, length($3));
-    }
-    else if (match ($0, /^#define LIBCURL_VERSION_PATCH [^"]+/)) {
-      libcurl_ver_patch = substr($3, 1, length($3));
-    }
+    libcurl_ver = libcurl_ver_major "," libcurl_ver_minor "," libcurl_ver_patch;
+    print "LIBCURL_VERSION = " libcurl_ver "";
+    print "LIBCURL_VERSION_STR = " libcurl_ver_str "";
   }
-  libcurl_ver = libcurl_ver_major "," libcurl_ver_minor "," libcurl_ver_patch;
-  print "LIBCURL_VERSION = " libcurl_ver "";
-  print "LIBCURL_VERSION_STR = " libcurl_ver_str "";
+  if (match (ARGV[1], /ares_version.h/)) {
+    while ((getline < ARGV[1]) > 0) {
+      if (match ($0, /^#define ARES_VERSION_STR "[^"]+"/)) {
+        libcares_ver_str = substr($3, 2, length($3)-2);
+      }
+      else if (match ($0, /^#define ARES_VERSION_MAJOR [^"]+/)) {
+        libcares_ver_major = substr($3, 1, length($3));
+      }
+      else if (match ($0, /^#define ARES_VERSION_MINOR [^"]+/)) {
+        libcares_ver_minor = substr($3, 1, length($3));
+      }
+      else if (match ($0, /^#define ARES_VERSION_PATCH [^"]+/)) {
+        libcares_ver_patch = substr($3, 1, length($3));
+      }
+    }
+    libcares_ver = libcares_ver_major "," libcares_ver_minor "," libcares_ver_patch;
+    print "LIBCARES_VERSION = " libcares_ver "";
+    print "LIBCARES_VERSION_STR = " libcares_ver_str "";
+  }
 }
+
+
