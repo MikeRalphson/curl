@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.12 2002-05-17 07:57:13 bagder Exp $
+ * $Id: writeout.c,v 1.13 2002-07-30 11:07:59 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -111,8 +111,9 @@ void ourWriteOut(CURL *curl, char *writeinfo)
             if(strequal(ptr, replacements[i].name)) {
               switch(replacements[i].id) {
               case VAR_EFFECTIVE_URL:
-                if(CURLE_OK ==
-                   curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &stringp))
+                if((CURLE_OK ==
+                    curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &stringp))
+                   && stringp)
                   fputs(stringp, stream);
                 break;
               case VAR_HTTP_CODE:
@@ -177,10 +178,11 @@ void ourWriteOut(CURL *curl, char *writeinfo)
                   fprintf(stream, "%.3f", doubleinfo);
                 break;
               case VAR_CONTENT_TYPE:
-                if(CURLE_OK ==
-                   curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &stringp))
-                   fputs(stringp, stream);
-               break;
+                if((CURLE_OK ==
+                    curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &stringp))
+                   && stringp)
+                  fputs(stringp, stream);
+                break;
               default:
                 break;
               }
