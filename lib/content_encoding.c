@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.19 2004-11-30 09:44:54 bagder Exp $
+ * $Id: content_encoding.c,v 1.20 2005-02-07 19:12:37 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -128,7 +128,7 @@ inflate_stream(struct SessionHandle *data,
       }
 
       /* Done with these bytes, exit */
-      if (status == Z_OK && z->avail_in == 0 && z->avail_out > 0) {
+      if (status == Z_OK && z->avail_in == 0) {
         free(decomp);
         return result;
       }
