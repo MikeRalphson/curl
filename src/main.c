@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.259 2004-05-03 11:56:18 bagder Exp $
+ * $Id: main.c,v 1.260 2004-05-05 07:20:08 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -934,7 +934,6 @@ static int formparse(char *input,
   }
   else {
     fprintf(stderr, "Illegally formatted input field!\n");
-    free(contents);
     return 1;
   }
   free(contents);
