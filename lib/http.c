@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.80 2001-11-16 11:21:50 bagder Exp $
+ * $Id: http.c,v 1.81 2001-12-07 15:51:59 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -735,7 +735,7 @@ CURLcode Curl_http(struct connectdata *conn)
        * equal to UTC (Coordinated Universal Time)." (see page 20 of RFC2616).
        */
 
-#ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_GMTIME_R
       /* thread-safe version */
       /* We assume that the presense of localtime_r() proves the presense
          of gmtime_r() which is a bit ugly but might work */

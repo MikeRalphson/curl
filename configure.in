@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.87 2001-11-28 13:16:56 bagder Exp $
+dnl $Id: configure.in,v 1.88 2001-12-07 15:51:59 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -468,6 +468,8 @@ else
 
   dnl is there a localtime_r()
   CURL_CHECK_LOCALTIME_R()
+
+  AC_CHECK_FUNCS( gmtime_r )
 
 fi
 
