@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.163 2003-01-30 14:48:07 bagder Exp $
+ * $Id: main.c,v 1.164 2003-02-03 21:36:52 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -358,7 +358,7 @@ static void help(void)
   puts("    --engine <eng>  Specifies the crypto engine to use (HTTPS)\n"
        "    --cacert <file> CA certifciate to verify peer against (SSL)\n"
        "    --capath <directory> CA directory (made using c_rehash) to verify\n"
-       "                    peer against (SSL, NOT Windows)\n"
+       "                    peer against (SSL)\n"
        "    --ciphers <list> What SSL ciphers to use (SSL)\n"
        "    --compressed    Request a compressed response (using deflate).");
   puts("    --connect-timeout <seconds> Maximum time allowed for connection\n"
