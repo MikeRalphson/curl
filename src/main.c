@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.307 2005-01-25 22:13:12 bagder Exp $
+ * $Id: main.c,v 1.308 2005-01-27 15:51:03 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2933,8 +2933,9 @@ operate(struct Configurable *config, int argc, char *argv[])
   /* this sends all memory debug messages to a logfile named memdump */
   env = curlx_getenv("CURL_MEMDEBUG");
   if(env) {
+    /* use the value as file name */
+    curl_memdebug(env);
     curl_free(env);
-    curl_memdebug("memdump");
   }
   env = curlx_getenv("CURL_MEMLIMIT");
   if(env) {

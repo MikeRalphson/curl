@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.160 2005-01-20 22:48:43 bagder Exp $
+# $Id: runtests.pl,v 1.161 2005-01-27 15:51:03 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -78,7 +78,7 @@ my $perl="perl -I$srcdir";
 my $curl_debug=0;
 
 # name of the file that the memory debugging creates:
-my $memdump="memdump";
+my $memdump="$LOGDIR/memdump";
 
 # the path to the script that analyzes the memory debug output file:
 my $memanalyze="./memanalyze.pl";
@@ -135,7 +135,7 @@ my $tortalloc;
 chomp($pwd = `pwd`);
 
 # enable memory debugging if curl is compiled with it
-$ENV{'CURL_MEMDEBUG'} = 1;
+$ENV{'CURL_MEMDEBUG'} = $memdump;
 $ENV{'HOME'}=$pwd;
 
 ##########################################################################
