@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.81 2001-10-01 22:31:10 bagder Exp $
+ * $Id: urldata.h,v 1.82 2001-10-02 09:40:07 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -228,7 +228,7 @@ struct connectdata {
   char *hostent_buf; /* pointer to allocated memory for name info */
 
 #ifdef ENABLE_IPV6
-  struct addrinfo *ai; /* the particular host we use */
+  struct addrinfo *serv_addr;   /* the particular host we use */
 #else
   struct sockaddr_in serv_addr;
 #endif
