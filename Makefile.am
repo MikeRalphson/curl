@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.49 2004-03-15 10:18:38 bagder Exp $
+# $Id: Makefile.am,v 1.50 2004-05-17 10:54:00 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -53,6 +53,9 @@ test:
 
 test-full:
 	@(cd tests; $(MAKE) all full-test)
+
+test-torture:
+	@(cd tests; $(MAKE) all torture-test)
 
 #
 # Build source and binary rpms. For rpm-3.0 and above, the ~/.rpmmacros
