@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.67 2004-03-26 07:10:15 bagder Exp $
+dnl $Id: configure.ac,v 1.68 2004-03-29 06:22:57 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1037,6 +1037,9 @@ dnl default includes
 #endif
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
+#endif
+#ifdef HAVE_NETINET_IN_H
+#include <netinet/in.h>
 #endif
 ]
 )

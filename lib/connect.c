@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.91 2004-03-27 11:15:50 bagder Exp $
+ * $Id: connect.c,v 1.92 2004-03-29 06:22:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -32,10 +32,15 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
+#ifdef HAVE_NETINET_IN_H
+#include <netinet/in.h> /* <netinet/tcp.h> may need it */
+#endif
 #ifdef HAVE_NETINET_TCP_H
 #include <netinet/tcp.h> /* for TCP_NODELAY */
 #endif
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
