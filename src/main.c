@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.300 2004-12-17 18:31:40 giva Exp $
+ * $Id: main.c,v 1.301 2004-12-18 10:28:31 bagder Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1756,7 +1756,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
 #ifdef WIN32
           if(ptr &&
              (ptr == &nextarg[1]) &&
-             (nextarg[2] == '\\') &&
+             (nextarg[2] == '\\' || nextarg[2] == '/') &&
              (isalpha((int)nextarg[0])) )
              /* colon in the second column, followed by a backslash, and the
                 first character is an alphabetic letter:
