@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.399 2004-07-01 07:43:20 bagder Exp $
+ * $Id: url.c,v 1.400 2004-07-04 21:36:14 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1453,7 +1453,7 @@ CURLcode Curl_disconnect(struct connectdata *conn)
 
   if(-1 != conn->connectindex) {
     /* unlink ourselves! */
-    infof(data, "Closing connection #%d\n", conn->connectindex);
+    infof(data, "Closing connection #%ld\n", conn->connectindex);
     data->state.connects[conn->connectindex] = NULL;
   }
 
@@ -3123,7 +3123,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
     *in_connect = conn;      /* return this instead! */
 
-    infof(data, "Re-using existing connection! (#%d) with host %s\n",
+    infof(data, "Re-using existing connection! (#%ld) with host %s\n",
           conn->connectindex, conn->host.dispname);
   }
   else {
@@ -3500,7 +3500,7 @@ CURLcode Curl_done(struct connectdata **connp,
       result = res2;
   }
   else
-    infof(data, "Connection #%d to host %s left intact\n",
+    infof(data, "Connection #%ld to host %s left intact\n",
           conn->connectindex, conn->host.dispname);
 
   return result;

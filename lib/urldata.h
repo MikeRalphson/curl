@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.235 2004-07-01 08:10:21 bagder Exp $
+ * $Id: urldata.h,v 1.236 2004-07-04 21:36:14 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -429,7 +429,7 @@ struct Curl_async {
 struct connectdata {
   /**** Fields set when inited and not modified again */
   struct SessionHandle *data; /* link to the root CURL struct */
-  int connectindex; /* what index in the connects index this particular
+  long connectindex; /* what index in the connects index this particular
                        struct has */
 
   long protocol; /* PROT_* flags concerning the protocol set */
