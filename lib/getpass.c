@@ -22,7 +22,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * ============================================================================
  *
- * $Id: getpass.c,v 1.14 2001-09-07 04:01:32 bumblebury Exp $
+ * $Id: getpass.c,v 1.15 2001-10-11 09:32:19 bumblebury Exp $
  *
  * The spirit of this license is to allow use of this source code in any
  * project be it open or closed but still encourage the use of the open,
@@ -249,6 +249,6 @@ char *getpass(const char *prompt)
  * local variables:
  * eval: (load-file "../curl-mode.el")
  * end:
- * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
- * vim<600: et sw=2 ts=2 sts=2 tw=78
+ * vim600: fdm=marker
+ * vim: et sw=2 ts=2 sts=2 tw=78
  */

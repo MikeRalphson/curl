@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.16 2001-09-07 04:01:32 bumblebury Exp $
+ * $Id: memdebug.c,v 1.17 2001-10-11 09:32:19 bumblebury Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -161,6 +161,6 @@ int curl_fclose(FILE *file, int line, const char *source)
  * local variables:
  * eval: (load-file "../curl-mode.el")
  * end:
- * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
- * vim<600: et sw=2 ts=2 sts=2 tw=78
+ * vim600: fdm=marker
+ * vim: et sw=2 ts=2 sts=2 tw=78
  */

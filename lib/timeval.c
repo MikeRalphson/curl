@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.8 2001-10-01 22:50:20 bagder Exp $
+ * $Id: timeval.c,v 1.9 2001-10-11 09:32:19 bumblebury Exp $
  *****************************************************************************/
 
 #ifdef WIN32
@@ -83,6 +83,6 @@ long Curl_tvlong (struct timeval t1)
  * local variables:
  * eval: (load-file "../curl-mode.el")
  * end:
- * vim600: et sw=2 ts=2 sts=2 tw=78 fdm=marker
- * vim<600: et sw=2 ts=2 sts=2 tw=78
+ * vim600: fdm=marker
+ * vim: et sw=2 ts=2 sts=2 tw=78
  */
