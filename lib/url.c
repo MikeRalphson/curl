@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.368 2004-05-04 07:52:53 bagder Exp $
+ * $Id: url.c,v 1.369 2004-05-05 06:57:26 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1810,7 +1810,6 @@ static int handleSock5Proxy(const char *proxy_name,
     failf(conn->data,
           "%s:%d has an internal error an needs to be fixed to work",
           __FILE__, __LINE__);
-    return 1;
 #endif
   }
 

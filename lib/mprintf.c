@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.39 2004-03-23 15:25:54 bagder Exp $
+ * $Id: mprintf.c,v 1.40 2004-05-05 06:57:26 bagder Exp $
  *
  *************************************************************************
  *
@@ -42,6 +42,11 @@
 
 #ifndef SIZEOF_LONG_DOUBLE
 #define SIZEOF_LONG_DOUBLE 0
+#endif
+
+#ifndef SIZEOF_SIZE_T
+/* default to 4 bytes for size_t unless defined in the config.h */
+#define SIZEOF_SIZE_T 4
 #endif
 
 #ifdef DPRINTF_DEBUG
@@ -381,11 +386,12 @@ static long dprintf_Pass1(char *format, va_stack_t *vto, char **endpos,
 	case 'z':
           /* the code below generates a warning if -Wunreachable-code is
              used */
-	  if (sizeof(size_t) > sizeof(unsigned long))
-	    flags |= FLAGS_LONGLONG;
-	  if (sizeof(size_t) > sizeof(unsigned int))
-	    flags |= FLAGS_LONG;
-	  break;
+#if SIZEOF_SIZE_T>4
+          flags |= FLAGS_LONGLONG;
+#else
+          flags |= FLAGS_LONG;
+#endif
+          break;
         case 'O':
 #if SIZEOF_CURL_OFF_T > 4
           flags |= FLAGS_LONGLONG;
