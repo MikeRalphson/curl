@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.41 2004-01-29 13:56:45 bagder Exp $
+ * $Id: file.c,v 1.42 2004-02-13 07:03:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -206,11 +206,12 @@ CURLcode Curl_file(struct connectdata *conn)
 #ifdef HAVE_STRFTIME
     if(fstated) {
       struct tm *tm;
+      time_t clock = (time_t)statbuf.st_mtime;
 #ifdef HAVE_GMTIME_R
       struct tm buffer;
-      tm = (struct tm *)gmtime_r((time_t *)&statbuf.st_mtime, &buffer);
+      tm = (struct tm *)gmtime_r(&clock, &buffer);
 #else
-      tm = gmtime((time_t *)&statbuf.st_mtime);
+      tm = gmtime(&clock);
 #endif
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
       strftime(buf, BUFSIZE-1, "Last-Modified: %a, %d %b %Y %H:%M:%S GMT\r\n",
