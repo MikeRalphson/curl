@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.63 2003-02-05 07:43:05 bagder Exp $
+ * $Id: ssluse.c,v 1.64 2003-02-14 09:03:03 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -30,6 +30,9 @@
 
 #include <string.h>
 #include <stdlib.h>
+#ifdef HAVE_SYS_SOCKET_H
+#include <sys/socket.h>
+#endif
 
 #include "urldata.h"
 #include "sendf.h"
