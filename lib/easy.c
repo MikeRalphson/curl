@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.60 2004-07-24 21:31:01 bagder Exp $
+ * $Id: easy.c,v 1.61 2004-09-28 22:26:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -77,6 +77,7 @@
 #include "hostip.h"
 #include "share.h"
 #include "memory.h"
+#include "progress.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -561,6 +562,7 @@ void curl_easy_reset(CURL *curl)
 
   /* make libcurl quiet by default: */
   data->set.hide_progress = TRUE;  /* CURLOPT_NOPROGRESS changes these */
+  data->progress.flags |= PGRS_HIDE;
 
   /* Set the default size of the SSL session ID cache */
   data->set.ssl.numsessions = 5;
