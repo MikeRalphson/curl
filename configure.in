@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.128 2003-03-14 12:44:56 bagder Exp $
+dnl $Id: configure.in,v 1.129 2003-03-15 21:04:01 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl Ensure that this file is processed with autoconf 2.50 or newer
@@ -716,6 +716,8 @@ AC_CHECK_TYPE(ssize_t, int)
 
 TYPE_SOCKLEN_T
 TYPE_IN_ADDR_T
+
+AC_FUNC_SELECT_ARGTYPES
 
 dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL
