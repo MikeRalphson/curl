@@ -1,8 +1,8 @@
 #
-# $Id: Makefile.am,v 1.29 2002-02-07 14:35:14 bagder Exp $
+# $Id: Makefile.am,v 1.30 2002-02-25 14:08:18 bagder Exp $
 #
 
-AUTOMAKE_OPTIONS = foreign no-dependencies
+AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST =						\
 	CHANGES LEGAL maketgz MITX.txt MPL-1.1.txt	\
