@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.96 2001-08-28 08:55:59 bagder Exp $
+ * $Id: curl.h,v 1.97 2001-08-29 09:32:50 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -453,6 +453,10 @@ typedef enum {
    * handshake, set 1 to check existence, 2 to ensure that it matches the
    * provided hostname. */
   CINIT(SSL_VERIFYHOST, LONG, 81),
+
+  /* Specify which file name to write all known cookies in after completed
+     operation. Set file name to "-" (dash) to make it go to stdout. */
+  CINIT(COOKIEJAR, OBJECTPOINT, 82),
   
   CURLOPT_LASTENTRY /* the last unusued */
 } CURLoption;
