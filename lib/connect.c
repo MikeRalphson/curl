@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.53 2003-03-11 16:28:23 bagder Exp $
+ * $Id: connect.c,v 1.54 2003-05-01 13:37:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -81,8 +81,7 @@
 #include "memdebug.h"
 #endif
 
-static
-int ourerrno(void)
+int Curl_ourerrno(void)
 {
 #ifdef WIN32
   return (int)GetLastError();
@@ -350,7 +349,7 @@ int socketerror(int sockfd)
 
   if( -1 == getsockopt(sockfd, SOL_SOCKET, SO_ERROR,
                        (void *)&err, &errSize))
-    err = ourerrno();
+    err = Curl_ourerrno();
   
   return err;
 }
@@ -414,7 +413,7 @@ CURLcode Curl_is_connected(struct connectdata *conn,
     return CURLE_COULDNT_CONNECT;
   }
   else if(1 != rc) {
-    int error = ourerrno();
+    int error = Curl_ourerrno();
     failf(data, "Failed connect to %s:%d, errno: %d",
           conn->hostname, conn->port, error);
     return CURLE_COULDNT_CONNECT;
@@ -526,7 +525,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
       rc = connect(sockfd, ai->ai_addr, ai->ai_addrlen);
 
       if(-1 == rc) {
-        int error=ourerrno();
+        int error=Curl_ourerrno();
 
         switch (error) {
         case EINPROGRESS:
@@ -645,7 +644,7 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
                  sizeof(serv_addr));
 
     if(-1 == rc) {
-      int error=ourerrno();
+      int error=Curl_ourerrno();
 
       switch (error) {
       case EINPROGRESS:
