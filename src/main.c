@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.301 2004-12-18 10:28:31 bagder Exp $
+ * $Id: main.c,v 1.302 2004-12-20 21:14:45 danf Exp $
  ***************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -2023,7 +2023,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       break;
     case 'V':
     {
-      const char **proto;
+      const char * const *proto;
 
       printf(CURL_ID "%s\n", curl_version());
       if (curlinfo->protocols) {
