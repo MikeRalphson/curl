@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.121 2002-03-27 22:53:06 bagder Exp $
+ * $Id: main.c,v 1.122 2002-04-04 22:29:18 bagder Exp $
  *****************************************************************************/
 
 /* This is now designed to have its own local setup.h */
@@ -1344,8 +1344,6 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
 
     case 'G': /* HTTP GET */
       config->use_httpget = TRUE;
-      if(SetHTTPrequest(HTTPREQ_GET, &config->httpreq))
-        return PARAM_BAD_USE;
       break;
 
     case 'h': /* h for help */
