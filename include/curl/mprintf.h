@@ -1,6 +1,6 @@
 /*************************************************************************
  *
- * $Id: mprintf.h,v 1.1 1999-12-29 14:21:15 bagder Exp $
+ * $Id: mprintf.h,v 1.2 2000-01-10 23:53:10 bagder Exp $
  *
  * The contents of this file are subject to the Mozilla Public License
  * Version 1.0 (the "License"); you may not use this file except in

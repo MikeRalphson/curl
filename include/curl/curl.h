@@ -31,8 +31,8 @@
  * 	http://curl.haxx.nu
  *
  * $Source: /cvsroot/curl/curl/include/curl/curl.h,v $
- * $Revision: 1.1 $
- * $Date: 1999-12-29 14:21:15 $
+ * $Revision: 1.2 $
+ * $Date: 2000-01-10 23:53:10 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -357,14 +357,17 @@ typedef enum {
      HTTP: DELETE, TRACE and others
      FTP: to use a different list command
      */
-  T(CUSTOMREQUEST, OBJECTPOINT, 35),
+  T(CUSTOMREQUEST, OBJECTPOINT, 36),
 
   /* HTTP request, for odd commands like DELETE, TRACE and others */
-  T(STDERR, OBJECTPOINT, 36),
+  T(STDERR, OBJECTPOINT, 37),
 
   /* Progress mode sets alternative progress mode displays, the only
      one defined today is 1 which makes the #-style progress bar. */
-  T(PROGRESSMODE, LONG, 37),
+  T(PROGRESSMODE, LONG, 38),
+
+  /* send linked-list of post-transfer QUOTE commands */
+  T(POSTQUOTE, OBJECTPOINT, 39),
 
   URGTAG_LASTENTRY /* the last unusued */
 } UrgTag;
