@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/url.c,v $
- * $Revision: 1.67 $
- * $Date: 2000-11-29 08:16:27 $
+ * $Revision: 1.68 $
+ * $Date: 2000-12-07 09:09:26 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -723,7 +723,10 @@ static CURLcode _connect(CURL *curl, CURLconnect **in_connect)
 #ifdef HAVE_SIGACTION
   sigaction(SIGALRM, NULL, &sigact);
   sigact.sa_handler = alarmfunc;
+#ifdef SA_RESTART
+  /* HPUX doesn't have SA_RESTART but defaults to that behaviour! */
   sigact.sa_flags &= ~SA_RESTART;
+#endif
   sigaction(SIGALRM, &sigact, NULL);
 #else
   /* no sigaction(), revert to the much lamer signal() */
