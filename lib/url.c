@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.340 2004-02-22 22:31:24 bagder Exp $
+ * $Id: url.c,v 1.341 2004-03-01 07:19:26 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1325,15 +1325,15 @@ CURLcode Curl_disconnect(struct connectdata *conn)
        we shall forget. */
     conn->data->state.authstage = 0;
 
+  if(conn->curl_disconnect)
+    /* This is set if protocol-specific cleanups should be made */
+    conn->curl_disconnect(conn);
+
   if(-1 != conn->connectindex) {
     /* unlink ourselves! */
     infof(conn->data, "Closing connection #%d\n", conn->connectindex);
     conn->data->state.connects[conn->connectindex] = NULL;
   }
-
-  if(conn->curl_disconnect)
-    /* This is set if protocol-specific cleanups should be made */
-    conn->curl_disconnect(conn);
 
   Curl_safefree(conn->proto.generic);
   Curl_safefree(conn->newurl);
