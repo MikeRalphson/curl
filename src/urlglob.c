@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2001, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2002, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * In order to be useful for every potential user, curl and libcurl are
  * dual-licensed under the MPL and the MIT/X-derivate licenses.
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.15 2001-11-29 12:47:41 bagder Exp $
+ * $Id: urlglob.c,v 1.16 2002-03-06 22:52:00 bagder Exp $
  *****************************************************************************/
 
 /* client-local setup.h */
@@ -222,15 +222,19 @@ GlobCode glob_word(URLGlob *glob, char *pattern, int pos, int *amount)
   *amount = 1; /* default is one single string */
 
   while (*pattern != '\0' && *pattern != '{' && *pattern != '[') {
-    if (*pattern == '}' || *pattern == ']') {
+    if (*pattern == '}' || *pattern == ']')
       return GLOB_ERROR;
-    }
-    if (*pattern == '\\') {		/* escape character, skip '\' */
+
+    /* only allow \ to escape known "special letters" */
+    if (*pattern == '\\' &&
+        (*(pattern+1) == '{' || *(pattern+1) == '[' ||
+         *(pattern+1) == '}' || *(pattern+1) == ']') ) {
+
+      /* escape character, skip '\' */
       ++pattern;
       ++pos;
-      if (*pattern == '\0') {		/* but no escaping of '\0'! */
+      if (*pattern == '\0')		/* but no escaping of '\0'! */
 	return GLOB_ERROR;
-      }
     }
     *buf++ = *pattern++;		/* copy character to literal */
     ++pos;
