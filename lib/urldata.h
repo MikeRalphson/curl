@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.263 2005-03-14 00:01:30 bagder Exp $
+ * $Id: urldata.h,v 1.264 2005-03-29 11:35:25 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -327,7 +327,11 @@ struct FTP {
   bool cwddone;     /* if it has been determined that the proper CWD combo
                        already has been done */
   char *prevpath;   /* conn->path from the previous transfer */
+
   size_t nread_resp; /* number of bytes currently read of a server response */
+  char *linestart_resp; /* line start pointer for the FTP server response
+                           reader function */
+
   int count1; /* general purpose counter for the state machine */
   int count2; /* general purpose counter for the state machine */
   int count3; /* general purpose counter for the state machine */
