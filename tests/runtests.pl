@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.118 2004-04-23 08:38:43 bagder Exp $
+# $Id: runtests.pl,v 1.119 2004-04-29 13:31:57 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1128,6 +1128,7 @@ sub singletest {
 
         for(@strip) {
             # strip all patterns from both arrays
+            chomp $_;
             @out = striparray( $_, \@out);
             @protstrip= striparray( $_, \@protstrip);
         }
