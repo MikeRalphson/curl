@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.34 2002-08-12 09:43:20 bagder Exp $
+ * $Id: connect.c,v 1.35 2002-08-12 12:01:57 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -427,6 +427,9 @@ CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
    * Figure out what maximum time we have left
    *************************************************************/
   long timeout_ms=300000; /* milliseconds, default to five minutes */
+
+  *connected = FALSE; /* default to not connected */
+
   if(data->set.timeout || data->set.connecttimeout) {
     double has_passed;
 
