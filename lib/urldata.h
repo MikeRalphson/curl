@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.113 2002-06-14 06:57:00 bagder Exp $
+ * $Id: urldata.h,v 1.114 2002-06-15 21:00:55 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -631,6 +631,7 @@ struct UserDefined {
   struct ssl_config_data ssl;  /* user defined SSL stuff */
 
   int dns_cache_timeout; /* DNS cache timeout */
+  long buffer_size;      /* size of receive buffer to use */
   
 /* Here follows boolean settings that define how to behave during
    this session. They are STATIC, set by libcurl users or at least initially

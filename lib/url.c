@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.216 2002-06-14 12:05:20 bagder Exp $
+ * $Id: url.c,v 1.217 2002-06-15 21:00:55 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1011,6 +1011,19 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
      */
     data->set.telnet_options = va_arg(param, struct curl_slist *);
     break;
+
+  case CURLOPT_BUFFERSIZE:
+    /*
+     * The application kindly asks for a differently sized receive buffer.
+     * If it seems reasonable, we'll use it.
+     */
+    data->set.buffer_size = va_arg(param, long);
+
+    if(data->set.buffer_size> (BUFSIZE -1 ))
+      data->set.buffer_size = 0; /* huge internal default */
+
+    break;
+
   default:
     /* unknown tag and its companion, just ignore: */
     return CURLE_FAILED_INIT; /* correct this */
