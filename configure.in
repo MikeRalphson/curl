@@ -1,4 +1,4 @@
-dnl $Id: configure.in,v 1.76 2001-08-21 06:36:30 bagder Exp $
+dnl $Id: configure.in,v 1.77 2001-09-03 12:00:38 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT
 AC_CONFIG_SRCDIR([lib/urldata.h])
@@ -477,7 +477,8 @@ AC_CHECK_HEADERS( \
         winsock.h \
         time.h \
         io.h \
-        pwd.h
+        pwd.h \
+        utime.h
 )
 
 dnl Check for libz header
@@ -531,7 +532,8 @@ AC_CHECK_FUNCS( socket \
                 strlcat \
                 getpwuid \
                 geteuid \
-                dlopen
+                dlopen \
+                utime
 )
 
 dnl removed 'getpass' check on October 26, 2000
