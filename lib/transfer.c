@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.135 2003-01-20 12:52:34 bagder Exp $
+ * $Id: transfer.c,v 1.136 2003-01-21 16:03:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -831,7 +831,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                 failf(data, "Failed writing data");
                 return CURLE_WRITE_ERROR;
               }
-              failf(data, "Received problem in the chunky parser");
+              failf(data, "Received problem %d in the chunky parser", res);
               return CURLE_RECV_ERROR;
             }
             else if(CHUNKE_STOP == res) {
