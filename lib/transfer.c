@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.189 2003-12-10 15:27:27 bagder Exp $
+ * $Id: transfer.c,v 1.190 2003-12-18 09:19:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1666,6 +1666,15 @@ CURLcode Curl_follow(struct SessionHandle *data,
       pathsep = strchr(protsep, '/');
       if(pathsep)
         *pathsep=0;
+      else {
+        /* There was no slash. Now, since we might be operating on a badly
+           formatted URL, such as "http://www.url.com?id=2380" which doesn't
+           use a slash separator as it is supposed to, we need to check for a
+           ?-letter as well! */
+        pathsep = strchr(protsep, '?');
+        if(pathsep)
+          *pathsep=0;
+      }
     }
 
     /* If the new part contains a space, this is a mighty stupid redirect
