@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.208 2004-04-06 15:14:10 bagder Exp $
+ * $Id: http.c,v 1.209 2004-04-07 14:27:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1116,10 +1116,12 @@ CURLcode Curl_http_done(struct connectdata *conn)
     conn->bytecount = http->readbytecount + http->writebytecount;
 
   if(!conn->bits.retry &&
-     !(http->readbytecount + conn->headerbytecount)) {
+     ((http->readbytecount +
+       conn->headerbytecount -
+       conn->deductheadercount)) <= 0) {
     /* If this connection isn't simply closed to be retried, AND nothing was
-       read from the HTTP server, this can't be right so we return an error
-       here */
+       read from the HTTP server (that counts), this can't be right so we
+       return an error here */
     failf(data, "Empty reply from server");
     return CURLE_GOT_NOTHING;
   }

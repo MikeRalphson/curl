@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.210 2004-04-06 15:14:11 bagder Exp $
+ * $Id: urldata.h,v 1.211 2004-04-07 14:27:56 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -438,6 +438,11 @@ struct connectdata {
   char *ppath;
   curl_off_t bytecount;
   long headerbytecount;  /* only count received headers */
+  long deductheadercount; /* this amount of bytes doesn't count when we check
+                             if anything has been transfered at the end of
+                             a connection. We use this counter to make only
+                             a 100 reply (without a following second response
+                             code) result in a CURLE_GOT_NOTHING error code */
 
   char *range; /* range, if used. See README for detailed specification on
                   this syntax. */

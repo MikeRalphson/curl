@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.216 2004-04-07 07:30:40 bagder Exp $
+ * $Id: transfer.c,v 1.217 2004-04-07 14:27:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -467,6 +467,9 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
               data->info.header_size += headerlen;
               conn->headerbytecount += headerlen;
+
+              conn->deductheadercount =
+                (100 == k->httpcode)?conn->headerbytecount:0;
 
               if (conn->resume_from &&
                   !k->content_range &&
