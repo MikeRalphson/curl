@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.71 2004-04-01 10:26:59 bagder Exp $
+dnl $Id: configure.ac,v 1.72 2004-04-25 15:23:23 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -695,7 +695,7 @@ AC_HELP_STRING([--without-ssl], [disable SSL]),
 
 if test X"$OPT_SSL" = Xno
 then
-  AC_MSG_WARN(SSL/https support disabled)  
+  AC_MSG_WARN([SSL disabled, you will not be able to use HTTPS, FTPS, NTLM and more])  
 else
 
   dnl Check for and handle argument to --with-ssl.
