@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.42 2004-12-20 18:23:43 danf Exp $
+ * $Id: version.c,v 1.43 2005-03-10 23:15:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -194,6 +194,8 @@ static curl_version_info_data version_info = {
 #endif
 #ifdef USE_SSLEAY
   | CURL_VERSION_SSL
+#endif
+#if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
   | CURL_VERSION_NTLM /* since this requires OpenSSL */
 #endif
 #ifdef HAVE_LIBZ
