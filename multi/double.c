@@ -14,7 +14,7 @@
 #include "../lib/multi.h"
 
 /*
- * Simply download a HTTP file.
+ * Simply download two HTTP files!
  */
 int main(int argc, char **argv)
 {
