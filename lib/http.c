@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.146 2003-08-04 15:02:42 bagder Exp $
+ * $Id: http.c,v 1.147 2003-08-06 15:26:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -92,6 +92,7 @@
 #include "http_ntlm.h"
 #include "http_negotiate.h"
 #include "url.h"
+#include "share.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
