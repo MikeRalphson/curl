@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.153 2004-12-16 14:18:11 bagder Exp $
+# $Id: runtests.pl,v 1.154 2004-12-16 22:45:06 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1519,11 +1519,15 @@ sub startservers {
             # we support it but have no server!
         }
         elsif($what eq "https") {
-            if(!$stunnel || !$ssl_version) {
-                # we can't run https tests without stunnel
-                # or if libcurl is SSL-less
-                return 1;
+            if(!$stunnel) {
+                # we can't run ftps tests without stunnel
+                return "no stunnel";
             }
+            if(!!$ssl_version) {
+                # we can't run ftps tests if libcurl is SSL-less
+                return "curl lacks SSL support";
+            }
+
             if(!$run{'http'}) {
                 $pid = runhttpserver($verbose);
                 if($pid <= 0) {
