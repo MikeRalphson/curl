@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.7 2004-09-13 20:49:27 bagder Exp $
+ * $Id: parsedate.c,v 1.8 2004-09-15 07:28:04 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -67,7 +67,7 @@
   Sun, 12 Sep 2004 15:05:58 -0700
   Sat, 11 Sep 2004 21:32:11 +0200
 
-  compact numerical date strings ISO846-style:
+  compact numerical date strings:
 
   20040912 15:05:58 -0700
   20040911 +0200

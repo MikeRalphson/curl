@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.97 2004-08-19 06:41:49 bagder Exp $
+dnl $Id: configure.ac,v 1.98 2004-09-15 07:28:04 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1280,22 +1280,6 @@ then
   dnl was found, then disable the built-in manual stuff
   AC_MSG_WARN([disabling built-in manual])
   USE_MANUAL="no";
-fi
-
-AC_PROG_YACC
-
-if test -z "$YACC"
-then
-  AC_MSG_CHECKING([if OK to build without bison/yacc])
-  dnl no yacc is a big deal if we have no pre-fixed getdate.y
-  if test -r "$srcdir/lib/getdate.c"
-  then
-    dnl all is well, we don't have to generate it!
-    AC_MSG_RESULT(yes)
-  else
-    AC_MSG_RESULT(no)
-    AC_MSG_ERROR([no yacc or bison found, can't build libcurl!])
-  fi
 fi
 
 dnl *************************************************************************
