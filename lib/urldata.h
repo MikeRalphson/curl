@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.163 2003-07-04 16:29:23 bagder Exp $
+ * $Id: urldata.h,v 1.164 2003-07-15 23:36:50 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -528,6 +528,9 @@ struct connectdata {
   curl_read_callback fread; /* function that reads the input */
   void *fread_in;           /* pointer to pass to the fread() above */
 
+  struct ntlmdata ntlm;     /* NTLM differs from other authentication schemes
+                               because it authenticates connections, not
+                               single requests! */
 };
 
 /* The end of connectdata. */
@@ -658,7 +661,6 @@ struct UrlState {
                       is always set TRUE when curl_easy_perform() is called. */
 
   struct digestdata digest;
-  struct ntlmdata ntlm;
 
 #ifdef GSSAPI
   struct negotiatedata negotiate;
