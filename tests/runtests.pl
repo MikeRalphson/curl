@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: runtests.pl,v 1.69 2003-01-09 11:26:57 bagder Exp $
+# $Id: runtests.pl,v 1.70 2003-01-20 15:43:50 bagder Exp $
 #
 # Main curl test script, in perl to run on more platforms
 #
@@ -1085,18 +1085,18 @@ for(keys %run) {
 }
 
 if($total) {
-    printf("$ok tests out of $total reported OK: %d%%\n",
+    printf("TESTDONE: $ok tests out of $total reported OK: %d%%\n",
            $ok/$total*100);
 
     if($ok != $total) {
-        print "These test cases failed: $failed\n";
+        print "TESTFAIL: These test cases failed: $failed\n";
     }
 }
 else {
-    print "No tests were performed!\n";
+    print "TESTFAIL: No tests were performed!\n";
 }
 if($skipped) {
-    print "$skipped tests were skipped due to restraints\n";
+    print "TESTINFO: $skipped tests were skipped due to restraints\n";
 }
 if($total && ($ok != $total)) {
     exit 1;
