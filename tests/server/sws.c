@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.53 2004-05-28 09:52:15 bagder Exp $
+ * $Id: sws.c,v 1.54 2004-06-15 10:28:56 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -191,10 +191,10 @@ static void logmsg(const char *msg, ...)
   logfp = fopen(DEFAULT_LOGFILE, "a");
 
   fprintf(logfp?logfp:stderr, /* write to stderr if the logfile doesn't open */
-          "%02d:%02d:%02d (%d) %s\n",
+          "%02d:%02d:%02d %s\n",
           curr_time->tm_hour,
           curr_time->tm_min,
-          curr_time->tm_sec, (int)getpid(), buffer);
+          curr_time->tm_sec, buffer);
   if(logfp)
     fclose(logfp);
 }

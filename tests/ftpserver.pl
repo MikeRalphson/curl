@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.43 2004-05-17 08:02:23 bagder Exp $
+# $Id: ftpserver.pl,v 1.44 2004-06-15 10:28:56 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -43,8 +43,7 @@ sub logmsg {
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
         localtime(time);
     open(FTPLOG, ">>log/ftpd.log");
-    printf FTPLOG ("%02d:%02d:%02d (%d) ",
-                   $hour, $min, $sec, $$);
+    printf FTPLOG ("%02d:%02d:%02d ", $hour, $min, $sec);
     print FTPLOG @_;
     close(FTPLOG);
 }
