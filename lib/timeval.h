@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.h,v 1.8 2001-10-12 12:32:20 bagder Exp $
+ * $Id: timeval.h,v 1.9 2001-11-05 12:37:22 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -42,7 +42,7 @@ struct timeval {
 #endif
 #endif
 
-struct timeval Curl_tvnow ();
+struct timeval Curl_tvnow (void);
 
 /* the diff is from now on returned in number of milliseconds! */
 long Curl_tvdiff (struct timeval t1, struct timeval t2);
