@@ -30,8 +30,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/memdebug.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-10-25 07:41:11 $
+ * $Revision: 1.3 $
+ * $Date: 2000-11-17 14:05:43 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -45,6 +45,7 @@
 #include "urldata.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 /*
  * Note that these debug functions are very simple and they are meant to
