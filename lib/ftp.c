@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/ftp.c,v $
- * $Revision: 1.26 $
- * $Date: 2000-10-11 10:57:52 $
+ * $Revision: 1.27 $
+ * $Date: 2000-10-30 11:53:40 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -273,8 +273,8 @@ int GetLastResponse(int sockfd, char *buf,
         break;
       default:
 #ifdef USE_SSLEAY
-        if (data->use_ssl) {
-          keepon = SSL_read(data->ssl, ptr, 1);
+        if (data->ssl.use) {
+          keepon = SSL_read(data->ssl.handle, ptr, 1);
         }
         else {
 #endif

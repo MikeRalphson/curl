@@ -29,8 +29,8 @@
  * 	http://curl.haxx.se
  *
  * $Source: /cvsroot/curl/curl/lib/getinfo.c,v $
- * $Revision: 1.2 $
- * $Date: 2000-10-04 13:07:43 $
+ * $Revision: 1.3 $
+ * $Date: 2000-10-30 11:53:40 $
  * $Author: bagder $
  * $State: Exp $
  * $Locker:  $
@@ -116,6 +116,9 @@ CURLcode curl_getinfo(CURL *curl, CURLINFO info, ...)
     break;
   case CURLINFO_SPEED_UPLOAD:
     *param_doublep = data->progress.ulspeed;
+    break;
+  case CURLINFO_SSL_VERIFYRESULT:
+    *param_longp = data->ssl.certverifyresult;
     break;
   default:
     return CURLE_BAD_FUNCTION_ARGUMENT;
