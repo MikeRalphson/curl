@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.169 2003-10-20 20:32:08 bagder Exp $
+ * $Id: http.c,v 1.170 2003-10-21 06:34:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -125,9 +125,7 @@ static CURLcode Curl_output_basic(struct connectdata *conn)
   char *authorization;
   struct SessionHandle *data=conn->data;
 
-  sprintf(data->state.buffer, "%s:%s",
-          conn->user?conn->user:"",
-          conn->passwd?conn->passwd:"");
+  sprintf(data->state.buffer, "%s:%s", conn->user, conn->passwd);
   if(Curl_base64_encode(data->state.buffer, strlen(data->state.buffer),
                         &authorization) >= 0) {
     if(conn->allocptr.userpwd)
@@ -147,8 +145,7 @@ static CURLcode Curl_output_basic_proxy(struct connectdata *conn)
   struct SessionHandle *data=conn->data;
 
   sprintf(data->state.buffer, "%s:%s",
-          conn->proxyuser?conn->proxyuser:"",
-          conn->proxypasswd?conn->proxypasswd:"");
+          conn->proxyuser, conn->proxypasswd);
   if(Curl_base64_encode(data->state.buffer, strlen(data->state.buffer),
                         &authorization) >= 0) {
     Curl_safefree(conn->allocptr.proxyuserpwd);
@@ -291,7 +288,7 @@ CURLcode http_auth_headers(struct connectdata *conn,
       }
       if(auth)
         infof(data, "Server auth using %s with user '%s'\n",
-              auth, conn->user?conn->user:"");
+              auth, conn->user);
     }
   }
   else

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.310 2003-10-18 20:14:33 bagder Exp $
+ * $Id: url.c,v 1.311 2003-10-21 06:34:15 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2765,9 +2765,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     /* This is the default password, so DON'T set conn->bits.user_passwd */
   }
   else {
-    /* store user + password */
-    conn->user = user[0]?strdup(user):NULL;
-    conn->passwd = passwd[0]?strdup(passwd):NULL;
+    /* store user + password, zero-length if not set */
+    conn->user = strdup(user);
+    conn->passwd = strdup(passwd);
   }
 
   /*************************************************************
