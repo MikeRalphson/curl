@@ -20,9 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.1 2004-11-19 08:52:33 bagder Exp $
+ * $Id: select.h,v 1.2 2004-11-19 14:03:19 bagder Exp $
  ***************************************************************************/
-
 
 #ifdef HAVE_SYS_POLL_H
 #include <sys/poll.h>
@@ -44,12 +43,11 @@ struct pollfd
 
 #endif
 
-
 #define CSELECT_IN   0x01
 #define CSELECT_OUT  0x02
 #define CSELECT_ERR  0x04
 
-int Curl_select(int readfd, int writefd, int timeout_ms);
+int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms);
 
 int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms);
 
