@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.179 2003-05-12 12:37:35 bagder Exp $
+ * $Id: ftp.c,v 1.180 2003-05-13 12:11:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1212,7 +1212,13 @@ CURLcode ftp_use_port(struct connectdata *conn)
   bool sa_filled_in = FALSE;
 
   if(data->set.ftpport) {
-    if(Curl_if2ip(data->set.ftpport, myhost, sizeof(myhost))) {
+    in_addr_t in;
+
+    /* First check if the given name is an IP address */
+    in=inet_addr(data->set.ftpport);
+
+    if((in == CURL_INADDR_NONE) &&
+       Curl_if2ip(data->set.ftpport, myhost, sizeof(myhost))) {
       h = Curl_resolv(data, myhost, 0);
     }
     else {
