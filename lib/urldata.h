@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.109 2002-05-03 14:50:29 bagder Exp $
+ * $Id: urldata.h,v 1.110 2002-05-07 09:58:14 bagder Exp $
  *****************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -607,6 +607,7 @@ struct UserDefined {
   char *key_passwd;     /* plain text private key password */
   char *crypto_engine;  /* name of the crypto engine to use */
   char *cookiejar;      /* dump all cookies to this file */
+  bool cookiesession;   /* new cookie session? */
   bool crlf;            /* convert crlf on ftp upload(?) */
   struct curl_slist *quote;     /* after connection is established */
   struct curl_slist *postquote; /* after the transfer */

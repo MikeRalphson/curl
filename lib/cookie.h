@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.9 2002-03-19 07:54:55 bagder Exp $
+ * $Id: cookie.h,v 1.10 2002-05-07 09:58:14 bagder Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -55,9 +55,10 @@ struct CookieInfo {
   /* linked list of cookies we know of */
   struct Cookie *cookies;
 
-  char *filename; /* file we read from/write to */
-  bool running;   /* state info, for cookie adding information */
+  char *filename;  /* file we read from/write to */
+  bool running;    /* state info, for cookie adding information */
   long numcookies; /* number of cookies in the "jar" */
+  bool newsession; /* new session, discard session cookies on load */
 };
 
 /* This is the maximum line length we accept for a cookie line */
@@ -75,7 +76,7 @@ struct CookieInfo {
 struct Cookie *Curl_cookie_add(struct CookieInfo *, bool header, char *line,
                                char *domain);
 
-struct CookieInfo *Curl_cookie_init(char *, struct CookieInfo *);
+struct CookieInfo *Curl_cookie_init(char *, struct CookieInfo *, bool);
 struct Cookie *Curl_cookie_getlist(struct CookieInfo *, char *, char *, bool);
 void Curl_cookie_freelist(struct Cookie *);
 void Curl_cookie_cleanup(struct CookieInfo *);
