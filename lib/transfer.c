@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.236 2004-06-09 08:23:55 bagder Exp $
+ * $Id: transfer.c,v 1.237 2004-06-16 09:05:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2158,8 +2158,10 @@ CURLcode Curl_pretransfersec(struct connectdata *conn)
 
   /* secondary connection */
   status = Curl_connect_host(data, &sec_conn);
-  sec_conn->data = data;
-  conn->sec_conn = sec_conn;
+  if(CURLE_OK == status) {
+    sec_conn->data = data;
+    conn->sec_conn = sec_conn;
+  }
 
   return status;
 }
