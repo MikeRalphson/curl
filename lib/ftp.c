@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.271 2004-09-29 07:21:23 bagder Exp $
+ * $Id: ftp.c,v 1.272 2004-10-01 11:22:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -618,9 +618,11 @@ CURLcode Curl_ftp_connect(struct connectdata *conn)
       failf(data, "not logged in: %s", &buf[4]);
       return CURLE_FTP_USER_PASSWORD_INCORRECT;
     }
-    else if(ftpcode == 230) {
+    else if(ftpcode/100 == 2) {
       /* 230 User ... logged in.
-         (user successfully logged in) */
+         (user successfully logged in)
+
+         Apparently, proftpd with SSL returns 232 here at times. */
 
       infof(data, "We have successfully logged in\n");
     }
