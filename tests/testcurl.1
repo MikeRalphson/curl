@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: testcurl.1,v 1.1 2005-03-15 12:13:37 bagder Exp $
+.\" * $Id: testcurl.1,v 1.2 2005-03-17 08:04:08 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH testcurl.pl 1 "15 Mar 2005" "Curl 7.13.2" "testcurl"
@@ -61,6 +61,9 @@ Set name to report as. Displayed in the build summary on the site.
 .IP "--nocvsup"
 Don't update from CVS even though it is a CVS tree. Useful to still be able to
 test even though your network is down, or similar.
+.IP "--runtestsopts=[options]"
+Options that is passed to the runtests.pl script. Useful for disabling valgrind
+by force, and similar.
 .IP "--setup=[file name]"
 File name to read setup from (deprecated). The old style of providing info.
 If info is missing when testcurl.pl is started, it will prompt you and then
