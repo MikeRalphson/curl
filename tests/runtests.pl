@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.116 2004-04-16 07:02:17 bagder Exp $
+# $Id: runtests.pl,v 1.117 2004-04-22 10:33:55 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1013,9 +1013,6 @@ sub singletest {
 
         $cmdargs .= " <$stdinfile";
     }
-    if($valgrind) {
-        $cmdargs .= " 3>log/valgrind$testnum";
-    }
     my $CMDLINE;
 
     if(!$tool) {
@@ -1024,6 +1021,10 @@ sub singletest {
     else {
         $CMDLINE="$LIBDIR/$tool";
         $DBGCURL=$CMDLINE;
+    }
+
+    if($valgrind) {
+        $CMDLINE = "exec 3>log/valgrind$testnum && $CMDLINE";
     }
 
     $CMDLINE .= "$cmdargs >>$STDOUT 2>>$STDERR";
