@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.107 2001-03-15 14:38:30 bagder Exp $
+ * $Id: url.c,v 1.108 2001-03-23 07:46:14 bagder Exp $
  *****************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -936,9 +936,11 @@ ConnectionExists(struct UrlData *data,
           data->connects[i]=NULL; /* nothing here */
           continue; /* try another one now */
         }
+
+        *usethis = check;
+        return TRUE; /* yes, we found one to use! */
+        
       }
-      *usethis = check;
-      return TRUE; /* yes, we found one to use! */
     }
     else { /* The requested needle connection is using a proxy,
               is the checked one using the same? */
