@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.251 2004-11-24 16:11:36 bagder Exp $
+ * $Id: http.c,v 1.252 2004-12-02 17:08:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1068,7 +1068,7 @@ CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
                    "%s"
                    "\r\n",
                    hostname, remote_port,
-                   conn->bits.proxy_user_passwd?
+                   conn->allocptr.proxyuserpwd?
                    conn->allocptr.proxyuserpwd:"",
                    data->set.useragent?conn->allocptr.uagent:""
                    );
