@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.30 2003-12-02 22:04:30 bagder Exp $
+dnl $Id: configure.ac,v 1.31 2003-12-08 10:00:21 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1043,7 +1043,9 @@ AC_HELP_STRING([--disable-ares],[Disable using ares for name lookups]),
        fi
 
        AC_DEFINE(USE_ARES, 1, [Define if you want to enable ares support])
-
+       dnl substitute HAVE_ARES for curl-config and similar
+       HAVE_ARES="1"
+       AC_SUBST(HAVE_ARES)
        ares="yes"
        ;;
   esac ],
