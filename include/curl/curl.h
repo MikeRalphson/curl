@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.87 2001-06-07 09:39:30 bagder Exp $
+ * $Id: curl.h,v 1.88 2001-07-12 01:57:28 bumblebury Exp $
  *****************************************************************************/
 
 #include <stdio.h>
@@ -575,7 +575,8 @@ typedef enum {
 } curl_closepolicy;
 
 #define CURL_GLOBAL_SSL (1<<0)
-#define CURL_GLOBAL_ALL (CURL_GLOBAL_SSL)
+#define CURL_GLOBAL_WIN32 (1<<1)
+#define CURL_GLOBAL_ALL (CURL_GLOBAL_SSL|CURL_GLOBAL_WIN32)
 #define CURL_GLOBAL_NOTHING 0
 #define CURL_GLOBAL_DEFAULT CURL_GLOBAL_ALL
 

@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_global_init.3,v 1.4 2001-05-31 08:35:26 bagder Exp $
+.\" $Id: curl_global_init.3,v 1.5 2001-07-12 01:57:28 bumblebury Exp $
 .\"
 .TH curl_global_init 3 "31 May 2001" "libcurl 7.8" "libcurl Manual"
 .SH NAME
@@ -27,10 +27,13 @@ This function was added in libcurl 7.8.
 .SH FLAGS
 .TP 5
 .B CURL_GLOBAL_ALL
-Initialise everyting possible. This sets all known bits.
+Initialize everyting possible. This sets all known bits.
 .TP
 .B CURL_GLOBAL_SSL
-Initialise SSL
+Initialize SSL
+.TP
+.B CURL_GLOBAL_WIN32
+Initialize the Win32 socket libraries.
 .TP
 .B CURL_GLOBAL_NOTHING
 Initialise nothing extra. This sets no bit.
