@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.18 2001-10-17 12:33:35 bagder Exp $
+ * $Id: memdebug.c,v 1.19 2001-11-28 23:19:17 bagder Exp $
  *****************************************************************************/
 
 #include "setup.h"
@@ -70,6 +70,9 @@ void curl_memdebug(const char *logname)
 void *curl_domalloc(size_t size, int line, const char *source)
 {
   void *mem=(malloc)(size);
+  if(mem)
+    /* fill memory with junk */
+    memset(mem, 0xA5, size);
   if(logfile)
     fprintf(logfile, "MEM %s:%d malloc(%d) = %p\n",
             source, line, size, mem);
