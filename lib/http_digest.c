@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.21 2004-06-24 11:54:11 bagder Exp $
+ * $Id: http_digest.c,v 1.22 2004-07-31 07:36:01 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -66,7 +66,7 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
   struct SessionHandle *data=conn->data;
   bool before = FALSE; /* got a nonce before */
   struct digestdata *d;
-  
+
   if(proxy) {
     d = &data->state.proxydigest;
   }
@@ -168,7 +168,12 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
         else {
           /* unknown specifier, ignore it! */
         }
-        totlen = strlen(value)+strlen(content)+3;
+        totlen = strlen(value)+strlen(content)+1;
+
+        if(header[strlen(value)+1] == '\"')
+          /* the contents were within quotes, then add 2 for them to the
+             length */
+          totlen += 2;
       }
       else
         break; /* we're done here */
