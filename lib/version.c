@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.37 2004-05-06 07:24:47 bagder Exp $
+ * $Id: version.c,v 1.38 2004-05-06 07:32:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -98,10 +98,9 @@ static void getssl_version(char *ptr, long *num)
 char *curl_version(void)
 {
   static char version[200];
-  char *ptr;
-  int len = sizeof(version);
-  strcpy(version, LIBCURL_NAME "/" LIBCURL_VERSION );
-  ptr=strchr(version, '\0');
+  char *ptr=version;
+  strcpy(ptr, LIBCURL_NAME "/" LIBCURL_VERSION );
+  ptr=strchr(ptr, '\0');
 
 #ifdef USE_SSLEAY
   {
@@ -110,7 +109,6 @@ char *curl_version(void)
     ptr=strchr(version, '\0');
   }
 #endif
-  len -= strlen(version);
 
 #ifdef HAVE_KRB4
   sprintf(ptr, " krb4");
