@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.86 2004-06-07 07:01:29 bagder Exp $
+ * $Id: sendf.c,v 1.87 2004-06-07 10:28:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -469,7 +469,7 @@ int Curl_debug(struct SessionHandle *data, curl_infotype type,
   int rc;
   if(data->set.printhost && host) {
     char buffer[160];
-    char *t=NULL;
+    const char *t=NULL;
     switch (type) {
     case CURLINFO_HEADER_IN:
     case CURLINFO_DATA_IN:
