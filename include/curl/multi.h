@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.8 2003-02-04 18:12:41 bagder Exp $
+ * $Id: multi.h,v 1.9 2003-03-10 12:25:32 bagder Exp $
  ***************************************************************************/
 /*
   This is meant to be the "external" header file. Don't give away any
@@ -51,6 +51,7 @@
 #else
 #include <sys/socket.h>
 #include <sys/time.h>
+#include <sys/types.h>
 #endif
 
 #include "curl.h"
