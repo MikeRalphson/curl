@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.4 2004-02-27 13:21:47 bagder Exp $ */
+/* $Id: ares_private.h,v 1.5 2004-07-01 06:58:47 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -25,6 +25,15 @@
 /* We define closesocket() here so that we can use this function all over
    the source code for closing sockets. */
 #define closesocket(x) close(x)
+#endif
+
+#ifdef WATT32
+#include <tcp.h>
+#include <sys/ioctl.h>
+#undef  closesocket
+#define closesocket(s)    close_s(s)
+#define select(n,r,w,x,t) select_s(n,r,w,x,t)
+#define writev(s,v,c)     writev_s(s,v,c)
 #endif
 
 #define	DEFAULT_TIMEOUT		5
