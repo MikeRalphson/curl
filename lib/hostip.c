@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.126 2004-02-23 08:38:49 bagder Exp $
+ * $Id: hostip.c,v 1.127 2004-03-03 13:07:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -526,7 +526,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
     struct timeval *tvp, tv, store;
     int count;
 
-    store.tv_sec = timeout - elapsed;
+    store.tv_sec = (int)(timeout - elapsed);
     store.tv_usec = 0;
     
     FD_ZERO(&read_fds);
