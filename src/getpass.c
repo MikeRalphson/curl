@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.12 2004-12-26 09:17:38 bagder Exp $
+ * $Id: getpass.c,v 1.13 2005-01-04 16:13:58 giva Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -212,5 +212,5 @@ char *getpass_r(const char *prompt, /* prompt to display */
   return password; /* return pointer to buffer */
 }
 
-#endif /* HAVE_GETPASS */
+#endif /* DONE */
 #endif /* HAVE_GETPASS_R */
