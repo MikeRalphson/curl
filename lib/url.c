@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.416 2004-10-06 18:55:58 giva Exp $
+ * $Id: url.c,v 1.417 2004-10-07 07:41:44 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2095,11 +2095,22 @@ static bool tld_check_name (struct SessionHandle *data,
   rc = tld_check_lz(uc_name, &err_pos, NULL);
   if (rc == TLD_INVALID)
      infof(data, "WARNING: %s; pos %u = `%c'/0x%02X\n",
-           tld_strerror(rc), err_pos, uc_name[err_pos],
+#ifdef HAVE_TLD_STRERROR
+           tld_strerror(rc),
+#else
+           "<no msg>",
+#endif
+           err_pos, uc_name[err_pos],
            uc_name[err_pos] & 255);
   else if (rc != TLD_SUCCESS)
        infof(data, "WARNING: TLD check for %s failed; %s\n",
-             uc_name, tld_strerror(rc));
+             uc_name,
+#ifdef HAVE_TLD_STRERROR
+             tld_strerror(rc)
+#else
+             "<no msg>"
+#endif
+         );
   if (uc_name)
      idn_free(uc_name);
   return (rc == TLD_SUCCESS);
