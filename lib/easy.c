@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.56 2004-05-27 07:48:09 bagder Exp $
+ * $Id: easy.c,v 1.57 2004-06-02 14:39:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -333,7 +333,8 @@ CURLcode curl_easy_setopt(CURL *curl, CURLoption tag, ...)
     /* This is a function pointer type */
     param_func = va_arg(arg, func_T );
     ret = Curl_setopt(data, tag, param_func);
-  } else {
+  }
+  else {
     /* This is a curl_off_t type */
     param_offset = va_arg(arg, curl_off_t);
     ret = Curl_setopt(data, tag, param_offset);
