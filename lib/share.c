@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.9 2003-06-13 06:48:04 bagder Exp $
+ * $Id: share.c,v 1.10 2003-06-26 11:28:26 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,7 +30,7 @@
 #include "share.h"
 
 /* The last #include file should be: */
-#ifdef MALLOCDEBUG
+#ifdef CURLDEBUG
 #include "memdebug.h"
 #endif
 
