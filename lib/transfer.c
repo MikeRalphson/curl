@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.242 2004-07-16 21:01:16 bagder Exp $
+ * $Id: transfer.c,v 1.243 2004-08-09 08:28:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -128,7 +128,7 @@ static struct timeval notimeout={0,0};
 CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
 {
   struct SessionHandle *data = conn->data;
-  int buffersize = bytes;
+  size_t buffersize = (size_t)bytes;
   int nread;
 
   if(conn->bits.upload_chunky) {
