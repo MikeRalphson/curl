@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.84 2005-03-31 07:02:03 bagder Exp $
+ * $Id: setup.h,v 1.85 2005-04-07 15:27:14 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -278,6 +278,14 @@ typedef int curl_socket_t;
 
 #ifdef __UCLIBC__
 #define HAVE_INET_NTOA_R_2_ARGS 1
+#endif
+
+#if defined(USE_GNUTLS) || defined(USE_SSLEAY)
+#define USE_SSL    /* Either OpenSSL || GnuTLS */
+#endif
+
+#if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
+#define USE_NTLM
 #endif
 
 #endif /* __CONFIG_H */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.42 2005-03-14 15:51:10 bagder Exp $
+ * $Id: http_ntlm.c,v 1.43 2005-04-07 15:27:14 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -30,8 +30,7 @@
 */
 
 #ifndef CURL_DISABLE_HTTP
-#if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
-/* We need OpenSSL for the crypto lib to provide us with MD4 and DES */
+#ifdef USE_NTLM
 
 /* -- WIN32 approved -- */
 #include <stdio.h>
@@ -769,5 +768,5 @@ Curl_ntlm_cleanup(struct connectdata *conn)
 #endif
 }
 
-#endif /* USE_SSLEAY */
+#endif /* USE_NTLM */
 #endif /* !CURL_DISABLE_HTTP */
