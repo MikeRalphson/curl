@@ -1,4 +1,4 @@
-.\" $Id: curl_version_info.3,v 1.8 2005-03-11 15:18:46 bagder Exp $
+.\" $Id: curl_version_info.3,v 1.9 2005-04-07 15:21:50 bagder Exp $
 .\"
 .TH curl_version_info 3 "11 Mar 2005" "libcurl 7.13.2" "libcurl Manual"
 .SH NAME
@@ -34,7 +34,7 @@ typedef struct {
   const char *host;         /* human readable string */
   int features;             /* bitmask, see below */
   char *ssl_version;        /* human readable string */
-  long ssl_version_num;     /* number */
+  long ssl_version_num;     /* not used, always zero */
   const char *libz_version; /* human readable string */
   const char **protocols;   /* list of protocols */
 
