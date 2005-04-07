@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.280 2005-03-31 07:02:03 bagder Exp $
+ * $Id: curl.h,v 1.281 2005-04-07 15:18:51 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1358,8 +1358,8 @@ typedef struct {
   const char *host;         /* OS/host/cpu/machine when configured */
   int features;             /* bitmask, see defines below */
   const char *ssl_version;  /* human readable string */
-  long ssl_version_num;     /* number */
-  const char *libz_version;       /* human readable string */
+  long ssl_version_num;     /* not used anymore, always 0 */
+  const char *libz_version; /* human readable string */
   /* protocols is terminated by an entry with a NULL protoname */
   const char * const *protocols;
 
