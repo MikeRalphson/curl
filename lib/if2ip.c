@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.42 2005-03-31 07:02:03 bagder Exp $
+ * $Id: if2ip.c,v 1.43 2005-04-08 05:01:40 curlvms Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -110,7 +110,7 @@ char *Curl_if2ip(const char *interface, char *buf, int buf_size)
 
       struct sockaddr_in *s = (struct sockaddr_in *)&req.ifr_dstaddr;
       memcpy(&in, &(s->sin_addr.s_addr), sizeof(in));
-      ip = Curl_inet_ntop(s->sin_family, &in, buf, buf_size);
+      ip = (char *) Curl_inet_ntop(s->sin_family, &in, buf, buf_size);
     }
     sclose(dummy);
   }
