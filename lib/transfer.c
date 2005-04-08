@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.272 2005-04-07 15:27:14 bagder Exp $
+ * $Id: transfer.c,v 1.273 2005-04-08 16:59:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -697,6 +697,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                    * fields.  */
                   conn->size=0;
                   conn->maxdownload=0;
+                  k->ignorecl = TRUE; /* ignore Content-Length headers */
                   break;
                 default:
                   /* nothing */
@@ -713,7 +714,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                the header completely if we get a 416 response as then we're
                resuming a document that we don't get, and this header contains
                info about the true size of the document we didn't get now. */
-            if ((k->httpcode != 416) &&
+            if (!k->ignorecl &&
                 checkprefix("Content-Length:", k->p)) {
               contentlength = curlx_strtoofft(k->p+15, NULL, 10);
               if (data->set.max_filesize &&

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.265 2005-04-07 15:27:14 bagder Exp $
+ * $Id: urldata.h,v 1.266 2005-04-08 16:59:13 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -494,6 +494,8 @@ struct Curl_transfer_keeper {
                        and we're uploading the last chunk */
 
   bool ignorebody;  /* we read a response-body but we ignore it! */
+  bool ignorecl;    /* This HTTP response has no body so we ignore the Content-
+                       Length: header */
 };
 
 #if defined(USE_ARES) || defined(USE_THREADING_GETHOSTBYNAME) || \
