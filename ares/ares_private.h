@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.14 2005-03-22 10:37:26 giva Exp $ */
+/* $Id: ares_private.h,v 1.15 2005-04-08 15:41:31 dmeglio Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -156,7 +156,7 @@ struct ares_channeldata {
 
 void ares__send_query(ares_channel channel, struct query *query, time_t now);
 void ares__close_sockets(struct server_state *server);
-int ares__get_hostent(FILE *fp, struct hostent **host);
+int ares__get_hostent(FILE *fp, int family, struct hostent **host);
 int ares__read_line(FILE *fp, char **buf, int *bufsize);
 
 #ifdef CURLDEBUG
