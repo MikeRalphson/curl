@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.16 2005-04-09 16:49:47 dmeglio Exp $ */
+/* $Id: ares_private.h,v 1.17 2005-04-09 19:59:59 dmeglio Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -127,13 +127,19 @@ struct query {
 #define PATTERN_MASK 0x1
 #define PATTERN_CIDR 0x2
 
+union ares_addr {
+  struct in_addr addr4;
+  struct in6_addr addr6;
+};
+
 struct apattern {
-  struct in_addr addr;
+  union ares_addr addr;
   union
   {
-    struct in_addr addr;
+    union ares_addr addr;
     unsigned short bits;
   } mask;
+  int family;
   unsigned short type;
 };
 
