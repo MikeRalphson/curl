@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.5 2005-04-13 12:38:01 bagder Exp $
+ * $Id: gtls.c,v 1.6 2005-04-13 21:17:05 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -154,8 +154,8 @@ Curl_gtls_connect(struct connectdata *conn,
     rc = gnutls_certificate_set_x509_trust_file(conn->ssl[sockindex].cred,
                                                 data->set.ssl.CAfile,
                                                 GNUTLS_X509_FMT_PEM);
-    if(rc) {
-      infof(data, "error reading ca cert file %s (%s)",
+    if(rc < 0) {
+      infof(data, "error reading ca cert file %s (%s)\n",
             data->set.ssl.CAfile, gnutls_strerror(rc));
     }
   }
