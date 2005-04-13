@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.133 2005-04-07 15:27:14 bagder Exp $
+ * $Id: ssluse.c,v 1.134 2005-04-13 06:52:03 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -707,6 +707,8 @@ int Curl_ossl_close_all(struct SessionHandle *data)
     ENGINE_free(data->state.engine);
     data->state.engine = NULL;
   }
+#else
+  (void)data;
 #endif
   return 0;
 }
