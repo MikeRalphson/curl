@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.168 2005-04-12 07:18:48 bagder Exp $
+# $Id: runtests.pl,v 1.169 2005-04-14 22:52:08 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1067,8 +1067,8 @@ sub singletest {
     # if this section exists, we verify upload
     my @upload = getpart("verify", "upload");
 
-    # if this section exists, it is FTP server instructions:
-    my @ftpservercmd = getpart("server", "instruction");
+    # if this section exists, it might be FTP server instructions:
+    my @ftpservercmd = getpart("reply", "servercmd");
 
     my $CURLOUT="$LOGDIR/curl$testnum.out"; # curl output if not stdout
 
