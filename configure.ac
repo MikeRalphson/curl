@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.142 2005-04-07 22:13:40 bagder Exp $
+dnl $Id: configure.ac,v 1.143 2005-04-15 08:45:35 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -7,7 +7,7 @@ dnl We don't know the version number "staticly" so we use a dash here
 AC_INIT(curl, [-], [a suitable curl mailing list => http://curl.haxx.se/mail/])
 
 dnl configure script copyright
-AC_COPYRIGHT([Copyright (c) 1998 - 2004 Daniel Stenberg, <daniel@haxx.se>
+AC_COPYRIGHT([Copyright (c) 1998 - 2005 Daniel Stenberg, <daniel@haxx.se>
 This configure script may be copied, distributed and modified under the 
 terms of the curl license; see COPYING for more details])
 
@@ -1011,8 +1011,11 @@ if test "$OPENSSL_ENABLED" != "1"; then
     else
       addlib="-L$OPT_GNUTLS/lib -lgnutls"
       addcflags="-I$OPT_GNUTLS/include"
-      version=`$OPT_GNUTLS/bin/libgnutls-config --version`
+      version=`$OPT_GNUTLS/bin/libgnutls-config --version 2>/dev/null`
       gtlsprefix=$OPT_GNUTLS
+      if test -z "$version"; then
+        version="unknown"
+      fi
     fi
 
     CLEANLDFLAGS="$LDFLAGS"
