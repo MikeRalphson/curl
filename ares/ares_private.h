@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.17 2005-04-09 19:59:59 dmeglio Exp $ */
+/* $Id: ares_private.h,v 1.18 2005-04-15 15:25:16 dmeglio Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -68,6 +68,8 @@
 #endif
 
 #endif
+
+#include "ares_ipv6.h"
 
 struct send_request {
   /* Remaining data to send */
