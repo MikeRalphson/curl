@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.152 2005-04-07 07:30:02 bagder Exp $
+.\" * $Id: curl.1,v 1.153 2005-04-16 12:24:12 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "05 Apr 2005" "Curl 7.13.3" "Curl Manual"
@@ -887,9 +887,9 @@ This option may be used any number of times. To control where this URL is
 written, use the \fI-o/--output\fP or the \fI-O/--remote-name\fP options.
 .IP "-v/--verbose"
 Makes the fetching more verbose/talkative. Mostly usable for debugging. Lines
-starting with '>' means data sent by curl, '<' means data received by curl
-that is hidden in normal cases and lines starting with '*' means additional
-info provided by curl.
+starting with '>' means data sent by curl (this data may in itself contain
+newlines), '<' means data received by curl that is hidden in normal cases and
+lines starting with '*' means additional info provided by curl.
 
 Note that if you only want HTTP headers in the output, \fI-i/--include\fP
 might be option you're looking for.
