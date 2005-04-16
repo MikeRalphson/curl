@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: keywords.pl,v 1.2 2005-04-16 12:43:32 bagder Exp $
+# $Id: keywords.pl,v 1.3 2005-04-16 23:15:12 bagder Exp $
 ###########################################################################
 
 use strict;
@@ -53,6 +53,8 @@ my %k; # keyword count
 my %t; # keyword to test case mapping
 my @miss; # test cases without keywords set
 
+my $count;
+
 for $t (split(/ /, $TESTCASES)) {
     if(loadtest("${TESTDIR}/test${t}")) {
         # bad case
@@ -62,6 +64,7 @@ for $t (split(/ /, $TESTCASES)) {
 
     if(!$what[0]) {
         push @miss, $t;
+        next;
     }
 
     for(@what) {
@@ -70,9 +73,11 @@ for $t (split(/ /, $TESTCASES)) {
         $k{$_}++;
         $t{$_} .= "$_ ";
     }
+    $count++;
 }
 
-my @mtest = reverse sort { $k{$a} <=> $k{$b} } keys %k;
+# numerically on amount, or alphebetically if same amount
+my @mtest = reverse sort { $k{$a} <=> $k{$b} || $b cmp $a } keys %k;
 
 print <<TOP
 <table><tr><th>No Tests</th><th>Keyword</th></tr>
@@ -81,8 +86,11 @@ TOP
 for $t (@mtest) {
     printf "<tr><td>%d</td><td>$t</td></tr>\n", $k{$t};
 }
-print "</table>\n";
+printf "</table><p> $count tests (%d lack keywords)\n",
+    scalar(@miss);
 
 for(@miss) {
     print STDERR "$_ ";
 }
+
+print STDERR "\n";
