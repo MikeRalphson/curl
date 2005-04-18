@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.1 2005-04-18 06:57:44 bagder Exp $
+ * $Id: sockfilt.c,v 1.2 2005-04-18 08:49:46 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -288,10 +288,17 @@ static int juggle(curl_socket_t *sockfdp,
 
   case PASSIVE_CONNECT:
     sockfd = *sockfdp;
-    logmsg("waiting for data from client on socket %d", (int)sockfd);
-    /* there's always a socket to wait for */
-    FD_SET(sockfd, &fds_read);
-    maxfd = sockfd;
+    if(-1 == sockfd) {
+      /* eeek, we are supposedly connected and then this cannot be -1 ! */
+      logmsg("socket is -1! on %s:%d", __FILE__, __LINE__);
+      return FALSE;
+    }
+    else {
+      logmsg("waiting for data from client on socket %d", (int)sockfd);
+      /* there's always a socket to wait for */
+      FD_SET(sockfd, &fds_read);
+      maxfd = sockfd;
+    }
     break;
 
   case ACTIVE:
