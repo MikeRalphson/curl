@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.29 2005-03-19 01:00:00 bagder Exp $
+# $Id: testcurl.pl,v 1.30 2005-04-18 05:46:10 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -67,7 +67,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $crosscompile);
 
 # version of this script
-$version='$Revision: 1.29 $';
+$version='$Revision: 1.30 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -522,7 +522,12 @@ if ($targetos =~ /netware/) {
 }
 elsif(!$crosscompile) {
   logit "display curl$binext --version output";
-  system("./src/curl$binext --version");
+  open(F, "./src/curl$binext --version|");
+  while(<F>) {
+      print;
+      print LOG;
+  }
+  close(F);
 }
 
 if ($configurebuild && !$crosscompile) {
