@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.2 2005-04-18 08:49:46 bagder Exp $
+ * $Id: sockfilt.c,v 1.3 2005-04-18 08:59:46 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -291,7 +291,7 @@ static int juggle(curl_socket_t *sockfdp,
     if(-1 == sockfd) {
       /* eeek, we are supposedly connected and then this cannot be -1 ! */
       logmsg("socket is -1! on %s:%d", __FILE__, __LINE__);
-      return FALSE;
+      maxfd = 0; /* stdin */
     }
     else {
       logmsg("waiting for data from client on socket %d", (int)sockfd);
