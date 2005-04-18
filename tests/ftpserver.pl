@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.56 2005-04-18 06:57:44 bagder Exp $
+# $Id: ftpserver.pl,v 1.57 2005-04-18 08:49:21 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -572,7 +572,7 @@ sub PASV_command {
     eval {
         local $SIG{ALRM} = sub { die "alarm\n" };
 
-        alarm 2; # assume swift operations
+        alarm 5; # assume swift operations
 
         # Wait for 'CNCT'
         my $input = <DREAD>;
