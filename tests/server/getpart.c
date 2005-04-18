@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.17 2005-03-31 07:02:03 bagder Exp $
+ * $Id: getpart.c,v 1.18 2005-04-18 06:57:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -218,19 +218,3 @@ const char *spitout(FILE *stream,
   return string;
 }
 
-#ifdef GETPART_TEST
-int main(int argc, char **argv)
-{
-  if(argc< 3) {
-    printf("./moo main sub\n");
-  }
-  else {
-    size_t size;
-    unsigned int i;
-    const char *buffer = spitout(stdin, argv[1], argv[2], &size);
-    for(i=0; i< size; i++)
-      printf("%c", buffer[i]);
-  }
-  return 0;
-}
-#endif

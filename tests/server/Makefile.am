@@ -18,23 +18,21 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.9 2004-11-29 21:44:40 bagder Exp $
+# $Id: Makefile.am,v 1.10 2005-04-18 06:57:44 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
 
 INCLUDES = -I$(top_srcdir)/lib -I$(top_srcdir)/include
 
-noinst_PROGRAMS = sws getpart
+noinst_PROGRAMS = sws getpart sockfilt
 
-sws_SOURCES= sws.c getpart.c getpart.h $(top_srcdir)/lib/strequal.c	\
- $(top_srcdir)/lib/base64.c $(top_srcdir)/lib/mprintf.c			\
+useful = getpart.c getpart.h $(top_srcdir)/lib/strequal.c	\
+ $(top_srcdir)/lib/base64.c $(top_srcdir)/lib/mprintf.c		\
  $(top_srcdir)/lib/memdebug.c
+
+sws_SOURCES= sws.c $(useful)
+sockfilt_SOURCES = sockfilt.c $(useful) $(top_srcdir)/lib/inet_pton.c
+getpart_SOURCES= testpart.c $(useful)
 
 extra_DIST = base64.pl
-
-getpart_CPPFLAGS = -DGETPART_TEST
-
-getpart_SOURCES= getpart.c getpart.h $(top_srcdir)/lib/strequal.c	\
- $(top_srcdir)/lib/base64.c $(top_srcdir)/lib/mprintf.c			\
- $(top_srcdir)/lib/memdebug.c
