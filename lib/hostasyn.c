@@ -18,15 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostasyn.c,v 1.10 2005-03-31 07:02:03 bagder Exp $
+ * $Id: hostasyn.c,v 1.11 2005-04-19 23:19:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
 #include <errno.h>
-
-#define _REENTRANT
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <malloc.h>

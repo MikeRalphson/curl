@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.85 2005-04-07 15:27:14 bagder Exp $
+ * $Id: setup.h,v 1.86 2005-04-19 23:19:23 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -95,13 +95,13 @@ typedef unsigned char bool;
 #define FORMAT_OFF_T "ld"
 #endif
 
-/*#ifdef NEED_REENTRANT*/
+#ifndef _REENTRANT
 /* Solaris needs _REENTRANT set for a few function prototypes and things to
    appear in the #include files. We need to #define it before all #include
    files. Unixware needs it to build proper reentrant code. Others may also
    need it. */
 #define _REENTRANT
-/*#endif */
+#endif
 
 #include <stdio.h>
 #ifdef HAVE_ASSERT_H

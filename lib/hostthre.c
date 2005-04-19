@@ -18,15 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.21 2005-04-04 12:30:03 giva Exp $
+ * $Id: hostthre.c,v 1.22 2005-04-19 23:19:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
 #include <errno.h>
-
-#define _REENTRANT
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <malloc.h>

@@ -18,15 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.13 2005-03-17 19:12:15 bagder Exp $
+ * $Id: hostip6.c,v 1.14 2005-04-19 23:19:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
 #include <errno.h>
-
-#define _REENTRANT
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <malloc.h>
