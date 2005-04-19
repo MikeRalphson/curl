@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.143 2005-04-15 08:45:35 bagder Exp $
+dnl $Id: configure.ac,v 1.144 2005-04-19 22:03:10 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -836,10 +836,7 @@ if test X"$OPT_SSL" != Xno; then
     ])
 
 
-  if test X"$HAVECRYPTO" != X"yes"; then
-      AC_MSG_WARN([crypto lib was not found; SSL will be disabled])
-
-  else
+  if test X"$HAVECRYPTO" = X"yes"; then
     dnl This is only reasonable to do if crypto actually is there: check for
     dnl SSL libs NOTE: it is important to do this AFTER the crypto lib
 
