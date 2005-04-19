@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.455 2005-04-18 19:41:05 bagder Exp $
+ * $Id: url.c,v 1.456 2005-04-19 23:37:45 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3087,7 +3087,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
   if(data->set.use_port && data->state.allow_port) {
     /* if set, we use this and ignore the port possibly given in the URL */
-    conn->remote_port = data->set.use_port;
+    conn->remote_port = (unsigned short)data->set.use_port;
     if(tmp)
       *tmp = '\0'; /* cut off the name there anyway - if there was a port
                       number - since the port number is to be ignored! */
