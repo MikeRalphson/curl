@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.171 2005-04-22 11:51:06 bagder Exp $
+# $Id: runtests.pl,v 1.172 2005-04-22 20:47:35 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1933,7 +1933,9 @@ sub displaylogs {
     print "== Contents of files in the log/ dir after test $testnum\n";
     foreach $log (sort @logs) {
         # the log file is not "." or ".." and contains more than zero bytes
-        if(($log !~ /\.(\.|)$/) && -s "$LOGDIR/$log") {
+        if(($log !~ /\.(\.|)$/) &&
+           ($log ne "memdump") && # and not "memdump"
+           -s "$LOGDIR/$log") {
             if($log =~ /^\.nfs/) {
                 next;
             }
