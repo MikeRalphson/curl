@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.86 2005-04-19 23:19:23 bagder Exp $
+ * $Id: setup.h,v 1.87 2005-04-24 22:25:04 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -33,7 +33,11 @@
 #endif
 
 #if !defined(WIN32) && defined(__WIN32__)
-/* This should be a good Borland fix. Alexander J. Oss told us! */
+/* This should be a good Borland fix. */
+#define WIN32
+#endif
+#if !defined(WIN32) && defined(_WIN32)
+/* This works for VS2005 on x64 */
 #define WIN32
 #endif
 
