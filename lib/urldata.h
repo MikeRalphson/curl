@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.266 2005-04-08 16:59:13 bagder Exp $
+ * $Id: urldata.h,v 1.267 2005-04-25 21:39:48 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -420,6 +420,7 @@ struct ConnectBits {
   bool ftp_use_lprt;  /* As set with CURLOPT_FTP_USE_EPRT, but if we find out
                          LPRT doesn't work we disable it for the forthcoming
                          requests */
+  bool netrc;         /* name+password provided by netrc */
 };
 
 struct hostname {

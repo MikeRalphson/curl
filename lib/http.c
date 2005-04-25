@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.270 2005-04-18 17:14:58 bagder Exp $
+ * $Id: http.c,v 1.271 2005-04-25 21:39:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -465,6 +465,7 @@ Curl_http_output_auth(struct connectdata *conn,
   /* To prevent the user+password to get sent to other than the original
      host due to a location-follow, we do some weirdo checks here */
   if(!data->state.this_is_a_follow ||
+     conn->bits.netrc ||
      !data->state.first_host ||
      curl_strequal(data->state.first_host, conn->host.name) ||
      data->set.http_disable_hostname_check_before_authentication) {
