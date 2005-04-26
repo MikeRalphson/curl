@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.130 2005-03-14 15:43:23 bagder Exp $
+ * $Id: connect.c,v 1.131 2005-04-26 13:08:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -652,7 +652,7 @@ singleipconnect(struct connectdata *conn,
   /* set socket non-blocking */
   Curl_nonblock(sockfd, TRUE);
 
-  rc = connect(sockfd, ai->ai_addr, ai->ai_addrlen);
+  rc = connect(sockfd, ai->ai_addr, (socklen_t)ai->ai_addrlen);
 
   if(-1 == rc) {
     error = Curl_ourerrno();

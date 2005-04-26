@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: md5.c,v 1.9 2004-12-15 01:38:25 danf Exp $
+ * $Id: md5.c,v 1.10 2005-04-26 13:08:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -345,7 +345,7 @@ void Curl_md5it(unsigned char *outbuffer, /* 16 bytes */
 {
   MD5_CTX ctx;
   MD5_Init(&ctx);
-  MD5_Update(&ctx, input, strlen((char *)input));
+  MD5_Update(&ctx, input, (unsigned int)strlen((char *)input));
   MD5_Final(outbuffer, &ctx);
 }
 

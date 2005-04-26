@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.22 2005-04-19 23:19:23 bagder Exp $
+ * $Id: hostthre.c,v 1.23 2005-04-26 13:08:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -548,7 +548,7 @@ CURLcode Curl_resolv_fdset(struct connectdata *conn,
 
   if (td && td->dummy_sock != CURL_SOCKET_BAD) {
     FD_SET(td->dummy_sock,write_fd_set);
-    *max_fdp = td->dummy_sock;
+    *max_fdp = (int)td->dummy_sock;
   }
   (void) read_fd_set;
   return CURLE_OK;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.86 2004-12-22 20:12:15 danf Exp $
+ * $Id: formdata.c,v 1.87 2005-04-26 13:08:49 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -464,7 +464,7 @@ CURLFORMcode FormAdd(struct curl_httppost **httppost,
         return_value = CURL_FORMADD_OPTION_TWICE;
       else
         current_form->namelength =
-          array_state?(long)array_value:va_arg(params, long);
+          array_state?(long)array_value:(long)va_arg(params, long);
       break;
 
       /*
@@ -1550,7 +1550,7 @@ char *Curl_FormBoundary(void)
   if(!retstring)
     return NULL; /* failed */
 
-  srand(time(NULL)+randomizer++); /* seed */
+  srand((unsigned int)time(NULL)+randomizer++); /* seed */
 
   strcpy(retstring, "----------------------------");
 
