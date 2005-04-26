@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.88 2005-04-26 10:55:52 bagder Exp $
+ * $Id: setup.h,v 1.89 2005-04-26 13:08:18 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -174,8 +174,11 @@ typedef unsigned char bool;
 
 #if !defined(__GNUC__) || defined(__MINGW32__)
 #define sclose(x) closesocket(x)
-#define sread(x,y,z) recv(x,y,z, SEND_4TH_ARG)
-#define swrite(x,y,z) (size_t)send(x,y,z, SEND_4TH_ARG)
+
+/* Since Windows doesn't have/use the POSIX prototype for send() and recv(),
+   we typecast the third argument in the macros to avoid compiler warnings. */
+#define sread(x,y,z) recv(x,y,(int)(z), SEND_4TH_ARG)
+#define swrite(x,y,z) (size_t)send(x,y, (int)(z), SEND_4TH_ARG)
 #undef HAVE_ALARM
 #else
      /* gcc-for-win is still good :) */
