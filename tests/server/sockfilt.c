@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.3 2005-04-18 08:59:46 bagder Exp $
+ * $Id: sockfilt.c,v 1.4 2005-04-27 12:28:04 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -644,7 +644,7 @@ int main(int argc, char *argv[])
     }
 
     /* start accepting connections */
-    listen(sock, 0);
+    listen(sock, 1);
 
   }
 
