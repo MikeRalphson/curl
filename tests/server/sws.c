@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.66 2005-03-31 07:02:03 bagder Exp $
+ * $Id: sws.c,v 1.67 2005-04-27 12:27:23 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -843,13 +843,13 @@ int main(int argc, char *argv[])
   else
     fprintf(stderr, "Couldn't write pid file\n");
 
-  logmsg("Running IPv%d version",
+  logmsg("Running IPv%d version on port %d",
 #ifdef ENABLE_IPV6
          (use_ipv6?6:4)
 #else
          4
 #endif
-    );
+	 , port );
 
   /* start accepting connections */
   listen(sock, 5);
