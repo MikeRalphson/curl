@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: homedir.c,v 1.6 2004-10-06 07:50:18 bagder Exp $
+ * $Id: homedir.c,v 1.7 2005-04-27 21:24:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,7 +87,13 @@ char *GetEnv(const char *variable, char do_expand)
 /* return the home directory of the current user as an allocated string */
 char *homedir(void)
 {
-  char *home = GetEnv("HOME", FALSE);
+  char *home;
+
+  home = GetEnv("CURL_HOME", FALSE);
+  if(home)
+    return home;
+
+  home = GetEnv("HOME", FALSE);
   if(home)
     return home;
 
