@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.4 2005-04-27 12:28:04 bagder Exp $
+ * $Id: sockfilt.c,v 1.5 2005-04-28 14:31:25 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -582,7 +582,7 @@ int main(int argc, char *argv[])
       memset(&me6, 0, sizeof(me6));
       me6.sin6_family = AF_INET6;
       me6.sin6_port = htons(connectport);
-      Curl_inet_pton(AF_INET, "::1", &me6.sin6_addr);
+      Curl_inet_pton(AF_INET6, "::1", &me6.sin6_addr);
 
       rc = connect(sock, (struct sockaddr *) &me6, sizeof(me6));
     }
