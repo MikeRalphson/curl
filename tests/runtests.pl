@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.173 2005-04-27 09:59:29 bagder Exp $
+# $Id: runtests.pl,v 1.174 2005-04-28 06:50:42 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -469,7 +469,7 @@ sub runhttpsserver {
         return 0;
     }
 
-    my $pid=checkserver($HTTPSPIDFILE );
+    my $pid=checkserver($HTTPSPIDFILE);
 
     if($pid > 0) {
         # kill previous stunnel!
@@ -496,7 +496,13 @@ sub runhttpsserver {
         my $data=`$cmd`;
 
         if ( $data =~ /WE ROOLZ: (\d+)/ ) {
-            $pid = 0+$1;
+            # The replying server is the HTTP (_not_ HTTPS) server, so the
+            # pid it returns is of course not the pid we want here. We extract
+            # the pid from the fresh pid file instead.
+            $pid=checkserver($HTTPSPIDFILE);
+            if($verbose) {
+                print STDERR "RUN: extracted pid $pid from $HTTPSPIDFILE\n";
+            }
             last;
         }
         if($verbose) {
@@ -532,7 +538,7 @@ sub runftpserver {
         $nameext="-ipv6";
     }
 
-    my $pid = checkserver ();
+    my $pid = checkserver($pidfile);
 
     if ($pid <= 0) {
         print "RUN: Check port $port for the FTP$id$nameext server\n"
@@ -1434,10 +1440,19 @@ sub singletest {
             print "ERROR: section verify=>file has no name attribute!\n";
             exit;
         }
+        my $filemode=$hash{'mode'};
+        
         my @generated=loadarray($filename);
 
         # what parts to cut off from the file
         my @stripfile = getpart("verify", "stripfile");
+        
+        if(($filemode eq "text") && ($^O eq 'MSWin32')) {
+            # text mode when running on windows means adding an extra
+            # strip expression
+            push @stripfile, "s/\r\n/\n/";
+        }
+
         my $strip;
         for $strip (@stripfile) {
             chomp $strip;
