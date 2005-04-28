@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.176 2005-04-28 13:54:48 bagder Exp $
+# $Id: runtests.pl,v 1.177 2005-04-28 14:03:08 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1571,9 +1571,8 @@ sub singletest {
 #######################################################################
 # Stop all running test servers
 sub stopservers {
-    print "Shutting down test suite servers:\n" if ($verbose);
     for(keys %run) {
-        printf ("* kill pid for %-5s => %-5d\n", $_, $run{$_}) if($verbose);
+        printf ("* kill pid for %-5s => %-5d\n", $_, $run{$_});
         stopserver($run{$_}); # the pid file is in the hash table
     }
     ftpkillslaves();
