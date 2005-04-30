@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.1 2005-04-30 23:30:55 bagder Exp $
+ * $Id: util.c,v 1.2 2005-04-30 23:35:51 bagder Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -66,7 +66,7 @@ int ourerrno(void)
 }
 
 /* someone else must set this properly */
-extern char *serverlogfile;
+extern const char *serverlogfile;
 
 void logmsg(const char *msg, ...)
 {
