@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.67 2005-04-27 12:27:23 bagder Exp $
+ * $Id: sws.c,v 1.68 2005-04-30 23:30:55 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -57,6 +57,7 @@
 
 #include "curlx.h" /* from the private lib dir */
 #include "getpart.h"
+#include "util.h"
 
 #ifdef ENABLE_IPV6
 #define SWS_IPV6
@@ -124,6 +125,8 @@ void storerequest(char *reqbuf);
 #define DEFAULT_LOGFILE "log/sws.log"
 #endif
 
+const char *serverlogfile = DEFAULT_LOGFILE;
+
 #define SWSVERSION "cURL test suite HTTP server/0.1"
 
 #define REQUEST_DUMP  "log/server.input"
@@ -184,30 +187,6 @@ static const char *doc404 = "HTTP/1.1 404 Not Found\r\n"
 #ifdef SIGPIPE
 static volatile int sigpipe;  /* Why? It's not used */
 #endif
-
-static void logmsg(const char *msg, ...)
-{
-  time_t t = time(NULL);
-  va_list ap;
-  struct tm *curr_time = localtime(&t);
-  char buffer[256]; /* possible overflow if you pass in a huge string */
-  FILE *logfp;
-
-  va_start(ap, msg);
-  vsprintf(buffer, msg, ap);
-  va_end(ap);
-
-  logfp = fopen(DEFAULT_LOGFILE, "a");
-
-  fprintf(logfp?logfp:stderr, /* write to stderr if the logfile doesn't open */
-          "%02d:%02d:%02d %s\n",
-          curr_time->tm_hour,
-          curr_time->tm_min,
-          curr_time->tm_sec, buffer);
-  if(logfp)
-    fclose(logfp);
-}
-
 
 #ifdef SIGPIPE
 static void sigpipe_handler(int sig)
