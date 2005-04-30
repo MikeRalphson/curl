@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.274 2005-04-26 13:08:49 bagder Exp $
+ * $Id: transfer.c,v 1.275 2005-04-30 23:07:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1387,7 +1387,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             conn->size - k->bytecount);
       return CURLE_PARTIAL_FILE;
     }
-    else if(conn->bits.chunk &&
+    else if(!(conn->bits.no_body) &&
+            conn->bits.chunk &&
             (conn->proto.http->chunk.state != CHUNK_STOP)) {
       /*
        * In chunked mode, return an error if the connection is closed prior to
