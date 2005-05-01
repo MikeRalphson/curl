@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.319 2005-04-27 21:24:58 bagder Exp $
+ * $Id: main.c,v 1.320 2005-05-01 23:16:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2248,7 +2248,7 @@ static void parseconfig(const char *filename,
            * We assume that we are using the ASCII version here.
            */
           int n = GetModuleFileName(0, filebuffer, sizeof(filebuffer));
-          if (n > 0 && n < sizeof(filebuffer)) {
+          if (n > 0 && n < (int)sizeof(filebuffer)) {
             /* We got a valid filename - get the directory part */
             char *lastdirchar = strrchr(filebuffer, '\\');
             if (lastdirchar) {
@@ -2256,7 +2256,7 @@ static void parseconfig(const char *filename,
               *lastdirchar = 0;
               /* If we have enough space, build the RC filename */
               remaining = sizeof(filebuffer) - strlen(filebuffer);
-              if (strlen(CURLRC) < remaining - 1) {
+              if ((int)strlen(CURLRC) < remaining - 1) {
                 snprintf(lastdirchar, remaining,
                          "%s%s", DIR_CHAR, CURLRC);
                 /* Don't bother checking if it exists - we do
