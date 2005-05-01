@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.6 2005-04-30 23:30:55 bagder Exp $
+ * $Id: sockfilt.c,v 1.7 2005-05-01 12:56:09 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -75,6 +75,9 @@
 #include <netdb.h>
 #endif
 
+#define ENABLE_CURLX_PRINTF
+/* make the curlx header define all printf() functions to use the curlx_*
+   versions instead */
 #include "curlx.h" /* from the private lib dir */
 #include "getpart.h"
 #include "inet_pton.h"

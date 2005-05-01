@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.68 2005-04-30 23:30:55 bagder Exp $
+ * $Id: sws.c,v 1.69 2005-05-01 12:56:09 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -55,6 +55,9 @@
 #include <netdb.h>
 #endif
 
+#define ENABLE_CURLX_PRINTF
+/* make the curlx header define all printf() functions to use the curlx_*
+   versions instead */
 #include "curlx.h" /* from the private lib dir */
 #include "getpart.h"
 #include "util.h"
