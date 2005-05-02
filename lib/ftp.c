@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.316 2005-05-02 11:56:15 bagder Exp $
+ * $Id: ftp.c,v 1.317 2005-05-02 22:53:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -869,13 +869,13 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   }
 
   if (portsock == CURL_SOCKET_BAD) {
-    failf(data, "%s", Curl_strerror(conn,error));
+    failf(data, "socket failure: %s", Curl_strerror(conn,error));
     return CURLE_FTP_PORT_FAILED;
   }
 
   sslen = sizeof(ss);
   if (getsockname(portsock, sa, &sslen) < 0) {
-    failf(data, "%s", Curl_strerror(conn,Curl_ourerrno()));
+    failf(data, "getsockname(): %s", Curl_strerror(conn,Curl_ourerrno()));
     return CURLE_FTP_PORT_FAILED;
   }
 
@@ -2151,7 +2151,7 @@ static CURLcode ftp_state_get_resp(struct connectdata *conn,
       state(conn, FTP_STOP); /* this phase is over */
     }
     else {
-      failf(data, "%s", buf+4);
+      failf(data, "RETR response: %03d", ftpcode);
       return CURLE_FTP_COULDNT_RETR_FILE;
     }
   }

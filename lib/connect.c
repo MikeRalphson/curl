@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.132 2005-04-30 15:16:39 bagder Exp $
+ * $Id: connect.c,v 1.133 2005-05-02 22:53:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -345,7 +345,8 @@ static CURLcode bindlocal(struct connectdata *conn,
 
         if(!bindworked) {
           data->state.os_errno = Curl_ourerrno();
-          failf(data, "%s", Curl_strerror(conn, data->state.os_errno));
+          failf(data, "bind failure: %s",
+                Curl_strerror(conn, data->state.os_errno));
           return CURLE_HTTP_PORT_FAILED;
         }
 
