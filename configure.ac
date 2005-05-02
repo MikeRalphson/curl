@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.147 2005-04-22 21:13:27 bagder Exp $
+dnl $Id: configure.ac,v 1.148 2005-05-02 11:56:15 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1399,6 +1399,8 @@ AC_CHECK_TYPE(ssize_t, ,
 
 TYPE_SOCKLEN_T
 TYPE_IN_ADDR_T
+
+TYPE_SOCKADDR_STORAGE
 
 AC_FUNC_SELECT_ARGTYPES
 
