@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.63 2005-05-02 11:31:15 bagder Exp $
+# $Id: ftpserver.pl,v 1.64 2005-05-02 11:55:17 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -123,7 +123,8 @@ sub startsf {
     print STDERR "$cmd\n" if($verbose);
 
     print SFWRITE "PING\n";
-    my $pong = <SFREAD>;
+    my $pong;
+    sysread SFREAD, $pong, 5;
 
     if($pong !~ /^PONG/) {
         logmsg "Failed sockfilt command: $cmd\n";
