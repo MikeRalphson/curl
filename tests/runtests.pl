@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.182 2005-05-02 09:08:44 bagder Exp $
+# $Id: runtests.pl,v 1.183 2005-05-02 10:22:09 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -553,7 +553,7 @@ sub runftpserver {
     if($ipv6) {
         $flag .="--ipv6 ";
     }
-    my $cmd="$perl $srcdir/ftpserver.pl $flag --port $port";
+    my $cmd="$perl $srcdir/ftpserver.pl --pidfile $pidfile $flag --port $port";
 
     my $ftppid = startnew($cmd);
 
