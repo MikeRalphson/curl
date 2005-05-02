@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.60 2005-05-02 09:08:02 bagder Exp $
+# $Id: ftpserver.pl,v 1.61 2005-05-02 10:03:12 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -585,17 +585,23 @@ sub PASV_command {
     eval {
         local $SIG{ALRM} = sub { die "alarm\n" };
 
-        alarm 5; # assume swift operations
+	# assume swift operations unless explicitly slow
+	alarm ($controldelay?20:5);
 
         # Wait for 'CNCT'
-        my $input = <DREAD>;
+	my $input;
+	my $size;
 
-        if($input !~ /^CNCT/) {
-            # we wait for a connected client
-            next;
-        }
-        logmsg "====> Client DATA connect\n";
+        while(sysread(DREAD, $input, $size)) {
 
+	    if($input !~ /^CNCT/) {
+		# we wait for a connected client
+		logmsg "Odd, we got $input from client\n";
+		next;
+	    }
+	    logmsg "====> Client DATA connect\n";
+	    last;
+	}
         alarm 0;
     };
     if ($@) {
