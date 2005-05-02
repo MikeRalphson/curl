@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.181 2005-05-02 07:54:25 bagder Exp $
+# $Id: runtests.pl,v 1.182 2005-05-02 09:08:44 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -557,11 +557,22 @@ sub runftpserver {
 
     my $ftppid = startnew($cmd);
 
-    if(!kill(0, $ftppid)) {
+    if(!$ftppid || !kill(0, $ftppid)) {
         # it is NOT alive
         print "RUN: failed to start the FTP$id$nameext server!\n";
-        stopservers($verbose);
-        exit;
+        return -1;
+    }
+
+    # Make sure there is a pidfile present before we proceed. Because if we
+    # don't see one within a few secs, the server doesn't work. This mostly
+    # happens when the server finds out it cannot use the ipv6 protocol.
+    my $count=3;
+    while(! -f $pidfile) {
+        if(!$count--) {
+            print "RUN: failed starting FTP$id$nameext server (no pidfile)!\n";
+            return -1;
+        }
+        sleep(1);
     }
 
     if($verbose) {
