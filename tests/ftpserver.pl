@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.62 2005-05-02 10:22:09 bagder Exp $
+# $Id: ftpserver.pl,v 1.63 2005-05-02 11:31:15 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -541,7 +541,9 @@ sub PASV_command {
                       "./server/sockfilt --port 0 --logfile log/sockdata$ftpdnum$ext.log --pidfile .sockdata$ftpdnum$ext.pid $ipv6");
 
     print DWRITE "PING\n";
-    my $pong = <DREAD>;
+    my $pong;
+
+    sysread(DREAD, $pong, 5) || die;
 
     if($pong !~ /^PONG/) {
         kill(9, $slavepid);
@@ -668,7 +670,8 @@ sub PORT_command {
                       "./server/sockfilt --connect $port --logfile log/sockdata$ftpdnum$ext.log --pidfile .sockdata$ftpdnum$ext.pid $ipv6");
 
     print DWRITE "PING\n";
-    my $pong = <DREAD>;
+    my $pong;
+    sysread DREAD, $pong, 5;
 
     if($pong !~ /^PONG/) {
         logmsg "Failed sockfilt for data connection\n";
