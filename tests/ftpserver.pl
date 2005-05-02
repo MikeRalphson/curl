@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.59 2005-04-28 21:06:17 bagder Exp $
+# $Id: ftpserver.pl,v 1.60 2005-05-02 09:08:02 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -128,11 +128,12 @@ sub startsf {
     open(STDOUT, ">&SFWRITE")   || die "can't dup client to stdout";
 }
 
+# remove the file here so that if startsf() fails, it is very noticable 
+unlink(".ftp$ftpdnum.pid");
+
 startsf();
 
-logmsg sprintf("FTP server started on port IPv%d/$port\n",
-               $ipv6?6:4);
-
+logmsg sprintf("FTP server started on port IPv%d/$port\n", $ipv6?6:4);
 open(PID, ">.ftp$ftpdnum.pid");
 print PID $$;
 close(PID);
