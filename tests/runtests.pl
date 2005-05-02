@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.180 2005-05-01 13:20:53 bagder Exp $
+# $Id: runtests.pl,v 1.181 2005-05-02 07:54:25 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -179,6 +179,13 @@ foreach $protocol (('ftp', 'http', 'ftps', 'https', 'gopher', 'no')) {
     # clear uppercase version
     $ENV{uc($proxy)}=undef;
 }
+
+# make sure we don't get affected by other variables that control our
+# behaviour
+
+$ENV{'SSL_CERT_DIR'}=undef;
+$ENV{'SSL_CERT_PATH'}=undef;
+$ENV{'CURL_CA_BUNDLE'}=undef;
 
 #######################################################################
 # Start a new thread/process and run the given command line in there.
