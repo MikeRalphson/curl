@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.320 2005-05-01 23:16:51 bagder Exp $
+ * $Id: main.c,v 1.321 2005-05-02 07:53:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3127,10 +3127,21 @@ operate(struct Configurable *config, int argc, char *argv[])
       !config->capath &&
       !config->insecure_ok) {
     env = curlx_getenv("CURL_CA_BUNDLE");
-    if(env) {
+    if(env)
       GetStr(&config->cacert, env);
-      curl_free(env);
+    else {
+      env = curlx_getenv("SSL_CERT_DIR");
+      if(env)
+        GetStr(&config->capath, env);
+      else {
+        env = curlx_getenv("SSL_CERT_FILE");
+        if(env)
+          GetStr(&config->cacert, env);
+      }
     }
+
+    if(env)
+      curl_free(env);
 #if defined(WIN32) && !defined(__CYGWIN32__)
     else
       FindWin32CACert(config, "curl-ca-bundle.crt");
