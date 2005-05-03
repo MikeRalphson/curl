@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.64 2005-05-02 11:55:17 bagder Exp $
+# $Id: ftpserver.pl,v 1.65 2005-05-03 23:13:24 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -142,8 +142,10 @@ startsf();
 
 logmsg sprintf("FTP server started on port IPv%d/$port\n", $ipv6?6:4);
 open(PID, ">$pidfile");
-print PID $$;
+print PID $$."\n";
 close(PID);
+
+logmsg("logged pid $$ in $pidfile\n");
 
 sub sockfilt {
     my $l;
