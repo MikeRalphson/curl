@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.3 2005-04-19 23:38:57 bagder Exp $
+ * $Id: sslgen.c,v 1.4 2005-05-04 14:52:51 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -499,6 +499,7 @@ int Curl_ssl_recv(struct connectdata *conn, /* connection data */
  */
 CURLcode Curl_ssl_initsessions(struct SessionHandle *data, long amount)
 {
+#ifdef USE_SSL
   struct curl_ssl_session *session;
 
   if(data->state.session)
@@ -517,6 +518,11 @@ CURLcode Curl_ssl_initsessions(struct SessionHandle *data, long amount)
   data->set.ssl.numsessions = amount;
   data->state.session = session;
   data->state.sessionage = 1; /* this is brand new */
+#else
+  /* without SSL, do nothing */
+  (void)data;
+  (void)amount;
+#endif
 
   return CURLE_OK;
 }
