@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.66 2005-05-04 21:49:30 bagder Exp $
+# $Id: ftpserver.pl,v 1.67 2005-05-04 21:51:09 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -175,8 +175,9 @@ sub sendcontrol {
     }
     my $log;
     foreach $log (@_) {
-        $log =~ s/[\r\n]//g;
-        logmsg "> \"$log\"\n";
+        my $l = $log;
+        $l =~ s/[\r\n]//g;
+        logmsg "> \"$l\"\n";
     }
 }
 
