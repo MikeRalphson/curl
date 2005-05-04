@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.184 2005-05-03 23:14:43 bagder Exp $
+# $Id: runtests.pl,v 1.185 2005-05-04 21:58:47 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1155,7 +1155,7 @@ sub singletest {
     my $cmdargs;
     if(!$tool) {
         # run curl, add -v for debug information output
-        $cmdargs ="$out --include -v $cmd";
+        $cmdargs ="$out --include -v --trace-time $cmd";
     }
     else {
         $cmdargs = " $cmd"; # $cmd is the command line for the test file
