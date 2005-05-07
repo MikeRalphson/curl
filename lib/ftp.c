@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.318 2005-05-07 13:57:07 bagder Exp $
+ * $Id: ftp.c,v 1.319 2005-05-07 20:28:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2165,7 +2165,7 @@ static CURLcode ftp_state_loggedin(struct connectdata *conn)
   CURLcode result = CURLE_OK;
 
 #ifdef HAVE_KRB4
-  if(data->set.krb4) {
+  if(conn->data->set.krb4) {
     /* We are logged in, asked to use Kerberos. Set the requested
      * protection level
      */
