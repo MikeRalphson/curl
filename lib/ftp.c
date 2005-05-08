@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.320 2005-05-07 20:41:16 bagder Exp $
+ * $Id: ftp.c,v 1.321 2005-05-08 22:45:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2678,7 +2678,7 @@ static CURLcode ftp_easy_statemach(struct connectdata *conn)
 
     rc = Curl_select(ftp->sendleft?CURL_SOCKET_BAD:sock, /* reading */
                      ftp->sendleft?sock:CURL_SOCKET_BAD, /* writing */
-                     timeout_ms);
+                     (int)timeout_ms);
 
     if(rc == -1) {
       failf(data, "select error");

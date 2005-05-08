@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.322 2005-05-02 09:38:19 bagder Exp $
+ * $Id: main.c,v 1.323 2005-05-08 22:45:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2851,7 +2851,7 @@ int my_trace(CURL *handle, curl_infotype type,
       "*", "<", ">"
     };
     size_t i;
-    int st=0;
+    size_t st=0;
     static bool newl = FALSE;
 
     switch(type) {
