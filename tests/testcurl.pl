@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.30 2005-04-18 05:46:10 bagder Exp $
+# $Id: testcurl.pl,v 1.31 2005-05-09 07:45:30 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -67,7 +67,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $crosscompile);
 
 # version of this script
-$version='$Revision: 1.30 $';
+$version='$Revision: 1.31 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -435,15 +435,15 @@ while (<F>) {
 }
 close(F);
 
-logit "display src/config$confsuffix.h";
-open(F, "src/config$confsuffix.h") or die "src/config$confsuffix.h: $!";
-while (<F>) {
-  print if /^ *#/;
-}
-close(F);
-
 if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
   logit "setup to build ares";
+
+  logit "display ares/config$confsuffix.h";
+  open(F, "ares/config$confsuffix.h") or die "ares/config$confsuffix.h: $!";
+  while (<F>) {
+      print if /^ *#/;
+  }
+  close(F);
 
   logit "build ares";
   chdir "ares";
