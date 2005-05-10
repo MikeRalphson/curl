@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.276 2005-05-10 22:44:08 bagder Exp $
+ * $Id: transfer.c,v 1.277 2005-05-10 22:46:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -101,6 +101,8 @@
 #include "share.h"
 #include "memory.h"
 #include "select.h"
+#include "strerror.h"
+#include "connect.h" /* for the Curl_ourerrno() proto */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
