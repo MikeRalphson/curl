@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.9 2005-05-07 13:52:07 bagder Exp $
+ * $Id: sockfilt.c,v 1.10 2005-05-10 11:21:57 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -334,7 +334,7 @@ static int juggle(curl_socket_t *sockfdp,
         /* question asking us what PORT number we are listening to.
            Replies with PORT with "IPv[num]/[port]" */
         sprintf((char *)buffer, "IPv%d/%d\n", use_ipv6?6:4, port);
-        r = strlen((char *)buffer);
+        r = (int)strlen((char *)buffer);
         sprintf(data, "PORT\n%04x\n", r);
         write(fileno(stdout), data, 10);
         write(fileno(stdout), buffer, r);
@@ -356,7 +356,7 @@ static int juggle(curl_socket_t *sockfdp,
           return FALSE;
 
         logmsg("> %d bytes data, server => client", len);
-        lograw(buffer, len);
+        lograw(buffer, (int)len);
 
         if(*mode == PASSIVE_LISTEN) {
           logmsg("*** We are disconnected!");
