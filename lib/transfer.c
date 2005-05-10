@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.278 2005-05-10 22:48:26 bagder Exp $
+ * $Id: transfer.c,v 1.279 2005-05-10 23:02:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -287,7 +287,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
     fd_write = CURL_SOCKET_BAD;
 
   select_res = Curl_select(fd_read, fd_write, 0);
-  if(select_res & CSELECT_ERR) {
+  if(select_res == CSELECT_ERR) {
     failf(data, "select/poll returned error");
     return CURLE_SEND_ERROR;
   }
