@@ -1,4 +1,4 @@
-/* $Id: ares_ipv6.h,v 1.1 2005-04-15 15:25:16 dmeglio Exp $ */
+/* $Id: ares_ipv6.h,v 1.2 2005-05-11 06:47:09 bagder Exp $ */
 
 /*
  * Permission to use, copy, modify, and distribute this
@@ -29,7 +29,12 @@ struct in6_addr
 #endif
 
 #ifndef NS_IN6ADDRSZ
+#if SIZEOF_STRUCT_IN6_ADDR == 0
+/* We cannot have it set to zero, so we pick a fixed value here */
+#define NS_IN6ADDRSZ 16
+#else
 #define NS_IN6ADDRSZ SIZEOF_STRUCT_IN6_ADDR
+#endif
 #endif
 
 #ifndef NS_INADDRSZ
