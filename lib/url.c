@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.459 2005-05-12 08:51:30 bagder Exp $
+ * $Id: url.c,v 1.460 2005-05-12 13:44:25 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1442,7 +1442,7 @@ CURLcode Curl_disconnect(struct connectdata *conn)
 
     data->state.authproxy.done = FALSE;
     data->state.authproxy.picked =
-      data->state.authhost.want;
+      data->state.authproxy.want;
 
     data->state.authproblem = FALSE;
 
