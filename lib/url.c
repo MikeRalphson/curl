@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.458 2005-04-26 13:08:49 bagder Exp $
+ * $Id: url.c,v 1.459 2005-05-12 08:51:30 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3373,9 +3373,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 #ifdef HAVE_ALARM
     /* alarm() makes a signal get sent when the timeout fires off, and that
        will abort system calls */
-    prev_alarm = alarm(data->set.connecttimeout?
-                       data->set.connecttimeout:
-                       data->set.timeout);
+    prev_alarm = alarm((unsigned int) (data->set.connecttimeout?
+                                       data->set.connecttimeout:
+                                       data->set.timeout));
     /* We can expect the conn->created time to be "now", as that was just
        recently set in the beginning of this function and nothing slow
        has been done since then until now. */
