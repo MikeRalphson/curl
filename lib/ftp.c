@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.321 2005-05-08 22:45:01 bagder Exp $
+ * $Id: ftp.c,v 1.322 2005-05-14 06:00:40 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2277,7 +2277,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
   static const char * const ftpauth[]  = {
     "SSL", "TLS"
   };
-  size_t nread;
+  size_t nread = 0;
 
   if(ftp->sendleft) {
     /* we have a piece of a command still left to send */

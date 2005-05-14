@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.460 2005-05-12 13:44:25 bagder Exp $
+ * $Id: url.c,v 1.461 2005-05-14 06:00:40 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2217,7 +2217,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   char *at;
   CURLcode result=CURLE_OK;
   struct connectdata *conn;
-  struct connectdata *conn_temp;
+  struct connectdata *conn_temp = NULL;
   size_t urllen;
   struct Curl_dns_entry *hostaddr;
 #if defined(HAVE_ALARM) && !defined(USE_ARES)
