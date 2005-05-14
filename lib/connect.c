@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.134 2005-05-14 05:58:52 giva Exp $
+ * $Id: connect.c,v 1.135 2005-05-14 21:15:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -143,6 +143,7 @@ int Curl_nonblock(curl_socket_t sockfd,    /* operate on this */
     return fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
   else
     return fcntl(sockfd, F_SETFL, flags & (~O_NONBLOCK));
+#undef SETBLOCK
 #define SETBLOCK 1
 #endif
 
