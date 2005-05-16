@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.150 2005-05-16 14:40:10 bagder Exp $
+dnl $Id: configure.ac,v 1.151 2005-05-16 14:53:48 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1321,6 +1321,7 @@ if test x$cross_compiling != xyes; then
    dnl failure, now disable the function
    AC_MSG_RESULT(no)
    ac_cv_func_gmtime_r="no"
+   AC_DEFINE(HAVE_GMTIME_R, 0, [if you have gmtime_r])
    ,
    dnl not invoked when crosscompiling)
 ])
