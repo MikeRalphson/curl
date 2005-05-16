@@ -1,4 +1,4 @@
-/* $Id: ares_ipv6.h,v 1.2 2005-05-11 06:47:09 bagder Exp $ */
+/* $Id: ares_ipv6.h,v 1.3 2005-05-16 18:06:54 dmeglio Exp $ */
 
 /*
  * Permission to use, copy, modify, and distribute this
@@ -28,6 +28,17 @@ struct in6_addr
 };
 #endif
 
+#ifndef HAVE_STRUCT_SOCKADDR_IN6
+struct sockaddr_in6
+{
+  unsigned short  sin6_family;
+  unsigned short  sin6_port;
+  unsigned long   sin6_flowinfo;
+  struct in6_addr sin6_addr;
+  unsigned int    sin6_scope_id;
+};
+#endif
+
 #ifndef NS_IN6ADDRSZ
 #if SIZEOF_STRUCT_IN6_ADDR == 0
 /* We cannot have it set to zero, so we pick a fixed value here */
@@ -43,6 +54,14 @@ struct in6_addr
 
 #ifndef NS_INT16SZ
 #define NS_INT16SZ 2
+#endif
+
+#ifndef IF_NAMESIZE
+#ifdef IFNAMSIZ
+#define IF_NAMESIZE IFNAMSIZ
+#else
+#define IF_NAMESIZE 256
+#endif
 #endif
 
 #endif /* ARES_IPV6_H */
