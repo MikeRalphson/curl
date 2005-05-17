@@ -20,11 +20,45 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.1 2005-04-30 23:30:55 bagder Exp $
+ * $Id: util.h,v 1.2 2005-05-17 10:22:22 bagder Exp $
  ***************************************************************************/
 
 int ourerrno(void);
 void logmsg(const char *msg, ...);
 
+#ifndef FALSE
+#define FALSE 0
+#endif
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#if defined(WIN32) && !defined(__CYGWIN__)
+#include <windows.h>
+#include <winsock2.h>
+#include <process.h>
+
+#define sleep(sec)   Sleep ((sec)*1000)
+
+#define EINPROGRESS  WSAEINPROGRESS
+#define EWOULDBLOCK  WSAEWOULDBLOCK
+#define EISCONN      WSAEISCONN
+#define ENOTSOCK     WSAENOTSOCK
+#define ECONNREFUSED WSAECONNREFUSED
+
+static void win32_cleanup(void);
+
+#if defined(ENABLE_IPV6) && defined(__MINGW32__)
+const struct in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};
+#endif
+#endif
 
 #endif
+
+#if defined(WIN32) && !defined(__CYGWIN__)
+#undef perror
+#define perror(m) win32_perror(m)
+#endif
+
+void win32_init(void);
+void win32_cleanup(void);
