@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.322 2005-05-14 06:00:40 giva Exp $
+ * $Id: ftp.c,v 1.323 2005-05-17 09:15:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -210,11 +210,11 @@ static CURLcode AllowServerConnect(struct connectdata *conn)
     /* we have received data here */
     {
       curl_socket_t s;
-      size_t size = sizeof(struct sockaddr_in);
+      socklen_t size = (socklen_t) sizeof(struct sockaddr_in);
       struct sockaddr_in add;
 
-      getsockname(sock, (struct sockaddr *) &add, (socklen_t *)&size);
-      s=accept(sock, (struct sockaddr *) &add, (socklen_t *)&size);
+      getsockname(sock, (struct sockaddr *) &add, &size);
+      s=accept(sock, (struct sockaddr *) &add, &size);
 
       sclose(sock); /* close the first socket */
 
