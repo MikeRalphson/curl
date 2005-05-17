@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.187 2005-05-16 07:07:00 bagder Exp $
+# $Id: runtests.pl,v 1.188 2005-05-17 10:27:11 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1058,6 +1058,7 @@ sub singletest {
                 chomp $why;
             }
         }
+        print "prechecked $cmd\n" if($verbose);
     }
 
     if($why) {

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.1 2005-05-17 10:22:22 bagder Exp $
+ * $Id: resolve.c,v 1.2 2005-05-17 10:27:11 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -125,8 +125,8 @@ int main(int argc, char *argv[])
 
     he = gethostbyname(host);
 
-    printf("Resolve '%s' %s\n",
-           host, he?"SUCCESSFUL":"FAILED");
+    if(!he)
+      printf("Resolving '%s' FAILED\n", host);
 
     return he?0:1;
   }
@@ -143,8 +143,9 @@ int main(int argc, char *argv[])
     hints.ai_flags = AI_CANONNAME;
     rc = (getaddrinfo)(host, "80", &hints, &ai);
 
-    printf("Resolve '%s' %s\n",
-           host, !rc?"SUCCESSFUL":"FAILED");
+    if(rc)
+      printf("Resolving '%s' FAILED\n", host);
+
     return !rc?0:1;
   }
 #endif
