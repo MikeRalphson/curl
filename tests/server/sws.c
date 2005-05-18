@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.70 2005-05-17 10:22:22 bagder Exp $
+ * $Id: sws.c,v 1.71 2005-05-18 20:01:01 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -227,6 +227,10 @@ int ProcessRequest(struct httprequest *req)
 
       ptr++; /* skip the slash */
 
+      /* skip all non-numericals following the slash */
+      while(*ptr && !isdigit(*ptr))
+        ptr++;
+
       req->testno = strtol(ptr, &ptr, 10);
 
       if(req->testno > 10000) {
@@ -247,7 +251,7 @@ int ProcessRequest(struct httprequest *req)
       if(!stream) {
         logmsg("Couldn't open test file %d", req->testno);
         req->open = FALSE; /* closes connection */
-        return 0;
+        return 1; /* done */
       }
       else {
         char *cmd = NULL;
