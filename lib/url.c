@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.462 2005-05-18 20:01:01 bagder Exp $
+ * $Id: url.c,v 1.463 2005-05-19 07:21:18 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2465,6 +2465,10 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->path[0]='/'; /* prepend the missing slash */
 
     *tmp=0; /* now cut off the hostname at the ? */
+  }
+  else if(!conn->path[0]) {
+    /* if there's no path set, use a single slash */
+    strcpy(conn->path, "/");
   }
 
   /* If the URL is malformatted (missing a '/' after hostname before path) we
