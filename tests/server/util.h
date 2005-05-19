@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.2 2005-05-17 10:22:22 bagder Exp $
+ * $Id: util.h,v 1.3 2005-05-19 07:12:16 bagder Exp $
  ***************************************************************************/
 
 int ourerrno(void);
@@ -45,8 +45,6 @@ void logmsg(const char *msg, ...);
 #define EISCONN      WSAEISCONN
 #define ENOTSOCK     WSAENOTSOCK
 #define ECONNREFUSED WSAECONNREFUSED
-
-static void win32_cleanup(void);
 
 #if defined(ENABLE_IPV6) && defined(__MINGW32__)
 const struct in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};
