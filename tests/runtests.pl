@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.188 2005-05-17 10:27:11 bagder Exp $
+# $Id: runtests.pl,v 1.189 2005-05-20 10:40:32 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1325,6 +1325,16 @@ sub singletest {
     if (@validstdout) {
         # verify redirected stdout
         my @actual = loadarray($STDOUT);
+
+        # get all attributes
+        my %hash = getpartattr("verify", "stdout");
+
+        # get the mode attribute
+        my $filemode=$hash{'mode'};
+        if(($filemode eq "text") && $has_textaware) {
+            # text mode when running on windows: fix line endings
+            map s/\r\n/\n/g, @actual;
+        }
 
         $res = compare("stdout", \@actual, \@validstdout);
         if($res) {
