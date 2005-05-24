@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.68 2005-05-04 21:57:07 bagder Exp $
+# $Id: ftpserver.pl,v 1.69 2005-05-24 21:09:49 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -722,7 +722,7 @@ while(1) {
     my $input;
     eval {
         local $SIG{ALRM} = sub { die "alarm\n" };
-        alarm 5; # just in case things go bad
+        alarm 360; # just in case things go REALLY bad
         $input = <STDIN>;
         alarm 0;
     };
