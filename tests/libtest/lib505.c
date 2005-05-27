@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.7 2004-12-01 13:41:22 giva Exp $
+ * $Id: lib505.c,v 1.8 2005-05-27 11:01:41 bagder Exp $
  */
 
 #include "test.h"
@@ -40,7 +40,7 @@ int test(char *URL)
   CURLcode res;
   FILE *hd_src ;
   int hd ;
-  struct stat file_info;
+  struct_stat file_info;
 
   struct curl_slist *headerlist=NULL;
   const char *buf_1 = "RNFR 505";
