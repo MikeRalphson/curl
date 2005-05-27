@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.16 2005-04-19 23:19:23 bagder Exp $
+ * $Id: hostip4.c,v 1.17 2005-05-27 11:39:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -172,9 +172,8 @@ Curl_addrinfo *Curl_ip2addr(in_addr_t num, char *hostname, int port)
 /*
  * Curl_getaddrinfo() - the ipv4 synchronous version.
  *
- * The original code to this function was once stolen from the Dancer source
- * code, written by Bjorn Reese, it has since been patched and modified
- * considerably.
+ * The original code to this function was from the Dancer source code, written
+ * by Bjorn Reese, it has since been patched and modified considerably.
  *
  * gethostbyname_r() is the thread-safe version of the gethostbyname()
  * function. When we build for plain IPv4, we attempt to use this
