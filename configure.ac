@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.154 2005-05-25 22:14:32 bagder Exp $
+dnl $Id: configure.ac,v 1.155 2005-06-01 21:30:29 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1650,7 +1650,7 @@ AC_HELP_STRING([--disable-ares],[Disable ares for name lookups]),
        AC_SUBST(HAVE_ARES)
        curl_ares_msg="enabled"
 
-       LIBS="$LIBS -lcares"
+       LIBS="-lcares $LIBS"
 
        dnl For backwards compatibility default to includes/lib in srcdir/ares
        dnl If a value is specified it is assumed that the libs are in $val/lib
