@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.190 2005-05-25 12:26:20 bagder Exp $
+# $Id: runtests.pl,v 1.191 2005-06-03 14:06:04 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1366,6 +1366,14 @@ sub singletest {
     if(!$replyattr{'nocheck'} && (@reply || $replyattr{'sendzero'})) {
         # verify the received data
         my @out = loadarray($CURLOUT);
+        my %hash = getpartattr("reply", "data");
+        # get the mode attribute
+        my $filemode=$hash{'mode'};
+        if(($filemode eq "text") && $has_textaware) {
+            # text mode when running on windows: fix line endings
+            map s/\r\n/\n/g, @out;
+        }
+
         $res = compare("data", \@out, \@reply);
         if ($res) {
             return 1;
