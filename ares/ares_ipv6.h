@@ -1,4 +1,4 @@
-/* $Id: ares_ipv6.h,v 1.3 2005-05-16 18:06:54 dmeglio Exp $ */
+/* $Id: ares_ipv6.h,v 1.4 2005-06-19 16:58:40 dmeglio Exp $ */
 
 /*
  * Permission to use, copy, modify, and distribute this
@@ -36,6 +36,20 @@ struct sockaddr_in6
   unsigned long   sin6_flowinfo;
   struct in6_addr sin6_addr;
   unsigned int    sin6_scope_id;
+};
+#endif
+
+#ifndef HAVE_STRUCT_ADDRINFO
+struct addrinfo
+{
+  int ai_flags;
+  int ai_family;
+  int ai_socktype;
+  int ai_protocol;
+  size_t ai_addrlen;
+  char *ai_cannonname;
+  struct sockaddr *ai_addr;
+  struct addrinfo *ai_next;
 };
 #endif
 
