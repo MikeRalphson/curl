@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_formadd.3,v 1.13 2004-10-25 11:05:37 bagder Exp $
+.\" $Id: curl_formadd.3,v 1.14 2005-06-20 22:32:45 bagder Exp $
 .\"
 .TH curl_formadd 3 "24 June 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -90,7 +90,7 @@ followed by a pointer to a string to a name, will make libcurl use the given
 name in the file upload part, instead of the actual file name given to
 \fICURLFORM_FILE\fP.
 
-.IP BCURLFORM_BUFFER
+.IP CURLFORM_BUFFER
 followed by a string, tells libcurl that a buffer is to be used to upload data
 instead of using a file. The given string is used as the value of the file
 name field in the content header.
