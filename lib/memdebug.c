@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.47 2005-03-31 07:02:03 bagder Exp $
+ * $Id: memdebug.c,v 1.48 2005-06-30 13:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -201,7 +201,7 @@ void *curl_dorealloc(void *ptr, size_t wantedsize,
 
   mem=(struct memdebug *)(Curl_crealloc)(mem, size);
   if(logfile)
-    fprintf(logfile, "MEM %s:%d realloc(0x%x, %zd) = %p\n",
+    fprintf(logfile, "MEM %s:%d realloc(%p, %zd) = %p\n",
             source, line, ptr, wantedsize, mem?mem->mem:NULL);
 
   if(mem) {
