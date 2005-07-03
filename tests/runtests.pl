@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.191 2005-06-03 14:06:04 bagder Exp $
+# $Id: runtests.pl,v 1.192 2005-07-03 22:25:15 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1614,10 +1614,10 @@ sub singletest {
     my $sofar= time()-$start;
     my $esttotal = $sofar/$count * $total;
     my $estleft = $esttotal - $sofar;
-    my $left=sprintf("remaining: %dm%ds",
+    my $left=sprintf("remaining: %02d:%02d",
                      $estleft/60,
                      $estleft%60);
-    printf "OK ($count out of $total, %s)\n", $left;
+    printf "OK (%-3d out of %-3d, %s)\n", $count, $total, $left;
 
     # the test succeeded, remove all log files
     if(!$keepoutfiles) {

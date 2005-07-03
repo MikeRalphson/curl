@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.27 2005-02-09 13:06:40 bagder Exp $
+ * $Id: http.h,v 1.28 2005-07-03 22:25:15 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 bool Curl_compareheader(char *headerline,     /* line to check */
@@ -29,9 +29,9 @@ bool Curl_compareheader(char *headerline,     /* line to check */
                         const char *content); /* content string to find */
 
 /* ftp can use this as well */
-CURLcode Curl_ConnectHTTPProxyTunnel(struct connectdata *conn,
-                                     int tunnelsocket,
-                                     char *hostname, int remote_port);
+CURLcode Curl_proxyCONNECT(struct connectdata *conn,
+                           int tunnelsocket,
+                           char *hostname, int remote_port);
 
 /* protocol-specific functions set up to be called by the main engine */
 CURLcode Curl_http(struct connectdata *conn, bool *done);

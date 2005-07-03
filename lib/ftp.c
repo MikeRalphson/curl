@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.325 2005-05-24 09:39:56 bagder Exp $
+ * $Id: ftp.c,v 1.326 2005-07-03 22:25:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1670,8 +1670,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
 
     /* BLOCKING */
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
-    result = Curl_ConnectHTTPProxyTunnel(conn, SECONDARYSOCKET,
-                                         newhost, newport);
+    result = Curl_proxyCONNECT(conn, SECONDARYSOCKET, newhost, newport);
     if(CURLE_OK != result)
       return result;
   }
@@ -2745,8 +2744,8 @@ CURLcode Curl_ftp_connect(struct connectdata *conn,
   if (conn->bits.tunnel_proxy) {
     /* BLOCKING */
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
-    result = Curl_ConnectHTTPProxyTunnel(conn, FIRSTSOCKET,
-                                         conn->host.name, conn->remote_port);
+    result = Curl_proxyCONNECT(conn, FIRSTSOCKET,
+                               conn->host.name, conn->remote_port);
     if(CURLE_OK != result)
       return result;
   }
