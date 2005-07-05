@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.16 2005-04-26 13:08:49 bagder Exp $
+ * $Id: parsedate.c,v 1.17 2005-07-05 14:57:41 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -236,8 +236,19 @@ static time_t Curl_parsedate(const char *date)
   struct tm tm;
   enum assume dignext = DATE_MDAY;
   const char *indate = date; /* save the original pointer */
-
   int part = 0; /* max 6 parts */
+
+#ifdef WIN32
+  /*
+   * On Windows, we need an odd work-around for the case when no TZ variable
+   * is set. If it isn't set and "automatic DST adjustment" is enabled, the
+   * time functions below will return values one hour off! As reported and
+   * investigated in bug report #1230118.
+  */
+  const char *env = getenv("TZ");
+  if(!env)
+    putenv("TZ=GMT");
+#endif
 
   while(*date && (part < 6)) {
     bool found=FALSE;
