@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.273 2005-07-03 22:25:15 bagder Exp $
+ * $Id: http.c,v 1.274 2005-07-05 22:07:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1218,9 +1218,14 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
           nread += gotbytes;
 
           if(keepon > TRUE) {
+            /* This means we are currently ignoring a response-body, so we
+               simply count down our counter and make sure to break out of the
+               loop when we're done! */
             cl -= gotbytes;
-            if(!cl)
+            if(cl<=0) {
+              keepon = FALSE;
               break;
+            }
           }
           else
           for(i = 0; i < gotbytes; ptr++, i++) {
