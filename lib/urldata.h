@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.267 2005-04-25 21:39:48 bagder Exp $
+ * $Id: urldata.h,v 1.268 2005-07-12 18:15:34 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -421,6 +421,10 @@ struct ConnectBits {
                          LPRT doesn't work we disable it for the forthcoming
                          requests */
   bool netrc;         /* name+password provided by netrc */
+  
+  bool trailerHdrPresent; /* Set when Trailer: header found in HTTP response.
+                             Required to determine whether to look for trailers 
+                             in case of Transfer-Encoding: chunking */ 
 };
 
 struct hostname {
@@ -726,6 +730,12 @@ struct connectdata {
                                      transfer */
 
   enum { NORMAL, SOURCE3RD, TARGET3RD } xfertype;
+
+  /* These three are used for chunked-encoding trailer support */
+  char *trailer; /* allocated buffer to store trailer in */
+  int trlMax;    /* allocated buffer size */
+  int trlPos;    /* index of where to store data */
+
 };
 
 /* The end of connectdata. */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.465 2005-06-22 22:24:10 bagder Exp $
+ * $Id: url.c,v 1.466 2005-07-12 18:15:34 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1496,6 +1496,7 @@ CURLcode Curl_disconnect(struct connectdata *conn)
   Curl_safefree(conn->allocptr.host);
   Curl_safefree(conn->allocptr.cookiehost);
   Curl_safefree(conn->ip_addr_str);
+  Curl_safefree(conn->trailer);
 
   /* possible left-overs from the async name resolvers */
 #if defined(USE_ARES)
