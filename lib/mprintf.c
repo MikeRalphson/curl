@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.51 2005-04-26 13:08:49 bagder Exp $
+ * $Id: mprintf.c,v 1.52 2005-07-13 18:06:40 bagder Exp $
  *
  *************************************************************************
  *
@@ -75,6 +75,9 @@
 # define BOOL char
 #endif
 
+#ifdef _AMIGASF
+# undef FORMAT_INT
+#endif
 
 /* Lower-case digits.  */
 static const char lower_digits[] = "0123456789abcdefghijklmnopqrstuvwxyz";
