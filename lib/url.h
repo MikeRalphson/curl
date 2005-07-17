@@ -20,15 +20,18 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.22 2005-04-07 15:27:14 bagder Exp $
+ * $Id: url.h,v 1.23 2005-07-17 12:44:11 bagder Exp $
  ***************************************************************************/
+
+#include <stdarg.h> /* to make sure we have ap_list */
 
 /*
  * Prototypes for library-wide functions provided by url.c
  */
 
 CURLcode Curl_open(struct SessionHandle **curl);
-CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...);
+CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
+                     va_list arg);
 CURLcode Curl_close(struct SessionHandle *data); /* opposite of curl_open() */
 CURLcode Curl_connect(struct SessionHandle *, struct connectdata **,
                       bool *async, bool *protocol_connect);

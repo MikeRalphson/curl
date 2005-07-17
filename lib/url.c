@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.466 2005-07-12 18:15:34 bagder Exp $
+ * $Id: url.c,v 1.467 2005-07-17 12:44:11 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -372,13 +372,11 @@ CURLcode Curl_open(struct SessionHandle **curl)
   return CURLE_OK;
 }
 
-CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option, ...)
+CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
+                     va_list param)
 {
-  va_list param;
   char *argptr;
   CURLcode result = CURLE_OK;
-
-  va_start(param, option);
 
   switch(option) {
   case CURLOPT_DNS_CACHE_TIMEOUT:
