@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.467 2005-07-17 12:44:11 bagder Exp $
+ * $Id: url.c,v 1.468 2005-07-27 22:17:15 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -772,6 +772,37 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * anything else.
      */
     data->set.cookiesession = (bool)va_arg(param, long);
+    break;
+
+  case CURLOPT_COOKIELIST:
+    argptr = va_arg(param, char *);
+
+    if (argptr == NULL)
+      break;
+
+    if (strequal(argptr, "ALL")) {
+      if (data->cookies == NULL) {
+        break;
+      }
+      else {
+        /* clear all cookies */
+        Curl_cookie_freelist(data->cookies->cookies);
+        data->cookies->cookies = NULL;
+        break;
+      }
+    }
+
+    if (!data->cookies)
+      /* if cookie engine was not running, activate it */
+      data->cookies = Curl_cookie_init(data, NULL, NULL, TRUE);
+
+    if (checkprefix("Set-Cookie:", argptr))
+      /* HTTP Header format line */
+      Curl_cookie_add(data, data->cookies, TRUE, argptr + 11, NULL, NULL);
+
+    else
+      /* Netscape format line */
+      Curl_cookie_add(data, data->cookies, FALSE, argptr, NULL, NULL);
     break;
 #endif /* CURL_DISABLE_COOKIES */
 

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.35 2005-05-09 21:12:03 bagder Exp $
+# $Id: Makefile.am,v 1.36 2005-07-27 22:17:14 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -10,7 +10,8 @@ EXTRA_DIST = README curlgtk.c sepheaders.c simple.c postit2.c		\
  post-callback.c multi-app.c multi-double.c multi-single.c		\
  multi-post.c fopen.c simplepost.c makefile.dj curlx.c https.c		\
  multi-debugcallback.c fileupload.c getinfo.c ftp3rdparty.c debug.c	\
- anyauthput.c htmltitle.cc htmltidy.c opensslthreadlock.c
+ anyauthput.c htmltitle.cc htmltidy.c opensslthreadlock.c		\
+ cookie_interface.c
 
 all:
 	@echo "done"
