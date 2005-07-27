@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.h,v 1.9 2005-04-07 15:27:14 bagder Exp $
+ * $Id: http_ntlm.h,v 1.10 2005-07-27 21:44:43 bagder Exp $
  ***************************************************************************/
 
 typedef enum {
@@ -39,7 +39,8 @@ CURLntlm Curl_input_ntlm(struct connectdata *conn, bool proxy, char *header);
 CURLcode Curl_output_ntlm(struct connectdata *conn, bool proxy);
 
 void Curl_ntlm_cleanup(struct connectdata *conn);
-#if !defined(USE_SSLEAY) && !defined(USE_WINDOWS_SSPI)
+#if (!defined(USE_SSLEAY) && !defined(USE_WINDOWS_SSPI)) || \
+    defined(CURL_DISABLE_HTTP)
 #define Curl_ntlm_cleanup(x)
 #endif
 
