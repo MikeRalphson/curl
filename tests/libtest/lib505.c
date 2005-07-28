@@ -5,9 +5,10 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.8 2005-05-27 11:01:41 bagder Exp $
+ * $Id: lib505.c,v 1.9 2005-07-28 13:20:27 giva Exp $
  */
 
+#include "setup.h" /* struct_stat etc. */
 #include "test.h"
 
 #ifdef HAVE_SYS_SOCKET_H
@@ -46,10 +47,16 @@ int test(char *URL)
   const char *buf_1 = "RNFR 505";
   const char *buf_2 = "RNTO 505-forreal";
 
+  if (!arg2) {
+    fprintf(stderr, "Usage: <url> <file-to-upload>\n");
+    return -1;
+  }
+
   /* get the file size of the local file */
   hd = stat(arg2, &file_info);
   if(hd == -1) {
     /* can't open file, bail out */
+    fprintf(stderr, "WARNING: cannot open file %s\n", arg2);
     return -1;
   }
 
