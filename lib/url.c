@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.470 2005-07-28 21:50:34 bagder Exp $
+ * $Id: url.c,v 1.471 2005-07-28 21:53:09 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -788,6 +788,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
         /* clear all cookies */
         Curl_cookie_freelist(data->cookies->cookies);
         data->cookies->cookies = NULL;
+        data->cookies->numcookies = 0;
       }
       break;
     }
