@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.70 2005-07-27 22:17:15 bagder Exp $
+ * $Id: cookie.c,v 1.71 2005-07-28 21:49:58 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -906,32 +906,33 @@ int Curl_cookie_output(struct CookieInfo *c, char *dumphere)
 
 struct curl_slist *Curl_cookie_list(struct SessionHandle *data)
 {
-   struct curl_slist *list = NULL;
-   struct curl_slist *beg;
-   struct Cookie *c;
-   char *line;
+  struct curl_slist *list = NULL;
+  struct curl_slist *beg;
+  struct Cookie *c;
+  char *line;
 
-   if (data->cookies == NULL) return NULL;
-   if (data->cookies->numcookies == 0) return NULL;
+  if ((data->cookies == NULL) ||
+      (data->cookies->numcookies == 0))
+    return NULL;
 
-   c = data->cookies->cookies;
+  c = data->cookies->cookies;
 
-   beg = list;
-   while (c) {
-     /* fill the list with _all_ the cookies we know */
-     line = get_netscape_format(c);
-     if (line == NULL) {
-       /* get_netscape_format returns null only if we run out of memory */
+  beg = list;
+  while (c) {
+    /* fill the list with _all_ the cookies we know */
+    line = get_netscape_format(c);
+    if (line == NULL) {
+      /* get_netscape_format returns null only if we run out of memory */
 
-       curl_slist_free_all(beg); /* free some memory */
-       return NULL;
-     }
-     list = curl_slist_append(list, line);
-     free(line);
-     c = c->next;
-   }
+      curl_slist_free_all(beg); /* free some memory */
+      return NULL;
+    }
+    list = curl_slist_append(list, line);
+    free(line);
+    c = c->next;
+  }
 
-   return list;
+  return list;
 }
 
 #endif /* CURL_DISABLE_HTTP || CURL_DISABLE_COOKIES */
