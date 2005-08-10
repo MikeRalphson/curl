@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.18 2005-04-15 15:25:16 dmeglio Exp $ */
+/* $Id: ares_private.h,v 1.19 2005-08-10 17:03:53 gknauf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -31,6 +31,10 @@
 #undef  closesocket
 #define closesocket(s)    close_s(s)
 #define writev(s,v,c)     writev_s(s,v,c)
+#endif
+
+#ifdef NETWARE
+#include <time.h>
 #endif
 
 #define DEFAULT_TIMEOUT         5
