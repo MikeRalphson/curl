@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.5 2005-05-05 06:04:00 bagder Exp $
+ * $Id: sslgen.c,v 1.6 2005-08-11 21:41:11 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -473,8 +473,6 @@ int Curl_ssl_recv(struct connectdata *conn, /* connection data */
 #endif /* USE_GNUTLS */
 #endif /* USE_SSLEAY */
   if(nread == -1) {
-    infof(conn->data, "Curl_xxx_rcvs returned -1, block = %s\n",
-          block?"TRUE":"FALSE");
     if(!block)
       return 0; /* this is a true error, not EWOULDBLOCK */
     else
