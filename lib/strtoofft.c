@@ -18,11 +18,19 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.c,v 1.7 2004-10-10 03:28:51 bagder Exp $
+ * $Id: strtoofft.c,v 1.8 2005-08-11 20:42:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include "strtoofft.h"
+
+/*
+ * NOTE:
+ *
+ * In the ISO C standard (IEEE Std 1003.1), there is a strtoimax() function we
+ * could use in case strtoll() doesn't exist...  See
+ * http://www.opengroup.org/onlinepubs/009695399/functions/strtoimax.html
+ */
 
 #ifdef NEED_CURL_STRTOLL
 #include <stdlib.h>
