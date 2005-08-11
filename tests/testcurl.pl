@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.34 2005-05-20 11:24:55 bagder Exp $
+# $Id: testcurl.pl,v 1.35 2005-08-11 18:02:09 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile);
 
 # version of this script
-$version='$Revision: 1.34 $';
+$version='$Revision: 1.35 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -141,9 +141,9 @@ if ($^O eq 'MSWin32' || $targetos) {
   }
 }
 
-if ($^O eq 'MSWin32') {
+if (($^O eq 'MSWin32') && ($targetos =~ /vc/ || $targetos =~ /mingw32/ || $targetos =~ /borland/)) {
 
-  # Set these things only when building ON Windows, not when simply building
+  # Set these things only when building ON Windows and for Win32 platform.
   # FOR Windows since we might be cross-compiling on another system. Non-
   # Windows builds still default to configure-style builds with no confsuffix.
 
