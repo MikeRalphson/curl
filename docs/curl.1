@@ -18,10 +18,10 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.156 2005-06-23 23:07:07 bagder Exp $
+.\" * $Id: curl.1,v 1.157 2005-08-12 20:56:12 bagder Exp $
 .\" **************************************************************************
 .\"
-.TH curl 1 "24 Jun 2005" "Curl 7.14.1" "Curl Manual"
+.TH curl 1 "12 Aug 2005" "Curl 7.14.1" "Curl Manual"
 .SH NAME
 curl \- transfer a URL
 .SH SYNOPSIS
@@ -420,6 +420,11 @@ trickier stuff than curl would normally do. You should not replace internally
 set headers without knowing perfectly well what you're doing. Replacing an
 internal header with one without content on the right side of the colon will
 prevent that header from appearing.
+
+curl will make sure that each header you add/replace get sent with the proper
+end of line marker, you should thus \fBnot\fP add that as a part of the header
+content: do not add newlines or carriage returns they will only mess things up
+for you.
 
 See also the \fI-A/--user-agent\fP and \fI-e/--referer\fP options.
 
