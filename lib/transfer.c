@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.281 2005-07-12 18:15:34 bagder Exp $
+ * $Id: transfer.c,v 1.282 2005-08-13 21:28:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1134,6 +1134,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               result = Curl_client_write(data, CLIENTWRITE_BODY,
                                          data->state.headerbuff,
                                          k->hbuflen);
+              if(result)
+                return result;
             }
             if(k->badheader < HEADER_ALLBAD) {
               /* This switch handles various content encodings. If there's an
