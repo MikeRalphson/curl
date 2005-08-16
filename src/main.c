@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.327 2005-08-15 21:48:28 bagder Exp $
+ * $Id: main.c,v 1.328 2005-08-16 07:32:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -381,7 +381,7 @@ static void warnf(struct Configurable *config, const char *fmt, ...)
       if(len > (int)WARN_TEXTWIDTH) {
         int cut = WARN_TEXTWIDTH-1;
 
-        while(!isspace(ptr[cut]) && cut) {
+        while(!isspace((int)ptr[cut]) && cut) {
           cut--;
         }
 
