@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.72 2005-08-17 08:55:43 bagder Exp $
+ * $Id: cookie.c,v 1.73 2005-08-17 09:11:27 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -343,7 +343,7 @@ Curl_cookie_add(struct SessionHandle *data,
               badcookie = TRUE;
               break;
             }
-            co->expires = (long)curl_getdate(what, &now);
+            co->expires = curl_getdate(what, &now);
           }
           else if(!co->name) {
             co->name = strdup(name);
