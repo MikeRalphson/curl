@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.282 2005-07-27 22:17:15 bagder Exp $
+ * $Id: curl.h,v 1.283 2005-08-17 09:12:08 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1205,11 +1205,10 @@ CURL_EXTERN void curl_slist_free_all(struct curl_slist *);
  * DESCRIPTION
  *
  * Returns the time, in seconds since 1 Jan 1970 of the time string given in
- * the first argument. The time argument in the second parameter is for cases
- * where the specified time is relative now, like 'two weeks' or 'tomorrow'
- * etc.
+ * the first argument. The time argument in the second parameter is unused
+ * and should be set to NULL.
  */
-CURL_EXTERN time_t curl_getdate(const char *p, const time_t *now);
+CURL_EXTERN time_t curl_getdate(const char *p, const time_t *unused);
 
 #define CURLINFO_STRING   0x100000
 #define CURLINFO_LONG     0x200000
