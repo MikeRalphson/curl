@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.72 2005-05-19 09:55:53 bagder Exp $
+ * $Id: sws.c,v 1.73 2005-08-18 08:47:56 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -756,7 +756,7 @@ int main(int argc, char *argv[])
 #else
          4
 #endif
-	 , port );
+         , port );
 
   /* start accepting connections */
   listen(sock, 5);
