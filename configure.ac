@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.157 2005-07-27 18:22:21 danf Exp $
+dnl $Id: configure.ac,v 1.158 2005-08-21 21:15:07 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -930,12 +930,15 @@ if test X"$OPT_SSL" != Xno; then
   fi
 
   if test "$OPENSSL_ENABLED" = "1"; then
-    dnl when the ssl shared libs were found in a path that the run-time linker
-    dnl doesn't search through, we need to add it to LD_LIBRARY_PATH to
-    dnl prevent further configure tests to fail due to this
-    LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$LIB_OPENSSL"
-    export LD_LIBRARY_PATH
-    AC_MSG_NOTICE([Added $LIB_OPENSSL to LD_LIBRARY_PATH])
+    if test -n "$LIB_OPENSSL"; then
+       dnl when the ssl shared libs were found in a path that the run-time
+       dnl linker doesn't search through, we need to add it to LD_LIBRARY_PATH
+       dnl to prevent further configure tests to fail due to this
+
+       LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$LIB_OPENSSL"
+       export LD_LIBRARY_PATH
+       AC_MSG_NOTICE([Added $LIB_OPENSSL to LD_LIBRARY_PATH])
+    fi
   fi
 
 fi
