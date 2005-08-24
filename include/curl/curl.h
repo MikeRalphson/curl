@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.283 2005-08-17 09:12:08 bagder Exp $
+ * $Id: curl.h,v 1.284 2005-08-24 10:57:29 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -892,6 +892,9 @@ typedef enum {
 
   /* feed cookies into cookie engine */
   CINIT(COOKIELIST, OBJECTPOINT, 135),
+
+  /* ignore Content-Length */
+  CINIT(IGNORE_CONTENT_LENGTH, LONG, 136),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

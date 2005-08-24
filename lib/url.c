@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.474 2005-08-17 08:55:43 bagder Exp $
+ * $Id: url.c,v 1.475 2005-08-24 10:57:29 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1441,6 +1441,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
 
   case CURLOPT_FTP_ACCOUNT:
     data->set.ftp_account = va_arg(param, char *);
+    break;
+
+  case CURLOPT_IGNORE_CONTENT_LENGTH:
+    data->set.ignorecl = va_arg(param, long)?TRUE:FALSE;
     break;
 
   default:

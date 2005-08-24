@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.157 2005-08-12 20:56:12 bagder Exp $
+.\" * $Id: curl.1,v 1.158 2005-08-24 10:57:28 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "12 Aug 2005" "Curl 7.14.1" "Curl Manual"
@@ -429,6 +429,11 @@ for you.
 See also the \fI-A/--user-agent\fP and \fI-e/--referer\fP options.
 
 This option can be used multiple times to add/replace/remove multiple headers.
+.IP "--ignore-content-length"
+(HTTP)
+Ignore the Content-Length header. This is particularly useful for servers
+running Apache 1.x, which will report incorrect Content-Length for files
+larger than 2 gigabytes.
 .IP "-i/--include"
 (HTTP)
 Include the HTTP-header in the output. The HTTP-header includes things

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.268 2005-07-12 18:15:34 bagder Exp $
+ * $Id: urldata.h,v 1.269 2005-08-24 10:57:29 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1068,6 +1068,7 @@ struct UserDefined {
   bool global_dns_cache; /* subject for future removal */
   bool tcp_nodelay;      /* whether to enable TCP_NODELAY or not */
 
+  bool ignorecl;         /* ignore content length */
 };
 
 /*

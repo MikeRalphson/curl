@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.283 2005-08-17 08:55:43 bagder Exp $
+ * $Id: transfer.c,v 1.284 2005-08-24 10:57:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -718,7 +718,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                the header completely if we get a 416 response as then we're
                resuming a document that we don't get, and this header contains
                info about the true size of the document we didn't get now. */
-            if (!k->ignorecl &&
+            if (!k->ignorecl && !data->set.ignorecl &&
                 checkprefix("Content-Length:", k->p)) {
               contentlength = curlx_strtoofft(k->p+15, NULL, 10);
               if (data->set.max_filesize &&
