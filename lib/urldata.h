@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.269 2005-08-24 10:57:29 bagder Exp $
+ * $Id: urldata.h,v 1.270 2005-08-29 08:42:45 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -98,12 +98,14 @@
 #include "hash.h"
 
 #ifdef HAVE_GSSAPI
-#ifdef HAVE_GSSMIT
-#include <gssapi/gssapi.h>
-#include <gssapi/gssapi_generic.h>
-#else
-#include <gssapi.h>
-#endif
+# ifdef HAVE_GSSGNU
+#  include <gss.h>
+# elif defined HAVE_GSSMIT
+#  include <gssapi/gssapi.h>
+#  include <gssapi/gssapi_generic.h>
+# else
+#  include <gssapi.h>
+# endif
 #endif
 
 /* Download buffer size, keep it fairly big for speed reasons */
