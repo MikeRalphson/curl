@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.35 2005-08-11 18:02:09 gknauf Exp $
+# $Id: testcurl.pl,v 1.36 2005-08-30 18:37:08 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile);
 
 # version of this script
-$version='$Revision: 1.35 $';
+$version='$Revision: 1.36 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -412,19 +412,22 @@ if ($configurebuild) {
 }
 
 sub findinpath {
-    my $c;
-    my $e;
-    my $p=$ENV{'PATH'};
-    my @pa = split(":", $p);
-    for $c (@_) {
-        for $e (@pa) {
-            if( -x "$e/$c") {
-                return $c;
-            }
-        }
+  my $c;
+  my $e;
+  my $x='';
+  $x='.exe' if ($^O eq 'MSWin32');
+  my $s=':';
+  $s=';' if ($^O eq 'MSWin32');
+  my $p=$ENV{'PATH'};
+  my @pa = split($s, $p);
+  for $c (@_) {
+    for $e (@pa) {
+      if( -x "$e/$c$x") {
+        return $c;
+      }
     }
+  }
 }
-
 
 my $make = findinpath("gmake", "make", "nmake");
 if(!$make) {
