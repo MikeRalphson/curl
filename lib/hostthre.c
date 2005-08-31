@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.25 2005-08-29 14:23:53 bagder Exp $
+ * $Id: hostthre.c,v 1.26 2005-08-31 06:04:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -350,7 +350,7 @@ static unsigned __stdcall getaddrinfo_thread (void *arg)
   struct addrinfo    *res;
   char   service [NI_MAXSERV];
   int    rc;
-  addrinfo hints = td->hints;
+  struct addrinfo hints = td->hints;
 
   /* Duplicate the passed mutex handle.
    * This allows us to use it even after the container gets destroyed
