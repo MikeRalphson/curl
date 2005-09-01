@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.124 2005-08-25 07:06:50 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.125 2005-09-01 13:41:29 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "28 Jul 2005" "libcurl 7.14.1" "libcurl Manual"
@@ -232,6 +232,9 @@ an error is returned no attempt to establish a connection is made and the
 perform operation will return the error code from this callback function.  Set
 the \fIparm\fP argument with the \fICURLOPT_SSL_CTX_DATA\fP option. This
 option was introduced in 7.11.0.
+
+This function will get called on all new connections made to a server, during
+the SSL negotiation. The SSL_CTX pointer will be a new one every time.
 
 \fBNOTE:\fP To use this properly, a non-trivial amount of knowledge of the
 openssl libraries is necessary. Using this function allows for example to use
