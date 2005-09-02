@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.160 2005-08-31 21:23:47 bagder Exp $
+dnl $Id: configure.ac,v 1.161 2005-09-02 15:11:08 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -245,6 +245,21 @@ AC_HELP_STRING([--disable-telnet],[Disable TELNET support]),
        AC_MSG_RESULT(no)
        AC_DEFINE(CURL_DISABLE_TELNET, 1, [to disable TELNET])
        AC_SUBST(CURL_DISABLE_TELNET, [1])
+       ;;
+  *)   AC_MSG_RESULT(yes)
+       ;;
+  esac ],
+       AC_MSG_RESULT(yes)
+)
+AC_MSG_CHECKING([whether to support tftp])
+AC_ARG_ENABLE(tftp,
+AC_HELP_STRING([--enable-tftp],[Enable TFTP support])
+AC_HELP_STRING([--disable-tftp],[Disable TFTP support]),
+[ case "$enableval" in
+  no)
+       AC_MSG_RESULT(no)
+       AC_DEFINE(CURL_DISABLE_TFTP, 1, [to disable TFTP])
+       AC_SUBST(CURL_DISABLE_TFTP, [1])
        ;;
   *)   AC_MSG_RESULT(yes)
        ;;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.136 2005-07-21 22:18:35 danf Exp $
+ * $Id: connect.c,v 1.137 2005-09-02 15:11:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -660,8 +660,13 @@ singleipconnect(struct connectdata *conn,
   /* set socket non-blocking */
   Curl_nonblock(sockfd, TRUE);
 
-  rc = connect(sockfd, ai->ai_addr, (socklen_t)ai->ai_addrlen);
-
+  /* Connect TCP sockets, bind UDP */
+  if(ai->ai_socktype==SOCK_STREAM) {
+    rc = connect(sockfd, ai->ai_addr, (socklen_t)ai->ai_addrlen);
+  } else {
+    rc = 0;
+  }
+	
   if(-1 == rc) {
     error = Curl_ourerrno();
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.17 2005-05-27 11:39:07 bagder Exp $
+ * $Id: hostip4.c,v 1.18 2005-09-02 15:11:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -423,7 +423,11 @@ Curl_addrinfo *Curl_he2ai(struct hostent *he, int port)
       prevai->ai_next = ai;
 
     ai->ai_family = AF_INET;              /* we only support this */
-    ai->ai_socktype = SOCK_STREAM;        /* we only support this */
+    if(port == PORT_TFTP)
+      ai->ai_socktype = SOCK_DGRAM;
+    else
+      ai->ai_socktype = SOCK_STREAM;
+
     ai->ai_addrlen = sizeof(struct sockaddr_in);
     /* make the ai_addr point to the address immediately following this struct
        and use that area to store the address */
