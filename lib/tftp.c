@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.1 2005-09-02 15:11:09 bagder Exp $
+ * $Id: tftp.c,v 1.2 2005-09-04 18:33:20 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -537,6 +537,10 @@ CURLcode Curl_tftp_connect(struct connectdata *conn, bool *done)
 
   /* Bind to any interface, random UDP port */
   rc = bind(state->sockfd, &state->local_addr, sizeof(state->local_addr));
+  if(rc) {
+    failf(conn->data, "failed to bind\n");
+    return CURLE_COULDNT_CONNECT;
+  }
 
   Curl_pgrsStartNow(conn->data);
 
