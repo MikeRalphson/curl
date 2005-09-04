@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.330 2005-09-04 05:16:06 bagder Exp $
+ * $Id: main.c,v 1.331 2005-09-04 05:23:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3911,7 +3911,7 @@ operate(struct Configurable *config, int argc, char *argv[])
 
         curl_easy_setopt(curl, CURLOPT_IGNORE_CONTENT_LENGTH, config->ignorecl);
 
-        /* curl 7.14.1 */
+        /* curl 7.14.2 */
         curl_easy_setopt(curl, CURLOPT_FTP_SKIP_PASV_IP,
                          config->ftp_skip_ip);
 
