@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.271 2005-09-02 15:11:09 bagder Exp $
+ * $Id: urldata.h,v 1.272 2005-09-04 05:16:06 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1072,8 +1072,9 @@ struct UserDefined {
   bool no_signal;        /* do not use any signal/alarm handler */
   bool global_dns_cache; /* subject for future removal */
   bool tcp_nodelay;      /* whether to enable TCP_NODELAY or not */
-
   bool ignorecl;         /* ignore content length */
+  bool ftp_skip_ip;      /* skip the IP address the FTP server passes on to
+                            us */
 };
 
 /*

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.285 2005-09-02 15:11:09 bagder Exp $
+ * $Id: curl.h,v 1.286 2005-09-04 05:16:06 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -902,6 +902,12 @@ typedef enum {
 
   /* ignore Content-Length */
   CINIT(IGNORE_CONTENT_LENGTH, LONG, 136),
+
+  /* Set to non-zero to skip the IP address received in a 227 PASV FTP server
+     response. Typically used for FTP-SSL purposes but is not restricted to
+     that. libcurl will then instead use the same IP address it used for the
+     control connection. */
+  CINIT(FTP_SKIP_PASV_IP, LONG, 137),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
