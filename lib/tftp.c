@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.2 2005-09-04 18:33:20 bagder Exp $
+ * $Id: tftp.c,v 1.3 2005-09-06 10:39:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -147,7 +147,7 @@ typedef struct tftp_state_data {
   tftp_mode_t     mode;
   tftp_error_t    error;
   struct connectdata      *conn;
-  int             sockfd;
+  curl_socket_t   sockfd;
   int             retries;
   int             retry_time;
   int             retry_max;
