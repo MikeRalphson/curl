@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.26 2005-08-31 06:04:48 bagder Exp $
+ * $Id: hostthre.c,v 1.27 2005-09-06 10:37:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -804,7 +804,10 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
 
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = pf;
-  hints.ai_socktype = SOCK_STREAM;
+  if(conn->protocol & PROT_TFTP)
+    hints.ai_socktype = SOCK_DGRAM;
+  else
+    hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_CANONNAME;
   itoa(port, sbuf, 10);
 
