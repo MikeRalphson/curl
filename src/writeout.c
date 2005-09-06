@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.27 2004-12-21 19:59:35 bagder Exp $
+ * $Id: writeout.c,v 1.28 2005-09-06 13:27:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -112,11 +112,13 @@ void ourWriteOut(CURL *curl, char *writeinfo)
         char keepit;
         int i;
         if(('{' == ptr[1]) && (end=strchr(ptr, '}'))) {
+          bool match = FALSE;
           ptr+=2; /* pass the % and the { */
           keepit=*end;
           *end=0; /* zero terminate */
           for(i=0; replacements[i].name; i++) {
             if(curl_strequal(ptr, replacements[i].name)) {
+              match = TRUE;
               switch(replacements[i].id) {
               case VAR_EFFECTIVE_URL:
                 if((CURLE_OK ==
@@ -216,6 +218,9 @@ void ourWriteOut(CURL *curl, char *writeinfo)
               }
               break;
             }
+          }
+          if(!match) {
+            fprintf(stderr, "curl: unknown --writeout variable: '%s'\n", ptr);
           }
           ptr=end+1; /* pass the end */
           *end = keepit;
