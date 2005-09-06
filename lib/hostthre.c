@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.27 2005-09-06 10:37:57 bagder Exp $
+ * $Id: hostthre.c,v 1.28 2005-09-06 15:58:09 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -289,7 +289,7 @@ static unsigned __stdcall gethostbyname_thread (void *arg)
    * This allows us to use it even after the container gets destroyed
    * due to a resolver timeout.
    */
-  struct thread_sync_data tsd = {0};
+  struct thread_sync_data tsd = { 0,0,0,NULL };
   if (!init_thread_sync_data(td, conn->async.hostname, &tsd)) {
     /* thread synchronization data initialization failed */
     return -1;
@@ -356,7 +356,7 @@ static unsigned __stdcall getaddrinfo_thread (void *arg)
    * This allows us to use it even after the container gets destroyed
    * due to a resolver timeout.
    */
-  struct thread_sync_data tsd = {0};
+  struct thread_sync_data tsd = { 0,0,0,NULL };
   if (!init_thread_sync_data(td, conn->async.hostname, &tsd)) {
     /* thread synchronization data initialization failed */
     return -1;
