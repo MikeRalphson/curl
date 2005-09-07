@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.73 2005-08-18 08:47:56 bagder Exp $
+ * $Id: sws.c,v 1.74 2005-09-07 10:51:37 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -338,7 +338,7 @@ int ProcessRequest(struct httprequest *req)
     }
 
     if(chunked) {
-      if(strstr(req->reqbuf, "\r\n0\r\n"))
+      if(strstr(req->reqbuf, "\r\n0\r\n\r\n"))
         /* end of chunks reached */
         return 1; /* done */
       else
