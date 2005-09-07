@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.331 2005-09-04 05:23:09 bagder Exp $
+ * $Id: main.c,v 1.332 2005-09-07 11:05:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -4159,14 +4159,14 @@ quit_curl:
   if (config->engine)
     free(config->engine);
 
+  /* cleanup the curl handle! */
+  curl_easy_cleanup(curl);
+
   if(config->headerfile && !headerfilep && heads.stream)
     fclose(heads.stream);
 
   if(allocuseragent)
     free(config->useragent);
-
-  /* cleanup the curl handle! */
-  curl_easy_cleanup(curl);
 
   if(config->trace_fopened && config->trace_stream)
     fclose(config->trace_stream);
