@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.329 2005-09-04 05:16:06 bagder Exp $
+ * $Id: ftp.c,v 1.330 2005-09-14 15:04:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3819,6 +3819,7 @@ static CURLcode ftp_dophase_done(struct connectdata *conn,
     /* Failure detected, close the second socket if it was created already */
     sclose(conn->sock[SECONDARYSOCKET]);
     conn->sock[SECONDARYSOCKET] = CURL_SOCKET_BAD;
+    return result;
   }
 
   if(ftp->no_transfer)
