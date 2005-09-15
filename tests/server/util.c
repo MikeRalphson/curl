@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.5 2005-05-25 12:04:52 bagder Exp $
+ * $Id: util.c,v 1.6 2005-09-15 20:22:43 bagder Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -143,4 +143,14 @@ void win32_cleanup(void)
   WSACleanup();
 }
 #endif
+
+/* set by the main code to point to where the test dir is */
+const char *path=".";
+
+char *test2file(long testno)
+{
+  static char filename[256];
+  snprintf(filename, sizeof(filename), TEST_DATA_PATH, path, testno);
+  return filename;
+}
 

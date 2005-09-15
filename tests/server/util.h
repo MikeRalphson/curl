@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.3 2005-05-19 07:12:16 bagder Exp $
+ * $Id: util.h,v 1.4 2005-09-15 20:22:43 bagder Exp $
  ***************************************************************************/
 
 int ourerrno(void);
@@ -32,6 +32,11 @@ void logmsg(const char *msg, ...);
 #ifndef TRUE
 #define TRUE 1
 #endif
+
+#define TEST_DATA_PATH "%s/data/test%ld"
+
+/* global variable, where to find the 'data' dir */
+extern const char *path;
 
 #if defined(WIN32) && !defined(__CYGWIN__)
 #include <windows.h>
@@ -60,3 +65,6 @@ const struct in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};
 
 void win32_init(void);
 void win32_cleanup(void);
+
+/* returns the path name to the test case file */
+char *test2file(long testno);
