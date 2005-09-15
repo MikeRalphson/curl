@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.161 2005-09-02 15:11:08 bagder Exp $
+dnl $Id: configure.ac,v 1.162 2005-09-15 21:50:50 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1434,6 +1434,8 @@ AC_CHECK_HEADERS(
         libgen.h \
         locale.h \
         errno.h \
+        arpa/tftp.h \
+        sys/filio.h \
         setjmp.h,
 dnl to do if not found
 [],
