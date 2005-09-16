@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.3 2005-09-16 05:49:53 bagder Exp $
+ * $Id: tftpd.c,v 1.4 2005-09-16 06:14:30 bagder Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -588,8 +588,8 @@ again:
   fprintf(test->server, "filename: %s\n", filename);
 
   for (cp = mode; *cp; cp++)
-    if (isupper(*cp))
-      *cp = tolower(*cp);
+    if (isupper((int)*cp))
+      *cp = tolower((int)*cp);
 
   /* store input protocol */
   fprintf(test->server, "mode: %s\n", mode);
