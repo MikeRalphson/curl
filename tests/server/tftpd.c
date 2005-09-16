@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.2 2005-09-15 21:50:50 bagder Exp $
+ * $Id: tftpd.c,v 1.3 2005-09-16 05:49:53 bagder Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -91,6 +91,10 @@
 #include <pwd.h>
 #include <grp.h>
 
+#define ENABLE_CURLX_PRINTF
+/* make the curlx header define all printf() functions to use the curlx_*
+   versions instead */
+#include "curlx.h" /* from the private lib dir */
 #include "getpart.h"
 #include "util.h"
 
