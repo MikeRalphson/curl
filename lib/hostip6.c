@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.15 2005-09-02 15:11:09 bagder Exp $
+ * $Id: hostip6.c,v 1.16 2005-09-16 21:30:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -252,10 +252,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = pf;
 
-  if(conn->protocol & PROT_TFTP)
-    hints.ai_socktype = SOCK_DGRAM;
-  else
-    hints.ai_socktype = SOCK_STREAM;
+  hints.ai_socktype = conn->socktype;
 
   hints.ai_flags = ai_flags;
   snprintf(sbuf, sizeof(sbuf), "%d", port);

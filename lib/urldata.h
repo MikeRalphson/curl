@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.272 2005-09-04 05:16:06 bagder Exp $
+ * $Id: urldata.h,v 1.273 2005-09-16 21:30:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -562,6 +562,7 @@ struct connectdata {
   char *ip_addr_str;
 
   char protostr[16];  /* store the protocol string in this buffer */
+  int socktype;  /* SOCK_STREAM or SOCK_DGRAM */
 
   struct hostname host;
   struct hostname proxy;
