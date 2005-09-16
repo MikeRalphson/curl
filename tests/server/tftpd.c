@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.5 2005-09-16 07:19:54 bagder Exp $
+ * $Id: tftpd.c,v 1.6 2005-09-16 10:50:43 bagder Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -569,7 +569,8 @@ static int tftp(struct testcase *test, struct tftphdr *tp, int size)
   /* store input protocol */
   fprintf(test->server, "opcode: %x\n", tp->th_opcode);
 
-  filename = cp = tp->th_stuff;
+  cp = (char *)&tp->th_stuff;
+  filename = cp;
 again:
   while (cp < buf + size) {
     if (*cp == '\0')
