@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.4 2005-09-16 06:14:30 bagder Exp $
+ * $Id: tftpd.c,v 1.5 2005-09-16 07:19:54 bagder Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -193,6 +193,7 @@ static int readit(struct testcase *test, struct tftphdr **dpp,
   return b->counter;
 }
 
+#undef MIN /* some systems have this defined already, some don't */
 #define MIN(x,y) ((x)<(y)?(x):(y));
 
 /*
