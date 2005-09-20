@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.44 2005-09-19 21:45:18 bagder Exp $
+ * $Id: http_ntlm.c,v 1.45 2005-09-20 08:29:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -454,7 +454,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
     if (status == SEC_I_COMPLETE_AND_CONTINUE ||
         status == SEC_I_CONTINUE_NEEDED) {
       /* CompleteAuthToken() is not present in Win9x, so load it dynamically */
-      SECURITY_STATUS (SEC_ENTRY * pCompleteAuthToken)
+      SECURITY_STATUS (__stdcall * pCompleteAuthToken)
         (PCtxtHandle,PSecBufferDesc);
       HMODULE hSecur32 = GetModuleHandle("secur32.dll");
       if (hSecur32 != NULL) {
