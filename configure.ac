@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.162 2005-09-15 21:50:50 bagder Exp $
+dnl $Id: configure.ac,v 1.163 2005-09-20 07:53:44 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1690,7 +1690,7 @@ AC_HELP_STRING([--disable-ares],[Disable ares for name lookups]),
   *)   AC_MSG_RESULT(yes)
 
        if test "x$IPV6_ENABLED" = "x1"; then
-         AC_MSG_ERROR([ares doesn't work with ipv6, disable ipv6 to use ares])
+         AC_MSG_NOTICE([ares may not work properly with ipv6])
        fi
 
        AC_DEFINE(USE_ARES, 1, [Define if you want to enable ares support])
