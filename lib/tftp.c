@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.5 2005-09-15 20:21:27 bagder Exp $
+ * $Id: tftp.c,v 1.6 2005-09-20 06:51:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -633,7 +633,7 @@ CURLcode Curl_tftp(struct connectdata *conn, bool *done)
       }
 
       /* The event is given by the TFTP packet time */
-      event = ntohs(state->rpacket.event);
+      event = (tftp_event_t)ntohs(state->rpacket.event);
 
       switch(event) {
       case TFTP_EVENT_DATA:
@@ -641,7 +641,7 @@ CURLcode Curl_tftp(struct connectdata *conn, bool *done)
                           (char *)state->rpacket.u.data.data, state->rbytes-4);
         break;
       case TFTP_EVENT_ERROR:
-        state->error = ntohs(state->rpacket.u.error.code);
+        state->error = (tftp_error_t)ntohs(state->rpacket.u.error.code);
         infof(conn->data, "%s\n", (char *)state->rpacket.u.error.data);
         break;
       case TFTP_EVENT_ACK:
