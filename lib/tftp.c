@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.6 2005-09-20 06:51:23 bagder Exp $
+ * $Id: tftp.c,v 1.7 2005-09-21 11:28:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -186,12 +186,12 @@ void tftp_set_timeouts(tftp_state_data_t *state)
 {
 
   struct SessionHandle *data = state->conn->data;
-  unsigned long         maxtime, timeout;
+  time_t maxtime, timeout;
 
   time(&state->start_time);
   if(state->state == TFTP_STATE_START) {
     /* Compute drop-dead time */
-    maxtime = data->set.connecttimeout?data->set.connecttimeout:30;
+    maxtime = (time_t)(data->set.connecttimeout?data->set.connecttimeout:30);
     state->max_time = state->start_time+maxtime;
 
     /* Set per-block timeout to total */
