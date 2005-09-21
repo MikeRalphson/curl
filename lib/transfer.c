@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.284 2005-08-24 10:57:29 bagder Exp $
+ * $Id: transfer.c,v 1.285 2005-09-21 06:38:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1622,9 +1622,11 @@ Transfer(struct connectdata *conn)
 CURLcode Curl_pretransfer(struct SessionHandle *data)
 {
   CURLcode res;
-  if(!data->change.url)
+  if(!data->change.url) {
     /* we can't do anything wihout URL */
+    failf(data, "No URL set!\n");
     return CURLE_URL_MALFORMAT;
+  }
 
   /* Init the SSL session ID cache here. We do it here since we want to do it
      after the *_setopt() calls (that could change the size of the cache) but
