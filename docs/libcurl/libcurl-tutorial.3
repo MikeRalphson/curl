@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: libcurl-tutorial.3,v 1.7 2005-05-09 13:13:38 bagder Exp $
+.\" * $Id: libcurl-tutorial.3,v 1.8 2005-09-21 06:07:41 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH libcurl-tutorial 3 "9 May 2005" "libcurl" "libcurl programming"
@@ -243,7 +243,7 @@ where it'll store a human readable error message as well.
 If you then want to transfer another file, the handle is ready to be used
 again. Mind you, it is even preferred that you re-use an existing handle if
 you intend to make another transfer. libcurl will then attempt to re-use the
-previous
+previous connection.
 
 .SH "Multi-threading Issues"
 The first basic rule is that you must \fBnever\fP share a libcurl handle (be
