@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.194 2005-09-15 20:25:02 bagder Exp $
+# $Id: runtests.pl,v 1.195 2005-09-30 14:25:50 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -733,7 +733,7 @@ sub runtftpserver {
     if($ipv6) {
         $flag .="--ipv6 ";
     }
-    $cmd="$srcdir/server/tftpd --pidfile $pidfile $flag $port";
+    $cmd="./server/tftpd --pidfile $pidfile $flag $port";
 
     unlink($pidfile);
 
