@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.90 2005-05-07 13:57:07 bagder Exp $
+ * $Id: setup.h,v 1.91 2005-10-02 16:52:07 giva Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -260,6 +260,14 @@ typedef int curl_socket_t;
 #else
 #define USE_THREADING_GETHOSTBYNAME  /* Cygwin uses alarm() function */
 #endif
+#endif
+
+/* "cl -ML" or "cl -MLd" implies a single-threaded runtime library where
+   _beginthreadex() is not available */
+#if defined(_MSC_VER) && !defined(_MT) && !defined(USE_ARES)
+#undef USE_THREADING_GETADDRINFO
+#undef USE_THREADING_GETHOSTBYNAME
+#define CURL_NO__BEGINTHREADEX
 #endif
 
 #ifdef mpeix
