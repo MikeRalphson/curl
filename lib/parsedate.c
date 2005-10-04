@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.18 2005-08-09 21:59:31 bagder Exp $
+ * $Id: parsedate.c,v 1.19 2005-10-04 18:15:33 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -130,8 +130,8 @@ static const struct tzinfo tz[]= {
   {"CET", -60},            /* Central European */
   {"MET", -60},            /* Middle European */
   {"MEWT", -60},           /* Middle European Winter */
-  {"MEST", -120 tDAYZONE}, /* Middle European Summer */
-  {"CEST", -120 tDAYZONE}, /* Central European Summer */
+  {"MEST", -60 tDAYZONE},  /* Middle European Summer */
+  {"CEST", -60 tDAYZONE},  /* Central European Summer */
   {"MESZ", -60 tDAYZONE},  /* Middle European Summer */
   {"FWT", -60},            /* French Winter */
   {"FST", -60 tDAYZONE},   /* French Summer */
