@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.163 2005-09-20 07:53:44 bagder Exp $
+dnl $Id: configure.ac,v 1.164 2005-10-04 20:32:17 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -122,13 +122,13 @@ case $host in
   *-*-mingw*)
     AC_DEFINE(BUILDING_LIBCURL, 1, [when building libcurl itself])
     AC_MSG_RESULT(yes)
-    AC_MSG_CHECKING([if we need CURL_STATICLIB])
+    AC_MSG_CHECKING([if we need CURL_STATICLIB])
     if test "X$enable_shared" = "Xno"
     then
       AC_DEFINE(CURL_STATICLIB, 1, [when not building a shared library])
       AC_MSG_RESULT(yes)
-    else
-      AC_MSG_RESULT(no)
+    else
+      AC_MSG_RESULT(no)
     fi
     ;;
   *)
