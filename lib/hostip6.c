@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.16 2005-09-16 21:30:08 bagder Exp $
+ * $Id: hostip6.c,v 1.17 2005-10-10 18:28:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -202,6 +202,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   struct addrinfo hints, *res;
   int error;
   char sbuf[NI_MAXSERV];
+  char *sbufptr = NULL;
   char addrbuf[128];
   curl_socket_t s;
   int pf;
@@ -255,8 +256,11 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   hints.ai_socktype = conn->socktype;
 
   hints.ai_flags = ai_flags;
-  snprintf(sbuf, sizeof(sbuf), "%d", port);
-  error = getaddrinfo(hostname, sbuf, &hints, &res);
+  if(port) {
+    snprintf(sbuf, sizeof(sbuf), "%d", port);
+    sbufptr=sbuf;
+  }
+  error = getaddrinfo(hostname, sbufptr, &hints, &res);
   if (error) {
     infof(data, "getaddrinfo(3) failed for %s:%d\n", hostname, port);
     return NULL;
