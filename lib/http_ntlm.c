@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.46 2005-10-02 18:22:45 giva Exp $
+ * $Id: http_ntlm.c,v 1.47 2005-10-13 07:57:51 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -712,6 +712,13 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
     /* size is now 64 */
     size=64;
     ntlmbuf[62]=ntlmbuf[63]=0;
+
+    /* Make sure that the user and domain strings fit in the target buffer
+       before we copy them there. */
+    if(size + userlen + domlen >= sizeof(ntlmbuf)) {
+      failf(conn->data, "user + domain name too big");
+      return CURLE_OUT_OF_MEMORY;
+    }
 
     memcpy(&ntlmbuf[size], domain, domlen);
     size += domlen;
