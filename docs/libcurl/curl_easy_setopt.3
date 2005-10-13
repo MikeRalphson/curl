@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.131 2005-09-22 10:15:10 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.132 2005-10-13 06:20:43 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "22 Sep 2005" "libcurl 7.14.2" "libcurl Manual"
@@ -461,7 +461,8 @@ HTTP NTLM authentication. A proprietary protocol invented and used by
 Microsoft. It uses a challenge-response and hash concept similar to Digest, to
 prevent the password from being eavesdropped.
 
-You need to build libcurl with SSL support for this option to work.
+You need to build libcurl with OpenSSL support for this option to work, or
+build libcurl on Windows.
 .IP CURLAUTH_ANY
 This is a convenience macro that sets all bits and thus makes libcurl pick any
 it finds suitable. libcurl will automatically select the one it finds most
