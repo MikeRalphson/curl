@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.274 2005-07-05 22:07:34 bagder Exp $
+ * $Id: http.c,v 1.275 2005-10-20 20:07:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -621,18 +621,23 @@ CURLcode Curl_http_input_auth(struct connectdata *conn,
 #endif
 #ifndef CURL_DISABLE_CRYPTO_AUTH
       if(checkprefix("Digest", start)) {
-        CURLdigest dig;
-        *availp |= CURLAUTH_DIGEST;
-        authp->avail |= CURLAUTH_DIGEST;
+        if((authp->avail & CURLAUTH_DIGEST) != 0) {
+          infof(data, "Ignoring duplicate digest auth header.\n");
+        }
+        else {
+          CURLdigest dig;
+          *availp |= CURLAUTH_DIGEST;
+          authp->avail |= CURLAUTH_DIGEST;
 
-        /* We call this function on input Digest headers even if Digest
-         * authentication isn't activated yet, as we need to store the
-         * incoming data from this header in case we are gonna use Digest. */
-        dig = Curl_input_digest(conn, (bool)(httpcode == 407), start);
+          /* We call this function on input Digest headers even if Digest
+           * authentication isn't activated yet, as we need to store the
+           * incoming data from this header in case we are gonna use Digest. */
+          dig = Curl_input_digest(conn, (bool)(httpcode == 407), start);
 
-        if(CURLDIGEST_FINE != dig) {
-          infof(data, "Authentication problem. Ignoring this.\n");
-          data->state.authproblem = TRUE;
+          if(CURLDIGEST_FINE != dig) {
+            infof(data, "Authentication problem. Ignoring this.\n");
+            data->state.authproblem = TRUE;
+          }
         }
       }
       else
