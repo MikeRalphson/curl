@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.479 2005-09-29 11:37:52 bagder Exp $
+ * $Id: url.c,v 1.480 2005-10-21 21:00:44 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3844,7 +3844,14 @@ CURLcode Curl_do(struct connectdata **connp, bool *done)
 
       /* conn may no longer be a good pointer */
 
-      if(CURLE_OK == result) {
+      /*
+       * According to bug report #1330310. We need to check for
+       * CURLE_SEND_ERROR here as well. I figure this could happen when the
+       * request failed on a FTP connection and thus Curl_done() itself tried
+       * to use the connection (again). Slight Lack of feedback in the report,
+       * but I don't think this extra check can do much harm.
+       */
+      if((CURLE_OK == result) || (CURLE_SEND_ERROR == result)) {
         bool async;
         bool protocol_done = TRUE;
 
