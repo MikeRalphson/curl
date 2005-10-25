@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.138 2005-09-16 21:30:08 bagder Exp $
+ * $Id: connect.c,v 1.139 2005-10-25 13:15:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -471,6 +471,9 @@ static bool trynextip(struct connectdata *conn,
 
   if(sockindex != FIRSTSOCKET)
     return TRUE; /* no next */
+
+  /* first close the failed socket */
+  sclose(conn->sock[sockindex]);
 
   /* try the next address */
   ai = conn->ip_addr->ai_next;
