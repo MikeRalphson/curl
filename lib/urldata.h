@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.273 2005-09-16 21:30:08 bagder Exp $
+ * $Id: urldata.h,v 1.274 2005-10-27 22:05:38 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -956,7 +956,8 @@ struct UserDefined {
   char *set_range;   /* range, if used. See README for detailed specification
                         on this syntax. */
   long followlocation; /* as in HTTP Location: */
-  long maxredirs;    /* maximum no. of http(s) redirects to follow */
+  long maxredirs;    /* maximum no. of http(s) redirects to follow, set to -1
+                        for infinity */
   char *set_referer; /* custom string */
   bool free_referer; /* set TRUE if 'referer' points to a string we
                         allocated */

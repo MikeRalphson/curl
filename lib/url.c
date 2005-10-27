@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.480 2005-10-21 21:00:44 bagder Exp $
+ * $Id: url.c,v 1.481 2005-10-27 22:05:38 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -320,7 +320,7 @@ CURLcode Curl_open(struct SessionHandle **curl)
 
     data->set.infilesize = -1; /* we don't know any size */
     data->set.postfieldsize = -1;
-
+    data->set.maxredirs = -1; /* allow any amount by default */
     data->state.current_speed = -1; /* init to negative == impossible */
 
     data->set.httpreq = HTTPREQ_GET; /* Default HTTP request */
