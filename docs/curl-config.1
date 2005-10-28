@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl-config.1,v 1.11 2005-01-25 12:06:12 bagder Exp $
+.\" * $Id: curl-config.1,v 1.12 2005-10-28 12:59:37 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl-config 1 "25 Jan 2004" "Curl 7.13.0" "curl-config manual"
@@ -64,7 +64,7 @@ Outputs version information about the installed libcurl, in numerical mode.
 This outputs the version number, in hexadecimal, with 8 bits for each part;
 major, minor, patch. So that libcurl 7.7.4 would appear as 070704 and libcurl
 12.13.14 would appear as 0c0d0e... Note that the initial zero might be
-omitted.
+omitted. (This option was broken in the 7.15.0 release.)
 .SH "EXAMPLES"
 What linker options do I need when I link with libcurl?
 
