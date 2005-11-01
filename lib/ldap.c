@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.50 2005-10-31 08:55:01 bagder Exp $
+ * $Id: ldap.c,v 1.51 2005-11-01 16:27:27 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -160,7 +160,7 @@ static int DynaOpen(const char **mod_name)
   return (libldap != NULL);
 
 #else
-  (void) mod_name;
+  *mod_name = "";
   return (0);
 #endif
 }
