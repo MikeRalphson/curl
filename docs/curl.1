@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.166 2005-10-27 22:05:38 bagder Exp $
+.\" * $Id: curl.1,v 1.167 2005-11-07 08:37:08 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "4 Sep 2005" "Curl 7.14.2" "Curl Manual"
@@ -630,6 +630,10 @@ draft-brezak-spnego-http-04.txt. (Added in 7.10.6)
 This option requires that the library was built with GSSAPI support. This is
 not very common. Use \fI-V/--version\fP to see if your version supports
 GSS-Negotiate.
+
+When using this option, you must also provide a fake -u/--user option to
+activate the authentication code properly. Sending a '-u :' is enough as the
+user name and password from the -u option aren't actually used.
 
 If this option is used several times, the following occurrences make no
 difference.
