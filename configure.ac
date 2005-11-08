@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.164 2005-10-04 20:32:17 bagder Exp $
+dnl $Id: configure.ac,v 1.165 2005-11-08 14:15:34 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1784,7 +1784,6 @@ AC_HELP_STRING([--disable-sspi],[Disable SSPI]),
        AC_MSG_RESULT(yes)
        AC_DEFINE(USE_WINDOWS_SSPI, 1, [to enable SSPI support])
        AC_SUBST(USE_WINDOWS_SSPI)
-       LIBS="$LIBS -lsecur32"
        curl_sspi_msg="yes"
        ;;
   *)
