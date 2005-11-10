@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.91 2005-10-02 16:52:07 giva Exp $
+ * $Id: setup.h,v 1.92 2005-11-10 22:24:49 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -309,4 +309,11 @@ typedef int curl_socket_t;
 #define DEBUGF(x)
 #endif
 
-#endif /* __CONFIG_H */
+#ifndef HAVE_STRUCT_SOCKADDR_STORAGE
+struct sockaddr_storage
+  {
+    char buffer[256];   /* this should be big enough to fit a lot */
+  };
+#endif
+
+#endif /* __SETUP_H */
