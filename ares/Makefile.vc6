@@ -1,4 +1,4 @@
-# $Id: Makefile.vc6,v 1.2 2005-11-09 22:18:13 giva Exp $
+# $Id: Makefile.vc6,v 1.3 2005-11-10 16:52:43 giva Exp $
 #
 # C-ares makefile fo MSVC6+
 # G. Vanem <giva@bgnett.no>.
@@ -42,10 +42,6 @@ LDFLAGS = $(LDFLAGS) -debug -debugtype:coff -fixed:no
 CFLAGS  = $(CFLAGS) -O2 -Og
 LDFLAGS = $(LDFLAGS) -release
 !endif
-
-CFLAGS = $(CFLAGS) -DHAVE_AF_INET6 -DHAVE_PF_INET6 \
-         -DHAVE_STRUCT_IN6_ADDR -DHAVE_STRUCT_SOCKADDR_IN6 -DHAVE_STRUCT_ADDRINFO \
-         -DHAVE_IOCTLSOCKET
 
 OBJECTS = $(OBJ_DIR)\ares_fds.obj              \
           $(OBJ_DIR)\ares_process.obj          \

@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.3 2005-11-09 21:51:44 giva Exp $
+# $Id: Makefile.m32,v 1.4 2005-11-10 16:52:43 giva Exp $
 #
 ## Makefile for building libcares.a with MingW32 (GCC-3.2)
 ## Use: make -f Makefile.m32 [demos]
@@ -14,10 +14,7 @@ RANLIB = ranlib
 
 LIB=libcares.a
 CC=gcc
-CFLAGS=-O2 -Wall -DHAVE_GETOPT_H -DHAVE_AF_INET6 -DHAVE_PF_INET6 \
-       -DHAVE_STRUCT_IN6_ADDR -DHAVE_STRUCT_SOCKADDR_IN6 -DHAVE_STRUCT_ADDRINFO \
-       -DHAVE_IOCTLSOCKET
-
+CFLAGS=-O2 -Wall
 LDFLAGS=-s
 LIBS=-lwsock32
 
