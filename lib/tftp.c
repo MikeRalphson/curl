@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.8 2005-11-10 22:25:07 bagder Exp $
+ * $Id: tftp.c,v 1.9 2005-11-11 22:04:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -75,6 +75,7 @@
 #include "progress.h"
 #include "connect.h"
 #include "strerror.h"
+#include "sockaddr.h" /* required for sockaddr_storage */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
