@@ -1,3 +1,5 @@
+/* $Id: ares_gethostbyaddr.c,v 1.18 2005-11-11 19:23:02 giva Exp $ */
+
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
  * Permission to use, copy, modify, and distribute this
