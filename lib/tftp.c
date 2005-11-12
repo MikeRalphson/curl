@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.9 2005-11-11 22:04:11 bagder Exp $
+ * $Id: tftp.c,v 1.10 2005-11-12 22:10:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -75,7 +75,7 @@
 #include "progress.h"
 #include "connect.h"
 #include "strerror.h"
-#include "sockaddr.h" /* required for sockaddr_storage */
+#include "sockaddr.h" /* required for Curl_sockaddr_storage */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -157,9 +157,9 @@ typedef struct tftp_state_data {
   time_t          start_time;
   time_t          max_time;
   unsigned short  block;
-  struct sockaddr_storage   local_addr;
+  struct Curl_sockaddr_storage   local_addr;
   socklen_t       local_addrlen;
-  struct sockaddr_storage   remote_addr;
+  struct Curl_sockaddr_storage   remote_addr;
   socklen_t       remote_addrlen;
   int             rbytes;
   int             sbytes;
@@ -598,7 +598,7 @@ CURLcode Curl_tftp(struct connectdata *conn, bool *done)
   tftp_event_t          event;
   CURLcode              code;
   int                   rc;
-  struct sockaddr_storage    fromaddr;
+  struct Curl_sockaddr_storage fromaddr;
   socklen_t             fromlen;
   int                   check_time = 0;
 

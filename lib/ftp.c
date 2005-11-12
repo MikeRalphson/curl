@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.335 2005-11-11 22:04:11 bagder Exp $
+ * $Id: ftp.c,v 1.336 2005-11-12 22:10:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -94,7 +94,7 @@
 #include "inet_ntop.h"
 #include "select.h"
 #include "parsedate.h" /* for the week day and month names */
-#include "sockaddr.h" /* required for sockaddr_storage */
+#include "sockaddr.h" /* required for Curl_sockaddr_storage */
 
 #if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
 #include "inet_ntoa_r.h"
@@ -778,7 +778,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   /******************************************************************
    * IPv6-specific section
    */
-  struct sockaddr_storage ss;
+  struct Curl_sockaddr_storage ss;
   struct addrinfo *res, *ai;
   socklen_t sslen;
   char hbuf[NI_MAXHOST];
