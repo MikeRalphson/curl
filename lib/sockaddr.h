@@ -20,12 +20,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockaddr.h,v 1.2 2005-11-12 22:10:42 bagder Exp $
+ * $Id: sockaddr.h,v 1.3 2005-11-12 22:12:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
-#ifndef HAVE_STRUCT_SOCKADDR_STORAGE
+#ifdef HAVE_STRUCT_SOCKADDR_STORAGE
 struct Curl_sockaddr_storage {
   struct sockaddr_storage buffer;
 }
