@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.10 2005-11-11 23:20:07 bagder Exp $
+ * $Id: gtls.c,v 1.11 2005-11-13 23:04:28 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -176,7 +176,7 @@ static CURLcode handshake(struct connectdata *conn,
   return CURLE_OK;
 }
 
-static gnutls_x509_crt_fmt_t do_file_type(const char *type)
+static gnutls_x509_crt_fmt do_file_type(const char *type)
 {
   if(!type || !type[0])
     return GNUTLS_X509_FMT_PEM;
