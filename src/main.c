@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.336 2005-10-27 22:05:39 bagder Exp $
+ * $Id: main.c,v 1.337 2005-11-13 11:06:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1497,7 +1497,11 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           /* We support G, M, K too */
           char *unit;
           curl_off_t value = curlx_strtoofft(nextarg, &unit, 0);
-          switch(nextarg[strlen(nextarg)-1]) {
+
+          if(strlen(unit) != 1)
+            unit="w"; /* unsupported */
+
+          switch(*unit) {
           case 'G':
           case 'g':
             value *= 1024*1024*1024;
@@ -1510,6 +1514,13 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           case 'k':
             value *= 1024;
             break;
+          case 'b':
+          case 'B':
+            /* for plain bytes, leave as-is */
+            break;
+          default:
+            warnf(config, "unsupported rate unit. Use G, M, K or B!\n");
+            return PARAM_BAD_USE;
           }
           config->recvpersecond = value;
           config->sendpersecond = value;
