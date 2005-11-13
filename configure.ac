@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.166 2005-11-12 22:49:19 bagder Exp $
+dnl $Id: configure.ac,v 1.167 2005-11-13 09:24:06 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1591,10 +1591,10 @@ AC_CHECK_DECL(basename, ,
 #endif
 )
 
-AC_MSG_CHECKING([if we are Mac OS X or cygwin to disable poll])
+AC_MSG_CHECKING([if we are Mac OS X (to disable poll)])
 disable_poll=no
 case $host in
-  *-*-darwin* | *-*-cygwin)
+  *-*-darwin*)
     disable_poll="yes";
     ;;
   *)

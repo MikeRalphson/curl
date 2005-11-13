@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.13 2005-04-26 13:08:49 bagder Exp $
+ * $Id: select.c,v 1.14 2005-11-13 09:24:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -104,7 +104,7 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms)
   ret = 0;
   num = 0;
   if (readfd != CURL_SOCKET_BAD) {
-    if (pfd[num].revents & POLLIN)
+    if (pfd[num].revents & (POLLIN|POLLHUP))
       ret |= CSELECT_IN;
     if (pfd[num].revents & POLLERR)
       ret |= CSELECT_ERR;
