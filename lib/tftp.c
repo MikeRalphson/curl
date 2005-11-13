@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.10 2005-11-12 22:10:42 bagder Exp $
+ * $Id: tftp.c,v 1.11 2005-11-13 13:20:37 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -541,7 +541,7 @@ CURLcode Curl_tftp_connect(struct connectdata *conn, bool *done)
 
 #ifdef WIN32
   /* AF_UNSPEC == 0 (from above calloc) doesn't work on Winsock */
-  state->local_addr.sa_family = conn->ip_addr->ai_family;
+  ((struct sockaddr_in*)&state->local_addr)->sin_family = conn->ip_addr->ai_family;
 #endif
 
   tftp_set_timeouts(state);
