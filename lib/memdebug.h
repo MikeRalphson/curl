@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.30 2005-06-30 13:28:58 bagder Exp $
+ * $Id: memdebug.h,v 1.31 2005-11-13 23:53:14 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -92,12 +92,15 @@ CURL_EXTERN int curl_fclose(FILE *file, int line, const char *source);
 #define ogetaddrinfo(host,serv,hint,res) \
   curl_dogetaddrinfo(host,serv,hint,res,__LINE__,__FILE__)
 #else
+#undef getaddrinfo
 #define getaddrinfo(host,serv,hint,res) \
   curl_dogetaddrinfo(host,serv,hint,res,__LINE__,__FILE__)
 #endif
+#undef getnameinfo
 #define getnameinfo(sa,salen,host,hostlen,serv,servlen,flags) \
   curl_dogetnameinfo(sa,salen,host,hostlen,serv,servlen,flags, __LINE__, \
   __FILE__)
+#undef freeaddrinfo
 #define freeaddrinfo(data) \
   curl_dofreeaddrinfo(data,__LINE__,__FILE__)
 
