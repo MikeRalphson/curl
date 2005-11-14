@@ -1,4 +1,4 @@
-/* $Id: config-win32.h,v 1.1 2005-11-10 16:50:21 giva Exp $ */
+/* $Id: config-win32.h,v 1.2 2005-11-14 12:32:56 giva Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -30,5 +30,6 @@
 #define HAVE_STRUCT_IN6_ADDR
 #define HAVE_STRUCT_SOCKADDR_IN6
 #define HAVE_STRUCT_ADDRINFO
+#define HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID
 
 #endif  /* __CONFIG_WIN32_H */
