@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.336 2005-11-12 22:10:42 bagder Exp $
+ * $Id: ftp.c,v 1.337 2005-11-14 00:18:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2526,9 +2526,11 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
           NBFTPSENDF(conn, "MKD %s", ftp->dirs[ftp->count1 - 1]);
           state(conn, FTP_MKD);
         }
-        else
+        else {
           /* return failure */
+          failf(data, "Server denied you to change to the given directory");
           return CURLE_FTP_ACCESS_DENIED;
+        }
       }
       else {
         /* success */
