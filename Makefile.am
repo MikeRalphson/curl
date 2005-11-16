@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.55 2005-03-31 07:02:02 bagder Exp $
+# $Id: Makefile.am,v 1.56 2005-11-16 07:20:58 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -30,6 +30,9 @@ bin_SCRIPTS = curl-config
 
 SUBDIRS = lib src
 DIST_SUBDIRS = $(SUBDIRS) tests include packages docs
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libcurl.pc
 
 dist-hook:
 	rm -rf $(top_builddir)/tests/log
