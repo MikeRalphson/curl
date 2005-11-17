@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.287 2005-10-27 22:05:38 bagder Exp $
+ * $Id: transfer.c,v 1.288 2005-11-17 14:29:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2216,6 +2216,19 @@ CURLcode Curl_perform(struct SessionHandle *data)
 
   if(newurl)
     free(newurl);
+
+  if(res && !data->state.errorbuf) {
+    /*
+     * As an extra precaution: if no error string has been set and there was
+     * an error, use the strerror() string or if things are so bad that not
+     * even that is good, set a bad string that mentions the error code.
+     */
+    char *str = curl_easy_strerror(res);
+    if(!str)
+      failf(data, "unspecified error %d", (int)res);
+    else
+      failf(data, "%s", str);
+  }
 
   /* run post-transfer uncondionally, but don't clobber the return code if
      we already have an error code recorder */
