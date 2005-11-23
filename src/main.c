@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.338 2005-11-13 22:54:00 bagder Exp $
+ * $Id: main.c,v 1.339 2005-11-23 09:10:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1944,7 +1944,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
                    nextarg,
                    &config->httppost,
                    &config->last_post,
-                   subletter=='s')) /* 's' means literal string */
+                   (bool) (subletter=='s'))) /* 's' means literal string */
         return PARAM_BAD_USE;
       if(SetHTTPrequest(config, HTTPREQ_POST, &config->httpreq))
         return PARAM_BAD_USE;

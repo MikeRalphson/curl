@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.93 2005-11-11 22:04:11 bagder Exp $
+ * $Id: setup.h,v 1.94 2005-11-23 09:10:00 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -169,7 +169,9 @@ typedef unsigned char bool;
 #endif
 
 #if defined(ENABLE_IPV6) || defined(USE_SSLEAY)
+#if !defined(_MSC_VER) || (_MSC_VER >= 1300)
 #include <ws2tcpip.h>
+#endif
 #endif
 
 #if !defined(__GNUC__) || defined(__MINGW32__)
