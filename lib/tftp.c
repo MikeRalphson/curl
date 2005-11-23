@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.11 2005-11-13 13:20:37 giva Exp $
+ * $Id: tftp.c,v 1.12 2005-11-23 22:59:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -278,7 +278,8 @@ static void tftp_send_first(tftp_state_data_t *state, tftp_event_t event)
     sprintf((char *)state->spacket.u.request.data, "%s%c%s%c",
             filename, '\0',  mode, '\0');
     sbytes = 4 + strlen(filename) + strlen(mode);
-    sbytes = sendto(state->sockfd, &state->spacket, sbytes, 0,
+    sbytes = sendto(state->sockfd, (void *)&state->spacket,
+                    sbytes, 0,
                     state->conn->ip_addr->ai_addr,
                     state->conn->ip_addr->ai_addrlen);
     if(sbytes < 0) {
@@ -345,7 +346,8 @@ static void tftp_rx(tftp_state_data_t *state, tftp_event_t event)
     state->retries = 0;
     state->spacket.event = htons(TFTP_EVENT_ACK);
     state->spacket.u.ack.block = htons(state->block);
-    sbytes = sendto(state->sockfd, &state->spacket, 4, MSG_NOSIGNAL,
+    sbytes = sendto(state->sockfd, (void *)&state->spacket,
+                    4, MSG_NOSIGNAL,
                     (struct sockaddr *)&state->remote_addr,
                     state->remote_addrlen);
     if(sbytes < 0) {
@@ -371,7 +373,7 @@ static void tftp_rx(tftp_state_data_t *state, tftp_event_t event)
       state->state = TFTP_STATE_FIN;
     } else {
       /* Resend the previous ACK */
-      sbytes = sendto(state->sockfd, &state->spacket,
+      sbytes = sendto(state->sockfd, (void *)&state->spacket,
                       4, MSG_NOSIGNAL,
                       (struct sockaddr *)&state->remote_addr,
                       state->remote_addrlen);
@@ -437,7 +439,7 @@ static void tftp_tx(tftp_state_data_t *state, tftp_event_t event)
       return;
     }
     Curl_fillreadbuffer(state->conn, 512, &state->sbytes);
-    sbytes = sendto(state->sockfd, &state->spacket,
+    sbytes = sendto(state->sockfd, (void *)&state->spacket,
                     4+state->sbytes, MSG_NOSIGNAL,
                     (struct sockaddr *)&state->remote_addr,
                     state->remote_addrlen);
@@ -458,7 +460,7 @@ static void tftp_tx(tftp_state_data_t *state, tftp_event_t event)
       state->state = TFTP_STATE_FIN;
     } else {
       /* Re-send the data packet */
-      sbytes = sendto(state->sockfd, &state->spacket,
+      sbytes = sendto(state->sockfd, (void *)&state->spacket,
                       4+state->sbytes, MSG_NOSIGNAL,
                       (struct sockaddr *)&state->remote_addr,
                       state->remote_addrlen);
