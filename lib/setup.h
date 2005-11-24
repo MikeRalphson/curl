@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.96 2005-11-24 10:22:47 bagder Exp $
+ * $Id: setup.h,v 1.97 2005-11-24 20:37:13 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -308,6 +308,10 @@ typedef int curl_socket_t;
 #if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
 #define USE_NTLM
 #endif
+#endif
+
+#if defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_GOPHER)
+#define CURL_DISABLE_GOPHER
 #endif
 
 #ifdef CURLDEBUG
