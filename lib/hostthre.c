@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.32 2005-11-08 14:45:58 bagder Exp $
+ * $Id: hostthre.c,v 1.33 2005-11-24 20:39:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -181,6 +181,7 @@ struct thread_sync_data {
 };
 
 /* Destroy resolver thread synchronization data */
+static
 void destroy_thread_sync_data(struct thread_sync_data * tsd)
 {
   if (tsd->hostname) {
@@ -202,6 +203,7 @@ void destroy_thread_sync_data(struct thread_sync_data * tsd)
 }
 
 /* Initialize resolver thread synchronization data */
+static
 BOOL init_thread_sync_data(struct thread_data * td,
                            char * hostname,
                            struct thread_sync_data * tsd)
@@ -243,6 +245,7 @@ BOOL init_thread_sync_data(struct thread_data * td,
 }
 
 /* acquire resolver thread synchronization */
+static
 BOOL acquire_thread_sync(struct thread_sync_data * tsd)
 {
   /* is the thread initiator still waiting for us ? */
@@ -269,6 +272,7 @@ BOOL acquire_thread_sync(struct thread_sync_data * tsd)
 }
 
 /* release resolver thread synchronization */
+static
 void release_thread_sync(struct thread_sync_data * tsd)
 {
   ReleaseMutex(tsd->mutex_terminate);
