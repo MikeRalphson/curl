@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.8 2005-11-14 13:26:17 giva Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.9 2005-11-24 23:03:25 bagder Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -263,6 +263,7 @@ static char *lookup_service(unsigned short port, int flags,
         {
           struct servent *se;
           const char *proto;
+#ifdef HAVE_GETSERVBYPORT_R
 #if GETSERVBYPORT_R_ARGS == 6
           struct servent ret;
           char buf[4096];
@@ -274,6 +275,7 @@ static char *lookup_service(unsigned short port, int flags,
           struct servent ret;
           struct servent_data sed;
 #endif
+#endif /* HAVE_GETSERVBYPORT_R */
           if (flags & ARES_NI_UDP)
             proto = "udp";
           else if (flags & ARES_NI_SCTP)
