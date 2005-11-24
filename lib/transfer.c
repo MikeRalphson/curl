@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.289 2005-11-18 07:23:50 bagder Exp $
+ * $Id: transfer.c,v 1.290 2005-11-24 10:22:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -214,7 +214,7 @@ CURLcode Curl_readrewind(struct connectdata *conn)
     if(data->set.ioctl) {
       curlioerr err;
 
-      err = data->set.ioctl(data, CURLIOCMD_RESTARTREAD,
+      err = (data->set.ioctl) (data, CURLIOCMD_RESTARTREAD,
                             data->set.ioctl_client);
       infof(data, "the ioctl callback returned %d\n", (int)err);
 

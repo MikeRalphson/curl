@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.36 2005-05-02 14:33:58 bagder Exp $
+ * $Id: setup.h,v 1.37 2005-11-24 10:22:47 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -103,7 +103,9 @@ int fileno( FILE *stream);
 #ifdef word
 #undef word
 #endif
+#ifndef HAVE_LIMITS_H
 #define HAVE_LIMITS_H /* we have limits.h */
+#endif
 #define DIR_CHAR      "/"
 #define DOT_CHAR      "_"
 #else
