@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.168 2005-11-24 10:22:46 bagder Exp $
+dnl $Id: configure.ac,v 1.169 2005-11-25 09:52:19 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1549,7 +1549,8 @@ dnl if found
 [],
 dnl if not found, $ac_func is the name we check for
 func="$ac_func"
-if test "skipcheck_$func" != "yes"; then
+eval skipcheck=\$skipcheck_$func
+if test "x$skipcheck" != "xyes"; then
   AC_MSG_CHECKING([deeper for $func])
   AC_TRY_LINK( [],
                [ $func ();],
