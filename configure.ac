@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.169 2005-11-25 09:52:19 bagder Exp $
+dnl $Id: configure.ac,v 1.170 2005-11-28 20:21:35 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1601,6 +1601,15 @@ AC_CHECK_DECL(basename, ,
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+)
+
+AC_CHECK_DECL(inet_pton, ,
+   AC_DEFINE(HAVE_NO_INET_PTON_PROTO),
+[
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
+#endif
+]
 )
 
 AC_MSG_CHECKING([if we are Mac OS X (to disable poll)])
