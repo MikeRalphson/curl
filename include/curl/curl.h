@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.286 2005-09-04 05:16:06 bagder Exp $
+ * $Id: curl.h,v 1.287 2005-11-28 23:06:00 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -908,6 +908,9 @@ typedef enum {
      that. libcurl will then instead use the same IP address it used for the
      control connection. */
   CINIT(FTP_SKIP_PASV_IP, LONG, 137),
+
+  /* Select "file method" to use when doing FTP */
+  CINIT(FTP_FILEMETHOD, LONG, 138),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
