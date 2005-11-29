@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.170 2005-11-28 20:21:35 bagder Exp $
+dnl $Id: configure.ac,v 1.171 2005-11-29 16:17:53 bagder Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1604,7 +1604,8 @@ AC_CHECK_DECL(basename, ,
 )
 
 AC_CHECK_DECL(inet_pton, ,
-   AC_DEFINE(HAVE_NO_INET_PTON_PROTO),
+              AC_DEFINE(HAVE_NO_INET_PTON_PROTO, 1,
+                        [Defined if no inet_pton() prototype available]),
 [
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
