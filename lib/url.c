@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.482 2005-11-28 23:06:00 bagder Exp $
+ * $Id: url.c,v 1.483 2005-11-30 13:09:48 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -561,7 +561,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     /*
      * How do access files over FTP.
      */
-    data->set.ftp_filemethod = va_arg(param, long);
+    data->set.ftp_filemethod = (curl_ftpfile)va_arg(param, long);
     break;
   case CURLOPT_NETRC:
     /*
