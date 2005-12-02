@@ -1,3 +1,5 @@
+#ifndef __CURL_MPRINTF_H
+#define __CURL_MPRINTF_H
 /***************************************************************************
  *                                  _   _ ____  _
  *  Project                     ___| | | |  _ \| |
@@ -18,11 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.h,v 1.10 2004-11-11 08:03:43 bagder Exp $
+ * $Id: mprintf.h,v 1.11 2005-12-02 23:23:49 bagder Exp $
  ***************************************************************************/
-
-#ifndef H_MPRINTF
-#define H_MPRINTF
 
 #include <stdarg.h>
 #include <stdio.h> /* needed for FILE */
@@ -53,4 +52,4 @@ CURL_EXTERN char *curl_mvaprintf(const char *format, va_list args);
 # define vaprintf curl_mvaprintf
 #endif
 
-#endif /* H_MPRINTF */
+#endif /* __CURL_MPRINTF_H */
