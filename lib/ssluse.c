@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.136 2005-11-13 23:53:14 bagder Exp $
+ * $Id: ssluse.c,v 1.137 2005-12-04 18:47:36 giva Exp $
  ***************************************************************************/
 
 /*
@@ -1121,7 +1121,7 @@ Curl_ossl_connect(struct connectdata *conn,
   long lerr;
   int what;
   char * str;
-  SSL_METHOD *req_method;
+  const SSL_METHOD *req_method;
   void *ssl_sessionid=NULL;
   ASN1_TIME *certdate;
   curl_socket_t sockfd = conn->sock[sockindex];
