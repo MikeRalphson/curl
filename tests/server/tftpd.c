@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.8 2005-09-19 22:03:16 bagder Exp $
+ * $Id: tftpd.c,v 1.9 2005-12-05 14:10:48 bagder Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -222,7 +222,7 @@ static void read_ahead(struct testcase *test,
   if (convert == 0) {
     /* The former file reading code did this:
        b->counter = read(fileno(file), dp->th_data, SEGSIZE); */
-    int copy_n = MIN(SEGSIZE, test->rcount);
+    size_t copy_n = MIN(SEGSIZE, test->rcount);
     memcpy(dp->th_data, test->rptr, copy_n);
 
     /* decrease amount, advance pointer */
@@ -892,7 +892,7 @@ static void nak(int error)
     tp->th_code = EUNDEF;   /* set 'undef' errorcode */
   }
   strcpy(tp->th_msg, pe->e_msg);
-  length = strlen(pe->e_msg);
+  length = (int)strlen(pe->e_msg);
   tp->th_msg[length] = '\0';
   length += 5;
   if (send(peer, buf, length, 0) != length)

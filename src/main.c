@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.340 2005-11-28 23:06:01 bagder Exp $
+ * $Id: main.c,v 1.341 2005-12-05 14:10:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -363,7 +363,7 @@ struct Configurable {
 };
 
 #define WARN_PREFIX "Warning: "
-#define WARN_TEXTWIDTH (79 - strlen(WARN_PREFIX))
+#define WARN_TEXTWIDTH (79 - (int)strlen(WARN_PREFIX))
 /* produce this text message to the user unless mute was selected */
 static void warnf(struct Configurable *config, const char *fmt, ...)
 {
