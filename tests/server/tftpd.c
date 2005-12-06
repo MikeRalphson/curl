@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.9 2005-12-05 14:10:48 bagder Exp $
+ * $Id: tftpd.c,v 1.10 2005-12-06 07:47:37 bagder Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -228,7 +228,7 @@ static void read_ahead(struct testcase *test,
     /* decrease amount, advance pointer */
     test->rcount -= copy_n;
     test->rptr += copy_n;
-    b->counter = copy_n;
+    b->counter = (int)copy_n;
     return;
   }
 
