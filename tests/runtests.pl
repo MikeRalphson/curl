@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.196 2005-12-05 19:23:56 bagder Exp $
+# $Id: runtests.pl,v 1.197 2005-12-06 07:44:18 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2036,18 +2036,19 @@ $TFTPPORT =  $base + 7; # TFTP (UDP) port
 $TFTP6PORT =  $base + 8; # TFTP IPv6 (UDP) port
 
 #######################################################################
+# clear and create logging directory:
+#
+
+cleardir($LOGDIR);
+mkdir($LOGDIR, 0777);
+
+#######################################################################
 # Output curl version and host info being tested
 #
 
 if(!$listonly) {
     checksystem();
 }
-
-#######################################################################
-# clear and create logging directory:
-#
-cleardir($LOGDIR);
-mkdir($LOGDIR, 0777);
 
 #######################################################################
 # If 'all' tests are requested, find out all test numbers
