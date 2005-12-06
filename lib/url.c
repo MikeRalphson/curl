@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.483 2005-11-30 13:09:48 bagder Exp $
+ * $Id: url.c,v 1.484 2005-12-06 23:05:51 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2378,12 +2378,18 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   if(urllen < LEAST_PATH_ALLOC)
     urllen=LEAST_PATH_ALLOC;
 
-  conn->pathbuffer=(char *)malloc(urllen);
+  /*
+   * We malloc() the buffers below urllen+2 to make room for to possibilities:
+   * 1 - an extra terminating zero
+   * 2 - an extra slash (in case a syntax like "www.host.com?moo" is used)
+   */
+
+  conn->pathbuffer=(char *)malloc(urllen+2);
   if(NULL == conn->pathbuffer)
     return CURLE_OUT_OF_MEMORY; /* really bad error */
   conn->path = conn->pathbuffer;
 
-  conn->host.rawalloc=(char *)malloc(urllen);
+  conn->host.rawalloc=(char *)malloc(urllen+2);
   if(NULL == conn->host.rawalloc)
     return CURLE_OUT_OF_MEMORY;
   conn->host.name = conn->host.rawalloc;
