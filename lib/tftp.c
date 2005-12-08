@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.15 2005-12-05 20:07:06 danf Exp $
+ * $Id: tftp.c,v 1.16 2005-12-08 20:38:04 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -205,7 +205,7 @@ void tftp_set_timeouts(tftp_state_data_t *state)
   else {
 
     /* Compute drop-dead time */
-    maxtime = data->set.timeout?data->set.timeout:3600;
+    maxtime = (time_t)(data->set.timeout?data->set.timeout:3600);
     state->max_time = state->start_time+maxtime;
 
     /* Set per-block timeout to 10% of total */
