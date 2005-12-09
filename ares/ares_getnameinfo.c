@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.10 2005-11-25 22:14:28 bagder Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.11 2005-12-09 22:23:50 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -270,6 +270,7 @@ static char *lookup_service(unsigned short port, int flags,
           char buf[4096];
           int len = 4096;
 #elif GETSERVBYPORT_R_ARGS == 5
+          struct servent ret;
           char buf[4096];
           int len = 4096;
 #elif GETSERVBYPORT_R_ARGS == 4
@@ -291,6 +292,7 @@ static char *lookup_service(unsigned short port, int flags,
           if (getservbyport_r(port, proto, se, buf, len, &ret))
             se = NULL;
 #elif GETSERVBYPORT_R_ARGS == 5
+          se = &ret;
           se = getservbyport_r(port, proto, se, buf, len);
 #elif GETSERVBYPORT_R_ARGS == 4
           se = &ret;
