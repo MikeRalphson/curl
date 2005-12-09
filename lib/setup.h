@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.97 2005-11-24 20:37:13 bagder Exp $
+ * $Id: setup.h,v 1.98 2005-12-09 15:19:07 yangtse Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -273,6 +273,18 @@ typedef int curl_socket_t;
 #undef USE_THREADING_GETADDRINFO
 #undef USE_THREADING_GETHOSTBYNAME
 #define CURL_NO__BEGINTHREADEX
+#endif
+
+/*
+ * msvc 6.0 does not have struct sockaddr_storage and
+ * does not define IPPROTO_ESP in winsock2.h. But both
+ * are available if PSDK is properly installed.
+ */
+
+#ifdef _MSC_VER
+#if !defined(HAVE_WINSOCK2_H) || ((_MSC_VER < 1300) && !defined(IPPROTO_ESP))
+#undef HAVE_STRUCT_SOCKADDR_STORAGE
+#endif
 #endif
 
 #ifdef mpeix
