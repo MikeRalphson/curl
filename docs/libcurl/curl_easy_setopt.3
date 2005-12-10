@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.136 2005-11-17 14:29:54 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.137 2005-12-10 22:12:44 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "27 Oct 2005" "libcurl 7.14.2" "libcurl Manual"
@@ -275,7 +275,7 @@ Pass a FILE * as parameter. Tell libcurl to use this stream instead of stderr
 when showing the progress meter and displaying \fICURLOPT_VERBOSE\fP data.
 .IP CURLOPT_FAILONERROR
 A non-zero parameter tells the library to fail silently if the HTTP code
-returned is equal to or larger than 300. The default action would be to return
+returned is equal to or larger than 400. The default action would be to return
 the page normally, ignoring that code.
 .SH NETWORK OPTIONS
 .IP CURLOPT_URL
