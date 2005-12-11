@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.340 2005-12-11 12:03:01 yangtse Exp $
+ * $Id: ftp.c,v 1.341 2005-12-11 18:29:18 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -780,7 +780,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
    */
   struct Curl_sockaddr_storage ss;
   struct addrinfo *res, *ai;
-  size_t sslen;
+  socklen_t sslen;
   char hbuf[NI_MAXHOST];
   struct sockaddr *sa=(struct sockaddr *)&ss;
   unsigned char *ap;
@@ -812,7 +812,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
       return CURLE_FTP_PORT_FAILED;
     }
 
-    rc = getnameinfo((struct sockaddr *)&ss, sslen, hbuf, sizeof(hbuf), NULL,
+    rc = getnameinfo((struct sockaddr *)&ss, (size_t)sslen, hbuf, sizeof(hbuf), NULL,
                      0, NIFLAGS);
     if(rc) {
       failf(data, "getnameinfo() returned %d\n", rc);
@@ -921,7 +921,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
     if (EPRT == fcmd) {
       if (eprtaf < 0)
         continue;
-      if (getnameinfo((struct sockaddr *)&ss, sslen,
+      if (getnameinfo((struct sockaddr *)&ss, (size_t)sslen,
                       portmsgbuf, sizeof(portmsgbuf), tmp, sizeof(tmp),
                       NIFLAGS))
         continue;
