@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.17 2005-11-09 22:32:45 giva Exp $ */
+/* $Id: ares.h,v 1.18 2005-12-11 12:03:01 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -172,7 +172,7 @@ void ares_gethostbyname(ares_channel channel, const char *name, int family,
 void ares_gethostbyaddr(ares_channel channel, const void *addr, int addrlen,
                         int family, ares_host_callback callback, void *arg);
 void ares_getnameinfo(ares_channel channel, const struct sockaddr *sa,
-                      socklen_t salen, int flags, ares_nameinfo_callback callback,
+                      size_t salen, int flags, ares_nameinfo_callback callback,
                       void *arg);
 int ares_fds(ares_channel channel, fd_set *read_fds, fd_set *write_fds);
 struct timeval *ares_timeout(ares_channel channel, struct timeval *maxtv,
