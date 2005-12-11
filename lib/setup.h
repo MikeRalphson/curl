@@ -20,10 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.98 2005-12-09 15:19:07 yangtse Exp $
+ * $Id: setup.h,v 1.99 2005-12-11 23:14:25 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
+#define CURL_DISABLE_TFTP
 #define CURL_DISABLE_FTP
 #define CURL_DISABLE_LDAP
 #define CURL_DISABLE_TELNET
