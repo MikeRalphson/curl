@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.287 2005-11-28 23:06:00 bagder Exp $
+ * $Id: curl.h,v 1.288 2005-12-12 17:11:23 danf Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -67,7 +67,7 @@ extern "C" {
  * format strings when outputting a variable of type curl_off_t.
  */
 
-#if defined(_MSC_VER) || defined(__LCC__)
+#if defined(_MSC_VER) || (defined(__LCC__) && defined(WIN32))
 /* MSVC */
 #ifdef _WIN32_WCE
   typedef long curl_off_t;
@@ -76,7 +76,7 @@ extern "C" {
   typedef signed __int64 curl_off_t;
 #define CURL_FORMAT_OFF_T "%I64d"
 #endif
-#else /* _MSC_VER || __LCC__ */
+#else /* _MSC_VER || (defined(__LCC__) && defined(WIN32)) */
 #if (defined(__GNUC__) && defined(WIN32)) || defined(__WATCOMC__)
 /* gcc on windows or Watcom */
   typedef long long curl_off_t;
@@ -108,7 +108,7 @@ extern "C" {
 #define CURL_FORMAT_OFF_T "%ld"
 #endif
 #endif /* GCC or Watcom on Windows */
-#endif /* _MSC_VER || __LCC__ */
+#endif /* _MSC_VER || (defined(__LCC__) && defined(WIN32)) */
 
 #ifdef UNDEF_FILE_OFFSET_BITS
 /* this was defined above for our checks, undefine it again */
