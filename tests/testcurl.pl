@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.37 2005-09-15 21:49:26 bagder Exp $
+# $Id: testcurl.pl,v 1.38 2005-12-13 19:07:33 danf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile);
 
 # version of this script
-$version='$Revision: 1.37 $';
+$version='$Revision: 1.38 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -264,6 +264,7 @@ logit "NAME = $name";
 logit "EMAIL = $email";
 logit "DESC = $desc";
 logit "CONFOPTS = $confopts";
+logit "CPPFLAGS = ".$ENV{CPPFLAGS};
 logit "CFLAGS = ".$ENV{CFLAGS};
 logit "LDFLAGS = ".$ENV{LDFLAGS};
 logit "CC = ".$ENV{CC};
