@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.14 2005-03-31 07:02:03 bagder Exp $
+ * $Id: getpass.c,v 1.15 2005-12-13 18:54:31 danf Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -203,7 +203,7 @@ char *getpass_r(const char *prompt, /* prompt to display */
   if(disabled) {
     /* if echo actually was disabled, add a newline */
     fputs("\n", stderr);
-    ttyecho(TRUE, fd); /* enable echo */
+    (void)ttyecho(TRUE, fd); /* enable echo */
   }
 
   if(1 != fd)
