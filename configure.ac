@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.173 2005-12-14 20:58:13 yangtse Exp $
+dnl $Id: configure.ac,v 1.174 2005-12-14 21:09:30 yangtse Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1618,13 +1618,13 @@ if test "$ac_cv_func_getnameinfo" = "yes"; then
   AC_CHECK_DECL(getnameinfo, ,
                 AC_DEFINE(HAVE_NO_GETNAMEINFO_PROTO, 1,
                           [Defined if no getnameinfo() prototype available]),
-    [
-    #ifdef HAVE_SYS_SOCKET_H
-    #include <sys/socket.h>
-    #endif
-    #ifdef HAVE_NETDB_H
-    #include <netdb.h>
-    #endif
+  [
+#ifdef HAVE_SYS_SOCKET_H
+#include <sys/socket.h>
+#endif
+#ifdef HAVE_NETDB_H
+#include <netdb.h>
+#endif
   ])
   CURL_FUNC_GETNAMEINFO_ARGTYPES
 fi
