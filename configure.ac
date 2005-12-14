@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.171 2005-11-29 16:17:53 bagder Exp $
+dnl $Id: configure.ac,v 1.172 2005-12-14 19:00:44 yangtse Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1499,6 +1499,8 @@ TYPE_IN_ADDR_T
 TYPE_SOCKADDR_STORAGE
 
 AC_FUNC_SELECT_ARGTYPES
+
+CURL_FUNC_GETNAMEINFO_ARGTYPES
 
 dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL
