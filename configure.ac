@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.174 2005-12-14 21:09:30 yangtse Exp $
+dnl $Id: configure.ac,v 1.175 2005-12-15 19:39:44 yangtse Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -289,6 +289,22 @@ AC_HELP_STRING([--disable-manual],[Disable built-in manual]),
 dnl The actual use of the USE_MANUAL variable is done much later in this
 dnl script to allow other actions to disable it as well.
 
+dnl **********************************************************************
+dnl Make sure that our checks for headers windows.h winsock.h winsock2.h 
+dnl and ws2tcpip.h take precedence over any other further check done later.
+dnl **********************************************************************
+
+dnl Do we have a compilable and valid windows.h header ?
+CURL_CHECK_HEADER_WINDOWS
+
+dnl Do we have a compilable and valid winsock.h header ?
+CURL_CHECK_HEADER_WINSOCK
+
+dnl Do we have a compilable and valid winsock2.h header ?
+CURL_CHECK_HEADER_WINSOCK2
+
+dnl Do we have a compilable and valid ws2tcpip.h header ?
+CURL_CHECK_HEADER_WS2TCPIP
 
 dnl **********************************************************************
 dnl Checks for libraries.
