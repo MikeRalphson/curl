@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.176 2005-12-16 04:18:44 yangtse Exp $
+dnl $Id: configure.ac,v 1.177 2005-12-16 05:05:55 yangtse Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1506,7 +1506,8 @@ AC_CHECK_TYPE(ssize_t, ,
 # Experimental check
 CURL_CHECK_TYPE_SOCKLEN_T
 
-TYPE_SOCKLEN_T
+# TYPE_SOCKLEN_T
+
 TYPE_IN_ADDR_T
 
 TYPE_SOCKADDR_STORAGE
