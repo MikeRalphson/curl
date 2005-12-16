@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.37 2005-11-24 10:22:47 bagder Exp $
+ * $Id: setup.h,v 1.38 2005-12-16 20:55:07 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -59,6 +59,34 @@
    be set BEFORE all normal system headers. */
 #include "../lib/setup.h"
 #endif
+
+
+/* 
+ * Include header files for windows builds before redefining anything.
+ * Use this preproessor block only to include or exclude windows.h, 
+ * winsock2.h, ws2tcpip.h or winsock.h. Any other windows thing belongs 
+ * to any other further and independant block.
+ */
+
+#ifdef WIN32
+#  ifdef HAVE_WINDOWS_H
+#    ifndef WIN32_LEAN_AND_MEAN
+#      define WIN32_LEAN_AND_MEAN
+#    endif
+#    include <windows.h>
+#    ifdef HAVE_WINSOCK2_H
+#      include <winsock2.h>
+#      ifdef HAVE_WS2TCPIP_H
+#         include <ws2tcpip.h>
+#      endif
+#    else
+#      ifdef HAVE_WINSOCK_H
+#        include <winsock.h>
+#      endif
+#    endif
+#  endif
+#endif
+
 
 #include <stdio.h>
 

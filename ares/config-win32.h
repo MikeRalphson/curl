@@ -1,4 +1,4 @@
-/* $Id: config-win32.h,v 1.2 2005-11-14 12:32:56 giva Exp $ */
+/* $Id: config-win32.h,v 1.3 2005-12-16 20:55:07 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -15,6 +15,10 @@
 
 #ifndef __CONFIG_WIN32_H
 #define __CONFIG_WIN32_H
+
+#define HAVE_WINDOWS_H
+#define HAVE_WINSOCK2_H
+#define HAVE_WS2TCPIP_H
 
 #if defined(__MINGW32__)
 #define HAVE_GETOPT_H
