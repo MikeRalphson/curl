@@ -1,5 +1,5 @@
-#ifndef __SETUP_H
-#define __SETUP_H
+#ifndef __LIB_CURL_SETUP_H
+#define __LIB_CURL_SETUP_H
 /***************************************************************************
  *                                  _   _ ____  _
  *  Project                     ___| | | |  _ \| |
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.100 2005-12-16 20:55:07 yangtse Exp $
+ * $Id: setup.h,v 1.101 2005-12-17 06:04:35 yangtse Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -347,4 +347,4 @@ typedef int curl_socket_t;
 #define DEBUGF(x)
 #endif
 
-#endif /* __SETUP_H */
+#endif /* __LIB_CURL_SETUP_H */
