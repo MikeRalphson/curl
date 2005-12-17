@@ -1,4 +1,7 @@
-/* $Id: config-win32.h,v 1.3 2005-12-16 20:55:07 yangtse Exp $ */
+#ifndef __ARES_CONFIG_WIN32_H
+#define __ARES_CONFIG_WIN32_H
+
+/* $Id: config-win32.h,v 1.4 2005-12-17 21:20:35 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -12,9 +15,6 @@
  * suitability of this software for any purpose.  It is provided "as is"
  * without express or implied warranty.
  */
-
-#ifndef __CONFIG_WIN32_H
-#define __CONFIG_WIN32_H
 
 #define HAVE_WINDOWS_H
 #define HAVE_WINSOCK2_H
@@ -36,4 +36,4 @@
 #define HAVE_STRUCT_ADDRINFO
 #define HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID
 
-#endif  /* __CONFIG_WIN32_H */
+#endif  /* __ARES_CONFIG_WIN32_H */
