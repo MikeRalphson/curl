@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.178 2005-12-16 18:18:00 yangtse Exp $
+dnl $Id: configure.ac,v 1.179 2005-12-18 04:47:29 yangtse Exp $
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
@@ -1587,6 +1587,34 @@ if test "$ac_cv_func_select" != "yes"; then
                AC_DEFINE_UNQUOTED(HAVE_SELECT,1)],
                [AC_MSG_ERROR(You can't compile without a select)]
              )
+fi
+
+dnl Msys/Mingw does not detect getnameinfo() in AC_CHECK_FUNCS.
+dnl
+if test "$ac_cv_func_getnameinfo" = "no"; then
+  AC_MSG_CHECKING([deeper and deeper for getnameinfo])
+  AC_TRY_LINK([
+#undef inline
+#ifdef HAVE_WINDOWS_H
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#endif
+    ],[
+      getnameinfo(0, 0, 0, 0, 0, 0, 0);
+    ],[ 
+      AC_MSG_RESULT([yes])
+      ac_cv_func_getnameinfo="yes"
+      AC_DEFINE_UNQUOTED(HAVE_GETNAMEINFO, 1,
+        [Define to 1 if you have the getnameinfo function.])
+    ],[
+      AC_MSG_RESULT([no])
+  ])
 fi
 
 dnl sigsetjmp() might be a macro and no function so if it isn't found already
