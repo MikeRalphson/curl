@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.51 2005-11-01 16:27:27 giva Exp $
+ * $Id: ldap.c,v 1.52 2005-12-18 15:36:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -39,7 +39,6 @@
 #include <errno.h>
 
 #if defined(WIN32)
-# include <windows.h>
 # include <malloc.h>
 # include <winldap.h>
 #endif

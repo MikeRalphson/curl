@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getenv.c,v 1.26 2004-11-02 10:12:23 bagder Exp $
+ * $Id: getenv.c,v 1.27 2005-12-18 15:36:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -26,10 +26,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef WIN32
-#include <windows.h>
-#endif
 
 #ifdef VMS
 #include <unixlib.h>
@@ -47,7 +43,6 @@ char *GetEnv(const char *variable)
   return NULL;
 #else
 #ifdef WIN32
-  /* This shit requires windows.h (HUGE) to be included */
   char env[MAX_PATH]; /* MAX_PATH is from windef.h */
   char *temp = getenv(variable);
   env[0] = '\0';

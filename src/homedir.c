@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: homedir.c,v 1.8 2005-05-02 14:33:58 bagder Exp $
+ * $Id: homedir.c,v 1.9 2005-12-18 15:36:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -27,9 +27,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef WIN32
-#include <windows.h>
-#endif
 #ifdef HAVE_PWD_H
 #include <pwd.h>
 #endif

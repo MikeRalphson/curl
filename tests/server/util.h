@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.4 2005-09-15 20:22:43 bagder Exp $
+ * $Id: util.h,v 1.5 2005-12-18 15:36:14 yangtse Exp $
  ***************************************************************************/
 
 int ourerrno(void);
@@ -39,8 +39,6 @@ void logmsg(const char *msg, ...);
 extern const char *path;
 
 #if defined(WIN32) && !defined(__CYGWIN__)
-#include <windows.h>
-#include <winsock2.h>
 #include <process.h>
 
 #define sleep(sec)   Sleep ((sec)*1000)

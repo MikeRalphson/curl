@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.140 2005-12-13 18:54:31 danf Exp $
+ * $Id: connect.c,v 1.141 2005-12-18 15:36:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -83,7 +83,6 @@
 #endif
 
 #ifdef WIN32
-#include <windows.h>
 #define EINPROGRESS WSAEINPROGRESS
 #define EWOULDBLOCK WSAEWOULDBLOCK
 #define EISCONN     WSAEISCONN
