@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.139 2005-12-13 18:54:31 danf Exp $
+ * $Id: ssluse.c,v 1.140 2005-12-19 19:47:14 danf Exp $
  ***************************************************************************/
 
 /*
@@ -802,13 +802,13 @@ static int hostmatch(const char *hostname, const char *pattern)
         if (hostmatch(hostname++,pattern) == HOST_MATCH)
           return HOST_MATCH;
       }
-      return HOST_NOMATCH;
+      break;
     }
 
     if (toupper(c) != toupper(*hostname++))
-      return HOST_NOMATCH;
+      break;
   }
-  /* we never reach this point */
+  return HOST_NOMATCH;
 }
 
 static int

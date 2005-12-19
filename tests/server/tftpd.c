@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.12 2005-12-13 18:54:31 danf Exp $
+ * $Id: tftpd.c,v 1.13 2005-12-19 19:47:14 danf Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -366,9 +366,9 @@ static int synchnet(curl_socket_t f /* socket to flush */)
                       (struct sockaddr *)&from, &fromlen);
     }
     else
-      return j;
+      break;
   }
-  /* we never reach this point */
+  return j;
 }
 
 /*
