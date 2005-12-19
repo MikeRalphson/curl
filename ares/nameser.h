@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.15 2005-12-18 15:36:14 yangtse Exp $ */
+/* $Id: nameser.h,v 1.16 2005-12-19 00:15:04 yangtse Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -7,6 +7,7 @@
    port build */
 
 #ifndef NETWARE
+#include <windows.h>
 #include <process.h> /* for the _getpid() proto */
 #endif  /* !NETWARE */
 #include <sys/types.h>
