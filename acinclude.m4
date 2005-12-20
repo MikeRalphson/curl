@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.79 2005-12-20 09:02:36 bagder Exp $
+# $Id: acinclude.m4,v 1.80 2005-12-20 20:29:53 yangtse Exp $
 ###########################################################################
 
 dnl CURL_CHECK_HEADER_WINDOWS
@@ -393,8 +393,10 @@ dnl the code was bad, try a different program now, test 3
 #endif
 ],[
 /* ioctlsocket source code */
- SOCKET socket;
- unsigned long flags = ioctlsocket(socket, FIONBIO, &flags);
+ SOCKET sd;
+ unsigned long flags = 0;
+ sd = socket(0, 0, 0);
+ ioctlsocket(sd, FIONBIO, &flags);
 ],[
 dnl ioctlsocket test was good
 nonblock="ioctlsocket"
