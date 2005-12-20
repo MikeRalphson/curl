@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: hiper.c,v 1.4 2005-12-09 10:41:07 bagder Exp $
+ * $Id: hiper.c,v 1.5 2005-12-20 09:19:20 bagder Exp $
  *
  * Connect N connections. Z are idle, and X are active. Transfer as fast as
  * possible.
@@ -191,6 +191,11 @@ static void report(void)
          topselect);
 
   printf("%ld select() timeouts\n", timeouts);
+
+  printf("Downloaded %ld bytes in %ld bytes/sec, %ld usec/byte\n",
+         info.dlcounter,
+         info.dlcounter/(total/1000000),
+         total/info.dlcounter);
 
 #if 0
   for(i=1; i< num_total; i++) {
