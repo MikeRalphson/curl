@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.5 2005-12-18 16:50:33 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.6 2005-12-20 20:48:38 giva Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -30,7 +30,8 @@
 #endif
 
 /* Define if you have the <unistd.h> header file.  */
-#if defined(__MINGW32__) || defined(__WATCOMC__) || defined(__LCC__)
+#if defined(__MINGW32__) || defined(__WATCOMC__) || defined(__LCC__) || \
+    defined(__POCC__)
 #define HAVE_UNISTD_H 1
 #endif
 
