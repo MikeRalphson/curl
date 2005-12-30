@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.72 2005-12-01 23:42:03 bagder Exp $
+ * $Id: file.c,v 1.73 2005-12-30 00:07:25 curlvms Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -230,10 +230,10 @@ static CURLcode file_upload(struct connectdata *conn)
     if(res)
       break;
 
-    nread = (size_t)readcount;
-
-    if (nread <= 0)
+    if (readcount <= 0)
       break;
+
+    nread = (size_t)readcount;
 
     /* write the data to the target */
     nwrite = fwrite(buf, 1, nread, fp);

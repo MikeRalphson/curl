@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.19 2005-10-04 18:15:33 bagder Exp $
+ * $Id: parsedate.c,v 1.20 2005-12-30 00:07:25 curlvms Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -391,7 +391,7 @@ static time_t Curl_parsedate(const char *date)
   t = mktime(&tm);
 
   /* time zone adjust */
-  if(-1 != t) {
+  if(-1 != (int)t) {
     struct tm *gmt;
     long delta;
     time_t t2;
