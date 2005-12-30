@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.73 2005-12-30 00:07:25 curlvms Exp $
+ * $Id: file.c,v 1.74 2005-12-30 00:20:46 curlvms Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -230,7 +230,7 @@ static CURLcode file_upload(struct connectdata *conn)
     if(res)
       break;
 
-    if (readcount <= 0)
+    if (readcount <= 0)  /* fix questionable compare error. curlvms */
       break;
 
     nread = (size_t)readcount;
