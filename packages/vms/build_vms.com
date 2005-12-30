@@ -1,4 +1,4 @@
-$! $Id: build_vms.com,v 1.5 2005-04-08 05:06:31 curlvms Exp $
+$! $Id: build_vms.com,v 1.6 2005-12-30 00:07:25 curlvms Exp $
 $! BUILD_VMS.COM 
 $!
 $! I've taken the original build_vms.com, supplied by Nico Baggus, if
@@ -25,7 +25,7 @@ $!      DEBUG will compile and link with debug
 $!
 $! Revisions:
 $!
-$!  2-DEC-2003, MSK, the "original" version. <marty@barra.com>
+$!  2-DEC-2003, MSK, the "original" version.
 $!                   It works for me.  Your mileage may vary.
 $! 13-JAN-2004, MSK, moved this procedure to the [.packages.vms] directory
 $!                   and updated it to do hardware dependant builds.
