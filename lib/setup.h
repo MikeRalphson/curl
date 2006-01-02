@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.103 2005-12-20 22:20:04 giva Exp $
+ * $Id: setup.h,v 1.104 2006-01-02 18:35:58 giva Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -230,6 +230,7 @@ typedef unsigned char bool;
 #else /* WIN32 */
 
 #ifdef DJGPP
+#include <sys/ioctl.h>
 #define sclose(x)         close_s(x)
 #define sread(x,y,z)      read_s(x,y,z)
 #define swrite(x,y,z)     write_s(x,y,z)
