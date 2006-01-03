@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.76 2006-01-02 12:19:12 bagder Exp $
+ * $Id: sws.c,v 1.77 2006-01-03 12:18:22 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -520,10 +520,10 @@ static int send_doc(int sock, struct httprequest *req)
       written = swrite(sock, STREAMTHIS, count);
       if(written != (int)count) {
         logmsg("Stopped streaming");
-        return -1;
+        break;
       }
     }
-    break;
+    return -1;
   case RCMD_IDLE:
     /* Do nothing. Sit idle. Pretend it rains. */
     return 0;
