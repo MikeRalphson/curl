@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.15 2005-09-15 20:36:28 bagder Exp $
+# $Id: Makefile.am,v 1.16 2006-01-03 22:47:07 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -36,7 +36,7 @@ sws_SOURCES= sws.c util.c util.h $(useful)
 sockfilt_SOURCES = sockfilt.c util.c util.h $(useful)	\
  $(top_srcdir)/lib/inet_pton.c
 getpart_SOURCES= testpart.c $(useful)
-tftpd_SOURCES = tftpd.c util.c util.h $(useful)
+tftpd_SOURCES = tftpd.c util.c util.h $(useful) tftp.h
 
 extra_DIST = base64.pl
 
