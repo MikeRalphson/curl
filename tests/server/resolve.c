@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.3 2005-05-18 10:01:46 bagder Exp $
+ * $Id: resolve.c,v 1.4 2006-01-04 23:02:40 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
   }
 #endif
   if(rc)
-    printf("Resolving '%s' FAILED\n", host);
+    printf("Resolving '%s' didn't work\n", host);
 
   return !rc?0:1;
 }
