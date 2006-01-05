@@ -1,4 +1,4 @@
-/* $Id: ares_private.h,v 1.19 2005-08-10 17:03:53 gknauf Exp $ */
+/* $Id: ares_private.h,v 1.20 2006-01-05 07:57:32 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -61,6 +61,10 @@
 
 #define PATH_RESOLV_CONF "sys:/etc/resolv.cfg"
 #define PATH_HOSTS              "sys:/etc/hosts"
+
+#elif defined(__riscos__)
+
+#define PATH_HOSTS             "InetDBase:Hosts"
 
 #else
 
