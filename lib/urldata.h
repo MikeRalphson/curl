@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.275 2005-11-28 23:06:00 bagder Exp $
+ * $Id: urldata.h,v 1.276 2006-01-10 23:03:22 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -343,6 +343,8 @@ struct FTP {
                        should be FALSE when it gets to Curl_ftp_quit() */
   bool cwddone;     /* if it has been determined that the proper CWD combo
                        already has been done */
+  bool cwdfail;     /* set TRUE if a CWD command fails, as then we must prevent
+                       caching the current directory */
   char *prevpath;   /* conn->path from the previous transfer */
 
   size_t nread_resp; /* number of bytes currently read of a server response */
