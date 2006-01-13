@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.198 2005-12-08 11:29:47 yangtse Exp $
+# $Id: runtests.pl,v 1.199 2006-01-13 12:16:16 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -249,9 +249,10 @@ sub startnew {
             open(PID, "<$pidfile");
             $pid2 = 0 + <PID>;
             close(PID);
-            if(kill(0, $pid2)) {
-                # make sure this pid is alive, as otherwise it is just likely
-                # to be the _previous_ pidfile or similar!
+            if($pid2 && kill(0, $pid2)) {
+                # if $pid2 is valid, then make sure this pid is alive, as
+                # otherwise it is just likely to be the _previous_ pidfile or
+                # similar!
                 last;
             }
         }
