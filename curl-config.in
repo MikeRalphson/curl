@@ -3,7 +3,7 @@
 # The idea to this kind of setup info script was stolen from numerous
 # other packages, such as neon, libxml and gnome.
 #
-# $Id: curl-config.in,v 1.23 2005-09-04 18:15:24 bagder Exp $
+# $Id: curl-config.in,v 1.24 2006-01-16 22:14:38 bagder Exp $
 #
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -100,9 +100,6 @@ while test $# -gt 0; do
 	  if test "@USE_SSLEAY@" = "1"; then
             echo "FTPS"
           fi
-        fi
-	if test "@CURL_DISABLE_GOPHER@" != "1"; then
-          echo "GOPHER"
         fi
 	if test "@CURL_DISABLE_FILE@" != "1"; then
           echo "FILE"

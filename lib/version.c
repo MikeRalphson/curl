@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.46 2005-09-02 15:11:09 bagder Exp $
+ * $Id: version.c,v 1.47 2006-01-16 22:14:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -86,9 +86,6 @@ static const char * const protocols[] = {
 #endif
 #ifndef CURL_DISABLE_FTP
   "ftp",
-#endif
-#ifndef CURL_DISABLE_GOPHER
-  "gopher",
 #endif
 #ifndef CURL_DISABLE_TELNET
   "telnet",

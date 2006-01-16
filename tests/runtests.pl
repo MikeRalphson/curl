@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.199 2006-01-13 12:16:16 bagder Exp $
+# $Id: runtests.pl,v 1.200 2006-01-16 22:14:38 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -204,7 +204,7 @@ $SIG{KILL} = \&catch_zap;
 # to prevent them to interfere with our testing!
 
 my $protocol;
-foreach $protocol (('ftp', 'http', 'ftps', 'https', 'gopher', 'no')) {
+foreach $protocol (('ftp', 'http', 'ftps', 'https', 'no')) {
     my $proxy = "${protocol}_proxy";
     # clear lowercase version
     $ENV{$proxy}=undef;
