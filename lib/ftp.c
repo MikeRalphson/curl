@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.347 2006-01-19 23:52:03 bagder Exp $
+ * $Id: ftp.c,v 1.348 2006-01-24 14:40:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1660,6 +1660,18 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
                             &connected);
 
   Curl_resolv_unlock(data, addr); /* we're done using this address */
+
+  if (result && ftp->count1 == 0 && ftpcode == 229) {
+    infof(data, "got positive EPSV response, but can't connect. "
+          "Disabling EPSV\n");
+    /* disable it for next transfer */
+    conn->bits.ftp_use_epsv = FALSE;
+    data->state.errorbuf = FALSE; /* allow error message to get rewritten */
+    NBFTPSENDF(conn, "PASV", NULL);
+    ftp->count1++;
+    /* remain in the FTP_PASV state */
+    return result;
+ }
 
   if(result)
     return result;
