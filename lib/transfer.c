@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.290 2005-11-24 10:22:47 bagder Exp $
+ * $Id: transfer.c,v 1.291 2006-01-30 08:20:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1765,17 +1765,18 @@ CURLcode Curl_follow(struct SessionHandle *data,
   size_t newlen;
   char *newest;
 
-  if ((data->set.maxredirs != -1) &&
-      (data->set.followlocation >= data->set.maxredirs)) {
-    failf(data,"Maximum (%d) redirects followed", data->set.maxredirs);
-    return CURLE_TOO_MANY_REDIRECTS;
-  }
+  if(!retry) {
+    if ((data->set.maxredirs != -1) &&
+        (data->set.followlocation >= data->set.maxredirs)) {
+      failf(data,"Maximum (%d) redirects followed", data->set.maxredirs);
+      return CURLE_TOO_MANY_REDIRECTS;
+    }
 
-  if(!retry)
     /* mark the next request as a followed location: */
     data->state.this_is_a_follow = TRUE;
 
-  data->set.followlocation++; /* count location-followers */
+    data->set.followlocation++; /* count location-followers */
+  }
 
   if(data->set.http_auto_referer) {
     /* We are asked to automatically set the previous URL as the
