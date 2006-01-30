@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.278 2006-01-19 23:52:03 bagder Exp $
+ * $Id: urldata.h,v 1.279 2006-01-30 08:24:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -970,7 +970,10 @@ struct UserDefined {
                                of strlen(), and then the data *may* be binary
                                (contain zero bytes) */
   char *ftpport;     /* port to send with the FTP PORT command */
-  char *device;      /* network interface to use */
+  char *device;      /* local network interface/address to use */
+  unsigned short localport; /* local port number to bind to */
+  int localportrange; /* number of additional port numbers to test in case the
+                         'localport' one can't be bind()ed */
   curl_write_callback fwrite;        /* function that stores the output */
   curl_write_callback fwrite_header; /* function that stores headers */
   curl_read_callback fread;          /* function that reads the input */
