@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.142 2006-01-30 08:24:07 bagder Exp $
+ * $Id: connect.c,v 1.143 2006-01-30 18:57:02 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -374,7 +374,7 @@ static CURLcode bindlocal(struct connectdata *conn,
     if( bind(sockfd, sock, socksize) >= 0) {
       /* we succeeded to bind */
       struct Curl_sockaddr_storage add;
-      unsigned short port;
+      unsigned short port = 0;
       size_t size;
 
       size = sizeof(add);
