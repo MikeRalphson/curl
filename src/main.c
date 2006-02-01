@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.346 2006-02-01 23:26:14 bagder Exp $
+ * $Id: main.c,v 1.347 2006-02-01 23:28:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1513,7 +1513,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           curl_off_t value = curlx_strtoofft(nextarg, &unit, 0);
 
           if(!*unit)
-            unit="b";
+            unit=(char *)"b";
           else if(strlen(unit) > 1)
             unit=(char *)"w"; /* unsupported */
 
