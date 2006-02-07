@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.347 2006-02-01 23:28:22 bagder Exp $
+ * $Id: main.c,v 1.348 2006-02-07 18:56:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -4216,8 +4216,10 @@ show_error:
 
     } /* loop to the next globbed upload file */
 
-    if(inglob)
+    if(inglob) {
       glob_cleanup(inglob);
+      inglob = NULL;
+    }
 
     if(outfiles)
       free(outfiles);
