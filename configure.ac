@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.187 2006-01-16 22:14:38 bagder Exp $
+# $Id: configure.ac,v 1.188 2006-02-11 12:56:52 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1063,10 +1063,10 @@ if test "$OPENSSL_ENABLED" != "1"; then
     fi
     if test -n "$addlib"; then
 
-      CLEANLDFLAGS="$LDFLAGS"
+      CLEANLIBS="$LIBS"
       CLEANCPPFLAGS="$CPPFLAGS"
   
-      LDFLAGS="$LDFLAGS $addlib"
+      LIBS="$LIBS $addlib"
       if test "$addcflags" != "-I/usr/include"; then
          CPPFLAGS="$CPPFLAGS $addcflags"
       fi
@@ -1079,7 +1079,7 @@ if test "$OPENSSL_ENABLED" != "1"; then
        curl_ssl_msg="enabled (GnuTLS)"
        ],
        [
-         LDFLAGS="$CLEANLDFLAGS"
+         LIBS="$CLEANLIBS"
          CPPFLAGS="$CLEANCPPFLAGS"
        ])
   
