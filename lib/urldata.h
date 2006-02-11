@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.279 2006-01-30 08:24:08 bagder Exp $
+ * $Id: urldata.h,v 1.280 2006-02-11 22:35:17 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -856,6 +856,7 @@ struct UrlState {
      set, it holds an allocated connection. */
   struct connectdata **connects;
   long numconnects; /* size of the 'connects' array */
+  int lastconnect;  /* index of most recent connect or -1 if undefined */
 
   char *headerbuff; /* allocated buffer to store headers in */
   size_t headersize;   /* size of the allocation */
@@ -1083,6 +1084,7 @@ struct UserDefined {
   bool ignorecl;         /* ignore content length */
   bool ftp_skip_ip;      /* skip the IP address the FTP server passes on to
                             us */
+  bool connect_only;     /* make connection, let application use the socket */
 };
 
 /*

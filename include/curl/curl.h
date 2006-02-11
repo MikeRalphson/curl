@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.290 2006-01-30 08:24:07 bagder Exp $
+ * $Id: curl.h,v 1.291 2006-02-11 22:35:16 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -923,6 +923,10 @@ typedef enum {
   */
   CINIT(LOCALPORTRANGE, LONG, 140),
 
+  /* no transfer, set up connection and let application use the socket by
+     extracting it with CURLINFO_LASTSOCKET */
+  CINIT(CONNECT_ONLY, LONG, 141),
+
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
 
@@ -1277,9 +1281,10 @@ typedef enum {
   CURLINFO_NUM_CONNECTS     = CURLINFO_LONG   + 26,
   CURLINFO_SSL_ENGINES      = CURLINFO_SLIST  + 27,
   CURLINFO_COOKIELIST       = CURLINFO_SLIST  + 28,
+  CURLINFO_LASTSOCKET       = CURLINFO_LONG   + 29,
   /* Fill in new entries below here! */
 
-  CURLINFO_LASTONE          = 28
+  CURLINFO_LASTONE          = 29
 } CURLINFO;
 
 /* CURLINFO_RESPONSE_CODE is the new name for the option previously known as

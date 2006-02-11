@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.74 2006-01-15 23:55:53 bagder Exp $
+ * $Id: easy.c,v 1.75 2006-02-11 22:35:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -526,6 +526,8 @@ CURL *curl_easy_duphandle(CURL *incurl)
 
     memset(outcurl->state.connects, 0,
            sizeof(struct connectdata *)*outcurl->state.numconnects);
+
+    outcurl->state.lastconnect = -1;
 
     outcurl->progress.flags    = data->progress.flags;
     outcurl->progress.callback = data->progress.callback;

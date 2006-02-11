@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.277 2006-01-09 13:17:14 bagder Exp $
+ * $Id: http.c,v 1.278 2006-02-11 22:35:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1361,7 +1361,7 @@ CURLcode Curl_http_connect(struct connectdata *conn, bool *done)
    * after the connect has occured, can we start talking SSL
    */
 
-  if(conn->bits.tunnel_proxy) {
+  if(conn->bits.tunnel_proxy && conn->bits.httpproxy) {
 
     /* either SSL over proxy, or explicitly asked for */
     result = Curl_proxyCONNECT(conn, FIRSTSOCKET,
