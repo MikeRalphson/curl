@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_easy_getinfo.3,v 1.25 2006-02-11 22:35:16 bagder Exp $
+.\" $Id: curl_easy_getinfo.3,v 1.26 2006-02-11 22:36:29 bagder Exp $
 .\"
 .TH curl_easy_getinfo 3 "6 Oct 2005" "libcurl 7.12.3" "libcurl Manual"
 .SH NAME
@@ -146,7 +146,8 @@ Pass a pointer to a long to receive the last socket used by this curl
 session. If the socket is no longer valid, -1 is returned. When you finish
 working with the socket, you must call curl_easy_cleanup() as usual and let
 libcurl close the socket and cleanup other resources associated with the
-handle. (Added in 7.15.2)
+handle. This is typically used in combination with \fICURLOPT_CONNECT_ONLY\fP.
+(Added in 7.15.2)
 .SH TIMES
 .NF
 An overview of the six time values available from curl_easy_getinfo()
