@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.14 2005-03-31 07:02:03 bagder Exp $
+ * $Id: http_negotiate.c,v 1.15 2006-02-18 22:27:01 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -111,7 +111,7 @@ log_gss_error(struct connectdata *conn, OM_uint32 error_status, char *prefix)
     gss_release_buffer(&min_stat, &status_string);
   } while (!GSS_ERROR(maj_stat) && msg_ctx != 0);
 
-  infof(conn->data, buf);
+  infof(conn->data, "%s", buf);
 }
 
 int Curl_input_negotiate(struct connectdata *conn, char *header)
