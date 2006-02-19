@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.293 2006-02-11 22:35:17 bagder Exp $
+ * $Id: transfer.c,v 1.294 2006-02-19 23:16:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1158,12 +1158,14 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
               case DEFLATE:
                 /* Assume CLIENTWRITE_BODY; headers are not encoded. */
-                result = Curl_unencode_deflate_write(data, k, nread);
+                if(!k->ignorebody)
+                  result = Curl_unencode_deflate_write(data, k, nread);
                 break;
 
               case GZIP:
                 /* Assume CLIENTWRITE_BODY; headers are not encoded. */
-                result = Curl_unencode_gzip_write(data, k, nread);
+                if(!k->ignorebody)
+                  result = Curl_unencode_gzip_write(data, k, nread);
                 break;
 
               case COMPRESS:
