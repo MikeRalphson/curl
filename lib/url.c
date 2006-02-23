@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.495 2006-02-23 14:42:47 bagder Exp $
+ * $Id: url.c,v 1.496 2006-02-23 18:39:22 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1226,7 +1226,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     break;
   case CURLOPT_CRLF:
     /*
-     * Kludgy option to enable CRLF convertions. Subject for removal.
+     * Kludgy option to enable CRLF conversions. Subject for removal.
      */
     data->set.crlf = va_arg(param, long)?TRUE:FALSE;
     break;
@@ -2656,7 +2656,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
            host (or port) and the url-path is NOT part of the url-path.
 
            As most agents use file://localhost/foo to get '/foo' although the
-           slash preceeding foo is a separator and not a slash for the path,
+           slash preceding foo is a separator and not a slash for the path,
            a URL as file://localhost//foo must be valid as well, to refer to
            the same file with an absolute path.
         */
