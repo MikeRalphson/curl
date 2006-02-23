@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.493 2006-02-22 19:09:33 danf Exp $
+ * $Id: url.c,v 1.494 2006-02-23 12:20:48 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3654,7 +3654,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   /* Continue connectdata initialization here.
    *
    * Inherit the proper values from the urldata struct AFTER we have arranged
-   * the persistent conncetion stuff */
+   * the persistent connection stuff */
   conn->fread = data->set.fread;
   conn->fread_in = data->set.in;
 
@@ -3998,6 +3998,10 @@ CURLcode Curl_done(struct connectdata **connp,
     result = CURLE_OK;
 
   Curl_pgrsDone(conn); /* done with the operation */
+
+  /* for ares-using, make sure all possible outstanding requests are properly
+     cancelled before we proceed */
+  ares_cancel(data->state.areschannel);
 
   /* if data->set.reuse_forbid is TRUE, it means the libcurl client has
      forced us to close this no matter what we think.

@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.45 2005-12-11 23:37:59 yangtse Exp $
+ * $Id: hostip.h,v 1.46 2006-02-23 12:20:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,6 +82,7 @@
 #define CURL_ASYNC_SUCCESS ARES_SUCCESS
 #else
 #define CURL_ASYNC_SUCCESS CURLE_OK
+#define ares_cancel(x)
 #endif
 
 /*
