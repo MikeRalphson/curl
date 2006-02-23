@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.70 2006-02-23 12:20:48 bagder Exp $
+ * $Id: multi.c,v 1.71 2006-02-23 21:29:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -245,7 +245,10 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
     Curl_easy_addmulti(easy->easy_handle, NULL); /* clear the association
                                                     to this multi handle */
 
-    Curl_done(&easy->easy_conn, easy->result);
+    /* if we have a connection we must call Curl_done() here so that we
+       don't leave a half-baked one around */
+    if(easy->easy_conn)
+      Curl_done(&easy->easy_conn, easy->result);
 
     /* make the previous node point to our next */
     if(easy->prev)
