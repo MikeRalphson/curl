@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.79 2006-02-18 22:27:02 bagder Exp $
+ * $Id: sws.c,v 1.80 2006-02-25 18:57:20 giva Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -292,7 +292,7 @@ int ProcessRequest(struct httprequest *req)
     else {
       if(sscanf(req->reqbuf, "CONNECT %" MAXDOCNAMELEN_TXT "s HTTP/%d.%d",
                 doc, &prot_major, &prot_minor) == 3) {
-        sprintf(logbuf, "Receiced a CONNECT %s HTTP/%d.%d request",
+        sprintf(logbuf, "Received a CONNECT %s HTTP/%d.%d request",
                 doc, prot_major, prot_minor);
         logmsg("%s", logbuf);
 
