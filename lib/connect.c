@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.144 2006-02-26 17:08:33 giva Exp $
+ * $Id: connect.c,v 1.145 2006-02-26 18:20:43 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -624,7 +624,7 @@ static void tcpnodelay(struct connectdata *conn,
 #ifdef HAVE_GETPROTOBYNAME
   struct protoent *pe = getprotobyname("tcp");
   if (pe)
-    proto = p->p_proto;
+    proto = pe->p_proto;
 #endif
 
   if(setsockopt(sockfd, proto, TCP_NODELAY, (void *)&onoff,
