@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.143 2006-01-30 18:57:02 giva Exp $
+ * $Id: connect.c,v 1.144 2006-02-26 17:08:33 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -619,7 +619,15 @@ static void tcpnodelay(struct connectdata *conn,
 #ifdef TCP_NODELAY
   struct SessionHandle *data= conn->data;
   socklen_t onoff = (socklen_t) data->set.tcp_nodelay;
-  if(setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, (void *)&onoff,
+  int proto = IPPROTO_TCP;
+
+#ifdef HAVE_GETPROTOBYNAME
+  struct protoent *pe = getprotobyname("tcp");
+  if (pe)
+    proto = p->p_proto;
+#endif
+
+  if(setsockopt(sockfd, proto, TCP_NODELAY, (void *)&onoff,
                 sizeof(onoff)) < 0)
     infof(data, "Could not set TCP_NODELAY: %s\n",
           Curl_strerror(conn, Curl_ourerrno()));
