@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.350 2006-02-21 15:25:22 bagder Exp $
+ * $Id: main.c,v 1.351 2006-02-28 18:21:33 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -4279,8 +4279,11 @@ quit_curl:
   return res;
 }
 
-static void checkfds(void);
-
+/* Ensure that file descriptors 0, 1 and 2 (stdin, stdout, stderr) are
+   open before starting to run.  Otherwise, the first three network
+   sockets opened by curl could be used for input sources, downloaded data
+   or error logs as they will effectively be stdin, stdout and/or stderr.
+*/
 static void checkfds(void)
 {
 #ifdef HAVE_PIPE
@@ -4291,8 +4294,9 @@ static void checkfds(void)
          fd[1] == STDIN_FILENO ||
          fd[1] == STDOUT_FILENO ||
          fd[1] == STDERR_FILENO )
-    pipe(fd);
-
+    if (pipe(fd) < 0)
+      return;	/* Out of handles. This isn't really a big problem now, but
+                   will be when we try to create a socket later. */
   close(fd[0]);
   close(fd[1]);
 #endif
