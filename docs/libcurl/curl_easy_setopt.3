@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.144 2006-02-21 07:46:41 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.145 2006-03-02 22:09:30 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "21 Feb 2006" "libcurl 7.15.2" "libcurl Manual"
@@ -1142,6 +1142,9 @@ certificates to verify the peer with.  This makes sense only when used in
 combination with the \fICURLOPT_SSL_VERIFYPEER\fP option.  If
 \fICURLOPT_SSL_VERIFYPEER\fP is zero, \fICURLOPT_CAINFO\fP need not
 even indicate an accessible file.
+
+Note that option is by default set to the system path where libcurl's cacert
+bundle is assumed to be stored, as established at build time.
 .IP CURLOPT_CAPATH
 Pass a char * to a zero terminated string naming a directory holding
 multiple CA certificates to verify the peer with. The certificate
