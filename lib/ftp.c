@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.349 2006-02-11 22:35:17 bagder Exp $
+ * $Id: ftp.c,v 1.350 2006-03-03 13:09:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3815,6 +3815,13 @@ CURLcode ftp_parse_url_path(struct connectdata *conn)
   else
     ftp->file=NULL; /* instead of point to a zero byte, we make it a NULL
                        pointer */
+
+  if(data->set.upload && !ftp->file &&
+     (!ftp->no_transfer || conn->bits.no_body)) {
+    /* We need a file name when uploading. Return error! */
+    failf(data, "Uploading to a URL without a file name!");
+    return CURLE_URL_MALFORMAT;
+  }
 
   ftp->cwddone = FALSE; /* default to not done */
 
