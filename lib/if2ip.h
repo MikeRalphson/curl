@@ -20,13 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.h,v 1.19 2005-03-31 07:02:03 bagder Exp $
+ * $Id: if2ip.h,v 1.20 2006-03-04 22:39:32 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
 extern char *Curl_if2ip(const char *interf, char *buf, int buf_size);
 
 #ifdef __INTERIX
+#include <sys/socket.h>
+
 /* Nedelcho Stanev's work-around for SFU 3.0 */
 struct ifreq {
 #define IFNAMSIZ 16
