@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.140 2005-12-19 19:47:14 danf Exp $
+ * $Id: ssluse.c,v 1.141 2006-03-06 22:35:52 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1167,15 +1167,15 @@ Curl_ossl_connect(struct connectdata *conn,
 
 #ifdef SSL_CTRL_SET_MSG_CALLBACK
   if (data->set.fdebug) {
+    /* the SSL trace callback is only used for verbose logging so we only
+       inform about failures of setting it */
     if (!SSL_CTX_callback_ctrl(connssl->ctx, SSL_CTRL_SET_MSG_CALLBACK,
                                (void (*)(void))ssl_tls_trace)) {
-      failf(data, "SSL: couldn't set callback!");
-      return CURLE_SSL_CONNECT_ERROR;
+      infof(data, "SSL: couldn't set callback!");
     }
-
-    if (!SSL_CTX_ctrl(connssl->ctx, SSL_CTRL_SET_MSG_CALLBACK_ARG, 0, conn)) {
-      failf(data, "SSL: couldn't set callback argument!");
-      return CURLE_SSL_CONNECT_ERROR;
+    else if (!SSL_CTX_ctrl(connssl->ctx, SSL_CTRL_SET_MSG_CALLBACK_ARG, 0,
+                           conn)) {
+      infof(data, "SSL: couldn't set callback argument!");
     }
   }
 #endif
