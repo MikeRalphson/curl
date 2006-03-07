@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.280 2006-02-11 22:35:17 bagder Exp $
+ * $Id: urldata.h,v 1.281 2006-03-07 23:11:42 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -432,6 +432,10 @@ struct ConnectBits {
   bool trailerHdrPresent; /* Set when Trailer: header found in HTTP response.
                              Required to determine whether to look for trailers
                              in case of Transfer-Encoding: chunking */
+  bool done;          /* set to FALSE when Curl_do() is called and set to TRUE
+                         when Curl_done() is called, to prevent Curl_done() to
+                         get invoked twice when the multi interface is
+                         used. */
 };
 
 struct hostname {

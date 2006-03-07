@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.497 2006-02-24 21:35:48 danf Exp $
+ * $Id: url.c,v 1.498 2006-03-07 23:11:42 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3982,6 +3982,11 @@ CURLcode Curl_done(struct connectdata **connp,
   struct connectdata *conn = *connp;
   struct SessionHandle *data=conn->data;
 
+  if(conn->bits.done)
+    return CURLE_OK; /* Curl_done() has already been called */
+
+  conn->bits.done = TRUE; /* called just now! */
+
   /* cleanups done even if the connection is re-used */
   if(conn->bits.rangestringalloc) {
     free(conn->range);
@@ -4047,6 +4052,7 @@ CURLcode Curl_do(struct connectdata **connp, bool *done)
   struct connectdata *conn = *connp;
   struct SessionHandle *data=conn->data;
 
+  conn->bits.done = FALSE; /* Curl_done() is not called yet */
   conn->bits.do_more = FALSE; /* by default there's no curl_do_more() to use */
 
   if(conn->curl_do) {
