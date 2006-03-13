@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.352 2006-03-08 15:46:21 bagder Exp $
+ * $Id: ftp.c,v 1.353 2006-03-13 23:33:46 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2398,7 +2398,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
         state(conn, FTP_AUTH);
       }
       else {
-        ftp_state_user(conn);
+        result = ftp_state_user(conn);
         if(result)
           return result;
       }
