@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.141 2006-03-06 22:35:52 bagder Exp $
+ * $Id: ssluse.c,v 1.142 2006-03-13 23:34:25 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1521,7 +1521,7 @@ Curl_ossl_connect(struct connectdata *conn,
       else
         infof(data, "SSL certificate verify result: %s (%ld),"
               " continuing anyway.\n",
-              X509_verify_cert_error_string(err), lerr);
+              X509_verify_cert_error_string(lerr), lerr);
     }
     else
       infof(data, "SSL certificate verify ok.\n");
