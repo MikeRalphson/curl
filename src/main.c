@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.352 2006-03-14 00:07:21 bagder Exp $
+ * $Id: main.c,v 1.353 2006-03-20 13:14:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3738,7 +3738,7 @@ operate(struct Configurable *config, int argc, char *argv[])
           /*
            * Then append ? followed by the get fields to the url.
            */
-          urlbuffer=(char *)malloc(strlen(url) + strlen(httpgetfields) + 2);
+          urlbuffer=(char *)malloc(strlen(url) + strlen(httpgetfields) + 3);
           if(!urlbuffer) {
             helpf("out of memory\n");
             return CURLE_OUT_OF_MEMORY;
