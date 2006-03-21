@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.23 2005-04-07 15:27:14 bagder Exp $
+ * $Id: ssluse.h,v 1.24 2006-03-21 21:54:44 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -29,6 +29,9 @@
 
 #include "urldata.h"
 CURLcode Curl_ossl_connect(struct connectdata *conn, int sockindex);
+CURLcode Curl_ossl_connect_nonblocking(struct connectdata *conn, 
+                                       int sockindex, 
+                                       bool *done);
 void Curl_ossl_close(struct connectdata *conn); /* close a SSL connection */
 /* tell OpenSSL to close down all open information regarding connections (and
    thus session ID caching etc) */

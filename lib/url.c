@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.498 2006-03-07 23:11:42 bagder Exp $
+ * $Id: url.c,v 1.499 2006-03-21 21:54:44 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2990,6 +2990,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->curl_do_more = NULL;
     conn->curl_done = Curl_http_done;
     conn->curl_connect = Curl_http_connect;
+    conn->curl_connecting = Curl_https_connecting;
+    conn->curl_proto_fdset = Curl_https_proto_fdset;
 
 #else /* USE_SS */
     failf(data, LIBCURL_NAME
