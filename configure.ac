@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.190 2006-03-20 07:59:45 bagder Exp $
+# $Id: configure.ac,v 1.191 2006-03-21 13:34:41 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1956,6 +1956,7 @@ AC_CONFIG_FILES([Makefile \
            packages/vms/Makefile \
            packages/AIX/Makefile \
            packages/AIX/RPM/Makefile \
+           packages/AIX/RPM/curl.spec \
            curl-config \
            libcurl.pc
 ])
