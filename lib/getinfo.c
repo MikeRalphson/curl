@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.47 2006-02-11 22:35:17 bagder Exp $
+ * $Id: getinfo.c,v 1.48 2006-03-21 22:30:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -186,6 +186,14 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     break;
   case CURLINFO_COOKIELIST:
     *param_slistp = Curl_cookie_list(data);
+    break;
+  case CURLINFO_FTP_ENTRY_PATH:
+    /* Return the entrypath string from the most recent connection.
+       This pointer was copied from the connectdata structure by FTP.
+       The actual string may be free()ed by subsequent libcurl calls so
+       it must be copied to a safer area before the next libcurl call.
+       Callers must never free it themselves. */
+    *param_charp = data->state.most_recent_ftp_entrypath;
     break;
   case CURLINFO_LASTSOCKET:
     if((data->state.lastconnect != -1) &&

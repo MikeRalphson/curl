@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.354 2006-03-20 22:51:08 bagder Exp $
+ * $Id: ftp.c,v 1.355 2006-03-21 22:30:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2530,6 +2530,8 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
           }
           ftp->entrypath =dir; /* remember this */
           infof(data, "Entry path is '%s'\n", ftp->entrypath);
+          /* also save it where getinfo can access it: */
+          data->state.most_recent_ftp_entrypath = ftp->entrypath;
         }
         else {
           /* couldn't get the path */
@@ -3423,8 +3425,12 @@ CURLcode Curl_ftp_disconnect(struct connectdata *conn)
   if(ftp) {
     (void)ftp_quit(conn); /* ignore errors on the QUIT */
 
-    if(ftp->entrypath)
+    if(ftp->entrypath) {
+      struct SessionHandle *data = conn->data;
+      data->state.most_recent_ftp_entrypath = NULL;
       free(ftp->entrypath);
+      ftp->entrypath = NULL;
+    }
     if(ftp->cache) {
       free(ftp->cache);
       ftp->cache = NULL;
