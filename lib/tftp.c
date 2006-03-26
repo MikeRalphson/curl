@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.18 2006-03-20 22:15:22 danf Exp $
+ * $Id: tftp.c,v 1.19 2006-03-26 08:52:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -559,14 +559,28 @@ CURLcode Curl_tftp_connect(struct connectdata *conn, bool *done)
 
 #ifdef WIN32
   /* AF_UNSPEC == 0 (from above calloc) doesn't work on Winsock */
-  ((struct sockaddr_in*)&state->local_addr)->sin_family = conn->ip_addr->ai_family;
+
+  /* NOTE: this blatantly assumes IPv4. This should be fixed! */
+  ((struct sockaddr_in*)&state->local_addr)->sin_family =
+    conn->ip_addr->ai_family;
 #endif
 
   tftp_set_timeouts(state);
 
-  /* Bind to any interface, random UDP port */
+  /* Bind to any interface, random UDP port.
+   *
+   * We once used the size of the local_addr struct as the third argument for
+   * bind() to better work with IPv6 or whatever size the struct could have,
+   * but we learned that at least Tru64, AIX and IRIX *requires* the size of
+   * that argument to match the exact size of a 'sockaddr_in' struct when
+   * running IPv4-only.
+   *
+   * Therefore we use the size from the address we connected to, which we
+   * assume uses the same IP version and thus hopefully this works for both
+   * IPv4 and IPv6...
+   */
   rc = bind(state->sockfd, (struct sockaddr *)&state->local_addr,
-            sizeof(state->local_addr));
+            conn->ip_addr->ai_addrlen);
   if(rc) {
     failf(conn->data, "bind() failed; %s\n",
           Curl_strerror(conn,Curl_ourerrno()));
