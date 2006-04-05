@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.283 2006-03-21 22:30:03 bagder Exp $
+ * $Id: urldata.h,v 1.284 2006-04-05 12:35:48 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -231,6 +231,7 @@ struct ntlmdata {
   void *type_2;
   int n_type_2;
 #else
+  unsigned int flags;
   unsigned char nonce[8];
 #endif
 };
