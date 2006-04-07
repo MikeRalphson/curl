@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.19 2006-03-26 08:52:43 bagder Exp $
+ * $Id: tftp.c,v 1.20 2006-04-07 21:50:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -261,11 +261,10 @@ static void tftp_send_first(tftp_state_data_t *state, tftp_event_t event)
     if(data->set.upload) {
       /* If we are uploading, send an WRQ */
       state->spacket.event = htons(TFTP_EVENT_WRQ);
-      filename = curl_unescape(filename, (int)strlen(filename));
+      filename = curl_easy_unescape(data, filename, 0, NULL);
       state->conn->upload_fromhere = (char *)state->spacket.u.data.data;
-      if(data->set.infilesize != -1) {
+      if(data->set.infilesize != -1)
         Curl_pgrsSetUploadSize(data, data->set.infilesize);
-      }
     }
     else {
       /* If we are downloading, send an RRQ */

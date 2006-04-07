@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.106 2006-01-16 22:14:38 bagder Exp $
+ * $Id: setup.h,v 1.107 2006-04-07 21:50:47 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -65,6 +65,12 @@
 
 #ifdef AMIGA
 #include "amigaos.h"
+#endif
+
+#ifdef TPF
+#include "config-tpf.h" /* hand-modified TPF config.h */
+/* change which select is used for libcurl */
+#define select(a,b,c,d,e) tpf_select_libcurl(a,b,c,d,e)
 #endif
 
 #endif /* HAVE_CONFIG_H */

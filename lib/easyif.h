@@ -20,12 +20,19 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easyif.h,v 1.2 2005-03-31 07:02:03 bagder Exp $
+ * $Id: easyif.h,v 1.3 2006-04-07 21:50:47 bagder Exp $
  ***************************************************************************/
 
 /*
  * Prototypes for library-wide functions provided by easy.c
  */
 void Curl_easy_addmulti(struct SessionHandle *data, void *multi);
+
+CURLcode Curl_convert_to_network(struct SessionHandle *data,
+                                 char *buffer, size_t length);
+CURLcode Curl_convert_from_network(struct SessionHandle *data,
+                                 char *buffer, size_t length);
+CURLcode Curl_convert_from_utf8(struct SessionHandle *data,
+                                 char *buffer, size_t length);
 
 #endif /* __EASYIF_H */

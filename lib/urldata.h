@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.285 2006-04-07 11:47:21 bagder Exp $
+ * $Id: urldata.h,v 1.286 2006-04-07 21:50:47 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -217,6 +217,10 @@ typedef enum {
 #include <security.h>
 #include <sspi.h>
 #include <rpc.h>
+#endif
+
+#if defined(CURL_DOES_CONVERSIONS) && defined(HAVE_ICONV)
+#include <iconv.h>
 #endif
 
 /* Struct used for NTLM challenge-response authentication */
@@ -1007,6 +1011,15 @@ struct UserDefined {
   curl_progress_callback fprogress;  /* function for progress information */
   curl_debug_callback fdebug;      /* function that write informational data */
   curl_ioctl_callback ioctl;       /* function for I/O control */
+
+  /* the 3 curl_conv_callback functions below are used on non-ASCII hosts */
+  /* function to convert from the network encoding: */
+  curl_conv_callback convfromnetwork;
+  /* function to convert to the network encoding: */
+  curl_conv_callback convtonetwork;
+  /* function to convert from UTF-8 encoding: */
+  curl_conv_callback convfromutf8;
+
   void *progress_client; /* pointer to pass to the progress callback */
   void *ioctl_client;   /* pointer to pass to the ioctl callback */
   long timeout;         /* in seconds, 0 means no timeout */
@@ -1137,6 +1150,13 @@ struct SessionHandle {
   struct UrlState state;       /* struct for fields used for state info and
                                   other dynamic purposes */
   struct PureInfo info;        /* stats, reports and info data */
+  /* set by ftp_transfertype for use by Curl_client_write and others */
+  bool ftp_in_ascii_mode;
+#if defined(CURL_DOES_CONVERSIONS) && defined(HAVE_ICONV)
+  iconv_t outbound_cd;         /* for translating to the network encoding */
+  iconv_t inbound_cd;          /* for translating from the network encoding */
+  iconv_t utf8_cd;             /* for translating to UTF8 */
+#endif /* CURL_DOES_CONVERSIONS && HAVE_ICONV */
 };
 
 #define LIBCURL_NAME "libcurl"

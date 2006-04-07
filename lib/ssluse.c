@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.143 2006-03-21 21:54:44 bagder Exp $
+ * $Id: ssluse.c,v 1.144 2006-04-07 21:50:47 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -68,6 +68,7 @@
 #endif
 
 #include "memory.h"
+#include "easyif.h" /* for Curl_convert_from_utf8 prototype */
 
 /* The last #include file should be: */
 #include "memdebug.h"
@@ -972,6 +973,17 @@ static CURLcode verifyhost(struct connectdata *conn,
 
     if (peer_CN == nulstr)
        peer_CN = NULL;
+#ifdef CURL_DOES_CONVERSIONS
+    else {
+      /* convert peer_CN from UTF8 */
+      size_t rc;
+      rc = Curl_convert_from_utf8(data, peer_CN, strlen(peer_CN));
+      /* Curl_convert_from_utf8 calls failf if unsuccessful */
+      if (rc != CURLE_OK) {
+        return(rc);
+      }
+    }
+#endif /* CURL_DOES_CONVERSIONS */
 
     if (!peer_CN) {
       if(data->set.ssl.verifyhost > 1) {

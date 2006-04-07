@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.3 2004-11-19 14:38:02 giva Exp $
+ * $Id: select.h,v 1.4 2006-04-07 21:50:47 bagder Exp $
  ***************************************************************************/
 
 #ifdef HAVE_SYS_POLL_H
@@ -51,5 +51,9 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms);
 
 int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms);
 
+#ifdef TPF
+int tpf_select_libcurl(int maxfds, fd_set* reads, fd_set* writes,
+                       fd_set* excepts, struct timeval* tv);
+#endif
 
 #endif
