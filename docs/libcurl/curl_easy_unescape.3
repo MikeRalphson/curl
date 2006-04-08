@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_unescape.3,v 1.1 2006-04-07 21:50:47 bagder Exp $
+.\" * $Id: curl_easy_unescape.3,v 1.2 2006-04-08 21:29:01 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_unescape 3 "7 April 2006" "libcurl 7.15.4" "libcurl Manual"
@@ -38,6 +38,10 @@ their binary versions.
 
 If the \fBlength\fP argument is set to 0 (zero), curl_easy_unescape() will use
 strlen() on the input \fIurl\fP string to find out the size.
+
+If \fBoutlength\fP is non-NULL, the function will write the length of the
+returned string in the integer it points to. This allows an escaped string
+containing %00 to still get used properly after unescaping.
 
 You must \fIcurl_free(3)\fP the returned string when you're done with it.
 .SH AVAILABILITY
