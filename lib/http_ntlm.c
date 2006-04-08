@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.50 2006-04-05 12:35:48 bagder Exp $
+ * $Id: http_ntlm.c,v 1.51 2006-04-08 11:04:53 giva Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -94,6 +94,7 @@ static PSecurityFunctionTable s_pSecFn = NULL;
 /* Define this to make the type-3 message include the NT response message */
 #define USE_NTRESPONSES 1
 
+#ifndef USE_WINDOWS_SSPI
 /* this function converts from the little endian format used in the incoming
    package to whatever endian format we're using natively */
 static unsigned int readint_le(unsigned char *buf) /* must point to a
@@ -102,6 +103,7 @@ static unsigned int readint_le(unsigned char *buf) /* must point to a
   return ((unsigned int)buf[0]) | ((unsigned int)buf[1] << 8) |
     ((unsigned int)buf[2] << 16) | ((unsigned int)buf[3] << 24);
 }
+#endif
 
 #if DEBUG_ME
 # define DEBUG_OUT(x) x
