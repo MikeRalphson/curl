@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.53 2006-04-07 21:50:47 bagder Exp $
+ * $Id: ldap.c,v 1.54 2006-04-08 11:01:40 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -503,26 +503,26 @@ static bool unescape_elements (void *data, LDAPURLDesc *ludp)
   int i;
 
   if (ludp->lud_filter) {
-    ludp->lud_filter = curl_easy_unescape(data, ludp->lud_filter, 0);
+    ludp->lud_filter = curl_easy_unescape(data, ludp->lud_filter, 0, NULL);
     if (!ludp->lud_filter)
        return (FALSE);
   }
 
   for (i = 0; ludp->lud_attrs && ludp->lud_attrs[i]; i++) {
-    ludp->lud_attrs[i] = curl_easy_unescape(data, ludp->lud_attrs[i], 0);
+    ludp->lud_attrs[i] = curl_easy_unescape(data, ludp->lud_attrs[i], 0, NULL);
     if (!ludp->lud_attrs[i])
        return (FALSE);
   }
 
   for (i = 0; ludp->lud_exts && ludp->lud_exts[i]; i++) {
-    ludp->lud_exts[i] = curl_easy_unescape(data, ludp->lud_exts[i], 0);
+    ludp->lud_exts[i] = curl_easy_unescape(data, ludp->lud_exts[i], 0, NULL);
     if (!ludp->lud_exts[i])
        return (FALSE);
   }
 
   if (ludp->lud_dn) {
     char *dn = ludp->lud_dn;
-    char *new_dn = curl_easy_unescape(data, dn, 0);
+    char *new_dn = curl_easy_unescape(data, dn, 0, NULL);
 
     free(dn);
     ludp->lud_dn = new_dn;
