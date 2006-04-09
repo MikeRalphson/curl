@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.146 2006-03-14 00:05:17 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.147 2006-04-09 22:40:49 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "21 Feb 2006" "libcurl 7.15.2" "libcurl Manual"
@@ -295,7 +295,10 @@ given protocol of the set URL is not supported, libcurl will return on error
 \fIcurl_multi_perform(3)\fP. Use \fIcurl_version_info(3)\fP for detailed info
 on which protocols that are supported.
 
-\fICURLOPT_URL\fP is the only option that must be set before
+The string given to CURLOPT_URL must be url-encoded and following the RFC 2396
+(http://curl.haxx.se/rfc/rfc2396.txt).
+
+\fICURLOPT_URL\fP is the only option that \fBmust\fP be set before
 \fIcurl_easy_perform(3)\fP is called.
 .IP CURLOPT_PROXY
 Set HTTP proxy to use. The parameter should be a char * to a zero terminated
