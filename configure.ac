@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.191 2006-03-21 13:34:41 bagder Exp $
+# $Id: configure.ac,v 1.192 2006-04-10 13:31:35 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1562,7 +1562,8 @@ AC_CHECK_FUNCS( strtoll \
                 poll \
                 getprotobyname \
                 getrlimit \
-                setrlimit,
+                setrlimit \
+                fork,
 dnl if found
 [],
 dnl if not found, $ac_func is the name we check for
