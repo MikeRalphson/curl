@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.23 2005-07-17 12:44:11 bagder Exp $
+ * $Id: url.h,v 1.24 2006-04-10 15:00:54 bagder Exp $
  ***************************************************************************/
 
 #include <stdarg.h> /* to make sure we have ap_list */
@@ -45,6 +45,16 @@ CURLcode Curl_protocol_connect(struct connectdata *conn, bool *done);
 CURLcode Curl_protocol_connecting(struct connectdata *conn, bool *done);
 CURLcode Curl_protocol_doing(struct connectdata *conn, bool *done);
 void Curl_safefree(void *ptr);
+
+
+int Curl_protocol_getsock(struct connectdata *conn,
+                          curl_socket_t *socks,
+                          int numsocks);
+int Curl_doing_getsock(struct connectdata *conn,
+                       curl_socket_t *socks,
+                       int numsocks);
+
+#if 0
 CURLcode Curl_protocol_fdset(struct connectdata *conn,
                              fd_set *read_fd_set,
                              fd_set *write_fd_set,
@@ -53,4 +63,6 @@ CURLcode Curl_doing_fdset(struct connectdata *conn,
                           fd_set *read_fd_set,
                           fd_set *write_fd_set,
                           int *max_fdp);
+#endif
+
 #endif

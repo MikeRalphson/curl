@@ -20,11 +20,25 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multiif.h,v 1.3 2005-03-31 07:02:03 bagder Exp $
+ * $Id: multiif.h,v 1.4 2006-04-10 15:00:54 bagder Exp $
  ***************************************************************************/
 
 /*
  * Prototypes for library-wide functions provided by multi.c
  */
+void Curl_expire(struct SessionHandle *data, long milli);
+
 void Curl_multi_rmeasy(void *multi, CURL *data);
+
+/* the write bits start at bit 16 for the *getsock() bitmap */
+#define GETSOCK_WRITEBITSTART 16
+
+#define GETSOCK_BLANK 0 /* no bits set */
+
+/* set the bit for the given sock number to make the bitmap for writable */
+#define GETSOCK_WRITESOCK(x) (1 << (GETSOCK_WRITEBITSTART + (x)))
+
+/* set the bit for the given sock number to make the bitmap for readable */
+#define GETSOCK_READSOCK(x) (1 << (x))
+
 #endif /* __MULTIIF_H */

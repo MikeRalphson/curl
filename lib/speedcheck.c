@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: speedcheck.c,v 1.20 2004-10-06 07:50:18 bagder Exp $
+ * $Id: speedcheck.c,v 1.21 2006-04-10 15:00:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -29,6 +29,7 @@
 #include <curl/curl.h>
 #include "urldata.h"
 #include "sendf.h"
+#include "multiif.h"
 #include "speedcheck.h"
 
 void Curl_speedinit(struct SessionHandle *data)
@@ -43,13 +44,13 @@ CURLcode Curl_speedcheck(struct SessionHandle *data,
      data->set.low_speed_time &&
      (Curl_tvlong(data->state.keeps_speed) != 0) &&
      (data->progress.current_speed < data->set.low_speed_limit)) {
+    long howlong = Curl_tvdiff(now, data->state.keeps_speed);
 
     /* We are now below the "low speed limit". If we are below it
        for "low speed time" seconds we consider that enough reason
        to abort the download. */
 
-    if( (Curl_tvdiff(now, data->state.keeps_speed)/1000) >
-        data->set.low_speed_time) {
+    if( (howlong/1000) > data->set.low_speed_time) {
       /* we have been this slow for long enough, now die */
       failf(data,
             "Operation too slow. "
@@ -58,6 +59,7 @@ CURLcode Curl_speedcheck(struct SessionHandle *data,
             data->set.low_speed_time);
       return CURLE_OPERATION_TIMEOUTED;
     }
+    Curl_expire(data, howlong);
   }
   else {
     /* we keep up the required speed all right */
