@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.144 2006-04-07 21:50:47 bagder Exp $
+ * $Id: ssluse.c,v 1.145 2006-04-10 21:49:55 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1332,7 +1332,7 @@ Curl_ossl_connect_step2(struct connectdata *conn,
 
     /* get the most strict timeout of the ones converted to milliseconds */
     if(data->set.timeout &&
-       (data->set.timeout>data->set.connecttimeout))
+       (data->set.timeout<data->set.connecttimeout))
       *timeout_ms = data->set.timeout*1000;
     else
       *timeout_ms = data->set.connecttimeout*1000;
