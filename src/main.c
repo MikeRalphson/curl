@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.356 2006-04-09 22:41:23 bagder Exp $
+ * $Id: main.c,v 1.357 2006-04-11 10:49:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3078,11 +3078,13 @@ int my_trace(CURL *handle, curl_infotype type,
   struct timeval tv;
   struct tm *now;
   char timebuf[20];
+  time_t secs;
 
   (void)handle; /* prevent compiler warning */
 
   tv = curlx_tvnow();
-  now = localtime((time_t *)&tv.tv_sec);  /* not multithread safe but we don't care */
+  secs = tv.tv_sec;
+  now = localtime(&secs);  /* not multithread safe but we don't care */
   if(config->tracetime)
     snprintf(timebuf, sizeof(timebuf), "%02d:%02d:%02d.%06d ",
              now->tm_hour, now->tm_min, now->tm_sec, tv.tv_usec);
