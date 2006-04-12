@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.34 2006-04-11 07:23:30 bagder Exp $
+ * $Id: hostthre.c,v 1.35 2006-04-12 13:54:07 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -78,6 +78,7 @@
 #include "share.h"
 #include "strerror.h"
 #include "url.h"
+#include "multiif.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
