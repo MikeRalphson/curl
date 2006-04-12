@@ -2,7 +2,7 @@
 #  Watcom / OpenWatcom / Win32 makefile for libcurl.
 #  G. Vanem <giva@bgnett.no>
 #
-# $Id: Makefile.Watcom,v 1.6 2005-11-24 20:33:38 giva Exp $
+# $Id: Makefile.Watcom,v 1.7 2006-04-12 14:01:21 giva Exp $
 
 TARGETS = libcurl_wc.lib libcurl_wc.dll libcurl_wc_imp.lib
 
@@ -45,7 +45,8 @@ OBJS = $(OBJ_DIR)\transfer.obj         $(OBJ_DIR)\file.obj       &
        $(OBJ_DIR)\hostip6.obj          $(OBJ_DIR)\inet_ntop.obj  &
        $(OBJ_DIR)\hostsyn.obj          $(OBJ_DIR)\parsedate.obj  &
        $(OBJ_DIR)\select.obj           $(OBJ_DIR)\sslgen.obj     &
-       $(OBJ_DIR)\gtls.obj             $(OBJ_DIR)\tftp.obj
+       $(OBJ_DIR)\gtls.obj             $(OBJ_DIR)\tftp.obj       &
+       $(OBJ_DIR)\splay.obj
 
 RESOURCE = $(OBJ_DIR)\libcurl.res
 
