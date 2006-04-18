@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.146 2006-04-10 15:00:53 bagder Exp $
+ * $Id: connect.c,v 1.147 2006-04-18 10:51:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -375,7 +375,6 @@ static CURLcode bindlocal(struct connectdata *conn,
     if( bind(sockfd, sock, socksize) >= 0) {
       /* we succeeded to bind */
       struct Curl_sockaddr_storage add;
-      unsigned short port = 0;
       size_t size;
 
       size = sizeof(add);
@@ -384,6 +383,7 @@ static CURLcode bindlocal(struct connectdata *conn,
         failf(data, "getsockname() failed");
         return CURLE_HTTP_PORT_FAILED;
       }
+      /* We re-use/clobber the port variable here below */
       if(((struct sockaddr *)&add)->sa_family == AF_INET)
         port = ntohs(((struct sockaddr_in *)&add)->sin_port);
 #ifdef ENABLE_IPV6
