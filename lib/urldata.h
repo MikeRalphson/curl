@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.288 2006-04-26 07:40:37 bagder Exp $
+ * $Id: urldata.h,v 1.289 2006-04-26 13:08:12 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -943,7 +943,7 @@ struct UrlState {
   /* for FTP downloads: track CRLF sequences that span blocks */
   bool prev_block_had_trailing_cr;
   /* for FTP downloads: how many CRLFs did we converted to LFs? */
-  size_t crlf_conversions;
+  curl_off_t crlf_conversions;
 #endif
 };
 
