@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.89 2005-11-24 20:38:20 bagder Exp $
+ * $Id: formdata.c,v 1.90 2006-04-26 17:26:22 giva Exp $
  ***************************************************************************/
 
 /*
@@ -1279,7 +1279,7 @@ static size_t readfromfile(struct Form *form, char *buffer, size_t size)
     /* this file hasn't yet been opened */
     form->fp = fopen(form->data->line, "rb"); /* b is for binary */
     if(!form->fp)
-      return -1; /* failure */
+      return (size_t)-1; /* failure */
   }
   nread = fread(buffer, 1, size, form->fp);
 

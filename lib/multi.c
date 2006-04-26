@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.75 2006-04-25 05:32:05 bagder Exp $
+ * $Id: multi.c,v 1.76 2006-04-26 17:26:22 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -780,7 +780,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
           /* if we failed anywhere, we must clean up the secondary socket if
              it was used */
           sclose(easy->easy_conn->sock[SECONDARYSOCKET]);
-          easy->easy_conn->sock[SECONDARYSOCKET]=-1;
+          easy->easy_conn->sock[SECONDARYSOCKET] = CURL_SOCKET_BAD;
         }
         Curl_posttransfer(easy->easy_handle);
         Curl_done(&easy->easy_conn, easy->result);

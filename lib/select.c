@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.15 2006-04-07 21:50:47 bagder Exp $
+ * $Id: select.c,v 1.16 2006-04-26 17:26:22 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -131,7 +131,7 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms)
   timeout.tv_usec = (timeout_ms % 1000) * 1000;
 
   FD_ZERO(&fds_err);
-  maxfd = -1;
+  maxfd = (curl_socket_t)-1;
 
   FD_ZERO(&fds_read);
   if (readfd != CURL_SOCKET_BAD) {
@@ -206,7 +206,7 @@ int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms)
   FD_ZERO(&fds_read);
   FD_ZERO(&fds_write);
   FD_ZERO(&fds_err);
-  maxfd = -1;
+  maxfd = (curl_socket_t)-1;
 
   for (i = 0; i < nfds; i++) {
     if (ufds[i].fd == CURL_SOCKET_BAD)
