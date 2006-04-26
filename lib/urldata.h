@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.287 2006-04-10 15:00:54 bagder Exp $
+ * $Id: urldata.h,v 1.288 2006-04-26 07:40:37 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -936,6 +936,15 @@ struct UrlState {
 
   /* a place to store the most recenlty set FTP entrypath */
   char *most_recent_ftp_entrypath;
+
+#ifndef WIN32
+/* do FTP line-end conversions on most platforms */
+#define CURL_DO_LINEEND_CONV
+  /* for FTP downloads: track CRLF sequences that span blocks */
+  bool prev_block_had_trailing_cr;
+  /* for FTP downloads: how many CRLFs did we converted to LFs? */
+  size_t crlf_conversions;
+#endif
 };
 
 
