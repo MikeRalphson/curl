@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.54 2006-04-08 11:01:40 giva Exp $
+ * $Id: ldap.c,v 1.55 2006-04-26 17:23:28 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,10 +36,12 @@
 #ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
 #endif
+#ifdef HAVE_MALLOC_H
+#include <malloc.h>
+#endif
 #include <errno.h>
 
 #if defined(WIN32)
-# include <malloc.h>
 # include <winldap.h>
 #endif
 
