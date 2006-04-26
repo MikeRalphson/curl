@@ -18,6 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
+ * $Id: strerror.c,v 1.33 2006-04-26 17:27:36 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
