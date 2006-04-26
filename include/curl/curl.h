@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.296 2006-04-19 09:03:21 bagder Exp $
+ * $Id: curl.h,v 1.297 2006-04-26 17:04:47 giva Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -425,7 +425,7 @@ typedef enum {
  */
 #if defined(__STDC__) || defined(_MSC_VER) || defined(__cplusplus) || \
   defined(__HP_aCC) || defined(__BORLANDC__) || defined(__LCC__) || \
-  defined(__POCC__)
+  defined(__POCC__) || defined(__SALFORDC__)
   /* This compiler is believed to have an ISO compatible preprocessor */
 #define CURL_ISOCPP
 #else
