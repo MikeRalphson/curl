@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.108 2006-04-10 13:14:14 bagder Exp $
+ * $Id: setup.h,v 1.109 2006-04-26 17:11:05 giva Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -171,6 +171,17 @@ typedef unsigned char bool;
   #define sys_nerr EILSEQ  /* for strerror.c */
   #define EINTR    -1      /* for select.c */
   #endif
+#endif
+
+/*
+ * Salford-C cludge section (mostly borrowed from wxWidgets).
+ */
+#ifdef __SALFORDC__
+  #pragma suppress 353             /* Possible nested comments */
+  #pragma suppress 593             /* Define not used */
+  #pragma suppress 61              /* enum has no name */
+  #pragma suppress 106             /* unnamed, unused parameter */
+  #include <clib.h>
 #endif
 
 #if defined(CURLDEBUG) && defined(HAVE_ASSERT_H)
