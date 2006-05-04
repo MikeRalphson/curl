@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.11 2005-11-13 23:04:28 bagder Exp $
+ * $Id: gtls.c,v 1.12 2006-05-04 06:00:40 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -457,6 +457,12 @@ int Curl_gtls_send(struct connectdata *conn,
 {
   int rc;
   rc = gnutls_record_send(conn->ssl[sockindex].session, mem, len);
+
+  if(rc < 0 ) {
+    if(rc == GNUTLS_E_AGAIN)
+      return 0; /* EWOULDBLOCK equivalent */
+    rc = -1; /* generic error code for send failure */
+  }
 
   return rc;
 }
