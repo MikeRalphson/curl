@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.74 2006-04-07 11:46:16 bagder Exp $
+ * $Id: telnet.c,v 1.75 2006-05-04 22:39:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,7 +36,6 @@
 #ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
 #endif
-#include <errno.h>
 
 #if defined(WIN32)
 #include <time.h>

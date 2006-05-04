@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.280 2006-04-10 15:00:54 bagder Exp $
+ * $Id: http.c,v 1.281 2006-05-04 22:39:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,8 +36,6 @@
 #ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
 #endif
-
-#include <errno.h>
 
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <time.h>
