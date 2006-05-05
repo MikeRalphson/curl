@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.17 2006-05-04 22:39:47 bagder Exp $
+ * $Id: hostares.c,v 1.18 2006-05-05 22:07:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -75,6 +75,7 @@
 #include "share.h"
 #include "strerror.h"
 #include "url.h"
+#include "connect.h" /* for the Curl_sockerrno() proto */
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
