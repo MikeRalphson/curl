@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.101 2006-05-04 22:39:47 bagder Exp $
+ * $Id: sendf.c,v 1.102 2006-05-05 10:24:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -43,7 +43,7 @@
 #include <curl/curl.h>
 #include "urldata.h"
 #include "sendf.h"
-#include "connect.h" /* for the Curl_ourerrno() proto */
+#include "connect.h" /* for the Curl_sockerrno() proto */
 #include "sslgen.h"
 
 #define _MPRINTF_REPLACE /* use the internal *printf() functions */

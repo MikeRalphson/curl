@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.26 2006-05-04 22:39:47 bagder Exp $
+ * $Id: hostip6.c,v 1.27 2006-05-05 10:24:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -201,7 +201,7 @@ static void dump_addrinfo(struct connectdata *conn, const struct addrinfo *ai)
     if (Curl_printable_address(ai, buf, sizeof(buf)))
       printf("%s\n", buf);
     else
-      printf("failed; %s\n", Curl_strerror(conn, Curl_ourerrno()));
+      printf("failed; %s\n", Curl_strerror(conn, Curl_sockerrno()));
   }
 }
 #else

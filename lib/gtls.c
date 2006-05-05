@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.12 2006-05-04 06:00:40 bagder Exp $
+ * $Id: gtls.c,v 1.13 2006-05-05 10:24:27 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -159,7 +159,7 @@ static CURLcode handshake(struct connectdata *conn,
       }
       else {
         /* anything that gets here is fatally bad */
-        failf(data, "select on SSL socket, errno: %d", Curl_ourerrno());
+        failf(data, "select on SSL socket, errno: %d", Curl_sockerrno());
         return CURLE_SSL_CONNECT_ERROR;
       }
     }

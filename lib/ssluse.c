@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.147 2006-05-04 22:39:47 bagder Exp $
+ * $Id: ssluse.c,v 1.148 2006-05-05 10:24:27 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -49,7 +49,7 @@
 #include "url.h" /* for the ssl config check function */
 #include "inet_pton.h"
 #include "ssluse.h"
-#include "connect.h" /* Curl_ourerrno() proto */
+#include "connect.h" /* Curl_sockerrno() proto */
 #include "strequal.h"
 #include "select.h"
 #include "sslgen.h"
