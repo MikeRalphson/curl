@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.76 2006-04-26 17:26:22 giva Exp $
+ * $Id: multi.c,v 1.77 2006-05-09 11:33:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -315,7 +315,12 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
   easy->easy_handle = easy_handle;
   multistate(easy, CURLM_STATE_INIT);
 
-  /* for multi interface connections, we share DNS cache automaticly */
+  /* for multi interface connections, we share DNS cache automaticly.
+     First kill the existing one if there is any. */
+  if (easy->easy_handle->hostcache &&
+      easy->easy_handle->hostcache != multi->hostcache)
+    Curl_hash_destroy(easy->easy_handle->hostcache);
+
   easy->easy_handle->hostcache = multi->hostcache;
 
   /* We add this new entry first in the list. We make our 'next' point to the
