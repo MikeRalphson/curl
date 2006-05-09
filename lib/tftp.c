@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.25 2006-05-08 22:23:33 bagder Exp $
+ * $Id: tftp.c,v 1.26 2006-05-09 13:02:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -258,7 +258,7 @@ static CURLcode tftp_send_first(tftp_state_data_t *state, tftp_event_t event)
      name so we skip the always-present first letter of the path string. */
   char *filename = &state->conn->path[1];
   struct SessionHandle *data = state->conn->data;
-  CURLcode res;
+  CURLcode res = CURLE_OK;
 
   /* Set ascii mode if -B flag was used */
   if(data->set.ftp_ascii)
