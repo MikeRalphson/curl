@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.149 2006-05-09 12:43:50 bagder Exp $
+ * $Id: ssluse.c,v 1.150 2006-05-10 22:17:42 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -582,6 +582,29 @@ void Curl_ossl_cleanup(void)
      later */
   CRYPTO_cleanup_all_ex_data();
 #endif
+}
+
+/*
+ * This function uses SSL_peek to determine connection status.
+ *
+ * Return codes:
+ *     1 means the connection is still in place
+ *     0 means the connection has been closed
+ *    -1 means the connection status is unknown
+ */
+int Curl_ossl_check_cxn(struct connectdata *conn)
+{
+  int rc;
+  char buf;
+
+  rc = SSL_peek(conn->ssl[FIRSTSOCKET].handle, (void*)&buf, 1);
+  if (rc > 0)
+    return 1; /* connection still in place */
+
+  if (rc == 0)
+    return 0; /* connection has been closed */
+
+  return -1; /* connection status unknown */
 }
 
 #endif /* USE_SSLEAY */

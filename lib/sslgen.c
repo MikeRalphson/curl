@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.7 2006-03-21 21:54:44 bagder Exp $
+ * $Id: sslgen.c,v 1.8 2006-05-10 22:17:42 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -554,3 +554,21 @@ size_t Curl_ssl_version(char *buffer, size_t size)
 #endif /* USE_SSLEAY */
 }
 
+
+/*
+ * This function tries to determine connection status.
+ *
+ * Return codes:
+ *     1 means the connection is still in place
+ *     0 means the connection has been closed
+ *    -1 means the connection status is unknown
+ */
+int Curl_ssl_check_cxn(struct connectdata *conn)
+{
+#ifdef USE_SSLEAY
+  return Curl_ossl_check_cxn(conn);
+#else
+  /* TODO: we lack implementation of this for GnuTLS */
+  return -1; /* connection status unknown */
+#endif /* USE_SSLEAY */
+}

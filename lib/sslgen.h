@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.2 2006-03-21 21:54:44 bagder Exp $
+ * $Id: sslgen.h,v 1.3 2006-05-10 22:17:42 bagder Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -66,6 +66,8 @@ CURLcode Curl_ssl_addsessionid(struct connectdata *conn,
 struct curl_slist *Curl_ssl_engines_list(struct SessionHandle *data);
 
 size_t Curl_ssl_version(char *buffer, size_t size);
+
+int Curl_ssl_check_cxn(struct connectdata *conn);
 
 #if !defined(USE_SSL) && !defined(SSLGEN_C)
 /* set up blank macros for none-SSL builds */

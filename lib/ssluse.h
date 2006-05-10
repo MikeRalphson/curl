@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.24 2006-03-21 21:54:44 bagder Exp $
+ * $Id: ssluse.h,v 1.25 2006-05-10 22:17:42 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -63,5 +63,7 @@ ssize_t Curl_ossl_recv(struct connectdata *conn, /* connection data */
                        bool *wouldblock);
 
 size_t Curl_ossl_version(char *buffer, size_t size);
+
+int Curl_ossl_check_cxn(struct connectdata *cxn);
 
 #endif
