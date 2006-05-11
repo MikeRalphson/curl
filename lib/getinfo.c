@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.49 2006-05-10 22:17:42 bagder Exp $
+ * $Id: getinfo.c,v 1.50 2006-05-11 05:17:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -204,7 +204,7 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
         sock[FIRSTSOCKET];
       /* we have a socket connected, let's determine if the server shut down */
       /* determine if ssl */
-      if(data->state.connects[data->state.lastconnect]->protocol & PROT_SSL) {
+      if(data->state.connects[data->state.lastconnect]->ssl[FIRSTSOCKET].use) {
         /* use the SSL context */
         if (!Curl_ssl_check_cxn(data->state.connects[data->state.lastconnect]))
           *param_longp = -1;   /* FIN received */
