@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.8 2006-05-10 22:17:42 bagder Exp $
+ * $Id: sslgen.c,v 1.9 2006-05-11 05:16:38 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -568,6 +568,7 @@ int Curl_ssl_check_cxn(struct connectdata *conn)
 #ifdef USE_SSLEAY
   return Curl_ossl_check_cxn(conn);
 #else
+  (void)conn;
   /* TODO: we lack implementation of this for GnuTLS */
   return -1; /* connection status unknown */
 #endif /* USE_SSLEAY */
