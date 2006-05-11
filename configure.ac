@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.193 2006-04-19 11:11:10 bagder Exp $
+# $Id: configure.ac,v 1.194 2006-05-11 21:37:58 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -947,9 +947,18 @@ if test X"$OPT_SSL" != Xno; then
         AC_DEFINE(USE_OPENSSL, 1, [if OpenSSL is in use]))
 
       if test $ac_cv_header_openssl_x509_h = no; then
-        AC_CHECK_HEADERS(x509.h rsa.h crypto.h pem.h ssl.h err.h,
+        dnl we don't use the "action" part of the AC_CHECK_HEADERS macro
+        dnl since 'err.h' might in fact find a krb4 header with the same
+        dnl name
+        AC_CHECK_HEADERS(x509.h rsa.h crypto.h pem.h ssl.h err.h)
+
+        if test $ac_cv_header_x509_h = yes && 
+           test $ac_cv_header_crypto_h = yes &&
+           test $ac_cv_header_ssl_h = yes; then
+          dnl three matches
           curl_ssl_msg="enabled (OpenSSL)"
-          OPENSSL_ENABLED=1)
+          OPENSSL_ENABLED=1
+        fi
       fi
     fi
 
