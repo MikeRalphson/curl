@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.194 2006-05-11 21:37:58 bagder Exp $
+# $Id: configure.ac,v 1.195 2006-05-23 22:55:46 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1412,7 +1412,8 @@ if test x$cross_compiling != xyes; then
      AC_MSG_RESULT(no)
     ,
     dnl not invoked when crosscompiling)
-    ])
+     echo "hej"
+    )
   fi
 else
   dnl and for crosscompilings
