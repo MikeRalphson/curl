@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: splay.c,v 1.1 2006-04-10 15:00:54 bagder Exp $
+ * $Id: splay.c,v 1.2 2006-05-24 16:11:31 bagder Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -143,6 +143,8 @@ struct Curl_tree *Curl_splayremove(int i, struct Curl_tree *t,
 {
   struct Curl_tree *x;
 
+  *removed = NULL; /* default to no removed */
+
   if (t==NULL)
     return NULL;
 
@@ -174,10 +176,8 @@ struct Curl_tree *Curl_splayremove(int i, struct Curl_tree *t,
 
     return x;
   }
-  else {
-    *removed = NULL; /* no match */
+  else
     return t;                         /* It wasn't there */
-  }
 }
 
 /* Finds and deletes the best-fit node from the tree. Return a pointer to the
