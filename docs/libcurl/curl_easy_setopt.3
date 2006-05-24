@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.148 2006-04-19 09:08:15 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.149 2006-05-24 22:46:39 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "19 Apr 2006" "libcurl 7.15.4" "libcurl Manual"
@@ -762,6 +762,8 @@ Pass a char * to a cookie string. Cookie can be either in Netscape / Mozilla
 format or just regular HTTP-style header (Set-Cookie: ...) format. If cURL
 cookie engine was not enabled it will enable its cookie engine.  Passing a
 magic string \&"ALL" will erase all cookies known by cURL. (Added in 7.14.1)
+Passing the special string \&"SESS" will only erase all session cookies known
+by cURL. (Added in 7.15.4)
 .IP CURLOPT_HTTPGET
 Pass a long. If the long is non-zero, this forces the HTTP request to get back
 to GET. usable if a POST, HEAD, PUT or a custom request have been used

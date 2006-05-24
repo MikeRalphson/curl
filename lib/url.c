@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.502 2006-04-10 15:00:54 bagder Exp $
+ * $Id: url.c,v 1.503 2006-05-24 22:46:39 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -829,12 +829,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
       break;
 
     if(strequal(argptr, "ALL")) {
-      if(data->cookies) {
-        /* clear all cookies */
-        Curl_cookie_freelist(data->cookies->cookies);
-        data->cookies->cookies = NULL;
-        data->cookies->numcookies = 0;
-      }
+      /* clear all cookies */
+      Curl_cookie_clearall(data->cookies);
+      break;
+    }
+    else if(strequal(argptr, "SESS")) {
+      /* clear session cookies */
+      Curl_cookie_clearsess(data->cookies);
       break;
     }
 
@@ -2299,7 +2300,7 @@ static CURLcode ConnectPlease(struct connectdata *conn,
       break;
     case CURLPROXY_SOCKS4:
       return handleSock4Proxy(conn->proxyuser, conn) ?
-      	CURLE_COULDNT_CONNECT : CURLE_OK;
+        CURLE_COULDNT_CONNECT : CURLE_OK;
     default:
       failf(conn->data, "unknown proxytype option given");
       return CURLE_COULDNT_CONNECT;
