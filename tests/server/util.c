@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.6 2005-09-15 20:22:43 bagder Exp $
+ * $Id: util.c,v 1.7 2006-05-24 21:39:52 bagder Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -78,8 +78,9 @@ void logmsg(const char *msg, ...)
   FILE *logfp;
 
   struct timeval tv = curlx_tvnow();
+  time_t sec = tv.tv_sec;
   struct tm *now =
-    localtime(&tv.tv_sec); /* not multithread safe but we don't care */
+    localtime(&sec); /* not multithread safe but we don't care */
 
   char timebuf[20];
   snprintf(timebuf, sizeof(timebuf), "%02d:%02d:%02d.%06ld",
