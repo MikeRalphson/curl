@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.503 2006-05-24 22:46:39 bagder Exp $
+ * $Id: url.c,v 1.504 2006-05-26 11:26:42 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1950,7 +1950,8 @@ static int handleSock4Proxy(const char *proxy_name, struct connectdata *conn)
   {
     ssize_t actualread;
     ssize_t written;
-    int packetsize = 9 + strlen((char*)socksreq + 8); /* size including NUL */
+    int packetsize = 9 +
+      (int)strlen((char*)socksreq + 8); /* size including NUL */
 
     /* Send request */
     code = Curl_write(conn, sock, (char *)socksreq, packetsize, &written);

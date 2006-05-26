@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.290 2006-05-07 18:27:36 bagder Exp $
+ * $Id: urldata.h,v 1.291 2006-05-26 11:26:42 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -881,7 +881,7 @@ struct UrlState {
      set, it holds an allocated connection. */
   struct connectdata **connects;
   long numconnects; /* size of the 'connects' array */
-  int lastconnect;  /* index of most recent connect or -1 if undefined */
+  long lastconnect;  /* index of most recent connect or -1 if undefined */
 
   char *headerbuff; /* allocated buffer to store headers in */
   size_t headersize;   /* size of the allocation */

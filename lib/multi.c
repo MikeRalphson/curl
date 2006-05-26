@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.77 2006-05-09 11:33:00 bagder Exp $
+ * $Id: multi.c,v 1.78 2006-05-26 11:26:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,7 +82,7 @@ typedef enum {
 
 struct socketstate {
   curl_socket_t socks[MAX_SOCKSPEREASYHANDLE];
-  long action; /* socket action bitmap */
+  unsigned int action; /* socket action bitmap */
 };
 
 struct Curl_one_easy {
@@ -185,7 +185,7 @@ struct Curl_sh_entry {
 /* bits for 'action' having no bits means this socket is not expecting any
    action */
 #define SH_READ  1
-#define SG_WRITE 2
+#define SH_WRITE 2
 
 /* make sure this socket is present in the hash for this handle */
 static int sh_addentry(struct curl_hash *sh,
