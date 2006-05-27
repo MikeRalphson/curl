@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: splay.h,v 1.1 2006-04-10 15:00:54 bagder Exp $
+ * $Id: splay.h,v 1.2 2006-05-27 22:26:41 bagder Exp $
  ***************************************************************************/
 
 struct Curl_tree {
@@ -34,15 +34,19 @@ struct Curl_tree {
 struct Curl_tree *Curl_splay(int i, struct Curl_tree *t);
 struct Curl_tree *Curl_splayinsert(int key, struct Curl_tree *t,
                                    struct Curl_tree *new);
+#if 0
 struct Curl_tree *Curl_splayremove(int key, struct Curl_tree *t,
                                    struct Curl_tree **removed);
+#endif
+
 struct Curl_tree *Curl_splaygetbest(int key, struct Curl_tree *t,
                                     struct Curl_tree **removed);
-struct Curl_tree *Curl_splayremovebyaddr(struct Curl_tree *t,
-                                         struct Curl_tree *remove);
+int Curl_splayremovebyaddr(struct Curl_tree *t,
+                           struct Curl_tree *remove,
+                           struct Curl_tree **newroot);
 
 #ifdef CURLDEBUG
-int Curl_splayprint(struct Curl_tree * t, int d, char output);
+void Curl_splayprint(struct Curl_tree * t, int d, char output);
 #else
 #define Curl_splayprint(x,y,z)
 #endif
