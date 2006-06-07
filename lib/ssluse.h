@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.25 2006-05-10 22:17:42 bagder Exp $
+ * $Id: ssluse.h,v 1.26 2006-06-07 14:14:05 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -63,7 +63,7 @@ ssize_t Curl_ossl_recv(struct connectdata *conn, /* connection data */
                        bool *wouldblock);
 
 size_t Curl_ossl_version(char *buffer, size_t size);
-
 int Curl_ossl_check_cxn(struct connectdata *cxn);
+int Curl_ossl_seed(struct SessionHandle *data);
 
 #endif
