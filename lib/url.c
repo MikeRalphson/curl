@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.504 2006-05-26 11:26:42 bagder Exp $
+ * $Id: url.c,v 1.505 2006-06-08 06:12:31 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -157,7 +157,7 @@ static long ConnectionStore(struct SessionHandle *data,
 #ifndef USE_ARES
 /* not for Win32, unless it is cygwin
    not for ares builds */
-#if !defined(WIN32) || defined(__CYGWIN32__)
+#if !defined(WIN32) || defined(__CYGWIN__)
 
 #ifndef RETSIGTYPE
 #define RETSIGTYPE void

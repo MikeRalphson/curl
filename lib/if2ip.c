@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.44 2005-07-13 18:06:40 bagder Exp $
+ * $Id: if2ip.c,v 1.45 2006-06-08 06:12:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -33,7 +33,7 @@
 
 #include "if2ip.h"
 
-#if !defined(WIN32) && !defined(__BEOS__) && !defined(__CYGWIN32__) && \
+#if !defined(WIN32) && !defined(__BEOS__) && !defined(__CYGWIN__) && \
     !defined(__riscos__) && !defined(__INTERIX) && !defined(NETWARE) && \
     !defined(_AMIGASF)
 
