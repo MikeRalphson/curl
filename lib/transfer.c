@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.298 2006-04-26 07:40:37 bagder Exp $
+ * $Id: transfer.c,v 1.299 2006-06-09 07:08:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1570,11 +1570,12 @@ int Curl_single_getsock(struct connectdata *conn,
   }
   if(conn->keep.keepon & KEEP_WRITE) {
 
-    if((conn->sockfd != conn->writesockfd) &&
-       (conn->keep.keepon & KEEP_READ)) {
-      /* only if they are not the same socket and we had a readable one,
-         we increase index */
-      index++;
+    if((conn->sockfd != conn->writesockfd) ||
+       !(conn->keep.keepon & KEEP_READ)) {
+      /* only if they are not the same socket or we didn't have a readable
+         one, we increase index */
+      if(conn->keep.keepon & KEEP_READ)
+        index++; /* increase index if we need two entries */
       sock[index] = conn->writesockfd;
     }
 
