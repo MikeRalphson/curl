@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.151 2006-06-07 14:14:05 bagder Exp $
+ * $Id: ssluse.c,v 1.152 2006-06-09 12:07:34 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1212,11 +1212,11 @@ Curl_ossl_connect_step1(struct connectdata *conn,
        inform about failures of setting it */
     if (!SSL_CTX_callback_ctrl(connssl->ctx, SSL_CTRL_SET_MSG_CALLBACK,
                                (void (*)(void))ssl_tls_trace)) {
-      infof(data, "SSL: couldn't set callback!");
+      infof(data, "SSL: couldn't set callback!\n");
     }
     else if (!SSL_CTX_ctrl(connssl->ctx, SSL_CTRL_SET_MSG_CALLBACK_ARG, 0,
                            conn)) {
-      infof(data, "SSL: couldn't set callback argument!");
+      infof(data, "SSL: couldn't set callback argument!\n");
     }
   }
 #endif
