@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.9 2005-07-28 13:20:27 giva Exp $
+ * $Id: lib505.c,v 1.10 2006-06-10 17:35:28 giva Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -38,7 +38,7 @@
 int test(char *URL)
 {
   CURL *curl;
-  CURLcode res;
+  CURLcode res = CURLE_OK;
   FILE *hd_src ;
   int hd ;
   struct_stat file_info;
