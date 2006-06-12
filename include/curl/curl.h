@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.297 2006-04-26 17:04:47 giva Exp $
+ * $Id: curl.h,v 1.298 2006-06-12 20:33:05 danf Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -58,7 +58,17 @@ extern "C" {
 #define CURL_EXTERN  __declspec(dllimport)
 #endif
 #else
-#define CURL_EXTERN
+
+#ifdef CURL_HIDDEN_SYMBOLS
+/*
+ * On gcc >= 4 if -fvisibility=hidden is given then this is used to cause
+ * external definitions to be put into the shared library.  It makes no
+ * difference to applications whether this is set or not, only the library.
+ */
+#define CURL_EXTERN __attribute__ ((visibility ("default")))
+#else
+#define CURL_EXTERN 
+#endif
 #endif
 
 /*
