@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.299 2006-06-09 07:08:34 bagder Exp $
+ * $Id: transfer.c,v 1.300 2006-06-15 21:30:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -285,7 +285,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
   curl_socket_t fd_read;
   curl_socket_t fd_write;
-  curl_socket_t select_res;
+  int select_res;
 
   curl_off_t contentlength;
 
