@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.300 2006-06-15 21:30:32 bagder Exp $
+ * $Id: transfer.c,v 1.301 2006-06-22 21:36:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1628,15 +1628,31 @@ Transfer(struct connectdata *conn)
 
     interval_ms = 1 * 1000;
 
-    if(k->keepon & KEEP_READ)
-      fd_read = conn->sockfd;
-    else
-      fd_read = CURL_SOCKET_BAD;
-
-    if(k->keepon & KEEP_WRITE)
-      fd_write = conn->writesockfd;
-    else
+    /* limit-rate logic: if speed exceeds threshold, then do not include fd in
+       select set */
+    if ( (conn->data->set.max_send_speed > 0) &&
+         (conn->data->progress.ulspeed > conn->data->set.max_send_speed) )  {
       fd_write = CURL_SOCKET_BAD;
+      Curl_pgrsUpdate(conn);
+    }
+    else {
+      if(k->keepon & KEEP_WRITE)
+        fd_write = conn->writesockfd;
+      else
+        fd_write = CURL_SOCKET_BAD;
+    }
+
+    if ( (conn->data->set.max_recv_speed > 0) &&
+         (conn->data->progress.dlspeed > conn->data->set.max_recv_speed) ) {
+      fd_read = CURL_SOCKET_BAD;
+      Curl_pgrsUpdate(conn);
+    }
+    else {
+      if(k->keepon & KEEP_READ)
+        fd_read = conn->sockfd;
+      else
+        fd_read = CURL_SOCKET_BAD;
+    }
 
     switch (Curl_select(fd_read, fd_write, interval_ms)) {
     case -1: /* select() error, stop reading */
@@ -1651,6 +1667,7 @@ Transfer(struct connectdata *conn)
       continue;
     case 0:  /* timeout */
     default: /* readable descriptors */
+
       result = Curl_readwrite(conn, &done);
       break;
     }
