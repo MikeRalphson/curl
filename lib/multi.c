@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.80 2006-06-22 21:36:54 bagder Exp $
+ * $Id: multi.c,v 1.81 2006-06-23 22:07:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -504,7 +504,7 @@ CURLMcode curl_multi_fdset(CURLM *multi_handle,
         /* this socket is unused, break out of loop */
         break;
       else {
-        if(s > (curl_socket_t)this_max_fd)
+        if((int)s > this_max_fd)
           this_max_fd = (int)s;
       }
     }
