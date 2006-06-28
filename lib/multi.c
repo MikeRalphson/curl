@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.81 2006-06-23 22:07:06 bagder Exp $
+ * $Id: multi.c,v 1.82 2006-06-28 04:17:04 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1083,7 +1083,7 @@ static void singlesocket(struct Curl_multi *multi,
             continue;
         }
 
-        action = ((current.action & GETSOCK_READSOCK(i))?CURL_POLL_IN:0) |
+        action = ((current.action & GETSOCK_READSOCK(i))?CURL_POLL_IN:0) +
           ((current.action & GETSOCK_WRITESOCK(i))?CURL_POLL_OUT:0);
       }
 
