@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.86 2006-04-19 11:11:10 bagder Exp $
+# $Id: acinclude.m4,v 1.87 2006-06-30 00:22:38 yangtse Exp $
 ###########################################################################
 
 dnl CURL_CHECK_HEADER_WINDOWS
@@ -233,8 +233,6 @@ dnl If the function succeeds HAVE_GETNAMEINFO will be
 dnl defined, defining the types of the arguments in
 dnl GETNAMEINFO_TYPE_ARG1, GETNAMEINFO_TYPE_ARG2,
 dnl GETNAMEINFO_TYPE_ARG46 and GETNAMEINFO_TYPE_ARG7.
-dnl This function is experimental and its results shall
-dnl not be trusted while this notice is in place ------
 
 AC_DEFUN([CURL_CHECK_FUNC_GETNAMEINFO], [
   AC_REQUIRE([CURL_CHECK_HEADER_WS2TCPIP])dnl
