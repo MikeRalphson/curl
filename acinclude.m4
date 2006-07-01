@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.89 2006-07-01 11:21:38 yangtse Exp $
+# $Id: acinclude.m4,v 1.90 2006-07-01 12:53:24 yangtse Exp $
 ###########################################################################
 
 dnl CURL_CHECK_HEADER_WINDOWS
@@ -382,17 +382,17 @@ AC_DEFUN([CURL_CHECK_FUNC_GETNAMEINFO], [
       case "$gni_qual_type_arg1" in
         const*)
           gni_qual_arg1=const
-          gni_type_arg1=`echo $gni_qual_type_arg1 | sed 's/^const //'`
+          gni_type_arg1=`echo $gni_qual_type_arg1 | sed 's/^const //' | sed 's/\*/\*/g'`
         ;;
         *)
           gni_qual_arg1=
-          gni_type_arg1=$gni_qual_type_arg1
+          gni_type_arg1=`echo $gni_qual_type_arg1 | sed 's/\*/\*/g'`
         ;;
       esac
       #
-      AC_DEFINE_UNQUOTED(GETNAMEINFO_QUAL_ARG1, "$gni_qual_arg1",
+      AC_DEFINE_UNQUOTED(GETNAMEINFO_QUAL_ARG1, $gni_qual_arg1,
         [Define to the type qualifier of arg 1 for getnameinfo.])
-      AC_DEFINE_UNQUOTED(GETNAMEINFO_TYPE_ARG1, "$gni_type_arg1",
+      AC_DEFINE_UNQUOTED(GETNAMEINFO_TYPE_ARG1, $gni_type_arg1,
         [Define to the type of arg 1 for getnameinfo.])
       #
       AC_DEFINE_UNQUOTED(HAVE_GETNAMEINFO, 1,
