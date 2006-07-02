@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.93 2006-07-02 01:17:37 yangtse Exp $
+# $Id: acinclude.m4,v 1.94 2006-07-02 01:21:54 yangtse Exp $
 ###########################################################################
 
 dnl CURL_CHECK_HEADER_WINDOWS
@@ -383,7 +383,6 @@ AC_DEFUN([CURL_CHECK_FUNC_GETNAMEINFO], [
       gni_opts=$-
       #
       case $gni_opts in
-      esac
         *f*)
           ;;
         *)
@@ -408,7 +407,6 @@ AC_DEFUN([CURL_CHECK_FUNC_GETNAMEINFO], [
         [Define to the type of arg 1 for getnameinfo.])
       #
       case $gni_opts in
-      esac
         *f*)
           ;;
         *)
