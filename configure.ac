@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.198 2006-06-13 17:43:00 danf Exp $
+# $Id: configure.ac,v 1.199 2006-07-03 15:32:12 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -537,10 +537,6 @@ main()
 
 if test "$ipv6" = "yes"; then
   curl_ipv6_msg="enabled"
-
-  CURL_CHECK_WORKING_GETADDRINFO
-
-  CURL_CHECK_NI_WITHSCOPEID
 fi
 
 dnl **********************************************************************
@@ -1688,6 +1684,11 @@ AC_CHECK_DECL(inet_pton, ,
 dnl Check if the getnameinfo function is available
 dnl and get the types of five of its arguments.
 CURL_CHECK_FUNC_GETNAMEINFO
+
+if test "$ipv6" = "yes"; then
+  CURL_CHECK_WORKING_GETADDRINFO
+  CURL_CHECK_NI_WITHSCOPEID
+fi
 
 AC_MSG_CHECKING([if we are Mac OS X (to disable poll)])
 disable_poll=no
