@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.27 2006-05-05 10:24:27 bagder Exp $
+ * $Id: hostip6.c,v 1.28 2006-07-03 18:38:03 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -136,9 +136,11 @@ int curl_dogetaddrinfo(char *hostname, char *service,
   return res;
 }
 
-int curl_dogetnameinfo(const struct sockaddr *sa, socklen_t salen,
-                       char *host, size_t hostlen,
-                       char *serv, size_t servlen, int flags,
+int curl_dogetnameinfo(GETNAMEINFO_QUAL_ARG1 GETNAMEINFO_TYPE_ARG1 sa,
+                       GETNAMEINFO_TYPE_ARG2 salen,
+                       char *host, GETNAMEINFO_TYPE_ARG46 hostlen,
+                       char *serv, GETNAMEINFO_TYPE_ARG46 servlen,
+                       GETNAMEINFO_TYPE_ARG7 flags,
                        int line, const char *source)
 {
   int res = (getnameinfo)(sa, salen,
