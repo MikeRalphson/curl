@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.282 2006-05-05 22:14:40 bagder Exp $
+ * $Id: http.c,v 1.283 2006-07-04 12:02:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1970,7 +1970,9 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
                 (data->set.encoding && *data->set.encoding && conn->allocptr.accept_encoding)?
                 conn->allocptr.accept_encoding:"",
                 (data->change.referer && conn->allocptr.ref)?conn->allocptr.ref:"" /* Referer: <data> */,
-                (conn->bits.httpproxy && !conn->bits.tunnel_proxy)?
+                (conn->bits.httpproxy &&
+                 !conn->bits.tunnel_proxy &&
+                 !checkheaders(data, "Proxy-Connection:"))?
                   "Proxy-Connection: Keep-Alive\r\n":"",
                 te
                 );
