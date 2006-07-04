@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.7 2006-07-04 16:10:13 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.8 2006-07-04 16:54:11 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -95,6 +95,9 @@
 
 /* Define to the type of arg 1 for send. */
 #define SEND_TYPE_ARG1 SOCKET
+
+/* Define to the type qualifier of arg 2 for send. */
+#define SEND_QUAL_ARG2 const
 
 /* Define to the type of arg 2 for send. */
 #define SEND_TYPE_ARG2 char *
