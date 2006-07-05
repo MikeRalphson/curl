@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: synctime.c,v 1.1 2006-02-04 18:08:54 bagder Exp $
+ * $Id: synctime.c,v 1.2 2006-07-05 23:10:38 yangtse Exp $
  *
  * This example code only builds as-is on Windows.
  *
@@ -59,7 +59,9 @@
 
 #include <stdio.h>
 #include <time.h>
+#ifndef __CYGWIN__
 #include <windows.h>
+#endif
 #include <curl/curl.h>
 
 

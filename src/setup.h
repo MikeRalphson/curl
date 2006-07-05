@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.41 2006-06-08 06:12:31 bagder Exp $
+ * $Id: setup.h,v 1.42 2006-07-05 23:10:38 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -83,7 +83,7 @@
  * winsock2.h, ws2tcpip.h or winsock.h. Any other windows thing belongs 
  * to any other further and independant block.  Under Cygwin things work
  * just as under linux (e.g. <sys/socket.h>) and the winsock headers should
- * never be included.
+ * never be included when __CYGWIN__ is defined.
  */
 
 #if defined(HAVE_WINDOWS_H) && !defined(__CYGWIN__)
