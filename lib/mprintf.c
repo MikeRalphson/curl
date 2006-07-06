@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.53 2006-07-05 14:23:09 giva Exp $
+ * $Id: mprintf.c,v 1.54 2006-07-06 13:33:56 giva Exp $
  *
  *************************************************************************
  *
@@ -39,7 +39,7 @@
 #include <string.h>
 
 #if defined(DJGPP) && (DJGPP_MINOR < 4)
-#undef CURLDEBUG  /* don't use x_was_used() here */
+#undef _MPRINTF_REPLACE /* don't use x_was_used() here */
 #endif
 
 #include <curl/mprintf.h>
