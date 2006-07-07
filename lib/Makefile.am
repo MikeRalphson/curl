@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.111 2006-06-24 21:54:22 bagder Exp $
+# $Id: Makefile.am,v 1.112 2006-07-07 18:37:14 danf Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -124,7 +124,7 @@ DSPOUT = | awk '{printf("%s\r\n", $$0)}' >> $(DSP)
 
 $(DSP): msvcproj.head msvcproj.foot Makefile.am
 	echo "creating $(DSP)"
-	@(cp msvcproj.head $(DSP); \
+	@(cp $(srcdir)/msvcproj.head $(DSP); \
 	echo "# Begin Group \"Source Files\"" $(DSPOUT); \
 	for file in $(WIN32SOURCES); do \
 	echo "# Begin Source File" $(DSPOUT); \
@@ -141,4 +141,4 @@ $(DSP): msvcproj.head msvcproj.foot Makefile.am
 	echo "# End Source File" $(DSPOUT); \
 	done; \
 	echo "# End Group" $(DSPOUT); \
-	cat msvcproj.foot $(DSPOUT) )
+	cat $(srcdir)/msvcproj.foot $(DSPOUT) )
