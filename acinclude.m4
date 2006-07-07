@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.101 2006-07-06 15:51:03 yangtse Exp $
+# $Id: acinclude.m4,v 1.102 2006-07-07 04:42:11 yangtse Exp $
 ###########################################################################
 
 
@@ -26,17 +26,18 @@ dnl CURL_CHECK_HEADERS_ONCE
 dnl -------------------------------------------------
 dnl Check for headers if check not already done.
 
-AC_DEFUN(CURL_CHECK_HEADERS_ONCE, [
-  for i in $1; do
-    eval prev_check_res=\$ac_cv_header_$i
+AC_DEFUN([CURL_CHECK_HEADERS_ONCE], [
+  for f_hdr in $1
+  do
+    u_hdr=`echo "$f_hdr" | sed 'y/\.\/-/___/'`
+    eval prev_check_res=\$ac_cv_header_$u_hdr
     case "$prev_check_res" in
       yes | no)
         ;;
       *)
-        AC_CHECK_HEADERS($i)
+        AC_CHECK_HEADERS($f_hdr)
         ;;
     esac
-
   done
 ])
 
