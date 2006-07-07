@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.36 2006-04-26 17:23:28 giva Exp $
+ * $Id: hostthre.c,v 1.37 2006-07-07 07:41:47 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -157,7 +157,6 @@ struct thread_data {
   unsigned thread_id;
   DWORD  thread_status;
   curl_socket_t dummy_sock;   /* dummy for Curl_resolv_fdset() */
-  FILE *stderr_file;
   HANDLE mutex_waiting;  /* marks that we are still waiting for a resolve */
   HANDLE event_resolved; /* marks that the thread obtained the information */
   HANDLE event_thread_started; /* marks that the thread has initialized and
@@ -302,14 +301,6 @@ static unsigned __stdcall gethostbyname_thread (void *arg)
     return (unsigned)-1;
   }
 
-  /* Sharing the same _iob[] element with our parent thread should
-   * hopefully make printouts synchronised. I'm not sure it works
-   * with a static runtime lib (MSVC's libc.lib).
-   */
-#ifndef _WIN32_WCE
-  *stderr = *td->stderr_file;
-#endif
-
   WSASetLastError (conn->async.status = NO_DATA); /* pending status */
 
   /* Signaling that we have initialized all copies of data and handles we
@@ -368,10 +359,6 @@ static unsigned __stdcall getaddrinfo_thread (void *arg)
     /* thread synchronization data initialization failed */
     return -1;
   }
-
-#ifndef _WIN32_WCE
-  *stderr = *td->stderr_file;
-#endif
 
   itoa(conn->async.port, service, 10);
 
@@ -537,8 +524,6 @@ static bool init_resolve_thread (struct connectdata *conn,
     SetLastError(EAGAIN);
     return FALSE;
   }
-
-  td->stderr_file = stderr;
 
 #ifdef _WIN32_WCE
   td->thread_hnd = (HANDLE) CreateThread(NULL, 0,
