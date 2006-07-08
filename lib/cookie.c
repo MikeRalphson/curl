@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.74 2006-05-24 22:46:39 bagder Exp $
+ * $Id: cookie.c,v 1.75 2006-07-08 18:52:08 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -760,7 +760,9 @@ struct Cookie *Curl_cookie_getlist(struct CookieInfo *c,
         /* now check the left part of the path with the cookies path
            requirement */
         if(!co->path ||
-           checkprefix(co->path, path) ) {
+           /* not using checkprefix() because matching should be
+              case-sensitive */
+           !strncmp(co->path, path, strlen(co->path)) ) {
 
           /* and now, we know this is a match and we should create an
              entry for the return-linked-list */
