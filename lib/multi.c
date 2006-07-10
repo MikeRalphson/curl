@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.84 2006-07-07 22:58:07 bagder Exp $
+ * $Id: multi.c,v 1.85 2006-07-10 16:14:36 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -322,6 +322,12 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
   if (easy->easy_handle->dns.hostcache &&
       (easy->easy_handle->dns.hostcachetype == HCACHE_PRIVATE)) {
     Curl_hash_destroy(easy->easy_handle->dns.hostcache);
+    easy->easy_handle->dns.hostcache = NULL;
+    easy->easy_handle->dns.hostcachetype = HCACHE_NONE;
+  }
+
+  if (!easy->easy_handle->dns.hostcache ||
+      (easy->easy_handle->dns.hostcachetype == HCACHE_NONE)) {
     easy->easy_handle->dns.hostcache = multi->hostcache;
     easy->easy_handle->dns.hostcachetype = HCACHE_MULTI;
   }
