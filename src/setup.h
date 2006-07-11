@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.42 2006-07-05 23:10:38 yangtse Exp $
+ * $Id: setup.h,v 1.43 2006-07-11 17:02:06 danf Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -175,6 +175,11 @@ int fileno( FILE *stream);
 #ifndef UNPRINTABLE_CHAR
 /* define what to use for unprintable characters */
 #define UNPRINTABLE_CHAR '.'
+#endif
+
+#ifndef HAVE_STRDUP
+#include "strdup.h"
+#define strdup(ptr) curlx_strdup(ptr)
 #endif
 
 #endif /* __SRC_CURL_SETUP_H */
