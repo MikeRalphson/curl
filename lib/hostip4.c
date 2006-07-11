@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.20 2006-04-26 17:23:28 giva Exp $
+ * $Id: hostip4.c,v 1.21 2006-07-11 21:34:24 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -26,7 +26,7 @@
 #include <string.h>
 #include <errno.h>
 
-#ifdef HAVE_MALLOC_H  /* Win32 */
+#if defined(HAVE_MALLOC_H) && defined(NEED_MALLOC_H)
 #include <malloc.h>
 #endif
 #ifdef HAVE_SYS_TYPES_H

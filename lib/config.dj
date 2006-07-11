@@ -3,7 +3,7 @@
 
 /* lib/config.dj - Hand crafted config file for DJGPP.
  *
- * $Id: config.dj,v 1.16 2006-07-11 13:12:57 giva Exp $
+ * $Id: config.dj,v 1.17 2006-07-11 21:34:23 yangtse Exp $
  */
 #define OS       "MSDOS/djgpp"
 #define PACKAGE  "curl"
@@ -69,6 +69,8 @@
 #define HAVE_UNAME             1
 #define HAVE_UNISTD_H          1
 #define HAVE_VPRINTF           1
+
+#define NEED_MALLOC_H          1
 
 #if (DJGPP_MINOR >= 4)
 #define HAVE_STRLCAT           1
