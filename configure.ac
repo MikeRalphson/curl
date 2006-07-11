@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.201 2006-07-11 20:40:38 yangtse Exp $
+# $Id: configure.ac,v 1.202 2006-07-11 21:35:35 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1962,29 +1962,42 @@ AC_HELP_STRING([--disable-cookies],[Disable cookies support]),
 dnl ************************************************************
 dnl Enable hiding of internal symbols in library to reduce its size and
 dnl speed dynamic linking of applications.  This currently is only supported
-dnl on gcc >= 4.0
+dnl on gcc >= 4.0 and SunPro C.
 dnl
 AC_MSG_CHECKING([whether to enable hidden symbols in the library])
 AC_ARG_ENABLE(hidden-symbols,
-AC_HELP_STRING([--enable-hidden-symbols],[Hide internal symbols in library (gcc>=4)])
+AC_HELP_STRING([--enable-hidden-symbols],[Hide internal symbols in library])
 AC_HELP_STRING([--disable-hidden-symbols],[Leave all symbols with default visibility in library]),
 [ case "$enableval" in
   no)
        AC_MSG_RESULT(no)
        ;;
   *)   
+       AC_MSG_CHECKING([whether $CC supports it])
        if test "$GCC" = yes ; then
-         AC_MSG_CHECKING([whether $CC supports it])
          if $CC --help --verbose 2>&1 | grep fvisibility= > /dev/null ; then
 	   AC_MSG_RESULT(yes)
 	   AC_DEFINE(CURL_HIDDEN_SYMBOLS, 1, [to enable hidden symbols])
 	   AC_SUBST(CURL_HIDDEN_SYMBOLS)
+	   AC_DEFINE(CURL_EXTERN_SYMBOL, [__attribute__ ((visibility ("default")))], [to make a symbol visible])
+	   AC_SUBST(CURL_EXTERN_SYMBOL)
 	   CFLAGS="$CFLAGS -fvisibility=hidden"
          else
             AC_MSG_RESULT(no)
           fi
+
        else
-          AC_MSG_RESULT([no (not gcc)])
+       	 dnl Test for SunPro cc
+       	 if $CC 2>&1 | grep flags >/dev/null && $CC -flags | grep xldscope= >/dev/null ; then
+           AC_MSG_RESULT(yes)
+	   AC_DEFINE(CURL_HIDDEN_SYMBOLS, 1, [to enable hidden symbols])
+	   AC_SUBST(CURL_HIDDEN_SYMBOLS)
+	   AC_DEFINE(CURL_EXTERN_SYMBOL, [__global], [to make a symbol visible])
+	   AC_SUBST(CURL_EXTERN_SYMBOL)
+	   CFLAGS="$CFLAGS -xldscope=hidden"
+         else
+           AC_MSG_RESULT(no)
+         fi
        fi
        ;;
   esac ],
