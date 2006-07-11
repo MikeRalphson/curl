@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.106 2006-07-07 17:34:40 yangtse Exp $
+# $Id: acinclude.m4,v 1.107 2006-07-11 20:40:38 yangtse Exp $
 ###########################################################################
 
 
@@ -168,6 +168,57 @@ AC_DEFUN([CURL_CHECK_HEADER_WS2TCPIP], [
         [Define to 1 if you have the ws2tcpip.h header file.])
       ;;
   esac
+])
+
+
+dnl CURL_CHECK_HEADER_MALLOC
+dnl -------------------------------------------------
+dnl Check for compilable and valid malloc.h header,
+dnl and check if it is needed even with stdlib.h
+
+AC_DEFUN([CURL_CHECK_HEADER_MALLOC], [
+  AC_CACHE_CHECK([for malloc.h], [ac_cv_header_malloc_h], [
+    AC_COMPILE_IFELSE([
+      AC_LANG_PROGRAM([
+#include <malloc.h>
+      ],[
+        void *p = malloc(10);
+        void *q = calloc(10,10);
+        free(p);
+        free(q);
+      ])
+    ],[
+      ac_cv_header_malloc_h="yes"
+    ],[
+      ac_cv_header_malloc_h="no"
+    ])
+  ])
+  if test "$ac_cv_header_malloc_h" = "yes"; then
+    AC_DEFINE_UNQUOTED(HAVE_MALLOC_H, 1,
+      [Define to 1 if you have the malloc.h header file.])
+    #
+    AC_COMPILE_IFELSE([
+      AC_LANG_PROGRAM([
+#include <stdlib.h>
+      ],[
+        void *p = malloc(10);
+        void *q = calloc(10,10);
+        free(p);
+        free(q);
+      ])
+    ],[
+      curl_cv_need_header_malloc_h="no"
+    ],[
+      curl_cv_need_header_malloc_h="yes"
+    ])
+    #
+    case "$curl_cv_need_header_malloc_h" in
+      yes)
+        AC_DEFINE_UNQUOTED(NEED_MALLOC_H, 1,
+          [Define to 1 if you need the malloc.h header file.])
+        ;;
+    esac
+  fi
 ])
 
 
