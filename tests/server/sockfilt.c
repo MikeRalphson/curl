@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.14 2006-07-12 05:19:03 yangtse Exp $
+ * $Id: sockfilt.c,v 1.15 2006-07-12 06:14:49 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -169,7 +169,7 @@ static int juggle(curl_socket_t *sockfdp,
   fd_set fds_write;
   fd_set fds_err;
   curl_socket_t maxfd;
-  int r;
+  ssize_t r;
   unsigned char buffer[256]; /* FIX: bigger buffer */
   char data[256];
   curl_socket_t sockfd;
