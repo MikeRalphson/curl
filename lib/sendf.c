@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.102 2006-05-05 10:24:27 bagder Exp $
+ * $Id: sendf.c,v 1.103 2006-07-12 05:19:00 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -332,7 +332,7 @@ CURLcode Curl_write(struct connectdata *conn,
       /* only TRUE if krb4 enabled */
       bytes_written = Curl_sec_write(conn, sockfd, mem, len);
     else
-      bytes_written = (ssize_t)swrite(sockfd, mem, len);
+      bytes_written = swrite(sockfd, mem, len);
 
     if(-1 == bytes_written) {
       int err = Curl_sockerrno();

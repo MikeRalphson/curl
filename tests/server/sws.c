@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.82 2006-05-10 09:53:52 bagder Exp $
+ * $Id: sws.c,v 1.83 2006-07-12 05:19:05 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -493,7 +493,7 @@ static int get_request(int sock, struct httprequest *req)
 /* returns -1 on failure */
 static int send_doc(int sock, struct httprequest *req)
 {
-  int written;
+  ssize_t written;
   size_t count;
   const char *buffer;
   char *ptr;
@@ -519,7 +519,7 @@ static int send_doc(int sock, struct httprequest *req)
     count = strlen(STREAMTHIS);
     while(1) {
       written = swrite(sock, STREAMTHIS, count);
-      if(written != (int)count) {
+      if(written != count) {
         logmsg("Stopped streaming");
         break;
       }
