@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.84 2006-07-12 05:54:06 yangtse Exp $
+ * $Id: sws.c,v 1.85 2006-07-12 06:09:53 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -454,7 +454,7 @@ static int get_request(int sock, struct httprequest *req)
   /*** end of httprequest init ***/
 
   while (req->offset < REQBUFSIZ) {
-    ssize_t got = sread(sock, reqbuf + req->offset, REQBUFSIZ - req->offset);
+    ssize_t got = sread(sock, (reqbuf + req->offset), (REQBUFSIZ - req->offset));
     if (got <= 0) {
       if (got < 0) {
         logmsg("recv() returned error: %d", errno);
