@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.85 2006-07-10 16:14:36 yangtse Exp $
+ * $Id: multi.c,v 1.86 2006-07-13 18:44:24 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1311,7 +1311,8 @@ void Curl_expire(struct SessionHandle *data, long milli)
       if(rc)
         infof(data, "Internal error clearing splay node = %d\n", rc);
       infof(data, "Expire cleared\n");
-      nowp->tv_sec = nowp->tv_usec = 0;
+      nowp->tv_sec = 0;
+      nowp->tv_sec = 0;
     }
   }
   else {
