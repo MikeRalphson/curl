@@ -1,4 +1,4 @@
-/* $Id: ares_ipv6.h,v 1.4 2005-06-19 16:58:40 dmeglio Exp $ */
+/* $Id: ares_ipv6.h,v 1.5 2006-07-14 10:30:44 yangtse Exp $ */
 
 /*
  * Permission to use, copy, modify, and distribute this
@@ -40,14 +40,14 @@ struct sockaddr_in6
 #endif
 
 #ifndef HAVE_STRUCT_ADDRINFO
-struct addrinfo
+struct addrinfo 
 {
-  int ai_flags;
-  int ai_family;
-  int ai_socktype;
-  int ai_protocol;
-  size_t ai_addrlen;
-  char *ai_cannonname;
+  int              ai_flags;
+  int              ai_family;
+  int              ai_socktype;
+  int              ai_protocol;
+  socklen_t        ai_addrlen;   /* Follow rfc3493 struct addrinfo */
+  char            *ai_canonname;
   struct sockaddr *ai_addr;
   struct addrinfo *ai_next;
 };

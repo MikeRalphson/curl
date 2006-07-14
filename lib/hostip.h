@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.50 2006-07-04 02:27:11 yangtse Exp $
+ * $Id: hostip.h,v 1.51 2006-07-14 10:30:45 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -94,13 +94,13 @@ typedef struct addrinfo Curl_addrinfo;
 /* OK, so some ipv4-only include tree probably have the addrinfo struct, but
    to work even on those that don't, we provide our own look-alike! */
 struct Curl_addrinfo {
-  int     ai_flags;
-  int     ai_family;
-  int     ai_socktype;
-  int     ai_protocol;
-  size_t  ai_addrlen;
-  struct sockaddr *ai_addr;
-  char   *ai_canonname;
+  int                   ai_flags;
+  int                   ai_family;
+  int                   ai_socktype;
+  int                   ai_protocol;
+  socklen_t             ai_addrlen;   /* Follow rfc3493 struct addrinfo */
+  char                 *ai_canonname;
+  struct sockaddr      *ai_addr;
   struct Curl_addrinfo *ai_next;
 };
 typedef struct Curl_addrinfo Curl_addrinfo;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.150 2006-07-11 00:23:21 yangtse Exp $
+ * $Id: connect.c,v 1.151 2006-07-14 10:30:45 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -713,7 +713,7 @@ singleipconnect(struct connectdata *conn,
 
   /* Connect TCP sockets, bind UDP */
   if(conn->socktype == SOCK_STREAM)
-    rc = connect(sockfd, ai->ai_addr, (socklen_t)ai->ai_addrlen);
+    rc = connect(sockfd, ai->ai_addr, ai->ai_addrlen);
   else
     rc = 0;
 
