@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.507 2006-07-07 22:58:07 bagder Exp $
+ * $Id: url.c,v 1.508 2006-07-14 18:58:42 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3930,6 +3930,9 @@ static CURLcode SetupConnection(struct connectdata *conn,
 
   conn->bytecount = 0;
   conn->headerbytecount = 0;
+#ifdef CURL_DO_LINEEND_CONV
+  data->state.crlf_conversions = 0; /* reset CRLF conversion counter */
+#endif /* CURL_DO_LINEEND_CONV */
 
   if(CURL_SOCKET_BAD == conn->sock[FIRSTSOCKET]) {
     bool connected = FALSE;
