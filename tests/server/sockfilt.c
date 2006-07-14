@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.18 2006-07-13 18:50:51 yangtse Exp $
+ * $Id: sockfilt.c,v 1.19 2006-07-14 06:31:41 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -290,6 +290,7 @@ static int juggle(curl_socket_t *sockfdp,
 
         if(5 != read(fileno(stdin), buffer, 5))
           return FALSE;
+        buffer[4] = '\0';
 
         len = (ssize_t)strtol((char *)buffer, NULL, 16);
         if(len != read(fileno(stdin), buffer, len))
