@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.153 2006-06-29 07:35:02 bagder Exp $
+ * $Id: ssluse.c,v 1.154 2006-07-17 05:05:57 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1407,8 +1407,8 @@ Curl_ossl_connect_step2(struct connectdata *conn,
     else {
       /* untreated error */
       unsigned long errdetail;
-      char error_buffer[120]; /* OpenSSL documents that this must be at least
-                                 120 bytes long. */
+      char error_buffer[256]; /* OpenSSL documents that this must be at least
+                                 256 bytes long. */
       CURLcode rc;
       const char *cert_problem = NULL;
 
