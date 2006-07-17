@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.151 2006-07-14 10:30:45 yangtse Exp $
+ * $Id: connect.c,v 1.152 2006-07-17 19:22:28 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -504,12 +504,13 @@ static bool trynextip(struct connectdata *conn,
   curl_socket_t sockfd;
   Curl_addrinfo *ai;
 
-  if(sockindex != FIRSTSOCKET)
-    return TRUE; /* no next */
-
   /* first close the failed socket */
   sclose(conn->sock[sockindex]);
   conn->sock[sockindex] = CURL_SOCKET_BAD;
+  *connected = FALSE;
+
+  if(sockindex != FIRSTSOCKET)
+    return TRUE; /* no next */
 
   /* try the next address */
   ai = conn->ip_addr->ai_next;
