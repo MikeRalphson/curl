@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.284 2006-07-19 18:19:30 yangtse Exp $
+ * $Id: http.c,v 1.285 2006-07-19 18:32:38 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1771,7 +1771,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
        uses the encoded host name! */
     if(conn->host.dispname != conn->host.name) {
       char *url = data->change.url;
-      char *ptr = strstr(url, conn->host.dispname);
+      ptr = strstr(url, conn->host.dispname);
       if(ptr) {
         /* This is where the display name starts in the URL, now replace this
            part with the encoded name. TODO: This method of replacing the host
