@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.154 2006-07-17 05:05:57 yangtse Exp $
+ * $Id: ssluse.c,v 1.155 2006-07-19 18:46:56 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1488,16 +1488,16 @@ Curl_ossl_connect_step3(struct connectdata *conn,
   if(Curl_ssl_getsessionid(conn, &ssl_sessionid, NULL)) {
     /* Since this is not a cached session ID, then we want to stach this one
        in the cache! */
-    SSL_SESSION *ssl_sessionid;
+    SSL_SESSION *our_ssl_sessionid;
 #ifdef HAVE_SSL_GET1_SESSION
-    ssl_sessionid = SSL_get1_session(connssl->handle);
+    our_ssl_sessionid = SSL_get1_session(connssl->handle);
 
     /* SSL_get1_session() will increment the reference
        count and the session will stay in memory until explicitly freed with
        SSL_SESSION_free(3), regardless of its state.
        This function was introduced in openssl 0.9.5a. */
 #else
-    ssl_sessionid = SSL_get_session(connssl->handle);
+    our_ssl_sessionid = SSL_get_session(connssl->handle);
 
     /* if SSL_get1_session() is unavailable, use SSL_get_session().
        This is an inferior option because the session can be flushed
@@ -1508,7 +1508,7 @@ Curl_ossl_connect_step3(struct connectdata *conn,
        untested.
     */
 #endif
-    retcode = Curl_ssl_addsessionid(conn, ssl_sessionid,
+    retcode = Curl_ssl_addsessionid(conn, our_ssl_sessionid,
                                     0 /* unknown size */);
     if(retcode) {
       failf(data, "failed to store ssl session");
