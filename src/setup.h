@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.43 2006-07-11 17:02:06 danf Exp $
+ * $Id: setup.h,v 1.44 2006-07-19 22:27:50 danf Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -116,7 +116,7 @@
 #define FALSE 0
 #endif
 
-#if !defined(__cplusplus) && !defined(__BEOS__) && !defined(typedef_bool)
+#if !defined(__cplusplus) && !defined(__BEOS__) && !defined(__ECOS) && !defined(typedef_bool)
 typedef unsigned char bool;
 #define typedef_bool
 #endif

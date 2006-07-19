@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.h,v 1.22 2006-01-09 13:17:14 bagder Exp $
+ * $Id: timeval.h,v 1.23 2006-07-19 22:27:50 danf Exp $
  ***************************************************************************/
 
 /*
@@ -38,7 +38,8 @@
 
 #ifndef HAVE_GETTIMEOFDAY
 #if !defined(_WINSOCKAPI_) && !defined(__MINGW32__) && !defined(_AMIGASF) && \
-    !defined(__LCC__) && !defined(__WATCOMC__) && !defined(__POCC__)
+    !defined(__LCC__) && !defined(__WATCOMC__) && !defined(__POCC__) && \
+    !defined(__ECOS)
 struct timeval {
  long tv_sec;
  long tv_usec;

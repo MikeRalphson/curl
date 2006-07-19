@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.202 2006-07-11 21:35:35 danf Exp $
+# $Id: configure.ac,v 1.203 2006-07-19 22:27:49 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -370,6 +370,21 @@ then
                [ dnl failed, restore LIBS
                LIBS=$my_ac_save_LIBS
                AC_MSG_RESULT(no)]
+             )
+fi
+
+if test "$HAVE_GETHOSTBYNAME" != "1"
+then
+  dnl This is for eCos with a stubbed DNS implementation
+  AC_MSG_CHECKING([for gethostbyname for eCos])
+  AC_TRY_LINK([
+#include <stdio.h>
+#include <netdb.h>],
+               [gethostbyname("www.dummysite.com");],
+               [ dnl worked!
+               AC_MSG_RESULT([yes])
+               HAVE_GETHOSTBYNAME="1"],
+               AC_MSG_RESULT(no)
              )
 fi
 

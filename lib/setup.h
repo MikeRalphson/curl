@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.113 2006-07-12 06:52:40 yangtse Exp $
+ * $Id: setup.h,v 1.114 2006-07-19 22:27:50 danf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -109,7 +109,7 @@
 #define FALSE 0
 #endif
 
-#if !defined(__cplusplus) && !defined(__BEOS__) && !defined(typedef_bool)
+#if !defined(__cplusplus) && !defined(__BEOS__) && !defined(__ECOS) && !defined(typedef_bool)
 typedef unsigned char bool;
 #define typedef_bool
 #endif
