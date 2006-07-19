@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.283 2006-07-04 12:02:00 bagder Exp $
+ * $Id: http.c,v 1.284 2006-07-19 18:19:30 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1128,17 +1128,15 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
     if(CURLE_OK == result) {
       char *host=(char *)"";
       const char *proxyconn="";
-      char *ptr;
 
-      ptr = checkheaders(data, "Host:");
-      if(!ptr) {
+      if(!checkheaders(data, "Host:")) {
         host = aprintf("Host: %s\r\n", host_port);
         if(!host)
           result = CURLE_OUT_OF_MEMORY;
       }
-      ptr = checkheaders(data, "Proxy-Connection:");
-      if(!ptr)
+      if(!checkheaders(data, "Proxy-Connection:")) {
         proxyconn = "Proxy-Connection: Keep-Alive\r\n";
+      }
 
       if(CURLE_OK == result) {
         /* Send the connect request to the proxy */
