@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.155 2006-07-19 18:46:56 yangtse Exp $
+ * $Id: ssluse.c,v 1.156 2006-07-19 21:14:02 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1806,7 +1806,7 @@ size_t Curl_ossl_version(char *buffer, size_t size)
     }
     else {
       if(ssleay_value&0xff0) {
-        sub[0]=(char)((ssleay_value>>4)&0xff) + 'a' -1;
+        sub[0]=(char)(((ssleay_value>>4)&0xff) + 'a' -1);
       }
       else
         sub[0]='\0';

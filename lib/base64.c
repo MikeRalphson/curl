@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.35 2005-03-31 07:02:03 bagder Exp $
+ * $Id: base64.c,v 1.36 2006-07-19 21:14:02 yangtse Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -177,10 +177,12 @@ size_t Curl_base64_encode(const char *inp, size_t insize, char **outptr)
         ibuf[i] = 0;
     }
 
-    obuf [0] = (ibuf [0] & 0xFC) >> 2;
-    obuf [1] = ((ibuf [0] & 0x03) << 4) | ((ibuf [1] & 0xF0) >> 4);
-    obuf [2] = ((ibuf [1] & 0x0F) << 2) | ((ibuf [2] & 0xC0) >> 6);
-    obuf [3] = ibuf [2] & 0x3F;
+    obuf[0] = (unsigned char)  ((ibuf[0] & 0xFC) >> 2);
+    obuf[1] = (unsigned char) (((ibuf[0] & 0x03) << 4) | \
+                               ((ibuf[1] & 0xF0) >> 4));
+    obuf[2] = (unsigned char) (((ibuf[1] & 0x0F) << 2) | \
+                               ((ibuf[2] & 0xC0) >> 6));
+    obuf[3] = (unsigned char)   (ibuf[2] & 0x3F);
 
     switch(inputparts) {
     case 1: /* only one byte read */
