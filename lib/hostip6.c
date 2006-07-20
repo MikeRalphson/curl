@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.30 2006-07-11 21:34:24 yangtse Exp $
+ * $Id: hostip6.c,v 1.31 2006-07-20 16:37:05 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -238,7 +238,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
 
   /* see if we have an IPv6 stack */
   s = socket(PF_INET6, SOCK_DGRAM, 0);
-  if (s < 0) {
+  if (s != CURL_SOCKET_BAD) {
     /* Some non-IPv6 stacks have been found to make very slow name resolves
      * when PF_UNSPEC is used, so thus we switch to a mere PF_INET lookup if
      * the stack seems to be a non-ipv6 one. */
