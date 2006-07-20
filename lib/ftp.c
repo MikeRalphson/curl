@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.360 2006-05-04 22:39:47 bagder Exp $
+ * $Id: ftp.c,v 1.361 2006-07-20 15:54:01 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -808,7 +808,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   int error;
   char *host=NULL;
   struct Curl_dns_entry *h=NULL;
-  unsigned short port;
+  unsigned short port = 0;
 
   /* Step 1, figure out what address that is requested */
 
