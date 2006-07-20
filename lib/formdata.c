@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.92 2006-06-28 02:45:27 yangtse Exp $
+ * $Id: formdata.c,v 1.93 2006-07-20 20:04:52 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1574,10 +1574,10 @@ CURLFORMcode curl_formadd(struct curl_httppost **httppost,
   return CURL_FORMADD_DISABLED;
 }
 
-CURLFORMCode curl_formget(struct curl_httppost *post, void *arg,
-                          curl_formget_callback append)
+int curl_formget(struct curl_httppost *form, void *arg,
+                 curl_formget_callback append)
 {
-  (void) post;
+  (void) form;
   (void) arg;
   (void) append;
   return CURL_FORMADD_DISABLED;
