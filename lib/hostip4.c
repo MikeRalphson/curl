@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.24 2006-07-21 05:51:12 giva Exp $
+ * $Id: hostip4.c,v 1.25 2006-07-21 06:21:46 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -400,7 +400,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
  *     #define h_addr  h_addr_list[0]
  */
 
-Curl_addrinfo *Curl_he2ai(struct hostent *he, int port)
+Curl_addrinfo *Curl_he2ai(const struct hostent *he, int port)
 {
   Curl_addrinfo *ai;
   Curl_addrinfo *prevai = NULL;

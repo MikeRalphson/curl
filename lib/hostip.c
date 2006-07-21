@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.173 2006-07-21 05:51:12 giva Exp $
+ * $Id: hostip.c,v 1.174 2006-07-21 06:21:46 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -552,9 +552,9 @@ struct curl_hash *Curl_mk_dnscache(void)
  * returns a pointer to the malloc()ed copy. You need to call free() on the
  * returned buffer when you're done with it.
  */
-Curl_addrinfo *Curl_addrinfo_copy(void *org, int port)
+Curl_addrinfo *Curl_addrinfo_copy(const void *org, int port)
 {
-  struct hostent *orig = org;
+  const struct hostent *orig = org;
 
   return Curl_he2ai(orig, port);
 }
