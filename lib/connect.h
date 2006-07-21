@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.21 2006-05-04 22:39:47 bagder Exp $
+ * $Id: connect.h,v 1.22 2006-07-21 06:50:40 giva Exp $
  ***************************************************************************/
 
 int Curl_nonblock(curl_socket_t sockfd,    /* operate on this */
@@ -31,7 +31,7 @@ CURLcode Curl_is_connected(struct connectdata *conn,
                            bool *connected);
 
 CURLcode Curl_connecthost(struct connectdata *conn,
-                          struct Curl_dns_entry *host, /* connect to this */
+                          const struct Curl_dns_entry *host, /* connect to this */
                           curl_socket_t *sockconn, /* not set if error */
                           Curl_addrinfo **addr, /* the one we used */
                           bool *connected /* truly connected? */

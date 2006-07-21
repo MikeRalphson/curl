@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.152 2006-07-17 19:22:28 yangtse Exp $
+ * $Id: connect.c,v 1.153 2006-07-21 06:50:39 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -109,7 +109,7 @@ static bool verifyconnect(curl_socket_t sockfd, int *error);
 
 static curl_socket_t
 singleipconnect(struct connectdata *conn,
-                Curl_addrinfo *ai, /* start connecting to this */
+                const Curl_addrinfo *ai, /* start connecting to this */
                 long timeout_ms,
                 bool *connected);
 
@@ -676,7 +676,7 @@ static void nosigpipe(struct connectdata *conn,
    having connected if used from the multi interface. */
 static curl_socket_t
 singleipconnect(struct connectdata *conn,
-                Curl_addrinfo *ai,
+                const Curl_addrinfo *ai,
                 long timeout_ms,
                 bool *connected)
 {
@@ -778,7 +778,7 @@ singleipconnect(struct connectdata *conn,
  */
 
 CURLcode Curl_connecthost(struct connectdata *conn,  /* context */
-                          struct Curl_dns_entry *remotehost, /* use this one */
+                          const struct Curl_dns_entry *remotehost, /* use this one */
                           curl_socket_t *sockconn,   /* the connected socket */
                           Curl_addrinfo **addr,      /* the one we used */
                           bool *connected)           /* really connected? */
