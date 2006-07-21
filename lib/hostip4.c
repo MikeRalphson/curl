@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.23 2006-07-21 04:22:45 giva Exp $
+ * $Id: hostip4.c,v 1.24 2006-07-21 05:51:12 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -139,7 +139,7 @@ struct namebuf {
  * The input parameters ARE NOT checked for validity but they are expected
  * to have been checked already when this is called.
  */
-Curl_addrinfo *Curl_ip2addr(in_addr_t num, char *hostname, int port)
+Curl_addrinfo *Curl_ip2addr(in_addr_t num, const char *hostname, int port)
 {
   Curl_addrinfo *ai;
   struct hostent *h;
@@ -185,7 +185,7 @@ Curl_addrinfo *Curl_ip2addr(in_addr_t num, char *hostname, int port)
  *
  */
 Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
-                                char *hostname,
+                                const char *hostname,
                                 int port,
                                 int *waitp)
 {

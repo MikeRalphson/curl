@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.32 2006-07-21 04:22:46 giva Exp $
+ * $Id: hostip6.c,v 1.33 2006-07-21 05:51:12 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -116,7 +116,7 @@ Curl_addrinfo *Curl_addrinfo_copy(void *source, int port)
  * family otherwise present in memdebug.c. I put these ones here since they
  * require a bunch of structs I didn't wanna include in memdebug.c
  */
-int curl_dogetaddrinfo(char *hostname, char *service,
+int curl_dogetaddrinfo(const char *hostname, const char *service,
                        struct addrinfo *hints,
                        struct addrinfo **result,
                        int line, const char *source)
@@ -222,7 +222,7 @@ static void dump_addrinfo(struct connectdata *conn, const struct addrinfo *ai)
  * Curl_freeaddrinfo(), nothing else.
  */
 Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
-                                char *hostname,
+                                const char *hostname,
                                 int port,
                                 int *waitp)
 {

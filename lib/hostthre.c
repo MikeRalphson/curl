@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.40 2006-07-11 21:34:24 yangtse Exp $
+ * $Id: hostthre.c,v 1.41 2006-07-21 05:51:12 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -726,7 +726,7 @@ int Curl_resolv_getsock(struct connectdata *conn,
  * Curl_getaddrinfo() - for Windows threading without ENABLE_IPV6.
  */
 Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
-                                char *hostname,
+                                const char *hostname,
                                 int port,
                                 int *waitp)
 {
@@ -766,7 +766,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
  * Curl_getaddrinfo() - for Windows threading IPv6 enabled
  */
 Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
-                                char *hostname,
+                                const char *hostname,
                                 int port,
                                 int *waitp)
 {
