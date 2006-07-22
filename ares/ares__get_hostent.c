@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: ares__get_hostent.c,v 1.11 2006-07-22 15:37:10 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *

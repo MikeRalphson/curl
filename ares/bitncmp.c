@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: bitncmp.c,v 1.5 2006-07-22 15:37:10 giva Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")

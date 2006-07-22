@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: ares_free_string.c,v 1.6 2006-07-22 15:37:10 giva Exp $ */
 
 /* Copyright 2000 by the Massachusetts Institute of Technology.
  *

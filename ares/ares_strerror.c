@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: ares_strerror.c,v 1.9 2006-07-22 15:37:10 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *

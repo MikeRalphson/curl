@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: inet_net_pton.c,v 1.8 2006-07-22 15:37:10 giva Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")

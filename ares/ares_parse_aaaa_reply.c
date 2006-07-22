@@ -1,3 +1,5 @@
+/* $Id: ares_parse_aaaa_reply.c,v 1.4 2006-07-22 15:37:10 giva Exp $ */
+
 /* Copyright 2005 Dominick Meglio
  *
  * Permission to use, copy, modify, and distribute this

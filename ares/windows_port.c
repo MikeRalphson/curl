@@ -1,6 +1,6 @@
 #include "setup.h"
 
-/* $Id: */
+/* $Id: windows_port.c,v 1.11 2006-07-22 15:37:10 giva Exp $ */
 
 /* only do the following on windows
  */

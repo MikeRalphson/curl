@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: ares_cancel.c,v 1.5 2006-07-22 15:37:10 giva Exp $ */
 
 /* Copyright (C) 2004 by Daniel Stenberg et al
  *
