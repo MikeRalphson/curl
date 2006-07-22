@@ -1,3 +1,5 @@
+/* $Id: ares_init.c,v 1.38 2006-07-22 15:38:36 giva Exp $ */
+
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
  * Permission to use, copy, modify, and distribute this

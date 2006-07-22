@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: */
+/* $Id: setup.h,v 1.19 2006-07-22 15:38:35 giva Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
