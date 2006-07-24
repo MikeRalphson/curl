@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.511 2006-07-21 04:19:44 giva Exp $
+ * $Id: url.c,v 1.512 2006-07-24 15:56:40 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3808,7 +3808,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
        * there, thus overriding any defaults that might have been set above. */
       conn->port =  conn->remote_port; /* it is the same port */
 
-      /* Resolve target host right on */
+      /* Resolve target host right now */
       rc = Curl_resolv(conn, conn->host.name, (int)conn->port, &hostaddr);
       if(rc == CURLRESOLV_PENDING)
         *async = TRUE;
