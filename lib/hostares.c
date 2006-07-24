@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.21 2006-07-21 05:51:12 giva Exp $
+ * $Id: hostares.c,v 1.22 2006-07-24 15:58:33 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -298,6 +298,22 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
  * The rest of this file is copied from hostip4.c. (needed for the
  * combination USE_ARES and ENABLE_IPV6).
  */
+/*
+ * This is a function for freeing name information in a protocol independent
+ * way.
+ */
+void Curl_freeaddrinfo(Curl_addrinfo *ai)
+{
+  Curl_addrinfo *next;
+
+  /* walk over the list and free all entries */
+  while(ai) {
+    next = ai->ai_next;
+    free(ai);
+    ai = next;
+  }
+}
+
 struct namebuf {
   struct hostent hostentry;
   char *h_addr_list[2];
