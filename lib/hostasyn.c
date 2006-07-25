@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostasyn.c,v 1.14 2006-07-11 21:34:23 yangtse Exp $
+ * $Id: hostasyn.c,v 1.15 2006-07-25 10:49:12 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -112,8 +112,8 @@ static CURLcode addrinfo_callback(void *arg, /* "struct connectdata *" */
   if(CURL_ASYNC_SUCCESS == status) {
 
     /*
-     * IPv4: Curl_addrinfo_copy() copies the address and returns an allocated
-     * version.
+     * IPv4/ares: Curl_addrinfo_copy() copies the address and returns an
+     * allocated version.
      *
      * IPv6: Curl_addrinfo_copy() returns the input pointer!
      */
@@ -164,6 +164,9 @@ CURLcode Curl_addrinfo6_callback(void *arg, /* "struct connectdata *" */
                                  int status,
                                  struct addrinfo *ai)
 {
+ /* NOTE: for CURLRES_ARES, the 'ai' argument is really a
+  * 'struct hostent' pointer.
+  */
   return addrinfo_callback(arg, status, ai);
 }
 #endif
