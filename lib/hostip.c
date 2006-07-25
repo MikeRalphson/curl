@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.177 2006-07-25 13:49:50 yangtse Exp $
+ * $Id: hostip.c,v 1.178 2006-07-25 18:48:12 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -623,3 +623,5 @@ Curl_addrinfo *Curl_ip2addr(in_addr_t num, const char *hostname, int port)
   return ai;
 }
 #endif
+
+
