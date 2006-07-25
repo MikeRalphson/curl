@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.363 2006-07-19 19:09:56 yangtse Exp $
+ * $Id: main.c,v 1.364 2006-07-25 11:08:42 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2284,7 +2284,8 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           {"SSL",  CURL_VERSION_SSL},
           {"SSPI",  CURL_VERSION_SSPI},
           {"krb4", CURL_VERSION_KERBEROS4},
-          {"libz", CURL_VERSION_LIBZ}
+          {"libz", CURL_VERSION_LIBZ},
+          {"CharConv", CURL_VERSION_CONV}
         };
         printf("Features: ");
         for(i=0; i<sizeof(feats)/sizeof(feats[0]); i++) {
