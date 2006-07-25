@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.512 2006-07-24 15:56:40 giva Exp $
+ * $Id: url.c,v 1.513 2006-07-25 22:45:22 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1544,6 +1544,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * No data transfer, set up connection and let application use the socket
      */
     data->set.connect_only = va_arg(param, long)?TRUE:FALSE;
+    break;
+
+  case CURLOPT_FTP_ALTERNATIVE_TO_USER:
+    data->set.ftp_alternative_to_user = va_arg(param, char *);
     break;
 
   default:
