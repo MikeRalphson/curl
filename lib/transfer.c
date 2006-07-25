@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.301 2006-06-22 21:36:54 bagder Exp $
+ * $Id: transfer.c,v 1.302 2006-07-25 18:38:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1419,9 +1419,15 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
   if (data->set.timeout &&
       ((Curl_tvdiff(k->now, k->start)/1000) >= data->set.timeout)) {
-    failf(data, "Operation timed out with %" FORMAT_OFF_T
-          " out of %" FORMAT_OFF_T " bytes received",
-          k->bytecount, conn->size);
+    if (conn->size != -1) {
+      failf(data, "Operation timed out after %d seconds with %"
+            FORMAT_OFF_T " out of %" FORMAT_OFF_T " bytes received",
+            data->set.timeout, k->bytecount, conn->size);
+    } else {
+      failf(data, "Operation timed out after %d seconds with %"
+            FORMAT_OFF_T " bytes received",
+            data->set.timeout, k->bytecount);
+    }
     return CURLE_OPERATION_TIMEOUTED;
   }
 
