@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.56 2006-07-11 21:34:24 yangtse Exp $
+ * $Id: ldap.c,v 1.57 2006-07-25 13:49:50 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,7 +36,7 @@
 #ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
 #endif
-#if defined(HAVE_MALLOC_H) && defined(NEED_MALLOC_H)
+#ifdef NEED_MALLOC_H
 #include <malloc.h>
 #endif
 #include <errno.h>

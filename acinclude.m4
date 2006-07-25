@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.107 2006-07-11 20:40:38 yangtse Exp $
+# $Id: acinclude.m4,v 1.108 2006-07-25 13:49:49 yangtse Exp $
 ###########################################################################
 
 
@@ -215,7 +215,7 @@ AC_DEFUN([CURL_CHECK_HEADER_MALLOC], [
     case "$curl_cv_need_header_malloc_h" in
       yes)
         AC_DEFINE_UNQUOTED(NEED_MALLOC_H, 1,
-          [Define to 1 if you need the malloc.h header file.])
+          [Define to 1 if you need the malloc.h header file even with stdlib.h])
         ;;
     esac
   fi

@@ -18,14 +18,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.176 2006-07-25 10:31:31 giva Exp $
+ * $Id: hostip.c,v 1.177 2006-07-25 13:49:50 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <string.h>
 
-#if defined(HAVE_MALLOC_H) && defined(NEED_MALLOC_H)
+#ifdef NEED_MALLOC_H
 #include <malloc.h>
 #endif
 #ifdef HAVE_SYS_TYPES_H
