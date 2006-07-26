@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.88 2006-07-17 18:36:00 bagder Exp $
+ * $Id: multi.c,v 1.89 2006-07-26 22:19:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -182,7 +182,7 @@ struct Curl_sh_entry {
   time_t timestamp;
   long inuse;
   int action;  /* what action READ/WRITE this socket waits for */
-  void *userp; /* settable by users (not yet decided exactly how) */
+  void *socketp; /* settable by users with curl_multi_assign() */
 };
 /* bits for 'action' having no bits means this socket is not expecting any
    action */
@@ -1125,10 +1125,14 @@ static void singlesocket(struct Curl_multi *multi,
 
       /* call the callback with this new info */
       if(multi->socket_cb) {
+        struct Curl_sh_entry *entry =
+          Curl_hash_pick(multi->sockhash, (char *)&s, sizeof(s));
+
         multi->socket_cb(easy->easy_handle,
                          s,
                          action,
-                         multi->socket_userp);
+                         multi->socket_userp,
+                         entry->socketp);
       }
 
       /* Update the sockhash accordingly */
@@ -1385,3 +1389,19 @@ void Curl_expire(struct SessionHandle *data, long milli)
 #endif
 }
 
+CURLMcode curl_multi_assign(CURLM *multi_handle,
+                            curl_socket_t s, void *hashp)
+{
+  struct Curl_sh_entry *there = NULL;
+  struct Curl_multi *multi = (struct Curl_multi *)multi_handle;
+
+  if(s != CURL_SOCKET_BAD)
+    there = Curl_hash_pick(multi->sockhash, (char *)&s, sizeof(curl_socket_t));
+
+  if(!there)
+    return CURLM_BAD_SOCKET;
+
+  there->socketp = hashp;
+
+  return CURLM_OK;
+}
