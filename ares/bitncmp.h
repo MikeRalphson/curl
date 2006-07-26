@@ -1,4 +1,7 @@
-/* $Id: bitncmp.h,v 1.1 2005-04-08 19:46:46 dmeglio Exp $ */
+#ifndef __ARES_BITNCMP_H
+#define __ARES_BITNCMP_H
+
+/* $Id: bitncmp.h,v 1.2 2006-07-26 10:47:11 yangtse Exp $ */
 
 /*
  * Permission to use, copy, modify, and distribute this
@@ -14,13 +17,10 @@
  * without express or implied warranty.
  */
 
-#ifndef BITNCMP_H
-#define BITNCMP_H
-
 #ifndef HAVE_BITNCMP
 int ares_bitncmp(const void *l, const void *r, int n);
 #else
 #define ares_bitncmp(x,y,z) bitncmp(x,y,z)
 #endif
 
-#endif /* BITNCMP_H */
+#endif /* __ARES_BITNCMP_H */
