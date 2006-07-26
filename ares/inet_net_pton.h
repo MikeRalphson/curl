@@ -1,4 +1,7 @@
-/* $Id: inet_net_pton.h,v 1.3 2005-04-15 15:25:16 dmeglio Exp $ */
+#ifndef __ARES_INET_NET_PTON_H
+#define __ARES_INET_NET_PTON_H
+
+/* $Id: inet_net_pton.h,v 1.4 2006-07-26 10:43:15 yangtse Exp $ */
 
 /*
  * Permission to use, copy, modify, and distribute this
@@ -14,9 +17,6 @@
  * without express or implied warranty.
  */
 
-#ifndef INET_NET_PTON_H
-#define INET_NET_PTON_H
-
 #if defined(HAVE_INET_PTON) && defined(HAVE_INET_PTON_IPV6)
 #define ares_inet_pton(x,y,z) inet_pton(x,y,z)
 #else
@@ -28,4 +28,4 @@ int ares_inet_pton(int af, const char *src, void *dst);
 int ares_inet_net_pton(int af, const char *src, void *dst, size_t size);
 #endif
 
-#endif /* INET_NET_PTON_H */
+#endif /* __ARES_INET_NET_PTON_H */
