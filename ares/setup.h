@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.19 2006-07-22 15:38:35 giva Exp $ */
+/* $Id: setup.h,v 1.20 2006-07-28 14:19:03 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -147,6 +147,14 @@ int ares_strcasecmp(const char *s1, const char *s2);
 #else
 #define AF_INET6 AF_MAX+1
 #endif
+#endif
+
+/*
+ * Include macros and defines that should only be processed once.
+ */
+
+#ifndef __SETUP_ONCE_H
+#include "setup_once.h"
 #endif
 
 #endif /* __ARES_SETUP_H */

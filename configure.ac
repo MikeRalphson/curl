@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.203 2006-07-19 22:27:49 danf Exp $
+# $Id: configure.ac,v 1.204 2006-07-28 14:19:03 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1567,6 +1567,8 @@ AC_FUNC_SELECT_ARGTYPES
 CURL_CHECK_FUNC_RECV
 
 CURL_CHECK_FUNC_SEND
+
+CURL_CHECK_MSG_NOSIGNAL
 
 dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL

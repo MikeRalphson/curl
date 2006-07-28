@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.108 2006-07-25 13:49:49 yangtse Exp $
+# $Id: acinclude.m4,v 1.109 2006-07-28 14:19:02 yangtse Exp $
 ###########################################################################
 
 
@@ -923,6 +923,39 @@ AC_DEFUN([CURL_CHECK_FUNC_SEND], [
       ac_cv_func_send="yes"
     fi
   fi
+]) # AC_DEFUN
+
+
+dnl CURL_CHECK_MSG_NOSIGNAL
+dnl -------------------------------------------------
+dnl Check for MSG_NOSIGNAL
+
+AC_DEFUN([CURL_CHECK_MSG_NOSIGNAL], [
+  AC_CHECK_HEADERS(sys/types.h sys/socket.h)
+  AC_CACHE_CHECK([for MSG_NOSIGNAL], [ac_cv_msg_nosignal], [
+    AC_COMPILE_IFELSE([
+      AC_LANG_PROGRAM([
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_SOCKET_H
+#include <sys/socket.h>
+#endif
+      ],[
+        int flag=MSG_NOSIGNAL;
+      ])
+    ],[
+      ac_cv_msg_nosignal="yes"
+    ],[
+      ac_cv_msg_nosignal="no"
+    ])
+  ])
+  case "$ac_cv_msg_nosignal" in
+    yes)
+      AC_DEFINE_UNQUOTED(HAVE_MSG_NOSIGNAL, 1,
+        [Define to 1 if you have the MSG_NOSIGNAL flag.])
+      ;;
+  esac
 ]) # AC_DEFUN
 
 
