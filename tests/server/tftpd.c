@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.17 2006-07-28 18:01:23 yangtse Exp $
+ * $Id: tftpd.c,v 1.18 2006-07-29 09:15:04 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -814,7 +814,7 @@ static void recvtftp(struct testcase *test, struct formats *pf)
   struct tftphdr *dp;
   struct tftphdr *ap;    /* ack buffer */
   unsigned short block = 0;
-  int n, size;
+  ssize_t n, size;
 #if defined(HAVE_ALARM) && defined(SIGALRM)
   mysignal(SIGALRM, timer);
 #endif
@@ -861,7 +861,7 @@ send_ack:
       }
     }
 
-    size = writeit(test, &dp, n - 4, pf->f_convert);
+    size = writeit(test, &dp, (int)(n - 4), pf->f_convert);
     if (size != (n-4)) {                 /* ahem */
       if (size < 0)
         nak(errno + 100);
