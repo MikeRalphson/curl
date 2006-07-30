@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.35 2006-07-26 22:19:43 bagder Exp $
+ * $Id: multi.h,v 1.36 2006-07-30 22:44:09 bagder Exp $
  ***************************************************************************/
 /*
   This is an "external" header file. Don't give away any internals here!
@@ -266,9 +266,11 @@ typedef int (*curl_socket_callback)(CURL *easy,      /* easy handle */
                                     void *socketp);  /* private socket
                                                         pointer */
 
-CURL_EXTERN CURLMcode curl_multi_socket(CURLM *multi_handle, curl_socket_t s);
+CURL_EXTERN CURLMcode curl_multi_socket(CURLM *multi_handle, curl_socket_t s,
+                                        int *running_handles);
 
-CURL_EXTERN CURLMcode curl_multi_socket_all(CURLM *multi_handle);
+CURL_EXTERN CURLMcode curl_multi_socket_all(CURLM *multi_handle,
+                                            int *running_handles);
 
 /*
  * Name:    curl_multi_timeout()
