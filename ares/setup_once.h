@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.1 2006-07-28 14:19:03 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.2 2006-07-31 17:12:24 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -70,6 +70,11 @@
 #ifdef DJGPP
 #define sread(x,y,z) (ssize_t)read_s((int)(x), (char *)(y), (int)(z))
 #endif
+#ifndef sread
+  /* */
+  Error Missing_definition_of_macro_sread
+  /* */
+#endif
 #endif /* HAVE_RECV */
 
 #ifdef HAVE_SEND
@@ -91,6 +96,11 @@
 #else /* HAVE_SEND */
 #ifdef DJGPP
 #define swrite(x,y,z) (ssize_t)write_s((int)(x), (char *)(y), (int)(z))
+#endif
+#ifndef swrite
+  /* */
+  Error Missing_definition_of_macro_swrite
+  /* */
 #endif
 #endif /* HAVE_SEND */
 
