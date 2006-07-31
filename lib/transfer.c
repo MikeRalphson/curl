@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.302 2006-07-25 18:38:52 bagder Exp $
+ * $Id: transfer.c,v 1.303 2006-07-31 17:46:28 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1714,8 +1714,9 @@ CURLcode Curl_pretransfer(struct SessionHandle *data)
   data->state.authproxy.want = data->set.proxyauth;
 
   /* If there is a list of cookie files to read, do it now! */
-  if(data->change.cookielist)
+  if(data->change.cookielist) {
     Curl_cookie_loadfiles(data);
+  }
 
  /* Allow data->set.use_port to set which port to use. This needs to be
   * disabled for example when we follow Location: headers to URLs using

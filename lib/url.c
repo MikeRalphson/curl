@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.513 2006-07-25 22:45:22 bagder Exp $
+ * $Id: url.c,v 1.514 2006-07-31 17:46:28 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -228,10 +228,11 @@ CURLcode Curl_close(struct SessionHandle *data)
 #if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_COOKIES)
   Curl_share_lock(data, CURL_LOCK_DATA_COOKIE, CURL_LOCK_ACCESS_SINGLE);
   if(data->set.cookiejar) {
-    if(data->change.cookielist)
+    if(data->change.cookielist) {
       /* If there is a list of cookie files to read, do it first so that
          we have all the told files read before we write the new jar */
       Curl_cookie_loadfiles(data);
+    }
 
     /* we have a "destination" for all the cookies to get dumped to */
     if(Curl_cookie_output(data->cookies, data->set.cookiejar))
