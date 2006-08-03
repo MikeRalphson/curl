@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.92 2006-08-02 22:29:29 bagder Exp $
+ * $Id: multi.c,v 1.93 2006-08-03 11:41:49 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -935,6 +935,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
     multi->num_msgs++; /* increase message counter */
   }
 
+  *running_handles = multi->num_alive;
   return result;
 }
 
