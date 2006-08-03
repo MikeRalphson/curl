@@ -1,4 +1,4 @@
-/* $Id: ares_getsock.c,v 1.1 2005-12-22 15:27:41 bagder Exp $ */
+/* $Id: ares_getsock.c,v 1.2 2006-08-03 18:20:45 bagder Exp $ */
 
 /* Copyright 2005 by Daniel Stenberg.
  *
@@ -28,7 +28,6 @@ int ares_getsock(ares_channel channel,
                  int numsocks) /* size of the 'socks' array */
 {
   struct server_state *server;
-  ares_socket_t nfds;
   int i;
   int sockindex=0;
   int bitmap = 0;
@@ -40,7 +39,6 @@ int ares_getsock(ares_channel channel,
   if (!channel->queries)
     return 0;
 
-  nfds = 0;
   for (i = 0; i < channel->nservers; i++)
     {
       server = &channel->servers[i];
@@ -67,5 +65,5 @@ int ares_getsock(ares_channel channel,
 
        }
     }
-  return (int)nfds;
+  return bitmap;
 }
