@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.36 2006-07-30 22:44:09 bagder Exp $
+ * $Id: multi.h,v 1.37 2006-08-03 21:31:23 bagder Exp $
  ***************************************************************************/
 /*
   This is an "external" header file. Don't give away any internals here!
@@ -96,7 +96,8 @@ typedef int curl_socket_t;
 #endif /* curl_socket_typedef */
 
 typedef enum {
-  CURLM_CALL_MULTI_PERFORM = -1, /* please call curl_multi_perform() soon */
+  CURLM_CALL_MULTI_PERFORM = -1, /* please call curl_multi_perform() or
+                                    curl_multi_socket*() soon */
   CURLM_OK,
   CURLM_BAD_HANDLE,      /* the passed-in handle is not a valid CURLM handle */
   CURLM_BAD_EASY_HANDLE, /* an easy handle was not good/valid */
@@ -106,6 +107,11 @@ typedef enum {
   CURLM_UNKNOWN_OPTION,  /* curl_multi_setopt() with unsupported option */
   CURLM_LAST
 } CURLMcode;
+
+/* just to make code nicer when using curl_multi_socket() you can now check
+   for CURLM_CALL_MULTI_SOCKET too in the same style it works for
+   curl_multi_perform() and CURLM_CALL_MULTI_PERFORM */
+#define CURLM_CALL_MULTI_SOCKET CURLM_CALL_MULTI_PERFORM
 
 typedef enum {
   CURLMSG_NONE, /* first, not used */
