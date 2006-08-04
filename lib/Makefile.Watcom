@@ -2,7 +2,7 @@
 #  Watcom / OpenWatcom / Win32 makefile for libcurl.
 #  G. Vanem <giva@bgnett.no>
 #
-# $Id: Makefile.Watcom,v 1.7 2006-04-12 14:01:21 giva Exp $
+# $Id: Makefile.Watcom,v 1.8 2006-08-04 15:57:07 giva Exp $
 
 TARGETS = libcurl_wc.lib libcurl_wc.dll libcurl_wc_imp.lib
 
@@ -370,3 +370,5 @@ $(OBJ_DIR)\tftp.obj: tftp.c setup.h config-win32.h urldata.h cookie.h &
   ..\include\curl\multi.h formdata.h http_chunks.h hostip.h hash.h llist.h &
   transfer.h sendf.h tftp.h progress.h ..\include\curl\mprintf.h memory.h &
   select.h memdebug.h
+
+$(OBJ_DIR)\splay.obj: splay.c splay.h
