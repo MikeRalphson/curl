@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.37 2006-08-03 21:31:23 bagder Exp $
+ * $Id: multi.h,v 1.38 2006-08-04 18:53:48 danf Exp $
  ***************************************************************************/
 /*
   This is an "external" header file. Don't give away any internals here!
@@ -55,7 +55,7 @@
 /* HP-UX systems version 9, 10 and 11 lack sys/select.h and so does oldish
    libc5-based Linux systems. Only include it on system that are known to
    require it! */
-#if defined(_AIX) || defined(NETWARE) || defined(__NetBSD__)
+#if defined(_AIX) || defined(NETWARE) || defined(__NetBSD__) || defined(_MINIX)
 #include <sys/select.h>
 #endif
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.45 2006-06-08 06:12:31 bagder Exp $
+ * $Id: if2ip.c,v 1.46 2006-08-04 18:53:47 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -33,9 +33,13 @@
 
 #include "if2ip.h"
 
+/*
+ * This test can probably be simplified to #if defined(SIOCGIFADDR) and
+ * moved after the following includes.
+ */
 #if !defined(WIN32) && !defined(__BEOS__) && !defined(__CYGWIN__) && \
     !defined(__riscos__) && !defined(__INTERIX) && !defined(NETWARE) && \
-    !defined(_AMIGASF)
+    !defined(_AMIGASF) && !defined(_MINIX)
 
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
