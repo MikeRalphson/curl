@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.303 2006-08-04 16:05:09 giva Exp $
+ * $Id: curl.h,v 1.304 2006-08-04 16:08:41 giva Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1499,6 +1499,9 @@ typedef struct {
 
   /* This field was added in CURLVERSION_THIRD */
   const char *libidn;
+
+  /* Same as '_libiconv_version' if built with HAVE_ICONV */
+  int iconv_ver_num;
 } curl_version_info_data;
 
 #define CURL_VERSION_IPV6      (1<<0)  /* IPv6-enabled */
