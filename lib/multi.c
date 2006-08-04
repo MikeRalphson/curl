@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.94 2006-08-03 11:47:42 bagder Exp $
+ * $Id: multi.c,v 1.95 2006-08-04 13:06:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1203,10 +1203,9 @@ static CURLMcode multi_socket(struct Curl_multi *multi,
          last */
       singlesocket(multi, data->set.one_easy);
 
-    *running_handles = multi->num_alive;
-
-    /* or should we fall-through and do the timer-based stuff? */
-    return result;
+    /* Now we fall-through and do the timer-based stuff, since we don't want
+       to force the user to have to deal with timeouts as long as at least one
+       connection in fact has traffic. */
   }
 
   /*
