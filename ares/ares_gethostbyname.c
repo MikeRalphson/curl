@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.19 2006-07-22 15:37:10 giva Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.20 2006-08-04 15:41:56 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -172,7 +172,7 @@ static void host_callback(void *arg, int status, unsigned char *abuf, int alen)
     }
   else if (status == ARES_ENODATA && hquery->family == AF_INET6)
     {
-      /* There was no AAAA now lookup an A */
+      /* There was no AAAA. Now lookup an A */
       hquery->family = AF_INET;
       ares_search(hquery->channel, hquery->name, C_IN, T_A, host_callback,
                   hquery);
