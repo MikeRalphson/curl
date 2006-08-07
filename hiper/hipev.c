@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: hipev.c,v 1.4 2006-08-03 22:57:04 bagder Exp $
+ * $Id: hipev.c,v 1.5 2006-08-07 16:54:50 bagder Exp $
  *
  * Connect N connections. Z are idle, and X are active. Transfer as fast as
  * possible.
@@ -74,7 +74,7 @@ struct fdinfo {
   long timeout; /* as set by libcurl */
   struct event ev; /* */
   int evset; /* true if the 'ev' struct has been used in a event_set() call */
-  CURLMcode *multi; /* pointer to the multi handle */
+  CURLM *multi; /* pointer to the multi handle */
   int *running_handles; /* pointer to the running_handles counter */
 };
 
