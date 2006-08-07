@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.31 2006-06-08 22:43:21 bagder Exp $
+# $Id: Makefile.am,v 1.32 2006-08-07 18:06:38 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -28,9 +28,10 @@ AUTOMAKE_OPTIONS = foreign nostdinc
 # -I$(top_srcdir)/lib is for the setup.h file, included by test.h
 # -I$(top_builddir)/lib is for the config.h file, possibly included by the
 # setup.h file
+
 INCLUDES = -I$(top_srcdir)/include/curl \
-           -I$(top_srcdir)/lib \
-           -I$(top_builddir)/lib
+           -I$(top_builddir)/lib   \
+           -I$(top_srcdir)/lib 
 
 LIBDIR = $(top_builddir)/lib
 

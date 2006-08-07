@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.113 2006-07-25 22:06:42 bagder Exp $
+# $Id: Makefile.am,v 1.114 2006-08-07 18:06:37 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -43,7 +43,10 @@ lib_LTLIBRARIES = libcurl.la
 # we use srcdir/include for the static global include files
 # we use builddir/lib for the generated lib/config.h file to get found
 # we use srcdir/lib for the lib-private header files
-INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/lib -I$(top_srcdir)/lib
+
+INCLUDES = -I$(top_srcdir)/include \
+           -I$(top_builddir)/lib   \
+           -I$(top_srcdir)/lib 
 
 VERSION=-version-info 3:0:0
 

@@ -18,12 +18,16 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.17 2006-01-09 13:17:14 bagder Exp $
+# $Id: Makefile.am,v 1.18 2006-08-07 18:06:38 yangtse Exp $
 ###########################################################################
+
+
 
 AUTOMAKE_OPTIONS = foreign
 
-INCLUDES = -I$(top_srcdir)/lib -I$(top_srcdir)/include
+INCLUDES = -I$(top_srcdir)/include \
+           -I$(top_builddir)/lib   \
+           -I$(top_srcdir)/lib 
 
 noinst_PROGRAMS = sws getpart sockfilt resolve tftpd
 
