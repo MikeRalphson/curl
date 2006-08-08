@@ -20,11 +20,16 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.54 2006-07-24 15:48:48 giva Exp $
+ * $Id: hostip.h,v 1.55 2006-08-08 22:37:53 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include "hash.h"
+
+#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
+#undef in_addr_t
+#define in_addr_t uint32_t
+#endif
 
 /*
  * Setup comfortable CURLRES_* defines to use in the host*.c sources.

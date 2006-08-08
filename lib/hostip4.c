@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.27 2006-07-25 13:49:50 yangtse Exp $
+ * $Id: hostip4.c,v 1.28 2006-08-08 22:37:54 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -62,11 +62,6 @@
 
 #ifdef HAVE_PROCESS_H
 #include <process.h>
-#endif
-
-#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
-#undef in_addr_t
-#define in_addr_t unsigned long
 #endif
 
 #include "urldata.h"
