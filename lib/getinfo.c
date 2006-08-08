@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.50 2006-05-11 05:17:40 bagder Exp $
+ * $Id: getinfo.c,v 1.51 2006-08-08 18:47:14 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -209,12 +209,15 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
         if (!Curl_ssl_check_cxn(data->state.connects[data->state.lastconnect]))
           *param_longp = -1;   /* FIN received */
       }
+/* Minix 3.1 doesn't support any flags on recv; just assume socket is OK */
+#ifdef MSG_PEEK
       else {
         /* use the socket */
         if(recv((int)data->state.connects[data->state.lastconnect]->
                 sock[FIRSTSOCKET], (void*)&buf, 1, MSG_PEEK) == 0)
           *param_longp = -1;   /* FIN received */
       }
+#endif
     }
     else
       *param_longp = -1;
