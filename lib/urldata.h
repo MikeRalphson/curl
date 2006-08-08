@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.294 2006-07-25 22:45:22 bagder Exp $
+ * $Id: urldata.h,v 1.295 2006-08-08 21:12:50 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -940,6 +940,8 @@ struct UrlState {
   /* set after initial USER failure, to prevent an authentication loop */
   bool ftp_trying_alternative;
 
+  bool expect100header;  /* TRUE if we added Expect: 100-continue */
+
 #ifndef WIN32
 /* do FTP line-end conversions on most platforms */
 #define CURL_DO_LINEEND_CONV
@@ -1135,7 +1137,6 @@ struct UserDefined {
   bool krb4;             /* kerberos4 connection requested */
   bool reuse_forbid;     /* forbidden to be reused, close after use */
   bool reuse_fresh;      /* do not re-use an existing connection  */
-  bool expect100header;  /* TRUE if we added Expect: 100-continue */
   bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
   bool ftp_use_eprt;     /* if EPRT is to be attempted or not */
   curl_ftpssl ftp_ssl;   /* if AUTH TLS is to be attempted etc */
