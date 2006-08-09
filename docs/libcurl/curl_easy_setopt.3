@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.154 2006-08-08 22:56:47 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.155 2006-08-09 20:54:17 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "19 Apr 2006" "libcurl 7.15.4" "libcurl Manual"
@@ -999,9 +999,9 @@ libcurl what the expected size of the infile is.  This value should be passed
 as a curl_off_t. (Added in 7.11.0)
 .IP CURLOPT_UPLOAD
 A non-zero parameter tells the library to prepare for an upload. The
-\fICURLOPT_READDATA\fP and \fICURLOPT_INFILESIZEE\fP or
-\fICURLOPT_INFILESIZE_LARGE\fP are also interesting for uploads. If the
-protocol is HTTP, uploading means using the PUT request unless you tell
+\fICURLOPT_READDATA\fP and \fICURLOPT_INFILESIZE\fP or
+\fICURLOPT_INFILESIZE_LARGE\fP options are also interesting for uploads. If
+the protocol is HTTP, uploading means using the PUT request unless you tell
 libcurl otherwise.
 
 Using PUT with HTTP 1.1 implies the use of a "Expect: 100-continue" header.
