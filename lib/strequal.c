@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.27 2004-10-06 07:50:18 bagder Exp $
+ * $Id: strequal.c,v 1.28 2006-08-09 16:36:17 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,7 +28,7 @@
 
 #include "strequal.h"
 
-#ifdef HAVE_STRCASECMP
+#if defined(HAVE_STRCASECMP) && defined(__STRICT_ANSI__)
 /* this is for "-ansi -Wall -pedantic" to stop complaining! */
 extern int (strcasecmp)(const char *s1, const char *s2);
 extern int (strncasecmp)(const char *s1, const char *s2, size_t n);
