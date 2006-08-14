@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.18 2006-07-29 09:15:04 yangtse Exp $
+ * $Id: tftpd.c,v 1.19 2006-08-14 17:00:09 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -475,7 +475,7 @@ int main(int argc, char **argv)
   if (sock < 0) {
     perror("opening stream socket");
     logmsg("Error opening socket");
-    exit(1);
+    return 1;
   }
 
   flag = 1;
@@ -505,7 +505,7 @@ int main(int argc, char **argv)
   if(rc < 0) {
     perror("binding stream socket");
     logmsg("Error binding socket");
-    exit(1);
+    return 1;
   }
 
   pidfile = fopen(pidname, "w");
