@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.49 2006-08-04 16:10:48 giva Exp $
+ * $Id: version.c,v 1.50 2006-08-15 17:02:24 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -78,8 +78,13 @@ char *curl_version(void)
   }
 #endif
 #if defined(HAVE_ICONV) && defined(CURL_DOES_CONVERSIONS)
+#ifdef _LIBICONV_VERSION
   len = snprintf(ptr, left, " iconv/%d.%d",
-                 _libiconv_version >> 8, _libiconv_version & 255);
+                 _LIBICONV_VERSION >> 8, _LIBICONV_VERSION & 255);
+#else
+  /* version unknown */
+  len = snprintf(ptr, left, " iconv");
+#endif /* _LIBICONV_VERSION */
   left -= len;
   ptr += len;
 #endif
@@ -204,7 +209,12 @@ curl_version_info_data *curl_version_info(CURLversion stamp)
 #endif
 
 #if defined(HAVE_ICONV) && defined(CURL_DOES_CONVERSIONS)
-  version_info.iconv_ver_num = _libiconv_version;
+#ifdef _LIBICONV_VERSION
+  version_info.iconv_ver_num = _LIBICONV_VERSION;
+#else
+  /* version unknown */
+  version_info.iconv_ver_num = -1;
+#endif /* _LIBICONV_VERSION */
 #endif
 
   (void)stamp; /* avoid compiler warnings, we don't use this */
