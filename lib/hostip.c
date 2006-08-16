@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.178 2006-07-25 18:48:12 yangtse Exp $
+ * $Id: hostip.c,v 1.179 2006-08-16 18:48:27 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -409,10 +409,12 @@ int Curl_resolv(struct connectdata *conn,
 #ifdef HAVE_SIGSETJMP
   /* this allows us to time-out from the name resolver, as the timeout
      will generate a signal and we will siglongjmp() from that here */
-  if(!data->set.no_signal && sigsetjmp(curl_jmpenv, 1)) {
-    /* this is coming from a siglongjmp() */
-    failf(data, "name lookup timed out");
-    return CURLRESOLV_ERROR;
+  if(!data->set.no_signal) {
+    if (sigsetjmp(curl_jmpenv, 1)) {
+      /* this is coming from a siglongjmp() */
+      failf(data, "name lookup timed out");
+      return CURLRESOLV_ERROR;
+    }
   }
 #endif
 

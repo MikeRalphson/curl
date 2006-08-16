@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.366 2006-07-26 23:20:48 bagder Exp $
+ * $Id: main.c,v 1.367 2006-08-16 18:48:27 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1180,9 +1180,12 @@ static int str2offset(curl_off_t *val, char *str)
    * definitions for LLONG_{MIN,MAX} or LONG_LONG_{MIN,MAX}.
    */
 #ifndef LLONG_MAX
-#ifdef _MSC_VER
+#if defined(_MSC_VER)
 #define LLONG_MAX (curl_off_t)0x7FFFFFFFFFFFFFFFi64
 #define LLONG_MIN (curl_off_t)0x8000000000000000i64
+#elif defined(_CRAYC)
+#define LLONG_MAX (curl_off_t)0x7FFFFFFFFFFFFFFF
+#define LLONG_MIN (curl_off_t)0x8000000000000000
 #else
 #define LLONG_MAX (curl_off_t)0x7FFFFFFFFFFFFFFFLL
 #define LLONG_MIN (curl_off_t)0x8000000000000000LL
