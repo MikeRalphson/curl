@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.13 2006-05-05 10:24:27 bagder Exp $
+ * $Id: gtls.c,v 1.14 2006-08-16 17:05:54 giva Exp $
  ***************************************************************************/
 
 /*
@@ -168,8 +168,7 @@ static CURLcode handshake(struct connectdata *conn,
   } while(1);
 
   if (rc < 0) {
-    failf(data, "gnutls_handshake() failed: %d", rc);
-    /* gnutls_perror(ret); */
+    failf(data, "gnutls_handshake() failed: %s", gnutls_strerror(rc));
     return CURLE_SSL_CONNECT_ERROR;
   }
 
