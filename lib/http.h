@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.30 2006-04-10 15:00:54 bagder Exp $
+ * $Id: http.h,v 1.31 2006-08-18 22:54:58 bagder Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 bool Curl_compareheader(char *headerline,     /* line to check */
@@ -74,7 +74,11 @@ int Curl_http_should_fail(struct connectdata *conn);
    It must not be greater than 64K to work on VMS.
 */
 #ifndef MAX_INITIAL_POST_SIZE
-#define MAX_INITIAL_POST_SIZE 1024
+#define MAX_INITIAL_POST_SIZE (64*1024)
+#endif
+
+#ifndef TINY_INITIAL_POST_SIZE
+#define TINY_INITIAL_POST_SIZE 1024
 #endif
 
 #endif
