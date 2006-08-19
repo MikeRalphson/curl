@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.78 2006-07-19 21:14:02 yangtse Exp $
+ * $Id: telnet.c,v 1.79 2006-08-19 21:18:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -940,7 +940,7 @@ void telrcv(struct connectdata *conn,
           break;   /* Ignore \0 after CR */
         }
 
-        Curl_client_write(data, CLIENTWRITE_BODY, (char *)&c, 1);
+        Curl_client_write(conn, CLIENTWRITE_BODY, (char *)&c, 1);
         continue;
 
       case CURL_TS_DATA:
@@ -954,7 +954,7 @@ void telrcv(struct connectdata *conn,
           tn->telrcv_state = CURL_TS_CR;
         }
 
-        Curl_client_write(data, CLIENTWRITE_BODY, (char *)&c, 1);
+        Curl_client_write(conn, CLIENTWRITE_BODY, (char *)&c, 1);
         continue;
 
       case CURL_TS_IAC:
@@ -978,7 +978,7 @@ void telrcv(struct connectdata *conn,
           tn->telrcv_state = CURL_TS_SB;
           continue;
         case CURL_IAC:
-          Curl_client_write(data, CLIENTWRITE_BODY, (char *)&c, 1);
+          Curl_client_write(conn, CLIENTWRITE_BODY, (char *)&c, 1);
           break;
         case CURL_DM:
         case CURL_NOP:

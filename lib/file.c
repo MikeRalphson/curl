@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.76 2006-05-04 22:39:47 bagder Exp $
+ * $Id: file.c,v 1.77 2006-08-19 21:18:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -311,11 +311,11 @@ CURLcode Curl_file(struct connectdata *conn, bool *done)
     CURLcode result;
     snprintf(buf, sizeof(data->state.buffer),
              "Content-Length: %" FORMAT_OFF_T "\r\n", expected_size);
-    result = Curl_client_write(data, CLIENTWRITE_BOTH, buf, 0);
+    result = Curl_client_write(conn, CLIENTWRITE_BOTH, buf, 0);
     if(result)
       return result;
 
-    result = Curl_client_write(data, CLIENTWRITE_BOTH,
+    result = Curl_client_write(conn, CLIENTWRITE_BOTH,
                                (char *)"Accept-ranges: bytes\r\n", 0);
     if(result)
       return result;
@@ -339,7 +339,7 @@ CURLcode Curl_file(struct connectdata *conn, bool *done)
                tm->tm_hour,
                tm->tm_min,
                tm->tm_sec);
-      result = Curl_client_write(data, CLIENTWRITE_BOTH, buf, 0);
+      result = Curl_client_write(conn, CLIENTWRITE_BOTH, buf, 0);
     }
     return result;
   }
@@ -377,7 +377,7 @@ CURLcode Curl_file(struct connectdata *conn, bool *done)
 
     bytecount += nread;
 
-    res = Curl_client_write(data, CLIENTWRITE_BODY, buf, nread);
+    res = Curl_client_write(conn, CLIENTWRITE_BODY, buf, nread);
     if(res)
       return res;
 

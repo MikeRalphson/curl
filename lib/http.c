@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.289 2006-08-18 22:54:58 bagder Exp $
+ * $Id: http.c,v 1.290 2006-08-19 21:18:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1251,7 +1251,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
               if(data->set.include_header)
                 writetype |= CLIENTWRITE_BODY;
 
-              result = Curl_client_write(data, writetype, line_start, perline);
+              result = Curl_client_write(conn, writetype, line_start, perline);
               if(result)
                 return result;
 
