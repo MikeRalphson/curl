@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: hipev.c,v 1.6 2006-08-08 13:39:40 bagder Exp $
+ * $Id: hipev.c,v 1.7 2006-08-22 06:29:21 bagder Exp $
  *
  * Connect N connections. Z are idle, and X are active. Transfer as fast as
  * possible.
@@ -330,11 +330,11 @@ int main(int argc, char **argv)
 
   printf("About to do %d connections\n", num_total);
 
-  /* initialize the timeout event */
-  evtimer_set(&timerevent, timercallback, multi_handle);
-
   /* init the multi stack */
   multi_handle = curl_multi_init();
+
+  /* initialize the timeout event */
+  evtimer_set(&timerevent, timercallback, multi_handle);
 
   for(i=0; i< num_total; i++) {
     CURL *e;
