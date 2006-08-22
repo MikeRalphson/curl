@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.305 2006-08-19 21:18:37 bagder Exp $
+ * $Id: transfer.c,v 1.306 2006-08-22 21:23:25 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -170,7 +170,7 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
   *nreadp = nread;
 
 #ifdef CURL_DOES_CONVERSIONS
-  if(data->ftp_in_ascii_mode) {
+  if(data->set.prefer_ascii) {
     CURLcode res;
     res = Curl_convert_to_network(data, conn->upload_fromhere, nread);
     /* Curl_convert_to_network calls failf if unsuccessful */
