@@ -1,6 +1,6 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
-# $Id: httpsserver.pl,v 1.7 2006-04-10 13:10:25 bagder Exp $
+# $Id: httpsserver.pl,v 1.8 2006-08-23 21:20:50 danf Exp $
 # This is the HTTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.

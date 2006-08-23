@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #***************************************************************************
 #                                  _   _ ____  _
 #  Project                     ___| | | |  _ \| |
@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.71 2005-09-04 05:16:06 bagder Exp $
+# $Id: ftpserver.pl,v 1.72 2006-08-23 21:20:00 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
