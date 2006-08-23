@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.155 2006-08-09 20:54:17 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.156 2006-08-23 21:49:44 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "19 Apr 2006" "libcurl 7.15.4" "libcurl Manual"
@@ -365,9 +365,10 @@ libcurl respects the environment variables \fBhttp_proxy\fP, \fBftp_proxy\fP,
 \fBall_proxy\fP etc, if any of those is set. The \fICURLOPT_PROXY\fP option
 does however override any possibly set environment variables.
 
-Starting with 7.14.1, the proxy host string can be specified the exact same
-way as the proxy environment variables, include protocol prefix (http://) and
-embedded user + password.
+Starting with 7.14.1, the proxy host string given in environment variables can
+be specified the exact same way as the proxy can be set with
+\fICURLOPT_PROXY\fP, include protocol prefix (http://) and embedded user +
+password.
 .IP CURLOPT_PROXYPORT
 Pass a long with this option to set the proxy port to connect to unless it is
 specified in the proxy string \fICURLOPT_PROXY\fP.
