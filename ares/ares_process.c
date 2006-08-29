@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.30 2006-07-29 09:15:03 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.31 2006-08-29 15:17:48 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -297,6 +297,7 @@ static void read_tcp_data(ares_channel channel, fd_set *read_fds, time_t now)
                         free(server->tcp_buffer);
               server->tcp_buffer = NULL;
               server->tcp_lenbuf_pos = 0;
+              server->tcp_buffer_pos = 0;
             }
         }
     }
