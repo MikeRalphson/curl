@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.28 2006-08-08 22:37:54 gknauf Exp $
+ * $Id: hostip4.c,v 1.29 2006-08-29 21:11:55 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -348,7 +348,7 @@ Curl_addrinfo *Curl_he2ai(const struct hostent *he, int port)
     /* no input == no output! */
     return NULL;
 
-  for(i=0; (curr = (struct in_addr *)he->h_addr_list[i]); i++) {
+  for(i=0; (curr = (struct in_addr *)he->h_addr_list[i]) != NULL; i++) {
 
     ai = calloc(1, sizeof(Curl_addrinfo) + sizeof(struct sockaddr_in));
 

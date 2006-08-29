@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.42 2006-08-29 18:45:56 giva Exp $
+ * $Id: dict.c,v 1.43 2006-08-29 21:11:55 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -106,7 +106,7 @@ static char *unescape_word(struct SessionHandle *data, char *inp)
     /* According to RFC2229 section 2.2, these letters need to be escaped with
        \[letter] */
     for(ptr = newp;
-        (byte = (unsigned char)*ptr);
+        (byte = (unsigned char)*ptr) != 0;
         ptr++) {
       if ((byte <= 32) || (byte == 127) ||
           (byte == '\'') || (byte == '\"') || (byte == '\\')) {

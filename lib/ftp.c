@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.366 2006-08-22 21:21:02 bagder Exp $
+ * $Id: ftp.c,v 1.367 2006-08-29 21:11:55 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -138,8 +138,10 @@ static int ftp_need_type(struct connectdata *conn,
                                         bool ascii);
 
 /* easy-to-use macro: */
-#define FTPSENDF(x,y,z) if((result = Curl_ftpsendf(x,y,z))) return result
-#define NBFTPSENDF(x,y,z) if((result = Curl_nbftpsendf(x,y,z))) return result
+#define FTPSENDF(x,y,z)    if ((result = Curl_ftpsendf(x,y,z)) != CURLE_OK) \
+                              return result
+#define NBFTPSENDF(x,y,z)  if ((result = Curl_nbftpsendf(x,y,z)) != CURLE_OK) \
+                              return result
 
 static void freedirs(struct FTP *ftp)
 {
@@ -3878,7 +3880,7 @@ CURLcode ftp_parse_url_path(struct connectdata *conn)
       return CURLE_OUT_OF_MEMORY;
 
     /* parse the URL path into separate path components */
-    while((slash_pos=strchr(cur_pos, '/'))) {
+    while ((slash_pos = strchr(cur_pos, '/')) != NULL) {
       /* 1 or 0 to indicate absolute directory */
       bool absolute_dir = (cur_pos - conn->path > 0) && (ftp->dirdepth == 0);
 
