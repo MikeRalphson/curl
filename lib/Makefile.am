@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.114 2006-08-07 18:06:37 yangtse Exp $
+# $Id: Makefile.am,v 1.115 2006-08-29 16:40:47 giva Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -30,7 +30,7 @@ DOCS = README.encoding README.memoryleak README.ares README.curlx	\
 
 EXTRA_DIST = Makefile.b32 Makefile.m32 Makefile.vc6 Makefile.riscos	\
  $(DSP) curllib.dsw config-win32.h config-win32ce.h config-riscos.h	\
- config-mac.h config.h.in ca-bundle.crt makefile.dj config.dj		\
+ config-mac.h config.h.in ca-bundle.crt makefile.dj config.dos		\
  libcurl.framework.make libcurl.plist libcurl.rc config-amigaos.h	\
  amigaos.c amigaos.h makefile.amiga Makefile.netware nwlib.c		\
  libcurl.imp msvcproj.head msvcproj.foot config-win32ce.h		\
@@ -46,7 +46,7 @@ lib_LTLIBRARIES = libcurl.la
 
 INCLUDES = -I$(top_srcdir)/include \
            -I$(top_builddir)/lib   \
-           -I$(top_srcdir)/lib 
+           -I$(top_srcdir)/lib
 
 VERSION=-version-info 3:0:0
 
