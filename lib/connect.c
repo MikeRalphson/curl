@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.153 2006-07-21 06:50:39 giva Exp $
+ * $Id: connect.c,v 1.154 2006-08-29 14:39:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -701,6 +701,17 @@ singleipconnect(struct connectdata *conn,
     tcpnodelay(conn, sockfd);
 
   nosigpipe(conn, sockfd);
+
+  if(data->set.fsockopt) {
+    /* activate callback for setting socket options */
+    error = data->set.fsockopt(data->set.sockopt_client,
+                               sockfd,
+                               CURLSOCKTYPE_IPCXN);
+    if (error) {
+      sclose(sockfd); /* close the socket and bail out */
+      return CURL_SOCKET_BAD;
+    }
+  }
 
   /* possibly bind the local end to an IP, interface or port */
   res = bindlocal(conn, sockfd);

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.117 2006-08-04 01:13:24 yangtse Exp $
+ * $Id: setup.h,v 1.118 2006-08-29 14:39:34 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -277,19 +277,6 @@ int fileno( FILE *stream);
 #endif
 
 #endif /* WIN32 */
-
-#ifndef curl_socket_typedef
-/* now typedef our socket type */
-#ifdef WIN32
-typedef SOCKET curl_socket_t;
-#define CURL_SOCKET_BAD INVALID_SOCKET
-#else
-typedef int curl_socket_t;
-#define CURL_SOCKET_BAD -1
-#endif
-#define curl_socket_typedef
-#endif /* curl_socket_typedef */
-
 
 #if defined(WIN32) && !defined(__CYGWIN__) && !defined(USE_ARES) && \
     !defined(__LCC__)  /* lcc-win32 doesn't have _beginthreadex() */

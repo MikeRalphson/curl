@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.515 2006-08-19 21:18:37 bagder Exp $
+ * $Id: url.c,v 1.516 2006-08-29 14:39:34 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1549,6 +1549,20 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
 
   case CURLOPT_FTP_ALTERNATIVE_TO_USER:
     data->set.ftp_alternative_to_user = va_arg(param, char *);
+    break;
+
+  case CURLOPT_SOCKOPTFUNCTION:
+    /*
+     * socket callback function: called after socket() but before connect()
+     */
+    data->set.fsockopt = va_arg(param, curl_sockopt_callback);
+    break;
+
+  case CURLOPT_SOCKOPTDATA:
+    /*
+     * socket callback data pointer. Might be NULL.
+     */
+    data->set.sockopt_client = va_arg(param, void *);
     break;
 
   default:

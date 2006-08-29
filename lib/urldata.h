@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.296 2006-08-19 21:18:37 bagder Exp $
+ * $Id: urldata.h,v 1.297 2006-08-29 14:39:34 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1029,6 +1029,8 @@ struct UserDefined {
   curl_progress_callback fprogress;  /* function for progress information */
   curl_debug_callback fdebug;      /* function that write informational data */
   curl_ioctl_callback ioctl;       /* function for I/O control */
+  curl_sockopt_callback fsockopt;  /* function for setting socket options */
+  void *sockopt_client; /* pointer to pass to the socket options callback */
 
   /* the 3 curl_conv_callback functions below are used on non-ASCII hosts */
   /* function to convert from the network encoding: */
