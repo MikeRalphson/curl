@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.297 2006-08-29 14:39:34 bagder Exp $
+ * $Id: urldata.h,v 1.298 2006-08-29 16:27:13 giva Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -110,6 +110,7 @@
 #endif
 
 /* Download buffer size, keep it fairly big for speed reasons */
+#undef BUFSIZE
 #define BUFSIZE CURL_MAX_WRITE_SIZE
 
 /* Initial size of the buffer to store headers in, it'll be enlarged in case
