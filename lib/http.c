@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.290 2006-08-19 21:18:37 bagder Exp $
+ * $Id: http.c,v 1.291 2006-08-29 18:45:56 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -47,7 +47,9 @@
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
+#ifndef __WATCOMC__
 #include <sys/time.h>
+#endif
 
 #ifdef HAVE_TIME_H
 #ifdef TIME_WITH_SYS_TIME

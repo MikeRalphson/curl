@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.516 2006-08-29 14:39:34 bagder Exp $
+ * $Id: url.c,v 1.517 2006-08-29 18:45:57 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -46,7 +46,9 @@
 #include <sys/socket.h>
 #endif
 #include <netinet/in.h>
+#ifndef __WATCOMC__
 #include <sys/time.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

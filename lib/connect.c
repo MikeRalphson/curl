@@ -18,14 +18,16 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.154 2006-08-29 14:39:34 bagder Exp $
+ * $Id: connect.c,v 1.155 2006-08-29 18:45:55 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #ifndef WIN32
 /* headers for non-win32 */
+#ifndef __WATCOMC__
 #include <sys/time.h>
+#endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif

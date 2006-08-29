@@ -20,11 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.22 2006-07-31 17:46:28 yangtse Exp $
+ * $Id: cookie.h,v 1.23 2006-08-29 18:45:57 giva Exp $
  ***************************************************************************/
 
 #include <stdio.h>
-#ifdef WIN32
+#if defined(WIN32) || defined(__WATCOMC__)
 #include <time.h>
 #else
 #include <sys/time.h>

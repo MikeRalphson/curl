@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.79 2006-07-25 11:35:35 giva Exp $
+ * $Id: easy.c,v 1.80 2006-08-29 18:45:56 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -48,7 +48,9 @@
 #include <sys/socket.h>
 #endif
 #include <netinet/in.h>
+#ifndef __WATCOMC__
 #include <sys/time.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

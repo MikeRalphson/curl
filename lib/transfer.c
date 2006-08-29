@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.306 2006-08-22 21:23:25 bagder Exp $
+ * $Id: transfer.c,v 1.307 2006-08-29 18:45:57 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -51,7 +51,9 @@
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
+#ifndef __WATCOMC__
 #include <sys/time.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
