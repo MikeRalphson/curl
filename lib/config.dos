@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.2 2006-08-29 18:40:36 giva Exp $
+ * $Id: config.dos,v 1.3 2006-08-30 16:18:03 giva Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -116,6 +116,7 @@
   #define HAVE_STRCASECMP 1
   #define HAVE_SIGACTION  1
   #define HAVE_SIGSETJMP  1
+  #define HAVE_SYS_TIME_H 1
 
   #if (DJGPP_MINOR >= 4)
     #define HAVE_STRLCAT  1
@@ -131,6 +132,10 @@
 
 #if defined(__WATCOMC__)
   #define HAVE_STRCASECMP 1
+#endif
+
+#if defined(__HIGHC__)
+  #define HAVE_SYS_TIME_H 1
 #endif
 
 #include <stdlib.h>
