@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.h,v 1.24 2006-08-29 18:45:57 giva Exp $
+ * $Id: timeval.h,v 1.25 2006-08-30 16:17:06 giva Exp $
  ***************************************************************************/
 
 /*
@@ -33,7 +33,7 @@
 #if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
 #include <time.h>
 #else
-#ifndef __WATCOMC__     /* todo: Add HAVE_SYS_TIME_H */
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.43 2006-08-29 21:11:55 giva Exp $
+ * $Id: dict.c,v 1.44 2006-08-30 16:17:06 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,7 @@
 #include <sys/socket.h>
 #endif
 #include <netinet/in.h>
-#ifndef __WATCOMC__
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 #ifdef HAVE_UNISTD_H

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.78 2006-08-29 18:45:56 giva Exp $
+ * $Id: file.c,v 1.79 2006-08-30 16:17:06 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -48,7 +48,7 @@
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
-#ifndef __WATCOMC__
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 #ifdef HAVE_UNISTD_H

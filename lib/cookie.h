@@ -20,14 +20,16 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.23 2006-08-29 18:45:57 giva Exp $
+ * $Id: cookie.h,v 1.24 2006-08-30 16:17:06 giva Exp $
  ***************************************************************************/
 
 #include <stdio.h>
-#if defined(WIN32) || defined(__WATCOMC__)
+#if defined(WIN32)
 #include <time.h>
 #else
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
+#endif
 #endif
 
 #include <curl/curl.h>

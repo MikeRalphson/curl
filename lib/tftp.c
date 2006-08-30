@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.30 2006-08-29 18:45:57 giva Exp $
+ * $Id: tftp.c,v 1.31 2006-08-30 16:17:06 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,7 @@
 #include <sys/socket.h>
 #endif
 #include <netinet/in.h>
-#ifndef __WATCOMC__
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 #ifdef HAVE_UNISTD_H
