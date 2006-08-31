@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.97 2006-08-25 13:53:22 bagder Exp $
+ * $Id: multi.c,v 1.98 2006-08-31 12:53:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -639,8 +639,12 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
              is already freed and gone */
           easy->easy_conn = NULL;           /* no more connection */
         else {
-          /* FIX: what if protocol_connect is TRUE here?! */
-          multistate(easy, CURLM_STATE_WAITCONNECT);
+          /* call again please so that we get the next socket setup */
+          result = CURLM_CALL_MULTI_PERFORM;
+          if(protocol_connect)
+            multistate(easy, CURLM_STATE_DO);
+          else
+            multistate(easy, CURLM_STATE_WAITCONNECT);
         }
       }
 
