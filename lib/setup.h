@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.119 2006-08-29 16:26:41 giva Exp $
+ * $Id: setup.h,v 1.120 2006-09-03 13:52:07 giva Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -218,7 +218,7 @@ typedef unsigned char bool;
 
 #ifdef WIN32
 
-#if !defined(__GNUC__) || defined(__MINGW32__)
+#if !defined(__CYGWIN__)
 #define sclose(x) closesocket(x)
 
 #undef HAVE_ALARM

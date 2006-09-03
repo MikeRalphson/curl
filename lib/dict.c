@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.44 2006-08-30 16:17:06 giva Exp $
+ * $Id: dict.c,v 1.45 2006-09-03 13:52:07 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -38,7 +38,7 @@
 #include <sys/stat.h>
 #endif
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if defined(WIN32) && !defined(__CYGWIN__)
 #include <time.h>
 #include <io.h>
 #else

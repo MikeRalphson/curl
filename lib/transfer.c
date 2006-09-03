@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.308 2006-08-30 16:17:06 giva Exp $
+ * $Id: transfer.c,v 1.309 2006-09-03 13:52:07 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -41,7 +41,7 @@
 #include "strtoofft.h"
 #include "strequal.h"
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if defined(WIN32) && !defined(__CYGWIN__)
 #include <time.h>
 #include <io.h>
 #else
