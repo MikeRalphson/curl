@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.520 2006-09-03 22:52:42 bagder Exp $
+ * $Id: url.c,v 1.521 2006-09-07 01:18:46 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2135,7 +2135,7 @@ static int handleSock5Proxy(const char *proxy_name,
   Curl_nonblock(sock, TRUE);
 
   /* wait until socket gets connected */
-  result = Curl_select(CURL_SOCKET_BAD, sock, timeout);
+  result = Curl_select(CURL_SOCKET_BAD, sock, (int)timeout);
 
   if(-1 == result) {
     failf(conn->data, "SOCKS5: no connection here");
@@ -2167,7 +2167,7 @@ static int handleSock5Proxy(const char *proxy_name,
 
   Curl_nonblock(sock, TRUE);
 
-  result = Curl_select(sock, CURL_SOCKET_BAD, timeout);
+  result = Curl_select(sock, CURL_SOCKET_BAD, (int)timeout);
 
   if(-1 == result) {
     failf(conn->data, "SOCKS5 nothing to read");
