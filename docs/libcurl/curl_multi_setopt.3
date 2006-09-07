@@ -1,4 +1,4 @@
-.\" $Id: curl_multi_setopt.3,v 1.3 2006-07-26 22:19:42 bagder Exp $
+.\" $Id: curl_multi_setopt.3,v 1.4 2006-09-07 21:49:21 bagder Exp $
 .\"
 .TH curl_multi_setopt 3 "8 Jan 2006" "libcurl 7.16.0" "libcurl Manual"
 .SH NAME
@@ -32,6 +32,13 @@ details.
 Pass a pointer to whatever you want passed to the curl_socket_callback's forth
 argument, the userp pointer. This is not used by libcurl but only passed-thru
 as-is. Set the callback pointer with \fICURLMOPT_SOCKETFUNCTION\fP.
+.IP CURLMOPT_PIPELINING
+Pass a long set to 1 to enable or 0 to disable. Enabling pipelining on a multi
+handle will make it attempt to perform HTTP Pipelining as far as possible for
+transfers using this handle. This means that if you add a second request that
+can use an already existing connection, the second request will be \&"piped"
+on the same connection rather than being executed in parallell. (Added in
+7.16.0)
 .SH RETURNS
 The standard CURLMcode for multi interface error codes. Note that it returns a
 CURLM_UNKNOWN_OPTION if you try setting an option that this version of libcurl

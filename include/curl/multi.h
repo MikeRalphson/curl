@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.h,v 1.40 2006-08-29 14:39:34 bagder Exp $
+ * $Id: multi.h,v 1.41 2006-09-07 21:49:21 bagder Exp $
  ***************************************************************************/
 /*
   This is an "external" header file. Don't give away any internals here!
@@ -269,6 +269,9 @@ typedef enum {
 
   /* This is the argument passed to the socket callback */
   CINIT(SOCKETDATA, OBJECTPOINT, 2),
+
+    /* set to 1 to enable pipelining for this multi handle */
+  CINIT(PIPELINING, LONG, 3),
 
   CURLMOPT_LASTENTRY /* the last unused */
 } CURLMoption;

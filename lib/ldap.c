@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.58 2006-08-19 21:18:37 bagder Exp $
+ * $Id: ldap.c,v 1.59 2006-09-07 21:49:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -431,7 +431,7 @@ quit:
   DynaClose();
 
   /* no data to transfer */
-  Curl_Transfer(conn, -1, -1, FALSE, NULL, -1, NULL);
+  Curl_setup_transfer(conn, -1, -1, FALSE, NULL, -1, NULL);
   conn->bits.close = TRUE;
 
   return status;

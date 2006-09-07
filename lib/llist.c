@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.16 2005-01-25 00:06:29 bagder Exp $
+ * $Id: llist.c,v 1.17 2006-09-07 21:49:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -129,4 +129,10 @@ Curl_llist_destroy(struct curl_llist *list, void *user)
 
     free(list);
   }
+}
+
+size_t
+Curl_llist_count(struct curl_llist *list)
+{
+  return list->size;
 }
