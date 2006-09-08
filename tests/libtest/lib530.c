@@ -5,27 +5,13 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.1 2006-09-08 11:56:56 bagder Exp $
- */
-
-/*
- * This code sets up multiple easy handles that transfer a single file from
- * the same URL, in a serial manner after each other. Due to the connection
- * sharing within the multi handle all transfers are performed on the same
- * persistent connection.
- *
- * This source code is used for lib526 _and_ lib527 with only #ifdefs
- * controlling the small differences. lib526 closes all easy handles after
- * they all have transfered the file over the single connection, while lib527
- * closes each easy handle after each single transfer. 526 and 527 use FTP,
- * while 528 uses the lib526 tool but use HTTP.
+ * $Id: lib530.c,v 1.2 2006-09-08 12:03:55 bagder Exp $
  */
 
 #include "test.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
 
 #define NUM_HANDLES 4
 
@@ -36,7 +22,6 @@ int test(char *URL)
   int running;
   char done=FALSE;
   CURLM *m;
-  int current=0;
   int i;
 
   /* In windows, this will init the winsock stuff */
