@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.157 2006-08-29 14:39:33 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.158 2006-09-08 12:46:41 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "19 Apr 2006" "libcurl 7.15.4" "libcurl Manual"
@@ -1077,13 +1077,15 @@ Pass a long as parameter. It contains the time in seconds that the transfer
 should be below the \fICURLOPT_LOW_SPEED_LIMIT\fP for the library to consider
 it too slow and abort.
 .IP CURLOPT_MAX_SEND_SPEED_LARGE
-Pass a curl_off_t as parameter.  If an upload exceeds this speed on cumulative 
-average during the transfer, the transfer will pause to keep the average rate 
-less than or equal to the parameter value.  (default: 0, unlimited)
+Pass a curl_off_t as parameter.  If an upload exceeds this speed on cumulative
+average during the transfer, the transfer will pause to keep the average rate
+less than or equal to the parameter value.  Defaults to unlimited
+speed. (Added in 7.15.5)
 .IP CURLOPT_MAX_RECV_SPEED_LARGE
-Pass a curl_off_t as parameter.  If an upload exceeds this speed on cumulative 
-average during the transfer, the transfer will pause to keep the average rate 
-less than or equal to the parameter value.  (default: 0, unlimited)
+Pass a curl_off_t as parameter.  If an upload exceeds this speed on cumulative
+average during the transfer, the transfer will pause to keep the average rate
+less than or equal to the parameter value. Defaults to unlimited speed. (Added
+in 7.15.5)
 .IP CURLOPT_MAXCONNECTS
 Pass a long. The set number will be the persistent connection cache size. The
 set amount will be the maximum amount of simultaneously open connections that
