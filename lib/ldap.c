@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.59 2006-09-07 21:49:22 bagder Exp $
+ * $Id: ldap.c,v 1.60 2006-09-08 05:18:07 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -551,7 +551,10 @@ static int _ldap_url_parse2 (const struct connectdata *conn, LDAPURLDesc *ludp)
   char *p, *q;
   int i;
 
-  if (!conn->path || conn->path[0] != '/' ||
+  if (!conn->data || 
+      !conn->data->reqdata ||
+      !conn->data->reqdata->path || 
+       conn->data->reqdata->path[0] != '/' ||
       !checkprefix(conn->protostr, conn->data->change.url))
      return LDAP_INVALID_SYNTAX;
 

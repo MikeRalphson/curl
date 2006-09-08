@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.56 2006-09-07 21:49:21 bagder Exp $
+ * $Id: hostip.h,v 1.57 2006-09-08 05:18:07 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -88,7 +88,7 @@
 #else
 #define CURL_ASYNC_SUCCESS CURLE_OK
 #define ares_cancel(x) do {} while(0)
-#define ares_destroy(x) do {} while (0);
+#define ares_destroy(x) do {} while(0)
 #endif
 
 /*

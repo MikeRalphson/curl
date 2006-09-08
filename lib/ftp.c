@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.369 2006-09-07 21:49:21 bagder Exp $
+ * $Id: ftp.c,v 1.370 2006-09-08 05:18:07 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1162,7 +1162,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   if(freeaddr)
     Curl_freeaddrinfo(addr);
 
-  ftp->count1 = PORT;
+  ftpc->count1 = PORT;
 
 #endif /* end of ipv4-specific code */
 

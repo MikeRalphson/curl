@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.99 2006-09-07 21:49:22 bagder Exp $
+ * $Id: multi.c,v 1.100 2006-09-08 05:18:07 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -193,11 +193,11 @@ static void multistate(struct Curl_one_easy *easy, CURLMstate state)
 
   easy->state = state;
 
+#ifdef CURLDEBUG
   if(easy->state > CURLM_STATE_CONNECT &&
      easy->state < CURLM_STATE_COMPLETED)
     index = easy->easy_conn->connectindex;
 
-#ifdef CURLDEBUG
   infof(easy->easy_handle,
         "STATE: %s => %s handle %p; (connection #%d) \n",
         statename[oldstate], statename[easy->state],
