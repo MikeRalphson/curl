@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.524 2006-09-09 19:11:54 giva Exp $
+ * $Id: url.c,v 1.525 2006-09-09 19:13:13 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -173,7 +173,7 @@ static void conn_free(struct connectdata *conn);
 extern sigjmp_buf curl_jmpenv;
 #endif
 
-#ifdef SIGALARM
+#ifdef SIGALRM
 static
 RETSIGTYPE alarmfunc(int sig)
 {
