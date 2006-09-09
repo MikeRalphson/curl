@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.371 2006-09-08 22:17:39 bagder Exp $
+ * $Id: ftp.c,v 1.372 2006-09-09 11:45:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -228,7 +228,7 @@ static CURLcode AllowServerConnect(struct connectdata *conn)
       socklen_t size = (socklen_t) sizeof(add);
 
       if(0 == getsockname(sock, (struct sockaddr *) &add, &size)) {
-	size = sizeof(add);
+        size = sizeof(add);
 
         s=accept(sock, (struct sockaddr *) &add, &size);
       }
@@ -1082,7 +1082,6 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   if(!addr) {
     /* pick a suitable default here */
 
- 
     if (getsockname(conn->sock[FIRSTSOCKET],
                     (struct sockaddr *)&sa, &sslen)) {
       failf(data, "getsockname() failed: %s",
