@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib525.c,v 1.2 2006-06-09 08:25:16 bagder Exp $
+ * $Id: lib525.c,v 1.3 2006-09-09 16:55:21 giva Exp $
  */
 
 #include "test.h"
@@ -24,6 +24,11 @@ int test(char *URL)
   int running;
   char done=FALSE;
   CURLM *m;
+
+  if (!arg2) {
+    fprintf(stderr, "Usage: lib525 [url] [uploadfile]\n");
+    return -1;
+  }
 
   /* get the file size of the local file */
   hd = open(arg2, O_RDONLY) ;
