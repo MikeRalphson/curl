@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.83 2006-09-07 21:49:21 bagder Exp $
+ * $Id: easy.c,v 1.84 2006-09-09 16:36:05 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -610,6 +610,12 @@ CURL *curl_easy_duphandle(CURL *incurl)
     /* If we use ares, we setup a new ares channel for the new handle */
     if(ARES_SUCCESS != ares_init(&outcurl->state.areschannel))
       break;
+#endif
+
+#if defined(CURL_DOES_CONVERSIONS) && defined(HAVE_ICONV)
+  outcurl->outbound_cd = data->outbound_cd;
+  outcurl->inbound_cd  = data->inbound_cd;
+  outcurl->utf8_cd     = data->utf8_cd;
 #endif
 
     Curl_easy_initHandleData(outcurl);
