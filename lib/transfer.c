@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.310 2006-09-07 21:49:22 bagder Exp $
+ * $Id: transfer.c,v 1.311 2006-09-10 23:37:42 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -343,7 +343,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
         didwhat |= KEEP_READ;
         /* indicates data of zero size, i.e. empty file */
-        is_empty_data = (nread == 0 && k->bodywrites == 0);
+        is_empty_data = (bool)((nread == 0) && (k->bodywrites == 0));
 
         /* NULL terminate, allowing string ops to be used */
         if (0 < nread || is_empty_data) {
@@ -1484,7 +1484,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
   }
 
   /* Now update the "done" boolean we return */
-  *done = !k->keepon;
+  *done = (bool)(0 == k->keepon);
 
   return CURLE_OK;
 }

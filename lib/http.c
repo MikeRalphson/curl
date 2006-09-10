@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.294 2006-09-07 21:49:21 bagder Exp $
+ * $Id: http.c,v 1.295 2006-09-10 23:37:42 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -775,7 +775,7 @@ static size_t readmoredata(char *buffer,
     return 0;
 
   /* make sure that a HTTP request is never sent away chunked! */
-  conn->bits.forbidchunk= (http->sending == HTTPSEND_REQUEST)?TRUE:FALSE;
+  conn->bits.forbidchunk = (bool)(http->sending == HTTPSEND_REQUEST);
 
   if(http->postsize <= (curl_off_t)fullsize) {
     memcpy(buffer, http->postdata, (size_t)http->postsize);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.156 2006-07-19 21:14:02 yangtse Exp $
+ * $Id: ssluse.c,v 1.157 2006-09-10 23:37:42 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -158,14 +158,14 @@ static int passwd_callback(char *buf, int num, int verify
 #define seed_enough(x) rand_enough()
 static bool rand_enough(void)
 {
-  return RAND_status()?TRUE:FALSE;
+  return (bool)(0 != RAND_status());
 }
 #else
 #define seed_enough(x) rand_enough(x)
 static bool rand_enough(int nread)
 {
   /* this is a very silly decision to make */
-  return (nread > 500)?TRUE:FALSE;
+  return (bool)(nread > 500);
 }
 #endif
 
