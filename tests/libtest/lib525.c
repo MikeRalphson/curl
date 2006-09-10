@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib525.c,v 1.3 2006-09-09 16:55:21 giva Exp $
+ * $Id: lib525.c,v 1.4 2006-09-10 19:01:04 giva Exp $
  */
 
 #include "test.h"
@@ -114,7 +114,7 @@ int test(char *URL)
       break;
     }
 
-    if (select(max_fd+1, &rd, &wr, &exc, &interval) == -1) {
+    if (select_test(max_fd+1, &rd, &wr, &exc, &interval) == -1) {
       fprintf(stderr, "bad select??\n");
       res = 195;
       break;

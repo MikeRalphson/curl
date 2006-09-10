@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.2 2006-09-08 12:03:55 bagder Exp $
+ * $Id: lib530.c,v 1.3 2006-09-10 19:01:04 giva Exp $
  */
 
 #include "test.h"
@@ -83,7 +83,7 @@ int test(char *URL)
       break;
     }
 
-    if (select(max_fd+1, &rd, &wr, &exc, &interval) == -1) {
+    if (select_test(max_fd+1, &rd, &wr, &exc, &interval) == -1) {
       fprintf(stderr, "bad select??\n");
       res = 195;
       break;

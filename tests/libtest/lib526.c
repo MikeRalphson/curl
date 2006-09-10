@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib526.c,v 1.1 2006-09-07 21:49:23 bagder Exp $
+ * $Id: lib526.c,v 1.2 2006-09-10 19:01:04 giva Exp $
  */
 
 /*
@@ -106,7 +106,7 @@ int test(char *URL)
       break;
     }
 
-    if (select(max_fd+1, &rd, &wr, &exc, &interval) == -1) {
+    if (select_test(max_fd+1, &rd, &wr, &exc, &interval) == -1) {
       fprintf(stderr, "bad select??\n");
       res = 195;
       break;
