@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.299 2006-09-07 21:49:22 bagder Exp $
+ * $Id: urldata.h,v 1.300 2006-09-10 22:15:32 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -116,6 +116,8 @@
 /* Initial size of the buffer to store headers in, it'll be enlarged in case
    of need. */
 #define HEADERSIZE 256
+
+#define CURLEASY_MAGIC_NUMBER 0xc0dedbad
 
 /* Just a convenience macro to get the larger value out of two given.
    We prefix with CURL to prevent name collisions. */
@@ -1292,6 +1294,7 @@ struct SessionHandle {
   iconv_t inbound_cd;          /* for translating from the network encoding */
   iconv_t utf8_cd;             /* for translating to UTF8 */
 #endif /* CURL_DOES_CONVERSIONS && HAVE_ICONV */
+  unsigned int magic;          /* set to a CURLEASY_MAGIC_NUMBER */
 };
 
 #define LIBCURL_NAME "libcurl"

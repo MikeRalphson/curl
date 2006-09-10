@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.525 2006-09-09 19:13:13 giva Exp $
+ * $Id: url.c,v 1.526 2006-09-10 22:15:32 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -214,6 +214,8 @@ CURLcode Curl_close(struct SessionHandle *data)
 {
   struct Curl_multi *m = data->multi;
 
+  data->magic = 0; /* force a clear */
+
   if(m)
     /* This handle is still part of a multi handle, take care of this first
        and detach this handle from there. */
@@ -373,6 +375,8 @@ CURLcode Curl_open(struct SessionHandle **curl)
   if(!data)
     /* this is a very serious error */
     return CURLE_OUT_OF_MEMORY;
+
+  data->magic = CURLEASY_MAGIC_NUMBER;
 
 #ifdef USE_ARES
   if(ARES_SUCCESS != ares_init(&data->state.areschannel)) {
