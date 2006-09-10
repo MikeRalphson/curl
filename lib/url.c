@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.527 2006-09-10 23:37:42 yangtse Exp $
+ * $Id: url.c,v 1.528 2006-09-10 23:45:54 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -575,7 +575,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * Verbose means infof() calls that give a lot of information about
      * the connection and transfer procedures as well as internal choices.
      */
-    data->set.verbose = = (bool)(0 != va_arg(param, long));
+    data->set.verbose = (bool)(0 != va_arg(param, long));
     break;
   case CURLOPT_HEADER:
     /*
