@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.530 2006-09-11 17:18:19 bagder Exp $
+ * $Id: url.c,v 1.531 2006-09-11 20:50:58 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2002,7 +2002,7 @@ ConnectionKillOne(struct SessionHandle *data)
   for(i=0; data->state.connc && (i< data->state.connc->num); i++) {
     conn = data->state.connc->connects[i];
 
-    if(!conn)
+    if(!conn || conn->inuse)
       continue;
 
     /*
@@ -2078,7 +2078,10 @@ ConnectionStore(struct SessionHandle *data,
   if(i == data->state.connc->num) {
     /* there was no room available, kill one */
     i = ConnectionKillOne(data);
-    infof(data, "Connection (#%d) was killed to make room\n", i);
+    if(-1 != i)
+      infof(data, "Connection (#%d) was killed to make room\n", i);
+    else
+      infof(data, "This connection did not fit in the connection cache\n");
   }
 
   conn->connectindex = i; /* Make the child know where the pointer to this
