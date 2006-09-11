@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.38 2006-07-22 15:38:36 giva Exp $ */
+/* $Id: ares_init.c,v 1.39 2006-09-11 20:25:13 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -373,7 +373,8 @@ static int get_iphlpapi_dns_info (char *ret_buf, size_t ret_size)
     printf ("DNS Servers:\n"
             "    %s (primary)\n", fi->DnsServerList.IpAddress.String);
   }
-  if (inet_addr(fi->DnsServerList.IpAddress.String) != INADDR_NONE &&
+  if (strlen(fi->DnsServerList.IpAddress.String) > 0 &&
+      inet_addr(fi->DnsServerList.IpAddress.String) != INADDR_NONE &&
       left > ip_size)
   {
     ret += sprintf (ret, "%s,", fi->DnsServerList.IpAddress.String);
