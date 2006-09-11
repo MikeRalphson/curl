@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.307 2006-09-03 13:45:42 giva Exp $
+ * $Id: curl.h,v 1.308 2006-09-11 17:18:18 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1036,6 +1036,10 @@ typedef enum {
   /* callback function for setting socket options */
   CINIT(SOCKOPTFUNCTION, FUNCTIONPOINT, 148),
   CINIT(SOCKOPTDATA, OBJECTPOINT, 149),
+
+  /* set to 0 to disable session ID re-use for this transfer, default is
+     enabled (== 1) */
+  CINIT(SSL_SESSIONID_CACHE, LONG, 150),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

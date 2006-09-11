@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib526.c,v 1.2 2006-09-10 19:01:04 giva Exp $
+ * $Id: lib526.c,v 1.3 2006-09-11 17:18:19 bagder Exp $
  */
 
 /*
@@ -71,6 +71,9 @@ int test(char *URL)
       res = (int)curl_multi_perform(m, &running);
       if (running <= 0) {
 #ifdef LIB527
+        /* NOTE: this code does not remove the handle from the multi handle
+           here, which would be the nice, sane and documented way of working.
+           This however tests that the API survives this abuse gracefully. */
         curl_easy_cleanup(curl[current]);
 #endif
         if(++current < NUM_HANDLES) {

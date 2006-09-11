@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.300 2006-09-10 22:15:32 bagder Exp $
+ * $Id: urldata.h,v 1.301 2006-09-11 17:18:19 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -178,8 +178,9 @@ struct ssl_config_data {
   char *egdsocket;       /* path to file containing the EGD daemon socket */
   char *cipher_list;     /* list of ciphers to use */
   long numsessions;      /* SSL session id cache size */
-  curl_ssl_ctx_callback fsslctx;        /* function to initialize ssl ctx */
-  void *fsslctxp;       /*parameter for call back */
+  curl_ssl_ctx_callback fsslctx; /* function to initialize ssl ctx */
+  void *fsslctxp;        /* parameter for call back */
+  bool sessionid;        /* cache session IDs or not */
 };
 
 /* information stored about one single SSL session */
