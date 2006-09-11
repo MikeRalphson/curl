@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.528 2006-09-10 23:45:54 yangtse Exp $
+ * $Id: url.c,v 1.529 2006-09-11 11:25:47 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1688,9 +1688,10 @@ static void conn_free(struct connectdata *conn)
 
 CURLcode Curl_disconnect(struct connectdata *conn)
 {
-  struct SessionHandle *data = conn->data;
+  struct SessionHandle *data;
   if(!conn)
     return CURLE_OK; /* this is closed and fine already */
+  data = conn->data;
 
 #if defined(CURLDEBUG) && defined(AGGRESIVE_TEST)
   /* scan for DNS cache entries still marked as in use */
