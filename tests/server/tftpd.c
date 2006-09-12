@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.19 2006-08-14 17:00:09 yangtse Exp $
+ * $Id: tftpd.c,v 1.20 2006-09-12 01:17:17 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -458,7 +458,7 @@ int main(int argc, char **argv)
     }
   }
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if defined(WIN32) && !defined(__CYGWIN__)
   win32_init();
   atexit(win32_cleanup);
 #endif

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.5 2006-01-09 13:17:14 bagder Exp $
+ * $Id: resolve.c,v 1.6 2006-09-12 01:17:17 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if defined(WIN32) && !defined(__CYGWIN__)
   win32_init();
   atexit(win32_cleanup);
 #endif

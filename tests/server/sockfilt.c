@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.21 2006-07-19 15:28:30 yangtse Exp $
+ * $Id: sockfilt.c,v 1.22 2006-09-12 01:17:17 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -552,7 +552,7 @@ int main(int argc, char *argv[])
     }
   }
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#if defined(WIN32) && !defined(__CYGWIN__)
   win32_init();
   atexit(win32_cleanup);
 #else

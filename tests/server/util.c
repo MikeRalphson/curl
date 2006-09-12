@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.7 2006-05-24 21:39:52 bagder Exp $
+ * $Id: util.c,v 1.8 2006-09-12 01:17:17 yangtse Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -61,7 +61,7 @@
  */
 int ourerrno(void)
 {
-#ifdef WIN32
+#if defined(WIN32) && !defined(__CYGWIN__)
   return (int)GetLastError();
 #else
   return errno;
