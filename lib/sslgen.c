@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.10 2006-09-11 17:18:19 bagder Exp $
+ * $Id: sslgen.c,v 1.11 2006-09-12 23:51:01 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -68,10 +68,10 @@ static bool safe_strequal(char* str1, char* str2)
 {
   if(str1 && str2)
     /* both pointers point to something then compare them */
-    return strequal(str1, str2);
+    return (bool)(0 != strequal(str1, str2));
   else
     /* if both pointers are NULL then treat them as equal */
-    return (!str1 && !str2);
+    return (bool)(!str1 && !str2);
 }
 
 bool

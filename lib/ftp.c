@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.374 2006-09-10 23:37:42 yangtse Exp $
+ * $Id: ftp.c,v 1.375 2006-09-12 23:51:01 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -173,7 +173,7 @@ static void freedirs(struct connectdata *conn)
 */
 static bool isBadFtpString(const char *string)
 {
-  return strchr(string, '\r') != NULL || strchr(string, '\n') != NULL;
+  return (bool)((NULL != strchr(string, '\r')) || (NULL != strchr(string, '\n')));
 }
 
 /***********************************************************************

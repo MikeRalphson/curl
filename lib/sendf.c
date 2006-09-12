@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.105 2006-09-07 21:49:22 bagder Exp $
+ * $Id: sendf.c,v 1.106 2006-09-12 23:51:01 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -477,7 +477,7 @@ int Curl_read(struct connectdata *conn, /* connection data */
 
   conn->bits.stream_was_rewound = FALSE;
 
-  *n = bytestocopy;
+  *n = (ssize_t)bytestocopy;
 
   if (bytesremaining == 0) {
       return CURLE_OK;

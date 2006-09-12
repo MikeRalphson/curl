@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.295 2006-09-10 23:37:42 yangtse Exp $
+ * $Id: http.c,v 1.296 2006-09-12 23:51:01 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -455,7 +455,7 @@ Curl_http_output_auth(struct connectdata *conn,
       if(auth) {
         infof(data, "Proxy auth using %s with user '%s'\n",
               auth, conn->proxyuser?conn->proxyuser:"");
-        authproxy->multi = !authproxy->done;
+        authproxy->multi = (bool)(!authproxy->done);
       }
       else
         authproxy->multi = FALSE;
@@ -525,7 +525,7 @@ Curl_http_output_auth(struct connectdata *conn,
         infof(data, "Server auth using %s with user '%s'\n",
               auth, conn->user);
 
-        authhost->multi = !authhost->done;
+        authhost->multi = (bool)(!authhost->done);
       }
       else
         authhost->multi = FALSE;

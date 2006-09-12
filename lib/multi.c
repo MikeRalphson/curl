@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.103 2006-09-11 17:18:18 bagder Exp $
+ * $Id: multi.c,v 1.104 2006-09-12 23:51:01 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -706,7 +706,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
   do {
 
     if(!GOOD_EASY_HANDLE(easy->easy_handle))
-      return CURLE_BAD_FUNCTION_ARGUMENT;
+      return CURLM_BAD_EASY_HANDLE;
 
     if (easy->easy_handle->state.pipe_broke) {
       infof(easy->easy_handle, "Pipe broke: handle 0x%x\n", easy);

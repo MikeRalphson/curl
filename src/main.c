@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.368 2006-09-11 17:18:19 bagder Exp $
+ * $Id: main.c,v 1.369 2006-09-12 23:51:02 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1462,7 +1462,11 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
     /* we can loop here if we have multiple single-letters */
 
     if(!longopt) {
-      letter = parse?(char)*parse:'\0';
+      if(NULL != parse) {
+        letter = (char)*parse;
+      else {
+        letter = '\0';
+      }
       subletter='\0';
     }
     else {
@@ -3048,7 +3052,7 @@ int my_trace(CURL *handle, curl_infotype type,
       break;
     }
 
-    newl = (size && (data[size-1] != '\n'));
+    newl = (bool)(size && (data[size-1] != '\n'));
 
     return 0;
   }
