@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.8 2006-09-12 01:17:17 yangtse Exp $
+ * $Id: util.c,v 1.9 2006-09-13 13:41:53 giva Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -54,6 +54,10 @@
 #include "curlx.h" /* from the private lib dir */
 #include "getpart.h"
 #include "util.h"
+
+#if defined(ENABLE_IPV6) && defined(__MINGW32__)
+const struct in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};
+#endif
 
 /*
  * ourerrno() returns the errno (or equivalent) on this platform to
@@ -97,7 +101,7 @@ void logmsg(const char *msg, ...)
   }
 }
 
-#if defined(WIN32) && !defined(__CYGWIN__)
+#if defined(REAL_WIN32)
 /* use instead of perror() on generic windows */
 void win32_perror (const char *msg)
 {
@@ -111,9 +115,7 @@ void win32_perror (const char *msg)
      fprintf(stderr, "%s: ", msg);
   fprintf(stderr, "%s\n", buf);
 }
-#endif
 
-#if defined(WIN32) && !defined(__CYGWIN__)
 void win32_init(void)
 {
   WORD wVersionRequested;
@@ -143,7 +145,7 @@ void win32_cleanup(void)
 {
   WSACleanup();
 }
-#endif
+#endif  /* REAL_WIN32 */
 
 /* set by the main code to point to where the test dir is */
 const char *path=".";
@@ -154,4 +156,3 @@ char *test2file(long testno)
   snprintf(filename, sizeof(filename), TEST_DATA_PATH, path, testno);
   return filename;
 }
-
