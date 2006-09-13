@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.205 2006-09-06 10:03:34 bagder Exp $
+# $Id: runtests.pl,v 1.206 2006-09-13 10:16:36 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2123,6 +2123,18 @@ if ( $TESTCASES eq "all") {
     my @cmds = grep { /^test([0-9]+)$/ && -f "$TESTDIR/$_" } readdir(DIR);
     closedir DIR;
 
+    my %dis;
+    open(D, "$TESTDIR/DISABLED");
+    while(<D>) {
+        if(/^ *\#/) {
+            # allow comments
+            next;
+        }
+        if($_ =~ /(\d+)/) {
+            $dis{$1}=$1; # disable this test number
+        }
+    }
+
     $TESTCASES=""; # start with no test cases
 
     # cut off everything but the digits
@@ -2131,6 +2143,11 @@ if ( $TESTCASES eq "all") {
     }
     # the the numbers from low to high
     for(sort { $a <=> $b } @cmds) {
+        if($dis{$_}) {
+            # skip disabled test cases
+            print STDERR "runtests.pl: disabling test $_\n";
+            next;
+        }
         $TESTCASES .= " $_";
     }
 }
