@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.533 2006-09-13 12:42:12 yangtse Exp $
+ * $Id: url.c,v 1.534 2006-09-15 08:47:55 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -158,6 +158,8 @@ static long ConnectionStore(struct SessionHandle *data,
                             struct connectdata *conn);
 static bool IsPipeliningPossible(struct SessionHandle *handle);
 static void conn_free(struct connectdata *conn);
+
+static void signalPipeClose(struct curl_llist *pipe);
 
 #define MAX_PIPELINE_LENGTH 5
 
@@ -1761,8 +1763,8 @@ CURLcode Curl_disconnect(struct connectdata *conn)
   Curl_ssl_close(conn);
 
   /* Indicate to all handles on the pipe that we're dead */
-  Curl_signalPipeClose(conn->send_pipe);
-  Curl_signalPipeClose(conn->recv_pipe);
+  signalPipeClose(conn->send_pipe);
+  signalPipeClose(conn->recv_pipe);
 
   conn_free(conn);
 
@@ -1848,7 +1850,7 @@ bool Curl_isHandleAtHead(struct SessionHandle *handle,
   return FALSE;
 }
 
-void Curl_signalPipeClose(struct curl_llist *pipe)
+static void signalPipeClose(struct curl_llist *pipe)
 {
   struct curl_llist_element *curr;
 
