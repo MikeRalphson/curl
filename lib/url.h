@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.26 2006-09-15 08:47:55 bagder Exp $
+ * $Id: url.h,v 1.27 2006-09-16 21:50:30 bagder Exp $
  ***************************************************************************/
 
 #include <stdarg.h> /* to make sure we have ap_list */
@@ -50,6 +50,10 @@ void Curl_safefree(void *ptr);
 struct conncache *Curl_mk_connc(int type);
 /* free a connection cache */
 void Curl_rm_connc(struct conncache *c);
+/* Change number of entries of a connection cache */
+CURLcode Curl_ch_connc(struct SessionHandle *data,
+                       struct conncache *c,
+                       long newamount);
 
 int Curl_protocol_getsock(struct connectdata *conn,
                           curl_socket_t *socks,

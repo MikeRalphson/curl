@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.301 2006-09-11 17:18:19 bagder Exp $
+ * $Id: urldata.h,v 1.302 2006-09-16 21:50:30 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -951,7 +951,7 @@ struct conncache {
   /* 'connects' will be an allocated array with pointers. If the pointer is
      set, it holds an allocated connection. */
   struct connectdata **connects;
-  long num;           /* size of the 'connects' array */
+  long num;           /* number of entries of the 'connects' array */
   enum {
     CONNCACHE_PRIVATE, /* used for an easy handle alone */
     CONNCACHE_MULTI    /* shared within a multi handle */
