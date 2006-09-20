@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.187 2006-09-11 17:18:18 bagder Exp $
+.\" * $Id: curl.1,v 1.188 2006-09-20 11:35:13 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "21 Mar 2006" "Curl 7.15.4" "Curl Manual"
@@ -326,7 +326,7 @@ certificate concatenated!
 If this option is used several times, the last one will be used.
 .IP "--cert-type <type>"
 (SSL) Tells curl what certificate type the provided certificate is in. PEM,
-DER and ENG are recognized types.
+DER and ENG are recognized types.  If not specified, PEM is assumed.
 
 If this option is used several times, the last one will be used.
 .IP "--cacert <CA certificate>"
@@ -548,7 +548,8 @@ separate file.
 If this option is used several times, the last one will be used.
 .IP "--key-type <type>"
 (SSL) Private key file type. Specify which type your \fI--key\fP provided
-private key is. DER, PEM and ENG are supported.
+private key is. DER, PEM and ENG are supported. If not specified, PEM is
+assumed.
 
 If this option is used several times, the last one will be used.
 .IP "--krb4 <level>"
