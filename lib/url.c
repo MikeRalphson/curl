@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.536 2006-09-20 12:03:50 bagder Exp $
+ * $Id: url.c,v 1.537 2006-09-20 21:49:43 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3698,8 +3698,9 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     if(atsign) {
       char proxyuser[MAX_CURL_USER_LENGTH];
       char proxypasswd[MAX_CURL_PASSWORD_LENGTH];
+      proxypasswd[0] = 0;
 
-      if(2 == sscanf(proxyptr,
+      if(1 <= sscanf(proxyptr,
                      "%" MAX_CURL_USER_LENGTH_TXT"[^:]:"
                      "%" MAX_CURL_PASSWORD_LENGTH_TXT "[^@]",
                      proxyuser, proxypasswd)) {
