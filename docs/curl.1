@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.189 2006-09-20 13:09:27 bagder Exp $
+.\" * $Id: curl.1,v 1.190 2006-09-21 22:15:05 danf Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "21 Mar 2006" "Curl 7.15.4" "Curl Manual"
@@ -1206,7 +1206,7 @@ not set.
 
 If this option is used several times, the last one will be used.
 .IP "-z/--time-cond <date expression>"
-(HTTP) Request a file that has been modified later than the given time and
+(HTTP/FTP) Request a file that has been modified later than the given time and
 date, or one that has been modified before that time. The date expression can
 be all sorts of date strings or if it doesn't match any internal ones, it
 tries to get the time from a given file name instead! See the
