@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.371 2006-09-23 19:37:24 bagder Exp $
+ * $Id: main.c,v 1.372 2006-09-23 20:25:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -515,6 +515,7 @@ static void help(void)
     "    --create-dirs   Create necessary local directory hierarchy",
     "    --crlf          Convert LF to CRLF in upload",
     " -f/--fail          Fail silently (no output at all) on HTTP errors (H)",
+    "    --ftp-alternative-to-user String to replace \"USER [name]\" (F)",
     "    --ftp-create-dirs Create the remote dirs if not present (F)",
     "    --ftp-method [multicwd/nocwd/singlecwd] Control CWD usage (F)",
     "    --ftp-pasv      Use PASV/EPSV instead of PORT (F)",
