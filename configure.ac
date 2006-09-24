@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.204 2006-07-28 14:19:03 yangtse Exp $
+# $Id: configure.ac,v 1.205 2006-09-24 22:03:01 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -747,7 +747,7 @@ AC_ARG_WITH(gssapi-includes,
 AC_ARG_WITH(gssapi-libs,
   AC_HELP_STRING([--with-gssapi-libs=DIR],
   		 [Specify location of GSSAPI libs]),
-  [ GSSAPI_LIBS="-L$withval"
+  [ GSSAPI_LIB_DIR="-L$withval"
     want_gss="yes" ]
 )
 
