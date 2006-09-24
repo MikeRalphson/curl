@@ -18,10 +18,19 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.2 2006-09-23 19:09:39 bagder Exp $
+ * $Id: socks.c,v 1.3 2006-09-24 23:55:53 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
+
+#include <string.h>
+
+#ifdef NEED_MALLOC_H
+#include <malloc.h>
+#endif
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
 
 #include "urldata.h"
 #include "sendf.h"
@@ -541,7 +550,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
     code = Curl_write(conn, sock, (char *)socksreq, packetsize, &written);
     if ((code != CURLE_OK) || (written != packetsize)) {
       failf(data, "Failed to send SOCKS5 connect request.");
-      return 1;
+      return CURLE_COULDNT_CONNECT;
     }
 
     result = blockread_all(conn, sock, (char *)socksreq, packetsize,
