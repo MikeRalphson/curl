@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.107 2006-09-21 20:52:59 bagder Exp $
+ * $Id: multi.c,v 1.108 2006-09-25 00:16:23 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -430,9 +430,9 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
        by default. */
     CURLcode res = Curl_ch_connc(easy_handle, multi->connc,
                                  multi->connc->num*4);
-    if(res)
+    if(res != CURLE_OK)
       /* TODO: we need to do some cleaning up here! */
-      return res;
+      return CURLM_OUT_OF_MEMORY;
   }
 
   /* increase the alive-counter */
