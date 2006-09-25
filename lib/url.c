@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.538 2006-09-23 19:07:20 bagder Exp $
+ * $Id: url.c,v 1.539 2006-09-25 00:05:39 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -395,7 +395,7 @@ CURLcode Curl_ch_connc(struct SessionHandle *data,
                        struct conncache *c,
                        long newamount)
 {
-  int i;
+  long i;
   struct connectdata **newptr;
 
   if(newamount < c->num) {
