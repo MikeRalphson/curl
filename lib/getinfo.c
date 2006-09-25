@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.52 2006-09-07 21:49:21 bagder Exp $
+ * $Id: getinfo.c,v 1.53 2006-09-25 00:54:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -214,8 +214,10 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
 #ifdef MSG_PEEK
       else {
         /* use the socket */
-        if(recv((int)c->sock[FIRSTSOCKET], (void*)&buf, 1, MSG_PEEK) == 0)
+        if(recv((RECV_TYPE_ARG1)c->sock[FIRSTSOCKET], (RECV_TYPE_ARG2)&buf,
+                (RECV_TYPE_ARG3)1, (RECV_TYPE_ARG4)MSG_PEEK) == 0) {
           *param_longp = -1;   /* FIN received */
+        }
       }
 #endif
     }
