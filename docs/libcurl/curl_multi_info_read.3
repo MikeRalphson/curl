@@ -1,4 +1,4 @@
-.\" $Id: curl_multi_info_read.3,v 1.5 2004-12-18 10:24:49 bagder Exp $
+.\" $Id: curl_multi_info_read.3,v 1.6 2006-09-27 21:15:36 bagder Exp $
 .\"
 .TH curl_multi_info_read 3 "18 Dec 2004" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -37,6 +37,12 @@ present in that struct and can thus be used in subsequent regular
      CURLcode result;   /* return code for transfer */
    } data;
  };
+
+When \fBmsg\fP is \fICURLMSG_DONE\fP, the message identifies a transfer that
+is done, and then \fBresult\fP contains the return code for the easy handle
+that just completed.
+
+At this point, there is no other \fBmsg\fP types defined.
 .SH "RETURN VALUE"
 A pointer to a filled-in struct, or NULL if it failed or ran out of
 structs. It also writes the number of messages left in the queue (after this
