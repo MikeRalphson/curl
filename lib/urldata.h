@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.302 2006-09-16 21:50:30 bagder Exp $
+ * $Id: urldata.h,v 1.303 2006-09-28 21:26:07 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1053,6 +1053,9 @@ struct UrlState {
      must keep it around and add it to the list of handles to kill once all
      its connections are gone */
   void *shared_conn;
+  bool closed; /* set to TRUE when curl_easy_cleanup() has been called on this
+                  handle, but it is kept around as mentioned for
+                  shared_conn */
 };
 
 

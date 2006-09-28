@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib525.c,v 1.4 2006-09-10 19:01:04 giva Exp $
+ * $Id: lib525.c,v 1.5 2006-09-28 21:26:07 bagder Exp $
  */
 
 #include "test.h"
@@ -123,9 +123,17 @@ int test(char *URL)
     res = CURLM_CALL_MULTI_PERFORM;
   }
 
+#ifdef LIB529
+  /* test 529 */
+  curl_multi_remove_handle(m, curl);
+  curl_multi_cleanup(m);
+  curl_easy_cleanup(curl);
+#else
+  /* test 525 */
   curl_multi_remove_handle(m, curl);
   curl_easy_cleanup(curl);
   curl_multi_cleanup(m);
+#endif
 
   fclose(hd_src); /* close the local file */
 

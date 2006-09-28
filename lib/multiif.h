@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multiif.h,v 1.5 2006-09-07 21:49:22 bagder Exp $
+ * $Id: multiif.h,v 1.6 2006-09-28 21:26:07 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -31,9 +31,6 @@ void Curl_expire(struct SessionHandle *data, long milli);
 void Curl_multi_rmeasy(void *multi, CURL *data);
 
 bool Curl_multi_canPipeline(struct Curl_multi* multi);
-
-void Curl_multi_add_closure(struct Curl_multi *multi,
-                            struct SessionHandle *data);
 
 /* the write bits start at bit 16 for the *getsock() bitmap */
 #define GETSOCK_WRITEBITSTART 16
