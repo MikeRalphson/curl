@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.303 2006-09-28 21:26:07 bagder Exp $
+ * $Id: urldata.h,v 1.304 2006-09-30 20:31:12 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -833,13 +833,6 @@ struct connectdata {
   /* data used for the asynch name resolve callback */
   struct Curl_async async;
 #endif
-
-  struct connectdata *sec_conn;   /* secondary connection for 3rd party
-                                     transfer */
-  char *sec_path;            /* The source path for FTP 3rd party */
-  char *sec_pathbuffer;
-
-  enum { NORMAL, SOURCE3RD, TARGET3RD } xfertype;
 
   /* These three are used for chunked-encoding trailer support */
   char *trailer; /* allocated buffer to store trailer in */

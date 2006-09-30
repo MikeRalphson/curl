@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.106 2006-09-12 23:51:01 yangtse Exp $
+ * $Id: sendf.c,v 1.107 2006-09-30 20:31:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -590,9 +590,7 @@ int Curl_debug(struct SessionHandle *data, curl_infotype type,
     }
 
     if(t) {
-      snprintf(buffer, sizeof(buffer), "[%s %s %s%s]", w, t,
-               conn->xfertype==NORMAL?"":
-               (conn->xfertype==SOURCE3RD?"source ":"target "),
+      snprintf(buffer, sizeof(buffer), "[%s %s %s]", w, t,
                conn->host.dispname);
       rc = showit(data, CURLINFO_TEXT, buffer, strlen(buffer));
       if(rc)
