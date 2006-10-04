@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.85 2006-09-09 18:23:29 giva Exp $
+ * $Id: easy.c,v 1.86 2006-10-04 21:11:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -654,6 +654,12 @@ CURL *curl_easy_duphandle(CURL *incurl)
 void curl_easy_reset(CURL *curl)
 {
   struct SessionHandle *data = (struct SessionHandle *)curl;
+
+  Curl_safefree(data->reqdata.pathbuffer);
+  data->reqdata.pathbuffer=NULL;
+
+  Curl_safefree(data->reqdata.proto.generic);
+  data->reqdata.proto.generic=NULL;
 
   /* zero out UserDefined data: */
   memset(&data->set, 0, sizeof(struct UserDefined));
