@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.207 2006-09-13 10:48:03 bagder Exp $
+# $Id: runtests.pl,v 1.208 2006-10-06 21:19:40 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1394,6 +1394,10 @@ sub singletest {
     }
     else {
         $CMDLINE="$LIBDIR/$tool";
+        if(! -f $CMDLINE) {
+            print "The tool set in the test case for this: '$tool' does not exist\n";
+            return -1;
+        }
         $DBGCURL=$CMDLINE;
     }
 
