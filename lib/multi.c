@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.111 2006-10-06 21:19:58 bagder Exp $
+ * $Id: multi.c,v 1.112 2006-10-07 21:04:57 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -197,9 +197,13 @@ static void multistate(struct Curl_one_easy *easy, CURLMstate state)
     "COMPLETED",
     "CANCELLED"
   };
-  CURLMstate oldstate = easy->state;
   long index = -1;
 #endif
+  CURLMstate oldstate = easy->state;
+
+  if(oldstate == state)
+    /* don't bother when the new state is the same as the old state */
+    return;
 
   easy->state = state;
 
