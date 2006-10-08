@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.1 2006-10-06 21:20:01 bagder Exp $
+ * $Id: lib533.c,v 1.2 2006-10-08 08:50:13 bagder Exp $
  */
 
 #include "test.h"
@@ -61,7 +61,7 @@ int test(char *URL)
           /* make us re-use the same handle all the time, and try resetting
              the handle first too */
           curl_easy_reset(curl);
-          curl_easy_setopt(curl, CURLOPT_URL, URL);
+          curl_easy_setopt(curl, CURLOPT_URL, arg2);
           curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
 
           /* re-add it */
