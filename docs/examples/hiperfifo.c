@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: hiperfifo.c,v 1.1 2006-09-12 11:25:00 bagder Exp $
+ * $Id: hiperfifo.c,v 1.2 2006-10-08 22:19:25 bagder Exp $
  *
  * Example application source code using the multi socket interface to
  * download many files at once.
@@ -98,6 +98,9 @@ static void update_timeout(GlobalInfo *g)
   struct timeval timeout;
 
   curl_multi_timeout(g->multi, &timeout_ms);
+  if(timeout_ms < 0)
+    return;
+
   timeout.tv_sec = timeout_ms/1000;
   timeout.tv_usec = (timeout_ms%1000)*1000;
   evtimer_add(&g->timer_event, &timeout);
@@ -152,6 +155,7 @@ static void check_run_count(GlobalInfo *g)
         if (msg->msg == CURLMSG_DONE) {
           easy=msg->easy_handle;
           res=msg->data.result;
+          break;
         }
       }
       if (easy) {
