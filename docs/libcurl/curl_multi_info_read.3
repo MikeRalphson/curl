@@ -1,4 +1,4 @@
-.\" $Id: curl_multi_info_read.3,v 1.6 2006-09-27 21:15:36 bagder Exp $
+.\" $Id: curl_multi_info_read.3,v 1.7 2006-10-08 21:41:22 bagder Exp $
 .\"
 .TH curl_multi_info_read 3 "18 Dec 2004" "libcurl 7.10.3" "libcurl Manual"
 .SH NAME
@@ -19,6 +19,11 @@ Repeated calls to this function will return a new struct each time, until a
 NULL is returned as a signal that there is no more to get at this point. The
 integer pointed to with \fImsgs_in_queue\fP will contain the number of
 remaining messages after this function was called.
+
+When you fetch a message using this function, it is removed from the internal
+queue so calling this function again will not return the same message
+again. It will instead return new messages at each new invoke until the queue
+is emptied.
 
 The data the returned pointer points to will not survive calling
 \fIcurl_multi_cleanup(3)\fP or \fIcurl_multi_remove_handle(3)\fP.
