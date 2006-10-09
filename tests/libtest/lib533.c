@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.3 2006-10-08 10:51:53 bagder Exp $
+ * $Id: lib533.c,v 1.4 2006-10-09 06:58:06 bagder Exp $
  */
 
 /* used for test case 533 and 534 */
@@ -34,9 +34,8 @@ int test(char *URL)
     return 100 + i; /* major bad */
 
   curl_easy_setopt(curl, CURLOPT_URL, URL);
-
-  /* go verbose */
   curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+  curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1);
 
   m = curl_multi_init();
 
@@ -65,6 +64,7 @@ int test(char *URL)
           curl_easy_reset(curl);
           curl_easy_setopt(curl, CURLOPT_URL, arg2);
           curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+          curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1);
 
           /* re-add it */
           res = (int)curl_multi_add_handle(m, curl);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.112 2006-10-07 21:04:57 bagder Exp $
+ * $Id: multi.c,v 1.113 2006-10-09 06:58:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1081,9 +1081,14 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
       break;
 
     case CURLM_STATE_WAITPERFORM:
-      infof(easy->easy_handle, "Connection #%d: recv pipe size = %d\n",
+#ifdef CURLDEBUG
+      infof(easy->easy_handle, "Conn %d recv pipe %d inuse %d athead %d\n",
             easy->easy_conn->connectindex,
-            easy->easy_conn->recv_pipe->size);
+            easy->easy_conn->recv_pipe->size,
+            easy->easy_conn->readchannel_inuse,
+            Curl_isHandleAtHead(easy->easy_handle,
+                                easy->easy_conn->recv_pipe));
+#endif
       /* Wait for our turn to PERFORM */
       if (!easy->easy_conn->readchannel_inuse &&
           Curl_isHandleAtHead(easy->easy_handle,

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.27 2006-09-16 21:50:30 bagder Exp $
+ * $Id: url.h,v 1.28 2006-10-09 06:58:05 bagder Exp $
  ***************************************************************************/
 
 #include <stdarg.h> /* to make sure we have ap_list */
@@ -64,8 +64,8 @@ int Curl_doing_getsock(struct connectdata *conn,
 
 void Curl_addHandleToPipeline(struct SessionHandle *handle,
                               struct curl_llist *pipe);
-void Curl_removeHandleFromPipeline(struct SessionHandle *handle,
-                                   struct curl_llist *pipe);
+int Curl_removeHandleFromPipeline(struct SessionHandle *handle,
+                                  struct curl_llist *pipe);
 bool Curl_isHandleAtHead(struct SessionHandle *handle,
                          struct curl_llist *pipe);
 
