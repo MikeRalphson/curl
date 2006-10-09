@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.114 2006-10-09 11:21:40 yangtse Exp $
+ * $Id: multi.c,v 1.115 2006-10-09 21:24:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1246,6 +1246,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
          * If an error was returned, and we aren't in completed state now,
          * then we go to completed and consider this transfer aborted.
          */
+        easy->easy_handle->state.is_in_pipeline = FALSE;
         if(easy->easy_conn) {
           /* if this has a connection, unsubscribe from the pipelines */
           easy->easy_conn->writechannel_inuse = FALSE;
