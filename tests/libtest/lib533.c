@@ -5,10 +5,10 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.5 2006-10-09 11:21:40 yangtse Exp $
+ * $Id: lib533.c,v 1.6 2006-10-09 21:26:09 bagder Exp $
  */
 
-/* used for test case 533 and 534 */
+/* used for test case 533, 534 and 535 */
 
 #include "test.h"
 
