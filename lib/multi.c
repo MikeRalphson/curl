@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.113 2006-10-09 06:58:05 bagder Exp $
+ * $Id: multi.c,v 1.114 2006-10-09 11:21:40 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -377,7 +377,7 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
   cl = multi->closure;
   while(cl) {
     struct closure *next = cl->next;
-    if(cl->easy_handle == easy_handle) {
+    if(cl->easy_handle == (struct SessionHandle *)easy_handle) {
       /* remove this handle from the closure list */
       free(cl);
       if(prev)

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.4 2006-10-09 06:58:06 bagder Exp $
+ * $Id: lib533.c,v 1.5 2006-10-09 11:21:40 yangtse Exp $
  */
 
 /* used for test case 533 and 534 */
@@ -24,14 +24,13 @@ int test(char *URL)
   char done=FALSE;
   CURLM *m;
   int current=0;
-  int i;
 
   /* In windows, this will init the winsock stuff */
   curl_global_init(CURL_GLOBAL_ALL);
 
   curl = curl_easy_init();
   if(!curl)
-    return 100 + i; /* major bad */
+    return 100; /* major bad */
 
   curl_easy_setopt(curl, CURLOPT_URL, URL);
   curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
