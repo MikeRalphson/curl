@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib536.c,v 1.1 2006-10-09 21:29:53 bagder Exp $
+ * $Id: lib536.c,v 1.2 2006-10-10 23:58:02 yangtse Exp $
  */
 
 #include "test.h"
@@ -41,9 +41,9 @@ static CURLMcode perform(CURLM * multi)
 		FD_ZERO(&fdexcep);
 		curl_multi_fdset(multi, &fdread, &fdwrite, &fdexcep, &maxfd);
 		if (maxfd < 0)
-			return -1;
+			return (CURLMcode) ~CURLM_OK;
 		if (select(maxfd + 1, &fdread, &fdwrite, &fdexcep, 0) == -1)
-			return -1;
+			return (CURLMcode) ~CURLM_OK;
 	}
 }
 
