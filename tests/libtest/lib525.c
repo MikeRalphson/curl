@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib525.c,v 1.5 2006-09-28 21:26:07 bagder Exp $
+ * $Id: lib525.c,v 1.6 2006-10-10 23:50:37 yangtse Exp $
  */
 
 #include "test.h"
@@ -45,9 +45,11 @@ int test(char *URL)
 
   /* get a curl handle */
   curl = curl_easy_init();
-  if(!curl)
+  if(!curl) {
+    fclose(hd_src);
+    curl_global_cleanup();
     return 100; /* major bad */
-
+  }
 
   /* enable uploading */
   curl_easy_setopt(curl, CURLOPT_UPLOAD, TRUE) ;

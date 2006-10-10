@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.6 2006-10-09 21:26:09 bagder Exp $
+ * $Id: lib533.c,v 1.7 2006-10-10 23:50:37 yangtse Exp $
  */
 
 /* used for test case 533, 534 and 535 */
@@ -29,8 +29,10 @@ int test(char *URL)
   curl_global_init(CURL_GLOBAL_ALL);
 
   curl = curl_easy_init();
-  if(!curl)
+  if(!curl) {
+    curl_global_cleanup();
     return 100; /* major bad */
+  }
 
   curl_easy_setopt(curl, CURLOPT_URL, URL);
   curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.3 2006-09-10 19:01:04 giva Exp $
+ * $Id: lib530.c,v 1.4 2006-10-10 23:50:37 yangtse Exp $
  */
 
 #include "test.h"
@@ -32,8 +32,10 @@ int test(char *URL)
   /* get NUM_HANDLES easy handles */
   for(i=0; i < NUM_HANDLES; i++) {
     curl[i] = curl_easy_init();
-    if(!curl[i])
+    if(!curl[i]) {
+      curl_global_cleanup();
       return 100 + i; /* major bad */
+    }
     curl_easy_setopt(curl[i], CURLOPT_URL, URL);
 
     /* go verbose */
