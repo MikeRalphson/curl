@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.24 2006-07-05 23:10:38 yangtse Exp $ */
+/* $Id: ares.h,v 1.25 2006-10-11 16:01:16 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -31,7 +31,7 @@
   #include <netinet/in.h>
   #include <sys/socket.h>
   #include <tcp.h>
-#elif defined(WIN32) && !defined(__CYGWIN__)
+#elif defined(WIN32)
   #include <winsock2.h>
   #include <windows.h>
 #else

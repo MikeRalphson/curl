@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.92 2006-09-12 01:17:17 yangtse Exp $
+ * $Id: sws.c,v 1.93 2006-10-11 16:01:21 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -773,7 +773,7 @@ int main(int argc, char *argv[])
     }
   }
 
-#if defined(WIN32) && !defined(__CYGWIN__)
+#ifdef WIN32
   win32_init();
   atexit(win32_cleanup);
 #else

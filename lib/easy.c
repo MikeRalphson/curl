@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.86 2006-10-04 21:11:08 bagder Exp $
+ * $Id: easy.c,v 1.87 2006-10-11 16:01:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -40,7 +40,7 @@
 
 #include "strequal.h"
 
-#if defined(WIN32) && !defined(__CYGWIN__)
+#ifdef WIN32
 #include <time.h>
 #include <io.h>
 #else

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.379 2006-10-02 13:00:54 bagder Exp $
+ * $Id: ftp.c,v 1.380 2006-10-11 16:01:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -34,7 +34,7 @@
 #include <unistd.h>
 #endif
 
-#if defined(WIN32) && !defined(__CYGWIN__)
+#ifdef WIN32
 
 #else /* probably some kind of unix */
 #ifdef HAVE_SYS_SOCKET_H

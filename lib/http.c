@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.296 2006-09-12 23:51:01 yangtse Exp $
+ * $Id: http.c,v 1.297 2006-10-11 16:01:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -37,7 +37,7 @@
 #include <sys/stat.h>
 #endif
 
-#if defined(WIN32) && !defined(__CYGWIN__)
+#ifdef WIN32
 #include <time.h>
 #include <io.h>
 #else
