@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.h,v 1.27 2006-10-11 16:01:18 yangtse Exp $
+ * $Id: timeval.h,v 1.28 2006-10-12 03:57:33 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -30,11 +30,14 @@
 
 #include "setup.h"
 
-#ifdef WIN32
-#include <time.h>
-#else
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
+#ifdef TIME_WITH_SYS_TIME
+#include <time.h>
+#endif
+#else
+#ifdef HAVE_TIME_H
+#include <time.h>
 #endif
 #endif
 
