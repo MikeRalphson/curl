@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.196 2006-10-09 14:54:11 bagder Exp $
+.\" * $Id: curl.1,v 1.197 2006-10-12 08:52:20 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "23 Sep 2006" "Curl 7.16.0" "Curl Manual"
@@ -545,6 +545,9 @@ If this option is used several times, each occurrence will toggle this on/off.
 and transfers. All SSL connections are attempted to be made secure by using
 the CA certificate bundle installed by default. This makes all connections
 considered "insecure" to fail unless \fI-k/--insecure\fP is used.
+
+See this online resource for further details:
+\fBhttp://curl.haxx.se/docs/sslcerts.html\fP
 
 If this option is used twice, the second time will again disable it.
 .IP "--key <key>"
