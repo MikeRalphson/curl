@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.375 2006-10-11 16:01:19 yangtse Exp $
+ * $Id: main.c,v 1.376 2006-10-12 08:14:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3048,7 +3048,7 @@ int my_trace(CURL *handle, curl_infotype type,
     text = "<= Recv SSL data";
     break;
   case CURLINFO_SSL_DATA_OUT:
-    text = "<= Send SSL data";
+    text = "=> Send SSL data";
     break;
   }
 
