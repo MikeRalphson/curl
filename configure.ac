@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.205 2006-09-24 22:03:01 bagder Exp $
+# $Id: configure.ac,v 1.206 2006-10-13 01:35:14 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1527,6 +1527,7 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_SIZE_T
 AC_HEADER_TIME
+CURL_CHECK_STRUCT_TIMEVAL
 
 AC_CHECK_SIZEOF(curl_off_t, ,[
 #include <stdio.h>
