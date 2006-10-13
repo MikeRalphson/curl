@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: 10-at-a-time.c,v 1.1 2006-09-12 07:54:55 bagder Exp $
+ * $Id: 10-at-a-time.c,v 1.2 2006-10-13 14:01:19 bagder Exp $
  *
  * Example application source code using the multi interface to download many
  * files, but with a capped maximum amount of simultaneous transfers.
@@ -122,6 +122,9 @@ int main(void)
         fprintf(stderr, "E: curl_multi_fdset\n");
         return EXIT_FAILURE;
       }
+
+      /* In a real-world program you OF COURSE check the return that maxfd is
+         bigger than -1 so that the call to select() below makes sense! */
 
       if (curl_multi_timeout(cm, &L)) {
         fprintf(stderr, "E: curl_multi_timeout\n");
