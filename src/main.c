@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.376 2006-10-12 08:14:13 bagder Exp $
+ * $Id: main.c,v 1.377 2006-10-13 21:02:29 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2986,11 +2986,12 @@ int my_trace(CURL *handle, curl_infotype type,
      * own.
      */
     static const char * const s_infotype[] = {
-      "*", "<", ">"
+      "*", "<", ">", "{", "}", "{", "}"
     };
     size_t i;
     size_t st=0;
     static bool newl = FALSE;
+    static bool traced_data = FALSE;
 
     switch(type) {
     case CURLINFO_HEADER_OUT:
@@ -3008,19 +3009,34 @@ int my_trace(CURL *handle, curl_infotype type,
       if(!newl)
         fprintf(config->trace_stream, "%s%s ", timebuf, s_infotype[type]);
       fwrite(data+st, i-st+1, 1, config->trace_stream);
+      newl = (bool)(size && (data[size-1] != '\n'));
+      traced_data = FALSE;
       break;
     case CURLINFO_TEXT:
     case CURLINFO_HEADER_IN:
       if(!newl)
         fprintf(config->trace_stream, "%s%s ", timebuf, s_infotype[type]);
       fwrite(data, size, 1, config->trace_stream);
+      newl = (bool)(size && (data[size-1] != '\n'));
+      traced_data = FALSE;
+      break;
+    case CURLINFO_DATA_OUT:
+    case CURLINFO_DATA_IN:
+    case CURLINFO_SSL_DATA_IN:
+    case CURLINFO_SSL_DATA_OUT:
+      if(!traced_data) {
+	if(!newl)
+	  fprintf(config->trace_stream, "%s%s ", timebuf, s_infotype[type]);
+	fprintf(config->trace_stream, "[data not shown]\n");
+	newl = FALSE;
+        traced_data = TRUE;
+      }
       break;
     default: /* nada */
       newl = FALSE;
+      traced_data = FALSE;
       break;
     }
-
-    newl = (bool)(size && (data[size-1] != '\n'));
 
     return 0;
   }
