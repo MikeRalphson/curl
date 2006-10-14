@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.3 2006-08-30 16:18:03 giva Exp $
+ * $Id: config.dos,v 1.4 2006-10-14 12:01:44 yangtse Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -56,6 +56,7 @@
 #define HAVE_STRICMP           1
 #define HAVE_STRSTR            1
 #define HAVE_STRTOLL           1
+#define HAVE_STRUCT_TIMEVAL    1
 #define HAVE_SYS_IOCTL_H       1
 #define HAVE_SYS_SOCKET_H      1
 #define HAVE_SYS_STAT_H        1
