@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.298 2006-10-13 21:02:29 danf Exp $
+ * $Id: http.c,v 1.299 2006-10-15 23:13:12 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -850,7 +850,7 @@ CURLcode add_buffer_send(send_buffer *in,
                          struct connectdata *conn,
                          long *bytes_written, /* add the number of sent
                                                  bytes to this counter */
-                         int included_body_bytes, /* how much of the buffer
+                         long included_body_bytes, /* how much of the buffer
                                         contains body data (for log tracing) */
                          int socketindex)
 
@@ -1603,7 +1603,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
   char *request;
   Curl_HttpReq httpreq = data->set.httpreq;
   char *addcookies = NULL;
-  int included_body = 0;
+  long included_body = 0;
 
   /* Always consider the DO phase done after this function call, even if there
      may be parts of the request that is not yet sent, since we can deal with
