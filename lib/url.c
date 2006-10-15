@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.544 2006-10-11 16:01:18 yangtse Exp $
+ * $Id: url.c,v 1.545 2006-10-15 20:28:03 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1083,7 +1083,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
       /*
        * The already set string is allocated, free that first
        */
-      data->change.proxy_alloc=FALSE;;
+      data->change.proxy_alloc = FALSE;
       free(data->change.proxy);
     }
     data->set.set_proxy = va_arg(param, char *);

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.35 2006-10-11 16:01:18 yangtse Exp $
+ * $Id: strerror.c,v 1.36 2006-10-15 20:28:03 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -245,28 +245,28 @@ curl_easy_strerror(CURLcode error)
     return "Send failed since rewinding of the data stream failed";
 
   case CURLE_LOGIN_DENIED:
-    return "FTP: login denied";;
+    return "FTP: login denied";
 
   case CURLE_TFTP_NOTFOUND:
-    return "TFTP: File Not Found";;
+    return "TFTP: File Not Found";
 
   case CURLE_TFTP_PERM:
-    return "TFTP: Access Violation";;
+    return "TFTP: Access Violation";
 
   case CURLE_TFTP_DISKFULL:
-    return "TFTP: Disk full or allocation exceeded";;
+    return "TFTP: Disk full or allocation exceeded";
 
   case CURLE_TFTP_ILLEGAL:
-    return "TFTP: Illegal operation";;
+    return "TFTP: Illegal operation";
 
   case CURLE_TFTP_UNKNOWNID:
-    return "TFTP: Unknown transfer ID";;
+    return "TFTP: Unknown transfer ID";
 
   case CURLE_TFTP_EXISTS:
-    return "TFTP: File already exists";;
+    return "TFTP: File already exists";
 
   case CURLE_TFTP_NOSUCHUSER:
-    return "TFTP: No such user";;
+    return "TFTP: No such user";
 
   case CURLE_CONV_FAILED:
     return "conversion failed";
