@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.206 2006-10-13 01:35:14 yangtse Exp $
+# $Id: configure.ac,v 1.207 2006-10-16 08:30:56 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1528,6 +1528,7 @@ AC_C_CONST
 AC_TYPE_SIZE_T
 AC_HEADER_TIME
 CURL_CHECK_STRUCT_TIMEVAL
+CURL_VERIFY_RUNTIMELIBS
 
 AC_CHECK_SIZEOF(curl_off_t, ,[
 #include <stdio.h>
