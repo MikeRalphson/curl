@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.54 2006-09-09 11:45:27 bagder Exp $
+ * $Id: http_ntlm.c,v 1.55 2006-10-17 21:32:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -218,13 +218,13 @@ CURLntlm Curl_input_ntlm(struct connectdata *conn,
   ntlm = proxy?&conn->proxyntlm:&conn->ntlm;
 
   /* skip initial whitespaces */
-  while(*header && isspace((int)*header))
+  while(*header && ISSPACE(*header))
     header++;
 
   if(checkprefix("NTLM", header)) {
     header += strlen("NTLM");
 
-    while(*header && isspace((int)*header))
+    while(*header && ISSPACE(*header))
       header++;
 
     if(*header) {

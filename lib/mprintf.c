@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.54 2006-07-06 13:33:56 giva Exp $
+ * $Id: mprintf.c,v 1.55 2006-10-17 21:32:56 bagder Exp $
  *
  *************************************************************************
  *
@@ -171,7 +171,7 @@ int curl_msprintf(char *buffer, const char *format, ...);
 static long dprintf_DollarString(char *input, char **end)
 {
   int number=0;
-  while(isdigit((int)*input)) {
+  while(ISDIGIT(*input)) {
     number *= 10;
     number += *input-'0';
     input++;

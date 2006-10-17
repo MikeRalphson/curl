@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.45 2006-08-04 01:13:24 yangtse Exp $
+ * $Id: setup.h,v 1.46 2006-10-17 21:32:57 bagder Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -182,6 +182,18 @@ int fileno( FILE *stream);
 #ifndef HAVE_STRDUP
 #include "strdup.h"
 #define strdup(ptr) curlx_strdup(ptr)
+#endif
+
+#ifndef ISSPACE
+/* typecasting craze to avoid negative number inputs to these macros */
+/* copied from lib/setup.h */
+#define ISSPACE(x) (isspace((int)((unsigned char)x)))
+#define ISDIGIT(x) (isdigit((int)((unsigned char)x)))
+#define ISALNUM(x) (isalnum((int)((unsigned char)x)))
+#define ISXDIGIT(x) (isxdigit((int)((unsigned char)x)))
+#define ISGRAPH(x) (isgraph((int)((unsigned char)x)))
+#define ISALPHA(x) (isalpha((int)((unsigned char)x)))
+#define ISPRINT(x) (isprint((int)((unsigned char)x)))
 #endif
 
 #endif /* __SRC_CURL_SETUP_H */

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.36 2006-07-19 21:14:02 yangtse Exp $
+ * $Id: base64.c,v 1.37 2006-10-17 21:32:56 bagder Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -280,7 +280,7 @@ int main(int argc, char **argv, char **envp)
 
     for(j=0; j < 0x10; j++)
       if((j+i) < dataLen)
-        printf("%c", isgraph(data[i+j])?data[i+j]:'.');
+        printf("%c", ISGRAPH(data[i+j])?data[i+j]:'.');
       else
         break;
     puts("");

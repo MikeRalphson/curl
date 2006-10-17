@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.120 2006-09-03 13:52:07 giva Exp $
+ * $Id: setup.h,v 1.121 2006-10-17 21:32:56 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -346,6 +346,16 @@ int fileno( FILE *stream);
 #define DEBUGF(x) x
 #else
 #define DEBUGF(x)
+#endif
+
+#ifndef ISSPACE
+/* typecasting craze to avoid negative number inputs to these macros */
+#define ISSPACE(x) (isspace((int)((unsigned char)x)))
+#define ISDIGIT(x) (isdigit((int)((unsigned char)x)))
+#define ISALNUM(x) (isalnum((int)((unsigned char)x)))
+#define ISXDIGIT(x) (isxdigit((int)((unsigned char)x)))
+#define ISGRAPH(x) (isgraph((int)((unsigned char)x)))
+#define ISALPHA(x) (isalpha((int)((unsigned char)x)))
 #endif
 
 /*

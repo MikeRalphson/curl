@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.25 2006-05-25 23:04:21 bagder Exp $
+ * $Id: http_digest.c,v 1.26 2006-10-17 21:32:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -75,7 +75,7 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
   }
 
   /* skip initial whitespaces */
-  while(*header && isspace((int)*header))
+  while(*header && ISSPACE(*header))
     header++;
 
   if(checkprefix("Digest", header)) {
@@ -93,7 +93,7 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
       char content[128];
       size_t totlen=0;
 
-      while(*header && isspace((int)*header))
+      while(*header && ISSPACE(*header))
         header++;
 
       /* how big can these strings be? */

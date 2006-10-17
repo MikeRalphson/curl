@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.16 2006-05-04 22:39:47 bagder Exp $
+ * $Id: http_negotiate.c,v 1.17 2006-10-17 21:32:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -124,7 +124,7 @@ int Curl_input_negotiate(struct connectdata *conn, char *header)
   bool gss;
   const char* protocol;
 
-  while(*header && isspace((int)*header))
+  while(*header && ISSPACE(*header))
     header++;
   if(checkprefix("GSS-Negotiate", header)) {
     protocol = "GSS-Negotiate";
@@ -160,7 +160,7 @@ int Curl_input_negotiate(struct connectdata *conn, char *header)
     return ret;
 
   header += strlen(neg_ctx->protocol);
-  while(*header && isspace((int)*header))
+  while(*header && ISSPACE(*header))
     header++;
 
   len = strlen(header);

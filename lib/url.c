@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.547 2006-10-17 09:07:38 yangtse Exp $
+ * $Id: url.c,v 1.548 2006-10-17 21:32:57 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3252,7 +3252,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     /* detect and extract RFC2732-style IPv6-addresses */
     if(*proxyptr == '[') {
       char *ptr = ++proxyptr; /* advance beyond the initial bracket */
-      while(*ptr && (isxdigit((int)*ptr) || (*ptr == ':')))
+      while(*ptr && (ISXDIGIT(*ptr) || (*ptr == ':')))
         ptr++;
       if(*ptr == ']') {
         /* yeps, it ended nicely with a bracket as well */

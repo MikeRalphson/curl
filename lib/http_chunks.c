@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.30 2006-09-07 21:49:22 bagder Exp $
+ * $Id: http_chunks.c,v 1.31 2006-10-17 21:32:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -115,7 +115,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
   while(length) {
     switch(ch->state) {
     case CHUNK_HEX:
-      if(isxdigit((int)*datap)) {
+      if(ISXDIGIT(*datap)) {
         if(ch->hexindex < MAXNUM_SIZE) {
           ch->hexbuffer[ch->hexindex] = *datap;
           datap++;
