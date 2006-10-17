@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.157 2006-09-10 23:37:42 yangtse Exp $
+ * $Id: ssluse.c,v 1.158 2006-10-17 10:04:14 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1151,7 +1151,7 @@ static void ssl_tls_trace(int direction, int ssl_ver, int content_type,
 
   txt_len = snprintf(ssl_buf, sizeof(ssl_buf), "SSLv%c, %s%s (%d):\n",
                      ver, tls_rt_name, msg_name, msg_type);
-  Curl_debug(data, CURLINFO_TEXT, ssl_buf, txt_len, NULL);
+  Curl_debug(data, CURLINFO_TEXT, ssl_buf, (size_t)txt_len, NULL);
 
   Curl_debug(data, (direction == 1) ? CURLINFO_SSL_DATA_OUT :
              CURLINFO_SSL_DATA_IN, (char *)buf, len, NULL);
