@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.40 2006-05-27 11:36:05 bagder Exp $
+# $Id: testcurl.pl,v 1.41 2006-10-17 11:46:42 bagder Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile);
 
 # version of this script
-$version='$Revision: 1.40 $';
+$version='$Revision: 1.41 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -380,22 +380,6 @@ if ($CVS) {
     else {
       mydie "buildconf was NOT successful";
     }
-
-    if($confopts =~ /--enable-ares/) {
-        logit "run buildconf for ares";
-        chdir "ares";
-        open(F, "./buildconf 2>&1 |") or die;
-        open(LOG, ">$buildlog") or die;
-        while (<F>) {
-            next if /warning: underquoted definition of/;
-            print;
-            print LOG;
-        }
-        close(F);
-        close(LOG);
-        chdir "..";
-    }
-
   }
   else {
     logit "buildconf was successful (dummy message)";
