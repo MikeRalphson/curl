@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.42 2006-07-25 13:49:50 yangtse Exp $
+ * $Id: hostthre.c,v 1.43 2006-10-17 20:34:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -208,7 +208,7 @@ BOOL init_thread_sync_data(struct thread_data * td,
 {
   HANDLE curr_proc = GetCurrentProcess();
 
-  memset(tsd, 0, sizeof(tsd));
+  memset(tsd, 0, sizeof(*tsd));
   if (!DuplicateHandle(curr_proc, td->mutex_waiting,
                        curr_proc, &tsd->mutex_waiting, 0, FALSE,
                        DUPLICATE_SAME_ACCESS)) {
