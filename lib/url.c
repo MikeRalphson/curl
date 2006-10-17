@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.548 2006-10-17 21:32:57 bagder Exp $
+ * $Id: url.c,v 1.549 2006-10-17 21:45:37 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3668,17 +3668,11 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      * Set signal handler to catch SIGALRM
      * Store the old value to be able to set it back later!
      *************************************************************/
-    long shortest = data->set.timeout; /* default to this timeout value */
-
-    if(shortest && data->set.connecttimeout &&
-       (data->set.connecttimeout < shortest))
-      /* if both are set, pick the shortest */
-      shortest = data->set.connecttimeout;
-    else if(!shortest)
-      /* if timeout is not set, use the connect timeout */
-      shortest = data->set.connecttimeout;
 
 #ifdef SIGALRM
+#ifdef HAVE_ALARM
+    long shortest;
+#endif
 #ifdef HAVE_SIGACTION
     struct sigaction sigact;
     sigaction(SIGALRM, NULL, &sigact);
@@ -3704,6 +3698,15 @@ static CURLcode CreateConnection(struct SessionHandle *data,
      * multi-threaded environments. */
 
 #ifdef HAVE_ALARM
+    shortest = data->set.timeout; /* default to this timeout value */
+    if(shortest && data->set.connecttimeout &&
+       (data->set.connecttimeout < shortest))
+      /* if both are set, pick the shortest */
+      shortest = data->set.connecttimeout;
+    else if(!shortest)
+      /* if timeout is not set, use the connect timeout */
+      shortest = data->set.connecttimeout;
+
     /* alarm() makes a signal get sent when the timeout fires off, and that
        will abort system calls */
     prev_alarm = alarm((unsigned int) shortest);
