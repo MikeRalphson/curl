@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.546 2006-10-17 08:05:41 bagder Exp $
+ * $Id: url.c,v 1.547 2006-10-17 09:07:38 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3676,7 +3676,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       shortest = data->set.connecttimeout;
     else if(!shortest)
       /* if timeout is not set, use the connect timeout */
-      shortest = data->set.connecttimeout
+      shortest = data->set.connecttimeout;
 
 #ifdef SIGALRM
 #ifdef HAVE_SIGACTION
