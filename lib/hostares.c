@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.24 2006-07-25 13:49:50 yangtse Exp $
+ * $Id: hostares.c,v 1.25 2006-10-17 08:06:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -75,6 +75,7 @@
 #include "share.h"
 #include "strerror.h"
 #include "url.h"
+#include "multiif.h"
 #include "connect.h" /* for the Curl_sockerrno() proto */
 
 #define _MPRINTF_REPLACE /* use our functions only */
@@ -109,8 +110,19 @@ int Curl_resolv_getsock(struct connectdata *conn,
                         int numsocks)
 
 {
+  struct timeval maxtime;
+  struct timeval timeout;
   int max = ares_getsock(conn->data->state.areschannel,
                          (int *)socks, numsocks);
+
+
+  maxtime.tv_sec = CURL_TIMEOUT_RESOLVE;
+  maxtime.tv_usec = 0;
+
+  ares_timeout(conn->data->state.areschannel, &maxtime, &timeout);
+
+  Curl_expire(conn->data,
+              (timeout.tv_sec * 1000) + (timeout.tv_usec/1000) );
 
   return max;
 }
