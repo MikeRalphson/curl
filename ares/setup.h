@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.21 2006-08-04 01:13:24 yangtse Exp $ */
+/* $Id: setup.h,v 1.22 2006-10-18 15:57:49 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -66,6 +66,22 @@
 #    ifdef HAVE_WINSOCK_H
 #      include <winsock.h>
 #    endif
+#  endif
+#endif
+
+/*
+ * Define USE_WINSOCK to 2 if we have and use WINSOCK2 API, else
+ * define USE_WINSOCK to 1 if we have and use WINSOCK  API, else
+ * undefine USE_WINSOCK.
+ */
+
+#undef USE_WINSOCK
+
+#ifdef HAVE_WINSOCK2_H
+#  define USE_WINSOCK 2
+#else
+#  ifdef HAVE_WINSOCK_H
+#    define USE_WINSOCK 1
 #  endif
 #endif
 
