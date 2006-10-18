@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.549 2006-10-17 21:45:37 danf Exp $
+ * $Id: url.c,v 1.550 2006-10-18 11:13:39 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2511,12 +2511,6 @@ static CURLcode ParseURLAndFillConnection(struct SessionHandle *data,
 
       if(checkprefix("FTP.", conn->host.name))
         strcpy(conn->protostr, "ftp");
-#ifdef USE_SSL
-      else if(checkprefix("FTPS", conn->host.name))
-        strcpy(conn->protostr, "ftps");
-#endif /* USE_SSL */
-      else if(checkprefix("TELNET.", conn->host.name))
-        strcpy(conn->protostr, "telnet");
       else if (checkprefix("DICT.", conn->host.name))
         strcpy(conn->protostr, "DICT");
       else if (checkprefix("LDAP.", conn->host.name))
