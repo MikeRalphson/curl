@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.156 2006-08-30 16:17:06 giva Exp $
+ * $Id: connect.c,v 1.157 2006-10-18 21:05:47 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -84,7 +84,7 @@
 #define FALSE 0
 #endif
 
-#ifdef WIN32
+#ifdef USE_WINSOCK
 #define EINPROGRESS WSAEINPROGRESS
 #define EWOULDBLOCK WSAEWOULDBLOCK
 #define EISCONN     WSAEISCONN
@@ -121,7 +121,7 @@ singleipconnect(struct connectdata *conn,
  */
 int Curl_sockerrno(void)
 {
-#ifdef WIN32
+#ifdef USE_WINSOCK
   return (int)WSAGetLastError();
 #else
   return errno;

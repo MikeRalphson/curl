@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.22 2006-10-18 15:57:49 yangtse Exp $ */
+/* $Id: setup.h,v 1.23 2006-10-18 21:05:46 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -121,7 +121,7 @@
  * Typedef our socket type
  */
 
-#if defined(WIN32) && !defined(WATT32)
+#ifdef USE_WINSOCK
 typedef SOCKET ares_socket_t;
 #define ARES_SOCKET_BAD INVALID_SOCKET
 #else

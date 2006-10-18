@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.9 2006-07-22 17:31:00 giva Exp $
+ * $Id: ahost.c,v 1.10 2006-10-18 21:05:46 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -64,8 +64,8 @@ int main(int argc, char **argv)
   struct in_addr addr4;
   struct in6_addr addr6;
 
-#ifdef WIN32
-  WORD wVersionRequested = MAKEWORD(1,1);
+#ifdef USE_WINSOCK
+  WORD wVersionRequested = MAKEWORD(USE_WINSOCK,USE_WINSOCK);
   WSADATA wsaData;
   WSAStartup(wVersionRequested, &wsaData);
 #endif

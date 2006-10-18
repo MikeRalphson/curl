@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.31 2006-08-29 15:17:48 bagder Exp $ */
+/* $Id: ares_process.c,v 1.32 2006-10-18 21:05:46 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -59,7 +59,7 @@
 #define TRUE 1
 #endif
 
-#if (defined(WIN32) || defined(WATT32)) && !defined(MSDOS)
+#ifdef USE_WINSOCK
 #define GET_ERRNO()  WSAGetLastError()
 #else
 #define GET_ERRNO()  errno

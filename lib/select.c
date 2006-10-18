@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.19 2006-10-09 00:35:36 yangtse Exp $
+ * $Id: select.c,v 1.20 2006-10-18 21:05:50 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -50,7 +50,7 @@
 #include "connect.h"
 #include "select.h"
 
-#if defined(WIN32) || defined(TPF)
+#if defined(USE_WINSOCK) || defined(TPF)
 #define VERIFY_SOCK(x)  /* sockets are not in range [0..FD_SETSIZE] */
 #else
 #define VALID_SOCK(s) (((s) >= 0) && ((s) < FD_SETSIZE))
@@ -224,7 +224,7 @@ int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms)
   for (i = 0; i < nfds; i++) {
     if (ufds[i].fd == CURL_SOCKET_BAD)
       continue;
-#ifndef WIN32  /* This is harmless and wrong on Win32 */
+#ifndef USE_WINSOCK  /* winsock sockets are not in range [0..FD_SETSIZE] */
     if (ufds[i].fd >= FD_SETSIZE) {
       errno = EINVAL;
       return -1;

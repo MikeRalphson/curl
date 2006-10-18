@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.23 2006-10-11 16:01:20 yangtse Exp $
+ * $Id: sockfilt.c,v 1.24 2006-10-18 21:05:50 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -238,7 +238,7 @@ static int juggle(curl_socket_t *sockfdp,
 
   do {
     rc = select(maxfd + 1, &fds_read, &fds_write, &fds_err, &timeout);
-  } while((rc == -1) && (ourerrno() == EINTR));
+  } while((rc == -1) && (our_sockerrno() == EINTR));
 
   switch(rc) {
   case -1:
