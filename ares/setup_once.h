@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.4 2006-10-18 12:59:02 bagder Exp $ */
+/* $Id: setup_once.h,v 1.5 2006-10-18 21:25:12 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -126,6 +126,7 @@
 #define ISXDIGIT(x) (isxdigit((int) ((unsigned char)x)))
 #define ISGRAPH(x)  (isgraph((int)  ((unsigned char)x)))
 #define ISALPHA(x)  (isalpha((int)  ((unsigned char)x)))
+#define ISPRINT(x)  (isprint((int)  ((unsigned char)x)))
 
 
 #endif /* __SETUP_ONCE_H */
