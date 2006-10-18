@@ -20,8 +20,18 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.3 2006-08-29 16:26:43 giva Exp $
+ * $Id: setup_once.h,v 1.4 2006-10-18 03:41:23 yangtse Exp $
  ***************************************************************************/
+
+
+/********************************************************************
+ *                              NOTICE                              *
+ *                             ========                             *
+ *                                                                  *
+ *  Content of header files lib/setup_once.h and ares/setup_once.h  *
+ *  must be kept in sync. Modify the other one if you change this.  *
+ *                                                                  *
+ ********************************************************************/
 
 
 /*
@@ -110,6 +120,19 @@
   /* */
 #endif
 #endif /* HAVE_SEND */
+
+
+/*
+ * Uppercase macro versions of ANSI/ISO is*() functions/macros which 
+ * avoid negative number inputs whith argument byte codes > 127.
+ */
+
+#define ISSPACE(x)  (isspace((int)  ((unsigned char)x)))
+#define ISDIGIT(x)  (isdigit((int)  ((unsigned char)x)))
+#define ISALNUM(x)  (isalnum((int)  ((unsigned char)x)))
+#define ISXDIGIT(x) (isxdigit((int) ((unsigned char)x)))
+#define ISGRAPH(x)  (isgraph((int)  ((unsigned char)x)))
+#define ISALPHA(x)  (isalpha((int)  ((unsigned char)x)))
 
 
 #endif /* __SETUP_ONCE_H */
