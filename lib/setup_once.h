@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.5 2006-10-18 12:59:02 bagder Exp $
+ * $Id: setup_once.h,v 1.6 2006-10-18 13:50:23 giva Exp $
  ***************************************************************************/
 
 
@@ -123,7 +123,7 @@
 
 
 /*
- * Uppercase macro versions of ANSI/ISO is*() functions/macros which 
+ * Uppercase macro versions of ANSI/ISO is*() functions/macros which
  * avoid negative number inputs with argument byte codes > 127.
  */
 
@@ -133,6 +133,7 @@
 #define ISXDIGIT(x) (isxdigit((int) ((unsigned char)x)))
 #define ISGRAPH(x)  (isgraph((int)  ((unsigned char)x)))
 #define ISALPHA(x)  (isalpha((int)  ((unsigned char)x)))
+#define ISPRINT(x)  (isprint((int)  ((unsigned char)x)))
 
 
 #endif /* __SETUP_ONCE_H */
