@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.4 2006-10-18 03:41:23 yangtse Exp $
+ * $Id: setup_once.h,v 1.5 2006-10-18 12:59:02 bagder Exp $
  ***************************************************************************/
 
 
@@ -124,7 +124,7 @@
 
 /*
  * Uppercase macro versions of ANSI/ISO is*() functions/macros which 
- * avoid negative number inputs whith argument byte codes > 127.
+ * avoid negative number inputs with argument byte codes > 127.
  */
 
 #define ISSPACE(x)  (isspace((int)  ((unsigned char)x)))
