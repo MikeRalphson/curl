@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.82 2006-10-11 16:01:17 yangtse Exp $
+ * $Id: file.c,v 1.83 2006-10-18 14:47:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -367,8 +367,11 @@ CURLcode Curl_file(struct connectdata *conn, bool *done)
   if(fstated)
     Curl_pgrsSetDownloadSize(data, expected_size);
 
-  if(data->reqdata.resume_from)
-    lseek(fd, data->reqdata.resume_from, SEEK_SET);
+  if(data->reqdata.resume_from) {
+    if(data->reqdata.resume_from !=
+       lseek(fd, data->reqdata.resume_from, SEEK_SET))
+      return CURLE_BAD_DOWNLOAD_RESUME;
+  }
 
   Curl_pgrsTime(data, TIMER_STARTTRANSFER);
 
