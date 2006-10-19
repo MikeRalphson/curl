@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.8 2006-10-19 17:29:25 yangtse Exp $
+ * $Id: lib533.c,v 1.9 2006-10-19 21:12:27 yangtse Exp $
  */
 
 /* used for test case 533, 534 and 535 */
@@ -112,6 +112,7 @@ int test(char *URL)
   }
 
   if ((loop1 <= 0) || (loop2 <= 0)) {
+    fprintf(stderr, "loop1: %d loop2: %d \n", loop1, loop2);
     fprintf(stderr, "ABORTING TEST, since it seems "
             "that it would have run forever.\n");
     res = 77;

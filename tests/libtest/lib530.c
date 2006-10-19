@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.5 2006-10-19 17:29:25 yangtse Exp $
+ * $Id: lib530.c,v 1.6 2006-10-19 21:12:27 yangtse Exp $
  */
 
 #include "test.h"
@@ -98,6 +98,7 @@ int test(char *URL)
   }
 
   if ((loop1 <= 0) || (loop2 <= 0)) {
+    fprintf(stderr, "loop1: %d loop2: %d \n", loop1, loop2);
     fprintf(stderr, "ABORTING TEST, since it seems "
             "that it would have run forever.\n");
     res = 77;
