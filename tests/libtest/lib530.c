@@ -5,13 +5,18 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.7 2006-10-19 23:35:52 yangtse Exp $
+ * $Id: lib530.c,v 1.8 2006-10-20 15:39:54 yangtse Exp $
  */
 
 #include "test.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#include "timeval.h"
+
+#define MAIN_LOOP_HANG_TIMEOUT     45 * 1000
+#define MULTI_PERFORM_HANG_TIMEOUT 30 * 1000
 
 #define NUM_HANDLES 4
 
@@ -23,8 +28,10 @@ int test(char *URL)
   char done=FALSE;
   CURLM *m;
   int i;
-  int loop1 = 40;
-  int loop2 = 60;
+  struct timeval ml_start;
+  struct timeval mp_start;
+  char ml_timedout = FALSE;
+  char mp_timedout = FALSE;
 
   /* In windows, this will init the winsock stuff */
   curl_global_init(CURL_GLOBAL_ALL);
@@ -51,25 +58,40 @@ int test(char *URL)
 
   curl_multi_setopt(m, CURLMOPT_PIPELINING, 1);
 
+  ml_timedout = FALSE;
+  ml_start = curlx_tvnow();
+
   fprintf(stderr, "Start at URL 0\n");
 
-  while ((--loop1>0) && (loop2>0) && (!done)) {
+  while (!done) {
     fd_set rd, wr, exc;
     int max_fd;
     struct timeval interval;
 
     interval.tv_sec = 1;
     interval.tv_usec = 0;
-    loop2 = 60;
 
-    while ((--loop2>0) && (res == CURLM_CALL_MULTI_PERFORM)) {
+    if (curlx_tvdiff(curlx_tvnow(), ml_start) > 
+        MAIN_LOOP_HANG_TIMEOUT) {
+      ml_timedout = TRUE;
+      break;
+    }
+    mp_timedout = FALSE;
+    mp_start = curlx_tvnow();
+
+    while (res == CURLM_CALL_MULTI_PERFORM) {
       res = (int)curl_multi_perform(m, &running);
+      if (curlx_tvdiff(curlx_tvnow(), mp_start) > 
+          MULTI_PERFORM_HANG_TIMEOUT) {
+        mp_timedout = TRUE;
+        break;
+      }
       if (running <= 0) {
         done = TRUE; /* bail out */
         break;
       }
     }
-    if ((loop2 <= 0) || (done))
+    if (mp_timedout || done)
       break;
 
     if (res != CURLM_OK) {
@@ -97,8 +119,9 @@ int test(char *URL)
     res = CURLM_CALL_MULTI_PERFORM;
   }
 
-  if ((loop1 <= 0) || (loop2 <= 0)) {
-    fprintf(stderr, "loop1: %d loop2: %d \n", loop1, loop2);
+  if (ml_timedout || mp_timedout) {
+    if (ml_timedout) fprintf(stderr, "ml_timedout\n");
+    if (mp_timedout) fprintf(stderr, "mp_timedout\n");
     fprintf(stderr, "ABORTING TEST, since it seems "
             "that it would have run forever.\n");
     res = 77;
