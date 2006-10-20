@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.552 2006-10-19 02:30:02 yangtse Exp $
+ * $Id: url.c,v 1.553 2006-10-20 12:25:39 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3623,7 +3623,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
           conn->connectindex,
           conn->bits.httpproxy?conn->proxy.dispname:conn->host.dispname);
 #ifdef CURLRES_ASYNCH
-    if(!conn->dns_entry) {
+    if(!conn->ip_addr_str) {
       infof(data, "... but it is not resolved yet!\n");
       *async = TRUE;
     }

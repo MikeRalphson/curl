@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.304 2006-09-30 20:31:12 bagder Exp $
+ * $Id: urldata.h,v 1.305 2006-10-20 12:25:39 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -684,7 +684,8 @@ struct connectdata {
 
   /* 'dns_entry' is the particular host we use. This points to an entry in the
      DNS cache and it will not get pruned while locked. It gets unlocked in
-     Curl_done() */
+     Curl_done(). This entry will be NULL if the connection is re-used as then
+     there is no name resolve done. */
   struct Curl_dns_entry *dns_entry;
 
   /* 'ip_addr' is the particular IP we connected to. It points to a struct
