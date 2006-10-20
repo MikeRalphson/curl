@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.10 2006-10-20 15:39:54 yangtse Exp $
+ * $Id: lib533.c,v 1.11 2006-10-20 15:45:12 yangtse Exp $
  */
 
 /* used for test case 533, 534 and 535 */
@@ -18,8 +18,8 @@
 
 #include "timeval.h"
 
-#define MAIN_LOOP_HANG_TIMEOUT     45 * 1000
-#define MULTI_PERFORM_HANG_TIMEOUT 30 * 1000
+#define MAIN_LOOP_HANG_TIMEOUT     30 * 1000
+#define MULTI_PERFORM_HANG_TIMEOUT 20 * 1000
 
 int test(char *URL)
 {
