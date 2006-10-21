@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib536.c,v 1.6 2006-10-20 15:45:12 yangtse Exp $
+ * $Id: lib536.c,v 1.7 2006-10-21 10:54:41 yangtse Exp $
  */
 
 #include "test.h"
@@ -62,7 +62,7 @@ static CURLMcode perform(CURLM * multi)
   }
 
   /* We only reach this point if (mp_timedout) */
-  fprintf(stderr, "mp_timedout\n");
+  if (mp_timedout) fprintf(stderr, "mp_timedout\n");
   fprintf(stderr, "ABORTING TEST, since it seems "
           "that it would have run forever.\n");
   return (CURLMcode) ~CURLM_OK;
