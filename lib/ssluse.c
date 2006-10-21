@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.158 2006-10-17 10:04:14 yangtse Exp $
+ * $Id: ssluse.c,v 1.159 2006-10-21 11:32:07 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1272,7 +1272,7 @@ Curl_ossl_connect_step1(struct connectdata *conn,
               "  CAfile: %s\n  CApath: %s\n",
               data->set.ssl.CAfile ? data->set.ssl.CAfile : "none",
               data->set.ssl.CApath ? data->set.ssl.CApath : "none");
-        return CURLE_SSL_CACERT;
+        return CURLE_SSL_CACERT_BADFILE;
       }
       else {
         /* Just continue with a warning if no strict  certificate verification

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.37 2006-10-18 21:05:50 yangtse Exp $
+ * $Id: strerror.c,v 1.38 2006-10-21 11:32:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -227,6 +227,9 @@ curl_easy_strerror(CURLcode error)
     return "couldn't use specified SSL cipher";
 
   case CURLE_SSL_CACERT:
+    return "peer certificate cannot be authenticated with known CA certificates";
+
+  case CURLE_SSL_CACERT_BADFILE:
     return "problem with the SSL CA cert (path? access rights?)";
 
   case CURLE_BAD_CONTENT_ENCODING:

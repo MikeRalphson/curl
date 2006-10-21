@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.309 2006-09-30 20:31:12 bagder Exp $
+ * $Id: curl.h,v 1.310 2006-10-21 11:32:07 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -390,6 +390,8 @@ typedef enum {
                                     CURLOPT_CONV_FROM_NETWORK_FUNCTION,
                                     CURLOPT_CONV_TO_NETWORK_FUNCTION, and
                                     CURLOPT_CONV_FROM_UTF8_FUNCTION */
+  CURLE_SSL_CACERT_BADFILE,      /* 77 - could not load CACERT file, missing
+                                    or wrong format */
   CURL_LAST /* never use! */
 } CURLcode;
 
