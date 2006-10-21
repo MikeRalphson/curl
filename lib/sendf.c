@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.109 2006-10-18 21:05:50 yangtse Exp $
+ * $Id: sendf.c,v 1.110 2006-10-21 12:35:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -273,7 +273,7 @@ CURLcode Curl_sendf(curl_socket_t sockfd, struct connectdata *conn,
   struct SessionHandle *data = conn->data;
   ssize_t bytes_written;
   size_t write_len;
-  CURLcode res;
+  CURLcode res = CURLE_OK;
   char *s;
   char *sptr;
   va_list ap;
