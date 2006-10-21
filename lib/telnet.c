@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.83 2006-10-18 21:05:50 yangtse Exp $
+ * $Id: telnet.c,v 1.84 2006-10-21 12:36:10 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1154,7 +1154,7 @@ CURLcode Curl_telnet(struct connectdata *conn, bool *done)
 
   /* And WSACloseEvent */
   close_event_func = GetProcAddress(wsock2,"WSACloseEvent");
-  if (create_event_func == NULL) {
+  if (close_event_func == NULL) {
     failf(data,"failed to find WSACloseEvent function (%d)",
           GetLastError());
     FreeLibrary(wsock2);
