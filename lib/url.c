@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.554 2006-10-23 20:34:56 bagder Exp $
+ * $Id: url.c,v 1.555 2006-10-23 20:41:50 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1937,7 +1937,7 @@ ConnectionExists(struct SessionHandle *data,
       /* NULL pointer means not filled-in entry */
       continue;
 
-#ifdef USE_ARES
+#ifdef CURLRES_ASYNCH
     /* ip_addr_str is NULL only if the resolving of the name hasn't completed
        yet and until then we don't re-use this connection */
     if (!check->ip_addr_str)
