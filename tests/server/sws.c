@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.94 2006-10-23 19:14:54 yangtse Exp $
+ * $Id: sws.c,v 1.95 2006-10-23 19:16:19 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -233,7 +233,7 @@ int ProcessRequest(struct httprequest *req)
         return 1; /* done */
       }
 
-      if(!strncmp("/quit", ptr, 15)) {
+      if(!strncmp("/quit", ptr, 5)) {
         logmsg("Request-to-quit received");
         req->testno = DOCNUMBER_QUIT;
         return 1; /* done */
