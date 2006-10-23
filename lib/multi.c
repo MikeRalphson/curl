@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.121 2006-10-18 15:11:24 bagder Exp $
+ * $Id: multi.c,v 1.122 2006-10-23 20:34:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -773,7 +773,8 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
       return CURLM_BAD_EASY_HANDLE;
 
     if (easy->easy_handle->state.pipe_broke) {
-      infof(easy->easy_handle, "Pipe broke: handle 0x%x\n", easy);
+      infof(easy->easy_handle, "Pipe broke: handle 0x%x, url = %s\n",
+            easy, easy->easy_handle->reqdata.path);
       if(easy->easy_handle->state.is_in_pipeline) {
         /* Head back to the CONNECT state */
         multistate(easy, CURLM_STATE_CONNECT);

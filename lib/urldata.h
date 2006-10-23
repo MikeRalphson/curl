@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.305 2006-10-20 12:25:39 bagder Exp $
+ * $Id: urldata.h,v 1.306 2006-10-23 20:34:56 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -812,8 +812,8 @@ struct connectdata {
                                    their responses on this pipeline */
 
   char master_buffer[BUFSIZE]; /* The master buffer for this connection. */
-  size_t read_pos;
-  size_t buf_len;
+  size_t read_pos; /* Current read position in the master buffer */
+  size_t buf_len; /* Length of the buffer?? */
 
 
   /*************** Request - specific items ************/
