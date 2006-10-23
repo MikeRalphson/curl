@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.93 2006-10-11 16:01:21 yangtse Exp $
+ * $Id: sws.c,v 1.94 2006-10-23 19:14:54 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -242,7 +242,7 @@ int ProcessRequest(struct httprequest *req)
       ptr++; /* skip the slash */
 
       /* skip all non-numericals following the slash */
-      while(*ptr && !isdigit((int)*ptr))
+      while(*ptr && !ISDIGIT(*ptr))
         ptr++;
 
       req->testno = strtol(ptr, &ptr, 10);

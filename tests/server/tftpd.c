@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.21 2006-10-11 16:01:22 yangtse Exp $
+ * $Id: tftpd.c,v 1.22 2006-10-23 19:14:54 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -668,7 +668,7 @@ static int validate_access(struct testcase *test,
     ptr++; /* skip the slash */
 
     /* skip all non-numericals following the slash */
-    while(*ptr && !isdigit((int)*ptr))
+    while(*ptr && !ISDIGIT(*ptr))
       ptr++;
 
     /* get the number */

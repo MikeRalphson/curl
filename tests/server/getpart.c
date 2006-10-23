@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.18 2005-04-18 06:57:44 bagder Exp $
+ * $Id: getpart.c,v 1.19 2006-10-23 19:14:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -37,8 +37,9 @@
 /* include memdebug.h last */
 #include "memdebug.h"
 
-#define EAT_SPACE(ptr) while( ptr && *ptr && isspace((int)*ptr) ) ptr++
-#define EAT_WORD(ptr) while( ptr && *ptr && !isspace((int)*ptr) && ('>' != *ptr)) ptr++
+#define EAT_SPACE(ptr) while( ptr && *ptr && ISSPACE(*ptr) ) ptr++
+#define EAT_WORD(ptr) while( ptr && *ptr && !ISSPACE(*ptr) && \
+                            ('>' != *ptr)) ptr++
 
 #ifdef DEBUG
 #define show(x) printf x

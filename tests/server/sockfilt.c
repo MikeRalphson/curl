@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.24 2006-10-18 21:05:50 yangtse Exp $
+ * $Id: sockfilt.c,v 1.25 2006-10-23 19:14:54 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -119,7 +119,7 @@ static void lograw(unsigned char *buffer, ssize_t len)
       optr += 2;
       break;
     default:
-      sprintf(optr, "%c", (isgraph(ptr[i]) || ptr[i]==0x20) ?ptr[i]:'.');
+      sprintf(optr, "%c", (ISGRAPH(ptr[i]) || ptr[i]==0x20) ?ptr[i]:'.');
       width++;
       optr++;
       break;
