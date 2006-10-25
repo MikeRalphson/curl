@@ -1,3 +1,13 @@
+/*****************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * $Id: test.h,v 1.14 2006-10-25 09:20:44 yangtse Exp $
+ */
+
 #ifdef HAVE_CONFIG_H
 /* Now include the setup.h file from libcurl's private libdir (the source
    version, but that might include "config.h" from the build dir so we need
