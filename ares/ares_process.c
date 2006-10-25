@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.32 2006-10-18 21:05:46 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.33 2006-10-25 10:25:43 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -160,7 +160,7 @@ static void write_tcp_data(ares_channel channel, fd_set *write_fds, time_t now)
               vec[n].iov_len = sendreq->len;
               n++;
             }
-          wcount = (ssize_t)writev(server->tcp_socket, vec, n);
+          wcount = (ssize_t)writev(server->tcp_socket, vec, (int)n);
           free(vec);
           if (wcount < 0)
             {
