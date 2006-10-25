@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.161 2006-09-30 20:31:12 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.162 2006-10-25 20:40:15 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "19 Apr 2006" "libcurl 7.15.4" "libcurl Manual"
@@ -344,6 +344,14 @@ when showing the progress meter and displaying \fICURLOPT_VERBOSE\fP data.
 A non-zero parameter tells the library to fail silently if the HTTP code
 returned is equal to or larger than 400. The default action would be to return
 the page normally, ignoring that code.
+
+This method is not fail-safe and there are occasions where non-succesful
+response codes will slip through, especially when authentication is involved
+(response codes 401 and 407).
+
+You might get some amounts of headers transferred before this situation is
+detected, like for when a "100-continue" is received as a response to a
+POST/PUT and a 401 or 407 is received immediately afterwards.
 .SH NETWORK OPTIONS
 .IP CURLOPT_URL
 The actual URL to deal with. The parameter should be a char * to a zero
