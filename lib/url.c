@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.556 2006-10-24 21:14:40 bagder Exp $
+ * $Id: url.c,v 1.557 2006-10-26 11:15:25 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -564,9 +564,10 @@ CURLcode Curl_open(struct SessionHandle **curl)
     free(data);
     data = NULL;
   }
+  else
+    *curl = data;
 
-  *curl = data;
-  return CURLE_OK;
+  return res;
 }
 
 CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
