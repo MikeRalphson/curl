@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib526.c,v 1.10 2006-10-25 05:59:47 yangtse Exp $
+ * $Id: lib526.c,v 1.11 2006-10-26 09:50:21 yangtse Exp $
  */
 
 /*
@@ -35,8 +35,8 @@
 
 #include "timeval.h"
 
-#define MAIN_LOOP_HANG_TIMEOUT     30 * 1000
-#define MULTI_PERFORM_HANG_TIMEOUT 20 * 1000
+#define MAIN_LOOP_HANG_TIMEOUT     300 * 1000
+#define MULTI_PERFORM_HANG_TIMEOUT 120 * 1000
 
 #define NUM_HANDLES 4
 
