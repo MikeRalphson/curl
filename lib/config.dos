@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.5 2006-10-15 19:41:15 giva Exp $
+ * $Id: config.dos,v 1.6 2006-10-27 13:57:16 giva Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -74,6 +74,11 @@
 #define SIZEOF_CURL_OFF_T      4   /* no huge file support */
 #define STDC_HEADERS           1
 #define TIME_WITH_SYS_TIME     1
+
+#define RECV_TYPE_ARG1         int
+#define RECV_TYPE_ARG2         char *
+#define RECV_TYPE_ARG3         int
+#define RECV_TYPE_ARG4         int
 
 #define BSD
 
