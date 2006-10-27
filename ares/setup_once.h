@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.5 2006-10-18 21:25:12 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.6 2006-10-27 15:37:26 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -77,9 +77,6 @@
                                    (RECV_TYPE_ARG4)(SEND_4TH_ARG))
 #endif
 #else /* HAVE_RECV */
-#ifdef MSDOS
-#define sread(x,y,z) (ssize_t)read_s((int)(x), (char *)(y), (int)(z))
-#endif
 #ifndef sread
   /* */
   Error Missing_definition_of_macro_sread
@@ -104,9 +101,6 @@
                                     (SEND_TYPE_ARG4)(SEND_4TH_ARG))
 #endif
 #else /* HAVE_SEND */
-#ifdef MSDOS
-#define swrite(x,y,z) (ssize_t)write_s((int)(x), (char *)(y), (int)(z))
-#endif
 #ifndef swrite
   /* */
   Error Missing_definition_of_macro_swrite
