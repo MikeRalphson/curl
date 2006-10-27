@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.62 2006-09-08 12:17:58 giva Exp $
+ * $Id: ldap.c,v 1.63 2006-10-27 01:04:41 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -189,7 +189,7 @@ static void DynaClose(void)
 
 static dynafunc DynaGetFunction(const char *name)
 {
-  dynafunc func = (dynafunc)NULL;
+  dynafunc func = (void *(*)(void *))NULL;
 
 #if defined(HAVE_DLOPEN) || defined(HAVE_LIBDL)
   if (libldap) {
