@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.208 2006-10-06 21:19:40 bagder Exp $
+# $Id: runtests.pl,v 1.209 2006-10-27 21:07:08 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1838,7 +1838,7 @@ sub startservers {
             if(!$run{'ftp-ipv6'}) {
                 ($pid, $pid2) = runftpserver("", $verbose, "ipv6");
                 if($pid <= 0) {
-                    return "failed starting FTP-ipv6 server";
+                    return "failed starting FTP-IPv6 server";
                 }
                 logmsg sprintf("* pid ftp-ipv6 => %d %d\n", $pid,
                        $pid2) if($verbose);
@@ -1859,7 +1859,7 @@ sub startservers {
             if(!$run{'http-ipv6'}) {
                 ($pid, $pid2) = runhttpserver($verbose, "IPv6");
                 if($pid <= 0) {
-                    return "failed starting IPv6 HTTP server";
+                    return "failed starting HTTP-IPv6 server";
                 }
                 logmsg sprintf("* pid http-ipv6 => %d %d\n", $pid, $pid2)
                     if($verbose);
