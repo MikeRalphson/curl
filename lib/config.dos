@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.7 2006-10-27 14:07:32 giva Exp $
+ * $Id: config.dos,v 1.8 2006-10-27 14:13:32 giva Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -81,13 +81,13 @@
  */
 #define SEND_TYPE_ARG1         int
 #define SEND_QUAL_ARG2         const
-#define SEND_TYPE_ARG2         char *
+#define SEND_TYPE_ARG2         void *
 #define SEND_TYPE_ARG3         int
 #define SEND_TYPE_ARG4         int
 #define SEND_TYPE_RETV         int
 
 #define RECV_TYPE_ARG1         int
-#define RECV_TYPE_ARG2         char *
+#define RECV_TYPE_ARG2         void *
 #define RECV_TYPE_ARG3         int
 #define RECV_TYPE_ARG4         int
 #define RECV_TYPE_RETV         int
