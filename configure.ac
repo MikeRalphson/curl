@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.207 2006-10-16 08:30:56 bagder Exp $
+# $Id: configure.ac,v 1.208 2006-10-27 03:47:57 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -28,7 +28,7 @@ dnl We don't know the version number "staticly" so we use a dash here
 AC_INIT(curl, [-], [a suitable curl mailing list => http://curl.haxx.se/mail/])
 
 dnl configure script copyright
-AC_COPYRIGHT([Copyright (c) 1998 - 2005 Daniel Stenberg, <daniel@haxx.se>
+AC_COPYRIGHT([Copyright (c) 1998 - 2006 Daniel Stenberg, <daniel@haxx.se>
 This configure script may be copied, distributed and modified under the 
 terms of the curl license; see COPYING for more details])
 
