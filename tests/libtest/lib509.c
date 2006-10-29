@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.17 2006-10-25 09:20:44 yangtse Exp $
+ * $Id: lib509.c,v 1.18 2006-10-29 21:19:24 yangtse Exp $
  */
 
 #include "test.h"
@@ -32,6 +32,13 @@
 
 #define MAIN_LOOP_HANG_TIMEOUT     30 * 1000
 #define MULTI_PERFORM_HANG_TIMEOUT 20 * 1000
+
+/* 
+ * We use this ZERO_NULL to avoid picky compiler warnings,
+ * when assigning a NULL pointer to a function pointer var.
+ */
+
+#define ZERO_NULL 0
 
 int portnum; /* the HTTPS port number we use */
 
@@ -165,7 +172,7 @@ static CURLcode sslctxfun(CURL * curl, void * sslctx, void * parm)
    but it still does, see the error handling in the call back */
 
   SSL_CTX_set_verify_depth(ctx,0);
-  SSL_CTX_set_verify(ctx,SSL_VERIFY_NONE,NULL);
+  SSL_CTX_set_verify(ctx,SSL_VERIFY_NONE,ZERO_NULL);
 
 #if OPENSSL_VERSION_NUMBER<0x00907000L
 /* in newer openssl versions we can set a parameter for the call back. */
