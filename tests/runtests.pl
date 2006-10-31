@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.209 2006-10-27 21:07:08 bagder Exp $
+# $Id: runtests.pl,v 1.210 2006-10-31 01:30:42 yangtse Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1216,13 +1216,25 @@ sub singletest {
         $cmd = $precheck[0];
         chomp $cmd;
         if($cmd) {
-            my @o = `$cmd 2>/dev/null`;
+            my @o;
+            if($testnum == 518) {
+                @o = `$cmd 2>"$LOGDIR/stderr$testnum"`;
+            }
+            else {
+                @o = `$cmd 2>/dev/null`;
+            }
             if($o[0]) {
                 $why = $o[0];
                 chomp $why;
             }
             logmsg "prechecked $cmd\n" if($verbose);
         }
+    }
+
+    if($testnum == 518) {
+        logmsg "== Start of file $LOGDIR/stderr$testnum\n";
+        displaylogcontent("$LOGDIR/stderr$testnum");
+        logmsg "== End of file $LOGDIR/stderr$testnum\n";
     }
 
     if($why) {
