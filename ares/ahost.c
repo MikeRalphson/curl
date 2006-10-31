@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.10 2006-10-18 21:05:46 yangtse Exp $
+ * $Id: ahost.c,v 1.11 2006-10-31 17:51:54 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -18,8 +18,7 @@
 #include "setup.h"
 #include <sys/types.h>
 
-#ifdef WIN32
-#else
+#if !defined(WIN32) || defined(WATT32)
 #include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

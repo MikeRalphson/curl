@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.14 2006-10-25 14:13:35 giva Exp $
+ * $Id: adig.c,v 1.15 2006-10-31 17:51:54 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -18,7 +18,7 @@
 #include "setup.h"
 #include <sys/types.h>
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"
 #else
 #include <sys/time.h>
