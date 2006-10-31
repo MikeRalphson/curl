@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.22 2006-07-26 10:54:08 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.23 2006-10-31 17:25:48 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -34,6 +34,7 @@
 #undef  closesocket
 #define closesocket(s)    close_s(s)
 #define writev(s,v,c)     writev_s(s,v,c)
+#define select(n,r,w,x,t) select_s(n,r,w,x,t)
 #endif
 
 #ifdef NETWARE
