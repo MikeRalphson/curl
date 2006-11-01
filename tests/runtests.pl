@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.210 2006-10-31 01:30:42 yangtse Exp $
+# $Id: runtests.pl,v 1.211 2006-11-01 18:33:50 yangtse Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1217,7 +1217,7 @@ sub singletest {
         chomp $cmd;
         if($cmd) {
             my @o;
-            if($testnum == 518) {
+            if(($testnum == 518) || ($testnum == 537)) {
                 @o = `$cmd 2>"$LOGDIR/stderr$testnum"`;
             }
             else {
@@ -1231,7 +1231,7 @@ sub singletest {
         }
     }
 
-    if($testnum == 518) {
+    if(($testnum == 518) || ($testnum == 537)) {
         logmsg "== Start of file $LOGDIR/stderr$testnum\n";
         displaylogcontent("$LOGDIR/stderr$testnum");
         logmsg "== End of file $LOGDIR/stderr$testnum\n";
