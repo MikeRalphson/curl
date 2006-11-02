@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.41 2006-11-01 18:33:50 yangtse Exp $
+# $Id: Makefile.am,v 1.42 2006-11-02 20:50:18 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -103,7 +103,6 @@ lib517_SOURCES = lib517.c $(SUPPORTFILES)
 lib517_DEPENDENCIES = $(DEPENDENCIES)
 
 lib518_SOURCES = lib518.c $(SUPPORTFILES)
-lib518_CFLAGS = -DLIB518
 lib518_DEPENDENCIES = $(DEPENDENCIES)
 
 lib519_SOURCES = lib519.c $(SUPPORTFILES)
@@ -150,7 +149,6 @@ lib533_DEPENDENCIES = $(DEPENDENCIES)
 lib536_SOURCES = lib536.c $(SUPPORTFILES)
 lib536_DEPENDENCIES = $(DEPENDENCIES)
 
-lib537_SOURCES = lib518.c $(SUPPORTFILES)
-lib537_CFLAGS = -DLIB537
+lib537_SOURCES = lib537.c $(SUPPORTFILES)
 lib537_DEPENDENCIES = $(DEPENDENCIES)
 
