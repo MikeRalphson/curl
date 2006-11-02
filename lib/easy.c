@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.88 2006-10-18 21:05:47 yangtse Exp $
+ * $Id: easy.c,v 1.89 2006-11-02 21:56:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -715,6 +715,9 @@ void curl_easy_reset(CURL *curl)
   /* This is our prefered CA cert bundle since install time */
   data->set.ssl.CAfile = (char *)CURL_CA_BUNDLE;
 #endif
+
+  data->set.ssh_auth_types = CURLSSH_AUTH_DEFAULT; /* defaults to any auth
+                                                      type */
 }
 
 #ifdef CURL_DOES_CONVERSIONS

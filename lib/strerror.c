@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.38 2006-10-21 11:32:07 bagder Exp $
+ * $Id: strerror.c,v 1.39 2006-11-02 21:56:43 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -276,6 +276,12 @@ curl_easy_strerror(CURLcode error)
 
   case CURLE_CONV_REQD:
     return "caller must register CURLOPT_CONV_ callback options";
+
+  case CURLE_REMOTE_FILE_NOT_FOUND:
+    return "Remote file not found";
+
+  case CURLE_SSH:
+    return "Error in the SSH layer";
 
     /* error codes not used by current libcurl */
   case CURLE_URL_MALFORMAT_USER:
