@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.14 2006-11-01 18:33:50 yangtse Exp $
+ * $Id: lib518.c,v 1.15 2006-11-02 00:34:21 yangtse Exp $
  */
 
 /*
@@ -29,7 +29,7 @@
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
 #endif
-#ifdef UNISTD_H
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
