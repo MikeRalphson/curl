@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.55 2006-10-17 21:32:56 bagder Exp $
+ * $Id: http_ntlm.c,v 1.56 2006-11-02 00:33:43 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -43,6 +43,10 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
 
 #include "urldata.h"
 #include "sendf.h"
