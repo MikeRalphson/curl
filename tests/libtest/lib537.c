@@ -5,11 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.1 2006-11-02 20:50:18 yangtse Exp $
- */
-
-/*
- * This source code is used for lib518 and lib537.
+ * $Id: lib537.c,v 1.2 2006-11-02 20:56:40 yangtse Exp $
  */
 
 #include "test.h"
