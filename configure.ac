@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.209 2006-11-02 21:56:41 bagder Exp $
+# $Id: configure.ac,v 1.210 2006-11-03 03:05:15 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1091,7 +1091,7 @@ if test X"$OPT_LIBSSH2" != Xno; then
       LIBSSH2_ENABLED=1
       AC_DEFINE(USE_LIBSSH2, 1, [if libSSH2 is in use]))
 
-    if test X"OPT_LIBSSH2" != Xoff &&
+    if test X"$OPT_LIBSSH2" != Xoff &&
        test "$LIBSSH2_ENABLED" != "1"; then
       AC_MSG_ERROR([libSSH2 libs and/or directories were not found where specified!])
     fi
