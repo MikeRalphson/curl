@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.1 2006-11-02 21:56:43 bagder Exp $
+* $Id: ssh.c,v 1.2 2006-11-03 15:52:21 giva Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -128,6 +128,14 @@
 /* The last #include file should be: */
 #ifdef CURLDEBUG
 #include "memdebug.h"
+#endif
+
+#ifndef S_IRGRP
+#define S_IRGRP  0
+#endif
+
+#ifndef S_IROTH
+#define S_IROTH 0
 #endif
 
 static LIBSSH2_ALLOC_FUNC(libssh2_malloc);
