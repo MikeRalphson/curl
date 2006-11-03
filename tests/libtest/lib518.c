@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.18 2006-11-02 20:50:18 yangtse Exp $
+ * $Id: lib518.c,v 1.19 2006-11-03 01:56:55 yangtse Exp $
  */
 
 #include "test.h"
@@ -188,8 +188,9 @@ static int rlimit(int keep_open)
 
   /*
    * verify that soft limit is higher than NUM_NEEDED,
-   * number of file descriptors we would try to open
-   * plus SAFETY_MARGIN to not exhaust file pool
+   * which is the number of file descriptors we would 
+   * try to open plus SAFETY_MARGIN to not exhaust the
+   * file descriptor pool
    */
 
   num_open.rlim_cur = NUM_NEEDED;
@@ -226,7 +227,7 @@ static int rlimit(int keep_open)
   if (!memchunk) {
     store_errmsg("memchunk, malloc() failed", our_errno());
     fprintf(stderr, "%s\n", msgbuff);
-    return -7;
+    return -5;
   }
 
   /* initialize it to fight lazy allocation */
@@ -247,7 +248,7 @@ static int rlimit(int keep_open)
     store_errmsg(strbuff, 0);
     fprintf(stderr, "%s\n", msgbuff);
     free(memchunk);
-    return -8;
+    return -6;
   }
 
   /* allocate array for file descriptors */
@@ -260,7 +261,7 @@ static int rlimit(int keep_open)
     store_errmsg("fd, malloc() failed", our_errno());
     fprintf(stderr, "%s\n", msgbuff);
     free(memchunk);
-    return -9;
+    return -7;
   }
 
   /* initialize it to fight lazy allocation */
@@ -283,7 +284,7 @@ static int rlimit(int keep_open)
     free(fd);
     fd = NULL;
     free(memchunk);
-    return -10;
+    return -8;
   }
 
   /* create a bunch of file descriptors */
@@ -313,7 +314,7 @@ static int rlimit(int keep_open)
       free(fd);
       fd = NULL;
       free(memchunk);
-      return -11;
+      return -9;
 
     }
 
@@ -328,6 +329,7 @@ static int rlimit(int keep_open)
   free(memchunk);
 
   /* close file descriptors unless instructed to keep them */
+
   if (!keep_open) {
     close_file_descriptors();
   }
