@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.20 2006-11-03 10:05:21 yangtse Exp $
+ * $Id: lib518.c,v 1.21 2006-11-03 14:13:25 yangtse Exp $
  */
 
 #include "test.h"
@@ -311,7 +311,16 @@ static int rlimit(int keep_open)
 
       fd[num_open.rlim_cur] = -1;
 
+      sprintf(strbuff1, fmt, num_open.rlim_cur);
+      sprintf(strbuff, "dup() attempt %s failed", strbuff1);
+      fprintf(stderr, "%s\n", strbuff);
+
+      sprintf(strbuff1, fmt, num_open.rlim_cur);
+      sprintf(strbuff, "fds system limit seems close to %s", strbuff1);
+      fprintf(stderr, "%s\n", strbuff);
+
       num_open.rlim_max = NUM_NEEDED;
+
       sprintf(strbuff2, fmt, num_open.rlim_max);
       sprintf(strbuff1, fmt, num_open.rlim_cur);
       sprintf(strbuff, "fds needed %s > system limit %s",

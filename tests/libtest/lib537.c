@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.4 2006-11-03 10:05:22 yangtse Exp $
+ * $Id: lib537.c,v 1.5 2006-11-03 14:13:25 yangtse Exp $
  */
 
 #include "test.h"
@@ -303,7 +303,7 @@ static int rlimit(int keep_open)
       fprintf(stderr, "%s\n", strbuff);
 
       sprintf(strbuff1, fmt, num_open.rlim_cur);
-      sprintf(strbuff, "fd system limit seems close to %s", strbuff1);
+      sprintf(strbuff, "fds system limit seems close to %s", strbuff1);
       fprintf(stderr, "%s\n", strbuff);
 
       num_open.rlim_max = num_open.rlim_cur - SAFETY_MARGIN;
