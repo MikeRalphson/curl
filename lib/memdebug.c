@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.48 2005-06-30 13:30:23 bagder Exp $
+ * $Id: memdebug.c,v 1.49 2006-11-05 12:42:50 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -61,25 +61,29 @@ struct memdebug {
  */
 
 #define logfile curl_debuglogfile
-FILE *curl_debuglogfile;
-static bool memlimit; /* enable memory limit */
-static long memsize;  /* set number of mallocs allowed */
+FILE *curl_debuglogfile = NULL;
+static bool memlimit = FALSE; /* enable memory limit */
+static long memsize = 0;  /* set number of mallocs allowed */
 
 /* this sets the log file name */
 void curl_memdebug(const char *logname)
 {
-  if(logname)
-    logfile = fopen(logname, "w");
-  else
-    logfile = stderr;
+  if (!logfile) {
+    if(logname)
+      logfile = fopen(logname, "w");
+    else
+      logfile = stderr;
+  }
 }
 
 /* This function sets the number of malloc() calls that should return
    successfully! */
 void curl_memlimit(long limit)
 {
-  memlimit = TRUE;
-  memsize = limit;
+  if (!memlimit) {
+    memlimit = TRUE;
+    memsize = limit;
+  }
 }
 
 /* returns TRUE if this isn't allowed! */
