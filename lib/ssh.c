@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.2 2006-11-03 15:52:21 giva Exp $
+* $Id: ssh.c,v 1.3 2006-11-06 18:26:36 yangtse Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -51,7 +51,7 @@
 #include <sys/stat.h>
 #endif
 
-#if defined(WIN32) && !defined(__GNUC__) || defined(__MINGW32__)
+#ifdef WIN32
 
 #else /* probably some kind of unix */
 #ifdef HAVE_SYS_SOCKET_H
