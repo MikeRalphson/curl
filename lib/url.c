@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.562 2006-11-03 12:43:56 bagder Exp $
+ * $Id: url.c,v 1.563 2006-11-06 18:27:25 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3246,7 +3246,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     conn->curl_connect = Curl_scp_connect; /* ssh_connect? */
     conn->curl_do = Curl_scp_do;
     conn->curl_done = Curl_scp_done;
-    conn->curl_do_more = (Curl_do_more_func)NULL;
+    conn->curl_do_more = (Curl_do_more_func)ZERO_NULL;
 #else
     failf(data, LIBCURL_NAME
           " was built without LIBSSH2, scp: not supported!");
