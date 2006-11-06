@@ -1,4 +1,4 @@
-/* $Id: ares_cancel.c,v 1.5 2006-07-22 15:37:10 giva Exp $ */
+/* $Id: ares_cancel.c,v 1.6 2006-11-06 13:56:51 yangtse Exp $ */
 
 /* Copyright (C) 2004 by Daniel Stenberg et al
  *
@@ -39,7 +39,10 @@ void ares_cancel(ares_channel channel)
   channel->queries = NULL;
   if (!(channel->flags & ARES_FLAG_STAYOPEN))
   {
-    for (i = 0; i < channel->nservers; i++)
-      ares__close_sockets(channel, &channel->servers[i]);
+    if (channel->servers)
+    {
+      for (i = 0; i < channel->nservers; i++)
+        ares__close_sockets(channel, &channel->servers[i]);
+    }
   }
 }
