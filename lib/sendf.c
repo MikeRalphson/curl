@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.112 2006-11-02 21:56:43 bagder Exp $
+ * $Id: sendf.c,v 1.113 2006-11-06 18:28:34 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -513,6 +513,8 @@ int Curl_read(struct connectdata *conn, /* connection data */
 #ifdef USE_LIBSSH2
   else if (conn->protocol & PROT_SCP) {
     nread = Curl_scp_recv(conn, num, conn->master_buffer, bytesfromsocket);
+    /* TODO: return CURLE_OK also for nread <= 0 
+             read failures and timeouts ? */
   }
 #endif /* !USE_LIBSSH2 */
   else {
