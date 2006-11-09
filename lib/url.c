@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.564 2006-11-07 14:07:02 bagder Exp $
+ * $Id: url.c,v 1.565 2006-11-09 21:54:33 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1804,7 +1804,10 @@ CURLcode Curl_disconnect(struct connectdata *conn)
   if(-1 != conn->connectindex) {
     /* unlink ourselves! */
     infof(data, "Closing connection #%ld\n", conn->connectindex);
-    data->state.connc->connects[conn->connectindex] = NULL;
+    if(data->state.connc)
+      /* only clear the table entry if we still know in which cache we
+         used to be in */
+      data->state.connc->connects[conn->connectindex] = NULL;
   }
 
 #ifdef USE_LIBIDN
