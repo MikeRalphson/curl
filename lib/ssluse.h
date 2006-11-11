@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.26 2006-06-07 14:14:05 bagder Exp $
+ * $Id: ssluse.h,v 1.27 2006-11-11 22:05:33 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -52,10 +52,10 @@ struct curl_slist *Curl_ossl_engines_list(struct SessionHandle *data);
 int Curl_ossl_init(void);
 void Curl_ossl_cleanup(void);
 
-int Curl_ossl_send(struct connectdata *conn,
-                   int sockindex,
-                   void *mem,
-                   size_t len);
+ssize_t Curl_ossl_send(struct connectdata *conn,
+                       int sockindex,
+                       void *mem,
+                       size_t len);
 ssize_t Curl_ossl_recv(struct connectdata *conn, /* connection data */
                        int num,                  /* socketindex */
                        char *buf,                /* store read data here */
