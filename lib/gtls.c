@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.15 2006-10-21 11:32:07 bagder Exp $
+ * $Id: gtls.c,v 1.16 2006-11-11 21:34:43 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -452,13 +452,12 @@ Curl_gtls_connect(struct connectdata *conn,
 
 
 /* return number of sent (non-SSL) bytes */
-int Curl_gtls_send(struct connectdata *conn,
+ssize_t Curl_gtls_send(struct connectdata *conn,
                    int sockindex,
                    void *mem,
                    size_t len)
 {
-  int rc;
-  rc = gnutls_record_send(conn->ssl[sockindex].session, mem, len);
+  ssize_t rc = gnutls_record_send(conn->ssl[sockindex].session, mem, len);
 
   if(rc < 0 ) {
     if(rc == GNUTLS_E_AGAIN)

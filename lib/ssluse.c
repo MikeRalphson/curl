@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.160 2006-11-08 21:49:14 bagder Exp $
+ * $Id: ssluse.c,v 1.161 2006-11-11 21:34:43 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1702,10 +1702,10 @@ Curl_ossl_connect(struct connectdata *conn,
 }
 
 /* return number of sent (non-SSL) bytes */
-int Curl_ossl_send(struct connectdata *conn,
-                   int sockindex,
-                   void *mem,
-                   size_t len)
+ssize_t Curl_ossl_send(struct connectdata *conn,
+                       int sockindex,
+                       void *mem,
+                       size_t len)
 {
   /* SSL_write() is said to return 'int' while write() and send() returns
      'size_t' */
@@ -1741,7 +1741,7 @@ int Curl_ossl_send(struct connectdata *conn,
     failf(conn->data, "SSL_write() return error %d\n", err);
     return -1;
   }
-  return rc; /* number of bytes */
+  return (ssize_t)rc; /* number of bytes */
 }
 
 /*

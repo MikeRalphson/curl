@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.11 2006-09-12 23:51:01 yangtse Exp $
+ * $Id: sslgen.c,v 1.12 2006-11-11 21:34:43 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -455,10 +455,10 @@ struct curl_slist *Curl_ssl_engines_list(struct SessionHandle *data)
 }
 
 /* return number of sent (non-SSL) bytes */
-int Curl_ssl_send(struct connectdata *conn,
-                  int sockindex,
-                  void *mem,
-                  size_t len)
+ssize_t Curl_ssl_send(struct connectdata *conn,
+                      int sockindex,
+                      void *mem,
+                      size_t len)
 {
 #ifdef USE_SSLEAY
   return Curl_ossl_send(conn, sockindex, mem, len);
@@ -481,10 +481,10 @@ int Curl_ssl_send(struct connectdata *conn,
  * If the read would block (EWOULDBLOCK) we return -1. Otherwise we return
  * a regular CURLcode value.
  */
-int Curl_ssl_recv(struct connectdata *conn, /* connection data */
-                  int sockindex,            /* socketindex */
-                  char *mem,                /* store read data here */
-                  size_t len)               /* max amount to read */
+ssize_t Curl_ssl_recv(struct connectdata *conn, /* connection data */
+                      int sockindex,            /* socketindex */
+                      char *mem,                /* store read data here */
+                      size_t len)               /* max amount to read */
 {
 #ifdef USE_SSL
   ssize_t nread;
