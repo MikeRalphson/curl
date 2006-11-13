@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.95 2006-10-23 19:16:19 yangtse Exp $
+ * $Id: sws.c,v 1.96 2006-11-13 13:48:55 bagder Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -865,7 +865,7 @@ int main(int argc, char *argv[])
     msgsock = accept(sock, NULL, NULL);
 
     if (CURL_SOCKET_BAD == msgsock) {
-      printf("MAJOR ERROR: accept() failed with error: &d\n", errno);
+      printf("MAJOR ERROR: accept() failed with error: %d\n", errno);
       break;
     }
 
