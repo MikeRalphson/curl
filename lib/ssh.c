@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.3 2006-11-06 18:26:36 yangtse Exp $
+* $Id: ssh.c,v 1.4 2006-11-14 20:26:13 giva Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -294,6 +294,7 @@ CURLcode Curl_scp_connect(struct connectdata *conn, bool *done)
                                             libssh2_realloc, NULL);
   if (scp->scpSession == NULL) {
     failf(data, "Failure initialising ssh session\n");
+    Curl_safefree(scp->path);
     return CURLE_FAILED_INIT;
   }
 #ifdef CURL_LIBSSH2_DEBUG
@@ -302,6 +303,7 @@ CURLcode Curl_scp_connect(struct connectdata *conn, bool *done)
 
   if (libssh2_session_startup(scp->scpSession, sock)) {
     failf(data, "Failure establishing ssh session\n");
+    Curl_safefree(scp->path);
     return CURLE_FAILED_INIT;
   }
 
@@ -393,6 +395,7 @@ CURLcode Curl_scp_connect(struct connectdata *conn, bool *done)
 
   if (!authed) {
     failf(data, "Authentication failure\n");
+    Curl_safefree(scp->path);
     return CURLE_FAILED_INIT;
   }
 
