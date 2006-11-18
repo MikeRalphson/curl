@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.213 2006-11-17 16:44:22 yangtse Exp $
+# $Id: runtests.pl,v 1.214 2006-11-18 04:07:01 yangtse Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -283,11 +283,16 @@ sub startnew {
 
     # setup entry in the running servers hash
 
-    $run{$serv}{'pidfile'} = $pidfile;    # pidfile for the test server.
+    $run{$serv}{'pidfile'} = $pidfile; # pidfile for the test server.
 
-    $run{$serv}{'pids'} = "$child $pid2"; # forked pid and test server pid.
+    if($child == $pid2) {
+        $run{$serv}{'pids'} = "$pid2"; # test server pid.
+    }
+    else {
+        $run{$serv}{'pids'} = "$child $pid2"; # forked pid and test server pid.
+    }
 
-    if($serv =~ /^ftp(\d*)(-ipv6|)/) {    # ftp servers have slavepidfiles.
+    if($serv =~ /^ftp(\d*)(-ipv6|)/) { # ftp servers have slavepidfiles.
         my ($id, $ext) = ($1, $2);
         $ext =~ s/\-//g;
         my $slavepidfiles = ".sockfilt$id$ext.pid .sockdata$id$ext.pid";
