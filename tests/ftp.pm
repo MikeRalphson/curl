@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftp.pm,v 1.6 2006-11-17 16:44:22 yangtse Exp $
+# $Id: ftp.pm,v 1.7 2006-11-18 04:05:42 yangtse Exp $
 ###########################################################################
 
 use strict;
@@ -55,12 +55,14 @@ sub pidfromfile {
         if(open(PIDF, "<$pidfile")) {
             my $pidline = <PIDF>;
             close(PIDF);
-            chomp $pidline;
-            $pidline =~ s/^\s+//;
-            $pidline =~ s/\s+$//;
-            $pidline =~ s/^[+-]?0+//;
-            if($pidline =~ $pidpattern) {
-                $pid = $1;
+            if($pidline) {
+                chomp $pidline;
+                $pidline =~ s/^\s+//;
+                $pidline =~ s/\s+$//;
+                $pidline =~ s/^[+-]?0+//;
+                if($pidline =~ $pidpattern) {
+                    $pid = $1;
+                }
             }
         }
     }
@@ -148,6 +150,13 @@ sub signalpids {
     my ($signal, $pids)=@_;
 
     if((not defined $signal) || (not defined $pids)) {
+        return;
+    }
+    if($pids !~ /\s+/) {
+        # avoid sorting if only one pid
+        if(checkalivepid($pids) > 0) {
+            kill($signal, $pids);
+        }
         return;
     }
     my $prev = 0;
