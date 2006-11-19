@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.75 2006-11-17 16:44:22 yangtse Exp $
+# $Id: ftpserver.pl,v 1.76 2006-11-19 22:48:40 bagder Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -835,6 +835,7 @@ while(1) {
         my $delay = $delayreply{$FTPCMD};
         if($delay) {
             # just go sleep this many seconds!
+            logmsg("Sleep for $delay seconds\n");
             sleep($delay);
         }
 
