@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftp.pm,v 1.7 2006-11-18 04:05:42 yangtse Exp $
+# $Id: ftp.pm,v 1.8 2006-11-19 03:47:11 yangtse Exp $
 ###########################################################################
 
 use strict;
-use warnings;
+#use warnings; # requires perl 5.006 or later
 
 
 my $DEFAULT_TIMEOUT_START = 90; # default allowed time for a process to startup
