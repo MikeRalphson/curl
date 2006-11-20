@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftp.pm,v 1.8 2006-11-19 03:47:11 yangtse Exp $
+# $Id: ftp.pm,v 1.9 2006-11-20 03:25:17 yangtse Exp $
 ###########################################################################
 
 use strict;
@@ -262,9 +262,9 @@ sub stopprocess {
     if(not defined $pids) {
         return 1;
     }
-    signalpids("TERM", $pids);
+    signalpids("KILL", $pids);
     if(waitdeadpid($pids, $ONE_HALF_STOP_TIMEOUT) == 0) {
-        signalpids("INT", $pids);
+        signalpids("KILL", $pids);
         if(waitdeadpid($pids, $ONE_THIRD_STOP_TIMEOUT) == 0) {
             signalpids("KILL", $pids);
             if(waitdeadpid($pids, $ONE_SIXTH_STOP_TIMEOUT) == 0) {
@@ -308,6 +308,12 @@ sub stopprocesspidfile {
 sub ftpkillslave {
     my ($id, $ext)=@_;
 
+    if(not defined $id) {
+        $id = "";
+    }
+    if(not defined $ext) {
+        $ext = "";
+    }
     my $ret = 1; # assume success stopping them
     my $pids = "";
     my $pidfiles = "";
