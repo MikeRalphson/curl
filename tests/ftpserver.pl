@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.76 2006-11-19 22:48:40 bagder Exp $
+# $Id: ftpserver.pl,v 1.77 2006-11-20 10:35:25 yangtse Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -114,7 +114,7 @@ do {
 sub catch_zap {
     my $signame = shift;
     print STDERR "ftpserver.pl received SIG$signame, exiting\n";
-    ftpkillslaves();
+    ftpkillslave($ftpdnum, $ext, 1);
     die "Somebody sent me a SIG$signame";
 }
 $SIG{INT} = \&catch_zap;
