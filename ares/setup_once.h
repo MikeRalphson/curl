@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.6 2006-10-27 15:37:26 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.7 2006-11-22 18:41:35 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -121,6 +121,16 @@
 #define ISGRAPH(x)  (isgraph((int)  ((unsigned char)x)))
 #define ISALPHA(x)  (isalpha((int)  ((unsigned char)x)))
 #define ISPRINT(x)  (isprint((int)  ((unsigned char)x)))
+
+
+/*
+ * Typedef to 'int' if sig_atomic_t is not an available 'typedefed' type.
+ */
+
+#ifndef HAVE_SIG_ATOMIC_T
+typedef int sig_atomic_t;
+#define HAVE_SIG_ATOMIC_T
+#endif
 
 
 #endif /* __SETUP_ONCE_H */

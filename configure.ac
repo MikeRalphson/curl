@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.210 2006-11-03 03:05:15 yangtse Exp $
+# $Id: configure.ac,v 1.211 2006-11-22 18:41:35 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1630,6 +1630,8 @@ CURL_CHECK_TYPE_SOCKLEN_T
 TYPE_IN_ADDR_T
 
 TYPE_SOCKADDR_STORAGE
+
+TYPE_SIG_ATOMIC_T
 
 AC_FUNC_SELECT_ARGTYPES
 
