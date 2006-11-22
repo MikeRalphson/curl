@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.41 2006-11-06 13:56:51 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.42 2006-11-22 22:54:41 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -592,11 +592,11 @@ DhcpNameServer
       return (errno == ENOENT) ? ARES_SUCCESS : ARES_EFILE;
     while ((status = ares__read_line(fp, &line, &linesize)) == ARES_SUCCESS)
     {
-      if ((p = try_config(line, "domain")))
+      if ((p = try_config(line, "domain")) && channel->ndomains == -1)
         status = config_domain(channel, p);
       else if ((p = try_config(line, "lookup")) && !channel->lookups)
         status = config_lookup(channel, p, "bind", "file");
-      else if ((p = try_config(line, "search")))
+      else if ((p = try_config(line, "search")) && channel->ndomains == -1)
         status = set_search(channel, p);
       else if ((p = try_config(line, "nameserver")) && channel->nservers == -1)
         status = config_nameserver(&servers, &nservers, p);
