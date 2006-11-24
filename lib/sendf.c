@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.114 2006-11-11 21:34:43 bagder Exp $
+ * $Id: sendf.c,v 1.115 2006-11-24 22:14:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -364,6 +364,8 @@ CURLcode Curl_write(struct connectdata *conn,
 #ifdef USE_LIBSSH2
   else if (conn->protocol & PROT_SCP)
     bytes_written = Curl_scp_send(conn, num, mem, len);
+  else if (conn->protocol & PROT_SFTP)
+    bytes_written = Curl_sftp_send(conn, num, mem, len);
 #endif /* !USE_LIBSSH2 */
   else if(conn->sec_complete)
     /* only TRUE if krb4 enabled */
@@ -521,6 +523,9 @@ int Curl_read(struct connectdata *conn, /* connection data */
     nread = Curl_scp_recv(conn, num, conn->master_buffer, bytesfromsocket);
     /* TODO: return CURLE_OK also for nread <= 0
              read failures and timeouts ? */
+  }
+  else if (conn->protocol & PROT_SFTP) {
+    nread = Curl_sftp_recv(conn, num, conn->master_buffer, bytesfromsocket);
   }
 #endif /* !USE_LIBSSH2 */
   else {
