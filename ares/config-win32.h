@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.12 2006-10-31 20:45:17 giva Exp $ */
+/* $Id: config-win32.h,v 1.13 2006-11-24 16:38:58 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -28,6 +28,9 @@
 #if defined(__MINGW32__)
 #define HAVE_GETOPT_H 1
 #endif
+
+/* Define if you have the <signal.h> header file. */
+#define HAVE_SIGNAL_H 1
 
 /* Define if you have the <sys/time.h> header file */
 /* #define HAVE_SYS_TIME_H 1 */
@@ -56,6 +59,9 @@
 /* ---------------------------------------------------------------- */
 /*                        OTHER HEADER INFO                         */
 /* ---------------------------------------------------------------- */
+
+/* Define if sig_atomic_t is an available typedef. */
+#define HAVE_SIG_ATOMIC_T 1
 
 /* Define if you have the ANSI C header files.  */
 #define STDC_HEADERS 1
