@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.6 2006-11-24 22:14:40 bagder Exp $
+* $Id: ssh.c,v 1.7 2006-11-25 09:49:29 bagder Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -560,6 +560,7 @@ CURLcode Curl_scp_do(struct connectdata *conn, bool *done)
     }
     /* download data */
     bytecount = (curl_off_t) sb.st_size;
+    conn->data->reqdata.maxdownload =  (curl_off_t) sb.st_size;
     res = Curl_setup_transfer(conn, FIRSTSOCKET,
                               bytecount, FALSE, NULL, -1, NULL);
   }

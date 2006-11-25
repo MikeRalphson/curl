@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.318 2006-10-25 20:40:15 bagder Exp $
+ * $Id: transfer.c,v 1.319 2006-11-25 09:49:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2344,8 +2344,8 @@ CURLcode Curl_perform(struct SessionHandle *data)
 }
 
 /*
- * Curl_setup_transfer() is called to setup some basic properties for the upcoming
- * transfer.
+ * Curl_setup_transfer() is called to setup some basic properties for the
+ * upcoming transfer.
  */
 CURLcode
 Curl_setup_transfer(
