@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.7 2006-11-22 18:41:35 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.8 2006-11-25 01:02:53 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -130,6 +130,15 @@
 #ifndef HAVE_SIG_ATOMIC_T
 typedef int sig_atomic_t;
 #define HAVE_SIG_ATOMIC_T
+#endif
+
+
+/*
+ * Default return type for signal handlers.
+ */
+
+#ifndef RETSIGTYPE
+#define RETSIGTYPE void
 #endif
 
 

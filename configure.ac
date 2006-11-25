@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.211 2006-11-22 18:41:35 yangtse Exp $
+# $Id: configure.ac,v 1.212 2006-11-25 01:02:53 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1633,6 +1633,8 @@ TYPE_SOCKADDR_STORAGE
 
 TYPE_SIG_ATOMIC_T
 
+AC_TYPE_SIGNAL
+
 AC_FUNC_SELECT_ARGTYPES
 
 CURL_CHECK_FUNC_RECV
@@ -1643,7 +1645,7 @@ CURL_CHECK_MSG_NOSIGNAL
 
 dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL
-AC_TYPE_SIGNAL
+
 dnl AC_FUNC_VPRINTF
 case $host in
   *msdosdjgpp)

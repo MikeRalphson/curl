@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.566 2006-11-24 22:14:40 bagder Exp $
+ * $Id: url.c,v 1.567 2006-11-25 01:02:53 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -179,9 +179,6 @@ static void signalPipeClose(struct curl_llist *pipe);
 #ifndef WIN32
 /* not for WIN32 builds */
 
-#ifndef RETSIGTYPE
-#define RETSIGTYPE void
-#endif
 #ifdef HAVE_SIGSETJMP
 extern sigjmp_buf curl_jmpenv;
 #endif

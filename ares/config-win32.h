@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.13 2006-11-24 16:38:58 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.14 2006-11-25 01:02:52 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -123,6 +123,29 @@
   #undef HAVE_WINSOCK_H
   #undef HAVE_WINSOCK2_H
   #undef HAVE_WS2TCPIP_H
+#endif
+
+/* ---------------------------------------------------------------- */
+/*                       TYPEDEF REPLACEMENTS                       */
+/* ---------------------------------------------------------------- */
+
+/* Define this if in_addr_t is not an available 'typedefed' type */
+#define in_addr_t unsigned long
+
+/* Define as the return type of signal handlers (int or void).  */
+#define RETSIGTYPE void
+
+/* Define ssize_t if it is not an available 'typedefed' type */
+#if (defined(__WATCOMC__) && (__WATCOMC__ >= 1240)) || defined(__POCC__)
+#elif defined(_WIN64)
+#define ssize_t __int64
+#else
+#define ssize_t int
+#endif
+
+/* Define to 'int' if socklen_t is not an available 'typedefed' type */
+#ifndef HAVE_WS2TCPIP_H
+#define socklen_t int
 #endif
 
 /* ---------------------------------------------------------------- */
