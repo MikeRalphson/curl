@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.319 2006-11-25 09:49:31 bagder Exp $
+ * $Id: transfer.c,v 1.320 2006-11-25 13:32:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -501,8 +501,18 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                   k->keepon |= KEEP_WRITE;
                 }
               }
-              else
+              else {
                 k->header = FALSE; /* no more header to parse! */
+
+                if((k->size == -1) && !conn->bits.chunk && !conn->bits.close)
+                  /* When connection is not to get closed, but no
+                     Content-Length nor Content-Encoding chunked have been
+                     received, there is no body in this response. We don't set
+                     stop_reading TRUE since that would also prevent necessary
+                     authentication actions to take place. */
+                  conn->bits.no_body = TRUE;
+
+              }
 
               if (417 == k->httpcode) {
                 /*
