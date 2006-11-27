@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.320 2006-11-25 13:32:04 bagder Exp $
+ * $Id: transfer.c,v 1.321 2006-11-27 13:38:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1677,8 +1677,8 @@ Transfer(struct connectdata *conn)
 
     /* limit-rate logic: if speed exceeds threshold, then do not include fd in
        select set */
-    if ( (conn->data->set.max_send_speed > 0) &&
-         (conn->data->progress.ulspeed > conn->data->set.max_send_speed) )  {
+    if ( (data->set.max_send_speed > 0) &&
+         (data->progress.ulspeed > data->set.max_send_speed) )  {
       fd_write = CURL_SOCKET_BAD;
       Curl_pgrsUpdate(conn);
     }
@@ -1689,8 +1689,8 @@ Transfer(struct connectdata *conn)
         fd_write = CURL_SOCKET_BAD;
     }
 
-    if ( (conn->data->set.max_recv_speed > 0) &&
-         (conn->data->progress.dlspeed > conn->data->set.max_recv_speed) ) {
+    if ( (data->set.max_recv_speed > 0) &&
+         (data->progress.dlspeed > data->set.max_recv_speed) ) {
       fd_read = CURL_SOCKET_BAD;
       Curl_pgrsUpdate(conn);
     }
