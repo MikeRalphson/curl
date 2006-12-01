@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.321 2006-11-27 13:38:32 bagder Exp $
+ * $Id: transfer.c,v 1.322 2006-12-01 07:49:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -904,19 +904,20 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                        || checkprefix("x-compress", start))
                 k->content_encoding = COMPRESS;
             }
-            else if (Curl_compareheader(k->p, "Content-Range:", "bytes")) {
+            else if (checkprefix("Content-Range:", k->p)) {
               /* Content-Range: bytes [num]-
                  Content-Range: bytes: [num]-
+                 Content-Range: [num]-
 
                  The second format was added since Sun's webserver
                  JavaWebServer/1.1.1 obviously sends the header this way!
+                 The third added since some servers use that!
               */
 
-              char *ptr = Curl_strcasestr(k->p, "bytes");
-              ptr+=5;
+              char *ptr = k->p + 14;
 
-              if(*ptr == ':')
-                /* stupid colon skip */
+              /* Move forward until first digit */
+              while(*ptr && !ISDIGIT(*ptr))
                 ptr++;
 
               k->offset = curlx_strtoofft(ptr, NULL, 10);
