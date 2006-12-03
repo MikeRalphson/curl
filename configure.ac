@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.212 2006-11-25 01:02:53 yangtse Exp $
+# $Id: configure.ac,v 1.213 2006-12-03 09:19:23 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1072,11 +1072,11 @@ if test X"$OPT_LIBSSH2" != Xno; then
     PREFIX_LIBSSH2=
     ;;
   *)
-    dnl check the given --with-libssh2 spot
+    dnl use the given --with-libssh2 spot
     PREFIX_LIBSSH2=$OPT_LIBSSH2
     LIB_LIBSSH2="$PREFIX_LIBSSH2/lib$libsuff"
     LDFLAGS="$LDFLAGS -L$LIB_LIBSSH2"
-    CPPFLAGS="$CPPFLAGS -I$PREFIX_LIBSSH2/include/libssh2 -I$PREFIX_LIBSSH2/include"
+    CPPFLAGS="$CPPFLAGS -I$PREFIX_LIBSSH2/include"
     ;;
   esac
 
@@ -1095,6 +1095,8 @@ if test X"$OPT_LIBSSH2" != Xno; then
        test "$LIBSSH2_ENABLED" != "1"; then
       AC_MSG_ERROR([libSSH2 libs and/or directories were not found where specified!])
     fi
+  else
+    AC_MSG_WARN([without the use of OpenSSL libs, libssh2 cannot work])
   fi
 
   if test "$LIBSSH2_ENABLED" = "1"; then
