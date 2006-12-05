@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.89 2006-11-02 21:56:43 bagder Exp $
+ * $Id: easy.c,v 1.90 2006-12-05 15:36:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -471,7 +471,7 @@ CURLcode curl_easy_perform(CURL *curl)
 
   if(!data->state.connc) {
     /* oops, no connection cache, make one up */
-    data->state.connc = Curl_mk_connc(CONNCACHE_PRIVATE);
+    data->state.connc = Curl_mk_connc(CONNCACHE_PRIVATE, -1);
     if(!data->state.connc)
       return CURLE_OUT_OF_MEMORY;
   }
@@ -561,7 +561,7 @@ CURL *curl_easy_duphandle(CURL *incurl)
     if(data->state.used_interface == Curl_if_multi)
       outcurl->state.connc = data->state.connc;
     else
-      outcurl->state.connc = Curl_mk_connc(CONNCACHE_PRIVATE);
+      outcurl->state.connc = Curl_mk_connc(CONNCACHE_PRIVATE, -1);
 
     if(!outcurl->state.connc)
       break;

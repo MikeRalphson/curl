@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.568 2006-12-05 15:17:33 bagder Exp $
+ * $Id: url.c,v 1.569 2006-12-05 15:36:27 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -377,11 +377,13 @@ CURLcode Curl_close(struct SessionHandle *data)
 }
 
 /* create a connection cache of a private or multi type */
-struct conncache *Curl_mk_connc(int type)
+struct conncache *Curl_mk_connc(int type,
+                                int amount) /* set -1 to use default */
 {
   /* It is subject for debate how many default connections to have for a multi
      connection cache... */
-  int default_amount = (type == CONNCACHE_PRIVATE)?5:10;
+  int default_amount = amount == -1?
+    ((type == CONNCACHE_PRIVATE)?5:10):amount;
   struct conncache *c;
 
   c= calloc(sizeof(struct conncache), 1);
@@ -406,6 +408,20 @@ CURLcode Curl_ch_connc(struct SessionHandle *data,
 {
   long i;
   struct connectdata **newptr;
+
+  if(newamount < 1)
+    newamount = 1; /* we better have at least one entry */
+
+  if(!c) {
+    /* we get a NULL pointer passed in as connection cache, which means that
+       there is no cache created for this SessionHandle just yet, we create a
+       brand new with the requested size.
+    */
+    data->state.connc = Curl_mk_connc(CONNCACHE_PRIVATE, newamount);
+    if(!data->state.connc)
+      return CURLE_OUT_OF_MEMORY;
+    return CURLE_OK;
+  }
 
   if(newamount < c->num) {
     /* Since this number is *decreased* from the existing number, we must
