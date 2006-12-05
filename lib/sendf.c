@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.115 2006-11-24 22:14:40 bagder Exp $
+ * $Id: sendf.c,v 1.116 2006-12-05 21:40:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -454,24 +454,6 @@ CURLcode Curl_client_write(struct connectdata *conn,
 }
 
 #define MIN(a,b) (a < b ? a : b)
-
-void Curl_read_rewind(struct connectdata *conn,
-                      size_t extraBytesRead)
-{
-    char buf[512 + 1];
-    size_t bytesToShow;
-
-    conn->read_pos -= extraBytesRead;
-    conn->bits.stream_was_rewound = TRUE;
-
-    bytesToShow = MIN(conn->buf_len - conn->read_pos, sizeof(buf)-1);
-    memcpy(buf, conn->master_buffer + conn->read_pos, bytesToShow);
-    buf[bytesToShow] = '\0';
-
-    DEBUGF(infof(conn->data,
-                 "Buffer after stream rewind (read_pos = %d): [%s]",
-                 conn->read_pos, buf));
-}
 
 /*
  * Internal read-from-socket function. This is meant to deal with plain
