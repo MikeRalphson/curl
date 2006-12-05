@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.569 2006-12-05 15:36:27 bagder Exp $
+ * $Id: url.c,v 1.570 2006-12-05 21:39:24 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2143,26 +2143,8 @@ ConnectionKillOne(struct SessionHandle *data)
     if(!conn || conn->inuse)
       continue;
 
-    /*
-     * By using the set policy, we score each connection.
-     */
-    switch(data->set.closepolicy) {
-    case CURLCLOSEPOLICY_LEAST_RECENTLY_USED:
-    default:
-      /*
-       * Set higher score for the age passed since the connection
-       * was used.
-       */
-      score = Curl_tvdiff(now, conn->now);
-      break;
-    case CURLCLOSEPOLICY_OLDEST:
-      /*
-       * Set higher score for the age passed since the connection
-       * was created.
-       */
-      score = Curl_tvdiff(now, conn->created);
-      break;
-    }
+    /* Set higher score for the age passed since the connection was used */
+    score = Curl_tvdiff(now, conn->now);
 
     if(score > highscore) {
       highscore = score;

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.309 2006-11-24 22:14:40 bagder Exp $
+ * $Id: urldata.h,v 1.310 2006-12-05 21:39:24 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1204,7 +1204,6 @@ struct UserDefined {
   struct curl_slist *telnet_options; /* linked list of telnet options */
   curl_TimeCond timecondition; /* kind of time/date comparison */
   time_t timevalue;       /* what time to compare with */
-  curl_closepolicy closepolicy; /* connection cache close concept */
   Curl_HttpReq httpreq;   /* what kind of HTTP request (if any) is this */
   char *customrequest;    /* HTTP/FTP request to use */
   long httpversion; /* when non-zero, a specific HTTP version requested to
