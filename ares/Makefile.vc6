@@ -1,4 +1,4 @@
-# $Id: Makefile.vc6,v 1.7 2006-07-29 08:39:20 yangtse Exp $
+# $Id: Makefile.vc6,v 1.8 2006-12-11 15:18:52 giva Exp $
 #
 # C-ares makefile for MSVC6+
 # G. Vanem <giva@bgnett.no>.
@@ -121,8 +121,8 @@ $(DEF_FILE): $(OBJECTS) Makefile.VC6
        @echo   ares_gettimeofday      >> $@
        @echo   ares_parse_aaaa_reply  >> $@
 
-ahost.exe: $(OBJ_DIR) $(OBJ_DIR)\ahost.obj cares_imp.lib
-       link $(LDFLAGS) -out:$@ $(OBJ_DIR)\ahost.obj cares_imp.lib $(EX_LIBS)
+ahost.exe: $(OBJ_DIR) $(OBJ_DIR)\ahost.obj $(OBJ_DIR)\getopt.obj cares_imp.lib
+       link $(LDFLAGS) -out:$@ $(OBJ_DIR)\ahost.obj $(OBJ_DIR)\getopt.obj cares_imp.lib $(EX_LIBS)
 
 adig.exe: $(OBJ_DIR) $(OBJ_DIR)\adig.obj $(OBJ_DIR)\getopt.obj cares_imp.lib
        link $(LDFLAGS) -out:$@ $(OBJ_DIR)\adig.obj $(OBJ_DIR)\getopt.obj cares_imp.lib $(EX_LIBS)
