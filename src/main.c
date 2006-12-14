@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.379 2006-10-19 14:28:50 bagder Exp $
+ * $Id: main.c,v 1.380 2006-12-14 16:42:53 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3130,6 +3130,8 @@ static void free_config_fields(struct Configurable *config)
     free(config->cookiejar);
   if(config->ftp_account)
     free(config->ftp_account);
+  if(config->iface)
+    free(config->iface);
 
   curl_slist_free_all(config->quote); /* checks for config->quote == NULL */
   curl_slist_free_all(config->prequote);
@@ -4321,6 +4323,7 @@ int main(int argc, char *argv[])
 {
   int res;
   struct Configurable config;
+
   memset(&config, 0, sizeof(struct Configurable));
 
   config.errors = stderr; /* default errors to stderr */
