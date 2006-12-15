@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.380 2006-12-14 16:42:53 giva Exp $
+ * $Id: main.c,v 1.381 2006-12-15 16:57:28 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3130,13 +3130,18 @@ static void free_config_fields(struct Configurable *config)
     free(config->cookiejar);
   if(config->ftp_account)
     free(config->ftp_account);
+  if(config->ftp_alternative_to_user)
+    free(config->ftp_alternative_to_user);
   if(config->iface)
     free(config->iface);
+  if(config->socksproxy)
+    free(config->socksproxy);
 
   curl_slist_free_all(config->quote); /* checks for config->quote == NULL */
   curl_slist_free_all(config->prequote);
   curl_slist_free_all(config->postquote);
   curl_slist_free_all(config->headers);
+  curl_slist_free_all(config->telnet_options);
 }
 
 #ifdef WIN32
