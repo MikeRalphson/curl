@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.9 2006-11-25 01:02:53 yangtse Exp $
+ * $Id: setup_once.h,v 1.10 2006-12-16 22:28:08 bagder Exp $
  ***************************************************************************/
 
 
@@ -81,7 +81,7 @@
 #define sread(x,y,z) (ssize_t)recv((RECV_TYPE_ARG1)(x), \
                                    (RECV_TYPE_ARG2)(y), \
                                    (RECV_TYPE_ARG3)(z), \
-                                   (RECV_TYPE_ARG4)(SEND_4TH_ARG))
+                                   (RECV_TYPE_ARG4)(0))
 #endif
 #else /* HAVE_RECV */
 #ifndef sread
