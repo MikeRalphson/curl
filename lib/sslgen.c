@@ -18,12 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.12 2006-11-11 21:34:43 bagder Exp $
+ * $Id: sslgen.c,v 1.13 2006-12-16 21:05:33 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
    use. It is responsible for calling the proper 'ossl' function in ssluse.c
-   (OpenSSL based) or the 'gtsl' function in gtsl.c (GnuTLS based).
+   (OpenSSL based) or the 'gtls' function in gtls.c (GnuTLS based).
 
    SSL-functions in libcurl should call functions in this source file, and not
    to any specific SSL-layer.
