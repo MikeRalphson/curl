@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.326 2006-12-21 10:15:40 bagder Exp $
+ * $Id: transfer.c,v 1.327 2006-12-21 10:18:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2244,7 +2244,6 @@ bool Curl_retry_request(struct connectdata *conn,
 {
   bool retry = FALSE;
   struct SessionHandle *data = conn->data;
-  struct Curl_transfer_keeper *k = &data->reqdata.keep;
 
   if((data->reqdata.keep.bytecount+conn->headerbytecount == 0) &&
      conn->bits.reuse &&
