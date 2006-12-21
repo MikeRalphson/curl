@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.304 2006-12-15 16:49:40 giva Exp $
+ * $Id: http.c,v 1.305 2006-12-21 10:15:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1527,8 +1527,8 @@ CURLcode Curl_http_done(struct connectdata *conn,
 
   if(!conn->bits.retry &&
      ((http->readbytecount +
-       k->headerbytecount -
-       k->deductheadercount)) <= 0) {
+       conn->headerbytecount -
+       conn->deductheadercount)) <= 0) {
     /* If this connection isn't simply closed to be retried, AND nothing was
        read from the HTTP server (that counts), this can't be right so we
        return an error here */

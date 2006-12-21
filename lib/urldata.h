@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.312 2006-12-11 09:31:08 bagder Exp $
+ * $Id: urldata.h,v 1.313 2006-12-21 10:15:41 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -534,13 +534,6 @@ struct Curl_transfer_keeper {
   curl_off_t bytecount;         /* total number of bytes read */
   curl_off_t writebytecount;    /* number of bytes written */
 
-  long headerbytecount;  /* only count received headers */
-  long deductheadercount; /* this amount of bytes doesn't count when we check
-                             if anything has been transfered at the end of
-                             a connection. We use this counter to make only
-                             a 100 reply (without a following second response
-                             code) result in a CURLE_GOT_NOTHING error code */
-
   struct timeval start;         /* transfer started at this time */
   struct timeval now;           /* current time */
   bool header;                  /* incoming data has HTTP header */
@@ -741,6 +734,13 @@ struct connectdata {
   long port;       /* which port to use locally */
   unsigned short remote_port; /* what remote port to connect to,
                                  not the proxy port! */
+
+  long headerbytecount;  /* only count received headers */
+  long deductheadercount; /* this amount of bytes doesn't count when we check
+                             if anything has been transfered at the end of
+                             a connection. We use this counter to make only
+                             a 100 reply (without a following second response
+                             code) result in a CURLE_GOT_NOTHING error code */
 
   char *user;    /* user name string, allocated */
   char *passwd;  /* password string, allocated */
