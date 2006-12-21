@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.164 2006-12-05 16:04:02 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.165 2006-12-21 09:36:03 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "2 Nov 2006" "libcurl 7.16.1" "libcurl Manual"
@@ -1237,14 +1237,14 @@ even indicate an accessible file.
 Note that option is by default set to the system path where libcurl's cacert
 bundle is assumed to be stored, as established at build time.
 .IP CURLOPT_CAPATH
-Pass a char * to a zero terminated string naming a directory holding
-multiple CA certificates to verify the peer with. The certificate
-directory must be prepared using the openssl c_rehash utility. This
-makes sense only when used in combination with the
-\fICURLOPT_SSL_VERIFYPEER\fP option.  If \fICURLOPT_SSL_VERIFYPEER\fP
-is zero, \fICURLOPT_CAPATH\fP need not even indicate an accessible
-path.  The \fICURLOPT_CAPATH\fP function apparently does not work in
-Windows due to some limitation in openssl. (Added in 7.9.8)
+Pass a char * to a zero terminated string naming a directory holding multiple
+CA certificates to verify the peer with. The certificate directory must be
+prepared using the openssl c_rehash utility. This makes sense only when used
+in combination with the \fICURLOPT_SSL_VERIFYPEER\fP option.  If
+\fICURLOPT_SSL_VERIFYPEER\fP is zero, \fICURLOPT_CAPATH\fP need not even
+indicate an accessible path.  The \fICURLOPT_CAPATH\fP function apparently
+does not work in Windows due to some limitation in openssl. This option is
+OpenSSL-specific and does nothing if libcurl is built to use GnuTLS.
 .IP CURLOPT_RANDOM_FILE
 Pass a char * to a zero terminated file name. The file will be used to read
 from to seed the random engine for SSL. The more random the specified file is,
