@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.7 2006-11-25 09:49:29 bagder Exp $
+* $Id: ssh.c,v 1.8 2006-12-21 15:47:19 bagder Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -531,11 +531,11 @@ CURLcode Curl_scp_do(struct connectdata *conn, bool *done)
      *          same name as the last directory in the path.
      */
     scp->ssh_channel = libssh2_scp_send_ex(scp->ssh_session, scp->path,
-                                          LIBSSH2_SFTP_S_IRUSR|
-                                          LIBSSH2_SFTP_S_IWUSR|
-                                          LIBSSH2_SFTP_S_IRGRP|
-                                          LIBSSH2_SFTP_S_IROTH,
-                                          conn->data->set.infilesize, 0, 0);
+                                           LIBSSH2_SFTP_S_IRUSR|
+                                           LIBSSH2_SFTP_S_IWUSR|
+                                           LIBSSH2_SFTP_S_IRGRP|
+                                           LIBSSH2_SFTP_S_IROTH,
+                                           conn->data->set.infilesize, 0, 0);
     if (!scp->ssh_channel)
       return CURLE_FAILED_INIT;
 
