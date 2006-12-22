@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.157 2006-10-18 21:05:47 yangtse Exp $
+ * $Id: connect.c,v 1.158 2006-12-22 13:30:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -384,11 +384,10 @@ static CURLcode bindlocal(struct connectdata *conn,
     if( bind(sockfd, sock, socksize) >= 0) {
       /* we succeeded to bind */
       struct Curl_sockaddr_storage add;
-      size_t size;
+      socklen_t size;
 
       size = sizeof(add);
-      if(getsockname(sockfd, (struct sockaddr *) &add,
-                     (socklen_t *)&size)<0) {
+      if(getsockname(sockfd, (struct sockaddr *) &add, &size) < 0) {
         failf(data, "getsockname() failed");
         return CURLE_HTTP_PORT_FAILED;
       }
