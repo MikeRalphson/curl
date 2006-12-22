@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.313 2006-12-21 10:15:41 bagder Exp $
+ * $Id: urldata.h,v 1.314 2006-12-22 15:05:00 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1102,8 +1102,6 @@ struct DynamicStatic {
                        changed after the connect phase, as we allow callback
                        to change it and if so, we reconnect to use the new
                        URL instead */
-  char *proxy;      /* work proxy, copied from UserDefined */
-  bool proxy_alloc; /* http proxy string is malloc()'ed */
   char *referer;    /* referer string */
   bool referer_alloc; /* referer sting is malloc()ed */
   struct curl_slist *cookielist; /* list of cookie files set by
@@ -1132,7 +1130,7 @@ struct UserDefined {
   void *in;          /* the uploaded file is read from here */
   void *writeheader; /* write the header to this if non-NULL */
   char *set_url;     /* what original URL to work on */
-  char *set_proxy;   /* proxy to use */
+  char *proxy;       /* proxy to use */
   long use_port;     /* which port to use (when not using default) */
   char *userpwd;     /* <user:password>, if used */
   long httpauth;     /* what kind of HTTP authentication to use (bitmask) */
