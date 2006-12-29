@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.91 2006-12-22 15:05:00 bagder Exp $
+ * $Id: easy.c,v 1.92 2006-12-29 11:32:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -617,6 +617,8 @@ CURL *curl_easy_duphandle(CURL *incurl)
 #endif
 
     Curl_easy_initHandleData(outcurl);
+
+    outcurl->magic = CURLEASY_MAGIC_NUMBER;
 
     fail = FALSE; /* we reach this point and thus we are OK */
 
