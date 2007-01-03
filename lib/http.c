@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.305 2006-12-21 10:15:39 bagder Exp $
+ * $Id: http.c,v 1.306 2007-01-03 23:04:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -149,7 +149,7 @@ static CURLcode Curl_output_basic(struct connectdata *conn, bool proxy)
   }
 
   snprintf(data->state.buffer, sizeof(data->state.buffer), "%s:%s", user, pwd);
-  if(Curl_base64_encode(data->state.buffer,
+  if(Curl_base64_encode(data, data->state.buffer,
                         strlen(data->state.buffer),
                         &authorization) > 0) {
     if(*userp)
