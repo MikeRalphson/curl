@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.22 2007-01-02 22:34:58 bagder Exp $
+ * $Id: select.c,v 1.23 2007-01-05 15:56:28 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -42,6 +42,10 @@
 #ifdef __BEOS__
 /* BeOS has FD_SET defined in socket.h */
 #include <socket.h>
+#endif
+
+#ifdef __MSDOS__
+#include <dos.h>  /* delay() */
 #endif
 
 #include <curl/curl.h>
@@ -111,7 +115,7 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms)
     if (pfd[num].revents & (POLLIN|POLLHUP))
       ret |= CSELECT_IN;
     if (pfd[num].revents & POLLERR) {
-#ifdef __CYGWIN__ 
+#ifdef __CYGWIN__
       /* Cygwin 1.5.21 needs this hack to pass test 160 */
       if (errno == EINPROGRESS)
         ret |= CSELECT_IN;
@@ -149,7 +153,7 @@ int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms)
 #ifdef WIN32
     Sleep(timeout_ms);
 #elif defined(__MSDOS__)
-    delay(ms);
+    delay(timeout_ms);
 #else
     select(0, NULL, NULL, NULL, &timeout);
 #endif
