@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.162 2007-01-05 23:11:16 bagder Exp $
+ * $Id: ssluse.c,v 1.163 2007-01-08 10:03:19 linus Exp $
  ***************************************************************************/
 
 /*
@@ -734,7 +734,6 @@ void Curl_ossl_close(struct connectdata *conn)
  */
 int Curl_ossl_shutdown(struct connectdata *conn, int sockindex)
 {
-  int result;
   int retval = 0;
   struct ssl_connect_data *connssl = &conn->ssl[sockindex];
   struct SessionHandle *data = conn->data;
