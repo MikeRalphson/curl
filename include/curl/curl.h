@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.312 2007-01-05 23:11:15 bagder Exp $
+ * $Id: curl.h,v 1.313 2007-01-08 11:24:11 linus Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -397,8 +397,8 @@ typedef enum {
                                     generic so the error message will be of
                                     interest when this has happened */
 
-  CURLE_FTP_SSL_CCC_FAILED,      /* 80 - Failed to clear the FTP command
-                                    channel */
+  CURLE_SSL_SHUTDOWN_FAILED,     /* 80 - Failed to shut down the SSL
+                                    connection */
   CURL_LAST /* never use! */
 } CURLcode;
 

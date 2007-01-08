@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.15 2007-01-06 10:49:11 linus Exp $
+ * $Id: sslgen.c,v 1.16 2007-01-08 11:24:12 linus Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -401,10 +401,12 @@ CURLcode Curl_ssl_shutdown(struct connectdata *conn, int sockindex)
 {
   if(conn->ssl[sockindex].use) {
 #ifdef USE_SSLEAY
-    return Curl_ossl_shutdown(conn, sockindex);
+    if(Curl_ossl_shutdown(conn, sockindex))
+      return CURLE_SSL_SHUTDOWN_FAILED;
 #else
 #ifdef USE_GNUTLS
-    return Curl_gtls_shutdown(conn, sockindex);
+    if(Curl_gtls_shutdown(conn, sockindex))
+      return CURLE_SSL_SHUTDOWN_FAILED;
 #else
     (void)conn;
     (void)sockindex;
