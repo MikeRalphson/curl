@@ -21,12 +21,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.h,v 1.24 2006-07-27 22:35:09 bagder Exp $
+ * $Id: formdata.h,v 1.25 2007-01-14 14:57:58 bagder Exp $
  ***************************************************************************/
 
 enum formtype {
-  FORM_DATA, /* regular data */
-  FORM_FILE  /* 'line' points to a file name we should read from */
+  FORM_DATA,    /* form metadata (convert to network encoding if necessary) */
+  FORM_CONTENT, /* form content  (never convert) */
+  FORM_FILE     /* 'line' points to a file name we should read from 
+                    to create the form data (never convert) */
 };
 
 /* plain and simple linked list with lines to send */
@@ -87,7 +89,9 @@ char *Curl_formpostheader(void *formp, size_t *len);
 
 char *Curl_FormBoundary(void);
 
-void Curl_formclean(struct FormData *);
+void Curl_formclean(struct FormData **);
+
+CURLcode Curl_formconvert(struct SessionHandle *, struct FormData *);
 
 #endif
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.575 2007-01-05 23:11:16 bagder Exp $
+ * $Id: url.c,v 1.576 2007-01-14 14:57:58 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3948,7 +3948,7 @@ static CURLcode SetupConnection(struct connectdata *conn,
     if(data->set.useragent) {
       Curl_safefree(conn->allocptr.uagent);
       conn->allocptr.uagent =
-        aprintf("User-Agent: %s\015\012", data->set.useragent);
+        aprintf("User-Agent: %s\r\n", data->set.useragent);
       if(!conn->allocptr.uagent)
         return CURLE_OUT_OF_MEMORY;
     }
