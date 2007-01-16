@@ -5,7 +5,7 @@
 *                            | (__| |_| |  _ <| |___
 *                             \___|\___/|_| \_\_____|
 *
-* Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+* Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
 *
 * This software is licensed as described in the file COPYING, which
 * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.8 2006-12-21 15:47:19 bagder Exp $
+* $Id: ssh.c,v 1.9 2007-01-16 22:22:23 bagder Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -568,9 +568,11 @@ CURLcode Curl_scp_do(struct connectdata *conn, bool *done)
   return res;
 }
 
-CURLcode Curl_scp_done(struct connectdata *conn, CURLcode status)
+CURLcode Curl_scp_done(struct connectdata *conn, CURLcode status,
+                       bool premature)
 {
   struct SSHPROTO *scp = conn->data->reqdata.proto.ssh;
+  (void)premature; /* not used */
 
   Curl_safefree(scp->path);
   scp->path = NULL;
@@ -891,9 +893,11 @@ CURLcode Curl_sftp_do(struct connectdata *conn, bool *done)
   return res;
 }
 
-CURLcode Curl_sftp_done(struct connectdata *conn, CURLcode status)
+CURLcode Curl_sftp_done(struct connectdata *conn, CURLcode status,
+                        bool premature)
 {
   struct SSHPROTO *sftp = conn->data->reqdata.proto.ssh;
+  (void)premature; /* not used */
 
   Curl_safefree(sftp->path);
   sftp->path = NULL;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.307 2007-01-14 14:57:58 bagder Exp $
+ * $Id: http.c,v 1.308 2007-01-16 22:22:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1503,11 +1503,12 @@ int Curl_https_getsock(struct connectdata *conn,
  */
 
 CURLcode Curl_http_done(struct connectdata *conn,
-                        CURLcode status)
+                        CURLcode status, bool premature)
 {
   struct SessionHandle *data = conn->data;
   struct HTTP *http =data->reqdata.proto.http;
   struct Curl_transfer_keeper *k = &data->reqdata.keep;
+  (void)premature; /* not used */
 
   /* set the proper values (possibly modified on POST) */
   conn->fread = data->set.fread; /* restore */

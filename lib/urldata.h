@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.315 2007-01-05 23:11:16 bagder Exp $
+ * $Id: urldata.h,v 1.316 2007-01-16 22:22:25 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -614,7 +614,7 @@ struct Curl_async {
    within the source when we need to cast between data pointers (such as NULL)
    and function pointers. */
 typedef CURLcode (*Curl_do_more_func)(struct connectdata *);
-typedef CURLcode (*Curl_done_func)(struct connectdata *, CURLcode);
+typedef CURLcode (*Curl_done_func)(struct connectdata *, CURLcode, bool);
 
 
 /*

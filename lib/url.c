@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.576 2007-01-14 14:57:58 bagder Exp $
+ * $Id: url.c,v 1.577 2007-01-16 22:22:25 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4087,7 +4087,7 @@ CURLcode Curl_async_resolved(struct connectdata *conn,
 
 
 CURLcode Curl_done(struct connectdata **connp,
-                   CURLcode status) /* an error if this is called after an
+                   CURLcode status, bool premature) /* an error if this is called after an
                                        error was detected */
 {
   CURLcode result;
@@ -4127,7 +4127,7 @@ CURLcode Curl_done(struct connectdata **connp,
 
   /* this calls the protocol-specific function pointer previously set */
   if(conn->curl_done)
-    result = conn->curl_done(conn, status);
+    result = conn->curl_done(conn, status, premature);
   else
     result = CURLE_OK;
 
@@ -4193,7 +4193,7 @@ CURLcode Curl_do(struct connectdata **connp, bool *done)
       infof(data, "Re-used connection seems dead, get a new one\n");
 
       conn->bits.close = TRUE; /* enforce close of this connection */
-      result = Curl_done(&conn, result); /* we are so done with this */
+      result = Curl_done(&conn, result, FALSE); /* we are so done with this */
 
       /* conn may no longer be a good pointer */
 

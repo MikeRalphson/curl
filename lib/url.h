@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.29 2006-12-05 15:36:27 bagder Exp $
+ * $Id: url.h,v 1.30 2007-01-16 22:22:25 bagder Exp $
  ***************************************************************************/
 
 #include <stdarg.h> /* to make sure we have ap_list */
@@ -39,7 +39,7 @@ CURLcode Curl_async_resolved(struct connectdata *conn,
                              bool *protocol_connect);
 CURLcode Curl_do(struct connectdata **, bool *done);
 CURLcode Curl_do_more(struct connectdata *);
-CURLcode Curl_done(struct connectdata **, CURLcode);
+CURLcode Curl_done(struct connectdata **, CURLcode, bool premature);
 CURLcode Curl_disconnect(struct connectdata *);
 CURLcode Curl_protocol_connect(struct connectdata *conn, bool *done);
 CURLcode Curl_protocol_connecting(struct connectdata *conn, bool *done);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.84 2006-10-21 12:36:10 yangtse Exp $
+ * $Id: telnet.c,v 1.85 2007-01-16 22:22:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1073,10 +1073,11 @@ void telrcv(struct connectdata *conn,
   }
 }
 
-CURLcode Curl_telnet_done(struct connectdata *conn, CURLcode status)
+CURLcode Curl_telnet_done(struct connectdata *conn, CURLcode status, bool premature)
 {
   struct TELNET *tn = (struct TELNET *)conn->data->reqdata.proto.telnet;
   (void)status; /* unused */
+  (void)premature; /* not used */
 
   curl_slist_free_all(tn->telnet_vars);
 
