@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.32 2007-01-14 14:57:58 bagder Exp $
+ * $Id: http_chunks.c,v 1.33 2007-01-16 22:26:50 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -324,15 +324,15 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
         }
         else {
 #ifdef CURL_DOES_CONVERSIONS
-        /* Convert to host encoding before calling Curl_client_write */
-        result = Curl_convert_from_network(conn->data,
-                                           ch->hexbuffer,
-                                           ch->hexindex);
-        if(result != CURLE_OK) {
-          /* Curl_convert_from_network calls failf if unsuccessful */
-          /* Treat it as a bad chunk */
-          return(CHUNKE_BAD_CHUNK);
-        }
+          /* Convert to host encoding before calling Curl_client_write */
+          result = Curl_convert_from_network(conn->data,
+                                             conn->trailer,
+                                             conn->trlPos);
+          if(result != CURLE_OK) {
+            /* Curl_convert_from_network calls failf if unsuccessful */
+            /* Treat it as a bad chunk */
+            return(CHUNKE_BAD_CHUNK);
+          }
 #endif /* CURL_DOES_CONVERSIONS */
           Curl_client_write(conn, CLIENTWRITE_HEADER,
                             conn->trailer, conn->trlPos);
