@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.218 2006-11-20 16:58:04 yangtse Exp $
+# $Id: runtests.pl,v 1.219 2007-01-18 18:04:20 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1111,6 +1111,7 @@ sub subVariables {
   $$thing =~ s/%PWD/$pwd/g;
   $$thing =~ s/%TFTPPORT/$TFTPPORT/g;
   $$thing =~ s/%TFTP6PORT/$TFTP6PORT/g;
+  $$thing =~ s/%CURL/$CURL/g;
 
   # The purpose of FTPTIME2 and FTPTIME3 is to provide times that can be
   # used for time-out tests and that whould work on most hosts as these
@@ -1226,6 +1227,7 @@ sub singletest {
         my @precheck = getpart("client", "precheck");
         $cmd = $precheck[0];
         chomp $cmd;
+        subVariables \$cmd;
         if($cmd) {
             my @o = `$cmd 2>/dev/null`;
             if($o[0]) {

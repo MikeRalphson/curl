@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.42 2006-11-02 20:50:18 yangtse Exp $
+# $Id: Makefile.am,v 1.43 2007-01-18 18:04:21 danf Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -34,6 +34,8 @@ INCLUDES = -I$(top_srcdir)/include/curl \
            -I$(top_srcdir)/lib 
 
 LIBDIR = $(top_builddir)/lib
+
+EXTRA_DIST = test307.pl
 
 # these files are used in every single test program below
 SUPPORTFILES = first.c test.h
