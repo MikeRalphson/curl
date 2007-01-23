@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.382 2007-01-05 23:11:17 bagder Exp $
+ * $Id: main.c,v 1.383 2007-01-23 08:57:12 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -416,6 +416,10 @@ static void warnf(struct Configurable *config, const char *fmt, ...)
  */
 static CURLcode main_init(void)
 {
+#ifdef __DJGPP__
+  /* stop stat() wasting time */
+  _djstat_flags |= _STAT_INODE | _STAT_EXEC_MAGIC | _STAT_DIRSIZE;
+#endif
   return curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
