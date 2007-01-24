@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.308 2007-01-16 22:22:23 bagder Exp $
+ * $Id: http.c,v 1.309 2007-01-24 12:34:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1420,6 +1420,8 @@ CURLcode Curl_http_connect(struct connectdata *conn, bool *done)
       free(data->state.first_host);
 
     data->state.first_host = strdup(conn->host.name);
+    if(!data->state.first_host)
+      return CURLE_OUT_OF_MEMORY;
   }
 
   if(conn->protocol & PROT_HTTPS) {
