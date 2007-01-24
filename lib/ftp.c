@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.390 2007-01-16 22:22:23 bagder Exp $
+ * $Id: ftp.c,v 1.391 2007-01-24 19:09:12 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2560,12 +2560,14 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
       break;
 
     case FTP_CCC:
-      /* First shut down the SSL layer (note: this call will block) */
-      result = Curl_ssl_shutdown(conn, FIRSTSOCKET);
+      if (ftpcode < 500) {
+	/* First shut down the SSL layer (note: this call will block) */
+	result = Curl_ssl_shutdown(conn, FIRSTSOCKET);
 
-      if(result) {
-        failf(conn->data, "Failed to clear the command channel (CCC)");
-        return result;
+	if(result) {
+	  failf(conn->data, "Failed to clear the command channel (CCC)");
+	  return result;
+	}
       }
 
       /* Then continue as normal */
