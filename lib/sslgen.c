@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.16 2007-01-08 11:24:12 linus Exp $
+ * $Id: sslgen.c,v 1.17 2007-01-24 17:19:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -599,4 +599,17 @@ int Curl_ssl_check_cxn(struct connectdata *conn)
   /* TODO: we lack implementation of this for GnuTLS */
   return -1; /* connection status unknown */
 #endif /* USE_SSLEAY */
+}
+
+bool Curl_ssl_data_pending(struct connectdata *conn,
+                           int connindex)
+{
+#ifdef USE_SSLEAY
+  /* OpenSSL-specific */
+  if(conn->ssl[connindex].handle)
+    /* SSL is in use */
+    return SSL_pending(conn->ssl[connindex].handle);
+#endif
+  return FALSE; /* nothing pending */
+
 }
