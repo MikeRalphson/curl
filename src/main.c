@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.384 2007-01-25 15:58:01 bagder Exp $
+ * $Id: main.c,v 1.385 2007-01-25 20:47:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3212,7 +3212,7 @@ CURLcode _my_setopt(CURL *curl, const char *name, CURLoption tag, ...)
 {
   va_list arg;
   CURLcode ret;
-  char buffer[128];
+  char *bufp;
   char value[256];
   bool remark=FALSE;
 
@@ -3249,13 +3249,12 @@ CURLcode _my_setopt(CURL *curl, const char *name, CURLoption tag, ...)
     ret = curl_easy_setopt(curl, tag, oval);
   }
 
-  sprintf(buffer, "%scurl_easy_setopt(hnd, %s, %s);%s",
-          remark?"/* ":"",
-          name, value,
-          remark?" [REMARK] */":"");
+  bufp = curl_maprintf("%scurl_easy_setopt(hnd, %s, %s);%s",
+                       remark?"/* ":"", name, value,
+                       remark?" [REMARK] */":"");
 
-  easycode = curl_slist_append(easycode, buffer);
-
+  easycode = curl_slist_append(easycode, bufp);
+  curl_free(bufp);
   va_end(arg);
 
   return ret;
