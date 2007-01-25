@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.32 2005-08-10 19:26:33 gknauf Exp $
+# $Id: Makefile.dist,v 1.33 2007-01-25 13:15:47 gknauf Exp $
 ###########################################################################
 
 all:
@@ -72,6 +72,10 @@ mingw32:
 mingw32-ssl:
 	$(MAKE) -C lib -f Makefile.m32 SSL=1 ZLIB=1
 	$(MAKE) -C src -f Makefile.m32 SSL=1 ZLIB=1
+
+mingw32-ssh2-ssl:
+	$(MAKE) -C lib -f Makefile.m32 SSH2=1 SSL=1 ZLIB=1
+	$(MAKE) -C src -f Makefile.m32 SSH2=1 SSL=1 ZLIB=1
 
 mingw32-clean:
 	$(MAKE) -C lib -f Makefile.m32 clean
@@ -211,6 +215,10 @@ netware-ssl:
 netware-ssl-zlib:
 	$(MAKE) -C lib -f Makefile.netware WITH_SSL=1 WITH_ZLIB=1
 	$(MAKE) -C src -f Makefile.netware WITH_SSL=1 WITH_ZLIB=1
+
+netware-ssh2-ssl-zlib:
+	$(MAKE) -C lib -f Makefile.netware WITH_SSH2=1 WITH_SSL=1 WITH_ZLIB=1
+	$(MAKE) -C src -f Makefile.netware WITH_SSH2=1 WITH_SSL=1 WITH_ZLIB=1
 
 netware-zlib:
 	$(MAKE) -C lib -f Makefile.netware WITH_ZLIB=1
