@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.7 2007-01-24 17:19:08 bagder Exp $
+ * $Id: sslgen.h,v 1.8 2007-01-25 11:09:56 bagder Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -77,7 +77,7 @@ bool Curl_ssl_data_pending(struct connectdata *conn,
 #if !defined(USE_SSL) && !defined(SSLGEN_C)
 /* set up blank macros for none-SSL builds */
 #define Curl_ssl_close_all(x)
-#define Curl_ssl_data_pending(x) 0
+#define Curl_ssl_data_pending(x,y) 0
 #endif
 
 #define SSL_SHUTDOWN_TIMEOUT 10000 /* ms */
