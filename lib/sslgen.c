@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.17 2007-01-24 17:19:08 bagder Exp $
+ * $Id: sslgen.c,v 1.18 2007-01-25 21:00:03 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -609,6 +609,9 @@ bool Curl_ssl_data_pending(struct connectdata *conn,
   if(conn->ssl[connindex].handle)
     /* SSL is in use */
     return SSL_pending(conn->ssl[connindex].handle);
+#else
+  (void)conn;
+  (void)connindex;
 #endif
   return FALSE; /* nothing pending */
 
