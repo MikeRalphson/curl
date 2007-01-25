@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.219 2007-01-18 18:04:20 danf Exp $
+# $Id: runtests.pl,v 1.220 2007-01-25 01:35:44 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1706,7 +1706,7 @@ sub singletest {
 
     if($curl_debug) {
         if(! -f $memdump) {
-            logmsg "\n** ALERT! memory debuggin without any output file?\n";
+            logmsg "\n** ALERT! memory debugging without any output file?\n";
         }
         else {
             my @memdata=`$memanalyze $memdump`;
