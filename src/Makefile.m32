@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.19 2007-01-25 13:14:42 gknauf Exp $
+# $Id: Makefile.m32,v 1.20 2007-01-25 15:00:01 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -31,7 +31,7 @@ STRIP = strip -s
 ## Nothing more to do below this line!
 
 INCLUDES = -I. -I.. -I../include -I../lib -I$(ZLIB_PATH)
-CFLAGS = -g -O2 -DMINGW32
+CFLAGS = -g -O2
 LDFLAGS =
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 LINK = $(CC) $(CFLAGS) $(LDFLAGS) -o $@
