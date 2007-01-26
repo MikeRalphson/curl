@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.385 2007-01-25 20:47:47 bagder Exp $
+ * $Id: main.c,v 1.386 2007-01-26 15:15:27 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3225,13 +3225,21 @@ CURLcode _my_setopt(CURL *curl, const char *name, CURLoption tag, ...)
 
   }
   else if(tag < CURLOPTTYPE_OFF_T) {
-    /* we treat both object and function pointers like this */
     void *pval = va_arg(arg, void *);
     unsigned char *ptr = (unsigned char *)pval;
 
+    /* function pointers are never printable */
+    if (tag >= CURLOPTTYPE_FUNCTIONPOINT) {
+      if (pval) {
+        snprintf(value, sizeof(value), "%p", pval);
+        remark = TRUE;
+      }
+      else
+        strcpy(value, "NULL");
+    }
     /* attempt to figure out if it is a string (since the tag numerical doesn't
        offer this info) and then output it as a string if so */
-    if(pval && isgraph(ptr[0]) && isgraph(ptr[1]))
+    else if(pval && isgraph(ptr[0]) && isgraph(ptr[1]))
       snprintf(value, sizeof(value), "\"%s\"", (char *)ptr);
     else if(pval) {
       snprintf(value, sizeof(value), "%p", pval);
