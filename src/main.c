@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.388 2007-01-26 16:24:52 giva Exp $
+ * $Id: main.c,v 1.389 2007-01-26 16:36:59 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -422,11 +422,6 @@ static CURLcode main_init(void)
   /* stop stat() wasting time */
   _djstat_flags |= _STAT_INODE | _STAT_EXEC_MAGIC | _STAT_DIRSIZE;
 #endif
-
-#ifdef WIN32
-  LoadLibrary ("exchndl.dll");
-#endif
-
   return curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
