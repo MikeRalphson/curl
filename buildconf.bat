@@ -1,11 +1,14 @@
 @echo off
 REM set up a CVS tree to build when there's no autotools
-REM $Revision: 1.2 $
-REM $Date: 2004-09-15 08:07:20 $
+REM $Revision: 1.3 $
+REM $Date: 2007-01-26 20:00:55 $
 
 REM create ca-bundle.h
 echo /* This file is generated automatically */ >lib\ca-bundle.h
+echo #ifndef CURL_CA_BUNDLE >>lib\ca-bundle.h
 echo #define CURL_CA_BUNDLE getenv("CURL_CA_BUNDLE") >>lib\ca-bundle.h
+echo #endif >>lib\ca-bundle.h
+
 
 REM create hugehelp.c
 copy src\hugehelp.c.cvs src\hugehelp.c
