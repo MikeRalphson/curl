@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.331 2007-01-24 17:19:08 bagder Exp $
+ * $Id: transfer.c,v 1.332 2007-01-26 17:50:06 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -364,7 +364,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
              might be pipelining and then someone else might want to read what
              follows! */
           curl_off_t totalleft = k->size - k->bytecount;
-          if(totalleft < bytestoread)
+          if(totalleft < (curl_off_t)bytestoread)
             bytestoread = (size_t)totalleft;
         }
 
