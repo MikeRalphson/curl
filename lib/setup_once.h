@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.10 2006-12-16 22:28:08 bagder Exp $
+ * $Id: setup_once.h,v 1.11 2007-01-27 01:56:20 yangtse Exp $
  ***************************************************************************/
 
 
@@ -36,7 +36,7 @@
 
 /*
  * If we have the MSG_NOSIGNAL define, make sure we use
- * it as the fourth argument of send() and recv()
+ * it as the fourth argument of function send()
  */
 
 #ifdef HAVE_MSG_NOSIGNAL
