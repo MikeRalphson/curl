@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.10 2007-01-23 22:13:05 bagder Exp $
+* $Id: ssh.c,v 1.11 2007-01-27 11:50:42 gknauf Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -337,6 +337,7 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
 
 #ifdef CURL_LIBSSH2_DEBUG
   /* The fingerprint points to static storage (!), don't free() it. */
+  infof(data, "Fingerprint: ");
   for (i = 0; i < 16; i++) {
     infof(data, "%02X ", (unsigned char) fingerprint[i]);
   }
