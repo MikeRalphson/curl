@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.124 2007-01-16 22:22:23 bagder Exp $
+ * $Id: multi.c,v 1.125 2007-01-27 03:14:25 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -512,7 +512,7 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
   }
 
   if(easy) {
-    bool premature = easy->state != CURLM_STATE_COMPLETED;
+    bool premature = (bool)(easy->state != CURLM_STATE_COMPLETED);
 
     /* If the 'state' is not INIT or COMPLETED, we might need to do something
        nice to put the easy_handle in a good known state when this returns. */

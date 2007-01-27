@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.120 2007-01-17 15:15:21 giva Exp $
+ * $Id: sendf.c,v 1.121 2007-01-27 03:14:26 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -474,7 +474,7 @@ int Curl_read(struct connectdata *conn, /* connection data */
   ssize_t nread;
   size_t bytesfromsocket = 0;
   char *buffertofill = NULL;
-  bool pipelining = (conn->data->multi &&
+  bool pipelining = (bool)(conn->data->multi &&
                      Curl_multi_canPipeline(conn->data->multi));
 
   /* Set 'num' to 0 or 1, depending on which socket that has been sent here.
