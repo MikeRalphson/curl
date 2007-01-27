@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.11 2007-01-27 11:50:42 gknauf Exp $
+* $Id: ssh.c,v 1.12 2007-01-27 12:14:02 gknauf Exp $
 ***************************************************************************/
 
 #define CURL_LIBSSH2_DEBUG
@@ -807,7 +807,8 @@ CURLcode Curl_sftp_do(struct connectdata *conn, bool *done)
                                 filename);
           }
 
-          infof(data, "%s\n", line);
+          currLen += snprintf(line+currLen, totalLen-currLen, "\n");
+          res = Curl_client_write(conn, CLIENTWRITE_BOTH, line, 0);
           free(line);
         }
       }
