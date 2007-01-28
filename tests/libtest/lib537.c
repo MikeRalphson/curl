@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.5 2006-11-03 14:13:25 yangtse Exp $
+ * $Id: lib537.c,v 1.6 2007-01-28 03:51:10 yangtse Exp $
  */
 
 #include "test.h"
@@ -233,7 +233,7 @@ static int rlimit(int keep_open)
 
   /* verify that we won't overflow size_t in malloc() */
 
-  if (num_open.rlim_max > ((size_t)-1) / sizeof(*fd)) {
+  if ((size_t)(num_open.rlim_max) > ((size_t)-1) / sizeof(*fd)) {
     sprintf(strbuff1, fmt, num_open.rlim_max);
     sprintf(strbuff, "unable to allocate an array for %s "
             "file descriptors, would overflow size_t", strbuff1);
