@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.23 2007-01-26 21:00:02 gknauf Exp $
+# $Id: Makefile.m32,v 1.24 2007-01-28 21:54:10 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -54,6 +54,9 @@ endif
 ifdef SSL
   CFLAGS += -DUSE_SSLEAY -DHAVE_OPENSSL_ENGINE_H
   curl_LDADD += -L$(OPENSSL_PATH)/out -leay32 -lssl32
+endif
+ifdef SSPI
+  CFLAGS += -DUSE_WINDOWS_SSPI
 endif
 curl_LDADD += -lwsock32 -lws2_32 -lwinmm -L$(ZLIB_PATH) -lz
 

@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.34 2007-01-25 15:00:01 gknauf Exp $
+# $Id: Makefile.m32,v 1.35 2007-01-28 21:54:10 gknauf Exp $
 #
 ## Makefile for building libcurl.a with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -46,6 +46,9 @@ ifdef ZLIB
   INCLUDES += -I"$(ZLIB_PATH)"
   CFLAGS += -DHAVE_LIBZ -DHAVE_ZLIB_H
   DLL_LIBS += -L$(ZLIB_PATH) -lz
+endif
+ifdef SSPI
+  CFLAGS += -DUSE_WINDOWS_SSPI
 endif
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 

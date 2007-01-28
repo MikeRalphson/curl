@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.34 2007-01-27 03:43:05 yangtse Exp $
+# $Id: Makefile.dist,v 1.35 2007-01-28 21:54:10 gknauf Exp $
 ###########################################################################
 
 all:
@@ -76,6 +76,10 @@ mingw32-ssl:
 mingw32-ssh2-ssl:
 	$(MAKE) -C lib -f Makefile.m32 SSH2=1 SSL=1 ZLIB=1
 	$(MAKE) -C src -f Makefile.m32 SSH2=1 SSL=1 ZLIB=1
+
+mingw32-ssh2-ssl-sspi:
+	$(MAKE) -C lib -f Makefile.m32 SSH2=1 SSL=1 SSPI=1 ZLIB=1
+	$(MAKE) -C src -f Makefile.m32 SSH2=1 SSL=1 SSPI=1 ZLIB=1
 
 mingw32-clean:
 	$(MAKE) -C lib -f Makefile.m32 clean
