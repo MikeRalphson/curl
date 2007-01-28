@@ -18,10 +18,10 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.12 2007-01-27 12:14:02 gknauf Exp $
+* $Id: ssh.c,v 1.13 2007-01-28 12:35:39 gknauf Exp $
 ***************************************************************************/
 
-#define CURL_LIBSSH2_DEBUG
+/* #define CURL_LIBSSH2_DEBUG */
 
 #include "setup.h"
 
@@ -808,7 +808,7 @@ CURLcode Curl_sftp_do(struct connectdata *conn, bool *done)
           }
 
           currLen += snprintf(line+currLen, totalLen-currLen, "\n");
-          res = Curl_client_write(conn, CLIENTWRITE_BOTH, line, 0);
+          res = Curl_client_write(conn, CLIENTWRITE_BODY, line, 0);
           free(line);
         }
       }
