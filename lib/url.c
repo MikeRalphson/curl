@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.578 2007-01-25 01:35:44 danf Exp $
+ * $Id: url.c,v 1.579 2007-01-28 22:45:22 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2047,6 +2047,10 @@ ConnectionExists(struct SessionHandle *data,
              ssl options as well */
           if(!Curl_ssl_config_matches(&needle->ssl_config,
                                       &check->ssl_config)) {
+            infof(data,
+                  "Connection #%ld has different SSL parameters, "
+                  "can't reuse\n",
+                  check->connectindex );
             continue;
           }
         }
