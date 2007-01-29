@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.44 2007-01-29 10:09:06 bagder Exp $
+# $Id: Makefile.am,v 1.45 2007-01-29 20:37:02 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -133,11 +133,11 @@ lib526_SOURCES = lib526.c $(SUPPORTFILES) $(TIMEVAL)
 lib526_CFLAGS = -DLIB526
 lib526_DEPENDENCIES = $(DEPENDENCIES)
 
-lib527_SOURCES = lib526.c $(SUPPORTFILES)
+lib527_SOURCES = lib526.c $(SUPPORTFILES) $(TIMEVAL)
 lib527_CFLAGS = -DLIB527
 lib527_DEPENDENCIES = $(DEPENDENCIES)
 
-lib529_SOURCES = lib525.c $(SUPPORTFILES)
+lib529_SOURCES = lib525.c $(SUPPORTFILES) $(TIMEVAL)
 lib529_CFLAGS = -DLIB529
 lib529_DEPENDENCIES = $(DEPENDENCIES)
 
@@ -145,7 +145,7 @@ lib530_SOURCES = lib530.c $(SUPPORTFILES) $(TIMEVAL)
 lib530_CFLAGS = -DLIB530
 lib530_DEPENDENCIES = $(DEPENDENCIES)
 
-lib532_SOURCES = lib526.c $(SUPPORTFILES)
+lib532_SOURCES = lib526.c $(SUPPORTFILES) $(TIMEVAL)
 lib532_CFLAGS = -DLIB532
 lib532_DEPENDENCIES = $(DEPENDENCIES)
 
