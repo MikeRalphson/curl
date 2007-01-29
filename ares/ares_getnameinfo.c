@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.16 2006-10-25 14:16:01 giva Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.17 2007-01-29 20:56:27 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -220,7 +220,8 @@ static void nameinfo_callback(void *arg, int status, struct hostent *host)
                  *end = 0;
              }
         }
-      niquery->callback(niquery->arg, ARES_SUCCESS, host->h_name, service);
+      niquery->callback(niquery->arg, ARES_SUCCESS, (char *)(host->h_name),
+                        service);
       return;
     }
   /* We couldn't find the host, but it's OK, we can use the IP */

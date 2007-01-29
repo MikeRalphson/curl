@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.20 2006-08-04 15:41:56 giva Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.21 2007-01-29 20:56:27 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -239,7 +239,7 @@ static int fake_hostent(const char *name, int family, ares_host_callback callbac
   hostent.h_addr_list = addrs;
   callback(arg, ARES_SUCCESS, &hostent);
 
-  free(hostent.h_name);
+  free((char *)(hostent.h_name));
   return 1;
 }
 
