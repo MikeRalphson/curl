@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.123 2006-10-18 15:57:49 yangtse Exp $
+ * $Id: setup.h,v 1.124 2007-01-29 00:51:02 gknauf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -362,6 +362,11 @@ int fileno( FILE *stream);
 #define DEBUGF(x) x
 #else
 #define DEBUGF(x)
+#endif
+
+/* non-configure builds may define CURL_WANTS_CA_BUNDLE_ENV */
+#if defined(CURL_WANTS_CA_BUNDLE_ENV) && !defined(CURL_CA_BUNDLE)
+#define CURL_CA_BUNDLE getenv("CURL_CA_BUNDLE")
 #endif
 
 /*
