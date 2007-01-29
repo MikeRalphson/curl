@@ -5,14 +5,13 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.18 2006-10-29 21:19:24 yangtse Exp $
+ * $Id: lib509.c,v 1.19 2007-01-29 20:24:00 giva Exp $
  */
 
 #include "test.h"
 
 #ifdef USE_SSLEAY
 
-#include <sys/time.h>
 #include <sys/types.h>
 
 #include <openssl/opensslv.h>
@@ -33,7 +32,7 @@
 #define MAIN_LOOP_HANG_TIMEOUT     30 * 1000
 #define MULTI_PERFORM_HANG_TIMEOUT 20 * 1000
 
-/* 
+/*
  * We use this ZERO_NULL to avoid picky compiler warnings,
  * when assigning a NULL pointer to a function pointer var.
  */
@@ -259,7 +258,7 @@ int test(char *URL)
     interval.tv_sec = 1;
     interval.tv_usec = 0;
 
-    if (curlx_tvdiff(curlx_tvnow(), ml_start) > 
+    if (curlx_tvdiff(curlx_tvnow(), ml_start) >
         MAIN_LOOP_HANG_TIMEOUT) {
       ml_timedout = TRUE;
       break;
@@ -269,7 +268,7 @@ int test(char *URL)
 
     while (res == CURLM_CALL_MULTI_PERFORM) {
       res = curl_multi_perform(multi, &running);
-      if (curlx_tvdiff(curlx_tvnow(), mp_start) > 
+      if (curlx_tvdiff(curlx_tvnow(), mp_start) >
           MULTI_PERFORM_HANG_TIMEOUT) {
         mp_timedout = TRUE;
         break;
