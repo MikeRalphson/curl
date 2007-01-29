@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.309 2007-01-24 12:34:23 bagder Exp $
+ * $Id: http.c,v 1.310 2007-01-29 09:26:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1101,6 +1101,8 @@ Curl_compareheader(char *headerline,    /* line to check */
  * like any ordinary HTTP request, and not specially crafted like this. This
  * function only remains here like this for now since the rewrite is a bit too
  * much work to do at the moment.
+ *
+ * This function is BLOCKING which is nasty for all multi interface using apps.
  */
 
 CURLcode Curl_proxyCONNECT(struct connectdata *conn,
@@ -1160,15 +1162,18 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
     if(CURLE_OK == result) {
       char *host=(char *)"";
       const char *proxyconn="";
+      const char *useragent="";
 
       if(!checkheaders(data, "Host:")) {
         host = aprintf("Host: %s\r\n", host_port);
         if(!host)
           result = CURLE_OUT_OF_MEMORY;
       }
-      if(!checkheaders(data, "Proxy-Connection:")) {
+      if(!checkheaders(data, "Proxy-Connection:"))
         proxyconn = "Proxy-Connection: Keep-Alive\r\n";
-      }
+
+      if(!checkheaders(data, "User-Agent:") && data->set.useragent)
+        useragent = conn->allocptr.uagent;
 
       if(CURLE_OK == result) {
         /* Send the connect request to the proxy */
@@ -1184,7 +1189,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
                       host,
                       conn->allocptr.proxyuserpwd?
                       conn->allocptr.proxyuserpwd:"",
-                      data->set.useragent?conn->allocptr.uagent:"",
+                      useragent,
                       proxyconn);
 
         if(CURLE_OK == result)
