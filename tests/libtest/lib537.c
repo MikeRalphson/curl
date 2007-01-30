@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.7 2007-01-30 03:48:29 yangtse Exp $
+ * $Id: lib537.c,v 1.8 2007-01-30 13:21:39 yangtse Exp $
  */
 
 #include "test.h"
@@ -356,9 +356,9 @@ static int rlimit(int keep_open)
    * with an indication that select limit would be exceeded.
    */
 
-  sprintf(strbuff2, fmt, num_open.rlim_max);
+  sprintf(strbuff1, fmt, num_open.rlim_max);
   sprintf(strbuff, "fds open %s > select limit %d",
-          strbuff2, FD_SETSIZE);
+          strbuff1, FD_SETSIZE);
   store_errmsg(strbuff, 0);
   fprintf(stderr, "%s\n", msgbuff);
   close_file_descriptors();
