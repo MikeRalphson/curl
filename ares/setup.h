@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.23 2006-10-18 21:05:46 yangtse Exp $ */
+/* $Id: setup.h,v 1.24 2007-01-30 13:15:08 giva Exp $ */
 
 /* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
  *
@@ -133,7 +133,7 @@ typedef int ares_socket_t;
  * Assume a few thing unless they're set by configure
  */
 
-#if !defined(HAVE_SYS_TIME_H) && !defined(_MSC_VER)
+#if !defined(HAVE_SYS_TIME_H) && !defined(_MSC_VER) && !defined(__WATCOMC__)
 #define HAVE_SYS_TIME_H
 #endif
 

@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.17 2006-07-05 23:10:38 yangtse Exp $ */
+/* $Id: nameser.h,v 1.18 2007-01-30 13:15:07 giva Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -30,7 +30,9 @@ struct iovec
     size_t iov_len;     /* Length of data.  */
 };
 
+#ifndef __WATCOMC__
 #define getpid() _getpid()
+#endif
 
 int ares_writev (SOCKET s, const struct iovec *vector, size_t count);
 #define writev(s,vect,count)  ares_writev(s,vect,count)
