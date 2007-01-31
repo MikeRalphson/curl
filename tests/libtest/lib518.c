@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.23 2007-01-30 03:48:29 yangtse Exp $
+ * $Id: lib518.c,v 1.24 2007-01-31 15:34:53 yangtse Exp $
  */
 
 #include "test.h"
@@ -360,16 +360,31 @@ static int rlimit(int keep_open)
    * with an indication that select limit would be exceeded.
    */
 
-  sprintf(strbuff2, fmt, num_open.rlim_max);
-  sprintf(strbuff, "fds open %s > select limit %d",
-          strbuff2, FD_SETSIZE);
-  store_errmsg(strbuff, 0);
-  fprintf(stderr, "%s\n", msgbuff);
-  close_file_descriptors();
-  free(memchunk);
-  return -10;
+  num_open.rlim_cur = FD_SETSIZE - SAFETY_MARGIN;
+  if (num_open.rlim_max > num_open.rlim_cur) {
+    sprintf(strbuff, "select limit is FD_SETSIZE %d", FD_SETSIZE);
+    store_errmsg(strbuff, 0);
+    fprintf(stderr, "%s\n", msgbuff);
+    close_file_descriptors();
+    free(memchunk);
+    return -10;
+  }
 
-#endif
+  num_open.rlim_cur = FD_SETSIZE - SAFETY_MARGIN;
+  for (rl.rlim_cur = 0;
+       rl.rlim_cur < num_open.rlim_max;
+       rl.rlim_cur++) {
+    if (fd[rl.rlim_cur] > num_open.rlim_cur) {
+      sprintf(strbuff, "select limit is FD_SETSIZE %d", FD_SETSIZE);
+      store_errmsg(strbuff, 0);
+      fprintf(stderr, "%s\n", msgbuff);
+      close_file_descriptors();
+      free(memchunk);
+      return -11;
+    }
+  }
+
+#endif /* using a FD_SETSIZE bound select() */
 
   /* free the chunk of memory we were reserving so that it
      becomes becomes available to the test */
