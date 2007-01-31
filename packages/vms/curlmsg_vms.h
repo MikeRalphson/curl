@@ -1,4 +1,4 @@
-/* $Id: curlmsg_vms.h,v 1.3 2005-12-30 00:07:25 curlvms Exp $                                                                     */
+/* $Id: curlmsg_vms.h,v 1.4 2007-01-31 09:37:39 bagder Exp $                                                                     */
 /* CURLMSG_VMS.H                                                            */
 /* This defines the necessary bits to change CURLE_* error codes to VMS     */
 /* style error codes.  CURLMSG.H is built from CURLMSG.SDL which is built   */
@@ -100,5 +100,8 @@ long vms_cond[] =
         CURL_TFTP_UNKNOWNID,
         CURL_TFTP_EXISTS,
         CURL_TFTP_NOSUCHUSER,
+	CURL_CONV_FAILED,
+	CURL_CONV_REQD,
+	CURL_SSL_CACERT_BADFILE,
         CURL_CURL_LAST
         };
