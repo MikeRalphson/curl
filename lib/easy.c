@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.93 2007-01-28 12:58:13 bagder Exp $
+ * $Id: easy.c,v 1.94 2007-01-31 19:47:49 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -227,16 +227,22 @@ CURLcode curl_global_init(long flags)
   Curl_ccalloc = (curl_calloc_callback)calloc;
 
   if (flags & CURL_GLOBAL_SSL)
-    if (!Curl_ssl_init())
+    if (!Curl_ssl_init()) {
+      DEBUGF(fprintf(stderr, "Error: Curl_ssl_init failed\n"));
       return CURLE_FAILED_INIT;
+    }
 
   if (flags & CURL_GLOBAL_WIN32)
-    if (win32_init() != CURLE_OK)
+    if (win32_init() != CURLE_OK) {
+      DEBUGF(fprintf(stderr, "Error: win32_init failed\n"));
       return CURLE_FAILED_INIT;
+    }
 
 #ifdef _AMIGASF
-  if(!amiga_init())
+  if(!amiga_init()) {
+    DEBUGF(fprintf(stderr, "Error: amiga_init failed\n"));
     return CURLE_FAILED_INIT;
+  }
 #endif
 
 #ifdef USE_LIBIDN
@@ -318,15 +324,19 @@ CURL *curl_easy_init(void)
   /* Make sure we inited the global SSL stuff */
   if (!initialized) {
     res = curl_global_init(CURL_GLOBAL_DEFAULT);
-    if(res)
+    if(res) {
       /* something in the global init failed, return nothing */
+      DEBUGF(fprintf(stderr, "Error: curl_global_init failed\n"));
       return NULL;
+    }
   }
 
   /* We use curl_open() with undefined URL so far */
   res = Curl_open(&data);
-  if(res != CURLE_OK)
+  if(res != CURLE_OK) {
+    DEBUGF(fprintf(stderr, "Error: Curl_open failed\n"));
     return NULL;
+  }
 
   return data;
 }

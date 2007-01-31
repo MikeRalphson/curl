@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.579 2007-01-28 22:45:22 bagder Exp $
+ * $Id: url.c,v 1.580 2007-01-31 19:47:49 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -485,14 +485,17 @@ CURLcode Curl_open(struct SessionHandle **curl)
 
   /* Very simple start-up: alloc the struct, init it with zeroes and return */
   data = (struct SessionHandle *)calloc(1, sizeof(struct SessionHandle));
-  if(!data)
+  if(!data) {
     /* this is a very serious error */
+    DEBUGF(fprintf(stderr, "Error: calloc of SessionHandle failed\n"));
     return CURLE_OUT_OF_MEMORY;
+  }
 
   data->magic = CURLEASY_MAGIC_NUMBER;
 
 #ifdef USE_ARES
   if(ARES_SUCCESS != ares_init(&data->state.areschannel)) {
+    DEBUGF(fprintf(stderr, "Error: ares_init failed\n"));
     free(data);
     return CURLE_FAILED_INIT;
   }
@@ -503,8 +506,10 @@ CURLcode Curl_open(struct SessionHandle **curl)
   /* We do some initial setup here, all those fields that can't be just 0 */
 
   data->state.headerbuff=(char*)malloc(HEADERSIZE);
-  if(!data->state.headerbuff)
+  if(!data->state.headerbuff) {
+    DEBUGF(fprintf(stderr, "Error: malloc of headerbuff failed\n"));
     res = CURLE_OUT_OF_MEMORY;
+  }
   else {
     data->state.headersize=HEADERSIZE;
 
