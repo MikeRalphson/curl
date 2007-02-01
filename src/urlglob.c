@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.44 2006-10-17 21:32:57 bagder Exp $
+ * $Id: urlglob.c,v 1.45 2007-02-01 15:36:57 yangtse Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -422,7 +422,7 @@ char *glob_next_url(URLGlob *glob)
         }
         break;
       case UPTCharRange:
-        pat->content.CharRange.ptr_c += pat->content.CharRange.step;
+        pat->content.CharRange.ptr_c += (char)(pat->content.CharRange.step);
         if (pat->content.CharRange.ptr_c > pat->content.CharRange.max_c) {
           pat->content.CharRange.ptr_c = pat->content.CharRange.min_c;
           carry = TRUE;
