@@ -1,4 +1,4 @@
-/* $Id: ares_mkquery.c,v 1.8 2006-07-22 15:37:10 giva Exp $ */
+/* $Id: ares_mkquery.c,v 1.9 2007-02-01 01:42:14 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -141,7 +141,7 @@ int ares_mkquery(const char *name, int dnsclass, int type, unsigned short id,
         return ARES_EBADNAME;
 
       /* Encode the length and copy the data. */
-      *q++ = len;
+      *q++ = (unsigned char)len;
       for (p = name; *p && *p != '.'; p++)
         {
           if (*p == '\\' && *(p + 1) != 0)

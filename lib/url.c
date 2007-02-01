@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.580 2007-01-31 19:47:49 yangtse Exp $
+ * $Id: url.c,v 1.581 2007-02-01 01:42:14 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -375,19 +375,29 @@ CURLcode Curl_close(struct SessionHandle *data)
 
 /* create a connection cache of a private or multi type */
 struct conncache *Curl_mk_connc(int type,
-                                int amount) /* set -1 to use default */
+                                long amount) /* set -1 to use default */
 {
   /* It is subject for debate how many default connections to have for a multi
      connection cache... */
-  int default_amount = amount == -1?
-    ((type == CONNCACHE_PRIVATE)?5:10):amount;
+
   struct conncache *c;
+  long default_amount;
+
+  if (type == CONNCACHE_PRIVATE) {
+    default_amount = (amount < 0) ? 5 : amount;
+  }
+  else {
+    default_amount = (amount < 0) ? 10 : amount;
+  }
 
   c= calloc(sizeof(struct conncache), 1);
   if(!c)
     return NULL;
 
-  c->connects = calloc(sizeof(struct connectdata *), default_amount);
+  if ((size_t)(default_amount) > ((size_t)-1) / sizeof(struct connectdata *))
+    default_amount = ((size_t)-1) / sizeof(struct connectdata *);
+
+  c->connects = calloc(sizeof(struct connectdata *), (size_t)default_amount);
   if(!c->connects) {
     free(c);
     return NULL;

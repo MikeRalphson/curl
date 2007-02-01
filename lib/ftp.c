@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.391 2007-01-24 19:09:12 danf Exp $
+ * $Id: ftp.c,v 1.392 2007-02-01 01:42:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3208,7 +3208,7 @@ static CURLcode ftp_nb_type(struct connectdata *conn,
   state(conn, newstate);
 
   /* keep track of our current transfer type */
-  ftpc->transfertype = want;
+  ftpc->transfertype = (char)want;
   return CURLE_OK;
 }
 

@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.42 2006-11-22 22:54:41 bagder Exp $ */
+/* $Id: ares_init.c,v 1.43 2007-02-01 01:42:14 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -181,7 +181,7 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
    */
   gettimeofday(&tv, NULL);
   channel->next_id = (unsigned short)
-    (tv.tv_sec ^ tv.tv_usec ^ getpid()) & 0xffff;
+    ((tv.tv_sec ^ tv.tv_usec ^ getpid()) & 0xffff);
 
   channel->queries = NULL;
 
@@ -893,7 +893,7 @@ static int config_sortlist(struct apattern **sortlist, int *nsort,
                                      sizeof(pat.addr.addr6))) > 0)
         {
           pat.type = PATTERN_CIDR;
-          pat.mask.bits = bits;
+          pat.mask.bits = (unsigned short)bits;
           pat.family = AF_INET6;
           if (!sortlist_alloc(sortlist, nsort, &pat))
             return ARES_ENOMEM;
@@ -903,7 +903,7 @@ static int config_sortlist(struct apattern **sortlist, int *nsort,
                                      sizeof(pat.addr.addr4))) > 0)
         {
           pat.type = PATTERN_CIDR;
-          pat.mask.bits = bits;
+          pat.mask.bits = (unsigned short)bits;
           pat.family = AF_INET;
           if (!sortlist_alloc(sortlist, nsort, &pat))
             return ARES_ENOMEM;
