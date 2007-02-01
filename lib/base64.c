@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.38 2007-01-03 23:04:41 bagder Exp $
+ * $Id: base64.c,v 1.39 2007-02-01 12:23:00 giva Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -150,7 +150,7 @@ size_t Curl_base64_encode(struct SessionHandle *data,
   char *output;
   char *base64data;
 #ifdef CURL_DOES_CONVERSIONS
-  char *convbuf;
+  char *convbuf = NULL;
 #endif
 
   char *indata = (char *)inp;
