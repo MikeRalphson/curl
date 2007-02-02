@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.45 2007-02-01 15:36:57 yangtse Exp $
+ * $Id: urlglob.c,v 1.46 2007-02-02 17:16:07 yangtse Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -422,7 +422,8 @@ char *glob_next_url(URLGlob *glob)
         }
         break;
       case UPTCharRange:
-        pat->content.CharRange.ptr_c += (char)(pat->content.CharRange.step);
+        pat->content.CharRange.ptr_c = (char)(pat->content.CharRange.step +
+                           (int)((unsigned char)pat->content.CharRange.ptr_c));
         if (pat->content.CharRange.ptr_c > pat->content.CharRange.max_c) {
           pat->content.CharRange.ptr_c = pat->content.CharRange.min_c;
           carry = TRUE;

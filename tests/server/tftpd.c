@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.23 2007-01-15 21:03:53 danf Exp $
+ * $Id: tftpd.c,v 1.24 2007-02-02 17:16:09 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -258,7 +258,7 @@ static void read_ahead(struct testcase *test,
         newline = 1;
       }
     }
-    *p++ = c;
+    *p++ = (char)c;
   }
   b->counter = (int)(p - dp->th_data);
 }
@@ -611,7 +611,7 @@ again:
 
   for (cp = mode; *cp; cp++)
     if (isupper((int)*cp))
-      *cp = tolower((int)*cp);
+      *cp = (char)tolower((int)*cp);
 
   /* store input protocol */
   fprintf(test->server, "mode: %s\n", mode);
