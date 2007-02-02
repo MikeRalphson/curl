@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.11 2007-01-27 01:56:20 yangtse Exp $
+ * $Id: setup_once.h,v 1.12 2007-02-02 15:31:32 yangtse Exp $
  ***************************************************************************/
 
 
@@ -146,6 +146,17 @@ typedef int sig_atomic_t;
 
 #ifndef RETSIGTYPE
 #define RETSIGTYPE void
+#endif
+
+
+/*
+ * Macro used to include code only in debug builds.
+ */
+
+#ifdef CURLDEBUG
+#define DEBUGF(X) X
+#else
+#define DEBUGF(X) do { } while (0)
 #endif
 
 

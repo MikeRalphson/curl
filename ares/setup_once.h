@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.9 2007-01-27 01:56:57 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.10 2007-02-02 15:31:32 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -139,6 +139,17 @@ typedef int sig_atomic_t;
 
 #ifndef RETSIGTYPE
 #define RETSIGTYPE void
+#endif
+
+
+/*
+ * Macro used to include code only in debug builds.
+ */
+
+#ifdef CURLDEBUG
+#define DEBUGF(X) X
+#else
+#define DEBUGF(X) do { } while (0)
 #endif
 
 

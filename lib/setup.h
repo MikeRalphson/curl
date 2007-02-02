@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.124 2007-01-29 00:51:02 gknauf Exp $
+ * $Id: setup.h,v 1.125 2007-02-02 15:31:32 yangtse Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -356,12 +356,6 @@ int fileno( FILE *stream);
 #if defined(USE_SSLEAY) || defined(USE_WINDOWS_SSPI)
 #define USE_NTLM
 #endif
-#endif
-
-#ifdef CURLDEBUG
-#define DEBUGF(x) x
-#else
-#define DEBUGF(x)
 #endif
 
 /* non-configure builds may define CURL_WANTS_CA_BUNDLE_ENV */
