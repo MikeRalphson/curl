@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.31 2007-02-02 17:16:06 yangtse Exp $
+ * $Id: hostip4.c,v 1.32 2007-02-03 13:05:28 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -124,6 +124,9 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
                                 int port,
                                 int *waitp)
 {
+#if defined(HAVE_GETHOSTBYNAME_R_3) || defined(HAVE_GETHOSTBYNAME_R_6)
+  int res = ERANGE;
+#endif
   Curl_addrinfo *ai = NULL;
   struct hostent *h = NULL;
   in_addr_t in;
@@ -133,10 +136,6 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   (void)port; /* unused in IPv4 code */
 
   *waitp = 0; /* don't wait, we act synchronously */
-
-#if defined(HAVE_GETHOSTBYNAME_R_3) || defined(HAVE_GETHOSTBYNAME_R_6)
-  int res = ERANGE;
-#endif
 
   if(1 == Curl_inet_pton(AF_INET, hostname, &in))
     /* This is a dotted IP address 123.123.123.123-style */
