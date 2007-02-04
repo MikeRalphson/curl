@@ -1,6 +1,6 @@
 #include "setup.h"
 
-/* $Id: windows_port.c,v 1.12 2006-07-28 18:01:23 yangtse Exp $ */
+/* $Id: windows_port.c,v 1.13 2007-02-04 12:50:53 giva Exp $ */
 
 /* only do the following on windows
  */
@@ -19,6 +19,19 @@
 #endif
 #include "ares.h"
 #include "ares_private.h"
+
+#ifdef __WATCOMC__
+/* Watcom needs a DlMain() in order to initialise the clib startup code.
+ */
+BOOL
+DllMain (HINSTANCE hnd, DWORD reason, LPVOID reserved)
+{
+  (void) hnd;
+  (void) reason;
+  (void) reserved;
+  return (TRUE);
+}
+#endif
 
 #ifndef __MINGW32__
 int
