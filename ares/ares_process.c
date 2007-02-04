@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.34 2007-02-01 15:36:56 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.35 2007-02-04 13:34:34 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -557,8 +557,12 @@ static int nonblock(ares_socket_t sockfd,    /* operate on this */
 #endif
 
 #if defined(HAVE_IOCTLSOCKET) && (SETBLOCK == 0)
+#ifdef WATT32
+  char flags;
+#else
   /* Windows? */
   unsigned long flags;
+#endif
   flags = nonblock;
 
   return ioctlsocket(sockfd, FIONBIO, &flags);
