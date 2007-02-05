@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.43 2006-10-17 20:34:11 bagder Exp $
+ * $Id: hostthre.c,v 1.44 2007-02-05 22:51:33 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -600,7 +600,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
   ticks = GetTickCount();
 
   /* wait for the thread to resolve the name */
-  status = WaitForSingleObject(td->event_resolved, 1000UL*timeout);
+  status = WaitForSingleObject(td->event_resolved, timeout);
 
   /* mark that we are now done waiting */
   ReleaseMutex(td->mutex_waiting);

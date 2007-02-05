@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.317 2007-02-03 09:33:54 bagder Exp $
+ * $Id: urldata.h,v 1.318 2007-02-05 22:51:34 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1176,9 +1176,9 @@ struct UserDefined {
 
   void *progress_client; /* pointer to pass to the progress callback */
   void *ioctl_client;   /* pointer to pass to the ioctl callback */
-  long timeout;         /* in seconds, 0 means no timeout */
-  long connecttimeout;  /* in seconds, 0 means no timeout */
-  long ftp_response_timeout; /* in seconds, 0 means no timeout */
+  long timeout;         /* in milliseconds, 0 means no timeout */
+  long connecttimeout;  /* in milliseconds, 0 means no timeout */
+  long ftp_response_timeout; /* in milliseconds, 0 means no timeout */
   curl_off_t infilesize;      /* size of file to upload, -1 means unknown */
   long low_speed_limit; /* bytes/second */
   long low_speed_time;  /* number of seconds */

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.313 2007-01-08 11:24:11 linus Exp $
+ * $Id: curl.h,v 1.314 2007-02-05 22:51:32 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1053,6 +1053,10 @@ typedef enum {
 
   /* Send CCC (Clear Command Channel) after authentication */
   CINIT(FTP_SSL_CCC, LONG, 154),
+
+  /* Same as TIMEOUT and CONNECTTIMEOUT, but with ms resolution */
+  CINIT(TIMEOUT_MS, LONG, 155),
+  CINIT(CONNECTTIMEOUT_MS, LONG, 156),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
