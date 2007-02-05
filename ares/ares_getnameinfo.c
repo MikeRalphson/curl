@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.20 2007-02-02 17:16:06 yangtse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.21 2007-02-05 04:10:32 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -305,7 +305,7 @@ static char *lookup_service(unsigned short port, int flags,
         strcpy(tmpbuf, sep->s_name);
       else
         /* get port as a string */
-        sprintf(tmpbuf, "%u", (unsigned short)ntohs(port));
+        sprintf(tmpbuf, "%u", (unsigned int)ntohs(port));
       if (strlen(tmpbuf) < buflen)
         /* return it if buffer big enough */
         strcpy(buf, tmpbuf);

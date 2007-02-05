@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.35 2007-01-16 22:22:24 bagder Exp $
+ * $Id: tftp.c,v 1.36 2007-02-05 04:10:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -583,7 +583,7 @@ CURLcode Curl_tftp_connect(struct connectdata *conn, bool *done)
   state->state = TFTP_STATE_START;
 
   ((struct sockaddr *)&state->local_addr)->sa_family =
-    conn->ip_addr->ai_family;
+    (unsigned short)(conn->ip_addr->ai_family);
 
   tftp_set_timeouts(state);
 
