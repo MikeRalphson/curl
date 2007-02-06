@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.12 2007-02-06 18:56:34 giva Exp $
+ * $Id: ahost.c,v 1.13 2007-02-06 19:12:38 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -78,10 +78,16 @@ int main(int argc, char **argv)
   WSAStartup(wVersionRequested, &wsaData);
 #endif
 
-  while ((c = getopt(argc,argv,"t:h")) != -1)
+  while ((c = getopt(argc,argv,"dt:h")) != -1)
     {
       switch (c)
         {
+        case 'd':
+#ifdef WATT32
+          dbug_init();
+#endif
+          break;
+
         case 't':
           if (!strcasecmp(optarg,"a"))
             addr_family = AF_INET;
