@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.15 2006-10-31 17:51:54 giva Exp $
+ * $Id: adig.c,v 1.16 2007-02-06 18:54:35 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -21,12 +21,16 @@
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"
 #else
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
+#endif
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <arpa/nameser.h>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <netdb.h>
 #endif
 #ifdef HAVE_GETOPT_H
