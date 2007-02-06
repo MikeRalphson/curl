@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.394 2007-02-05 22:51:32 bagder Exp $
+ * $Id: ftp.c,v 1.395 2007-02-06 18:06:37 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -445,7 +445,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
   ssize_t gotbytes;
   char *ptr;
   long timeout;              /* timeout in milliseconds */
-  int interval_ms;
+  long interval_ms;
   struct SessionHandle *data = conn->data;
   char *line_start;
   int code=0; /* default ftp "error code" to return */
@@ -494,7 +494,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
       if(timeout < interval_ms)
         interval_ms = timeout;
 
-      switch (Curl_select(sockfd, CURL_SOCKET_BAD, interval_ms)) {
+      switch (Curl_select(sockfd, CURL_SOCKET_BAD, (int)interval_ms)) {
       case -1: /* select() error, stop reading */
         result = CURLE_RECV_ERROR;
         failf(data, "FTP response aborted due to select() error: %d",

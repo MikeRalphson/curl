@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.311 2007-02-05 22:51:33 bagder Exp $
+ * $Id: http.c,v 1.312 2007-02-06 18:06:37 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1234,7 +1234,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
 
       /* loop every second at least, less if the timeout is near */
       switch (Curl_select(tunnelsocket, CURL_SOCKET_BAD,
-                          check<1000?check:1000)) {
+                          check<1000L?(int)check:1000)) {
       case -1: /* select() error, stop reading */
         error = SELECT_ERROR;
         failf(data, "Proxy CONNECT aborted due to select() error");
