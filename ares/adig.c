@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.16 2007-02-06 18:54:35 giva Exp $
+ * $Id: adig.c,v 1.17 2007-02-06 19:00:42 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -555,8 +555,9 @@ static const unsigned char *display_rr(const unsigned char *aptr,
       if (p + 20 > aptr + dlen)
         return NULL;
       printf("\t\t\t\t\t\t( %lu %lu %lu %lu %lu )",
-             DNS__32BIT(p), DNS__32BIT(p+4), DNS__32BIT(p+8),
-             DNS__32BIT(p+12), DNS__32BIT(p+16));
+             (unsigned long)DNS__32BIT(p), (unsigned long)DNS__32BIT(p+4),
+             (unsigned long)DNS__32BIT(p+8), (unsigned long)DNS__32BIT(p+12),
+             (unsigned long)DNS__32BIT(p+16));
       break;
 
     case T_TXT:
