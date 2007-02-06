@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.14 2006-11-25 01:02:52 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.15 2007-02-06 19:09:57 giva Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -37,6 +37,9 @@
 
 /* Define if you have the <time.h> header file.  */
 #define HAVE_TIME_H 1
+
+/* Define if you have the <process.h> header file.  */
+#define HAVE_PROCESS_H 1
 
 /* Define if you have the <unistd.h> header file.  */
 #if defined(__MINGW32__) || defined(__WATCOMC__) || defined(__LCC__) || \
