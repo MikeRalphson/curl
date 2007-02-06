@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.15 2007-02-02 15:26:57 bagder Exp $
+* $Id: ssh.c,v 1.16 2007-02-06 15:41:19 bagder Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -974,12 +974,18 @@ ssize_t Curl_sftp_recv(struct connectdata *conn, int sockindex,
                    char *mem, size_t len)
 {
   ssize_t nread;
+  (void)sockindex;
 
   /* libssh2_sftp_read() returns size_t !*/
 
+#ifdef LIBSSH2SFTP_EAGAIN
+  /* we prefer the non-blocking API but that didn't exist previously */
+  nread = (ssize_t)
+    libssh2_sftp_readnb(conn->data->reqdata.proto.ssh->sftp_handle, mem, len);
+#else
   nread = (ssize_t)
     libssh2_sftp_read(conn->data->reqdata.proto.ssh->sftp_handle, mem, len);
-  (void)sockindex;
+#endif
   return nread;
 }
 
