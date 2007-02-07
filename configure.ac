@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.214 2007-02-02 15:26:26 bagder Exp $
+# $Id: configure.ac,v 1.215 2007-02-07 17:34:30 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1459,6 +1459,10 @@ if test "x$RECENTAIX" = "xyes"; then
          XLC="yes"
          AC_MSG_RESULT([yes])
          CFLAGS="$CFLAGS -qthreaded"
+         dnl AIX xlc has to have strict aliasing turned off. If not,
+         dnl the optimizer assumes that pointers can only point to
+         dnl an object of the same type.
+         CFLAGS="$CFLAGS -qnoansialias"
        )
 
 
