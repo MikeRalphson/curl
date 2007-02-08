@@ -1,4 +1,4 @@
-/* $Id: ares_send.c,v 1.9 2007-02-01 01:42:14 yangtse Exp $ */
+/* $Id: ares_send.c,v 1.10 2007-02-08 17:01:40 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -73,7 +73,7 @@ void ares_send(ares_channel channel, const unsigned char *qbuf, int qlen,
     }
 
   /* Compute the query ID.  Start with no timeout. */
-  query->qid = DNS_HEADER_QID(qbuf);
+  query->qid = (unsigned short)DNS_HEADER_QID(qbuf);
   query->timeout = 0;
 
   /* Form the TCP query buffer by prepending qlen (as two
