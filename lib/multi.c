@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.125 2007-01-27 03:14:25 yangtse Exp $
+ * $Id: multi.c,v 1.126 2007-02-12 12:15:42 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -396,6 +396,7 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
       break; /* no need to continue since this handle can only be present once
                 in the list */
     }
+    prev = cl;
     cl = next;
   }
 
