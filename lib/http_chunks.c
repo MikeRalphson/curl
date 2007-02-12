@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.33 2007-01-16 22:26:50 bagder Exp $
+ * $Id: http_chunks.c,v 1.34 2007-02-12 21:13:51 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -116,6 +116,12 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
 
   *wrote = 0; /* nothing's written yet */
 
+  /* the original data is written to the client, but we go on with the
+     chunk read process, to properly calculate the content length*/
+  if ( data->set.http_te_skip )
+    Curl_client_write(conn, CLIENTWRITE_BODY, datap,datalen);
+
+
   while(length) {
     switch(ch->state) {
     case CHUNK_HEX:
@@ -206,12 +212,17 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
 
       /* Write the data portion available */
 #ifdef HAVE_LIBZ
-      switch (data->reqdata.keep.content_encoding) {
+      switch (conn->data->set.http_ce_skip?
+              IDENTITY : data->reqdata.keep.content_encoding) {
         case IDENTITY:
 #endif
-          if(!k->ignorebody)
-            result = Curl_client_write(conn, CLIENTWRITE_BODY, datap,
-                                       piece);
+          if(!k->ignorebody) {
+            if ( !data->set.http_te_skip )
+              result = Curl_client_write(conn, CLIENTWRITE_BODY, datap,
+                                         piece);
+            else
+              result = CURLE_OK;
+          }
 #ifdef HAVE_LIBZ
           break;
 
@@ -334,6 +345,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
             return(CHUNKE_BAD_CHUNK);
           }
 #endif /* CURL_DOES_CONVERSIONS */
+          if ( !data->set.http_te_skip )
           Curl_client_write(conn, CLIENTWRITE_HEADER,
                             conn->trailer, conn->trlPos);
         }

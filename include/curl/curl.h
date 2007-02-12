@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.314 2007-02-05 22:51:32 bagder Exp $
+ * $Id: curl.h,v 1.315 2007-02-12 21:13:51 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1057,6 +1057,11 @@ typedef enum {
   /* Same as TIMEOUT and CONNECTTIMEOUT, but with ms resolution */
   CINIT(TIMEOUT_MS, LONG, 155),
   CINIT(CONNECTTIMEOUT_MS, LONG, 156),
+
+  /* set to zero to disable the libcurl's decoding and thus pass the raw body
+     data to the appliction even when it is encoded/compressed */
+  CINIT(HTTP_TRANSFER_DECODING, LONG, 157),
+  CINIT(HTTP_CONTENT_DECODING, LONG, 158),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

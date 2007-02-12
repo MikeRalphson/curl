@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.318 2007-02-05 22:51:34 bagder Exp $
+ * $Id: urldata.h,v 1.319 2007-02-12 21:13:51 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1292,6 +1292,10 @@ struct UserDefined {
                              authentication */
   char *ssh_private_key;  /* the path to the private key file for
                              authentication */
+  bool http_te_skip;     /* pass the raw body data to the user, even when
+                            transfer-encoded (chunked, compressed) */
+  bool http_ce_skip;     /* pass the raw body data to the user, even when
+                            content-encoded (chunked, compressed) */
 };
 
 struct Names {
