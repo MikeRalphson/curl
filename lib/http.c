@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.312 2007-02-06 18:06:37 yangtse Exp $
+ * $Id: http.c,v 1.313 2007-02-12 22:32:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1502,6 +1502,18 @@ int Curl_https_getsock(struct connectdata *conn,
   (void)numsocks;
   return GETSOCK_BLANK;
 }
+#else
+#ifdef USE_NSS
+int Curl_https_getsock(struct connectdata *conn,
+                       curl_socket_t *socks,
+                       int numsocks)
+{
+  (void)conn;
+  (void)socks;
+  (void)numsocks;
+  return GETSOCK_BLANK;
+}
+#endif
 #endif
 #endif
 

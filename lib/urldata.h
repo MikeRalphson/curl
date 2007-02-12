@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.319 2007-02-12 21:13:51 bagder Exp $
+ * $Id: urldata.h,v 1.320 2007-02-12 22:32:40 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -76,6 +76,10 @@
 
 #ifdef USE_GNUTLS
 #include <gnutls/gnutls.h>
+#endif
+
+#ifdef USE_NSS
+#include <nspr.h>
 #endif
 
 #ifdef HAVE_NETINET_IN_H
@@ -169,6 +173,9 @@ struct ssl_connect_data {
   gnutls_session session;
   gnutls_certificate_credentials cred;
 #endif /* USE_GNUTLS */
+#ifdef USE_NSS
+  PRFileDesc *handle;
+#endif /* USE_NSS */
 };
 
 struct ssl_config_data {

@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.205 2007-02-12 21:13:49 bagder Exp $
+.\" * $Id: curl.1,v 1.206 2007-02-12 22:32:37 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "12 Feb 2007" "Curl 7.16.2" "Curl Manual"
@@ -166,6 +166,10 @@ difference.
 (SSL) Specifies which ciphers to use in the connection. The list of ciphers
 must be using valid ciphers. Read up on SSL cipher list details on this URL:
 \fIhttp://www.openssl.org/docs/apps/ciphers.html\fP
+
+NSS ciphers are done differently than OpenSSL and GnuTLS. The full list of
+NSS ciphers is in the NSSCipherSuite entry at this URL:
+\fIhttp://directory.fedora.redhat.com/docs/mod_nss.html#Directives\fP
 
 If this option is used several times, the last one will override the others.
 .IP "--compressed"
@@ -323,6 +327,10 @@ this option assumes a \&"certificate" file that is the private key and the
 private certificate concatenated! See \fI--cert\fP and \fI--key\fP to specify
 them independently.
 
+If curl is built against the NSS SSL library then this option tells
+curl the nickname of the certificate to use within the NSS database defined
+by --cacert.
+
 If this option is used several times, the last one will be used.
 .IP "--cert-type <type>"
 (SSL) Tells curl what certificate type the provided certificate is in. PEM,
@@ -341,6 +349,9 @@ overrides that variable.
 The windows version of curl will automatically look for a CA certs file named
 \'curl-ca-bundle.crt\', either in the same directory as curl.exe, or in the
 Current Working Directory, or in any folder along your PATH.
+
+If curl is built against the NSS SSL library then this option tells
+curl the directory that the NSS certificate database resides in.
 
 If this option is used several times, the last one will be used.
 .IP "--capath <CA certificate directory>"

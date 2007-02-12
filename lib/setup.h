@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.125 2007-02-02 15:31:32 yangtse Exp $
+ * $Id: setup.h,v 1.126 2007-02-12 22:32:40 bagder Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -348,8 +348,8 @@ int fileno( FILE *stream);
 #define HAVE_INET_NTOA_R_2_ARGS 1
 #endif
 
-#if defined(USE_GNUTLS) || defined(USE_SSLEAY)
-#define USE_SSL    /* Either OpenSSL || GnuTLS */
+#if defined(USE_GNUTLS) || defined(USE_SSLEAY) || defined(USE_NSS)
+#define USE_SSL    /* Either OpenSSL || GnuTLS || NSS */
 #endif
 
 #if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_NTLM)
