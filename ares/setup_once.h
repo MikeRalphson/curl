@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.10 2007-02-02 15:31:32 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.11 2007-02-13 17:47:27 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -115,6 +115,7 @@
  */
 
 #define ISSPACE(x)  (isspace((int)  ((unsigned char)x)))
+#define ISBLANK(x)  (isblank((int)  ((unsigned char)x)))
 #define ISDIGIT(x)  (isdigit((int)  ((unsigned char)x)))
 #define ISALNUM(x)  (isalnum((int)  ((unsigned char)x)))
 #define ISXDIGIT(x) (isxdigit((int) ((unsigned char)x)))
