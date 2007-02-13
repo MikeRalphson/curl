@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.1 2007-02-12 22:32:40 bagder Exp $
+ * $Id: nss.c,v 1.2 2007-02-13 17:28:40 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -180,7 +180,7 @@ static SECStatus set_ciphers(struct SessionHandle *data, PRFileDesc * model,
   cipher = cipher_list;
 
   while(cipher_list && (cipher_list[0])) {
-    while((*cipher) && (isspace(*cipher)))
+    while((*cipher) && (ISSPACE(*cipher)))
       ++cipher;
 
     if((cipher_list = strchr(cipher, ','))) {
