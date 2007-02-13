@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.20 2007-02-12 22:32:40 bagder Exp $
+ * $Id: sslgen.c,v 1.21 2007-02-13 02:30:31 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -517,6 +517,7 @@ struct curl_slist *Curl_ssl_engines_list(struct SessionHandle *data)
    * would just confuse things */
   (void)data;
   return NULL;
+#else
   (void)data;
   return NULL;
 #endif /* USE_NSS */
