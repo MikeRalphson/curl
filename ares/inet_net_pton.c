@@ -1,4 +1,4 @@
-/* $Id: inet_net_pton.c,v 1.10 2007-02-01 01:42:14 yangtse Exp $ */
+/* $Id: inet_net_pton.c,v 1.11 2007-02-13 18:02:20 yangtse Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -86,7 +86,7 @@ inet_net_pton_ipv4(const char *src, unsigned char *dst, size_t size)
     dirty = 0;
     src++;  /* skip x or X. */
     while ((ch = *src++) != '\0' && ISXDIGIT(ch)) {
-      if (isupper(ch))
+      if (ISUPPER(ch))
         ch = tolower(ch);
       n = (int)(strchr(xdigits, ch) - xdigits);
       if (dirty == 0)

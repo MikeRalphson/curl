@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.13 2007-02-13 17:47:27 yangtse Exp $
+ * $Id: setup_once.h,v 1.14 2007-02-13 18:02:20 yangtse Exp $
  ***************************************************************************/
 
 
@@ -129,6 +129,8 @@
 #define ISGRAPH(x)  (isgraph((int)  ((unsigned char)x)))
 #define ISALPHA(x)  (isalpha((int)  ((unsigned char)x)))
 #define ISPRINT(x)  (isprint((int)  ((unsigned char)x)))
+#define ISUPPER(x)  (isupper((int)  ((unsigned char)x)))
+#define ISLOWER(x)  (islower((int)  ((unsigned char)x)))
 
 
 /*
