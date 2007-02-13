@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.320 2007-02-12 22:32:40 bagder Exp $
+ * $Id: urldata.h,v 1.321 2007-02-13 22:50:16 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -45,7 +45,7 @@
 #define DICT_DEFINE3 "/LOOKUP:"
 
 #define CURL_DEFAULT_USER "anonymous"
-#define CURL_DEFAULT_PASSWORD "curl_by_daniel@haxx.se"
+#define CURL_DEFAULT_PASSWORD "ftp@example.com"
 
 #include "cookie.h"
 #include "formdata.h"
