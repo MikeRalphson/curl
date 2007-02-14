@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.47 2007-02-14 14:11:47 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.48 2007-02-14 17:38:41 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -689,7 +689,7 @@ DhcpNameServer
           status = ARES_EOF;
           break;
         default:
-          DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n"
+          DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
                          errno, strerror(errno)));
           DEBUGF(fprintf(stderr, "Error opening file: %s\n", "/etc/host.conf"));
           status = ARES_EFILE;
