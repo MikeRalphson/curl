@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.79 2007-02-14 04:45:30 yangtse Exp $
+ * $Id: cookie.c,v 1.80 2007-02-14 13:31:38 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -84,7 +84,6 @@ Example set of cookies:
 
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #define _MPRINTF_REPLACE /* without this on windows OS we get undefined reference to snprintf */
 #include <curl/mprintf.h>

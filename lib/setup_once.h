@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.15 2007-02-13 19:01:03 yangtse Exp $
+ * $Id: setup_once.h,v 1.16 2007-02-14 13:31:38 yangtse Exp $
  ***************************************************************************/
 
 
@@ -131,12 +131,8 @@
 #define ISUPPER(x)  (isupper((int)  ((unsigned char)x)))
 #define ISLOWER(x)  (islower((int)  ((unsigned char)x)))
 
-#ifdef HAVE_ISBLANK
-#define ISBLANK(x)  (isblank((int)  ((unsigned char)x)))
-#else
 #define ISBLANK(x)  (int)((((unsigned char)x) == ' ') || \
                           (((unsigned char)x) == '\t'))
-#endif
 
 
 /*
