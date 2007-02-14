@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.217 2007-02-13 19:01:03 yangtse Exp $
+# $Id: configure.ac,v 1.218 2007-02-14 03:00:08 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -157,6 +157,15 @@ case $host in
     AC_MSG_RESULT(no)
     ;;
 esac
+
+# Determine whether all dependent libraries must be specified when linking
+if test "X$enable_shared" = "Xyes" -a "X$link_all_deplibs" = "Xno"
+then
+    REQUIRE_LIB_DEPS=no
+else
+    REQUIRE_LIB_DEPS=yes
+fi
+AC_SUBST(REQUIRE_LIB_DEPS)
 
 dnl The install stuff has already been taken care of by the automake stuff
 dnl AC_PROG_INSTALL
