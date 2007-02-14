@@ -6,7 +6,7 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 2001 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 2001 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-config.in,v 1.26 2007-02-14 03:00:09 danf Exp $
+# $Id: curl-config.in,v 1.27 2007-02-14 18:13:16 danf Exp $
 ###########################################################################
 #
 # The idea to this kind of setup info script was stolen from numerous
@@ -181,10 +181,15 @@ while test $# -gt 0; do
        	;;
 
     --libs)
-	if test "X@REQUIRE_LIB_DEPS@" = "Xyes"; then
-	  echo -L@libdir@ -lcurl @LDFLAGS@ @LIBS@
+	if test "X@libdir@" != "X/usr/lib"; then
+	   CURLLIBDIR="-L@libdir@ "
 	else
-	  echo -L@libdir@ -lcurl @LDFLAGS@
+	   CURLLIBDIR=""
+	fi
+	if test "X@REQUIRE_LIB_DEPS@" = "Xyes"; then
+	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@ @LIBS@
+	else
+	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@
 	fi
 	;;
 
