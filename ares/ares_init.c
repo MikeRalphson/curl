@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.46 2007-02-13 16:14:25 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.47 2007-02-14 14:11:47 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -640,8 +640,9 @@ DhcpNameServer
         status = ARES_EOF;
         break;
       default:
+        DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+                       errno, strerror(errno)));
         DEBUGF(fprintf(stderr, "Error opening file: %s\n", PATH_RESOLV_CONF));
-        DEBUGF(fprintf(stderr, "fopen() failed with error: %d\n", errno));
         status = ARES_EFILE;
       }
     }
@@ -663,8 +664,9 @@ DhcpNameServer
           status = ARES_EOF;
           break;
         default:
+          DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+                         errno, strerror(errno)));
           DEBUGF(fprintf(stderr, "Error opening file: %s\n", "/etc/nsswitch.conf"));
-          DEBUGF(fprintf(stderr, "fopen() failed with error: %d\n", errno));
           status = ARES_EFILE;
         }
       }
@@ -687,8 +689,9 @@ DhcpNameServer
           status = ARES_EOF;
           break;
         default:
+          DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n"
+                         errno, strerror(errno)));
           DEBUGF(fprintf(stderr, "Error opening file: %s\n", "/etc/host.conf"));
-          DEBUGF(fprintf(stderr, "fopen() failed with error: %d\n", errno));
           status = ARES_EFILE;
         }
       }
@@ -711,8 +714,9 @@ DhcpNameServer
           status = ARES_EOF;
           break;
         default:
+          DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+                         errno, strerror(errno)));
           DEBUGF(fprintf(stderr, "Error opening file: %s\n", "/etc/svc.conf"));
-          DEBUGF(fprintf(stderr, "fopen() failed with error: %d\n", errno));
           status = ARES_EFILE;
         }
       }
