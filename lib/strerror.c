@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.41 2007-01-08 11:24:12 linus Exp $
+ * $Id: strerror.c,v 1.42 2007-02-15 01:38:07 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -573,7 +573,7 @@ get_winsock_error (int err, char *buf, size_t len)
     return NULL;
   }
 #else
-  if (error == CURLE_OK)
+  if (err == CURLE_OK)
     return NULL;
   else
     p = "error";
