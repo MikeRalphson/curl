@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.16 2007-02-14 13:31:38 yangtse Exp $
+ * $Id: setup_once.h,v 1.17 2007-02-15 16:23:24 yangtse Exp $
  ***************************************************************************/
 
 
@@ -162,6 +162,34 @@ typedef int sig_atomic_t;
 #define DEBUGF(X) X
 #else
 #define DEBUGF(X) do { } while (0)
+#endif
+
+
+/*
+ * Macro SOCKERRNO / SET_SOCKERRNO() returns / sets the *socket-related* errno
+ * (or equivalent) on this platform to hide platform details to code using it.
+ */
+
+#ifdef USE_WINSOCK
+#define SOCKERRNO         ((int)WSAGetLastError())
+#define SET_SOCKERRNO(x)  (WSASetLastError((int)(x)))
+#else
+#define SOCKERRNO         (errno)
+#define SET_SOCKERRNO(x)  (errno = (x))
+#endif
+
+
+/*
+ * Macro ERRNO / SET_ERRNO() returns / sets the NOT *socket-related* errno
+ * (or equivalent) on this platform to hide platform details to code using it.
+ */
+
+#ifdef WIN32
+#define ERRNO         ((int)GetLastError())
+#define SET_ERRNO(x)  (SetLastError((DWORD)(x)))
+#else
+#define ERRNO         (errno)
+#define SET_ERRNO(x)  (errno = (x))
 #endif
 
 
