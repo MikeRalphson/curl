@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.19 2007-02-05 22:51:33 bagder Exp $
+ * $Id: gtls.c,v 1.20 2007-02-16 18:19:35 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -176,7 +176,7 @@ static CURLcode handshake(struct connectdata *conn,
       }
       else {
         /* anything that gets here is fatally bad */
-        failf(data, "select on SSL socket, errno: %d", Curl_sockerrno());
+        failf(data, "select on SSL socket, errno: %d", SOCKERRNO);
         return CURLE_SSL_CONNECT_ERROR;
       }
     }
@@ -567,7 +567,7 @@ int Curl_gtls_shutdown(struct connectdata *conn, int sockindex)
       }
       else {
         /* anything that gets here is fatally bad */
-        failf(data, "select on SSL socket, errno: %d", Curl_sockerrno());
+        failf(data, "select on SSL socket, errno: %d", SOCKERRNO);
         retval = -1;
         done = 1;
       }

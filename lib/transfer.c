@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.335 2007-02-12 21:13:51 bagder Exp $
+ * $Id: transfer.c,v 1.336 2007-02-16 18:19:36 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1811,7 +1811,7 @@ Transfer(struct connectdata *conn)
 #ifdef EINTR
       /* The EINTR is not serious, and it seems you might get this more
          ofen when using the lib in a multi-threaded environment! */
-      if(errno == EINTR)
+      if(SOCKERRNO == EINTR)
         ;
       else
 #endif

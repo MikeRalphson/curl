@@ -6,7 +6,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.49 2006-11-05 12:42:50 yangtse Exp $
+ * $Id: memdebug.c,v 1.50 2007-02-16 18:19:35 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -99,7 +99,7 @@ static bool countcheck(const char *func, int line, const char *source)
       if(source)
         fprintf(stderr, "LIMIT %s:%d %s reached memlimit\n",
                 source, line, func);
-      errno = ENOMEM;
+      SET_ERRNO(ENOMEM);
       return TRUE; /* RETURN ERROR! */
     }
     else

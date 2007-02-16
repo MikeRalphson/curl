@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.h,v 1.22 2006-07-21 06:50:40 giva Exp $
+ * $Id: connect.h,v 1.23 2007-02-16 18:19:35 yangtse Exp $
  ***************************************************************************/
 
 int Curl_nonblock(curl_socket_t sockfd,    /* operate on this */
@@ -36,8 +36,6 @@ CURLcode Curl_connecthost(struct connectdata *conn,
                           Curl_addrinfo **addr, /* the one we used */
                           bool *connected /* truly connected? */
                           );
-
-int Curl_sockerrno(void);
 
 CURLcode Curl_store_ip_addr(struct connectdata *conn);
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.2 2007-02-13 17:28:40 yangtse Exp $
+ * $Id: nss.c,v 1.3 2007-02-16 18:19:35 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -42,7 +42,7 @@
 #include "sendf.h"
 #include "formdata.h" /* for the boundary function */
 #include "url.h" /* for the ssl config check function */
-#include "connect.h" /* Curl_sockerrno() proto */
+#include "connect.h"
 #include "strequal.h"
 #include "select.h"
 #include "sslgen.h"
