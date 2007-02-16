@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.17 2007-02-06 19:00:42 giva Exp $
+ * $Id: adig.c,v 1.18 2007-02-16 15:04:44 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -289,7 +289,7 @@ int main(int argc, char **argv)
         break;
       tvp = ares_timeout(channel, NULL, &tv);
       count = select(nfds, &read_fds, &write_fds, NULL, tvp);
-      if (count < 0 && errno != EINVAL)
+      if (count < 0 && SOCKERRNO != EINVAL)
         {
           perror("select");
           return 1;

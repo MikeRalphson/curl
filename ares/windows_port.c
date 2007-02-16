@@ -1,6 +1,6 @@
 #include "setup.h"
 
-/* $Id: windows_port.c,v 1.15 2007-02-13 18:02:20 yangtse Exp $ */
+/* $Id: windows_port.c,v 1.16 2007-02-16 15:04:46 yangtse Exp $ */
 
 /* only do the following on windows
  */
@@ -105,7 +105,7 @@ ares_writev (ares_socket_t s, const struct iovec *vector, size_t count)
   buffer = bp = (char*) alloca (bytes);
   if (!buffer)
   {
-    errno = ENOMEM;
+    SET_ERRNO(ENOMEM);
     return (-1);
   }
 
