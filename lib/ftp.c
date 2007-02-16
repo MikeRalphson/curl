@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.395 2007-02-06 18:06:37 yangtse Exp $
+ * $Id: ftp.c,v 1.396 2007-02-16 15:37:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3285,6 +3285,8 @@ static CURLcode ftp_range(struct connectdata *conn)
                  from, to, data->reqdata.maxdownload));
     ftpc->dont_check = TRUE; /* dont check for successful transfer */
   }
+  else
+    data->reqdata.maxdownload = -1;
   return CURLE_OK;
 }
 
