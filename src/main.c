@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.391 2007-02-12 21:13:51 bagder Exp $
+ * $Id: main.c,v 1.392 2007-02-16 16:01:19 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1319,11 +1319,11 @@ static int str2offset(curl_off_t *val, char *str)
   /* this is a duplicate of the function that is also used in libcurl */
   *val = curlx_strtoofft(str, NULL, 0);
 
-  if ((*val == LLONG_MAX || *val == LLONG_MIN) && errno == ERANGE)
+  if ((*val == LLONG_MAX || *val == LLONG_MIN) && ERRNO == ERANGE)
     return 1;
 #else
   *val = strtol(str, NULL, 0);
-  if ((*val == LONG_MIN || *val == LONG_MAX) && errno == ERANGE)
+  if ((*val == LONG_MIN || *val == LONG_MAX) && ERRNO == ERANGE)
     return 1;
 #endif
   return 0;
@@ -4621,6 +4621,7 @@ static int create_dir_hierarchy(char *outfile)
   char *outdup;
   char *dirbuildup;
   int result=0;
+  int error;
 
   outdup = strdup(outfile);
   dirbuildup = malloc(sizeof(char) * strlen(outfile));
@@ -4646,7 +4647,8 @@ static int create_dir_hierarchy(char *outfile)
       if (access(dirbuildup, F_OK) == -1) {
         result = mkdir(dirbuildup,(mode_t)0000750);
         if (-1 == result) {
-          switch (errno) {
+          error = ERRNO;
+          switch (error) {
 #ifdef EACCES
           case EACCES:
             fprintf(stderr,"You don't have permission to create %s.\n",

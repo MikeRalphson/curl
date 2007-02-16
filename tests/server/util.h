@@ -20,10 +20,9 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.9 2006-10-27 03:47:58 yangtse Exp $
+ * $Id: util.h,v 1.10 2007-02-16 16:01:19 yangtse Exp $
  ***************************************************************************/
 
-int our_sockerrno(void);
 void logmsg(const char *msg, ...);
 
 #ifndef FALSE
