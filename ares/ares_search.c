@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.10 2006-10-18 03:42:06 yangtse Exp $ */
+/* $Id: ares_search.c,v 1.11 2007-02-16 19:17:05 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -216,6 +216,7 @@ static int single_domain(ares_channel channel, const char *name, char **s)
   char *line = NULL;
   int linesize, status;
   const char *p, *q;
+  int error;
 
   /* If the name contains a trailing dot, then the single query is the name
    * sans the trailing dot.
@@ -264,6 +265,22 @@ static int single_domain(ares_channel channel, const char *name, char **s)
               fclose(fp);
               if (status != ARES_SUCCESS)
                 return status;
+            }
+          else 
+            {
+              error = ERRNO;
+              switch(error) 
+                {
+                case ENOENT:
+                  break;
+                default:
+                  DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+                                 error, strerror(error)));
+                  DEBUGF(fprintf(stderr, "Error opening file: %s\n", 
+                                 hostaliases));
+                  *s = NULL;
+                  return ARES_EFILE;
+                }
             }
         }
     }

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.11 2006-10-25 05:59:47 yangtse Exp $
+ * $Id: lib505.c,v 1.12 2007-02-16 19:17:05 yangtse Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -43,6 +43,7 @@ int test(char *URL)
   int hd ;
   struct_stat file_info;
   struct curl_slist *hl;
+  int error;
 
   struct curl_slist *headerlist=NULL;
   const char *buf_1 = "RNFR 505";
@@ -57,6 +58,9 @@ int test(char *URL)
   hd = stat(arg2, &file_info);
   if(hd == -1) {
     /* can't open file, bail out */
+    error = ERRNO;
+    fprintf(stderr, "stat() failed with error: %d %s\n",
+            error, strerror(error));
     fprintf(stderr, "WARNING: cannot open file %s\n", arg2);
     return -1;
   }
@@ -71,6 +75,10 @@ int test(char *URL)
      an example! */
   hd_src = fopen(arg2, "rb");
   if(NULL == hd_src) {
+    error = ERRNO;
+    fprintf(stderr, "fopen() failed with error: %d %s\n",
+            error, strerror(error));
+    fprintf(stderr, "Error opening file: %s\n", arg2);
     return -2; /* if this happens things are major weird */
   }
 
