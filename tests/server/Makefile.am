@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.19 2007-02-17 01:29:01 danf Exp $
+# $Id: Makefile.am,v 1.20 2007-02-17 08:16:53 danf Exp $
 ###########################################################################
 
 
@@ -46,6 +46,8 @@ sockfilt_SOURCES = sockfilt.c util.c util.h $(useful)	\
 sockfilt_LDADD = @TEST_SERVER_LIBS@
 
 getpart_SOURCES= testpart.c $(useful)
+# This is needed because of (unused) network debugging functions in memdebug.c
+getpart_LDADD = @TEST_SERVER_LIBS@
 
 tftpd_SOURCES = tftpd.c util.c util.h $(useful) tftp.h
 tftpd_LDADD = @TEST_SERVER_LIBS@
