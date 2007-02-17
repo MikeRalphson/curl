@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.11 2007-02-16 19:17:05 yangtse Exp $ */
+/* $Id: ares_search.c,v 1.12 2007-02-17 11:34:33 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <errno.h>
 
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"
