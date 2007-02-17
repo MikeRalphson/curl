@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-config.in,v 1.27 2007-02-14 18:13:16 danf Exp $
+# $Id: curl-config.in,v 1.28 2007-02-17 17:55:19 danf Exp $
 ###########################################################################
 #
 # The idea to this kind of setup info script was stolen from numerous
@@ -187,9 +187,9 @@ while test $# -gt 0; do
 	   CURLLIBDIR=""
 	fi
 	if test "X@REQUIRE_LIB_DEPS@" = "Xyes"; then
-	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@ @LIBS@
+	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@ @LIBCURL_LIBS@ @LIBS@
 	else
-	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@
+	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@ @LIBS@
 	fi
 	;;
 
