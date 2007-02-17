@@ -20,11 +20,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: testutil.h,v 1.1 2007-02-09 01:17:24 yangtse Exp $
+ * $Id: testutil.h,v 1.2 2007-02-17 11:43:52 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #ifdef TIME_WITH_SYS_TIME
