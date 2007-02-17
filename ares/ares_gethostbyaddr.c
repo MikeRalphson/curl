@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyaddr.c,v 1.20 2007-02-17 11:34:33 yangtse Exp $ */
+/* $Id: ares_gethostbyaddr.c,v 1.21 2007-02-17 11:59:08 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -186,9 +186,9 @@ static int file_lookup(union ares_addr *addr, int family, struct hostent **host)
 {
   FILE *fp;
   int status;
+  int error;
 
 #ifdef WIN32
-  int error;
   char PATH_HOSTS[MAX_PATH];
   if (IS_NT()) {
     char tmp[MAX_PATH];
