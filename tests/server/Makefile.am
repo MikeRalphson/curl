@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.18 2006-08-07 18:06:38 yangtse Exp $
+# $Id: Makefile.am,v 1.19 2007-02-17 01:29:01 danf Exp $
 ###########################################################################
 
 
@@ -36,11 +36,19 @@ useful = getpart.c getpart.h $(top_srcdir)/lib/strequal.c	\
  $(top_srcdir)/lib/memdebug.c $(top_srcdir)/lib/timeval.c
 
 resolve_SOURCES= resolve.c util.c util.h $(useful)
+resolve_LDADD = @TEST_SERVER_LIBS@
+
 sws_SOURCES= sws.c util.c util.h $(useful)
+sws_LDADD = @TEST_SERVER_LIBS@
+
 sockfilt_SOURCES = sockfilt.c util.c util.h $(useful)	\
  $(top_srcdir)/lib/inet_pton.c
+sockfilt_LDADD = @TEST_SERVER_LIBS@
+
 getpart_SOURCES= testpart.c $(useful)
+
 tftpd_SOURCES = tftpd.c util.c util.h $(useful) tftp.h
+tftpd_LDADD = @TEST_SERVER_LIBS@
 
 extra_DIST = base64.pl
 

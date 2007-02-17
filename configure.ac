@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.219 2007-02-14 13:31:38 yangtse Exp $
+# $Id: configure.ac,v 1.220 2007-02-17 01:29:01 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -89,6 +89,11 @@ dnl initialize all the info variables
  curl_manual_msg="no      (--enable-manual)"
 curl_verbose_msg="enabled (--disable-verbose)"
    curl_sspi_msg="no      (--enable-sspi)"
+
+dnl
+dnl Save anything in $LIBS for later
+dnl
+ALL_LIBS=$LIBS
 
 dnl
 dnl Detect the canonical host and target build environment
@@ -435,7 +440,7 @@ AC_ARG_ENABLE(libgcc,
 AC_HELP_STRING([--enable-libgcc],[use libgcc when linking]),
 [ case "$enableval" in
   yes)
-        LIBS="$LIBS -lgcc"
+        ALL_LIBS="$ALL_LIBS -lgcc"
        AC_MSG_RESULT(yes)
        ;;
   *)   AC_MSG_RESULT(no)
@@ -1401,6 +1406,7 @@ else
     AC_DEFINE(HAVE_ZLIB_H, 1, [if you have the zlib.h header file])
     AC_DEFINE(HAVE_LIBZ, 1, [if zlib is available])
 
+    CURL_LIBS="$CURL_LIBS -lz"
     LIBS="$LIBS -lz"
 
     dnl replace 'HAVE_LIBZ' in the automake makefile.ams
@@ -2186,6 +2192,21 @@ if test "x$ws2" = "xyes"; then
   LIBS="$LIBS -lws2_32"
 
 fi
+
+dnl
+dnl All the library dependencies put into $LIB apply to libcurl only.
+dnl Those in $CURL_LIBS apply to the curl command-line client only.
+dnl Those in $TEST_SERVER_LIBS apply to test servers (for simplicity, this
+dnl   is currently the same as libcurl's libraries).
+dnl Those in $ALL_LIBS apply to all targets, including test targets.
+dnl
+LIBCURL_LIBS=$LIBS
+TEST_SERVER_LIBS=$LIBCURL_LIBS
+
+AC_SUBST(LIBCURL_LIBS)
+AC_SUBST(CURL_LIBS)
+AC_SUBST(TEST_SERVER_LIBS)
+LIBS=$ALL_LIBS  dnl LIBS is a magic variable
 
 AM_CONDITIONAL(CROSSCOMPILING, test x$cross_compiling = xyes)
 

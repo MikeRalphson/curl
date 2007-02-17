@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.54 2006-08-07 18:06:37 yangtse Exp $
+# $Id: Makefile.am,v 1.55 2007-02-17 01:29:01 danf Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -37,7 +37,7 @@ bin_PROGRAMS = curl
 
 include Makefile.inc
 
-curl_LDADD = ../lib/libcurl.la
+curl_LDADD = ../lib/libcurl.la @CURL_LIBS@
 curl_DEPENDENCIES = ../lib/libcurl.la
 BUILT_SOURCES = hugehelp.c
 CLEANFILES = hugehelp.c
