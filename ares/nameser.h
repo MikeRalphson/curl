@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.18 2007-01-30 13:15:07 giva Exp $ */
+/* $Id: nameser.h,v 1.19 2007-02-17 13:51:24 yangtse Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -17,11 +17,6 @@
 #ifndef NETWARE
 
 #define MAXHOSTNAMELEN 256
-
-#define EINPROGRESS WSAEINPROGRESS
-#define EWOULDBLOCK WSAEWOULDBLOCK
-#define EMSGSIZE     WSAEMSGSIZE
-#define EAFNOSUPPORT WSAEAFNOSUPPORT
 
 /* Structure for scatter/gather I/O.  */
 struct iovec

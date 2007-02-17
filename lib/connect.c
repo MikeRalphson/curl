@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.160 2007-02-16 18:19:35 yangtse Exp $
+ * $Id: connect.c,v 1.161 2007-02-17 13:51:25 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,14 +82,6 @@
 #ifndef TRUE
 #define TRUE 1
 #define FALSE 0
-#endif
-
-#ifdef USE_WINSOCK
-#define EINPROGRESS WSAEINPROGRESS
-#define EWOULDBLOCK WSAEWOULDBLOCK
-#define EISCONN     WSAEISCONN
-#define ENOTSOCK    WSAENOTSOCK
-#define ECONNREFUSED WSAECONNREFUSED
 #endif
 
 #include "urldata.h"

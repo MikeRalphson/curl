@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.15 2007-02-15 16:23:24 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.16 2007-02-17 13:51:24 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -183,6 +183,51 @@ typedef int sig_atomic_t;
 #else
 #define ERRNO         (errno)
 #define SET_ERRNO(x)  (errno = (x))
+#endif
+
+
+/*
+ * Portable error number symbolic names defined to Winsock error codes.
+ */
+
+#ifdef USE_WINSOCK
+#define EWOULDBLOCK      WSAEWOULDBLOCK
+#define EINPROGRESS      WSAEINPROGRESS
+#define EALREADY         WSAEALREADY
+#define ENOTSOCK         WSAENOTSOCK
+#define EDESTADDRREQ     WSAEDESTADDRREQ
+#define EMSGSIZE         WSAEMSGSIZE
+#define EPROTOTYPE       WSAEPROTOTYPE
+#define ENOPROTOOPT      WSAENOPROTOOPT
+#define EPROTONOSUPPORT  WSAEPROTONOSUPPORT
+#define ESOCKTNOSUPPORT  WSAESOCKTNOSUPPORT
+#define EOPNOTSUPP       WSAEOPNOTSUPP
+#define EPFNOSUPPORT     WSAEPFNOSUPPORT
+#define EAFNOSUPPORT     WSAEAFNOSUPPORT
+#define EADDRINUSE       WSAEADDRINUSE
+#define EADDRNOTAVAIL    WSAEADDRNOTAVAIL
+#define ENETDOWN         WSAENETDOWN
+#define ENETUNREACH      WSAENETUNREACH
+#define ENETRESET        WSAENETRESET
+#define ECONNABORTED     WSAECONNABORTED
+#define ECONNRESET       WSAECONNRESET
+#define ENOBUFS          WSAENOBUFS
+#define EISCONN          WSAEISCONN
+#define ENOTCONN         WSAENOTCONN
+#define ESHUTDOWN        WSAESHUTDOWN
+#define ETOOMANYREFS     WSAETOOMANYREFS
+#define ETIMEDOUT        WSAETIMEDOUT
+#define ECONNREFUSED     WSAECONNREFUSED
+#define ELOOP            WSAELOOP
+#define ENAMETOOLONG     WSAENAMETOOLONG
+#define EHOSTDOWN        WSAEHOSTDOWN
+#define EHOSTUNREACH     WSAEHOSTUNREACH
+#define ENOTEMPTY        WSAENOTEMPTY
+#define EPROCLIM         WSAEPROCLIM
+#define EUSERS           WSAEUSERS
+#define EDQUOT           WSAEDQUOT
+#define ESTALE           WSAESTALE
+#define EREMOTE          WSAEREMOTE
 #endif
 
 

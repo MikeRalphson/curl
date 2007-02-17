@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.11 2007-02-16 18:19:36 yangtse Exp $
+ * $Id: util.h,v 1.12 2007-02-17 13:51:25 yangtse Exp $
  ***************************************************************************/
 
 void logmsg(const char *msg, ...);
@@ -49,12 +49,6 @@ void win32_perror (const char *msg);
 #endif  /* WIN32 */
 
 #ifdef USE_WINSOCK
-#define EINPROGRESS  WSAEINPROGRESS
-#define EWOULDBLOCK  WSAEWOULDBLOCK
-#define EISCONN      WSAEISCONN
-#define ENOTSOCK     WSAENOTSOCK
-#define ECONNREFUSED WSAECONNREFUSED
-
 void win32_init(void);
 void win32_cleanup(void);
 #endif  /* USE_WINSOCK */
