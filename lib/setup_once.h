@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.18 2007-02-17 13:51:25 yangtse Exp $
+ * $Id: setup_once.h,v 1.19 2007-02-18 00:34:37 yangtse Exp $
  ***************************************************************************/
 
 
@@ -32,6 +32,13 @@
  *  must be kept in sync. Modify the other one if you change this.  *
  *                                                                  *
  ********************************************************************/
+
+
+/*
+ * Inclusion of common header files.
+ */
+
+#include <errno.h>
 
 
 /*
@@ -226,10 +233,14 @@ typedef int sig_atomic_t;
 #define ETIMEDOUT        WSAETIMEDOUT
 #define ECONNREFUSED     WSAECONNREFUSED
 #define ELOOP            WSAELOOP
+#ifndef ENAMETOOLONG     /* possible previous definition in errno.h */
 #define ENAMETOOLONG     WSAENAMETOOLONG
+#endif
 #define EHOSTDOWN        WSAEHOSTDOWN
 #define EHOSTUNREACH     WSAEHOSTUNREACH
+#ifndef ENOTEMPTY        /* possible previous definition in errno.h */
 #define ENOTEMPTY        WSAENOTEMPTY
+#endif
 #define EPROCLIM         WSAEPROCLIM
 #define EUSERS           WSAEUSERS
 #define EDQUOT           WSAEDQUOT

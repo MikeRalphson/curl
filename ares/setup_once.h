@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.16 2007-02-17 13:51:24 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.17 2007-02-18 00:34:37 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -25,6 +25,13 @@
  *  must be kept in sync. Modify the other one if you change this.  *
  *                                                                  *
  ********************************************************************/
+
+
+/*
+ * Inclusion of common header files.
+ */
+
+#include <errno.h>
 
 
 /*
@@ -219,10 +226,14 @@ typedef int sig_atomic_t;
 #define ETIMEDOUT        WSAETIMEDOUT
 #define ECONNREFUSED     WSAECONNREFUSED
 #define ELOOP            WSAELOOP
+#ifndef ENAMETOOLONG     /* possible previous definition in errno.h */
 #define ENAMETOOLONG     WSAENAMETOOLONG
+#endif
 #define EHOSTDOWN        WSAEHOSTDOWN
 #define EHOSTUNREACH     WSAEHOSTUNREACH
+#ifndef ENOTEMPTY        /* possible previous definition in errno.h */
 #define ENOTEMPTY        WSAENOTEMPTY
+#endif
 #define EPROCLIM         WSAEPROCLIM
 #define EUSERS           WSAEUSERS
 #define EDQUOT           WSAEDQUOT
