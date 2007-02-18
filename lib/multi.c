@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.126 2007-02-12 12:15:42 bagder Exp $
+ * $Id: multi.c,v 1.127 2007-02-18 23:02:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -542,11 +542,10 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
       easy->easy_handle->dns.hostcachetype = HCACHE_NONE;
     }
 
-    /* if we have a connection we must call Curl_done() here so that we
-       don't leave a half-baked one around */
-    if(easy->easy_conn) {
-      /* Set up the association right */
-      easy->easy_conn->data = easy->easy_handle;
+    /* we must call Curl_done() here (if we still "own it") so that we don't
+       leave a half-baked one around */
+    if(easy->easy_conn &&
+       (easy->easy_conn->data == easy->easy_handle)) {
 
       /* Curl_done() clears the conn->data field to lose the association
          between the easy handle and the connection */
