@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.45 2007-02-19 19:41:48 yangtse Exp $
+# $Id: testcurl.pl,v 1.46 2007-02-19 19:46:07 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.45 $';
+$version='$Revision: 1.46 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -285,7 +285,7 @@ $pwd = cwd();
 # libcurl timestamp is present in curlver.h only if this isn't a CVS version.
 # If no timestamp available in curlver.h then we are building from CVS and we
 # will use current UTC build time as the CVS version timestamp.
-if ((-f "$CURLDIR/include/curl/curlver.hh") &&
+if ((-f "$CURLDIR/include/curl/curlver.h") &&
     (grepfile("define LIBCURL_TIMESTAMP",
               "$CURLDIR/include/curl/curlver.h")) &&
     (open(F, "<$CURLDIR/include/curl/curlver.h"))) {
