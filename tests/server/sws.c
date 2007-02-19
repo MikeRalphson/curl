@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.101 2007-02-19 02:04:01 yangtse Exp $
+ * $Id: sws.c,v 1.102 2007-02-19 03:59:41 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -771,6 +771,7 @@ int main(int argc, char *argv[])
   char *pidname= (char *)".http.pid";
   struct httprequest req;
   int rc;
+  int error;
   int arg=1;
 #ifdef CURL_SWS_FORK_ENABLED
   bool use_fork = FALSE;
