@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.398 2007-02-19 11:53:54 bagder Exp $
+ * $Id: ftp.c,v 1.399 2007-02-19 11:55:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -75,6 +75,7 @@
 #include "transfer.h"
 #include "escape.h"
 #include "http.h" /* for HTTP proxy tunnel stuff */
+#include "socks.h"
 #include "ftp.h"
 
 #ifdef HAVE_KRB4
