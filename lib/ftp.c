@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.397 2007-02-16 18:19:35 yangtse Exp $
+ * $Id: ftp.c,v 1.398 2007-02-19 11:53:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1737,6 +1737,23 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     /* this just dumps information about this second connection */
     ftp_pasv_verbose(conn, conninfo, newhost, connectport);
 
+  switch(data->set.proxytype) {
+  case CURLPROXY_SOCKS5:
+    result = Curl_SOCKS5(conn->proxyuser, conn->proxypasswd, newhost, newport,
+                         SECONDARYSOCKET, conn);
+    break;
+  case CURLPROXY_HTTP:
+    /* do nothing here. handled later. */
+    break;
+  case CURLPROXY_SOCKS4:
+    result = Curl_SOCKS4(conn->proxyuser, newhost, newport,
+                         SECONDARYSOCKET, conn);
+    break;
+  default:
+    failf(data, "unknown proxytype option given");
+    result = CURLE_COULDNT_CONNECT;
+    break;
+  }
 #ifndef CURL_DISABLE_HTTP
   if(conn->bits.tunnel_proxy && conn->bits.httpproxy) {
     /* FIX: this MUST wait for a proper connect first if 'connected' is

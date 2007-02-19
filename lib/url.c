@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.585 2007-02-18 23:02:44 bagder Exp $
+ * $Id: url.c,v 1.586 2007-02-19 11:53:54 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2287,13 +2287,15 @@ static CURLcode ConnectPlease(struct SessionHandle *data,
 
     switch(data->set.proxytype) {
     case CURLPROXY_SOCKS5:
-      result = Curl_SOCKS5(conn->proxyuser, conn->proxypasswd, conn);
+      result = Curl_SOCKS5(conn->proxyuser, conn->proxypasswd, conn->host.name,
+                           conn->remote_port, FIRSTSOCKET, conn);
       break;
     case CURLPROXY_HTTP:
       /* do nothing here. handled later. */
       break;
     case CURLPROXY_SOCKS4:
-      result = Curl_SOCKS4(conn->proxyuser, conn);
+      result = Curl_SOCKS4(conn->proxyuser, conn->host.name, conn->remote_port,
+                           FIRSTSOCKET, conn);
       break;
     default:
       failf(data, "unknown proxytype option given");
