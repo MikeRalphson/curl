@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.18 2007-02-16 15:04:44 yangtse Exp $
+ * $Id: adig.c,v 1.19 2007-02-19 17:41:38 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -49,10 +49,6 @@
 
 #ifdef WATT32
 #undef WIN32  /* Redefined in MingW headers */
-#endif
-
-#ifndef INADDR_NONE
-#define INADDR_NONE 0xffffffff
 #endif
 
 /* Mac OS X portability check */
