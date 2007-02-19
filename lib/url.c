@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.586 2007-02-19 11:53:54 bagder Exp $
+ * $Id: url.c,v 1.587 2007-02-19 12:20:33 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1785,6 +1785,8 @@ static void conn_free(struct connectdata *conn)
 #elif defined(CURLRES_THREADED)
   Curl_destroy_thread_data(&conn->async);
 #endif
+
+  Curl_ssl_close(conn);
 
   Curl_free_ssl_config(&conn->ssl_config);
 
