@@ -1,6 +1,6 @@
 #include "setup.h"
 
-/* $Id: windows_port.c,v 1.16 2007-02-16 15:04:46 yangtse Exp $ */
+/* $Id: windows_port.c,v 1.17 2007-02-19 17:40:36 giva Exp $ */
 
 /* only do the following on windows
  */
@@ -22,7 +22,7 @@
 
 #ifdef __WATCOMC__
 /*
- * Watcom needs a DlMain() in order to initialise the clib startup code.
+ * Watcom needs a DllMain() in order to initialise the clib startup code.
  */
 BOOL
 WINAPI DllMain (HINSTANCE hnd, DWORD reason, LPVOID reserved)
