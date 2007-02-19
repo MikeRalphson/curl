@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.21 2007-01-29 20:56:27 yangtse Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.22 2007-02-19 02:03:58 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -248,6 +248,7 @@ static int file_lookup(const char *name, int family, struct hostent **host)
   FILE *fp;
   char **alias;
   int status;
+  int error;
 
 #ifdef WIN32
   char PATH_HOSTS[MAX_PATH];
@@ -280,8 +281,22 @@ static int file_lookup(const char *name, int family, struct hostent **host)
 
   fp = fopen(PATH_HOSTS, "r");
   if (!fp)
-    return ARES_ENOTFOUND;
-
+    {
+      error = ERRNO;
+      switch(error) 
+        {
+        case ENOENT:
+        case ESRCH:
+          return ARES_ENOTFOUND;
+        default:
+          DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",
+                         error, strerror(error)));
+          DEBUGF(fprintf(stderr, "Error opening file: %s\n", 
+                         PATH_HOSTS));
+          *host = NULL;
+          return ARES_EFILE;
+        }
+    }
   while ((status = ares__get_hostent(fp, family, host)) == ARES_SUCCESS)
     {
       if (strcasecmp((*host)->h_name, name) == 0)

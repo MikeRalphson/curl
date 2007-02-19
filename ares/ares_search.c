@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.12 2007-02-17 11:34:33 yangtse Exp $ */
+/* $Id: ares_search.c,v 1.13 2007-02-19 02:03:59 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -273,6 +273,7 @@ static int single_domain(ares_channel channel, const char *name, char **s)
               switch(error) 
                 {
                 case ENOENT:
+                case ESRCH:
                   break;
                 default:
                   DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",

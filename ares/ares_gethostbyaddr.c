@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyaddr.c,v 1.21 2007-02-17 11:59:08 yangtse Exp $ */
+/* $Id: ares_gethostbyaddr.c,v 1.22 2007-02-19 02:03:58 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -224,6 +224,7 @@ static int file_lookup(union ares_addr *addr, int family, struct hostent **host)
       switch(error) 
         {
         case ENOENT:
+        case ESRCH:
           return ARES_ENOTFOUND;
         default:
           DEBUGF(fprintf(stderr, "fopen() failed with error: %d %s\n",

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.15 2007-02-17 01:25:32 danf Exp $
+ * $Id: util.c,v 1.16 2007-02-19 02:04:02 yangtse Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -130,7 +130,7 @@ void win32_init(void)
 
   if (err != 0) {
     perror("Winsock init failed");
-    logmsg("Error initialising winsock -- aborting\n");
+    logmsg("Error initialising winsock -- aborting");
     exit(1);
   }
 
@@ -139,7 +139,7 @@ void win32_init(void)
 
     WSACleanup();
     perror("Winsock init failed");
-    logmsg("No suitable winsock.dll found -- aborting\n");
+    logmsg("No suitable winsock.dll found -- aborting");
     exit(1);
   }
 }

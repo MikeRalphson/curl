@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.49 2007-02-16 15:04:46 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.50 2007-02-19 02:03:59 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -639,6 +639,7 @@ DhcpNameServer
       error = ERRNO;
       switch(error) {
       case ENOENT:
+      case ESRCH:
         status = ARES_EOF;
         break;
       default:
@@ -664,6 +665,7 @@ DhcpNameServer
         error = ERRNO;
         switch(error) {
         case ENOENT:
+        case ESRCH:
           status = ARES_EOF;
           break;
         default:
@@ -690,6 +692,7 @@ DhcpNameServer
         error = ERRNO;
         switch(error) {
         case ENOENT:
+        case ESRCH:
           status = ARES_EOF;
           break;
         default:
@@ -716,6 +719,7 @@ DhcpNameServer
         error = ERRNO;
         switch(error) {
         case ENOENT:
+        case ESRCH:
           status = ARES_EOF;
           break;
         default:
