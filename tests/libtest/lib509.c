@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.20 2007-02-09 01:11:14 yangtse Exp $
+ * $Id: lib509.c,v 1.21 2007-02-19 04:51:47 yangtse Exp $
  */
 
 #include "test.h"
@@ -332,10 +332,19 @@ int test(char *URL)
 
   return i;
 }
+
 #else /* USE_SSLEAY */
+
 int test(char *URL)
 {
   (void)URL;
-  return CURLE_FAILED_INIT;
+  if (curl_global_init(CURL_GLOBAL_ALL) != CURLE_OK) {
+    fprintf(stderr, "curl_global_init() failed\n");
+    return TEST_ERR_MAJOR_BAD;
+  }
+  fprintf(stderr, "libcurl lacks openssl support needed for test 509\n");
+  curl_global_cleanup();
+  return TEST_ERR_MAJOR_BAD;
 }
+
 #endif /* USE_SSLEAY */
