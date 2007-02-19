@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.20 2007-02-16 18:19:35 yangtse Exp $
+ * $Id: gtls.c,v 1.21 2007-02-19 11:47:04 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -148,7 +148,7 @@ static CURLcode handshake(struct connectdata *conn,
 
       if(data->set.timeout) {
         /* get the strictest timeout of the ones converted to milliseconds */
-        if(data->set.timeout) < timeout_ms)
+        if(data->set.timeout < timeout_ms)
           timeout_ms = data->set.timeout;
       }
 
@@ -526,7 +526,6 @@ int Curl_gtls_shutdown(struct connectdata *conn, int sockindex)
   int retval = 0;
   struct SessionHandle *data = conn->data;
   int done = 0;
-  ssize_t nread;
   char buf[120];
 
   /* This has only been tested on the proftpd server, and the mod_tls code
