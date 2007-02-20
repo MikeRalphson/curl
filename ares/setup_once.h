@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.17 2007-02-18 00:34:37 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.18 2007-02-20 12:12:27 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -31,7 +31,48 @@
  * Inclusion of common header files.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+#include <ctype.h>
 #include <errno.h>
+
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+
+#ifdef HAVE_SYS_STAT_H
+#include <sys/stat.h>
+#endif
+
+#ifdef HAVE_SYS_TIME_H
+#include <sys/time.h>
+#ifdef TIME_WITH_SYS_TIME
+#include <time.h>
+#endif
+#else
+#ifdef HAVE_TIME_H
+#include <time.h>
+#endif
+#endif
+
+#ifdef WIN32
+#include <io.h>
+#include <fcntl.h>
+#endif
+
+
+/*
+ * Definition of timeval struct for platforms that don't have it.
+ */
+
+#ifndef HAVE_STRUCT_TIMEVAL
+struct timeval {
+ long tv_sec;
+ long tv_usec;
+};
+#endif
 
 
 /*

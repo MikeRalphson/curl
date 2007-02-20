@@ -20,31 +20,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: testutil.h,v 1.3 2007-02-20 01:09:39 yangtse Exp $
+ * $Id: testutil.h,v 1.4 2007-02-20 12:12:27 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_TIME_H
-#include <sys/time.h>
-#ifdef TIME_WITH_SYS_TIME
-#include <time.h>
-#endif
-#else
-#ifdef HAVE_TIME_H
-#include <time.h>
-#endif
-#endif
-
-#ifndef HAVE_STRUCT_TIMEVAL
-struct timeval {
- long tv_sec;
- long tv_usec;
-};
-#endif
 
 struct timeval tutil_tvnow(void);
 
