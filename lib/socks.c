@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.8 2007-02-20 14:01:04 yangtse Exp $
+ * $Id: socks.c,v 1.9 2007-02-20 17:31:20 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,6 +30,9 @@
 #endif
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
+#endif
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
 #endif
 
 #include "urldata.h"
