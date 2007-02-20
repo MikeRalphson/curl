@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.7 2007-02-19 11:53:54 bagder Exp $
+ * $Id: socks.c,v 1.8 2007-02-20 14:01:04 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -149,7 +149,7 @@ CURLcode Curl_SOCKS4(const char *proxy_name,
 
   socksreq[0] = 4; /* version (SOCKS4) */
   socksreq[1] = 1; /* connect */
-  *((unsigned short*)&socksreq[2]) = htons(remote_port);
+  *((unsigned short*)&socksreq[2]) = htons((unsigned short)remote_port);
 
   /* DNS resolve */
   {
@@ -552,7 +552,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
     }
   }
 
-  *((unsigned short*)&socksreq[8]) = htons(remote_port);
+  *((unsigned short*)&socksreq[8]) = htons((unsigned short)remote_port);
 
   {
     const int packetsize = 10;
