@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.315 2007-02-12 21:13:51 bagder Exp $
+ * $Id: curl.h,v 1.316 2007-02-20 22:02:11 linus Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -464,6 +464,14 @@ typedef enum {
   CURLFTPSSL_ALL,     /* SSL for all communication or fail */
   CURLFTPSSL_LAST     /* not an option, never use */
 } curl_ftpssl;
+
+/* parameter for the CURLOPT_FTP_SSL_CCC option */
+typedef enum {
+  CURLFTPSSL_CCC_NONE,    /* do not send CCC */
+  CURLFTPSSL_CCC_PASSIVE, /* Let the server initiate the shutdown */
+  CURLFTPSSL_CCC_ACTIVE,  /* Initiate the shutdown */
+  CURLFTPSSL_CCC_LAST     /* not an option, never use */
+} curl_ftpccc;
 
 /* parameter for the CURLOPT_FTPSSLAUTH option */
 typedef enum {

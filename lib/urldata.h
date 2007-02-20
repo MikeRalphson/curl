@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.323 2007-02-18 00:54:26 yangtse Exp $
+ * $Id: urldata.h,v 1.324 2007-02-20 22:02:11 linus Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1283,10 +1283,10 @@ struct UserDefined {
   bool reuse_fresh;      /* do not re-use an existing connection  */
   bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
   bool ftp_use_eprt;     /* if EPRT is to be attempted or not */
-  bool ftp_use_ccc;      /* if CCC is to be attempted or not */
 
   curl_ftpssl ftp_ssl;   /* if AUTH TLS is to be attempted etc */
   curl_ftpauth ftpsslauth; /* what AUTH XXX to be attempted */
+  curl_ftpccc ftp_ccc;   /* FTP CCC options */
   bool no_signal;        /* do not use any signal/alarm handler */
   bool global_dns_cache; /* subject for future removal */
   bool tcp_nodelay;      /* whether to enable TCP_NODELAY or not */

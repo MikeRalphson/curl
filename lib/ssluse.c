@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.166 2007-02-16 18:19:36 yangtse Exp $
+ * $Id: ssluse.c,v 1.167 2007-02-20 22:02:11 linus Exp $
  ***************************************************************************/
 
 /*
@@ -748,6 +748,9 @@ int Curl_ossl_shutdown(struct connectdata *conn, int sockindex)
      sends a close notify alert without waiting for a close notify alert in
      response. Thus we wait for a close notify alert from the server, but
      we do not send one. Let's hope other servers do the same... */
+
+  if(data->set.ftp_ccc == CURLFTPSSL_CCC_ACTIVE)
+      (void)SSL_shutdown(connssl->handle);
 
   if(connssl->handle) {
     while(!done) {

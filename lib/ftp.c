@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.399 2007-02-19 11:55:49 bagder Exp $
+ * $Id: ftp.c,v 1.400 2007-02-20 22:02:11 linus Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2566,7 +2566,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
         /* we failed and bails out */
         return CURLE_FTP_SSL_FAILED;
 
-      if(data->set.ftp_use_ccc) {
+      if(data->set.ftp_ccc) {
         /* CCC - Clear Command Channel
          */
         NBFTPSENDF(conn, "CCC", NULL);
