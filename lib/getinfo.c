@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.54 2006-12-22 13:44:10 bagder Exp $
+ * $Id: getinfo.c,v 1.55 2007-02-20 14:26:15 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -75,7 +75,9 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
   double *param_doublep=NULL;
   char **param_charp=NULL;
   struct curl_slist **param_slistp=NULL;
+#ifdef MSG_PEEK
   char buf;
+#endif
 
   if(!data)
     return CURLE_BAD_FUNCTION_ARGUMENT;
