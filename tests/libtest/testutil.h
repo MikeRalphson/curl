@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: testutil.h,v 1.2 2007-02-17 11:43:52 yangtse Exp $
+ * $Id: testutil.h,v 1.3 2007-02-20 01:09:39 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -55,6 +55,13 @@ struct timeval tutil_tvnow(void);
  * Returns: the time difference in number of milliseconds.
  */
 long tutil_tvdiff(struct timeval t1, struct timeval t2);
+
+/*
+ * Same as tutil_tvdiff but with full usec resolution.
+ *
+ * Returns: the time difference in seconds with subsecond resolution.
+ */
+double tutil_tvdiff_secs(struct timeval t1, struct timeval t2);
 
 long tutil_tvlong(struct timeval t1);
 
