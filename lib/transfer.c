@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.336 2007-02-16 18:19:36 yangtse Exp $
+ * $Id: transfer.c,v 1.337 2007-02-21 19:03:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2481,7 +2481,7 @@ Curl_setup_transfer(
   if(!conn)
     return CURLE_BAD_FUNCTION_ARGUMENT;
 
-  curlassert((sockindex <= 1) && (sockindex >= -1));
+  DEBUGASSERT((sockindex <= 1) && (sockindex >= -1));
 
   /* now copy all input parameters */
   conn->sockfd = sockindex == -1 ?

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.126 2007-02-12 22:32:40 bagder Exp $
+ * $Id: setup.h,v 1.127 2007-02-21 19:03:20 yangtse Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -202,13 +202,6 @@ typedef unsigned char bool;
   #pragma suppress 61              /* enum has no name */
   #pragma suppress 106             /* unnamed, unused parameter */
   #include <clib.h>
-#endif
-
-#if defined(CURLDEBUG) && defined(HAVE_ASSERT_H)
-#define curlassert(x) assert(x)
-#else
-/* does nothing without CURLDEBUG defined */
-#define curlassert(x)
 #endif
 
 

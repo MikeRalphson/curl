@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.161 2007-02-17 13:51:25 yangtse Exp $
+ * $Id: connect.c,v 1.162 2007-02-21 19:03:20 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -527,7 +527,7 @@ CURLcode Curl_is_connected(struct connectdata *conn,
   long allow_total = 0;
   long has_passed;
 
-  curlassert(sockindex >= FIRSTSOCKET && sockindex <= SECONDARYSOCKET);
+  DEBUGASSERT(sockindex >= FIRSTSOCKET && sockindex <= SECONDARYSOCKET);
 
   *connected = FALSE; /* a very negative world view is best */
 

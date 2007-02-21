@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.20 2007-02-20 12:12:27 yangtse Exp $
+ * $Id: setup_once.h,v 1.21 2007-02-21 19:03:20 yangtse Exp $
  ***************************************************************************/
 
 
@@ -207,9 +207,20 @@ typedef int sig_atomic_t;
  */
 
 #ifdef CURLDEBUG
-#define DEBUGF(X) X
+#define DEBUGF(x) x
 #else
-#define DEBUGF(X) do { } while (0)
+#define DEBUGF(x) do { } while (0)
+#endif
+
+
+/*
+ * Macro used to include assertion code only in debug builds.
+ */
+
+#if defined(CURLDEBUG) && defined(HAVE_ASSERT_H)
+#define DEBUGASSERT(x) assert(x)
+#else
+#define DEBUGASSERT(x) do { } while (0)
 #endif
 
 

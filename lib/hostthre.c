@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.45 2007-02-16 18:19:35 yangtse Exp $
+ * $Id: hostthre.c,v 1.46 2007-02-21 19:03:20 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -537,7 +537,7 @@ static bool init_resolve_thread (struct connectdata *conn,
 #endif
 
 #ifdef CURLRES_IPV6
-  curlassert(hints);
+  DEBUGASSERT(hints);
   td->hints = *hints;
 #else
   (void) hints;
@@ -591,7 +591,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
   DWORD  status, ticks;
   CURLcode rc;
 
-  curlassert (conn && td);
+  DEBUGASSERT(conn && td);
 
   /* now, see if there's a connect timeout or a regular timeout to
      use instead of the default one */

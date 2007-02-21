@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.18 2007-02-20 12:12:27 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.19 2007-02-21 19:03:20 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -200,9 +200,20 @@ typedef int sig_atomic_t;
  */
 
 #ifdef CURLDEBUG
-#define DEBUGF(X) X
+#define DEBUGF(x) x
 #else
-#define DEBUGF(X) do { } while (0)
+#define DEBUGF(x) do { } while (0)
+#endif
+
+
+/*
+ * Macro used to include assertion code only in debug builds.
+ */
+
+#if defined(CURLDEBUG) && defined(HAVE_ASSERT_H)
+#define DEBUGASSERT(x) assert(x)
+#else
+#define DEBUGASSERT(x) do { } while (0)
 #endif
 
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.58 2007-01-23 22:57:42 bagder Exp $
+ * $Id: http_ntlm.c,v 1.59 2007-02-21 19:03:20 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -511,8 +511,8 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
   struct ntlmdata *ntlm;
   struct auth *authp;
 
-  curlassert(conn);
-  curlassert(conn->data);
+  DEBUGASSERT(conn);
+  DEBUGASSERT(conn->data);
 
   if(proxy) {
     allocuserpwd = &conn->allocptr.proxyuserpwd;
@@ -991,9 +991,9 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
                     0x0, 0x0,
 
                     LONGQUARTET(ntlm->flags));
-    DEBUG_OUT(assert(size==64));
+    DEBUGASSERT(size==64);
 
-    DEBUG_OUT(assert(size == lmrespoff));
+    DEBUGASSERT(size == lmrespoff);
     /* We append the binary hashes */
     if(size < (sizeof(ntlmbuf) - 0x18)) {
       memcpy(&ntlmbuf[size], lmresp, 0x18);
@@ -1007,7 +1007,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
 
 #if USE_NTRESPONSES
     if(size < (sizeof(ntlmbuf) - 0x18)) {
-      DEBUG_OUT(assert(size == ntrespoff));
+      DEBUGASSERT(size == ntrespoff);
       memcpy(&ntlmbuf[size], ntresp, 0x18);
       size += 0x18;
     }
@@ -1034,15 +1034,15 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
       return CURLE_OUT_OF_MEMORY;
     }
 
-    curlassert(size == domoff);
+    DEBUGASSERT(size == domoff);
     memcpy(&ntlmbuf[size], domain, domlen);
     size += domlen;
 
-    curlassert(size == useroff);
+    DEBUGASSERT(size == useroff);
     memcpy(&ntlmbuf[size], user, userlen);
     size += userlen;
 
-    curlassert(size == hostoff);
+    DEBUGASSERT(size == hostoff);
     memcpy(&ntlmbuf[size], host, hostlen);
     size += hostlen;
 

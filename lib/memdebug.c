@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.50 2007-02-16 18:19:35 yangtse Exp $
+ * $Id: memdebug.c,v 1.51 2007-02-21 19:03:20 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -170,7 +170,7 @@ char *curl_dostrdup(const char *str, int line, const char *source)
   char *mem;
   size_t len;
 
-  curlassert(str != NULL);
+  DEBUGASSERT(str != NULL);
 
   if(countcheck("strdup", line, source))
     return NULL;
@@ -220,7 +220,7 @@ void curl_dofree(void *ptr, int line, const char *source)
 {
   struct memdebug *mem;
 
-  curlassert(ptr != NULL);
+  DEBUGASSERT(ptr != NULL);
 
   mem = (struct memdebug *)((char *)ptr - offsetof(struct memdebug, mem));
 
@@ -280,7 +280,7 @@ int curl_fclose(FILE *file, int line, const char *source)
 {
   int res;
 
-  curlassert(file != NULL);
+  DEBUGASSERT(file != NULL);
 
   res=(fclose)(file);
   if(logfile)

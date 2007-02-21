@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.87 2007-02-16 18:19:36 yangtse Exp $
+ * $Id: telnet.c,v 1.88 2007-02-21 19:03:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -179,7 +179,7 @@ check_wsock2 ( struct SessionHandle *data )
   WORD wVersionRequested;
   WSADATA wsaData;
 
-  curlassert(data);
+  DEBUGASSERT(data);
 
   /* telnet requires at least WinSock 2.0 so ask for it. */
   wVersionRequested = MAKEWORD(2, 0);

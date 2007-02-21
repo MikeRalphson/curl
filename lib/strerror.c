@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.42 2007-02-15 01:38:07 yangtse Exp $
+ * $Id: strerror.c,v 1.43 2007-02-21 19:03:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -600,8 +600,8 @@ const char *Curl_strerror(struct connectdata *conn, int err)
   char *buf, *p;
   size_t max;
 
-  curlassert(conn);
-  curlassert(err >= 0);
+  DEBUGASSERT(conn);
+  DEBUGASSERT(err >= 0);
 
   buf = conn->syserr_buf;
   max = sizeof(conn->syserr_buf)-1;
@@ -685,7 +685,7 @@ const char *Curl_idn_strerror (struct connectdata *conn, int err)
   char *buf;
   size_t max;
 
-  curlassert(conn);
+  DEBUGASSERT(conn);
 
   buf = conn->syserr_buf;
   max = sizeof(conn->syserr_buf)-1;
