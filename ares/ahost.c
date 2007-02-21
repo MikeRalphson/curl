@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.14 2007-02-06 19:14:33 giva Exp $
+ * $Id: ahost.c,v 1.15 2007-02-21 15:01:51 giva Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -143,6 +143,11 @@ int main(int argc, char **argv)
     }
 
   ares_destroy(channel);
+
+#ifdef USE_WINSOCK
+  WSACleanup();
+#endif
+
   return 0;
 }
 
