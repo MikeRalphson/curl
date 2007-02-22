@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.590 2007-02-21 21:59:42 bagder Exp $
+ * $Id: url.c,v 1.591 2007-02-22 07:39:45 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2029,7 +2029,7 @@ ConnectionExists(struct SessionHandle *data,
 
   for(i=0; i< data->state.connc->num; i++) {
     bool match = FALSE;
-    int pipeLen = 0;
+    size_t pipeLen = 0;
     /*
      * Note that if we use a HTTP proxy, we check connections to that
      * proxy and not to the actual remote server.
