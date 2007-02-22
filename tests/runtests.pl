@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.222 2007-02-12 22:32:40 bagder Exp $
+# $Id: runtests.pl,v 1.223 2007-02-22 18:35:57 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -258,7 +258,7 @@ sub startnew {
         die "error: exec() has returned !!!";
     }
 
-    my $count=5;
+    my $count=12;
     while($count--) {
         if(-f $pidfile) {
             open(PID, "<$pidfile");
