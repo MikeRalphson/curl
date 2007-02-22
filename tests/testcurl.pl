@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.47 2007-02-20 05:28:41 yangtse Exp $
+# $Id: testcurl.pl,v 1.48 2007-02-22 17:34:02 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.47 $';
+$version='$Revision: 1.48 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -401,10 +401,8 @@ if ($CVS) {
 }
 
 # Set timestamp to the one in curlver.h if this isn't a CVS test build.
-if ((-f "$CURLDIR/include/curl/curlver.h") &&
-    (grepfile("define LIBCURL_TIMESTAMP",
-              "$CURLDIR/include/curl/curlver.h")) &&
-    (open(F, "<$CURLDIR/include/curl/curlver.h"))) {
+if ((-f "include/curl/curlver.h") &&
+    (open(F, "<include/curl/curlver.h"))) {
   while (<F>) {
     chomp;
     if ($_ =~ /^\#define\s+LIBCURL_TIMESTAMP\s+\"(.+)\".*$/) {
