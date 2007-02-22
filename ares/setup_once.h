@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.19 2007-02-21 19:03:20 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.20 2007-02-22 02:51:55 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -60,6 +60,10 @@
 #ifdef WIN32
 #include <io.h>
 #include <fcntl.h>
+#endif
+
+#ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
 #endif
 
 
@@ -174,6 +178,28 @@ struct timeval {
 
 #define ISBLANK(x)  (int)((((unsigned char)x) == ' ') || \
                           (((unsigned char)x) == '\t'))
+
+
+/*
+ * Typedef to 'unsigned char' if bool is not an available 'typedefed' type.
+ */
+
+#ifndef HAVE_BOOL_T
+typedef unsigned char bool;
+#define HAVE_BOOL_T
+#endif
+
+
+/*
+ * Default definition of uppercase TRUE and FALSE.
+ */
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
 
 
 /*

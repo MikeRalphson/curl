@@ -20,17 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.12 2007-02-17 13:51:25 yangtse Exp $
+ * $Id: util.h,v 1.13 2007-02-22 02:51:55 yangtse Exp $
  ***************************************************************************/
 
 void logmsg(const char *msg, ...);
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-#ifndef TRUE
-#define TRUE 1
-#endif
 
 #define TEST_DATA_PATH "%s/data/test%ld"
 

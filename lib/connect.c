@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.162 2007-02-21 19:03:20 yangtse Exp $
+ * $Id: connect.c,v 1.163 2007-02-22 02:51:55 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -79,11 +79,6 @@
 #include <errno.h>
 #include <string.h>
 
-#ifndef TRUE
-#define TRUE 1
-#define FALSE 0
-#endif
-
 #include "urldata.h"
 #include "sendf.h"
 #include "if2ip.h"
@@ -122,7 +117,7 @@ int Curl_nonblock(curl_socket_t sockfd,    /* operate on this */
   int flags;
 
   flags = fcntl(sockfd, F_GETFL, 0);
-  if (TRUE == nonblock)
+  if (FALSE != nonblock)
     return fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
   else
     return fcntl(sockfd, F_SETFL, flags & (~O_NONBLOCK));

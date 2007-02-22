@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.221 2007-02-17 08:49:04 danf Exp $
+# $Id: configure.ac,v 1.222 2007-02-22 02:51:55 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1662,6 +1662,7 @@ AC_CHECK_HEADERS(
         libgen.h \
         locale.h \
         errno.h \
+        stdbool.h \
         arpa/tftp.h \
         sys/filio.h \
         setjmp.h,
@@ -1722,6 +1723,16 @@ fi
 # check for ssize_t
 AC_CHECK_TYPE(ssize_t, ,
    AC_DEFINE(ssize_t, int, [the signed version of size_t]))
+
+# check for bool type
+AC_CHECK_TYPE([bool],[
+  AC_DEFINE(HAVE_BOOL_T, 1,
+    [Define to 1 if bool is an available type.])
+], ,[
+#ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
+#endif
+])
 
 # Check for socklen_t or equivalent
 CURL_CHECK_TYPE_SOCKLEN_T
