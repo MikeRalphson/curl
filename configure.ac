@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.222 2007-02-22 02:51:55 yangtse Exp $
+# $Id: configure.ac,v 1.223 2007-02-22 16:44:44 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1729,6 +1729,9 @@ AC_CHECK_TYPE([bool],[
   AC_DEFINE(HAVE_BOOL_T, 1,
     [Define to 1 if bool is an available type.])
 ], ,[
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
 #endif
