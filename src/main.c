@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.394 2007-02-20 22:02:12 linus Exp $
+ * $Id: main.c,v 1.395 2007-02-23 09:48:02 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1650,10 +1650,15 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
 #endif
       case 'g': /* --trace */
         GetStr(&config->trace_dump, nextarg);
+        if(config->tracetype && (config->tracetype != TRACE_BIN))
+          warnf(config, "--trace overrides an earlier trace/verbose option\n");
         config->tracetype = TRACE_BIN;
         break;
       case 'h': /* --trace-ascii */
         GetStr(&config->trace_dump, nextarg);
+        if(config->tracetype && (config->tracetype != TRACE_ASCII))
+          warnf(config,
+                "--trace-ascii overrides an earlier trace/verbose option\n");
         config->tracetype = TRACE_ASCII;
         break;
       case 'i': /* --limit-rate */
@@ -2398,6 +2403,9 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
     case 'v':
       /* the '%' thing here will cause the trace get sent to stderr */
       GetStr(&config->trace_dump, (char *)"%");
+      if(config->tracetype && (config->tracetype != TRACE_PLAIN))
+        warnf(config,
+              "-v/--verbose overrides an earlier trace/verbose option\n");
       config->tracetype = TRACE_PLAIN;
       break;
     case 'V':
