@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.325 2007-02-22 06:19:39 yangtse Exp $
+ * $Id: urldata.h,v 1.326 2007-02-25 11:38:14 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -470,6 +470,8 @@ struct ConnectBits {
                          This is implicit when SSL-protocols are used through
                          proxies, but can also be enabled explicitly by
                          apps */
+  bool tunnel_connecting; /* TRUE while we're still waiting for a proxy CONNECT
+			   */
   bool authneg;       /* TRUE when the auth phase has started, which means
                          that we are creating a request with an auth header,
                          but it is not the final request in the auth
