@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.128 2007-02-22 02:51:55 yangtse Exp $
+ * $Id: setup.h,v 1.129 2007-02-26 03:38:26 giva Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -167,7 +167,7 @@
 #endif
 
 /*
- * PellesC cludge section (yikes);
+ * PellesC kludge section (yikes);
  *  - It has 'ssize_t', but it is in <unistd.h>. The way the headers
  *    on Win32 are included, forces me to include this header here.
  *  - sys_nerr, EINTR is missing in v4.0 or older.
@@ -182,7 +182,7 @@
 #endif
 
 /*
- * Salford-C cludge section (mostly borrowed from wxWidgets).
+ * Salford-C kludge section (mostly borrowed from wxWidgets).
  */
 #ifdef __SALFORDC__
   #pragma suppress 353             /* Possible nested comments */
