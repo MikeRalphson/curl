@@ -1,4 +1,4 @@
-/* $Id: bitncmp.c,v 1.5 2006-07-22 15:37:10 giva Exp $ */
+/* $Id: bitncmp.c,v 1.6 2007-02-26 04:33:19 giva Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -19,9 +19,7 @@
 
 #ifndef HAVE_BITNCMP
 
-#include <sys/types.h>
-#include <string.h>
-#include <stdlib.h>
+#include "setup.h"
 #include "bitncmp.h"
 
 /*

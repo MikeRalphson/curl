@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.37 2007-02-22 02:51:54 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.38 2007-02-26 04:33:19 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,7 +16,6 @@
  */
 
 #include "setup.h"
-#include <sys/types.h>
 
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"

@@ -1,4 +1,4 @@
-/* $Id: ares_fds.c,v 1.8 2005-11-11 19:20:22 giva Exp $ */
+/* $Id: ares_fds.c,v 1.9 2007-02-26 04:33:19 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,7 +16,6 @@
  */
 
 #include "setup.h"
-#include <sys/types.h>
 
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>

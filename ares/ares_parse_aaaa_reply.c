@@ -1,4 +1,4 @@
-/* $Id: ares_parse_aaaa_reply.c,v 1.4 2006-07-22 15:37:10 giva Exp $ */
+/* $Id: ares_parse_aaaa_reply.c,v 1.5 2007-02-26 04:33:19 giva Exp $ */
 
 /* Copyright 2005 Dominick Meglio
  *
@@ -16,7 +16,6 @@
  */
 
 #include "setup.h"
-#include <sys/types.h>
 
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"

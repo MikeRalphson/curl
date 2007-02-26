@@ -1,4 +1,4 @@
-/* $Id: ares__get_hostent.c,v 1.12 2006-10-18 03:42:06 yangtse Exp $ */
+/* $Id: ares__get_hostent.c,v 1.13 2007-02-26 04:33:19 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,7 +16,6 @@
  */
 
 #include "setup.h"
-#include <sys/types.h>
 
 #if !defined(WIN32) || defined(WATT32)
 #include <sys/socket.h>

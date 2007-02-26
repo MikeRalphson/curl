@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.22 2007-02-06 03:31:27 yangtse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.23 2007-02-26 04:33:19 giva Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -15,8 +15,6 @@
  * without express or implied warranty.
  */
 #include "setup.h"
-#include <sys/types.h>
-#include <ctype.h>
 
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"

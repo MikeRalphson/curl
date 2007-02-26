@@ -1,4 +1,4 @@
-/* $Id: ares_send.c,v 1.10 2007-02-08 17:01:40 yangtse Exp $ */
+/* $Id: ares_send.c,v 1.11 2007-02-26 04:33:19 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,7 +16,6 @@
  */
 
 #include "setup.h"
-#include <sys/types.h>
 
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"

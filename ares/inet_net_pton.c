@@ -1,4 +1,4 @@
-/* $Id: inet_net_pton.c,v 1.12 2007-02-16 15:04:46 yangtse Exp $ */
+/* $Id: inet_net_pton.c,v 1.13 2007-02-26 04:33:19 giva Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -18,9 +18,6 @@
  */
 
 #include "setup.h"
-
-
-#include <sys/types.h>
 
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"
