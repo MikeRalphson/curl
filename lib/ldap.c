@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.67 2007-01-03 23:04:43 bagder Exp $
+ * $Id: ldap.c,v 1.68 2007-02-26 04:24:26 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,12 +30,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_STAT_H
-#include <sys/stat.h>
-#endif
 #ifdef NEED_MALLOC_H
 #include <malloc.h>
 #endif
@@ -115,7 +109,7 @@
 #undef HAVE_LIBDL
 #endif
 
-/* 
+/*
  * We use this ZERO_NULL to avoid picky compiler warnings,
  * when assigning a NULL pointer to a function pointer var.
  */

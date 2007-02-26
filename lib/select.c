@@ -18,16 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.24 2007-02-16 18:19:36 yangtse Exp $
+ * $Id: select.c,v 1.25 2007-02-26 04:24:26 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #include <errno.h>
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif

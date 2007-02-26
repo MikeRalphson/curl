@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.88 2007-02-21 19:03:21 yangtse Exp $
+ * $Id: telnet.c,v 1.89 2007-02-26 04:24:29 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,12 +30,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_STAT_H
-#include <sys/stat.h>
-#endif
 
 #if defined(WIN32)
 #include <time.h>
@@ -65,8 +59,7 @@
 #include <sys/param.h>
 #endif
 
-
-#endif
+#endif  /* WIN32 */
 
 #include "urldata.h"
 #include <curl/curl.h>

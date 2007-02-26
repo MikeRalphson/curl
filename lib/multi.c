@@ -18,16 +18,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.129 2007-02-25 11:38:14 bagder Exp $
+ * $Id: multi.c,v 1.130 2007-02-26 04:24:26 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
+
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif

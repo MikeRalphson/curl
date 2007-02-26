@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.17 2007-02-07 22:00:33 bagder Exp $
+* $Id: ssh.c,v 1.18 2007-02-26 04:24:26 giva Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -44,24 +44,14 @@
 #include <fcntl.h>
 #endif
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_STAT_H
-#include <sys/stat.h>
-#endif
-
 #ifdef HAVE_TIME_H
 #include <time.h>
 #endif
 
-#ifdef WIN32
-
-#else /* probably some kind of unix */
+#ifndef WIN32
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
-#include <sys/types.h>
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
@@ -78,7 +68,7 @@
 #include <in.h>
 #include <inet.h>
 #endif
-#endif
+#endif /* !WIN32 */
 
 #if (defined(NETWARE) && defined(__NOVELL_LIBC__))
 #undef in_addr_t
