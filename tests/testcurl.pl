@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.48 2007-02-22 17:34:02 yangtse Exp $
+# $Id: testcurl.pl,v 1.49 2007-02-27 23:46:48 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.48 $';
+$version='$Revision: 1.49 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -265,11 +265,14 @@ if ($fixed < 4) {
     close(F);
 }
 
+my $str1066os = 'o' x 1066;
+
 # Set timestamp to the UTC this script is running. Its value might
 # be changed later in the script to the value present in curlver.h
 $timestamp = scalar(gmtime)." UTC";
 
 logit "STARTING HERE"; # first line logged, for scripts to trigger on
+logit 'TRANSFER CONTROL ==== 1120 CHAR LINE' . $str1066os . 'LINE_END';
 logit "NAME = $name";
 logit "EMAIL = $email";
 logit "DESC = $desc";
@@ -281,6 +284,8 @@ logit "CC = ".$ENV{CC};
 logit "target = ".$targetos;
 logit "version = $version"; # script version
 logit "date = $timestamp";  # When the test build starts
+
+$str1066os = undef;
 
 # Make $pwd to become the path without newline. We'll use that in order to cut
 # off that path from all possible logs and error messages etc.
