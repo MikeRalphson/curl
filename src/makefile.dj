@@ -1,5 +1,5 @@
 #
-# $Id: makefile.dj,v 1.9 2007-02-27 15:27:00 giva Exp $
+# $Id: makefile.dj,v 1.10 2007-02-27 15:32:29 giva Exp $
 #
 #  Adapted for djgpp2 / Watt-32 / DOS by
 #  Gisle Vanem <giva@bgnett.no>
@@ -34,9 +34,8 @@ EX_LIBS += $(WATT32_ROOT)/lib/libwatt.a
 
 CFLAGS += -DUSE_ENVIRONMENT
 
-PROGRAM   = curl.exe
-CSOURCES += $(CURL_SOURCES)
-OBJECTS  += $(addprefix $(OBJ_DIR)/, $(CSOURCES:.c=.o))
+PROGRAM  = curl.exe
+OBJECTS += $(addprefix $(OBJ_DIR)/, $(CSOURCES:.c=.o))
 
 all: $(OBJ_DIR) config.h $(PROGRAM)
 	@echo Welcome to cURL
