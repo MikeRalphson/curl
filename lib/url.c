@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.592 2007-02-26 04:24:29 giva Exp $
+ * $Id: url.c,v 1.593 2007-02-27 22:12:18 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3590,8 +3590,8 @@ else {
       /* we need to create new URL with the new port number */
       char *url;
 
-      url = aprintf("http://%s:%d%s", conn->host.name, conn->remote_port,
-                    data->reqdata.path);
+      url = aprintf("%s://%s:%d%s", conn->protostr, conn->host.name,
+                    conn->remote_port, data->reqdata.path);
       if(!url)
         return CURLE_OUT_OF_MEMORY;
 
