@@ -1,5 +1,5 @@
 #
-# $Id: makefile.dj,v 1.10 2007-02-27 15:32:29 giva Exp $
+# $Id: makefile.dj,v 1.11 2007-02-27 15:44:25 giva Exp $
 #
 #  Adapted for djgpp2 / Watt-32 / DOS by
 #  Gisle Vanem <giva@bgnett.no>
@@ -12,6 +12,8 @@ TOPDIR = ..
 
 include ../packages/DOS/common.dj
 include Makefile.inc
+
+CSOURCES = $(CURL_SOURCES)
 
 ifeq ($(USE_SSL),1)
   EX_LIBS += $(OPENSSL_ROOT)/lib/libssl.a $(OPENSSL_ROOT)/lib/libcrypt.a
