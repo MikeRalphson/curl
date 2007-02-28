@@ -18,10 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nwlib.c,v 1.5 2007-02-28 05:15:56 yangtse Exp $
+ * $Id: nwlib.c,v 1.6 2007-02-28 15:10:20 yangtse Exp $
  ***************************************************************************/
 
-#if !defined(WIN32) && !defined(_WIN32) && !defined(__WIN32__) && !defined(_WIN32_WCE)
+#ifdef NETWARE /* Novell NetWare */
 
 #include <errno.h>
 #include <string.h>
@@ -301,4 +301,4 @@ void DisposeThreadData(void    *data)
   }
 }
 
-#endif /* Not for Windows */
+#endif /* NETWARE */
