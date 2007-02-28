@@ -1,3 +1,5 @@
+#ifndef LIBCURL_AMIGAOS_H
+#define LIBCURL_AMIGAOS_H
 /***************************************************************************
  *                                  _   _ ____  _
  *  Project                     ___| | | |  _ \| |
@@ -18,13 +20,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: amigaos.h,v 1.7 2007-02-28 05:15:56 yangtse Exp $
+ * $Id: amigaos.h,v 1.8 2007-02-28 14:45:49 yangtse Exp $
  ***************************************************************************/
 
-#if !defined(WIN32) && !defined(_WIN32) && !defined(__WIN32__) && !defined(_WIN32_WCE)
-
-#ifndef LIBCURL_AMIGAOS_H
-#define LIBCURL_AMIGAOS_H
+#ifdef __AMIGA__ /* Any AmigaOS flavour */
 
 #ifndef __ixemul__
 
@@ -57,6 +56,6 @@ extern BOOL amiga_init();
 #warning compiling with ixemul...
 
 #endif /* __ixemul__ */
+#endif /* __AMIGA__ */
 #endif /* LIBCURL_AMIGAOS_H */
 
-#endif /* Not for Windows */

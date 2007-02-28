@@ -18,10 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: amigaos.c,v 1.6 2007-02-28 05:15:56 yangtse Exp $
+ * $Id: amigaos.c,v 1.7 2007-02-28 14:45:48 yangtse Exp $
  ***************************************************************************/
 
-#if !defined(WIN32) && !defined(_WIN32) && !defined(__WIN32__) && !defined(_WIN32_WCE)
+#ifdef __AMIGA__ /* Any AmigaOS flavour */
 
 #include "amigaos.h"
 #include <amitcp/socketbasetags.h>
@@ -75,4 +75,4 @@ BOOL amiga_init()
 ADD2EXIT(amiga_cleanup,-50);
 #endif
 
-#endif /* Not for Windows */
+#endif /* __AMIGA__ */

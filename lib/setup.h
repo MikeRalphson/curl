@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.129 2007-02-26 03:38:26 giva Exp $
+ * $Id: setup.h,v 1.130 2007-02-28 14:45:49 yangtse Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -63,7 +63,7 @@
 #include "config-mac.h"
 #endif
 
-#ifdef AMIGA
+#ifdef __AMIGA__
 #include "amigaos.h"
 #endif
 
