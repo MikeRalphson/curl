@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,8 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: amigaos.h,v 1.6 2006-01-09 13:17:14 bagder Exp $
+ * $Id: amigaos.h,v 1.7 2007-02-28 05:15:56 yangtse Exp $
  ***************************************************************************/
+
+#if !defined(WIN32) && !defined(_WIN32) && !defined(__WIN32__) && !defined(_WIN32_WCE)
 
 #ifndef LIBCURL_AMIGAOS_H
 #define LIBCURL_AMIGAOS_H
@@ -56,3 +58,5 @@ extern BOOL amiga_init();
 
 #endif /* __ixemul__ */
 #endif /* LIBCURL_AMIGAOS_H */
+
+#endif /* Not for Windows */
