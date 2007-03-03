@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.11 2007-02-09 01:11:14 yangtse Exp $
+ * $Id: lib530.c,v 1.12 2007-03-03 04:27:19 yangtse Exp $
  */
 
 #include "test.h"
@@ -15,8 +15,8 @@
 
 #include "testutil.h"
 
-#define MAIN_LOOP_HANG_TIMEOUT     30 * 1000
-#define MULTI_PERFORM_HANG_TIMEOUT 20 * 1000
+#define MAIN_LOOP_HANG_TIMEOUT     300 * 1000
+#define MULTI_PERFORM_HANG_TIMEOUT 120 * 1000
 
 #define NUM_HANDLES 4
 
