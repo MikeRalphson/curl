@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.225 2007-03-06 16:53:53 yangtse Exp $
+# $Id: configure.ac,v 1.226 2007-03-06 18:08:20 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -116,15 +116,11 @@ dnl support building of Windows DLLs
 AC_LIBTOOL_WIN32_DLL
 
 dnl skip libtool C++ and Fortran compiler checks
-m4_undefine([AC_PROG_CXX])
 m4_defun([AC_PROG_CXX],[])
-m4_undefine([AC_PROG_F77])
 m4_defun([AC_PROG_F77],[])
 
 dnl skip libtool C++ and Fortran linker checks
-m4_undefine([AC_LIBTOOL_CXX])
 m4_defun([AC_LIBTOOL_CXX],[])
-m4_undefine([AC_LIBTOOL_F77])
 m4_defun([AC_LIBTOOL_F77],[])
 
 dnl libtool setup
