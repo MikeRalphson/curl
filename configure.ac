@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.223 2007-02-22 16:44:44 yangtse Exp $
+# $Id: configure.ac,v 1.224 2007-03-06 05:05:50 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -112,8 +112,14 @@ AC_PROG_CC
 dnl check for how to do large files
 AC_SYS_LARGEFILE
 
-dnl check for cygwin stuff
+dnl support building of Windows DLLs
 AC_LIBTOOL_WIN32_DLL
+
+dnl skip libtool C++ and Fortran checks
+m4_undefine([AC_PROG_CXX])
+m4_defun([AC_PROG_CXX],[])
+m4_undefine([AC_PROG_F77])
+m4_defun([AC_PROG_F77],[])
 
 dnl libtool setup
 AC_PROG_LIBTOOL
