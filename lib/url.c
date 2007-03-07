@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.593 2007-02-27 22:12:18 bagder Exp $
+ * $Id: url.c,v 1.594 2007-03-07 22:42:05 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3124,7 +3124,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
     if(strequal(conn->protostr, "FTPS")) {
 #ifdef USE_SSL
       conn->protocol |= PROT_FTPS|PROT_SSL;
-      conn->ssl[SECONDARYSOCKET].use = TRUE; /* send data securely */
+      /* send data securely unless specifically requested otherwise */
+      conn->ssl[SECONDARYSOCKET].use = data->set.ftp_ssl != CURLFTPSSL_CONTROL;
       port = PORT_FTPS;
 #else
       failf(data, LIBCURL_NAME
