@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.398 2007-03-06 19:55:11 danf Exp $
+ * $Id: main.c,v 1.399 2007-03-09 21:51:44 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3931,6 +3931,8 @@ operate(struct Configurable *config, int argc, char *argv[])
           infd=(FILE *) fopen(uploadfile, "rb");
           if (!infd || stat(uploadfile, &fileinfo)) {
             helpf("Can't open '%s'!\n", uploadfile);
+            if(infd)
+              fclose(infd);
             return CURLE_READ_ERROR;
           }
           infdfopen=TRUE;
