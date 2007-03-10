@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.594 2007-03-07 22:42:05 danf Exp $
+ * $Id: url.c,v 1.595 2007-03-10 22:51:21 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4240,6 +4240,10 @@ CURLcode Curl_done(struct connectdata **connp,
     infof(data, "Connection #%ld to host %s left intact\n",
           conn->connectindex,
           conn->bits.httpproxy?conn->proxy.dispname:conn->host.dispname);
+
+    *connp = NULL; /* to make the caller of this function better detect that
+                      this connection is handed over and no longer used from
+                      this point on */
   }
 
   return result;
