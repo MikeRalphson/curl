@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.79 2006-10-27 03:47:58 yangtse Exp $
+ * $Id: progress.c,v 1.80 2007-03-10 12:11:22 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -280,9 +280,6 @@ int Curl_pgrsUpdate(struct connectdata *conn)
     ((double)data->progress.uploaded/
      (data->progress.timespent>0?data->progress.timespent:1));
 
-  if(data->progress.lastshow == Curl_tvlong(now))
-    return 0; /* never update this more than once a second if the end isn't
-                 reached */
   data->progress.lastshow = now.tv_sec;
 
   /* Let's do the "current speed" thing, which should use the fastest
@@ -358,6 +355,10 @@ int Curl_pgrsUpdate(struct connectdata *conn)
       failf(data, "Callback aborted");
     return result;
   }
+
+  if(data->progress.lastshow == Curl_tvlong(now))
+    return 0; /* never update this more than once a second if the end isn't
+                 reached */
 
   /* Figure out the estimated time of arrival for the upload */
   if((data->progress.flags & PGRS_UL_SIZE_KNOWN) &&
