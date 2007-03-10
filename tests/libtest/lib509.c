@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.21 2007-02-19 04:51:47 yangtse Exp $
+ * $Id: lib509.c,v 1.22 2007-03-10 00:19:05 yangtse Exp $
  */
 
 #include "test.h"
@@ -29,8 +29,8 @@
 
 #include "testutil.h"
 
-#define MAIN_LOOP_HANG_TIMEOUT     30 * 1000
-#define MULTI_PERFORM_HANG_TIMEOUT 20 * 1000
+#define MAIN_LOOP_HANG_TIMEOUT     90 * 1000
+#define MULTI_PERFORM_HANG_TIMEOUT 60 * 1000
 
 /*
  * We use this ZERO_NULL to avoid picky compiler warnings,
