@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.6 2007-03-10 12:11:22 bagder Exp $
+ * $Id: select.h,v 1.7 2007-03-11 09:11:30 bagder Exp $
  ***************************************************************************/
 
 #ifdef HAVE_SYS_POLL_H
@@ -50,9 +50,6 @@ struct pollfd
 #define CSELECT_IN   0x01
 #define CSELECT_OUT  0x02
 #define CSELECT_ERR  0x04
-
-int Curl_pselect(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms,
-                 sigset_t * sigmask);
 
 int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms);
 

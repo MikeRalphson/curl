@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.230 2007-03-10 12:11:21 bagder Exp $
+# $Id: configure.ac,v 1.231 2007-03-11 09:11:29 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1794,7 +1794,6 @@ esac
 AC_CHECK_FUNCS( strtoll \
                 socket \
                 select \
-                pselect \
                 strdup \
                 strstr \
                 strtok_r \
