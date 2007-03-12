@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.68 2007-02-26 04:24:26 giva Exp $
+ * $Id: ldap.c,v 1.69 2007-03-12 05:09:25 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -200,6 +200,11 @@ static dynafunc DynaGetFunction(const char *name)
      * compilers! */
     *(void**) (&func) = dlsym(libldap, name);
   }
+#ifdef DL_LBER_FILE
+  if (!func && liblber) {
+    *(void**) (&func) = dlsym(liblber, name);
+  }
+#endif
 #elif defined(WIN32)
   if (libldap) {
     func = (dynafunc)GetProcAddress((HINSTANCE)libldap, name);
