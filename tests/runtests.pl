@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.226 2007-03-09 23:39:42 danf Exp $
+# $Id: runtests.pl,v 1.227 2007-03-12 20:50:16 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1045,9 +1045,6 @@ sub checksystem {
             if($feat =~ /SSL/i) {
                 # ssl enabled
                 $ssl_version=1;
-                # curl doesn't list cryptographic support separately, so treat
-                # it the same as SSL for the time being
-                $has_crypto=1;
             }
             if($feat =~ /Largefile/i) {
                 # large file support
@@ -1122,6 +1119,10 @@ sub checksystem {
     if(!$curl_debug && $torture) {
         die "can't run torture tests since curl was not build with debug";
     }
+
+    # curl doesn't list cryptographic support separately, so assume it's
+    # always available
+    $has_crypto=1;
 
     my $hostname=`hostname`;
     my $hosttype=`uname -a`;
