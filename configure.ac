@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.231 2007-03-11 09:11:29 bagder Exp $
+# $Id: configure.ac,v 1.232 2007-03-14 23:40:46 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1022,6 +1022,9 @@ if test X"$OPT_SSL" != Xno; then
         curl_ssl_msg="enabled (OpenSSL)"
         OPENSSL_ENABLED=1
         AC_DEFINE(USE_OPENSSL, 1, [if OpenSSL is in use]))
+
+      dnl yassl doesn't have SSL_get_shutdown ?
+      AC_CHECK_FUNCS( SSL_get_shutdown )
 
       if test $ac_cv_header_openssl_x509_h = no; then
         dnl we don't use the "action" part of the AC_CHECK_HEADERS macro
