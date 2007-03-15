@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.46 2007-02-02 17:16:07 yangtse Exp $
+ * $Id: urlglob.c,v 1.47 2007-03-15 22:05:01 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -214,7 +214,7 @@ static GlobCode glob_range(URLGlob *glob, char *pattern,
 
     rc = sscanf(pattern, "%d-%d%c%d%c", &min_n, &max_n, &sep, &step, &sep2);
 
-    if ((rc < 2) || (min_n >= max_n)) {
+    if ((rc < 2) || (min_n > max_n)) {
       /* the pattern is not well-formed */
       snprintf(glob->errormsg, sizeof(glob->errormsg),
                "error: bad range specification after pos %d\n", pos);
