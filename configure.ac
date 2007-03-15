@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.232 2007-03-14 23:40:46 bagder Exp $
+# $Id: configure.ac,v 1.233 2007-03-15 15:35:52 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -127,8 +127,8 @@ m4_defun([AC_LIBTOOL_CXX],[])
 m4_ifdef([AC_LIBTOOL_F77], [m4_undefine([AC_LIBTOOL_F77])])
 m4_defun([AC_LIBTOOL_F77],[])
 
-dnl force libtool to build static libraries with PIC on AMD64
-AC_MSG_CHECKING([if target is AMD64 (to build static libraries with PIC)])
+dnl force libtool to build static libraries with PIC on AMD64-linux
+AC_MSG_CHECKING([if arch-OS host is AMD64-linux (to build static libraries with PIC)])
 case $host in
   x86_64*linux*)
     AC_MSG_RESULT([yes])
