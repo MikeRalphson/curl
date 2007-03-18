@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.227 2007-03-12 20:50:16 danf Exp $
+# $Id: runtests.pl,v 1.228 2007-03-18 22:37:23 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -141,9 +141,13 @@ my $has_ipv6;    # set if libcurl is built with IPv6 support
 my $has_libz;    # set if libcurl is built with libz support
 my $has_getrlimit;  # set if system has getrlimit()
 my $has_ntlm;    # set if libcurl is built with NTLM support
-my $has_openssl; # set if libcurl is built with OpenSSL
-my $has_gnutls;  # set if libcurl is built with GnuTLS
-my $has_nss;     # set if libcurl is built with NSS
+
+my $has_openssl; # built with a lib using an OpenSSL-like API
+my $has_gnutls;  # built with GnuTLS
+my $has_nss;     # built with NSS
+my $has_yassl;   # built with yassl
+
+my $ssllib;      # name of the lib we use (for human presentation)
 my $has_crypto;  # set if libcurl is built with cryptographic support
 my $has_textaware; # set if running on a system that has a text mode concept
   # on files. Windows for example
@@ -1010,16 +1014,21 @@ sub checksystem {
                chomp($pwd = `cygpath -m $pwd`);
            }
            elsif ($libcurl =~ /openssl/i) {
-               # OpenSSL in use
                $has_openssl=1;
+               $ssllib="OpenSSL";
            }
            elsif ($libcurl =~ /gnutls/i) {
-               # GnuTLS in use
                $has_gnutls=1;
+               $ssllib="GnuTLS";
            }
            elsif ($libcurl =~ /nss/i) {
-               # NSS in use
                $has_nss=1;
+               $ssllib="NSS";
+           }
+           elsif ($libcurl =~ /yassl/i) {
+               $has_yassl=1;
+               $has_openssl=1;
+               $ssllib="yassl";
            }
         }
         elsif($_ =~ /^Protocols: (.*)/i) {
@@ -1160,8 +1169,7 @@ sub checksystem {
     }
 
     if($ssl_version) {
-        logmsg sprintf("* SSL library:    %s\n",
-               $has_gnutls?"GnuTLS":($has_openssl?"OpenSSL":($has_nss?"NSS":"<unknown>")));
+        logmsg sprintf("* SSL library:    %s\n", $ssllib?"yassl":"<unknown>");
     }
 
     $has_textaware = ($^O eq 'MSWin32') || ($^O eq 'msys');
