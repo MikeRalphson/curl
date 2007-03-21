@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.125 2007-02-26 04:24:26 giva Exp $
+ * $Id: sendf.c,v 1.126 2007-03-21 08:17:13 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -224,6 +224,10 @@ static size_t convert_lineends(struct SessionHandle *data,
 
 void Curl_infof(struct SessionHandle *data, const char *fmt, ...)
 {
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
+  (void)data;
+  (void)fmt;
+#else
   if(data && data->set.verbose) {
     va_list ap;
     size_t len;
@@ -234,6 +238,7 @@ void Curl_infof(struct SessionHandle *data, const char *fmt, ...)
     len = strlen(print_buffer);
     Curl_debug(data, CURLINFO_TEXT, print_buffer, len, NULL);
   }
+#endif
 }
 
 /* Curl_failf() is for messages stating why we failed.
