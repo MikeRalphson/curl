@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.35 2007-03-21 13:09:39 yangtse Exp $
+ * $Id: sendf.h,v 1.36 2007-03-22 17:18:41 danf Exp $
  ***************************************************************************/
 
 CURLcode Curl_sendf(curl_socket_t sockfd, struct connectdata *,
@@ -29,12 +29,13 @@ void Curl_infof(struct SessionHandle *, const char *fmt, ...);
 void Curl_failf(struct SessionHandle *, const char *fmt, ...);
 
 #if defined(CURL_DISABLE_VERBOSE_STRINGS)
-#if defined(__GNUC__)
-/* This style of variable argument macros is a gcc extension */
-#define infof(x...) /*ignore*/
+#if defined(__STDC__) && defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
+/* C99 compilers support variadic macros */
+#define infof(...)
+#elif defined(__GNUC__)
+/* This style of variable argument macros is an old gcc extension */
+#define infof(x...)
 #else
-/* C99 compilers could use this if we could detect them */
-/*#define infof(...) */
 /* Cast the args to void to make them a noop, side effects notwithstanding */
 #define infof (void)
 #endif
