@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.117 2007-02-15 14:02:32 yangtse Exp $
+# $Id: acinclude.m4,v 1.118 2007-03-22 14:41:10 yangtse Exp $
 ###########################################################################
 
 
@@ -685,7 +685,7 @@ AC_DEFUN([CURL_CHECK_FUNC_RECV], [
   ])
   #
   if test "$curl_cv_recv" = "yes"; then
-    AC_CACHE_CHECK([types of arguments and return type for recv],
+    AC_CACHE_CHECK([types of args and return type for recv],
       [curl_cv_func_recv_args], [
       curl_cv_func_recv_args="unknown"
       for recv_retv in 'int' 'ssize_t'; do
@@ -815,7 +815,7 @@ AC_DEFUN([CURL_CHECK_FUNC_SEND], [
   ])
   #
   if test "$curl_cv_send" = "yes"; then
-    AC_CACHE_CHECK([types of arguments and return type for send],
+    AC_CACHE_CHECK([types of args and return type for send],
       [curl_cv_func_send_args], [
       curl_cv_func_send_args="unknown"
       for send_retv in 'int' 'ssize_t'; do
