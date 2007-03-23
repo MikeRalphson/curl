@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.21 2007-03-15 21:25:56 danf Exp $
+* $Id: ssh.c,v 1.22 2007-03-23 00:03:34 danf Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -434,6 +434,8 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
   /*
    * At this point we have an authenticated ssh session.
    */
+  infof(conn->data, "Authentication complete\n");
+
   conn->sockfd = sock;
   conn->writesockfd = CURL_SOCKET_BAD;
 
@@ -478,8 +480,6 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
   if (conn->protocol == PROT_SCP) {
     real_path = (char *)malloc(working_path_len+1);
     if (real_path == NULL) {
-      libssh2_sftp_shutdown(ssh->sftp_session);
-      ssh->sftp_session = NULL;
       libssh2_session_free(ssh->ssh_session);
       ssh->ssh_session = NULL;
       Curl_safefree(working_path);
@@ -526,8 +526,6 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
     }
   }
   else {
-    libssh2_sftp_shutdown(ssh->sftp_session);
-    ssh->sftp_session = NULL;
     libssh2_session_free(ssh->ssh_session);
     ssh->ssh_session = NULL;
     Curl_safefree(working_path);
