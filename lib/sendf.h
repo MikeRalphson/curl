@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.37 2007-03-23 12:01:19 yangtse Exp $
+ * $Id: sendf.h,v 1.38 2007-03-23 12:09:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -54,6 +54,10 @@ void Curl_failf(struct SessionHandle *, const char *fmt, ...);
 #endif
 
 #endif
+
+#else /* CURL_DISABLE_VERBOSE_STRINGS */
+
+#define infof Curl_infof
 
 #endif /* CURL_DISABLE_VERBOSE_STRINGS */
 
