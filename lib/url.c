@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.596 2007-03-11 22:48:58 bagder Exp $
+ * $Id: url.c,v 1.597 2007-03-23 22:24:33 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2042,8 +2042,8 @@ ConnectionExists(struct SessionHandle *data,
                                   from the multi */
     }
 
-    DEBUGF(infof(data, "Examining connection #%ld for reuse \
-                 (pipeLen = %ld)\n", check->connectindex, pipeLen));
+    DEBUGF(infof(data, "Examining connection #%ld for reuse, "
+                 "(pipeLen = %ld)\n", check->connectindex, pipeLen));
 
     if(pipeLen > 0 && !canPipeline) {
       /* can only happen within multi handles, and means that another easy
