@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.38 2007-03-23 12:09:16 yangtse Exp $
+ * $Id: sendf.h,v 1.39 2007-03-23 12:13:08 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,7 @@ void Curl_failf(struct SessionHandle *, const char *fmt, ...);
 
 #else
 
-#if (defined(__STDC__) && defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
+#if defined(__STDC__) && defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
 #define infof(...)  do { } while (0)
 #elif defined(__GNUC__)
 #define infof(x...)  do { } while (0)
