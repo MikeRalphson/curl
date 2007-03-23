@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.132 2007-03-01 12:02:17 yangtse Exp $
+ * $Id: multi.c,v 1.133 2007-03-23 22:25:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -56,6 +56,9 @@ struct Curl_message {
   struct Curl_message *next;
 };
 
+/* NOTE: if you add a state here, add the name to the statename[] array as
+   well!
+*/
 typedef enum {
   CURLM_STATE_INIT,        /* start in this state */
   CURLM_STATE_CONNECT,     /* resolve/connect has been sent off */
@@ -182,6 +185,7 @@ static const char *statename[]={
   "CONNECT",
   "WAITRESOLVE",
   "WAITCONNECT",
+  "WAITPROXYCONNECT",
   "PROTOCONNECT",
   "WAITDO",
   "DO",
