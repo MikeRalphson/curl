@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.44 2005-04-28 13:55:16 bagder Exp $
+# $Id: Makefile.am,v 1.45 2007-03-24 06:29:58 danf Exp $
 ###########################################################################
 
 HTMLPAGES = testcurl.html runtests.html
@@ -26,7 +26,7 @@ PDFPAGES = testcurl.pdf runtests.pdf
 
 EXTRA_DIST = ftpserver.pl httpserver.pl httpsserver.pl runtests.pl getpart.pm \
  FILEFORMAT README stunnel.pem memanalyze.pl testcurl.pl valgrind.pm ftp.pm   \
- testcurl.1 runtests.1 $(HTMLPAGES) $(PDFPAGES)
+ sshserver.pl testcurl.1 runtests.1 $(HTMLPAGES) $(PDFPAGES)
 
 SUBDIRS = data server libtest
 
