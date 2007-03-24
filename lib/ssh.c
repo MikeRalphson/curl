@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.23 2007-03-23 17:59:40 danf Exp $
+* $Id: ssh.c,v 1.24 2007-03-24 17:23:01 danf Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -364,7 +364,7 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
    */
   if ((data->set.ssh_auth_types & CURLSSH_AUTH_PUBLICKEY) &&
       (strstr(authlist, "publickey") != NULL)) {
-    const char *home;
+    char *home;
     const char *passphrase;
     char rsa_pub[PATH_MAX];
     char rsa[PATH_MAX];

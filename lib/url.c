@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.598 2007-03-24 02:15:20 danf Exp $
+ * $Id: url.c,v 1.599 2007-03-24 17:23:01 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3430,6 +3430,7 @@ else {
   /***********************************************************************
    * file: is a special case in that it doesn't need a network connection
    ***********************************************************************/
+#ifndef CURL_DISABLE_FILE
   if (strequal(conn->protostr, "FILE")) {
       /* anyway, this is supposed to be the connect function so we better
 	 at least check that the file is present here! */
@@ -3447,6 +3448,7 @@ else {
 
     return result;
   }
+#endif
 
   /*************************************************************
    * If the protocol is using SSL and HTTP proxy is used, we set
