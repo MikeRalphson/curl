@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.80 2007-02-14 13:31:38 yangtse Exp $
+ * $Id: cookie.c,v 1.81 2007-03-25 02:30:58 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -187,6 +187,10 @@ Curl_cookie_add(struct SessionHandle *data,
   time_t now = time(NULL);
   bool replace_old = FALSE;
   bool badcookie = FALSE; /* cookies are good by default. mmmmm yummy */
+
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
+  (void)data;
+#endif
 
   /* First, alloc and init a new struct for it */
   co = (struct Cookie *)calloc(sizeof(struct Cookie), 1);

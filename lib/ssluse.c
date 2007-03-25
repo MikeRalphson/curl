@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.170 2007-03-14 23:40:47 bagder Exp $
+ * $Id: ssluse.c,v 1.171 2007-03-25 02:30:58 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -858,6 +858,10 @@ static int Curl_ASN1_UTCTIME_output(struct connectdata *conn,
   int i;
   int year=0,month=0,day=0,hour=0,minute=0,second=0;
   struct SessionHandle *data = conn->data;
+
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
+  (void)prefix;
+#endif
 
   if(!data->set.verbose)
     return 0;
