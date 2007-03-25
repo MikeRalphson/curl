@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.600 2007-03-25 01:59:52 yangtse Exp $
+ * $Id: url.c,v 1.601 2007-03-25 03:20:17 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2507,7 +2507,7 @@ static bool tld_check_name(struct SessionHandle *data,
 #ifndef CURL_DISABLE_VERBOSE_STRINGS
   if (rc != TLD_SUCCESS)
 #ifdef HAVE_TLD_STRERROR
-    tld_errmsg = tld_strerror((Tld_rc)rc);
+    tld_errmsg = (char *)tld_strerror((Tld_rc)rc);
 #else
     tld_errmsg = no_msg;
 #endif
