@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.37 2007-03-22 17:58:01 danf Exp $
+ * $Id: hostip4.c,v 1.38 2007-03-25 01:59:52 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -128,6 +128,10 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   struct hostent *h = NULL;
   in_addr_t in;
   struct hostent *buf = NULL;
+
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
+  (void)conn;
+#endif
 
   (void)port; /* unused in IPv4 code */
 

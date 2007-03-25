@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.401 2007-02-26 04:24:26 giva Exp $
+ * $Id: ftp.c,v 1.402 2007-03-25 01:59:52 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -655,7 +655,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
 static void state(struct connectdata *conn,
                   ftpstate state)
 {
-#ifdef CURLDEBUG
+#if defined(CURLDEBUG) && !defined(CURL_DISABLE_VERBOSE_STRINGS)
   /* for debug purposes */
   const char *names[]={
     "STOP",
@@ -693,7 +693,7 @@ static void state(struct connectdata *conn,
   };
 #endif
   struct ftp_conn *ftpc = &conn->proto.ftpc;
-#ifdef CURLDEBUG
+#if defined(CURLDEBUG) && !defined(CURL_DISABLE_VERBOSE_STRINGS)
   if(ftpc->state != state)
     infof(conn->data, "FTP %p state change from %s to %s\n",
           ftpc, names[ftpc->state], names[state]);
@@ -3244,9 +3244,16 @@ ftp_pasv_verbose(struct connectdata *conn,
                  char *newhost, /* ascii version */
                  int port)
 {
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
+  (void)conn;
+  (void)ai;
+  (void)newhost;
+  (void)port;
+#else
   char buf[256];
   Curl_printable_address(ai, buf, sizeof(buf));
   infof(conn->data, "Connecting to %s (%s) port %d\n", newhost, buf, port);
+#endif
 }
 
 /*
