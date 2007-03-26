@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.601 2007-03-25 03:20:17 yangtse Exp $
+ * $Id: url.c,v 1.602 2007-03-26 23:23:46 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1890,7 +1890,7 @@ static bool SocketIsDead(curl_socket_t sock)
   int sval;
   bool ret_val = TRUE;
 
-  sval = Curl_select(sock, CURL_SOCKET_BAD, 0);
+  sval = Curl_socket_ready(sock, CURL_SOCKET_BAD, 0);
   if(sval == 0)
     /* timeout */
     ret_val = FALSE;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.317 2007-02-26 04:24:26 giva Exp $
+ * $Id: http.c,v 1.318 2007-03-26 23:23:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1225,7 +1225,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
 
     /* if we're in multi-mode and we would block, return instead for a retry */
     if (Curl_if_multi == data->state.used_interface) {
-      if (0 == Curl_select(tunnelsocket, CURL_SOCKET_BAD, 0))
+      if (0 == Curl_socket_ready(tunnelsocket, CURL_SOCKET_BAD, 0))
         /* return so we'll be called again polling-style */
         return CURLE_OK;
       else {
@@ -1273,7 +1273,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
         }
 
         /* loop every second at least, less if the timeout is near */
-        switch (Curl_select(tunnelsocket, CURL_SOCKET_BAD,
+        switch (Curl_socket_ready(tunnelsocket, CURL_SOCKET_BAD,
                             check<1000L?(int)check:1000)) {
         case -1: /* select() error, stop reading */
           error = SELECT_ERROR;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.341 2007-03-11 09:11:30 bagder Exp $
+ * $Id: transfer.c,v 1.342 2007-03-26 23:23:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -329,7 +329,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
   else
     fd_write = CURL_SOCKET_BAD;
 
-  select_res = Curl_select(fd_read, fd_write, 0);
+  select_res = Curl_socket_ready(fd_read, fd_write, 0);
   if(select_res == CSELECT_ERR) {
     failf(data, "select/poll returned error");
     return CURLE_SEND_ERROR;
@@ -1828,7 +1828,7 @@ Transfer(struct connectdata *conn)
        the timeout case and if we limit transfer speed we must make sure that
        this function doesn't transfer anything while in HOLD status. */
 
-    switch (Curl_select(fd_read, fd_write, 1000)) {
+    switch (Curl_socket_ready(fd_read, fd_write, 1000)) {
     case -1: /* select() error, stop reading */
 #ifdef EINTR
       /* The EINTR is not serious, and it seems you might get this more

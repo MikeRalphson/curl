@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.8 2007-03-18 04:51:40 yangtse Exp $
+ * $Id: select.h,v 1.9 2007-03-26 23:23:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -68,7 +68,7 @@ struct pollfd
 #define CSELECT_OUT  0x02
 #define CSELECT_ERR  0x04
 
-int Curl_select(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms);
+int Curl_socket_ready(curl_socket_t readfd, curl_socket_t writefd, int timeout_ms);
 
 int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms);
 

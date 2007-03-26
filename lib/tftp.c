@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.40 2007-02-26 04:24:29 giva Exp $
+ * $Id: tftp.c,v 1.41 2007-03-26 23:23:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -678,7 +678,7 @@ CURLcode Curl_tftp(struct connectdata *conn, bool *done)
       tftp_state_machine(state, event) ) {
 
     /* Wait until ready to read or timeout occurs */
-    rc=Curl_select(state->sockfd, CURL_SOCKET_BAD, state->retry_time * 1000);
+    rc=Curl_socket_ready(state->sockfd, CURL_SOCKET_BAD, state->retry_time * 1000);
 
     if(rc == -1) {
       /* bail out */
