@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.49 2007-02-27 23:46:48 yangtse Exp $
+# $Id: testcurl.pl,v 1.50 2007-03-26 17:18:36 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.49 $';
+$version='$Revision: 1.50 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -142,7 +142,12 @@ if ($^O eq 'MSWin32' || $targetos) {
   elsif ($targetos =~ /netware/) {
     $configurebuild = 0;
     $binext = '.nlm';
-    $libext = '.lib';
+    if ($^O eq 'MSWin32') {
+      $libext = '.lib';
+    }
+    else {
+      $libext = '.a';
+    }
   }
 }
 
