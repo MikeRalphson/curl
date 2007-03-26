@@ -1,4 +1,5 @@
 #################################################################
+# $Id: Makefile.netware,v 1.43 2007-03-26 01:54:06 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
