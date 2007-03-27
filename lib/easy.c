@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.97 2007-02-28 14:45:49 yangtse Exp $
+ * $Id: easy.c,v 1.98 2007-03-27 18:15:26 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -61,10 +61,6 @@
 #include <sys/param.h>
 #endif
 
-#ifdef HAVE_SYS_SELECT_H
-#include <sys/select.h>
-#endif
-
 #endif  /* WIN32 ... */
 
 #include "urldata.h"
@@ -79,6 +75,7 @@
 #include "memory.h"
 #include "progress.h"
 #include "easyif.h"
+#include "select.h"
 #include "sendf.h" /* for failf function prototype */
 #include <ca-bundle.h>
 
@@ -417,7 +414,7 @@ CURLcode curl_easy_perform(CURL *easy)
     /* get file descriptors from the transfers */
     curl_multi_fdset(multi, &fdread, &fdwrite, &fdexcep, &maxfd);
 
-    rc = select(maxfd+1, &fdread, &fdwrite, &fdexcep, &timeout);
+    rc = Curl_select(maxfd+1, &fdread, &fdwrite, &fdexcep, &timeout);
 
     if(rc == -1)
       /* select error */
