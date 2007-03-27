@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.120 2007-03-22 18:59:14 yangtse Exp $
+# $Id: acinclude.m4,v 1.121 2007-03-27 05:10:20 danf Exp $
 ###########################################################################
 
 
@@ -1861,6 +1861,7 @@ AC_DEFUN([CURL_DLLIB_NAME],
 AC_MSG_CHECKING([name of dynamic library $2])
 dnl The shared library extension variable name changes from version to
 dnl version of libtool.  Try a few names then just set one statically.
+test -z "$shared_ext" && eval shared_ext=\"$shrext_cmds\"
 test -z "$shared_ext" && shared_ext="$std_shrext"
 test -z "$shared_ext" && shared_ext="$shrext"
 test -z "$shared_ext" && shared_ext=".so"
