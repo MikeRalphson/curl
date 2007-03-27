@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.318 2007-03-26 23:23:46 yangtse Exp $
+ * $Id: http.c,v 1.319 2007-03-27 18:16:35 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1277,7 +1277,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
                             check<1000L?(int)check:1000)) {
         case -1: /* select() error, stop reading */
           error = SELECT_ERROR;
-          failf(data, "Proxy CONNECT aborted due to select() error");
+          failf(data, "Proxy CONNECT aborted due to select/poll error");
           break;
         case 0: /* timeout */
           break;
