@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.2 2007-03-27 04:01:39 danf Exp $
+# $Id: sshserver.pl,v 1.3 2007-03-28 04:05:55 danf Exp $
 # Start sshd for use in the SCP and SFTP curl test harness tests
 
 # Options:
@@ -131,7 +131,7 @@ if (system "$sshd -t -q -f $conffile") {
 }
 
 # Start the server
-my $rc = system "$sshd -e -f $conffile > log/ssh.log 2>&1";
+my $rc = system "$sshd -e -D -f $conffile > log/ssh.log 2>&1";
 $rc >>= 8;
 if($rc) {
     print STDERR "$sshd exited with $rc!\n";
