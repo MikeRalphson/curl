@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.603 2007-03-28 04:23:33 giva Exp $
+ * $Id: url.c,v 1.604 2007-03-28 04:44:14 giva Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2551,6 +2551,9 @@ static void fix_hostname(struct SessionHandle *data,
   }
 #else
   (void)data; /* never used */
+  (void)conn; /* never used */
+#endif
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
   (void)conn; /* never used */
 #endif
 }
