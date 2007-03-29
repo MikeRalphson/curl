@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.36 2007-03-28 18:59:42 yangtse Exp $
+ * $Id: select.c,v 1.37 2007-03-29 00:11:55 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -237,6 +237,7 @@ int Curl_socket_ready(curl_socket_t readfd, curl_socket_t writefd, int timeout_m
       ret |= CSELECT_IN;
     if (pfd[num].revents & (POLLRDBAND|POLLPRI|POLLNVAL))
       ret |= CSELECT_ERR;
+    num++;
   }
   if (writefd != CURL_SOCKET_BAD) {
     if (pfd[num].revents & (POLLWRNORM|POLLOUT))
