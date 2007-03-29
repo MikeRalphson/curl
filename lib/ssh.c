@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.24 2007-03-24 17:23:01 danf Exp $
+* $Id: ssh.c,v 1.25 2007-03-29 19:17:18 danf Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -306,6 +306,7 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
     return CURLE_FAILED_INIT;
   }
 #ifdef CURL_LIBSSH2_DEBUG
+  libssh2_trace(ssh->ssh_session, LIBSSH2_TRACE_CONN|LIBSSH2_TRACE_TRANS|LIBSSH2_TRACE_SCP|LIBSSH2_TRACE_SFTP|LIBSSH2_TRACE_ERROR);
   infof(data, "SSH socket: %d\n", sock);
 #endif /* CURL_LIBSSH2_DEBUG */
 
@@ -608,6 +609,9 @@ CURLcode Curl_scp_done(struct connectdata *conn, CURLcode status,
   scp->path = NULL;
 
   if (scp->ssh_channel) {
+    if (conn->data->set.upload && libssh2_channel_send_eof(scp->ssh_channel) < 0) {
+      infof(conn->data, "Failed to send libssh2 channel EOF\n");
+    }
     if (libssh2_channel_close(scp->ssh_channel) < 0) {
       infof(conn->data, "Failed to stop libssh2 channel subsystem\n");
     }
