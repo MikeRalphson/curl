@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.5 2007-03-29 05:25:11 danf Exp $
+# $Id: sshserver.pl,v 1.6 2007-03-29 18:46:09 danf Exp $
 # Start sshd for use in the SCP and SFTP curl test harness tests
 
 # Options:
@@ -112,6 +112,7 @@ IgnoreUserKnownHosts yes
 KeepAlive no
 PasswordAuthentication no
 PermitEmptyPasswords no
+PermitUserEnvironment no
 PermitRootLogin no
 PrintLastLog no
 PrintMotd no
@@ -121,7 +122,7 @@ UseLogin no
 X11Forwarding no
 UsePrivilegeSeparation no
 # Newer OpenSSH options
-UsePam no
+UsePAM no
 UseDNS no
 ChallengeResponseAuthentication no
 EOF
