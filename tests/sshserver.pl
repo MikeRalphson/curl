@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.4 2007-03-28 04:36:09 danf Exp $
+# $Id: sshserver.pl,v 1.5 2007-03-29 05:25:11 danf Exp $
 # Start sshd for use in the SCP and SFTP curl test harness tests
 
 # Options:
@@ -74,6 +74,11 @@ if (!$sftp) {
 }
 if ($verbose) {
 	print STDERR "SFTP server plugin found at $sftp\n";
+}
+
+if ($username eq "root") {
+	print "Will not run ssh daemon as root to mitigate security risks\n";
+	exit 1;
 }
 
 if (! -e "curl_client_key.pub") {
