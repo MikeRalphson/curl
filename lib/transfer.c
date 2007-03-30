@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.342 2007-03-26 23:23:46 yangtse Exp $
+ * $Id: transfer.c,v 1.343 2007-03-30 20:54:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2498,10 +2498,12 @@ Curl_setup_transfer(
    )
 {
   struct connectdata *conn = (struct connectdata *)c_conn;
-  struct SessionHandle *data = conn->data;
+  struct SessionHandle *data;
 
   if(!conn)
     return CURLE_BAD_FUNCTION_ARGUMENT;
+
+  data = conn->data;
 
   DEBUGASSERT((sockindex <= 1) && (sockindex >= -1));
 
