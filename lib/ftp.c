@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.405 2007-03-27 18:16:35 yangtse Exp $
+ * $Id: ftp.c,v 1.406 2007-03-30 01:13:47 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3020,6 +3020,7 @@ CURLcode Curl_ftp_done(struct connectdata *conn, CURLcode status, bool premature
   case CURLE_FTP_COULDNT_RETR_FILE:
   case CURLE_FTP_COULDNT_STOR_FILE:
   case CURLE_FTP_ACCESS_DENIED:
+  case CURLE_FILESIZE_EXCEEDED:
     /* the connection stays alive fine even though this happened */
     /* fall-through */
   case CURLE_OK: /* doesn't affect the control connection's status */
