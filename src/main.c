@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.401 2007-03-23 17:59:40 danf Exp $
+ * $Id: main.c,v 1.402 2007-03-30 20:50:31 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2799,7 +2799,7 @@ static size_t my_fwrite(void *buffer, size_t sz, size_t nmemb, void *stream)
   struct OutStruct *out=(struct OutStruct *)stream;
   struct Configurable *config = out->config;
 
-  if(out && !out->stream) {
+  if(!out->stream) {
     /* open file for writing */
     out->stream=fopen(out->filename, "wb");
     if(!out->stream) {
