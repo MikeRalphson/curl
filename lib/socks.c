@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.11 2007-03-26 23:23:46 yangtse Exp $
+ * $Id: socks.c,v 1.12 2007-03-30 19:59:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -442,7 +442,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
     int len;
     if(proxy_name && proxy_password) {
       userlen = strlen(proxy_name);
-      pwlen = proxy_password?strlen(proxy_password):0;
+      pwlen = strlen(proxy_password);
     }
     else {
       userlen = 0;
