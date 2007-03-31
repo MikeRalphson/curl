@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.98 2007-03-27 18:15:26 yangtse Exp $
+ * $Id: easy.c,v 1.99 2007-03-31 11:28:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -627,7 +627,8 @@ CURL *curl_easy_duphandle(CURL *incurl)
 
   if(fail) {
     if(outcurl) {
-      if(outcurl->state.connc->type == CONNCACHE_PRIVATE)
+      if((outcurl->state.connc->type == CONNCACHE_PRIVATE) &&
+         outcurl->state.connc)
         Curl_rm_connc(outcurl->state.connc);
       if(outcurl->state.headerbuff)
         free(outcurl->state.headerbuff);
