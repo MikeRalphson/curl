@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.405 2007-03-31 21:28:38 bagder Exp $
+ * $Id: main.c,v 1.406 2007-03-31 21:35:56 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1273,12 +1273,16 @@ static void cleanarg(char *str)
  * non-zero on failure, zero on success.
  *
  * The string must start with a digit to be valid.
+ *
+ * Since this function gets called with the 'nextarg' pointer from within the
+ * getparameter a lot, we must check it for NULL before accessing the str
+ * data.
  */
 
 static int str2num(long *val, char *str)
 {
   int retcode = 0;
-  if(ISDIGIT(*str))
+  if(str && ISDIGIT(*str))
     *val = atoi(str);
   else
     retcode = 1; /* badness */
