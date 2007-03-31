@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.404 2007-03-31 21:20:16 bagder Exp $
+ * $Id: main.c,v 1.405 2007-03-31 21:28:38 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1769,7 +1769,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       case 'v': /* --stderr */
         if(strcmp(nextarg, "-")) {
           FILE *newfile = fopen(nextarg, "wt");
-          if(!config->errors)
+          if(!newfile)
             warnf(config, "Failed to open %s!\n", nextarg);
           else {
             config->errors = newfile;
