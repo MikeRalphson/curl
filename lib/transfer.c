@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.343 2007-03-30 20:54:32 bagder Exp $
+ * $Id: transfer.c,v 1.344 2007-03-31 20:46:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -768,8 +768,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                  * are definitely errors, so give up here.
                  */
                 if (data->set.http_fail_on_error && (k->httpcode >= 400) &&
-                    ((k->httpcode != 401) || !data->set.userpwd) &&
-                    ((k->httpcode != 407) || !data->set.proxyuserpwd) ) {
+                    ((k->httpcode != 401) || !conn->bits.user_passwd) &&
+                    ((k->httpcode != 407) || !conn->bits.proxy_user_passwd) ) {
 
                   if (data->reqdata.resume_from &&
                       (data->set.httpreq==HTTPREQ_GET) &&
