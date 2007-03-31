@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.98 2007-02-26 04:24:26 giva Exp $
+ * $Id: formdata.c,v 1.99 2007-03-31 21:01:18 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -282,13 +282,15 @@ static const char * ContentTypeForFilename (const char *filename,
        text/plain so we don't actually need to set this: */
     contenttype = HTTPPOST_CONTENTTYPE_DEFAULT;
 
-  for(i=0; i<sizeof(ctts)/sizeof(ctts[0]); i++) {
-    if(strlen(filename) >= strlen(ctts[i].extension)) {
-      if(strequal(filename +
-                  strlen(filename) - strlen(ctts[i].extension),
-                  ctts[i].extension)) {
-        contenttype = ctts[i].type;
-        break;
+  if(filename) { /* in case a NULL was passed in */
+    for(i=0; i<sizeof(ctts)/sizeof(ctts[0]); i++) {
+      if(strlen(filename) >= strlen(ctts[i].extension)) {
+        if(strequal(filename +
+                    strlen(filename) - strlen(ctts[i].extension),
+                    ctts[i].extension)) {
+          contenttype = ctts[i].type;
+          break;
+        }
       }
     }
   }
@@ -315,10 +317,14 @@ static char *memdup(const char *src, size_t buffer_length)
 
   if (buffer_length)
     length = buffer_length;
-  else {
+  else if(src) {
     length = strlen(src);
     add = TRUE;
   }
+  else
+    /* no length and a NULL src pointer! */
+    return strdup((char *)"");
+
   buffer = (char*)malloc(length+add);
   if (!buffer)
     return NULL; /* fail */
