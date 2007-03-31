@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.402 2007-03-30 20:50:31 bagder Exp $
+ * $Id: main.c,v 1.403 2007-03-31 21:15:37 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2052,8 +2052,10 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           char *oldpost=config->postfields;
           size_t newlen = strlen(oldpost) + strlen(postdata) + 2;
           config->postfields=malloc(newlen);
-          if(!config->postfields)
+          if(!config->postfields) {
+            free(postdata);
             return PARAM_NO_MEM;
+          }
           /* use ASCII value 0x26 for '&' to accommodate non-ASCII platforms */
           snprintf(config->postfields, newlen, "%s\x26%s", oldpost, postdata);
           free(oldpost);
