@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.50 2007-03-26 17:18:36 gknauf Exp $
+# $Id: testcurl.pl,v 1.51 2007-04-01 13:59:50 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.50 $';
+$version='$Revision: 1.51 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -343,12 +343,12 @@ if ($CVS) {
 
   sub cvsup() {
     # update quietly to the latest CVS
-    logit "run cvs up";
     if($nocvsup) {
         logit "Skipping CVS update (--nocvsup)";
         return 1;
     }
     else {
+        logit "run cvs up";
         system("cvs -Q up -dP 2>&1");
     }
 
