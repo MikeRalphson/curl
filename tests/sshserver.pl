@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.8 2007-03-31 03:21:08 yangtse Exp $
+# $Id: sshserver.pl,v 1.9 2007-04-02 01:21:57 yangtse Exp $
 # Start sshd for use in the SCP and SFTP curl test harness tests
 
 # Options:
@@ -83,6 +83,30 @@ if ($verbose) {
 
 if ($username eq "root") {
     print "Will not run ssh daemon as root to mitigate security risks\n";
+    exit 1;
+}
+
+# Find out sshd version.
+my $tmpstr;
+my $ssh_daemon;
+my $ssh_ver_major;
+my $ssh_ver_minor;
+my $ssh_ver_patch;
+chomp($tmpstr = qx($sshd -V 2>&1 | grep OpenSSH));
+if ($tmpstr =~ /OpenSSH[_-](\d+)\.(\d+)(\.(\d+))*/) {
+    ($ssh_ver_major, $ssh_ver_minor, $ssh_ver_patch) = ($1, $2, $4);
+    $ssh_daemon = 'OpenSSH';
+}
+if ($verbose) {
+    print STDERR "ssh_daemon: $ssh_daemon\n";
+    print STDERR "ssh_ver_major: $ssh_ver_major\n";
+    print STDERR "ssh_ver_minor: $ssh_ver_minor\n";
+    print STDERR "ssh_ver_patch: $ssh_ver_patch\n";
+}
+
+# Verify minimum OpenSSH version.
+if ($ssh_daemon !~ /OpenSSH/) || (10 * $ssh_ver_major + $ssh_ver_minor < 37)
+    print "SCP and SFTP tests require OpenSSH 3.7 or later\n";
     exit 1;
 }
 
