@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.10 2007-04-02 04:14:59 yangtse Exp $
+# $Id: sshserver.pl,v 1.11 2007-04-03 00:06:39 danf Exp $
 # Start sshd for use in the SCP and SFTP curl test harness tests
 
 # Options:
@@ -115,8 +115,7 @@ if (($ssh_daemon !~ /OpenSSH/) || (10 * $ssh_ver_major + $ssh_ver_minor < 37)) {
 # Check here for possible unsupported options, avoiding its use in sshd.
 sub sshd_supports_opt($) {
     my ($option) = @_;
-    my $err = 1;
-    chomp($err = qx($sshd -t -o $option=no 2>&1 | grep $option 2>&1 | wc -l));
+    my $err = grep /$option/, qx($sshd -t -o $option=no 2>&1);
     return !$err;
 }
 
