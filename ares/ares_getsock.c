@@ -1,6 +1,6 @@
-/* $Id: ares_getsock.c,v 1.4 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: ares_getsock.c,v 1.5 2007-04-03 18:25:18 yangtse Exp $ */
 
-/* Copyright (C) 2005 - 2006, Daniel Stenberg
+/* Copyright (C) 2005 - 2007, Daniel Stenberg
  *
  * Permission to use, copy, modify, and distribute this software and its
  * documentation for any purpose and without fee is hereby granted, provided
