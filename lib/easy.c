@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.99 2007-03-31 11:28:03 bagder Exp $
+ * $Id: easy.c,v 1.100 2007-04-03 20:54:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -40,21 +40,27 @@
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
 #ifdef HAVE_NET_IF_H
 #include <net/if.h>
 #endif
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #include <signal.h>
 
 #ifdef HAVE_SYS_PARAM_H

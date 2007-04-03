@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.344 2007-03-31 20:46:47 bagder Exp $
+ * $Id: transfer.c,v 1.345 2007-04-03 20:54:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -50,7 +50,9 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+#ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
