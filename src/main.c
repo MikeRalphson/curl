@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.410 2007-04-03 10:55:01 giva Exp $
+ * $Id: main.c,v 1.411 2007-04-03 15:35:19 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2794,7 +2794,7 @@ static void go_sleep(long ms)
 #ifdef WIN32
   /* Windows offers a millisecond sleep */
   Sleep(ms);
-#elif defined(__MSDOS__)
+#elif defined(MSDOS)
   delay(ms);
 #else
   /* Other systems must use select() for this */

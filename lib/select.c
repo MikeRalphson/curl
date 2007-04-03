@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.38 2007-04-02 02:13:26 yangtse Exp $
+ * $Id: select.c,v 1.39 2007-04-03 15:35:19 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -41,7 +41,7 @@
 #include <socket.h>
 #endif
 
-#ifdef __MSDOS__
+#ifdef MSDOS
 #include <dos.h>  /* delay() */
 #endif
 
@@ -116,7 +116,7 @@
  */
 static int wait_ms(int timeout_ms)
 {
-#if !defined(__MSDOS__) && !defined(USE_WINSOCK)
+#if !defined(MSDOS) && !defined(USE_WINSOCK)
 #ifndef HAVE_POLL_FINE
   struct timeval pending_tv;
 #endif
@@ -132,7 +132,7 @@ static int wait_ms(int timeout_ms)
     SET_SOCKERRNO(EINVAL);
     return -1;
   }
-#if defined(__MSDOS__)
+#if defined(MSDOS)
   delay(timeout_ms);
 #elif defined(USE_WINSOCK)
   Sleep(timeout_ms);
