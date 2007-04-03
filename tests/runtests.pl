@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.230 2007-04-03 12:27:03 yangtse Exp $
+# $Id: runtests.pl,v 1.231 2007-04-03 15:59:52 yangtse Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2543,7 +2543,7 @@ if($skipped) {
         # now show all test case numbers that had this reason for being
         # skipped
         my $c=0;
-        for(0 .. $lasttest) {
+        for(0 .. scalar @teststat) {
             my $t = $_;
             if($teststat[$_] eq $r) {
                 logmsg ", " if($c);
