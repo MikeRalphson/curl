@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.25 2007-02-16 16:01:19 yangtse Exp $
+ * $Id: lib518.c,v 1.26 2007-04-03 18:02:02 yangtse Exp $
  */
 
 #include "test.h"
@@ -63,6 +63,29 @@ static void close_file_descriptors(void)
       close(fd[num_open.rlim_cur]);
   free(fd);
   fd = NULL;
+}
+
+static int stdio_limit_256(void)
+{
+  FILE *fpa[300];
+  int i;
+  int ret = 0;
+
+  for (i = 0; i < 300; i++) {
+    fpa[i] = NULL;
+  }
+  for (i = 0; i < 300; i++) {
+    fpa[i] = fopen(DEV_NULL, "r");
+    if (fpa[i] == NULL) {
+      ret = -1;
+      break;
+    }
+  }
+  for (i = 0; i < 300; i++) {
+    if (fpa[i] != NULL)
+      fclose(fpa[i]);
+  }
+  return ret;
 }
 
 static int rlimit(int keep_open)
@@ -234,6 +257,18 @@ static int rlimit(int keep_open)
   /* set the number of file descriptors we will try to open */
 
   num_open.rlim_max = NUM_OPEN;
+
+  /* verify that we don't have an ancient stdio */
+
+  if (((size_t)(num_open.rlim_max) > (size_t)256) && stdio_limit_256()) {
+    sprintf(strbuff1, fmt, num_open.rlim_max);
+    sprintf(strbuff, "fds needed %s > stdio limit 256",
+            strbuff1);
+    store_errmsg(strbuff, 0);
+    fprintf(stderr, "%s\n", msgbuff);
+    free(memchunk);
+    return -12;
+  }
 
   /* verify that we won't overflow size_t in malloc() */
 
