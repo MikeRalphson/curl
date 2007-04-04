@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.12 2007-04-04 03:19:59 yangtse Exp $
+ * $Id: lib537.c,v 1.13 2007-04-04 05:04:47 yangtse Exp $
  */
 
 #include "test.h"
@@ -27,7 +27,6 @@
 #endif
 
 #if !defined(HAVE_POLL_FINE)    && \
-    !defined(CURL_HAVE_WSAPOLL) && \
     !defined(USE_WINSOCK)       && \
     !defined(TPF)               && \
     !defined(FD_SETSIZE)
@@ -358,7 +357,6 @@ static int rlimit(int keep_open)
   fprintf(stderr, "%s file descriptors open\n", strbuff);
 
 #if !defined(HAVE_POLL_FINE)    && \
-    !defined(CURL_HAVE_WSAPOLL) && \
     !defined(USE_WINSOCK)       && \
     !defined(TPF)
 
