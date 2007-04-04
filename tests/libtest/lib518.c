@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.28 2007-04-04 05:04:47 yangtse Exp $
+ * $Id: lib518.c,v 1.29 2007-04-04 06:39:03 yangtse Exp $
  */
 
 #include "test.h"
@@ -67,21 +67,21 @@ static void close_file_descriptors(void)
 
 static int fopen_works(void)
 {
-  FILE *fpa[SAFETY_MARGIN];
+  FILE *fpa[3];
   int i;
   int ret = 1;
 
-  for (i = 0; i < SAFETY_MARGIN; i++) {
+  for (i = 0; i < 3; i++) {
     fpa[i] = NULL;
   }
-  for (i = 0; i < SAFETY_MARGIN; i++) {
+  for (i = 0; i < 3; i++) {
     fpa[i] = fopen(DEV_NULL, "r");
     if (fpa[i] == NULL) {
       ret = 0;
       break;
     }
   }
-  for (i = 0; i < SAFETY_MARGIN; i++) {
+  for (i = 0; i < 3; i++) {
     if (fpa[i] != NULL)
       fclose(fpa[i]);
   }
