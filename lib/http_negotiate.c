@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.18 2007-01-03 23:04:42 bagder Exp $
+ * $Id: http_negotiate.c,v 1.19 2007-04-04 23:41:35 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -295,7 +295,7 @@ CURLcode Curl_output_negotiate(struct connectdata *conn)
                            neg_ctx->output_token.length,
                            &encoded);
 
-  if (len < 0)
+  if (len == 0)
     return CURLE_OUT_OF_MEMORY;
 
   conn->allocptr.userpwd =

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.60 2007-02-21 22:02:13 bagder Exp $
+ * $Id: http_ntlm.c,v 1.61 2007-04-04 23:41:35 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -421,6 +421,10 @@ static void mk_nt_hash(struct SessionHandle *data,
 {
   size_t len = strlen(password);
   unsigned char *pw = malloc(len*2);
+  if (!pw)
+    /* No way to report this error; just rely on future malloc failures
+       to be caught */
+    return;
 
   utf8_to_unicode_le(pw, password, len);
 

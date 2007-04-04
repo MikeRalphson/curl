@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.608 2007-04-03 20:54:37 bagder Exp $
+ * $Id: url.c,v 1.609 2007-04-04 23:41:35 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2856,6 +2856,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   /* Initialize the pipeline lists */
   conn->send_pipe = Curl_llist_alloc((curl_llist_dtor) llist_dtor);
   conn->recv_pipe = Curl_llist_alloc((curl_llist_dtor) llist_dtor);
+  if (!conn->send_pipe || !conn->recv_pipe)
+    return CURLE_OUT_OF_MEMORY;
 
   /* Store creation time to help future close decision making */
   conn->created = Curl_tvnow();
