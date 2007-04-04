@@ -18,12 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.39 2007-04-03 15:35:19 yangtse Exp $
+ * $Id: select.c,v 1.40 2007-04-04 06:06:36 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
-
-#include <errno.h>
 
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
@@ -50,15 +48,6 @@
 #include "urldata.h"
 #include "connect.h"
 #include "select.h"
-
-#ifdef USE_WINSOCK
-#  undef  EBADF
-#  define EBADF  WSAEBADF
-#  undef  EINTR
-#  define EINTR  WSAEINTR
-#  undef  EINVAL
-#  define EINVAL WSAEINVAL
-#endif
 
 /* Winsock and TPF sockets are not in range [0..FD_SETSIZE-1] */
 

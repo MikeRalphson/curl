@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.22 2007-02-22 02:51:55 yangtse Exp $
+ * $Id: setup_once.h,v 1.23 2007-04-04 06:06:36 yangtse Exp $
  ***************************************************************************/
 
 
@@ -283,6 +283,12 @@ typedef int sig_atomic_t;
  */
 
 #ifdef USE_WINSOCK
+#undef  EBADF            /* override definition in errno.h */
+#define EBADF            WSAEBADF
+#undef  EINTR            /* override definition in errno.h */
+#define EINTR            WSAEINTR
+#undef  EINVAL           /* override definition in errno.h */
+#define EINVAL           WSAEINVAL
 #define EWOULDBLOCK      WSAEWOULDBLOCK
 #define EINPROGRESS      WSAEINPROGRESS
 #define EALREADY         WSAEALREADY

@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.20 2007-02-22 02:51:55 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.21 2007-04-04 06:06:36 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -276,6 +276,12 @@ typedef int sig_atomic_t;
  */
 
 #ifdef USE_WINSOCK
+#undef  EBADF            /* override definition in errno.h */
+#define EBADF            WSAEBADF
+#undef  EINTR            /* override definition in errno.h */
+#define EINTR            WSAEINTR
+#undef  EINVAL           /* override definition in errno.h */
+#define EINVAL           WSAEINVAL
 #define EWOULDBLOCK      WSAEWOULDBLOCK
 #define EINPROGRESS      WSAEINPROGRESS
 #define EALREADY         WSAEALREADY
