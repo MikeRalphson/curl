@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.26 2007-04-02 21:24:05 bagder Exp $
+* $Id: ssh.c,v 1.27 2007-04-04 00:46:16 danf Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -949,6 +949,7 @@ CURLcode Curl_sftp_done(struct connectdata *conn, CURLcode status,
                         bool premature)
 {
   struct SSHPROTO *sftp = conn->data->reqdata.proto.ssh;
+  CURLcode rc = CURLE_OK;
   (void)premature; /* not used */
 
   Curl_safefree(sftp->path);
@@ -959,10 +960,7 @@ CURLcode Curl_sftp_done(struct connectdata *conn, CURLcode status,
 
   /* Before we shut down, see if there are any post-quote commands to send: */
   if(!status && !premature && conn->data->set.postquote) {
-    CURLcode result = sftp_sendquote(conn, conn->data->set.postquote);
-
-    if (result != CURLE_OK)
-      return result;
+    rc = sftp_sendquote(conn, conn->data->set.postquote);
   }
 
   if (sftp->sftp_handle) {
@@ -995,7 +993,7 @@ CURLcode Curl_sftp_done(struct connectdata *conn, CURLcode status,
 
   (void)status; /* unused */
 
-  return CURLE_OK;
+  return rc;
 }
 
 /* return number of received (decrypted) bytes */
