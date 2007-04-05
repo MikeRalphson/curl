@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.231 2007-04-03 15:59:52 yangtse Exp $
+# $Id: runtests.pl,v 1.232 2007-04-05 00:14:27 yangtse Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2426,10 +2426,23 @@ open(CMDLOG, ">$CURLLOG") ||
 sub displaylogcontent {
     my ($file)=@_;
     if(open(my $SINGLE, "<$file")) {
-        while(my $line = <$SINGLE>) {
-            chomp $line;
-            $line =~ s/\s*\!$//;
-            logmsg " $line\n";
+        my $lfcount;
+        while(my $string = <$SINGLE>) {
+            $string =~ s/\r\n/\n/g;
+            $string =~ s/[\r\f\032]/\n/g;
+            $string .= "\n" unless ($string =~ /\n$/);
+            $lfcount = $string =~ tr/\n//;
+            if($lfcount == 1) {
+                $string =~ s/\n//;
+                $string =~ s/\s*\!$//;
+                logmsg " $string\n";
+            }
+            else {
+                for my $line (split("\n", $string)) {
+                    $line =~ s/\s*\!$//;
+                    logmsg " $line\n";
+                }
+            }
         }
         close($SINGLE);
     }
