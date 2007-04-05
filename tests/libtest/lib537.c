@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.15 2007-04-04 08:58:36 yangtse Exp $
+ * $Id: lib537.c,v 1.16 2007-04-05 11:05:36 yangtse Exp $
  */
 
 #include "test.h"
@@ -412,8 +412,9 @@ static int rlimit(int keep_open)
     sprintf(strbuff1, fmt, num_open.rlim_max);
     sprintf(strbuff, "stdio fopen() fails with %s fds open()",
             strbuff1);
-    store_errmsg(strbuff, 0);
     fprintf(stderr, "%s\n", msgbuff);
+    sprintf(strbuff, "stdio fopen() fails with lots of fds open()");
+    store_errmsg(strbuff, 0);
     close_file_descriptors();
     free(memchunk);
     return -10;
