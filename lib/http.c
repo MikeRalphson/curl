@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.321 2007-04-05 11:09:46 yangtse Exp $
+ * $Id: http.c,v 1.322 2007-04-06 20:53:15 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1170,7 +1170,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
           if(!host) {
             free(req_buffer);
             free(host_port);
-            result = CURLE_OUT_OF_MEMORY;
+            return CURLE_OUT_OF_MEMORY;
           }
         }
         if(!checkheaders(data, "Proxy-Connection:"))
