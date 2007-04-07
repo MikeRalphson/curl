@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.82 2007-04-04 22:49:12 danf Exp $
+ * $Id: cookie.c,v 1.83 2007-04-07 04:51:35 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -1005,13 +1005,18 @@ struct curl_slist *Curl_cookie_list(struct SessionHandle *data)
     /* fill the list with _all_ the cookies we know */
     line = get_netscape_format(c);
     if (line == NULL) {
-      /* get_netscape_format returns null only if we run out of memory */
-
-      curl_slist_free_all(beg); /* free some memory */
+      curl_slist_free_all(beg);
       return NULL;
     }
     list = curl_slist_append(list, line);
     free(line);
+    if (list == NULL) {
+      curl_slist_free_all(beg);
+      return NULL;
+    }
+    else if (beg == NULL) {
+      beg = list;
+    }
     c = c->next;
   }
 
