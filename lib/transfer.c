@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.345 2007-04-03 20:54:37 bagder Exp $
+ * $Id: transfer.c,v 1.346 2007-04-07 00:38:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1252,7 +1252,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
              (k->bytecount + nread >= k->maxdownload)) {
             /* The 'excess' amount below can't be more than BUFSIZE which
                always will fit in a size_t */
-            size_t excess = k->bytecount + nread - k->maxdownload;
+            size_t excess = (size_t)(k->bytecount + nread - k->maxdownload);
             if (excess > 0 && !k->ignorebody) {
               infof(data,
                     "Rewinding stream by : %d"
