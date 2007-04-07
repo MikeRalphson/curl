@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.136 2007-04-01 08:24:23 bagder Exp $
+ * $Id: multi.c,v 1.137 2007-04-07 17:25:19 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -352,6 +352,7 @@ CURLM *curl_multi_init(void)
 
   multi->connc = Curl_mk_connc(CONNCACHE_MULTI, -1);
   if(!multi->connc) {
+    Curl_hash_destroy(multi->sockhash);
     Curl_hash_destroy(multi->hostcache);
     free(multi);
     return NULL;
