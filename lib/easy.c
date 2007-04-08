@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.100 2007-04-03 20:54:37 bagder Exp $
+ * $Id: easy.c,v 1.101 2007-04-08 22:49:38 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -397,7 +397,10 @@ CURLcode curl_easy_perform(CURL *easy)
   mcode = curl_multi_add_handle(multi, easy);
   if(mcode) {
     curl_multi_cleanup(multi);
-    return CURLE_FAILED_INIT;
+    if(mcode == CURLM_OUT_OF_MEMORY)
+      return CURLE_OUT_OF_MEMORY;
+    else
+      return CURLE_FAILED_INIT;
   }
 
   /* we start some action by calling perform right away */
