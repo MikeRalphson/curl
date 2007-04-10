@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.408 2007-03-31 10:39:54 bagder Exp $
+ * $Id: ftp.c,v 1.409 2007-04-10 20:46:40 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -331,7 +331,7 @@ static CURLcode ftp_readresp(curl_socket_t sockfd,
        * line */
       int i;
 
-      conn->headerbytecount += gotbytes;
+      data->reqdata.keep.headerbytecount += gotbytes;
 
       ftpc->nread_resp += gotbytes;
       for(i = 0; i < gotbytes; ptr++, i++) {
@@ -564,7 +564,7 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
          * line */
         int i;
 
-        conn->headerbytecount += gotbytes;
+        data->reqdata.keep.headerbytecount += gotbytes;
 
         *nreadp += gotbytes;
         for(i = 0; i < gotbytes; ptr++, i++) {
