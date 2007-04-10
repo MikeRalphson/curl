@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.322 2007-04-06 20:53:15 yangtse Exp $
+ * $Id: http.c,v 1.323 2007-04-10 00:38:41 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1206,15 +1206,18 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
             /* CRLF terminate the request */
             result = add_bufferf(req_buffer, "\r\n");
 
-          if(CURLE_OK == result)
+          if(CURLE_OK == result) {
             /* Now send off the request */
             result = add_buffer_send(req_buffer, conn,
                                      &data->info.request_size, 0, sockindex);
+            req_buffer = NULL;
+          }
         }
         if(result)
           failf(data, "Failed sending CONNECT to proxy");
       }
       free(host_port);
+      Curl_safefree(req_buffer);
       if(result)
         return result;
 
