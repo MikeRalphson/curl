@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.61 2007-04-04 23:41:35 danf Exp $
+ * $Id: http_ntlm.c,v 1.62 2007-04-10 02:17:06 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -146,8 +146,8 @@ static void print_flags(FILE *handle, unsigned long flags)
     fprintf(handle, "NTLMFLAG_NEGOTIATE_NTLM_KEY ");
   if(flags & (1<<10))
     fprintf(handle, "NTLMFLAG_UNKNOWN_10 ");
-  if(flags & (1<<11))
-    fprintf(handle, "NTLMFLAG_UNKNOWN_11 ");
+  if(flags & NTLMFLAG_NEGOTIATE_ANONYMOUS)
+    fprintf(handle, "NTLMFLAG_NEGOTIATE_ANONYMOUS ");
   if(flags & NTLMFLAG_NEGOTIATE_DOMAIN_SUPPLIED)
     fprintf(handle, "NTLMFLAG_NEGOTIATE_DOMAIN_SUPPLIED ");
   if(flags & NTLMFLAG_NEGOTIATE_WORKSTATION_SUPPLIED)
