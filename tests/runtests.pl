@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.233 2007-04-06 04:24:13 yangtse Exp $
+# $Id: runtests.pl,v 1.234 2007-04-10 00:37:56 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -423,7 +423,7 @@ sub torture {
             logmsg " Failed on alloc number $limit in test.\n",
             " invoke with -t$limit to repeat this single case.\n";
             stopservers($verbose);
-            exit 1;
+            return 1;
         }
     }
 
