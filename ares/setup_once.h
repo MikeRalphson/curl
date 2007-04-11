@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.21 2007-04-04 06:06:36 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.22 2007-04-11 11:02:13 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -209,6 +209,17 @@ typedef unsigned char bool;
 #ifndef HAVE_SIG_ATOMIC_T
 typedef int sig_atomic_t;
 #define HAVE_SIG_ATOMIC_T
+#endif
+
+
+/*
+ * Convenience SIG_ATOMIC_T definition
+ */
+
+#ifdef HAVE_SIG_ATOMIC_T_VOLATILE
+#define SIG_ATOMIC_T static sig_atomic_t
+#else
+#define SIG_ATOMIC_T static volatile sig_atomic_t
 #endif
 
 

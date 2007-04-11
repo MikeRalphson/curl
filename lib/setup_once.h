@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.23 2007-04-04 06:06:36 yangtse Exp $
+ * $Id: setup_once.h,v 1.24 2007-04-11 11:02:13 yangtse Exp $
  ***************************************************************************/
 
 
@@ -216,6 +216,17 @@ typedef unsigned char bool;
 #ifndef HAVE_SIG_ATOMIC_T
 typedef int sig_atomic_t;
 #define HAVE_SIG_ATOMIC_T
+#endif
+
+
+/*
+ * Convenience SIG_ATOMIC_T definition
+ */
+
+#ifdef HAVE_SIG_ATOMIC_T_VOLATILE
+#define SIG_ATOMIC_T static sig_atomic_t
+#else
+#define SIG_ATOMIC_T static volatile sig_atomic_t
 #endif
 
 
