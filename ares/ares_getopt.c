@@ -3,7 +3,7 @@
  * on 2007-04-11.  Lifted from version 5.2 of the 'Open Mash' project with
  * the modified BSD license, BSD license without the advertising clause.
  *
- * $Id: ares_getopt.c,v 1.2 2007-04-12 17:45:57 yangtse Exp $
+ * $Id: ares_getopt.c,v 1.3 2007-04-12 18:06:41 yangtse Exp $
  */
 
 /*
@@ -64,14 +64,11 @@ char  *optarg;        /* argument associated with option */
 #define  EMSG    ""
 
 /*
- * getopt --
+ * ares_getopt --
  *    Parse argc/argv argument vector.
  */
 int
-getopt(nargc, nargv, ostr)
-    int nargc;
-    char * const *nargv;
-    const char *ostr;
+ares_getopt(int nargc, char * const nargv[], const char *ostr)
 {
     static char *place = EMSG;                /* option letter processing */
     char *oli;                                /* option letter list index */
