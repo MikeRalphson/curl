@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.16 2007-02-26 04:33:19 giva Exp $
+ * $Id: ahost.c,v 1.17 2007-04-12 19:01:19 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -33,10 +33,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef HAVE_GETOPT_H
-#include <getopt.h>
-#endif
 
 #include "ares.h"
 #include "ares_dns.h"
@@ -73,7 +69,7 @@ int main(int argc, char **argv)
   WSAStartup(wVersionRequested, &wsaData);
 #endif
 
-  while ((c = getopt(argc,argv,"dt:h")) != -1)
+  while ((c = ares_getopt(argc,argv,"dt:h")) != -1)
     {
       switch (c)
         {

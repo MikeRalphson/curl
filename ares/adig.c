@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.21 2007-02-26 04:33:19 giva Exp $
+ * $Id: adig.c,v 1.22 2007-04-12 19:01:19 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -31,9 +31,6 @@
 #include <unistd.h>
 #endif
 #include <netdb.h>
-#endif
-#ifdef HAVE_GETOPT_H
-#include <getopt.h>
 #endif
 
 #include <stdio.h>
@@ -163,7 +160,7 @@ int main(int argc, char **argv)
   options.flags = ARES_FLAG_NOCHECKRESP;
   options.servers = NULL;
   options.nservers = 0;
-  while ((c = getopt(argc, argv, "df:s:c:t:T:U:")) != -1)
+  while ((c = ares_getopt(argc, argv, "df:s:c:t:T:U:")) != -1)
     {
       switch (c)
         {
