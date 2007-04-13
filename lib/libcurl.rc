@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: libcurl.rc,v 1.6 2007-01-26 08:53:03 gknauf Exp $
+ * $Id: libcurl.rc,v 1.7 2007-04-13 08:22:56 yangtse Exp $
  ***************************************************************************/
 #include <winver.h>
 #include "../include/curl/curlver.h"
@@ -31,7 +31,7 @@ VS_VERSION_INFO VERSIONINFO
   FILEVERSION     RC_VERSION
   PRODUCTVERSION  RC_VERSION
   FILEFLAGSMASK   0x3fL
-#if CURLDEBUG
+#if defined(CURLDEBUG) || defined(_DEBUG)
   FILEFLAGS 1
 #else
   FILEFLAGS 0
