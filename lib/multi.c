@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.138 2007-04-10 20:46:40 bagder Exp $
+ * $Id: multi.c,v 1.139 2007-04-13 07:57:31 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -796,7 +796,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
   struct Curl_message *msg = NULL;
   bool connected;
   bool async;
-  bool protocol_connect;
+  bool protocol_connect = FALSE;
   bool dophase_done;
   bool done;
   CURLMcode result = CURLM_OK;
