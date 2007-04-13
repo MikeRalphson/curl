@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.41 2007-04-13 07:57:31 yangtse Exp $
+ * $Id: base64.c,v 1.42 2007-04-13 08:45:07 yangtse Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -59,7 +59,7 @@ static void decodeQuantum(unsigned char *dest, const char *src)
   char *found;
 
   for(i = 0; i < 4; i++) {
-    if((found = strchr(table64, src[i])) != 0)
+    if((found = strchr(table64, src[i])) != NULL)
       x = (x << 6) + (unsigned int)(found - table64);
     else if(src[i] == '=')
       x = (x << 6);
