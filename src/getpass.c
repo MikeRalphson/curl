@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.17 2007-04-14 16:45:43 gknauf Exp $
+ * $Id: getpass.c,v 1.18 2007-04-14 16:55:17 gknauf Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -129,7 +129,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 #include <screen.h>
 char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 {
-  return(getpassword(prompt, buffer, buflen));
+  return getpassword(prompt, buffer, buflen);
 }
 #define DONE
 #endif /* NETWARE */
