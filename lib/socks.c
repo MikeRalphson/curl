@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.12 2007-03-30 19:59:15 bagder Exp $
+ * $Id: socks.c,v 1.13 2007-04-16 16:34:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -383,7 +383,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
     return CURLE_OPERATION_TIMEDOUT;
   }
 
-  if(result & CSELECT_ERR) {
+  if(result & CURL_CSELECT_ERR) {
     failf(conn->data, "SOCKS5: error occured during connection");
     return CURLE_COULDNT_CONNECT;
   }
@@ -415,7 +415,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
     return CURLE_OPERATION_TIMEDOUT;
   }
 
-  if(result & CSELECT_ERR) {
+  if(result & CURL_CSELECT_ERR) {
     failf(conn->data, "SOCKS5 read error occured");
     return CURLE_RECV_ERROR;
   }

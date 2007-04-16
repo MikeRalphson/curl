@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.328 2007-04-10 20:46:40 bagder Exp $
+ * $Id: urldata.h,v 1.329 2007-04-16 16:34:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -900,6 +900,8 @@ struct connectdata {
   union {
     struct ftp_conn ftpc;
   } proto;
+
+  int cselect_bits; /* bitmask of socket events */
 };
 
 /* The end of connectdata. */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.168 2007-03-26 23:23:46 yangtse Exp $
+ * $Id: connect.c,v 1.169 2007-04-16 16:34:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -206,7 +206,7 @@ int waitconnect(curl_socket_t sockfd, /* socket */
     /* timeout, no connect today */
     return WAITCONN_TIMEOUT;
 
-  if(rc & CSELECT_ERR)
+  if(rc & CURL_CSELECT_ERR)
     /* error condition caught */
     return WAITCONN_FDSET_ERROR;
 
