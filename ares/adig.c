@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.23 2007-04-16 09:01:16 yangtse Exp $
+ * $Id: adig.c,v 1.24 2007-04-16 15:35:34 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -51,11 +51,6 @@
 /* Mac OS X portability check */
 #ifndef T_SRV
 #define T_SRV 33 /* server selection */
-#endif
-
-#ifndef optind
-extern int optind;
-extern char *optarg;
 #endif
 
 struct nv {

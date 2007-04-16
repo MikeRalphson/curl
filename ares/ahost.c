@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.18 2007-04-16 09:01:16 yangtse Exp $
+ * $Id: ahost.c,v 1.19 2007-04-16 15:35:34 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -39,11 +39,6 @@
 #include "inet_ntop.h"
 #include "inet_net_pton.h"
 #include "ares_getopt.h"
-
-#ifndef optind
-extern int   optind;
-extern char *optarg;
-#endif
 
 #ifndef HAVE_STRUCT_IN6_ADDR
 struct in6_addr

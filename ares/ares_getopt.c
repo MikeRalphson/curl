@@ -3,7 +3,7 @@
  * on 2007-04-11.  Lifted from version 5.2 of the 'Open Mash' project with
  * the modified BSD license, BSD license without the advertising clause.
  *
- * $Id: ares_getopt.c,v 1.5 2007-04-16 09:01:16 yangtse Exp $
+ * $Id: ares_getopt.c,v 1.6 2007-04-16 15:35:34 yangtse Exp $
  */
 
 /*
@@ -48,11 +48,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ares_getopt.h"
-
-/* declarations to provide consistent linkage */
-extern char *optarg;
-extern int optind;
-extern int opterr;
 
 int   opterr = 1,     /* if error message should be printed */
       optind = 1,     /* index into parent argv vector */
