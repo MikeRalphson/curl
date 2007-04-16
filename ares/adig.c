@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.22 2007-04-12 19:01:19 yangtse Exp $
+ * $Id: adig.c,v 1.23 2007-04-16 09:01:16 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -42,6 +42,7 @@
 #include "ares.h"
 #include "ares_dns.h"
 #include "inet_ntop.h"
+#include "ares_getopt.h"
 
 #ifdef WATT32
 #undef WIN32  /* Redefined in MingW headers */

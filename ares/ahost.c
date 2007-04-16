@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.17 2007-04-12 19:01:19 yangtse Exp $
+ * $Id: ahost.c,v 1.18 2007-04-16 09:01:16 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -38,6 +38,7 @@
 #include "ares_dns.h"
 #include "inet_ntop.h"
 #include "inet_net_pton.h"
+#include "ares_getopt.h"
 
 #ifndef optind
 extern int   optind;

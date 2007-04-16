@@ -3,7 +3,7 @@
  * on 2007-04-11.  Lifted from version 5.2 of the 'Open Mash' project with
  * the modified BSD license, BSD license without the advertising clause.
  *
- * $Id: ares_getopt.c,v 1.4 2007-04-12 18:59:46 yangtse Exp $
+ * $Id: ares_getopt.c,v 1.5 2007-04-16 09:01:16 yangtse Exp $
  */
 
 /*
@@ -44,12 +44,10 @@
  * #endif
  */
 
-#include "setup.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ares.h"
+#include "ares_getopt.h"
 
 /* declarations to provide consistent linkage */
 extern char *optarg;

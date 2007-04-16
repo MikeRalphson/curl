@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.27 2007-04-12 18:59:46 yangtse Exp $ */
+/* $Id: ares.h,v 1.28 2007-04-16 09:01:16 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -218,7 +218,6 @@ int ares_parse_ns_reply(const unsigned char *abuf, int alen,
 void ares_free_string(void *str);
 void ares_free_hostent(struct hostent *host);
 const char *ares_strerror(int code);
-int ares_getopt(int nargc, char * const nargv[], const char *ostr);
 
 #ifdef  __cplusplus
 }
