@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.30 2007-04-18 20:11:48 bagder Exp $
+* $Id: ssh.c,v 1.31 2007-04-18 20:15:22 bagder Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1018,7 +1018,8 @@ CURLcode Curl_sftp_done(struct connectdata *conn, CURLcode status,
 ssize_t Curl_sftp_send(struct connectdata *conn, int sockindex,
                        void *mem, size_t len)
 {
-  ssize_t nwrite;   /* libssh2_sftp_write() returns size_t !*/
+  ssize_t nwrite;   /* libssh2_sftp_write() used to return size_t in 0.14
+                       but is changed to ssize_t in 0.15! */
 
 #ifdef LIBSSH2SFTP_EAGAIN
   /* we prefer the non-blocking API but that didn't exist previously */
