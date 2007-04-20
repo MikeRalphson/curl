@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.79 2007-03-01 16:42:02 yangtse Exp $
+# $Id: ftpserver.pl,v 1.80 2007-04-20 17:16:32 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -139,16 +139,16 @@ sub sysread_or_die {
         logmsg "Failed to read input\n";
         logmsg "Error: ftp$ftpdnum$ext sysread error: $!\n";
         kill(9, $sfpid);
-        die "Died in sysread_or_die() when called from $fcaller " .
-            "at line $lcaller. ftp$ftpdnum$ext sysread error: $!\n";
+        die "Died in sysread_or_die() at $fcaller " .
+            "line $lcaller. ftp$ftpdnum$ext sysread error: $!\n";
     }
     elsif($result == 0) {
         ($fcaller, $lcaller) = (caller)[1,2];
         logmsg "Failed to read input\n";
         logmsg "Error: ftp$ftpdnum$ext read zero\n";
         kill(9, $sfpid);
-        die "Died in sysread_or_die() when called from $fcaller " .
-            "at line $lcaller. ftp$ftpdnum$ext read zero\n";
+        die "Died in sysread_or_die() at $fcaller " .
+            "line $lcaller. ftp$ftpdnum$ext read zero\n";
     }
 
     return $result;
