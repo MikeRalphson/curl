@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.46 2007-04-16 20:54:56 gknauf Exp $
+# $Id: Makefile.netware,v 1.47 2007-04-21 15:32:35 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -85,7 +85,7 @@ ifeq ($(CC),mwccnlm)
 LD	= mwldnlm
 LDFLAGS	= -nostdlib $(PRELUDE) $(OBJL) -o $@ -commandfile
 AR	= mwldnlm
-ARFLAGS	= -type library -w nocmdline $(OBJS) -o
+ARFLAGS	= -nostdlib -type library -o
 LIBEXT	= lib
 #RANLIB	=
 CFLAGS	+= -msgstyle gcc -gccinc -inline off -opt nointrinsics -proc 586
