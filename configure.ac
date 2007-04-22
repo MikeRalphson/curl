@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.239 2007-04-10 18:53:21 yangtse Exp $
+# $Id: configure.ac,v 1.240 2007-04-22 07:36:12 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1337,7 +1337,7 @@ if test "$OPENSSL_ENABLED" != "1"; then
        [
        AC_DEFINE(USE_GNUTLS, 1, [if GnuTLS is enabled])
        AC_SUBST(USE_GNUTLS, [1])
-       GNUTLS_ENABLED = 1
+       GNUTLS_ENABLED=1
        USE_GNUTLS="yes"
        curl_ssl_msg="enabled (GnuTLS)"
        ],
