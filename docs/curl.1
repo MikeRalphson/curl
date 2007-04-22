@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.210 2007-03-23 17:59:40 danf Exp $
+.\" * $Id: curl.1,v 1.211 2007-04-22 08:05:40 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "28 Feb 2007" "Curl 7.16.2" "Curl Manual"
@@ -703,6 +703,11 @@ the initial host. If a redirect takes curl to a different host, it won't be
 able to intercept the user+password. See also \fI--location-trusted\fP on how
 to change this. You can limit the amount of redirects to follow by using the
 \fI--max-redirs\fP option.
+
+When curl follows a redirect and the request is not a plain GET (for example
+POST or PUT), it will do the following request with a GET if the HTTP response
+was 301, 302, or 303. If the response code was any other 3xx code, curl will
+re-send the following request using the same unmodified method.
 
 If this option is used twice, the second will again disable location following.
 .IP "--location-trusted"
