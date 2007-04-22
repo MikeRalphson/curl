@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.413 2007-04-15 06:24:43 danf Exp $
+ * $Id: main.c,v 1.414 2007-04-22 09:31:28 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2350,7 +2350,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
          (and won't actually be range by definition). The man page previously
          claimed that to be a good way, why this code is added to work-around
          it. */
-      if(!strchr(nextarg, '-')) {
+      if(ISDIGIT(*nextarg) && !strchr(nextarg, '-')) {
         char buffer[32];
         curl_off_t off;
         warnf(config,
@@ -2360,10 +2360,23 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         snprintf(buffer, sizeof(buffer), "%Od-", off);
         GetStr(&config->range, buffer);
       }
-      else
+      {
+        /* byte range requested */
+        char* tmp_range;
+        tmp_range=nextarg;
+        while(*tmp_range != '\0') {
+          if(!ISDIGIT(*tmp_range)&&*tmp_range!='-'&&*tmp_range!=',') {
+            warnf(config,"Invalid character is found in given range. "
+                  "A specified range MUST have only digits in "
+                  "\'start\'-\'stop\'. The server's response to this "
+                  "request is uncertain.\n");
+            break;
+          }
+          tmp_range++;
+        }
         /* byte range requested */
         GetStr(&config->range, nextarg);
-
+      }
       break;
     case 'R':
       /* use remote file's time */
