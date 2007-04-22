@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.240 2007-04-22 07:36:12 bagder Exp $
+# $Id: configure.ac,v 1.241 2007-04-22 09:37:05 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -888,7 +888,7 @@ dnl Default to no CA bundle
 ca="no"
 AC_ARG_WITH(ssl,dnl
 AC_HELP_STRING([--with-ssl=PATH],[Where to look for OpenSSL, PATH points to the SSL installation (default: /usr/local/ssl); when possible, set the PKG_CONFIG_PATH environment variable instead of using this option])
-AC_HELP_STRING([--without-ssl], [disable SSL]),
+AC_HELP_STRING([--without-ssl], [disable OpenSSL]),
   OPT_SSL=$withval)
 
 if test X"$OPT_SSL" != Xno; then
