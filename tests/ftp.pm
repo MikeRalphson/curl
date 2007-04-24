@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftp.pm,v 1.11 2006-11-20 16:57:01 yangtse Exp $
+# $Id: ftp.pm,v 1.12 2007-04-24 21:30:39 danf Exp $
 ###########################################################################
 
 #######################################################################
@@ -64,6 +64,7 @@ sub ftpkillslave {
         if($pid > 0) {
             printf ("* kill pid for %s => %d\n", "ftp-$base$id$ext", $pid) if($verbose);
             kill (9, $pid); # die!
+            waitpid($pid, 0);
         }
         unlink($f);
     }
