@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.235 2007-04-23 22:58:45 danf Exp $
+# $Id: runtests.pl,v 1.236 2007-04-24 23:28:57 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -1715,8 +1715,11 @@ sub singletest {
         $ENV{$e}=""; # clean up
     }
 
-    # Don't bother doing verification on torture tests
+    # Skip all the verification on torture tests
     if ($torture) {
+	if(!$cmdres && !$keepoutfiles) {
+	    cleardir($LOGDIR);
+	}
         return $cmdres;
     }
 
