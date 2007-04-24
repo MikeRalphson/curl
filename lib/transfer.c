@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.348 2007-04-16 16:34:08 bagder Exp $
+ * $Id: transfer.c,v 1.349 2007-04-24 10:18:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -289,8 +289,13 @@ static void read_rewind(struct connectdata *conn,
     size_t show;
 
     show = MIN(conn->buf_len - conn->read_pos, sizeof(buf)-1);
-    memcpy(buf, conn->master_buffer + conn->read_pos, show);
-    buf[show] = '\0';
+    if (conn->master_buffer) {
+        memcpy(buf, conn->master_buffer + conn->read_pos, show);
+        buf[show] = '\0';
+    }
+    else {
+        buf[0] = '\0';
+    }
 
     DEBUGF(infof(conn->data,
                  "Buffer after stream rewind (read_pos = %d): [%s]",

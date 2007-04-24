@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.127 2007-03-21 13:09:39 yangtse Exp $
+ * $Id: sendf.c,v 1.128 2007-04-24 10:18:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -495,7 +495,7 @@ int Curl_read(struct connectdata *conn, /* connection data */
     }
     /* If we come here, it means that there is no data to read from the buffer,
      * so we read from the socket */
-    bytesfromsocket = MIN(sizerequested, sizeof(conn->master_buffer));
+    bytesfromsocket = MIN(sizerequested, BUFSIZE * sizeof (char));
     buffertofill = conn->master_buffer;
   }
   else {
