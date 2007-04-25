@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2005, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.36 2007-02-26 04:24:26 giva Exp $
+ * $Id: netrc.c,v 1.37 2007-04-25 03:00:10 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -227,7 +227,7 @@ int Curl_parsenetrc(char *host,
 }
 
 #ifdef _NETRC_DEBUG
-int main(int argc, char **argv)
+int main(int argc, argv_item_t argv[])
 {
   char login[64]="";
   char password[64]="";

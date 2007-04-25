@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.42 2007-04-13 08:45:07 yangtse Exp $
+ * $Id: base64.c,v 1.43 2007-04-25 03:00:10 yangtse Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -252,7 +252,7 @@ size_t Curl_base64_encode(struct SessionHandle *data,
 #define TEST_NEED_SUCK
 void *suck(int *);
 
-int main(int argc, char **argv, char **envp)
+int main(int argc, argv_item_t argv[], char **envp)
 {
   char *base64;
   size_t base64Len;
@@ -293,7 +293,7 @@ int main(int argc, char **argv, char **envp)
 #define TEST_NEED_SUCK
 void *suck(int *);
 
-int main(int argc, char **argv, char **envp)
+int main(int argc, argv_item_t argv[], char **envp)
 {
   char *base64;
   int base64Len;

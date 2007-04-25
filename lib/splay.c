@@ -18,8 +18,10 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: splay.c,v 1.4 2006-09-04 22:19:13 bagder Exp $
+ * $Id: splay.c,v 1.5 2007-04-25 03:00:10 yangtse Exp $
  ***************************************************************************/
+
+#include "setup.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -364,7 +366,7 @@ void Curl_splayprint(struct Curl_tree * t, int d, char output)
 
 /* A sample use of these functions.  Start with the empty tree, insert some
    stuff into it, and then delete it */
-int main(int argc, char **argv)
+int main(int argc, argv_item_t argv[])
 {
   struct Curl_tree *root, *t;
   void *ptrs[MAX];

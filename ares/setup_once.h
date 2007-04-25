@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.22 2007-04-11 11:02:13 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.23 2007-04-25 03:00:10 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -334,6 +334,27 @@ typedef int sig_atomic_t;
 #define EDQUOT           WSAEDQUOT
 #define ESTALE           WSAESTALE
 #define EREMOTE          WSAEREMOTE
+#endif
+
+
+/*
+ *  Actually use __32_getpwuid() on 64-bit VMS builds for getpwuid()
+ */
+
+#if defined(VMS) && \
+    defined(__INITIAL_POINTER_SIZE) && (__INITIAL_POINTER_SIZE == 64)
+#define getpwuid __32_getpwuid
+#endif
+
+
+/*
+ * Macro argv_item_t hides platform details to code using it.
+ */
+
+#ifdef VMS
+#define argv_item_t  __char_ptr32
+#else
+#define argv_item_t  char *
 #endif
 
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.414 2007-04-22 09:31:28 bagder Exp $
+ * $Id: main.c,v 1.415 2007-04-25 03:00:10 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3482,7 +3482,7 @@ static void dumpeasycode(struct Configurable *config)
 }
 
 static int
-operate(struct Configurable *config, int argc, char *argv[])
+operate(struct Configurable *config, int argc, argv_item_t argv[])
 {
   char errorbuffer[CURL_ERROR_SIZE];
   char useragent[128]; /* buah, we don't want a larger default user agent */
