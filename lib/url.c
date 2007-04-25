@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.612 2007-04-24 10:18:06 bagder Exp $
+ * $Id: url.c,v 1.613 2007-04-25 20:20:15 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1829,16 +1829,6 @@ CURLcode Curl_disconnect(struct connectdata *conn)
 
   Curl_expire(data, 0); /* shut off timers */
   Curl_hostcache_prune(data); /* kill old DNS cache entries */
-
-  /*
-   * The range string is usually freed in curl_done(), but we might
-   * get here *instead* if we fail prematurely. Thus we need to be able
-   * to free this resource here as well.
-   */
-  if(data->reqdata.rangestringalloc) {
-    free(data->reqdata.range);
-    data->reqdata.rangestringalloc = FALSE;
-  }
 
   if((conn->ntlm.state != NTLMSTATE_NONE) ||
      (conn->proxyntlm.state != NTLMSTATE_NONE)) {
