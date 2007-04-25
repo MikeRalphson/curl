@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.236 2007-04-24 23:28:57 danf Exp $
+# $Id: runtests.pl,v 1.237 2007-04-25 20:09:32 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2446,10 +2446,15 @@ open(CMDLOG, ">$CURLLOG") ||
 
 #######################################################################
 
+# Display the contents of the given file.  Line endings are canonicalized
+# and excessively long files are truncated
 sub displaylogcontent {
     my ($file)=@_;
     if(open(my $SINGLE, "<$file")) {
         my $lfcount;
+        my $linecount = 0;
+        my $truncate;
+        my @tail;
         while(my $string = <$SINGLE>) {
             $string =~ s/\r\n/\n/g;
             $string =~ s/[\r\f\032]/\n/g;
@@ -2458,14 +2463,30 @@ sub displaylogcontent {
             if($lfcount == 1) {
                 $string =~ s/\n//;
                 $string =~ s/\s*\!$//;
-                logmsg " $string\n";
+                $linecount++;
+                if ($truncate) {
+                    push @tail, " $string\n";
+                } else {
+                    logmsg " $string\n";
+                }
             }
             else {
                 for my $line (split("\n", $string)) {
                     $line =~ s/\s*\!$//;
-                    logmsg " $line\n";
+                    $linecount++;
+                    if ($truncate) {
+                        push @tail, " $line\n";
+                    } else {
+                        logmsg " $line\n";
+		    }
                 }
             }
+            $truncate = $linecount > 1000;
+        }
+        if (@tail) {
+            logmsg "=== File too long: lines here were removed\n";
+            # This won't work properly if time stamps are enabled in logmsg
+            logmsg join('',@tail[$#tail-200..$#tail]);
         }
         close($SINGLE);
     }
