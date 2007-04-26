@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.349 2007-04-24 10:18:06 bagder Exp $
+ * $Id: transfer.c,v 1.350 2007-04-26 21:30:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -270,7 +270,10 @@ CURLcode Curl_readrewind(struct connectdata *conn)
 
 static int data_pending(struct connectdata *conn)
 {
-  return Curl_ssl_data_pending(conn, FIRSTSOCKET);
+  /* in the case of libssh2, we can never be really sure that we have emptied
+     its internal buffers so we MUST always try until we get EAGAIN back */
+  return conn->protocol&(PROT_SCP|PROT_SFTP) ||
+    Curl_ssl_data_pending(conn, FIRSTSOCKET);
 }
 
 #ifndef MIN
