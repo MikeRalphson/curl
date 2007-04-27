@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.615 2007-04-27 08:19:48 bagder Exp $
+ * $Id: url.c,v 1.616 2007-04-27 08:30:48 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -309,6 +309,9 @@ CURLcode Curl_close(struct SessionHandle *data)
       Curl_hash_destroy(data->dns.hostcache);
     }
   }
+
+  if(data->reqdata.rangestringalloc)
+    free(data->reqdata.range);
 
   /* Free the pathbuffer */
   Curl_safefree(data->reqdata.pathbuffer);
@@ -1826,12 +1829,6 @@ CURLcode Curl_disconnect(struct connectdata *conn)
   Curl_hash_apply(data->hostcache,
                   NULL, Curl_scan_cache_used);
 #endif
-
-  /* cleanups done even if the connection is re-used */
-  if(data->reqdata.rangestringalloc) {
-    free(data->reqdata.range);
-    data->reqdata.rangestringalloc = FALSE;
-  }
 
   Curl_expire(data, 0); /* shut off timers */
   Curl_hostcache_prune(data); /* kill old DNS cache entries */
