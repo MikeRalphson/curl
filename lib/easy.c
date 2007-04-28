@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.101 2007-04-08 22:49:38 yangtse Exp $
+ * $Id: easy.c,v 1.102 2007-04-28 20:27:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -511,6 +511,10 @@ void Curl_easy_addmulti(struct SessionHandle *data,
                         void *multi)
 {
   data->multi = multi;
+  if (multi == NULL)
+    /* the association is cleared, mark the easy handle as not used by an
+       interface */
+    data->state.used_interface = Curl_if_none;
 }
 
 void Curl_easy_initHandleData(struct SessionHandle *data)
@@ -636,8 +640,8 @@ CURL *curl_easy_duphandle(CURL *incurl)
 
   if(fail) {
     if(outcurl) {
-      if((outcurl->state.connc->type == CONNCACHE_PRIVATE) &&
-         outcurl->state.connc)
+      if(outcurl->state.connc &&
+         (outcurl->state.connc->type == CONNCACHE_PRIVATE))
         Curl_rm_connc(outcurl->state.connc);
       if(outcurl->state.headerbuff)
         free(outcurl->state.headerbuff);
