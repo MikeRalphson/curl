@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.238 2007-04-25 23:18:52 danf Exp $
+# $Id: runtests.pl,v 1.239 2007-04-30 20:15:33 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2253,6 +2253,12 @@ do {
         # verbose output
         $verbose=1;
     }
+    elsif($ARGV[0] =~ /^-b(.*)/) {
+        my $portno=$1;
+        if($portno =~ s/(\d+)$//) {
+            $base = int $1;
+        }
+    }
     elsif ($ARGV[0] eq "-c") {
         # use this path to curl instead of default
         $DBGCURL=$CURL=$ARGV[1];
@@ -2309,20 +2315,22 @@ do {
     elsif($ARGV[0] eq "-h") {
         # show help text
         print <<EOHELP
-Usage: runtests.pl [options]
+Usage: runtests.pl [options] [test number(s)]
   -a       continue even if a test fails
+  -bN      use base port number N for test servers (default $base)
+  -c path  use this curl executable
   -d       display server debug info
   -g       run the test case with gdb
   -h       this help text
   -k       keep stdout and stderr files present after tests
   -l       list all test case names/descriptions
-  -n       No valgrind
-  -p       Print log file contents when a test fails
+  -n       no valgrind
+  -p       print log file contents when a test fails
   -s       short output
-  -t       torture
+  -t[N]    torture (simulate memory alloc failures); N means fail Nth alloc
   -v       verbose output
   [num]    like "5 6 9" or " 5 to 22 " to run those tests only
-  ![num]   like "!5 !6 !9" to disable those tests
+  [!num]   like "!5 !6 !9" to disable those tests
 EOHELP
     ;
         exit;
