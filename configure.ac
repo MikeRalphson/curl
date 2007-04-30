@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.241 2007-04-22 09:37:05 bagder Exp $
+# $Id: configure.ac,v 1.242 2007-04-30 21:47:58 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -118,12 +118,16 @@ AC_LIBTOOL_WIN32_DLL
 dnl skip libtool C++ and Fortran compiler checks
 m4_ifdef([AC_PROG_CXX], [m4_undefine([AC_PROG_CXX])])
 m4_defun([AC_PROG_CXX],[])
+m4_ifdef([AC_PROG_CXXCPP], [m4_undefine([AC_PROG_CXXCPP])])
+m4_defun([AC_PROG_CXXCPP],[true])
 m4_ifdef([AC_PROG_F77], [m4_undefine([AC_PROG_F77])])
 m4_defun([AC_PROG_F77],[])
 
 dnl skip libtool C++ and Fortran linker checks
 m4_ifdef([AC_LIBTOOL_CXX], [m4_undefine([AC_LIBTOOL_CXX])])
 m4_defun([AC_LIBTOOL_CXX],[])
+m4_ifdef([AC_LIBTOOL_CXXCPP], [m4_undefine([AC_LIBTOOL_CXXCPP])])
+m4_defun([AC_LIBTOOL_CXXCPP],[true])
 m4_ifdef([AC_LIBTOOL_F77], [m4_undefine([AC_LIBTOOL_F77])])
 m4_defun([AC_LIBTOOL_F77],[])
 
