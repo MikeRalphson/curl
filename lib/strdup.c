@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strdup.c,v 1.2 2006-07-17 15:25:37 yangtse Exp $
+ * $Id: strdup.c,v 1.3 2007-05-01 20:50:50 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -38,7 +38,7 @@ char *curlx_strdup(const char *str)
   if (!newstr)
     return (char *)NULL;
 
-  strcpy(newstr,str);
+  memcpy(newstr,str,(len+1)*sizeof(char));
 
   return newstr;
 
