@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.351 2007-05-02 17:35:47 bagder Exp $
+ * $Id: transfer.c,v 1.352 2007-05-02 20:42:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -766,8 +766,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                   if (checkhttpprefix(data, k->p)) {
                     nc = 1;
                     k->httpcode = 200;
-                    k->httpversion =
-                      (data->set.httpversion==CURL_HTTP_VERSION_1_0)? 10 : 11;
+                    k->httpversion = 10;
                   }
                 }
               }
