@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.350 2007-04-26 21:30:29 bagder Exp $
+ * $Id: transfer.c,v 1.351 2007-05-02 17:35:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -574,8 +574,9 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               else {
                 k->header = FALSE; /* no more header to parse! */
 
-                if((k->size == -1) && !conn->bits.chunk && !conn->bits.close)
-                  /* When connection is not to get closed, but no
+                if((k->size == -1) && !conn->bits.chunk && !conn->bits.close &&
+                   (k->httpversion >= 11) )
+                  /* On HTTP 1.1, when connection is not to get closed, but no
                      Content-Length nor Content-Encoding chunked have been
                      received, there is no body in this response. We don't set
                      stop_reading TRUE since that would also prevent necessary
