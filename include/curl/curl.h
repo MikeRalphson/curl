@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.317 2007-04-20 07:19:36 bagder Exp $
+ * $Id: curl.h,v 1.318 2007-05-08 11:34:31 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -331,7 +331,7 @@ typedef enum {
   CURLE_HTTP_RETURNED_ERROR,     /* 22 */
   CURLE_WRITE_ERROR,             /* 23 */
   CURLE_MALFORMAT_USER,          /* 24 - NOT USED */
-  CURLE_FTP_COULDNT_STOR_FILE,   /* 25 - failed FTP upload */
+  CURLE_UPLOAD_FAILED,           /* 25 - failed upload "command" */
   CURLE_READ_ERROR,              /* 26 - could open/read from file */
   CURLE_OUT_OF_MEMORY,           /* 27 */
   /* Note: CURLE_OUT_OF_MEMORY may sometimes indicate a conversion error
@@ -422,6 +422,7 @@ typedef CURLcode (*curl_ssl_ctx_callback)(CURL *curl,    /* easy handle */
 /* backwards compatibility with older names */
 #define CURLE_HTTP_NOT_FOUND CURLE_HTTP_RETURNED_ERROR
 #define CURLE_HTTP_PORT_FAILED CURLE_INTERFACE_FAILED
+#define CURLE_FTP_COULDNT_STOR_FILE CURLE_UPLOAD_FAILED
 #endif
 
 typedef enum {
