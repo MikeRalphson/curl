@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.32 2007-05-08 11:34:31 bagder Exp $
+* $Id: ssh.c,v 1.33 2007-05-09 18:24:27 danf Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -723,7 +723,7 @@ CURLcode Curl_sftp_do(struct connectdata *conn, bool *done)
      */
     sftp->sftp_handle =
       libssh2_sftp_open(sftp->sftp_session, sftp->path,
-                        LIBSSH2_FXF_WRITE|LIBSSH2_FXF_CREAT,
+                        LIBSSH2_FXF_WRITE|LIBSSH2_FXF_CREAT|LIBSSH2_FXF_TRUNC,
                         LIBSSH2_SFTP_S_IRUSR|LIBSSH2_SFTP_S_IWUSR|
                         LIBSSH2_SFTP_S_IRGRP|LIBSSH2_SFTP_S_IROTH);
     if (!sftp->sftp_handle) {
