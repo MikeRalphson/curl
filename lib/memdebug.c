@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.51 2007-02-21 19:03:20 yangtse Exp $
+ * $Id: memdebug.c,v 1.52 2007-05-15 00:36:56 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -73,6 +73,10 @@ void curl_memdebug(const char *logname)
       logfile = fopen(logname, "w");
     else
       logfile = stderr;
+#ifdef MEMDEBUG_LOG_SYNC
+    /* Flush the log file after every line so the log isn't lost in a crash */
+    setvbuf(logfile, (char *)NULL, _IOLBF, 0);
+#endif
   }
 }
 
