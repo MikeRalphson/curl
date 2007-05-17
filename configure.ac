@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.242 2007-04-30 21:47:58 bagder Exp $
+# $Id: configure.ac,v 1.243 2007-05-17 06:04:44 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -413,6 +413,21 @@ then
                [ dnl failed, restore LIBS
                LIBS=$my_ac_save_LIBS
                AC_MSG_RESULT(no)]
+             )
+fi
+
+if test "$HAVE_GETHOSTBYNAME" != "1"
+then
+  dnl This is for Minix 3.1
+  AC_MSG_CHECKING([for gethostbyname for Minix 3])
+  AC_TRY_LINK([
+/* Older Minix versions may need <net/gen/netdb.h> here instead */
+#include <netdb.h>],
+               [gethostbyname("www.dummysite.com");],
+               [ dnl worked!
+               AC_MSG_RESULT([yes])
+               HAVE_GETHOSTBYNAME="1"],
+               AC_MSG_RESULT(no)
              )
 fi
 

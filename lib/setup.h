@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.130 2007-02-28 14:45:49 yangtse Exp $
+ * $Id: setup.h,v 1.131 2007-05-17 06:04:44 danf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -257,6 +257,12 @@
 #undef HAVE_ALARM
 #undef sclose
 #define sclose(x) CloseSocket(x)
+#endif
+
+#ifdef __minix
+/* Minix 3 versions up to at least 3.1.3 are missing these prototypes */
+extern char * strtok_r(char *s, const char *delim, char **last);
+extern struct tm * gmtime_r(const time_t * const timep, struct tm *tmp);
 #endif
 
 #define DIR_CHAR      "/"
