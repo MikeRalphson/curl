@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.42 2007-04-11 00:25:41 danf Exp $
+ * $Id: tftp.c,v 1.43 2007-05-17 21:40:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -179,6 +179,10 @@ void tftp_set_timeouts(tftp_state_data_t *state)
 
     /* Average restart after 5 seconds */
     state->retry_max = timeout/5;
+
+    if(state->retry_max < 1)
+      /* avoid division by zero below */
+      state->retry_max = 1;
 
     /* Compute the re-start interval to suit the timeout */
     state->retry_time = timeout/state->retry_max;
