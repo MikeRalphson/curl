@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.352 2007-05-02 20:42:02 bagder Exp $
+ * $Id: transfer.c,v 1.353 2007-05-18 10:32:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1792,9 +1792,11 @@ Transfer(struct connectdata *conn)
   struct Curl_transfer_keeper *k = &data->reqdata.keep;
   bool done=FALSE;
 
-  if(!(conn->protocol & PROT_FILE)) {
-    /* Only do this if we are not transferring FILE:, since the file: treatment
-       is different*/
+  if(!(conn->protocol & (PROT_FILE|PROT_TFTP))) {
+    /* Only do this if we are not transferring FILE or TFTP, since those
+       transfers are treated differently. They do their entire transfers in
+       the DO function and just returns from this. That is ugly indeed.
+    */
     Curl_readwrite_init(conn);
     Curl_pre_readwrite(conn);
   }
