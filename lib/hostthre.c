@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.47 2007-02-26 04:24:26 giva Exp $
+ * $Id: hostthre.c,v 1.48 2007-05-20 22:11:47 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -595,7 +595,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
   timeout =
     conn->data->set.connecttimeout ? conn->data->set.connecttimeout :
     conn->data->set.timeout ? conn->data->set.timeout :
-    CURL_TIMEOUT_RESOLVE; /* default name resolve timeout */
+    CURL_TIMEOUT_RESOLVE * 1000; /* default name resolve timeout */
   ticks = GetTickCount();
 
   /* wait for the thread to resolve the name */
