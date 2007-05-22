@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.175 2007-04-07 04:51:35 yangtse Exp $
+ * $Id: ssluse.c,v 1.176 2007-05-22 19:51:44 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1123,7 +1123,8 @@ static CURLcode verifyhost(struct connectdata *conn,
       rc = Curl_convert_from_utf8(data, peer_CN, strlen(peer_CN));
       /* Curl_convert_from_utf8 calls failf if unsuccessful */
       if (rc != CURLE_OK) {
-        return(rc);
+        OPENSSL_free(peer_CN);
+        return rc;
       }
     }
 #endif /* CURL_DOES_CONVERSIONS */
