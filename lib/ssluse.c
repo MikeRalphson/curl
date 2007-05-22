@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.176 2007-05-22 19:51:44 bagder Exp $
+ * $Id: ssluse.c,v 1.177 2007-05-22 20:46:51 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -377,6 +377,7 @@ int cert_stuff(struct connectdata *conn,
         failf(data,
               "could not parse PKCS12 file, check password, OpenSSL error %s",
               ERR_error_string(ERR_get_error(), NULL) );
+        PKCS12_free(p12);
         return 0;
       }
 
