@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.417 2007-05-02 00:50:06 danf Exp $
+ * $Id: main.c,v 1.418 2007-05-24 20:58:25 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -501,6 +501,10 @@ static void warnf(struct Configurable *config, const char *fmt, ...)
         while(!ISSPACE(ptr[cut]) && cut) {
           cut--;
         }
+        if(0 == cut)
+          /* not a single cutting position was found, just cut it at the
+             max text width then! */
+          cut = WARN_TEXTWIDTH-1;
 
         fwrite(ptr, cut + 1, 1, config->errors);
         fputs("\n", config->errors);
