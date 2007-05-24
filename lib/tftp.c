@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.46 2007-05-18 10:40:43 bagder Exp $
+ * $Id: tftp.c,v 1.47 2007-05-24 21:11:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -686,6 +686,10 @@ CURLcode Curl_tftp(struct connectdata *conn, bool *done)
       return code;
     state = (tftp_state_data_t *)conn->data->reqdata.proto.tftp;
   }
+
+  code = Curl_readwrite_init(conn);
+  if(code)
+    return code;
 
   /* Run the TFTP State Machine */
   for(code=tftp_state_machine(state, TFTP_EVENT_INIT);
