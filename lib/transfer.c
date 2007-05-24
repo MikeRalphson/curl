@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.353 2007-05-18 10:32:48 bagder Exp $
+ * $Id: transfer.c,v 1.354 2007-05-24 21:11:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1631,8 +1631,8 @@ CURLcode Curl_readwrite(struct connectdata *conn,
 
 
 /*
- * Curl_readwrite_init() inits the readwrite session. This is inited each time for a
- * transfer, sometimes multiple times on the same SessionHandle
+ * Curl_readwrite_init() inits the readwrite session. This is inited each time
+ * for a transfer, sometimes multiple times on the same SessionHandle
  */
 
 CURLcode Curl_readwrite_init(struct connectdata *conn)
