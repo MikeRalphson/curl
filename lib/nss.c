@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.4 2007-02-26 04:24:26 giva Exp $
+ * $Id: nss.c,v 1.5 2007-05-25 21:56:27 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -73,6 +73,8 @@ PRFileDesc *PR_ImportTCPSocket(PRInt32 osfd);
 
 static int initialized = 0;
 static int noverify = 0;
+
+#define HANDSHAKE_TIMEOUT 30
 
 typedef struct {
   PRInt32 retryCount;
@@ -512,6 +514,12 @@ CURLcode Curl_nss_connect(struct connectdata * conn, int sockindex)
   SSL_ResetHandshake(connssl->handle, /* asServer */ PR_FALSE);
 
   SSL_SetURL(connssl->handle, conn->host.name);
+
+  /* Force the handshake now */
+  if (SSL_ForceHandshakeWithTimeout(connssl->handle,
+                                    PR_SecondsToInterval(HANDSHAKE_TIMEOUT))
+      != SECSuccess)
+    goto error;
 
   return CURLE_OK;
 
