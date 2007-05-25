@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.51 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: ares_init.c,v 1.52 2007-05-25 21:11:28 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -555,6 +555,10 @@ DhcpNameServer
 
   if (status == ARES_SUCCESS)
     status = ARES_EOF;
+  else
+    /* Catch the case when all the above checks fail (which happens when there
+       is no network card or the cable is unplugged) */
+    status = ARES_EFILE;
 
 #elif defined(__riscos__)
 
