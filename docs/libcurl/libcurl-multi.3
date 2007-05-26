@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: libcurl-multi.3,v 1.17 2007-05-23 12:59:12 bagder Exp $
+.\" * $Id: libcurl-multi.3,v 1.18 2007-05-26 20:50:00 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH libcurl-multi 3 "3 Feb 2007" "libcurl 7.16.0" "libcurl multi interface"
@@ -103,6 +103,12 @@ message about a current or previous transfer. Repeated invokes of the function
 get more messages until the message queue is empty. The information you
 receive there includes an easy handle pointer which you may use to identify
 which easy handle the information regards.
+
+When a single transfer is completed, the easy handle is still left added to
+the multi stack. You need to first remove the easy handle with
+\fIcurl_multi_remove_handle(3)\fP and then close it with
+\fIcurl_easy_cleanup(3)\fP, or possibly set new options to it and add it again
+with \fIcurl_multi_add_handle(3)\fP to start another transfer.
 
 When all transfers in the multi stack are done, cleanup the multi handle with
 \fIcurl_multi_cleanup(3)\fP. Be careful and please note that you \fBMUST\fP
