@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.54 2007-05-30 21:11:10 bagder Exp $ */
+/* $Id: ares_init.c,v 1.55 2007-05-30 21:37:17 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -1276,6 +1276,7 @@ static void natural_mask(struct apattern *pat)
 static void randomize_key(unsigned char* key,int key_data_len)
 {
   int randomized = 0;
+  int counter=0;
 #ifdef WIN32
   HMODULE lib=LoadLibrary("ADVAPI32.DLL");
   if (lib) {
@@ -1286,11 +1287,22 @@ static void randomize_key(unsigned char* key,int key_data_len)
 
     FreeLibrary(lib);
   }
+#else /* !WIN32 */
+#ifdef RANDOM_FILE
+  char buffer[256];
+  FILE *f = fopen(RANDOM_FILE, "rb");
+  if(f) {
+    size_t i;
+    size_t rc = fread(buffer, key_data_len, 1, f);
+    for(i=0; i<rc && counter < key_data_len; i++)
+      key[counter++]=buffer[i];
+    fclose(f);
+  }
 #endif
+#endif /* WIN32 */
 
   if ( !randomized ) {
-    int counter;
-    for (counter=0;counter<key_data_len;counter++)
+    for (;counter<key_data_len;counter++)
       key[counter]=rand() % 256;
   }
 }
