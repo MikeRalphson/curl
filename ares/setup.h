@@ -1,9 +1,9 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.24 2007-01-30 13:15:08 giva Exp $ */
+/* $Id: setup.h,v 1.25 2007-05-30 12:58:47 bagder Exp $ */
 
-/* Copyright (C) 2004 - 2005 by Daniel Stenberg et al
+/* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
  * Permission to use, copy, modify, and distribute this software and its
  * documentation for any purpose and without fee is hereby granted, provided
@@ -116,18 +116,6 @@
 #undef PACKAGE_NAME
 #undef VERSION
 #undef PACKAGE
-
-/*
- * Typedef our socket type
- */
-
-#ifdef USE_WINSOCK
-typedef SOCKET ares_socket_t;
-#define ARES_SOCKET_BAD INVALID_SOCKET
-#else
-typedef int ares_socket_t;
-#define ARES_SOCKET_BAD -1
-#endif
 
 /*
  * Assume a few thing unless they're set by configure
