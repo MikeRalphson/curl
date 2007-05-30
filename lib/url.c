@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.618 2007-05-02 19:13:56 danf Exp $
+ * $Id: url.c,v 1.619 2007-05-30 09:24:06 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2057,9 +2057,6 @@ ConnectionExists(struct SessionHandle *data,
                                   been set to -1 when the easy was removed
                                   from the multi */
     }
-
-    DEBUGF(infof(data, "Examining connection #%ld for reuse"
-                 " (pipeLen = %ld)\n", check->connectindex, pipeLen));
 
     if(pipeLen > 0 && !canPipeline) {
       /* can only happen within multi handles, and means that another easy
