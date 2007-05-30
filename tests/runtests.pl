@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.239 2007-04-30 20:15:33 danf Exp $
+# $Id: runtests.pl,v 1.240 2007-05-30 17:15:05 yangtse Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -2541,6 +2541,9 @@ sub displaylogs {
         }
         if(($log =~ /^test\d+\.txt/) && ($log !~ /^test$testnum\.txt/)) {
             next; # skip testNnn.txt of other tests
+        }
+        if(($log =~ /^file\d+\.txt/) && ($log !~ /^file$testnum\.txt/)) {
+            next; # skip fileNnn.txt of other tests
         }
         logmsg "=== Start of file $log\n";
         displaylogcontent("$LOGDIR/$log");
