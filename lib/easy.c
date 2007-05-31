@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.102 2007-04-28 20:27:07 bagder Exp $
+ * $Id: easy.c,v 1.103 2007-05-31 11:34:32 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -420,10 +420,13 @@ CURLcode curl_easy_perform(CURL *easy)
     timeout.tv_sec = 1;
     timeout.tv_usec = 0;
 
-    /* get file descriptors from the transfers */
+    /* Old deprecated style: get file descriptors from the transfers */
     curl_multi_fdset(multi, &fdread, &fdwrite, &fdexcep, &maxfd);
-
     rc = Curl_select(maxfd+1, &fdread, &fdwrite, &fdexcep, &timeout);
+
+    /* The way is to extract the sockets and wait for them without using
+       select. This whole alternative version should probably rather use the
+       curl_multi_socket() approach. */
 
     if(rc == -1)
       /* select error */
