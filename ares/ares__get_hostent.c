@@ -1,4 +1,4 @@
-/* $Id: ares__get_hostent.c,v 1.13 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: ares__get_hostent.c,v 1.14 2007-06-02 19:42:25 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -183,6 +183,7 @@ int ares__get_hostent(FILE *fp, int family, struct hostent **host)
             free(hostent->h_addr_list);
           free(hostent);
         }
+      *host = NULL;
       return ARES_ENOMEM;
     }
 

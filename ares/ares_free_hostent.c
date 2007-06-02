@@ -1,4 +1,4 @@
-/* $Id: ares_free_hostent.c,v 1.8 2007-01-29 20:56:27 yangtse Exp $ */
+/* $Id: ares_free_hostent.c,v 1.9 2007-06-02 19:42:25 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -33,7 +33,10 @@ void ares_free_hostent(struct hostent *host)
   for (p = host->h_aliases; *p; p++)
     free(*p);
   free(host->h_aliases);
-  free(host->h_addr_list[0]);
+  for(p = host->h_addr_list; *p; p++)
+  {
+    free(*p);
+  }
   free(host->h_addr_list);
   free(host);
 }
