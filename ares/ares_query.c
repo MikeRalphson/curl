@@ -1,4 +1,4 @@
-/* $Id: ares_query.c,v 1.10 2007-05-30 21:11:10 bagder Exp $ */
+/* $Id: ares_query.c,v 1.11 2007-06-04 21:26:30 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -108,13 +108,13 @@ void ares_query(ares_channel channel, const char *name, int dnsclass,
   rd = !(channel->flags & ARES_FLAG_NORECURSE);
   status = ares_mkquery(name, dnsclass, type, channel->next_id, rd, &qbuf,
                         &qlen);
-  channel->next_id = generate_unique_id(channel);
-
   if (status != ARES_SUCCESS)
     {
       callback(arg, status, NULL, 0);
       return;
     }
+
+  channel->next_id = generate_unique_id(channel);
 
   /* Allocate and fill in the query structure. */
   qquery = malloc(sizeof(struct qquery));
