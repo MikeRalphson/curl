@@ -1,4 +1,4 @@
-/* $Id: ares_free_hostent.c,v 1.9 2007-06-02 19:42:25 bagder Exp $ */
+/* $Id: ares_free_hostent.c,v 1.10 2007-06-04 21:04:14 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -33,10 +33,8 @@ void ares_free_hostent(struct hostent *host)
   for (p = host->h_aliases; *p; p++)
     free(*p);
   free(host->h_aliases);
-  for(p = host->h_addr_list; *p; p++)
-  {
-    free(*p);
-  }
+  free(host->h_addr_list[0]); /* no matter if there is one or many entries,
+                                 there is only one malloc for all of them */
   free(host->h_addr_list);
   free(host);
 }
