@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.13 2007-04-16 16:34:08 bagder Exp $
+ * $Id: socks.c,v 1.14 2007-06-05 13:42:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -98,6 +98,11 @@ static int blockread_all(struct connectdata *conn, /* connection data */
       result = CURLE_OK;
       break;
     }
+    if(!nread) {
+      result = ~CURLE_OK;
+      break;
+    }
+
     buffersize -= nread;
     buf += nread;
     allread += nread;
