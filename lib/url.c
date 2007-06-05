@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.619 2007-05-30 09:24:06 bagder Exp $
+ * $Id: url.c,v 1.620 2007-06-05 13:41:50 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2346,6 +2346,8 @@ static CURLcode ConnectPlease(struct SessionHandle *data,
       break;
     }
   }
+  if(result)
+    *connected = FALSE; /* mark it as not connected */
 
   return result;
 }
