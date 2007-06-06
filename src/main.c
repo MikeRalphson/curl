@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.418 2007-05-24 20:58:25 bagder Exp $
+ * $Id: main.c,v 1.419 2007-06-06 20:08:40 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2388,7 +2388,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       break;
     case 's':
       /* don't show progress meter, don't show errors : */
-      config->conf |= (CONF_MUTE|CONF_NOPROGRESS);
+      config->conf ^= (CONF_MUTE|CONF_NOPROGRESS);
       config->showerror ^= TRUE; /* toggle off */
       break;
     case 'S':
