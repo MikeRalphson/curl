@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.86 2007-05-31 08:59:44 bagder Exp $
+ * $Id: file.c,v 1.87 2007-06-07 22:24:53 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -253,7 +253,7 @@ static CURLcode file_upload(struct connectdata *conn)
 
     /*skip bytes before resume point*/
     if(data->reqdata.resume_from) {
-      if( nread <= data->reqdata.resume_from ) {
+      if( (curl_off_t)nread <= data->reqdata.resume_from ) {
         data->reqdata.resume_from -= nread;
         nread = 0;
         buf2 = buf;
