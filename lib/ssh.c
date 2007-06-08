@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.35 2007-06-08 16:02:57 jehousley Exp $
+* $Id: ssh.c,v 1.36 2007-06-08 16:19:21 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -755,6 +755,7 @@ CURLcode Curl_scp_done(struct connectdata *conn, CURLcode status,
       infof(conn->data, "Failed to stop libssh2 channel subsystem\n");
     }
 #endif /* !(LIBSSH2_APINO >= 200706012030) */
+    libssh2_channel_free(scp->ssh_channel);
   }
 
   if (scp->ssh_session) {
