@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.244 2007-06-08 17:03:50 danf Exp $
+# $Id: runtests.pl,v 1.245 2007-06-08 17:21:41 danf Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -989,7 +989,7 @@ sub runsocksserver {
     my $pidfile = $SOCKSPIDFILE;
 
     my $flag=$debugprotocol?"-v ":"";
-    my $cmd="ssh -D ${HOSTIP}:$SOCKSPORT -N -F curl_ssh_config ${USER}\@${HOSTIP} -p ${SSHPORT} >log/ssh.log 2>&1";
+    my $cmd="ssh -D ${HOSTIP}:$SOCKSPORT -N -F curl_ssh_config ${USER}\@${HOSTIP} -p ${SSHPORT} -vv >log/ssh.log 2>&1";
     my ($sshpid, $pid2) =
         startnew($cmd, $pidfile,1); # start the server in a new process
 
