@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.331 2007-06-12 12:31:10 jehousley Exp $
+ * $Id: urldata.h,v 1.332 2007-06-12 21:32:45 jehousley Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -425,6 +425,8 @@ typedef enum {
   SSH_SFTP_INIT,
   SSH_SFTP_REALPATH,
   SSH_GET_WORKINGPATH,
+  SSH_SFTP_SHUTDOWN,
+  SSH_SESSION_FREE,
   SSH_QUIT,
   SSH_LAST  /* never used */
 } sshstate;
@@ -453,6 +455,7 @@ struct ssh_conn {
   char rsa[PATH_MAX];
   bool authed;
   sshstate state; /* always use ssh.c:state() to change state! */
+  CURLcode actualCode;  /* the actual error code */
 };
 
 
