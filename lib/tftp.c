@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.47 2007-05-24 21:11:19 bagder Exp $
+ * $Id: tftp.c,v 1.48 2007-06-12 08:15:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -136,7 +136,6 @@ typedef struct tftp_state_data {
   time_t          max_time;
   unsigned short  block;
   struct Curl_sockaddr_storage   local_addr;
-  socklen_t       local_addrlen;
   struct Curl_sockaddr_storage   remote_addr;
   socklen_t       remote_addrlen;
   int             rbytes;
