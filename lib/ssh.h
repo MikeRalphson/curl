@@ -21,12 +21,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.3 2007-01-16 22:22:24 bagder Exp $
+ * $Id: ssh.h,v 1.4 2007-06-12 12:31:10 jehousley Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
 
 CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done);
+CURLcode Curl_ssh_multi_statemach(struct connectdata *conn, bool *done);
 
 CURLcode Curl_scp_do(struct connectdata *conn, bool *done);
 CURLcode Curl_scp_done(struct connectdata *conn, CURLcode, bool premature);
