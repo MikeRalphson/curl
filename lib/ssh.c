@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.39 2007-06-12 13:47:32 jehousley Exp $
+* $Id: ssh.c,v 1.40 2007-06-12 16:15:20 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -302,6 +302,9 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         break;
       }
         
+      /* Set libssh2 to non-blocking, since cURL is all non-blocking */
+      libssh2_session_set_blocking(ssh->ssh_session, 0);
+  
 #ifdef CURL_LIBSSH2_DEBUG
       /*
        * Before we authenticate we should check the hostkey's fingerprint
@@ -654,6 +657,16 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         Curl_safefree(working_path);
         ssh->path = real_path;
         
+        /*
+         *****************************************
+         *****************************************
+         **               TEMPORARY             **
+         *****************************************
+         *****************************************
+         */
+        /* Set libssh2 to non-blocking, since cURL is all non-blocking */
+        libssh2_session_set_blocking(ssh->ssh_session, 1);
+
         /* Connect is all done */
         state(conn, SSH_STOP);
       }
@@ -832,9 +845,6 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
 #endif /* CURL_LIBSSH2_DEBUG */
 
 #if (LIBSSH2_APINO >= 200706012030)
-  /* Set libssh2 to non-blocking, since cURL is all non-blocking */
-  libssh2_session_set_blocking(ssh->ssh_session, 0);
-  
   state(conn, SSH_S_STARTUP);
   
   if (data->state.used_interface == Curl_if_multi)
