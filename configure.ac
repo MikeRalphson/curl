@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.244 2007-05-31 11:34:32 bagder Exp $
+# $Id: configure.ac,v 1.245 2007-06-12 21:39:21 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -203,6 +203,9 @@ AC_SUBST(REQUIRE_LIB_DEPS)
 dnl The install stuff has already been taken care of by the automake stuff
 dnl AC_PROG_INSTALL
 AC_PROG_MAKE_SET
+
+dnl check if there's a way to force code inline
+AC_C_INLINE
 
 dnl **********************************************************************
 dnl Make sure that our checks for headers windows.h winsock.h winsock2.h 
