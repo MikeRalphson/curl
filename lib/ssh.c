@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.38 2007-06-12 12:31:10 jehousley Exp $
+* $Id: ssh.c,v 1.39 2007-06-12 13:47:32 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -451,6 +451,8 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
       if ((data->set.ssh_auth_types & CURLSSH_AUTH_HOST) &&
           (strstr(sshc->authlist, "hostbased") != NULL)) {
         state(conn, SSH_AUTH_HOST);
+      } else {
+        state(conn, SSH_AUTH_KEY_INIT);
       }
       break;
       
