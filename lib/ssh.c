@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.44 2007-06-13 14:01:48 giva Exp $
+* $Id: ssh.c,v 1.45 2007-06-13 17:13:44 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -651,7 +651,10 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
       break;
 
     case SSH_SESSION_FREE:
-      libssh2_session_free(ssh->ssh_session);
+      rc = libssh2_session_free(ssh->ssh_session);
+      if (rc == LIBSSH2_ERROR_EAGAIN) {
+        break;
+      }
       ssh->ssh_session = NULL;
       state(conn, SSH_STOP);
       result = sshc->actualCode;
