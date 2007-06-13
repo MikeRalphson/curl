@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.181 2007-05-30 20:04:44 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.182 2007-06-13 15:02:34 jehousley Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "22 Feb 2007" "libcurl 7.16.2" "libcurl Manual"
@@ -890,6 +890,11 @@ If the server is an IPv6 host, this option will have no effect as of 7.12.3.
 Pass a long. If the value is non-zero, curl will attempt to create any remote
 directory that it fails to CWD into. CWD is the command that changes working
 directory. (Added in 7.10.7)
+
+This setting also applies to SFTP-connections. curl will attempt to create
+the remote directory if it can't obtain a handle to the target-location. The
+creation will fail if a file of the same name as the directory to create
+already exists or lack of permissions prevents creation. (Added in 7.16.3)
 .IP CURLOPT_FTP_RESPONSE_TIMEOUT
 Pass a long.  Causes curl to set a timeout period (in seconds) on the amount
 of time that the server is allowed to take in order to generate a response
