@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.45 2007-06-13 17:13:44 jehousley Exp $
+* $Id: ssh.c,v 1.46 2007-06-14 10:36:53 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1573,8 +1573,14 @@ CURLcode Curl_sftp_do(struct connectdata *conn, bool *done)
               char linkPath[PATH_MAX + 1];
 
               snprintf(linkPath, PATH_MAX, "%s%s", sftp->path, filename);
+#if (LIBSSH2_APINO >= 200706012030)
+              while ((len = libssh2_sftp_readlink(sftp->sftp_session, linkPath,
+                                                  filename, PATH_MAX)) ==
+                     LIBSSH2_ERROR_EAGAIN);
+#else /* !(LIBSSH2_APINO >= 200706012030) */
               len = libssh2_sftp_readlink(sftp->sftp_session, linkPath,
                                           filename, PATH_MAX);
+#endif /* !(LIBSSH2_APINO >= 200706012030) */
               line = realloc(line, totalLen + 4 + len);
               if (!line)
                 return CURLE_OUT_OF_MEMORY;
