@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.12 2007-05-31 11:34:32 bagder Exp $
+ * $Id: select.h,v 1.13 2007-06-14 11:21:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,7 @@
  * Definition of pollfd struct and constants for platforms lacking them.
  */
 
-#ifndef HAVE_POLL
+#ifndef HAVE_SYS_POLL_H
 
 #define POLLIN      0x01
 #define POLLPRI     0x02
