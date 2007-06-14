@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.17 2007-06-11 17:49:25 danf Exp $
+# $Id: sshserver.pl,v 1.18 2007-06-14 21:16:08 bagder Exp $
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
 # Also creates the ssh configuration files (this could be moved to a
 # separate script).
@@ -25,7 +25,7 @@ if ($^O eq 'MSWin32' || $^O eq 'cygwin' || $^O eq 'msys' || $^O eq 'dos' || $^O 
 }
 
 # Where to look for sftp-server
-my @sftppath=qw(/usr/lib/openssh /usr/libexec/openssh /usr/libexec /usr/local/libexec /opt/local/libexec /usr/lib/ssh /usr/libexec/ssh /usr/sbin /usr/lib /usr/lib/ssh/openssh /usr/lib64/ssh /usr/lib64/misc);
+my @sftppath=qw(/usr/lib/openssh /usr/libexec/openssh /usr/libexec /usr/local/libexec /opt/local/libexec /usr/lib/ssh /usr/libexec/ssh /usr/sbin /usr/lib /usr/lib/ssh/openssh /usr/lib64/ssh /usr/lib64/misc /usr/lib/misc);
 
 my $username = $ENV{USER};
 
