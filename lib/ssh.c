@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.47 2007-06-14 13:22:00 jehousley Exp $
+* $Id: ssh.c,v 1.48 2007-06-16 16:58:02 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1005,8 +1005,8 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
     /*
      * Get the "home" directory
      */
-    if (libssh2_sftp_realpath(ssh->sftp_session, ".", tempHome, PATH_MAX-1)
-        > 0) {
+    i = libssh2_sftp_realpath(ssh->sftp_session, ".", tempHome, PATH_MAX-1);
+    if (i > 0) {
       /* It seems that this string is not always NULL terminated */
       tempHome[i] = '\0';
       ssh->homedir = (char *)strdup(tempHome);
