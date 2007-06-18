@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.48 2007-06-16 16:58:02 jehousley Exp $
+* $Id: ssh.c,v 1.49 2007-06-18 22:28:40 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -318,8 +318,8 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
 
       /* The fingerprint points to static storage (!), don't free() it. */
       infof(data, "Fingerprint: ");
-      for (i = 0; i < 16; i++) {
-        infof(data, "%02X ", (unsigned char) fingerprint[i]);
+      for (rc = 0; rc < 16; rc++) {
+        infof(data, "%02X ", (unsigned char) fingerprint[rc]);
       }
       infof(data, "\n");
 #endif /* CURL_LIBSSH2_DEBUG */
