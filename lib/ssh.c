@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.50 2007-06-19 11:31:33 jehousley Exp $
+* $Id: ssh.c,v 1.51 2007-06-19 11:50:08 bagder Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -116,6 +116,11 @@
 /* The last #include file should be: */
 #ifdef CURLDEBUG
 #include "memdebug.h"
+#endif
+
+#ifndef PATH_MAX
+#define PATH_MAX 1024 /* just an extra precaution since there are systems that
+                         have their definition hidden well */
 #endif
 
 #ifndef LIBSSH2_SFTP_S_IRUSR
