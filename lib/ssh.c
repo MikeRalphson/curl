@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.51 2007-06-19 11:50:08 bagder Exp $
+* $Id: ssh.c,v 1.52 2007-06-19 13:23:21 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -403,7 +403,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
           infof(conn->data, "Using ssh private key file %s\n", sshc->rsa);
         }
 
-        if (sshc->rsa_pub && sshc->rsa_pub) {
+        if (sshc->rsa_pub && sshc->rsa) {
           state(conn, SSH_AUTH_PKEY);
         } else {
           /* One or both aprint()'s might have failed,
