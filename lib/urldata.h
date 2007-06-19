@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.332 2007-06-12 21:32:45 jehousley Exp $
+ * $Id: urldata.h,v 1.333 2007-06-19 11:31:33 jehousley Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -451,8 +451,8 @@ struct SSHPROTO {
 struct ssh_conn {
   const char *authlist; /* List of auth. methods, managed by libssh2 */
   const char *passphrase;
-  char rsa_pub[PATH_MAX];
-  char rsa[PATH_MAX];
+  char *rsa_pub;
+  char *rsa;
   bool authed;
   sshstate state; /* always use ssh.c:state() to change state! */
   CURLcode actualCode;  /* the actual error code */
