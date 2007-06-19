@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.414 2007-06-18 21:04:45 bagder Exp $
+ * $Id: ftp.c,v 1.415 2007-06-19 12:33:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3691,6 +3691,12 @@ CURLcode ftp_parse_url_path(struct connectdata *conn)
 
   case FTPFILE_SINGLECWD:
     /* get the last slash */
+    if(!path_to_use[0]) {
+      /* no dir, no file */
+      ftpc->dirdepth = 0;
+      ftp->file = NULL;
+      break;
+    }
     slash_pos=strrchr(cur_pos, '/');
     if(slash_pos || !*cur_pos) {
       ftpc->dirs = (char **)calloc(1, sizeof(ftpc->dirs[0]));
@@ -3773,7 +3779,7 @@ CURLcode ftp_parse_url_path(struct connectdata *conn)
     ftp->file = cur_pos;  /* the rest is the file name */
   }
 
-  if(*ftp->file) {
+  if(ftp->file && *ftp->file) {
     ftp->file = curl_easy_unescape(conn->data, ftp->file, 0, NULL);
     if(NULL == ftp->file) {
       freedirs(conn);
