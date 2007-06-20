@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.52 2007-06-19 13:23:21 jehousley Exp $
+* $Id: ssh.c,v 1.53 2007-06-20 11:30:35 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -384,11 +384,26 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
           sshc->rsa_pub = aprintf("%s", data->set.ssh_public_key);
         else if (home)
           sshc->rsa_pub = aprintf("%s/.ssh/id_dsa.pub", home);
+        
+        if (sshc->rsa_pub == NULL) {
+          curl_free(home);
+          state(conn, SSH_SESSION_FREE);
+          sshc->actualCode = CURLE_OUT_OF_MEMORY;
+          break;
+        }
 
         if (data->set.ssh_private_key)
           sshc->rsa = aprintf("%s", data->set.ssh_private_key);
         else if (home)
           sshc->rsa = aprintf("%s/.ssh/id_dsa", home);
+
+        if (sshc->rsa == NULL) {
+          curl_free(home);
+          curl_free(sshc->rsa_pub);
+          state(conn, SSH_SESSION_FREE);
+          sshc->actualCode = CURLE_OUT_OF_MEMORY;
+          break;
+        }
 
         sshc->passphrase = data->set.key_passwd;
         if (!sshc->passphrase)
@@ -396,23 +411,10 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
 
         curl_free(home);
 
-        if (sshc->rsa_pub) {
-          infof(conn->data, "Using ssh public key file %s\n", sshc->rsa_pub);
-        }
-        if (sshc->rsa) {
-          infof(conn->data, "Using ssh private key file %s\n", sshc->rsa);
-        }
+        infof(conn->data, "Using ssh public key file %s\n", sshc->rsa_pub);
+        infof(conn->data, "Using ssh private key file %s\n", sshc->rsa);
 
-        if (sshc->rsa_pub && sshc->rsa) {
-          state(conn, SSH_AUTH_PKEY);
-        } else {
-          /* One or both aprint()'s might have failed,
-             move on to password authentication */
-          curl_free(sshc->rsa_pub);
-          curl_free(sshc->rsa);
-
-          state(conn, SSH_AUTH_PASS_INIT);
-        }
+        state(conn, SSH_AUTH_PKEY);
       } else {
         state(conn, SSH_AUTH_PASS_INIT);
       }
