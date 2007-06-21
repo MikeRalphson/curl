@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.620 2007-06-05 13:41:50 bagder Exp $
+ * $Id: url.c,v 1.621 2007-06-21 14:23:38 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -378,8 +378,11 @@ CURLcode Curl_close(struct SessionHandle *data)
 #endif /* CURL_DOES_CONVERSIONS && HAVE_ICONV */
 
   /* No longer a dirty share, if it exists */
-  if (data->share)
+  if (data->share) {
+    Curl_share_lock(data, CURL_LOCK_DATA_SHARE, CURL_LOCK_ACCESS_SINGLE);
     data->share->dirty--;
+    Curl_share_unlock(data, CURL_LOCK_DATA_SHARE);
+  }
 
   free(data);
   return CURLE_OK;
