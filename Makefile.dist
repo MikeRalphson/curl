@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.dist,v 1.37 2007-04-12 20:41:24 bagder Exp $
+# $Id: Makefile.dist,v 1.38 2007-06-22 21:10:41 gknauf Exp $
 ###########################################################################
 
 VC=vc6
@@ -233,6 +233,10 @@ netware-zlib:
 netware-clean:
 	$(MAKE) -C lib -f Makefile.netware clean
 	$(MAKE) -C src -f Makefile.netware clean
+
+netware-install:
+	$(MAKE) -C lib -f Makefile.netware install
+	$(MAKE) -C src -f Makefile.netware install
 
 unix: all
 
