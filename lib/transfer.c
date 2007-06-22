@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.354 2007-05-24 21:11:00 bagder Exp $
+ * $Id: transfer.c,v 1.355 2007-06-22 20:24:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -379,7 +379,6 @@ CURLcode Curl_readwrite(struct connectdata *conn,
         /* receive data from the network! */
         readrc = Curl_read(conn, conn->sockfd, k->buf, bytestoread, &nread);
 
-        DEBUGF(infof(data, "Read %ld bytes from stream (readrc = %d)\n", nread, readrc));
         /* subzero, this would've blocked */
         if(0 > readrc)
           break; /* get out of loop */
