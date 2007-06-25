@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.355 2007-06-22 20:24:11 bagder Exp $
+ * $Id: transfer.c,v 1.356 2007-06-25 13:58:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -577,11 +577,12 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                    (k->httpversion >= 11) )
                   /* On HTTP 1.1, when connection is not to get closed, but no
                      Content-Length nor Content-Encoding chunked have been
-                     received, there is no body in this response. We don't set
-                     stop_reading TRUE since that would also prevent necessary
-                     authentication actions to take place. */
-                  conn->bits.no_body = TRUE;
-
+                     received, according to RFC2616 section 4.4 point 5, we
+                     assume that the server will close the connection to
+                     signal the end of the document. */
+                  infof(data, "no chunk, no close, no size. Assume close to "
+                        "signal end\n");
+                  conn->bits.close = TRUE;
               }
 
               if (417 == k->httpcode) {
