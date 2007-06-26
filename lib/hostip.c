@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.183 2007-04-25 03:00:10 yangtse Exp $
+ * $Id: hostip.c,v 1.184 2007-06-26 21:09:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -131,7 +131,8 @@ static void freednsentry(void *freethis);
 void Curl_global_host_cache_init(void)
 {
   if (!host_cache_initialized) {
-    Curl_hash_init(&hostname_cache, 7, freednsentry);
+    Curl_hash_init(&hostname_cache, 7, Curl_hash_str, Curl_str_key_compare,
+                   freednsentry);
     host_cache_initialized = 1;
   }
 }
@@ -537,7 +538,7 @@ static void freednsentry(void *freethis)
  */
 struct curl_hash *Curl_mk_dnscache(void)
 {
-  return Curl_hash_alloc(7, freednsentry);
+  return Curl_hash_alloc(7, Curl_hash_str, Curl_str_key_compare, freednsentry);
 }
 
 #ifdef CURLRES_ADDRINFO_COPY
