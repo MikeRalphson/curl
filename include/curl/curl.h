@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.318 2007-05-08 11:34:31 bagder Exp $
+ * $Id: curl.h,v 1.319 2007-06-27 20:15:48 jehousley Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1075,6 +1075,11 @@ typedef enum {
      data to the appliction even when it is encoded/compressed */
   CINIT(HTTP_TRANSFER_DECODING, LONG, 157),
   CINIT(HTTP_CONTENT_DECODING, LONG, 158),
+
+  /* Permission used when creating new files and directories on the remote
+     server for protocols that support it, SFTP/SCP/FILE */
+  CINIT(NEW_FILE_PERMS, LONG, 159),
+  CINIT(NEW_DIRECTORY_PERMS, LONG, 160),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

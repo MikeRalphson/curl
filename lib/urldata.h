@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.333 2007-06-19 11:31:33 jehousley Exp $
+ * $Id: urldata.h,v 1.334 2007-06-27 20:15:48 jehousley Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1356,6 +1356,8 @@ struct UserDefined {
                             transfer-encoded (chunked, compressed) */
   bool http_ce_skip;     /* pass the raw body data to the user, even when
                             content-encoded (chunked, compressed) */
+  long new_file_perms;    /* Permissions to use when creating remote files */
+  long new_directory_perms; /* Permissions to use when creating remote dirs */
 };
 
 struct Names {

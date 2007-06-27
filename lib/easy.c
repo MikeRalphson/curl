@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.103 2007-05-31 11:34:32 bagder Exp $
+ * $Id: easy.c,v 1.104 2007-06-27 20:15:48 jehousley Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -731,6 +731,8 @@ void curl_easy_reset(CURL *curl)
 
   data->set.ssh_auth_types = CURLSSH_AUTH_DEFAULT; /* defaults to any auth
                                                       type */
+  data->set.new_file_perms = 0644;    /* Default permissions */
+  data->set.new_directory_perms = 0755; /* Default permissions */
 }
 
 #ifdef CURL_DOES_CONVERSIONS
