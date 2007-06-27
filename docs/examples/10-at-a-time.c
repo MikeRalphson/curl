@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: 10-at-a-time.c,v 1.2 2006-10-13 14:01:19 bagder Exp $
+ * $Id: 10-at-a-time.c,v 1.3 2007-06-27 21:29:29 bagder Exp $
  *
  * Example application source code using the multi interface to download many
  * files, but with a capped maximum amount of simultaneous transfers.
@@ -155,6 +155,8 @@ int main(void)
       }
       if (C < CNT) {
         init(cm, C++);
+        U++; /* just to prevent it from remaining at 0 if there are more
+                URLs to get */
       }
     }
   }
