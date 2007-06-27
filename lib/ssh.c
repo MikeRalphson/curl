@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.55 2007-06-26 20:23:10 jehousley Exp $
+* $Id: ssh.c,v 1.56 2007-06-27 10:12:48 gknauf Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1493,7 +1493,7 @@ CURLcode Curl_sftp_do(struct connectdata *conn, bool *done)
             if (tmpLine == NULL) {
               return CURLE_OUT_OF_MEMORY;
             }
-            result = Curl_client_write(conn, CLIENTWRITE_BODY, tmpLine, 0);
+            res = Curl_client_write(conn, CLIENTWRITE_BODY, tmpLine, 0);
             Curl_safefree(tmpLine);
           }
           else {
