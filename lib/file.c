@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.88 2007-06-27 20:15:48 jehousley Exp $
+ * $Id: file.c,v 1.89 2007-06-28 11:11:29 jehousley Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -231,8 +231,7 @@ static CURLcode file_upload(struct connectdata *conn)
       failf(data, "Can't open %s for writing", file->path);
       return CURLE_WRITE_ERROR;
     }
-    close(fd);
-    fp = fopen(file->path, "wb");
+    fp = fdopen(fd, "wb");
   }
 
   if(!fp) {

@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.52 2007-05-15 00:36:56 danf Exp $
+ * $Id: memdebug.c,v 1.53 2007-06-28 11:11:29 jehousley Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -277,6 +277,16 @@ FILE *curl_fopen(const char *file, const char *mode,
   if(logfile)
     fprintf(logfile, "FILE %s:%d fopen(\"%s\",\"%s\") = %p\n",
             source, line, file, mode, res);
+  return res;
+}
+
+FILE *curl_fdopen(int filedes, const char *mode,
+                  int line, const char *source)
+{
+  FILE *res=(fdopen)(filedes, mode);
+  if(logfile)
+    fprintf(logfile, "FILE %s:%d fdopen(\"%d\",\"%s\") = %p\n",
+            source, line, filedes, mode, res);
   return res;
 }
 
