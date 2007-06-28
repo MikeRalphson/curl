@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.51 2007-04-01 13:59:50 gknauf Exp $
+# $Id: testcurl.pl,v 1.52 2007-06-28 01:20:30 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.51 $';
+$version='$Revision: 1.52 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -477,13 +477,14 @@ if ($configurebuild) {
     mydie "configure didn't work";
   }
 } else {
+  logit "Copying files to build dir...";
   if (($^O eq 'MSWin32') && ($targetos !~ /netware/)) {
     system("xcopy /s /q ..\\$CURLDIR .");
     system("buildconf.bat");
   }
   elsif (($^O eq 'linux') || ($targetos =~ /netware/)) {
-    system("cp -afr ../$CURLDIR/* ."); 
-    system("cp -af ../$CURLDIR/Makefile.dist Makefile"); 
+    system("cp -afr --no-preserve=ownership ../$CURLDIR/* ."); 
+    system("cp -af --no-preserve=ownership ../$CURLDIR/Makefile.dist Makefile"); 
     system("$make -i -C lib -f Makefile.$targetos prebuild");
     system("$make -i -C src -f Makefile.$targetos prebuild");
   }
