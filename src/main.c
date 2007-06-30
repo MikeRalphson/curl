@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.420 2007-06-20 21:57:28 bagder Exp $
+ * $Id: main.c,v 1.421 2007-06-30 20:10:18 gknauf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -47,8 +47,13 @@
 
 #define CURLseparator   "--_curl_--"
 
+#ifdef NETWARE
 #ifdef __NOVELL_LIBC__
 #include <screen.h>
+#else
+#include <nwconio.h>
+#define mkdir mkdir_510
+#endif
 #endif
 
 #include "version.h"
@@ -731,7 +736,7 @@ static void help(void)
   };
   for(i=0; helptext[i]; i++) {
     puts(helptext[i]);
-#ifdef __NOVELL_LIBC__
+#ifdef NETWARE
     if (i && ((i % 23) == 0))
       pressanykey();
 #endif

@@ -20,15 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.57 2006-09-08 05:18:07 yangtse Exp $
+ * $Id: hostip.h,v 1.58 2007-06-30 20:08:13 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include "hash.h"
 
-#if (defined(NETWARE) && defined(__NOVELL_LIBC__))
+#ifdef NETWARE
 #undef in_addr_t
-#define in_addr_t uint32_t
+#define in_addr_t unsigned long
 #endif
 
 /*

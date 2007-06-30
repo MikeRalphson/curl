@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.26 2006-01-09 13:17:14 bagder Exp $
+ * $Id: timeval.c,v 1.27 2007-06-30 20:08:13 gknauf Exp $
  ***************************************************************************/
 
 #include "timeval.h"
@@ -68,6 +68,9 @@ static int gettimeofday(struct timeval *tp, void *nothing)
 }
 #else /* WIN32 */
 /* non-win32 version of Curl_gettimeofday() */
+#if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
+#include <sys/timeval.h>
+#endif
 static int gettimeofday(struct timeval *tp, void *nothing)
 {
   (void)nothing; /* we don't support specific time-zones */
