@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlutil.c,v 1.2 2007-06-30 20:10:18 gknauf Exp $
+ * $Id: curlutil.c,v 1.3 2007-06-30 23:45:57 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -70,9 +70,6 @@ static int gettimeofday(struct timeval *tp, void *nothing)
 }
 #else /* WIN32 */
 /* non-win32 version of Curl_gettimeofday() */
-#if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
-#include <sys/timeval.h>
-#endif
 static int gettimeofday(struct timeval *tp, void *nothing)
 {
   (void)nothing; /* we don't support specific time-zones */
