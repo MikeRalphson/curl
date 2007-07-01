@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.39 2007-02-26 04:24:26 giva Exp $
+ * $Id: hostip6.c,v 1.40 2007-07-01 22:01:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -279,9 +279,10 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
     /* the given address is numerical only, prevent a reverse lookup */
     hints.ai_flags = AI_NUMERICHOST;
   }
-#if 0 /* removed nov 8 2005 before 7.15.1 */
-  else
-    hints.ai_flags = AI_CANONNAME;
+#ifdef HAVE_GSSAPI
+  if(conn->data->set.krb)
+    /* if krb is used, we (might) need the canonical host name */
+    hints.ai_flags |= AI_CANONNAME;
 #endif
 
   if(port) {

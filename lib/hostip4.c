@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.39 2007-06-30 20:08:13 gknauf Exp $
+ * $Id: hostip4.c,v 1.40 2007-07-01 22:01:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -379,6 +379,9 @@ Curl_addrinfo *Curl_he2ai(const struct hostent *he, int port)
     /* make the ai_addr point to the address immediately following this struct
        and use that area to store the address */
     ai->ai_addr = (struct sockaddr *) ((char*)ai + sizeof(Curl_addrinfo));
+
+    /* FIXME: need to free this eventually */
+    ai->ai_canonname = strdup(he->h_name);
 
     /* leave the rest of the struct filled with zero */
 

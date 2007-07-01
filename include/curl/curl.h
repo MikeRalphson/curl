@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.320 2007-06-30 20:16:03 gknauf Exp $
+ * $Id: curl.h,v 1.321 2007-07-01 22:01:19 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -736,10 +736,12 @@ typedef enum {
   /* Set the interface string to use as outgoing network interface */
   CINIT(INTERFACE, OBJECTPOINT, 62),
 
-  /* Set the krb4 security level, this also enables krb4 awareness.  This is a
-   * string, 'clear', 'safe', 'confidential' or 'private'.  If the string is
-   * set but doesn't match one of these, 'private' will be used.  */
-  CINIT(KRB4LEVEL, OBJECTPOINT, 63),
+  /* Set the krb4/5 security level, this also enables krb4/5 awareness.  This
+   * is a string, 'clear', 'safe', 'confidential' or 'private'.  If the string
+   * is set but doesn't match one of these, 'private' will be used.  */
+  CINIT(KRBLEVEL, OBJECTPOINT, 63),
+  /* This is for compatibility with older curl releases */
+#define CURLOPT_KRB4LEVEL CURLOPT_KRBLEVEL
 
   /* Set if we should verify the peer in ssl handshake, set 1 to verify. */
   CINIT(SSL_VERIFYPEER, LONG, 64),

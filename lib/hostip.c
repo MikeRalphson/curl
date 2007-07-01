@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.184 2007-06-26 21:09:28 bagder Exp $
+ * $Id: hostip.c,v 1.185 2007-07-01 22:01:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -575,6 +575,8 @@ void Curl_freeaddrinfo(Curl_addrinfo *ai)
   /* walk over the list and free all entries */
   while(ai) {
     next = ai->ai_next;
+    if(ai->ai_canonname)
+      free(ai->ai_canonname);
     free(ai);
     ai = next;
   }
