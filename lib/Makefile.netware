@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.51 2007-06-30 23:53:54 gknauf Exp $
+# $Id: Makefile.netware,v 1.52 2007-07-01 01:33:51 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -36,7 +36,7 @@ endif
 TARGET  = libcurl
 VERSION	= $(LIBCURL_VERSION)
 COPYR	= Copyright (C) 1996 - 2007, Daniel Stenberg, <daniel@haxx.se>
-DESCR	= cURL libcurl $(LIBCURL_VERSION_STR) - http://curl.haxx.se
+DESCR	= cURL libcurl $(LIBCURL_VERSION_STR) ($(LIBARCH)) - http://curl.haxx.se
 MTSAFE	= YES
 STACK	= 64000
 SCREEN	= none
