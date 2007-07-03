@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.23 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.24 2007-07-03 16:00:36 gknauf Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -295,7 +295,11 @@ static char *lookup_service(unsigned short port, int flags,
 #endif
 #else
           /* Lets just hope the OS uses TLS! */
+#if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
+          sep = getservbyport(port, (char*)proto);
+#else
           sep = getservbyport(port, proto);
+#endif
 #endif
         }
       if (sep && sep->s_name)

@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.56 2007-06-02 20:09:23 bagder Exp $ */
+/* $Id: ares_init.c,v 1.57 2007-07-03 16:00:36 gknauf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -23,7 +23,10 @@
 #include <malloc.h>
 
 #else
+#ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>
+#endif
+
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
