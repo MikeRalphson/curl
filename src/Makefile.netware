@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.48 2007-07-02 18:42:14 gknauf Exp $
+# $Id: Makefile.netware,v 1.49 2007-07-03 00:12:03 gknauf Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -134,6 +134,9 @@ INCLUDES = -I$(CURL_INC) -I$(CURL_LIB)
 
 ifdef LINK_STATIC
 	LDLIBS	= $(CURL_LIB)/libcurl.$(LIBEXT)
+ifdef WITH_ARES
+	LDLIBS += $(ARES_LIB)/libcares.$(LIBEXT)
+endif
 else
 	MODULES	= libcurl.nlm
 	IMPORTS	= @$(CURL_LIB)/libcurl.imp
