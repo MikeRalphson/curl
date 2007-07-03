@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.31 2007-07-03 16:00:36 gknauf Exp $ */
+/* $Id: ares.h,v 1.32 2007-07-03 16:21:57 gknauf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -25,6 +25,9 @@
    libc5-based Linux systems. Only include it on system that are known to
    require it! */
 #include <sys/select.h>
+#endif
+#if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
+#include <sys/bsdskt.h>
 #endif
 
 #if defined(WATT32)
