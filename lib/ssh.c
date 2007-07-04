@@ -18,7 +18,7 @@
 * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 * KIND, either express or implied.
 *
-* $Id: ssh.c,v 1.58 2007-06-27 20:15:48 jehousley Exp $
+* $Id: ssh.c,v 1.59 2007-07-04 22:54:29 jehousley Exp $
 ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1125,7 +1125,7 @@ CURLcode Curl_scp_do(struct connectdata *conn, bool *done)
 
   if (conn->data->set.upload) {
     if(conn->data->set.infilesize < 0) {
-      failf(conn->data, "SCP requries a known file size for upload");
+      failf(conn->data, "SCP requires a known file size for upload");
       return CURLE_UPLOAD_FAILED;
     }
     /*
