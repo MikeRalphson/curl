@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.57 2007-07-07 16:26:02 gknauf Exp $
+# $Id: Makefile.netware,v 1.58 2007-07-08 23:18:47 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -295,6 +295,7 @@ endif
 ifdef XDCDATA
 	@echo $(DL)xdcdata $(XDCDATA)$(DL) >> $@
 endif
+	@echo $(DL)flag_on 64$(DL) >> $@
 ifeq ($(LIBARCH),CLIB)
 	@echo $(DL)start _Prelude$(DL) >> $@
 	@echo $(DL)exit _Stop$(DL) >> $@
@@ -307,7 +308,6 @@ ifeq ($(LIBARCH),CLIB)
 #	@echo $(DL)import @$(SDK_LDAP)/clib/imports/ldapx.imp$(DL) >> $@
 	@echo $(DL)module clib$(DL) >> $@
 else
-	@echo $(DL)flag_on 64$(DL) >> $@
 	@echo $(DL)pseudopreemption$(DL) >> $@
 	@echo $(DL)start _LibCPrelude$(DL) >> $@
 	@echo $(DL)exit _LibCPostlude$(DL) >> $@
