@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.33 2007-07-07 16:26:02 gknauf Exp $
+# $Id: Makefile.netware,v 1.34 2007-07-08 23:17:56 gknauf Exp $
 #
 ## Makefile for building libcares (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -51,7 +51,10 @@ endif
 # Include the version info retrieved from curlver.h
 -include $(OBJDIR)/version.inc
 
-# The following line defines your compiler.
+# The following lines defines your compiler.
+ifdef CWFolder
+	METROWERKS = $(CWFolder)
+endif
 ifdef METROWERKS
 	# MWCW_PATH = $(subst \,/,$(METROWERKS))/Novell Support
 	MWCW_PATH = $(subst \,/,$(METROWERKS))/Novell Support/Metrowerks Support
