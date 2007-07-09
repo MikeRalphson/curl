@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.58 2007-07-08 23:18:47 gknauf Exp $
+# $Id: Makefile.netware,v 1.59 2007-07-09 02:00:39 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -60,7 +60,10 @@ else
 	OBJDIR	= debug
 endif
 
-# The following line defines your compiler.
+# The following lines defines your compiler.
+ifdef CWFolder
+	METROWERKS = $(CWFolder)
+endif
 ifdef METROWERKS
 	# MWCW_PATH = $(subst \,/,$(METROWERKS))/Novell Support
 	MWCW_PATH = $(subst \,/,$(METROWERKS))/Novell Support/Metrowerks Support
