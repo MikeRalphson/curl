@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.325 2007-04-10 22:52:50 danf Exp $
+ * $Id: http.c,v 1.326 2007-07-10 22:31:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1397,6 +1397,9 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
                   }
                   else if(Curl_compareheader(line_start,
                                              "Connection:", "close"))
+                    closeConnection = TRUE;
+                  else if(Curl_compareheader(line_start,
+                                             "Proxy-Connection:", "close"))
                     closeConnection = TRUE;
                   else if(2 == sscanf(line_start, "HTTP/1.%d %d",
                                       &subversion,
