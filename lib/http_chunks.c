@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.36 2007-02-22 06:22:19 yangtse Exp $
+ * $Id: http_chunks.c,v 1.37 2007-07-10 22:45:01 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -118,9 +118,8 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
 
   /* the original data is written to the client, but we go on with the
      chunk read process, to properly calculate the content length*/
-  if ( data->set.http_te_skip )
+  if (data->set.http_te_skip && !k->ignorebody)
     Curl_client_write(conn, CLIENTWRITE_BODY, datap,datalen);
-
 
   while(length) {
     switch(ch->state) {
