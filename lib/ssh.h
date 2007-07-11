@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.5 2007-07-10 22:26:32 jehousley Exp $
+ * $Id: ssh.h,v 1.6 2007-07-11 08:55:28 gknauf Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
@@ -50,7 +50,7 @@ CURLcode Curl_sftp_doing(struct connectdata *conn,
                          bool *dophase_done);
 CURLcode Curl_scp_doing(struct connectdata *conn,
                         bool *dophase_done);
-#endif (LIBSSH2_APINO >= 200706012030)
+#endif /* (LIBSSH2_APINO >= 200706012030) */
 
 #endif /* USE_LIBSSH2 */
 
