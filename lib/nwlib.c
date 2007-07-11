@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nwlib.c,v 1.7 2007-06-30 20:02:51 gknauf Exp $
+ * $Id: nwlib.c,v 1.8 2007-07-11 21:47:31 gknauf Exp $
  ***************************************************************************/
 
 #ifdef NETWARE /* Novell NetWare */
@@ -307,13 +307,6 @@ void DisposeThreadData( void *data )
 #else /* __NOVELL_LIBC__ */
 /* For native CLib-based NLM seems we can do a bit more simple. */
 #include <nwthread.h>
-
-/* Make the CLIB Ctx stuff link */
-/*
-#include <stdio.h>
-#include <netdb.h>
-NETDB_DEFINE_CONTEXT
-*/
 
 int main ( void )
 {

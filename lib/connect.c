@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.172 2007-06-30 20:08:13 gknauf Exp $
+ * $Id: connect.c,v 1.173 2007-07-11 21:47:31 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -63,9 +63,6 @@
 #include <sys/filio.h>
 #endif
 #ifdef NETWARE
-#ifndef __NOVELL_LIBC__
-NETDB_DEFINE_CONTEXT
-#endif
 #undef in_addr_t
 #define in_addr_t unsigned long
 #endif
