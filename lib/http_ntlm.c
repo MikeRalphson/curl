@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.63 2007-04-10 22:52:50 danf Exp $
+ * $Id: http_ntlm.c,v 1.64 2007-07-11 09:08:03 gknauf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -46,6 +46,10 @@
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+
+#if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
+#include <netdb.h>
 #endif
 
 #include "urldata.h"
