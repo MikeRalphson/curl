@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.624 2007-07-10 22:26:32 jehousley Exp $
+ * $Id: url.c,v 1.625 2007-07-11 09:03:22 gknauf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3364,7 +3364,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 #if (LIBSSH2_APINO >= 200706012030)
     conn->curl_connecting = Curl_ssh_multi_statemach;
     conn->curl_doing = Curl_scp_doing;
-#endif (LIBSSH2_APINO >= 200706012030)
+#endif /* (LIBSSH2_APINO >= 200706012030) */
     conn->curl_do_more = (Curl_do_more_func)ZERO_NULL;
 #else
     failf(data, LIBCURL_NAME
@@ -3383,7 +3383,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 #if (LIBSSH2_APINO >= 200706012030)
     conn->curl_connecting = Curl_ssh_multi_statemach;
     conn->curl_doing = Curl_sftp_doing;
-#endif (LIBSSH2_APINO >= 200706012030)
+#endif /* (LIBSSH2_APINO >= 200706012030) */
     conn->curl_do_more = (Curl_do_more_func)ZERO_NULL;
 #else
     failf(data, LIBCURL_NAME
