@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.132 2007-06-30 23:45:57 gknauf Exp $
+ * $Id: setup.h,v 1.133 2007-07-11 21:34:22 gknauf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -315,6 +315,7 @@ int fileno( FILE *stream);
 #endif
 
 #ifdef NETWARE
+int netware_init(void);
 #ifndef __NOVELL_LIBC__
 #include <sys/bsdskt.h>
 #include <sys/timeval.h>

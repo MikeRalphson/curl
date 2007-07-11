@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.104 2007-06-27 20:15:48 jehousley Exp $
+ * $Id: easy.c,v 1.105 2007-07-11 21:34:22 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -238,6 +238,12 @@ CURLcode curl_global_init(long flags)
   if(!amiga_init()) {
     DEBUGF(fprintf(stderr, "Error: amiga_init failed\n"));
     return CURLE_FAILED_INIT;
+  }
+#endif
+
+#ifdef NETWARE
+  if(netware_init()) {
+    DEBUGF(fprintf(stderr, "Warning: LONG namespace not available\n"));
   }
 #endif
 
