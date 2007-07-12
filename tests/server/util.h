@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.13 2007-02-22 02:51:55 yangtse Exp $
+ * $Id: util.h,v 1.14 2007-07-12 01:07:49 gknauf Exp $
  ***************************************************************************/
 
 void logmsg(const char *msg, ...);
@@ -48,5 +48,7 @@ void win32_cleanup(void);
 
 /* returns the path name to the test case file */
 char *test2file(long testno);
+
+void go_sleep(long ms);
 
 #endif  /* __SERVER_UTIL_H */
