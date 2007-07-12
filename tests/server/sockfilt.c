@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.31 2007-07-12 10:54:15 gknauf Exp $
+ * $Id: sockfilt.c,v 1.32 2007-07-12 17:03:45 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -399,13 +399,15 @@ static curl_socket_t sockdaemon(curl_socket_t sock,
 #endif /* ENABLE_IPV6 */
   int flag = 1;
   int rc;
-  int maxretr = 100;
+  int maxretr = 12;
+  int delay= 10;
 
   rc = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
        (void *)&flag, sizeof(flag));
   while ((rc < 0) && maxretr) {
     maxretr--;
-    go_sleep(50);
+    go_sleep(delay);
+    delay *= 2; /* double the sleep for next attempt */
     rc = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
          (void *)&flag, sizeof(flag));
   }
