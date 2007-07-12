@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: post-callback.c,v 1.5 2005-12-14 13:10:14 bagder Exp $
+ * $Id: post-callback.c,v 1.6 2007-07-12 21:11:10 danf Exp $
  *
  * An example source code that issues a HTTP POST and we provide the actual
  * data through a read callback.
@@ -15,10 +15,10 @@
 #include <string.h>
 #include <curl/curl.h>
 
-char data[]="this is what we post to the silly web server";
+const char data[]="this is what we post to the silly web server";
 
 struct WriteThis {
-  char *readptr;
+  const char *readptr;
   int sizeleft;
 };
 
@@ -55,7 +55,7 @@ int main(void)
     curl_easy_setopt(curl, CURLOPT_URL,
                      "http://receivingsite.com.pooh/index.cgi");
     /* Now specify we want to POST data */
-    curl_easy_setopt(curl, CURLOPT_POST, TRUE);
+    curl_easy_setopt(curl, CURLOPT_POST, 1);
 
     /* we want to use our own read function */
     curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
