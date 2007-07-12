@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.625 2007-07-11 09:03:22 gknauf Exp $
+ * $Id: url.c,v 1.626 2007-07-12 20:15:38 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4070,6 +4070,12 @@ static CURLcode SetupConnection(struct connectdata *conn,
     return result;
   }
   *protocol_done = FALSE; /* default to not done */
+
+  /* set proxy_connect_closed to false unconditionally already here since it
+     is used strictly to provide extra information to a parent function in the
+     case of proxy CONNECT failures and we must make sure we don't have it
+     lingering set from a previous invoke */
+  conn->bits.proxy_connect_closed = FALSE;
 
   /*************************************************************
    * Set user-agent for HTTP
