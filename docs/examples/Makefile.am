@@ -1,12 +1,12 @@
 #
-# $Id: Makefile.am,v 1.43 2007-07-12 20:38:54 danf Exp $
+# $Id: Makefile.am,v 1.44 2007-07-12 20:54:54 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
 
 EXTRA_DIST = README Makefile.example makefile.dj $(COMPLICATED_EXAMPLES)
 
-INCLUDES = -I$(top_srcdir)/include/curl \
+INCLUDES = -I$(top_srcdir)/include \
            -I$(top_builddir)/lib   \
            -I$(top_srcdir)/lib
 
