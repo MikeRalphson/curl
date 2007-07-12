@@ -5,17 +5,22 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: anyauthput.c,v 1.1 2004-11-24 16:11:35 bagder Exp $
+ * $Id: anyauthput.c,v 1.2 2007-07-12 20:55:17 bagder Exp $
  */
 
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include <curl/curl.h>
 
 #if LIBCURL_VERSION_NUM < 0x070c03
 #error "upgrade your libcurl to no less than 7.12.3"
+#endif
+
+#ifndef TRUE
+#define TRUE 1
 #endif
 
 /*
