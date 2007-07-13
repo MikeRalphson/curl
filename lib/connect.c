@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.174 2007-07-13 20:04:53 bagder Exp $
+ * $Id: connect.c,v 1.175 2007-07-13 20:17:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -577,6 +577,8 @@ CURLcode Curl_is_connected(struct connectdata *conn,
     data->state.os_errno = error;
     infof(data, "Connection failed\n");
     if(trynextip(conn, sockindex, connected)) {
+      failf(data, "Failed connect to %s:%d; %s",
+            conn->host.name, conn->port, Curl_strerror(conn, error));
       code = CURLE_COULDNT_CONNECT;
     }
   }
@@ -596,7 +598,7 @@ CURLcode Curl_is_connected(struct connectdata *conn,
       error = SOCKERRNO;
       data->state.os_errno = error;
       failf(data, "Failed connect to %s:%d; %s",
-            conn->host.name, conn->port, Curl_strerror(conn,error));
+            conn->host.name, conn->port, Curl_strerror(conn, error));
       code = CURLE_COULDNT_CONNECT;
     }
   }
