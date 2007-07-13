@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.173 2007-07-11 21:47:31 gknauf Exp $
+ * $Id: connect.c,v 1.174 2007-07-13 20:04:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -288,7 +288,7 @@ static CURLcode bindlocal(struct connectdata *conn,
          sizeof(hostent_buf));
       */
       failf(data, "Couldn't bind to '%s'", data->set.device);
-      return CURLE_HTTP_PORT_FAILED;
+      return CURLE_INTERFACE_FAILED;
     }
 
     infof(data, "Bind local address to %s\n", myhost);
@@ -325,7 +325,7 @@ static CURLcode bindlocal(struct connectdata *conn,
 #endif
     if (CURL_INADDR_NONE == in && -1 == in6) {
       failf(data,"couldn't find my own IP address (%s)", myhost);
-      return CURLE_HTTP_PORT_FAILED;
+      return CURLE_INTERFACE_FAILED;
     } /* end of inet_addr */
 
     if ( h ) {
@@ -334,7 +334,7 @@ static CURLcode bindlocal(struct connectdata *conn,
       socksize = addr->ai_addrlen;
     }
     else
-      return CURLE_HTTP_PORT_FAILED;
+      return CURLE_INTERFACE_FAILED;
 
   }
   else if(port) {
@@ -370,7 +370,7 @@ static CURLcode bindlocal(struct connectdata *conn,
       size = sizeof(add);
       if(getsockname(sockfd, (struct sockaddr *) &add, &size) < 0) {
         failf(data, "getsockname() failed");
-        return CURLE_HTTP_PORT_FAILED;
+        return CURLE_INTERFACE_FAILED;
       }
       /* We re-use/clobber the port variable here below */
       if(((struct sockaddr *)&add)->sa_family == AF_INET)
@@ -393,7 +393,7 @@ static CURLcode bindlocal(struct connectdata *conn,
   data->state.os_errno = SOCKERRNO;
   failf(data, "bind failure: %s",
         Curl_strerror(conn, data->state.os_errno));
-  return CURLE_HTTP_PORT_FAILED;
+  return CURLE_INTERFACE_FAILED;
 
 }
 
