@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: first.c,v 1.14 2006-10-25 09:20:44 yangtse Exp $
+ * $Id: first.c,v 1.15 2007-07-14 22:38:18 bagder Exp $
  */
 
 #include "test.h"
@@ -35,6 +35,7 @@ int select_test (int num_fds, fd_set *rd, fd_set *wr, fd_set *exc,
 }
 
 char *arg2=NULL;
+char *arg3=NULL;
 
 int main(int argc, char **argv)
 {
@@ -66,6 +67,9 @@ int main(int argc, char **argv)
   }
   if(argc>2)
     arg2=argv[2];
+
+  if(argc>3)
+    arg3=argv[3];
 
   URL = argv[1]; /* provide this to the rest */
 
