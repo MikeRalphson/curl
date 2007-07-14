@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.58 2007-07-14 13:08:50 bagder Exp $ */
+/* $Id: ares_init.c,v 1.59 2007-07-14 13:14:58 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -1322,7 +1322,8 @@ static void init_id_key(rc4_key* key,int key_data_len)
   randomize_key(key->state,key_data_len);
   state = &key->state[0];
   for(counter = 0; counter < 256; counter++)
-        state[counter] = counter;
+    /* unnecessary AND but it keeps some compilers happier */
+    state[counter] = counter & 0xff;
   key->x = 0;
   key->y = 0;
   index1 = 0;
