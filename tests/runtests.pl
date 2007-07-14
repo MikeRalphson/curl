@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.247 2007-06-11 17:53:10 danf Exp $
+# $Id: runtests.pl,v 1.248 2007-07-14 22:33:46 bagder Exp $
 ###########################################################################
 # These should be the only variables that might be needed to get edited:
 
@@ -529,12 +529,12 @@ sub verifyhttp {
     }
     elsif($res == 6) {
         # curl: (6) Couldn't resolve host '::1'
-        logmsg "RUN: failed to resolve host\n";
-        return 0;
+        logmsg "RUN: failed to resolve host ($proto://$ip:$port/verifiedserver)\n";
+        return -1;
     }
     elsif($data || ($res != 7)) {
         logmsg "RUN: Unknown server is running on port $port\n";
-        return 0;
+        return -1;
     }
     return $pid;
 }
@@ -631,8 +631,12 @@ sub verifyserver {
 
         $pid = &$fun($proto, $ip, $port);
 
-        if($pid) {
+        if($pid > 0) {
             last;
+        }
+        elsif($pid < 0) {
+            # a real failure, stop trying and bail out
+            return 0;
         }
         sleep(1);
     }
