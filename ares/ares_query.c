@@ -1,4 +1,4 @@
-/* $Id: ares_query.c,v 1.11 2007-06-04 21:26:30 bagder Exp $ */
+/* $Id: ares_query.c,v 1.12 2007-07-14 13:08:50 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -67,7 +67,7 @@ void ares__rc4(rc4_key* key, unsigned char *buffer_ptr, int buffer_len)
 
 static struct query* find_query_by_id(ares_channel channel, int id)
 {
-  int qid;
+  unsigned short qid;
   struct query* q;
   DNS_HEADER_SET_QID(((unsigned char*)&qid), id);
 

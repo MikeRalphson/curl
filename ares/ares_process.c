@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.40 2007-06-02 19:48:29 bagder Exp $ */
+/* $Id: ares_process.c,v 1.41 2007-07-14 13:08:50 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -400,7 +400,8 @@ static void process_timeouts(ares_channel channel, time_t now)
 static void process_answer(ares_channel channel, unsigned char *abuf,
                            int alen, int whichserver, int tcp, time_t now)
 {
-  int id, tc, rcode;
+  int tc, rcode;
+  unsigned short id;
   struct query *query;
 
   /* If there's no room in the answer for a header, we can't do much

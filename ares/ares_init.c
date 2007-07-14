@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.57 2007-07-03 16:00:36 gknauf Exp $ */
+/* $Id: ares_init.c,v 1.58 2007-07-14 13:08:50 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -1341,7 +1341,7 @@ static void init_id_key(rc4_key* key,int key_data_len)
 
 short ares__generate_new_id(rc4_key* key)
 {
-  short r;
+  short r=0;
   ares__rc4(key, (unsigned char *)&r, sizeof(r));
   return r;
 }
