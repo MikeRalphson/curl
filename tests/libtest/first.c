@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: first.c,v 1.15 2007-07-14 22:38:18 bagder Exp $
+ * $Id: first.c,v 1.16 2007-07-15 20:59:43 bagder Exp $
  */
 
 #include "test.h"
@@ -36,6 +36,9 @@ int select_test (int num_fds, fd_set *rd, fd_set *wr, fd_set *exc,
 
 char *arg2=NULL;
 char *arg3=NULL;
+int test_argc;
+char **test_argv;
+
 
 int main(int argc, char **argv)
 {
@@ -65,6 +68,10 @@ int main(int argc, char **argv)
     fprintf(stderr, "Pass URL as argument please\n");
     return 1;
   }
+
+  test_argc = argc;
+  test_argv = argv;
+
   if(argc>2)
     arg2=argv[2];
 
