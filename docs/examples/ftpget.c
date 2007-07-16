@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpget.c,v 1.5 2007-07-12 21:11:10 danf Exp $
+ * $Id: ftpget.c,v 1.6 2007-07-16 21:22:12 danf Exp $
  */
 
 #include <stdio.h>
@@ -26,7 +26,7 @@ struct FtpFile {
   FILE *stream;
 };
 
-int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
+static int my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
 {
   struct FtpFile *out=(struct FtpFile *)stream;
   if(out && !out->stream) {

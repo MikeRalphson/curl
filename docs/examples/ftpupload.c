@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.8 2007-07-12 21:11:10 danf Exp $
+ * $Id: ftpupload.c,v 1.9 2007-07-16 21:22:12 danf Exp $
  */
 
 #include <stdio.h>
@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 /*
  * This example shows an FTP upload, with a rename of the file just after

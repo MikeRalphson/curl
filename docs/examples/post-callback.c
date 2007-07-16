@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: post-callback.c,v 1.6 2007-07-12 21:11:10 danf Exp $
+ * $Id: post-callback.c,v 1.7 2007-07-16 21:22:12 danf Exp $
  *
  * An example source code that issues a HTTP POST and we provide the actual
  * data through a read callback.
@@ -22,7 +22,7 @@ struct WriteThis {
   int sizeleft;
 };
 
-size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userp)
+static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userp)
 {
   struct WriteThis *pooh = (struct WriteThis *)userp;
 

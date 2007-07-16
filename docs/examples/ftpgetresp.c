@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpgetresp.c,v 1.3 2007-07-06 20:14:03 bagder Exp $
+ * $Id: ftpgetresp.c,v 1.4 2007-07-16 21:22:12 danf Exp $
  */
 
 #include <stdio.h>
@@ -21,7 +21,7 @@
  * This functionality was introduced in libcurl 7.9.3.
  */
 
-size_t
+static size_t
 write_response(void *ptr, size_t size, size_t nmemb, void *data)
 {
   FILE *writehere = (FILE *)data;

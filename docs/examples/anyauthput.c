@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: anyauthput.c,v 1.2 2007-07-12 20:55:17 bagder Exp $
+ * $Id: anyauthput.c,v 1.3 2007-07-16 21:22:12 danf Exp $
  */
 
 #include <stdio.h>
@@ -57,7 +57,7 @@ static curlioerr my_ioctl(CURL *handle, curliocmd cmd, void *userp)
 }
 
 /* read callback function, fread() look alike */
-size_t read_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
   size_t retcode;
 
