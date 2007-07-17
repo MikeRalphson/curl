@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.419 2007-07-13 20:04:53 bagder Exp $
+ * $Id: ftp.c,v 1.420 2007-07-17 20:59:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3137,7 +3137,7 @@ CURLcode Curl_ftp_done(struct connectdata *conn, CURLcode status, bool premature
     if(!nread && (CURLE_OPERATION_TIMEDOUT == result)) {
       failf(data, "control connection looks dead");
       ftpc->ctl_valid = FALSE; /* mark control connection as bad */
-      return result;
+      conn->bits.close = TRUE; /* mark for closure */
     }
 
     if(result)
