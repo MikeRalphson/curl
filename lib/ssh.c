@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.64 2007-07-20 00:41:12 danf Exp $
+ * $Id: ssh.c,v 1.65 2007-07-20 01:03:49 jehousley Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -749,6 +749,8 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
                      sftp_scp->path);
             Curl_debug(data, CURLINFO_HEADER_IN, tmp, strlen(tmp), conn);
           }
+          state(conn, SSH_SFTP_NEXT_QUOTE);
+          break;
         }
         else if (sshc->quote_item->data) {
           fprintf(stderr, "data: %s\n", sshc->quote_item->data);
