@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.20 2007-07-06 14:58:59 gknauf Exp $
+ * $Id: getpass.c,v 1.21 2007-07-20 16:01:05 gknauf Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -115,6 +115,8 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
            previous one as well */
         i = i - (i>=1?2:1);
   }
+  /* since echo is disabled, print a newline */
+  fputs("\n", stderr);
   /* if user didn't hit ENTER, terminate buffer */
   if (i==buflen)
     buffer[buflen-1]=0;
