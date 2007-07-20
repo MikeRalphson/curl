@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.420 2007-07-17 20:59:53 bagder Exp $
+ * $Id: ftp.c,v 1.421 2007-07-20 00:41:12 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -705,7 +705,7 @@ static void state(struct connectdata *conn,
 {
 #if defined(CURLDEBUG) && !defined(CURL_DISABLE_VERBOSE_STRINGS)
   /* for debug purposes */
-  const char *names[]={
+  static const char *names[]={
     "STOP",
     "WAIT220",
     "AUTH",
@@ -862,7 +862,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   char hbuf[NI_MAXHOST];
   struct sockaddr *sa=(struct sockaddr *)&ss;
   char tmp[1024];
-  const char *mode[] = { "EPRT", "PORT", NULL };
+  static const char *mode[] = { "EPRT", "PORT", NULL };
   int rc;
   int error;
   char *host=NULL;
@@ -1246,7 +1246,7 @@ static CURLcode ftp_state_use_pasv(struct connectdata *conn)
 
   */
 
-  const char *mode[] = { "EPSV", "PASV", NULL };
+  static const char *mode[] = { "EPSV", "PASV", NULL };
   int modeoff;
 
 #ifdef PF_INET6

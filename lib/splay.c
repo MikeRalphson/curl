@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: splay.c,v 1.5 2007-04-25 03:00:10 yangtse Exp $
+ * $Id: splay.c,v 1.6 2007-07-20 00:41:12 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -373,7 +373,7 @@ int main(int argc, argv_item_t argv[])
   int adds=0;
   int rc;
 
-  long sizes[]={
+  static const long sizes[]={
     50, 60, 50, 100, 60, 200, 120, 300, 400, 200, 256, 122, 60, 120, 200, 300,
     220, 80, 90, 50, 100, 60, 200, 120, 300, 400, 200, 256, 122, 60, 120, 200,
     300, 220, 80, 90, 50, 100, 60, 200, 120, 300, 400, 200, 256, 122, 60, 120,

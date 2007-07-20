@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.28 2007-07-10 21:36:30 bagder Exp $
+ * $Id: gtls.c,v 1.29 2007-07-20 00:41:12 danf Exp $
  ***************************************************************************/
 
 /*
@@ -227,7 +227,7 @@ Curl_gtls_connect(struct connectdata *conn,
                   int sockindex)
 
 {
-  const int cert_type_priority[] = { GNUTLS_CRT_X509, 0 };
+  static const int cert_type_priority[] = { GNUTLS_CRT_X509, 0 };
   struct SessionHandle *data = conn->data;
   gnutls_session session;
   int rc;

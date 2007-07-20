@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.5 2007-05-25 21:56:27 bagder Exp $
+ * $Id: nss.c,v 1.6 2007-07-20 00:41:12 danf Exp $
  ***************************************************************************/
 
 /*
@@ -96,7 +96,7 @@ typedef struct {
 
 enum sslversion { SSL2 = 1, SSL3 = 2, TLS = 4 };
 
-cipher_s cipherlist[ciphernum] = {
+static const cipher_s cipherlist[ciphernum] = {
   /* SSL2 cipher suites */
   {"rc4", SSL_EN_RC4_128_WITH_MD5, SSL2},
   {"rc4export", SSL_EN_RC4_128_EXPORT40_WITH_MD5, SSL2},
