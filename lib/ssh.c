@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.65 2007-07-20 01:03:49 jehousley Exp $
+ * $Id: ssh.c,v 1.66 2007-07-21 02:08:17 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -252,7 +252,7 @@ static void state(struct connectdata *conn, sshstate state)
 {
 #if defined(CURLDEBUG) && !defined(CURL_DISABLE_VERBOSE_STRINGS)
   /* for debug purposes */
-  static const char *names[] = {
+  static const char * const names[] = {
     "SSH_STOP",
     "SSH_S_STARTUP",
     "SSH_AUTHLIST",
