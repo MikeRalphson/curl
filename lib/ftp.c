@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.423 2007-07-21 02:08:17 danf Exp $
+ * $Id: ftp.c,v 1.424 2007-07-23 18:51:22 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1477,7 +1477,7 @@ static CURLcode ftp_state_ul_setup(struct connectdata *conn,
         readthisamountnow = BUFSIZE;
 
       actuallyread = (curl_off_t)
-        conn->fread(data->state.buffer, 1, (size_t)readthisamountnow,
+        conn->fread_func(data->state.buffer, 1, (size_t)readthisamountnow,
                     conn->fread_in);
 
       passed += actuallyread;

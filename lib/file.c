@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.89 2007-06-28 11:11:29 jehousley Exp $
+ * $Id: file.c,v 1.90 2007-07-23 18:51:22 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -205,7 +205,7 @@ static CURLcode file_upload(struct connectdata *conn)
    * Since FILE: doesn't do the full init, we need to provide some extra
    * assignments here.
    */
-  conn->fread = data->set.fread;
+  conn->fread_func = data->set.fread_func;
   conn->fread_in = data->set.in;
   conn->data->reqdata.upload_fromhere = buf;
 

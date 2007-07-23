@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.105 2007-07-11 21:34:22 gknauf Exp $
+ * $Id: easy.c,v 1.106 2007-07-23 18:51:22 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -696,10 +696,10 @@ void curl_easy_reset(CURL *curl)
   data->set.err  = stderr;  /* default stderr to stderr */
 
   /* use fwrite as default function to store output */
-  data->set.fwrite = (curl_write_callback)fwrite;
+  data->set.fwrite_func = (curl_write_callback)fwrite;
 
   /* use fread as default function to read input */
-  data->set.fread = (curl_read_callback)fread;
+  data->set.fread_func = (curl_read_callback)fread;
 
   data->set.infilesize = -1; /* we don't know any size */
   data->set.postfieldsize = -1;
