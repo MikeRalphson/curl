@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.82 2007-07-21 21:48:58 bagder Exp $
+# $Id: ftpserver.pl,v 1.83 2007-07-23 17:51:43 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -856,7 +856,7 @@ while(1) {
         }
 
         if($check) {
-            print STDERR "$FTPCMD wasn't handled!\n";
+            logmsg "$FTPCMD wasn't handled!\n";
             sendcontrol "500 $FTPCMD is not dealt with!\r\n";
         }
             
