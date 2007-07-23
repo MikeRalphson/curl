@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.628 2007-07-23 18:51:22 danf Exp $
+ * $Id: url.c,v 1.629 2007-07-23 21:48:27 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -60,7 +60,7 @@
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
 #endif
-#if HAVE_SIGNAL_H
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
 #endif
 
