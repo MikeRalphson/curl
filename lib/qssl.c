@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.c,v 1.1 2007-07-23 21:46:26 bagder Exp $
+ * $Id: qssl.c,v 1.2 2007-07-24 15:23:16 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -38,9 +38,6 @@
 #include "memory.h"
 /* The last #include file should be: */
 #include "memdebug.h"
-
-
-static bool qsossl_inited = FALSE;
 
 
 int Curl_qsossl_init(void)
@@ -157,7 +154,7 @@ static CURLcode Curl_qsossl_create(struct connectdata * conn, int sockindex)
 static int Curl_qsossl_trap_cert(SSLHandle * h)
 
 {
-	return 1;       /* Accept certificate. */
+  return 1;       /* Accept certificate. */
 }
 
 
