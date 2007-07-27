@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.337 2007-07-23 18:51:22 danf Exp $
+ * $Id: urldata.h,v 1.338 2007-07-27 08:33:32 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -80,6 +80,10 @@
 
 #ifdef USE_NSS
 #include <nspr.h>
+#endif
+
+#ifdef USE_QSOSSL
+#include <qsossl.h>
 #endif
 
 #ifdef HAVE_NETINET_IN_H
@@ -177,6 +181,9 @@ struct ssl_connect_data {
 #ifdef USE_NSS
   PRFileDesc *handle;
 #endif /* USE_NSS */
+#ifdef USE_QSOSSL
+  SSLHandle *handle;
+#endif /* USE_QSOSSL */
 };
 
 struct ssl_config_data {
