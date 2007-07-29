@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.629 2007-07-23 21:48:27 bagder Exp $
+ * $Id: url.c,v 1.630 2007-07-29 12:54:05 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1822,7 +1822,8 @@ static void conn_free(struct connectdata *conn)
   Curl_destroy_thread_data(&conn->async);
 #endif
 
-  Curl_ssl_close(conn);
+  Curl_ssl_close(conn, FIRSTSOCKET);
+  Curl_ssl_close(conn, SECONDARYSOCKET);
 
   Curl_free_ssl_config(&conn->ssl_config);
 
@@ -1892,7 +1893,7 @@ CURLcode Curl_disconnect(struct connectdata *conn)
                                        allocated by libidn */
 #endif
 
-  Curl_ssl_close(conn);
+  Curl_ssl_close(conn, FIRSTSOCKET);
 
   /* Indicate to all handles on the pipe that we're dead */
   if (IsPipeliningEnabled(data)) {
