@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.25 2007-07-29 12:54:05 bagder Exp $
+ * $Id: sslgen.c,v 1.26 2007-07-30 17:05:39 danf Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -451,6 +451,10 @@ void Curl_ssl_close(struct connectdata *conn, int sockindex)
 #ifdef USE_QSOSSL
   Curl_qsossl_close(conn, sockindex);
 #endif /* USE_QSOSSL */
+#ifndef USE_SSL
+  (void)conn;
+  (void)sockindex;
+#endif /* !USE_SSL */
 }
 
 CURLcode Curl_ssl_shutdown(struct connectdata *conn, int sockindex)
