@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.133 2007-07-11 21:34:22 gknauf Exp $
+ * $Id: setup.h,v 1.134 2007-07-30 17:08:26 danf Exp $
  ***************************************************************************/
 
 #ifdef HTTP_ONLY
@@ -340,8 +340,8 @@ int netware_init(void);
 #define HAVE_INET_NTOA_R_2_ARGS 1
 #endif
 
-#if defined(USE_GNUTLS) || defined(USE_SSLEAY) || defined(USE_NSS)
-#define USE_SSL    /* Either OpenSSL || GnuTLS || NSS */
+#if defined(USE_GNUTLS) || defined(USE_SSLEAY) || defined(USE_NSS) || defined(USE_QSOSSL)
+#define USE_SSL    /* SSL support has been enabled */
 #endif
 
 #if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_NTLM)
