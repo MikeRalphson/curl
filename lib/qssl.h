@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.h,v 1.1 2007-07-23 21:46:26 bagder Exp $
+ * $Id: qssl.h,v 1.2 2007-07-30 21:41:12 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -32,7 +32,7 @@
 int Curl_qsossl_init(void);
 void Curl_qsossl_cleanup(void);
 CURLcode Curl_qsossl_connect(struct connectdata * conn, int sockindex);
-void Curl_qsossl_close(struct connectdata * conn); /* close a SSL connection */
+void Curl_qsossl_close(struct connectdata *conn, int sockindex);
 int Curl_qsossl_close_all(struct SessionHandle * data);
 int Curl_qsossl_shutdown(struct connectdata * conn, int sockindex);
 
