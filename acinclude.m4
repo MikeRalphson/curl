@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.123 2007-04-10 18:53:21 yangtse Exp $
+# $Id: acinclude.m4,v 1.124 2007-07-30 22:53:18 bagder Exp $
 ###########################################################################
 
 
@@ -1107,7 +1107,7 @@ AC_DEFUN([CURL_CHECK_NONBLOCKING_SOCKET],
 #  define PLATFORM_SUNOS4
 # endif
 #endif
-#if (defined(_AIX) || defined(__xlC__)) && !defined(_AIX4)
+#if (defined(_AIX) || defined(__xlC__)) && !defined(_AIX41)
 # define PLATFORM_AIX_V3
 #endif
 
