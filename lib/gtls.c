@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.30 2007-07-29 12:54:05 bagder Exp $
+ * $Id: gtls.c,v 1.31 2007-08-01 21:20:01 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -299,11 +299,13 @@ Curl_gtls_connect(struct connectdata *conn,
   if(rc < 0)
     return CURLE_SSL_CONNECT_ERROR;
 
-  if(data->set.cert) {
+  if(data->set.str[STRING_CERT]) {
     if( gnutls_certificate_set_x509_key_file(
-          conn->ssl[sockindex].cred, data->set.cert,
-          data->set.key != 0 ? data->set.key : data->set.cert,
-          do_file_type(data->set.cert_type) ) ) {
+          conn->ssl[sockindex].cred,
+          data->set.str[STRING_CERT],
+          data->set.str[STRING_KEY] ?
+          data->set.str[STRING_KEY] : data->set.str[STRING_CERT],
+          do_file_type(data->set.str[STRING_CERT_TYPE]) ) ) {
       failf(data, "error reading X.509 key or certificate file");
       return CURLE_SSL_CONNECT_ERROR;
     }

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.66 2007-07-21 02:08:17 danf Exp $
+ * $Id: ssh.c,v 1.67 2007-08-01 21:20:01 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -422,8 +422,8 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
            HOME environment variable etc? */
         home = curl_getenv("HOME");
 
-        if (data->set.ssh_public_key)
-          sshc->rsa_pub = aprintf("%s", data->set.ssh_public_key);
+        if (data->set.str[STRING_SSH_PUBLIC_KEY])
+          sshc->rsa_pub = aprintf("%s", data->set.str[STRING_SSH_PUBLIC_KEY]);
         else if (home)
           sshc->rsa_pub = aprintf("%s/.ssh/id_dsa.pub", home);
 
@@ -435,8 +435,8 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
           break;
         }
 
-        if (data->set.ssh_private_key)
-          sshc->rsa = aprintf("%s", data->set.ssh_private_key);
+        if (data->set.str[STRING_SSH_PRIVATE_KEY])
+          sshc->rsa = aprintf("%s", data->set.str[STRING_SSH_PRIVATE_KEY]);
         else if (home)
           sshc->rsa = aprintf("%s/.ssh/id_dsa", home);
 
@@ -450,7 +450,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
           break;
         }
 
-        sshc->passphrase = data->set.key_passwd;
+        sshc->passphrase = data->set.str[STRING_KEY_PASSWD];
         if (!sshc->passphrase)
           sshc->passphrase = "";
 

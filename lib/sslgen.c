@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.26 2007-07-30 17:05:39 danf Exp $
+ * $Id: sslgen.c,v 1.27 2007-08-01 21:20:01 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -135,20 +135,11 @@ Curl_clone_ssl_config(struct ssl_config_data *source,
 
 void Curl_free_ssl_config(struct ssl_config_data* sslc)
 {
-  if(sslc->CAfile)
-    free(sslc->CAfile);
-
-  if(sslc->CApath)
-    free(sslc->CApath);
-
-  if(sslc->cipher_list)
-    free(sslc->cipher_list);
-
-  if(sslc->egdsocket)
-    free(sslc->egdsocket);
-
-  if(sslc->random_file)
-    free(sslc->random_file);
+  Curl_safefree(sslc->CAfile);
+  Curl_safefree(sslc->CApath);
+  Curl_safefree(sslc->cipher_list);
+  Curl_safefree(sslc->egdsocket);
+  Curl_safefree(sslc->random_file);
 }
 
 /**

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.360 2007-07-23 18:51:22 danf Exp $
+ * $Id: transfer.c,v 1.361 2007-08-01 21:20:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -233,7 +233,7 @@ CURLcode Curl_readrewind(struct connectdata *conn)
   /* We have sent away data. If not using CURLOPT_POSTFIELDS or
      CURLOPT_HTTPPOST, call app to rewind
   */
-  if(data->set.postfields ||
+  if(data->set.str[STRING_POSTFIELDS] ||
      (data->set.httpreq == HTTPREQ_POST_FORM))
     ; /* do nothing */
   else {
@@ -992,7 +992,7 @@ CURLcode Curl_readwrite(struct connectdata *conn,
             }
 
             else if (checkprefix("Content-Encoding:", k->p) &&
-                     data->set.encoding) {
+                     data->set.str[STRING_ENCODING]) {
               /*
                * Process Content-Encoding. Look for the values: identity,
                * gzip, deflate, compress, x-gzip and x-compress. x-gzip and
