@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.191 2007-08-01 21:20:01 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.192 2007-08-02 13:26:06 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "1 Aug 2007" "libcurl 7.17.0" "libcurl Manual"
@@ -669,6 +669,12 @@ This POST is a normal application/x-www-form-urlencoded kind (and libcurl will
 set that Content-Type by default when this option is used), which is the most
 commonly used one by HTML forms. See also the \fICURLOPT_POST\fP. Using
 \fICURLOPT_POSTFIELDS\fP implies \fICURLOPT_POST\fP.
+
+If you want to do a zero-byte POST, you need to set
+\fICURLOPT_POSTFIELDSIZE\fP explicitly to zero, as simply setting
+\fICURLOPT_POSTFIELDS\fP to NULL or "" just effectively disables the sending
+of the specified string. libcurl will instead assume that you'll send the POST
+data using the read callback!
 
 Using POST with HTTP 1.1 implies the use of a "Expect: 100-continue" header.
 You can disable this header with \fICURLOPT_HTTPHEADER\fP as usual.
