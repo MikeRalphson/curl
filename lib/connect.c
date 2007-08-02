@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.176 2007-08-01 21:20:01 bagder Exp $
+ * $Id: connect.c,v 1.177 2007-08-02 14:42:16 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -242,7 +242,7 @@ static CURLcode bindlocal(struct connectdata *conn,
     int in6 = -1;
 
     /* First check if the given name is an IP address */
-    in=inet_addr(dev);
+    in=inet_addr((char *) dev);
 
     if((in == CURL_INADDR_NONE) &&
        Curl_if2ip(dev, myhost, sizeof(myhost))) {
