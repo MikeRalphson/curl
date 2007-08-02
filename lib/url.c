@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.631 2007-08-01 21:20:01 bagder Exp $
+ * $Id: url.c,v 1.632 2007-08-02 14:09:09 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3604,18 +3604,24 @@ static CURLcode CreateConnection(struct SessionHandle *data,
    ***********************************************************************/
 #ifndef CURL_DISABLE_FILE
   if (strequal(conn->protostr, "FILE")) {
-      /* anyway, this is supposed to be the connect function so we better
-         at least check that the file is present here! */
-     result = Curl_file_connect(conn);
+    /* this is supposed to be the connect function so we better at least check
+       that the file is present here! */
+    result = Curl_file_connect(conn);
 
-      /* Setup a "faked" transfer that'll do nothing */
-     if(CURLE_OK == result) {
-        conn->data = data;
-        conn->bits.tcpconnect = TRUE; /* we are "connected */
-        ConnectionStore(data, conn);
+    /* Setup a "faked" transfer that'll do nothing */
+    if(CURLE_OK == result) {
+      conn->data = data;
+      conn->bits.tcpconnect = TRUE; /* we are "connected */
 
-      result = Curl_setup_transfer(conn, -1, -1, FALSE, NULL, /* no download */
-                                     -1, NULL); /* no upload */
+      ConnectionStore(data, conn);
+
+      result = setup_range(data);
+      if(result)
+        return result;
+
+      result = Curl_setup_transfer(conn, -1, -1, FALSE,
+                                   NULL, /* no download */
+                                   -1, NULL); /* no upload */
     }
 
     return result;
