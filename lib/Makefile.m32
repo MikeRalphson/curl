@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.38 2007-07-04 13:45:46 gknauf Exp $
+# $Id: Makefile.m32,v 1.39 2007-08-03 12:53:00 gknauf Exp $
 #
 ## Makefile for building libcurl.a with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -10,10 +10,10 @@
 ##              Joern Hartroth <hartroth@acm.org>
 
 ifndef OPENSSL_PATH
-OPENSSL_PATH = ../../openssl-0.9.8d
+OPENSSL_PATH = ../../openssl-0.9.8e
 endif
 ifndef LIBSSH2_PATH
-LIBSSH2_PATH = ../../libssh2-0.14
+LIBSSH2_PATH = ../../libssh2-0.16
 endif
 ifndef ZLIB_PATH
 ZLIB_PATH = ../../zlib-1.2.3
@@ -23,7 +23,7 @@ ARES_LIB = ../ares
 
 CC = gcc
 AR = ar
-RM = rm -f
+RM = del /f
 RANLIB = ranlib
 STRIP = strip -g
 
