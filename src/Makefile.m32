@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.29 2007-08-03 14:30:02 gknauf Exp $
+# $Id: Makefile.m32,v 1.30 2007-08-03 19:54:31 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -46,7 +46,7 @@ ifdef DYN
 else
   curl_DEPENDENCIES = ../lib/libcurl.a
   curl_LDADD = -L../lib -lcurl
-  COMPILE += -DCURL_STATICLIB
+  CFLAGS += -DCURL_STATICLIB
 endif
 ifdef ARES
   CFLAGS += -DUSE_ARES
