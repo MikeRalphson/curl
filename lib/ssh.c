@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.69 2007-08-03 08:25:28 bagder Exp $
+ * $Id: ssh.c,v 1.70 2007-08-03 13:57:37 jehousley Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -174,14 +174,15 @@ static CURLcode sftp_libssh2_error_to_CURLE(unsigned long err)
      not return or even depend on libssh2 errors in the public libcurl API */
 
   if (err == LIBSSH2_FX_NO_SUCH_FILE)
-     return CURLE_REMOTE_FILE_NOT_FOUND;
+    return CURLE_REMOTE_FILE_NOT_FOUND;
 
   return CURLE_SSH;
 }
 
 static CURLcode libssh2_session_error_to_CURLE(int err)
 {
-  (void)err;
+  if (err == LIBSSH2_ERROR_ALLOC)
+    return CURLE_OUT_OF_MEMORY;
   return CURLE_SSH;
 }
 
@@ -350,12 +351,12 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
                                              strlen(sftp_scp->user));
 
       if (!sshc->authlist) {
-        if (libssh2_session_last_errno(sftp_scp->ssh_session) ==
+        if ((err = libssh2_session_last_errno(sftp_scp->ssh_session)) ==
                         LIBSSH2_ERROR_EAGAIN) {
           break;
         } else {
           state(conn, SSH_SESSION_FREE);
-          sshc->actualCode = CURLE_OUT_OF_MEMORY;
+          sshc->actualCode = libssh2_session_error_to_CURLE(err);
           break;
         }
       }
