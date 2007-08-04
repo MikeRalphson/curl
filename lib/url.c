@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.636 2007-08-03 22:46:59 danf Exp $
+ * $Id: url.c,v 1.637 2007-08-04 16:54:58 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -221,7 +221,7 @@ void Curl_freeset(struct SessionHandle * data)
 {
   /* Free all dynamic strings stored in the data->set substructure. */
   enum dupstring i;
-  for(i=0; i < STRING_LAST; i++)
+  for(i=(enum dupstring)0; i < STRING_LAST; i++)
     Curl_safefree(data->set.str[i]);
 }
 
@@ -3274,6 +3274,10 @@ static char *detect_proxy(struct connectdata *conn)
   } /* NO_PROXY wasn't specified or '*' */
   if(no_proxy)
     free(no_proxy);
+
+#else /* !CURL_DISABLE_HTTP */
+
+  (void)conn;
 #endif /* CURL_DISABLE_HTTP */
 
   return proxy;
