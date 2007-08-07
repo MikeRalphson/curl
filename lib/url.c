@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.637 2007-08-04 16:54:58 danf Exp $
+ * $Id: url.c,v 1.638 2007-08-07 00:10:28 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -260,7 +260,7 @@ CURLcode Curl_dupset(struct SessionHandle * dst, struct SessionHandle * src)
   memset(dst->set.str, 0, STRING_LAST * sizeof(char *));
 
   /* duplicate all strings */
-  for(i=0; i< STRING_LAST; i++) {
+  for(i=(enum dupstring)0; i< STRING_LAST; i++) {
     r = Curl_setstropt(&dst->set.str[i], src->set.str[i]);
     if (r != CURLE_OK)
       break;
