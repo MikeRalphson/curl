@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.40 2007-08-03 14:30:02 gknauf Exp $
+# $Id: Makefile.m32,v 1.41 2007-08-07 17:40:56 gknauf Exp $
 #
 ## Makefile for building libcurl.a with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -35,7 +35,7 @@ STRIP = strip -g
 ## Nothing more to do below this line!
 
 INCLUDES = -I. -I../include
-CFLAGS = -g -O2 -DBUILDING_LIBCURL -DHAVE_LONGLONG
+CFLAGS = -g -O2 -DBUILDING_LIBCURL
 ifdef ARES
   INCLUDES += -I$(ARES_LIB)
   CFLAGS += -DUSE_ARES
