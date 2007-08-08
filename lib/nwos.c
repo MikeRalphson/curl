@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nwos.c,v 1.1 2007-07-11 21:34:22 gknauf Exp $
+ * $Id: nwos.c,v 1.2 2007-08-08 20:09:08 gknauf Exp $
  ***************************************************************************/
 
 #ifdef NETWARE /* Novell NetWare */
@@ -43,6 +43,9 @@ int netware_init ( void )
 /* Make the CLIB Ctx stuff link */
 #include <netdb.h>
 NETDB_DEFINE_CONTEXT
+/* Make the CLIB Inet stuff link */
+#include <arpa/inet.h>
+NETINET_DEFINE_CONTEXT
 
 int netware_init ( void )
 {
