@@ -19,7 +19,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.53 2007-06-28 11:11:29 jehousley Exp $
+ * $Id: memdebug.c,v 1.54 2007-08-08 10:37:07 patrickm Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -47,7 +47,10 @@
 
 struct memdebug {
   size_t size;
-  double mem[1];
+  union {
+    double d;
+    void * p;
+  } mem[1];
   /* I'm hoping this is the thing with the strictest alignment
    * requirements.  That also means we waste some space :-( */
 };
