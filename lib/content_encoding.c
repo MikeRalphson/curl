@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.24 2007-02-22 06:19:39 yangtse Exp $
+ * $Id: content_encoding.c,v 1.25 2007-08-08 17:51:40 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -133,7 +133,7 @@ inflate_stream(struct connectdata *conn,
       /* some servers seem to not generate zlib headers, so this is an attempt
          to fix and continue anyway */
 
-      inflateReset(z);
+      (void) inflateEnd(z);	/* don't care about the return code */
       if (inflateInit2(z, -MAX_WBITS) != Z_OK) {
         return process_zlib_error(conn, z);
       }
