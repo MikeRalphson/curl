@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.30 2007-08-03 19:54:31 gknauf Exp $
+# $Id: Makefile.m32,v 1.31 2007-08-08 17:07:16 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -95,12 +95,6 @@ curl.exe: curl.res $(curl_OBJECTS) $(curl_DEPENDENCIES)
 # 	$(NROFF) -man ../curl.1 | $(PERL) mkhelp.pl ../README.curl > hugehelp.c
 
 .c.o:
-	$(COMPILE) -c $<
-
-.s.o:
-	$(COMPILE) -c $<
-
-.S.o:
 	$(COMPILE) -c $<
 
 .rc.res:
