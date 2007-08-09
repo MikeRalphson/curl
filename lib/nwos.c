@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nwos.c,v 1.2 2007-08-08 20:09:08 gknauf Exp $
+ * $Id: nwos.c,v 1.3 2007-08-09 22:33:49 gknauf Exp $
  ***************************************************************************/
 
 #ifdef NETWARE /* Novell NetWare */
@@ -37,26 +37,32 @@ int netware_init ( void )
 /* For native CLib-based NLM we need to initialize the LONG namespace. */
 #include <stdio.h>
 #include <nwnspace.h>
-#include <nwfileio.h>
 #include <nwthread.h>
 #include <nwadv.h>
 /* Make the CLIB Ctx stuff link */
 #include <netdb.h>
 NETDB_DEFINE_CONTEXT
 /* Make the CLIB Inet stuff link */
+#include <netinet/in.h>
 #include <arpa/inet.h>
 NETINET_DEFINE_CONTEXT
 
 int netware_init ( void )
 {
     int rc = 0;
-    /* import UnAugmentAsterisk dynamically for NW4.x compatibility */
     unsigned int myHandle = GetNLMHandle();
+    /* import UnAugmentAsterisk dynamically for NW4.x compatibility */
     void (*pUnAugmentAsterisk)(int) = (void(*)(int))
             ImportSymbol(myHandle, "UnAugmentAsterisk");
+    /* import UseAccurateCaseForPaths dynamically for NW3.x compatibility */
+    void (*pUseAccurateCaseForPaths)(int) = (void(*)(int))
+            ImportSymbol(myHandle, "UseAccurateCaseForPaths");
     if (pUnAugmentAsterisk)
         pUnAugmentAsterisk(1);
+    if (pUseAccurateCaseForPaths)
+        pUseAccurateCaseForPaths(1);
     UnimportSymbol(myHandle, "UnAugmentAsterisk");
+    UnimportSymbol(myHandle, "UseAccurateCaseForPaths");
     /* set long name space */
     if ((SetCurrentNameSpace(4) == 255)) {
         rc = 1;
@@ -64,7 +70,6 @@ int netware_init ( void )
     if ((SetTargetNameSpace(4) == 255)) {
         rc = rc + 2;
     }
-    UseAccurateCaseForPaths(1);
     return rc;
 }
 
