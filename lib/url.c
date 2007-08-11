@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.639 2007-08-07 18:24:49 danf Exp $
+ * $Id: url.c,v 1.640 2007-08-11 20:57:54 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -130,7 +130,7 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "tftp.h"
 #include "http.h"
 #include "file.h"
-#include "ldap.h"
+#include "curl_ldap.h"
 #include "ssh.h"
 #include "url.h"
 #include "connect.h"
