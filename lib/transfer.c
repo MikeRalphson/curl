@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.362 2007-08-03 13:46:59 jehousley Exp $
+ * $Id: transfer.c,v 1.363 2007-08-11 21:05:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -869,6 +869,10 @@ CURLcode Curl_readwrite(struct connectdata *conn,
               if(contentlength >= 0) {
                 k->size = contentlength;
                 k->maxdownload = k->size;
+                /* we set the progress download size already at this point
+                   just to make it easier for apps/callbacks to extract this
+                   info as soon as possible */
+                Curl_pgrsSetDownloadSize(data, k->size);
               }
               else {
                 /* Negative Content-Length is really odd, and we know it
