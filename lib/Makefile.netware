@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.62 2007-08-11 20:57:54 bagder Exp $
+# $Id: Makefile.netware,v 1.63 2007-08-12 00:48:10 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -176,6 +176,8 @@ ifeq ($(LIBARCH),LIBC)
 	# INCLUDES += -I$(SDK_LIBC)/include/winsock
 	# INCLUDES += -I$(SDK_LDAP)/libc/inc
 	CFLAGS += -D_POSIX_SOURCE
+	# disable LDAP since we can no longer compile.
+	DISABLE_LDAP = 1
 else
 	INCLUDES += -I$(SDK_CLIB)/include/nlm
 	# INCLUDES += -I$(SDK_CLIB)/include/nlm/obsolete
