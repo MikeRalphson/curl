@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.72 2007-08-13 13:03:08 patrickm Exp $
+ * $Id: ldap.c,v 1.73 2007-08-13 16:37:51 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -126,7 +126,6 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
   int rc = 0;
   LDAP *server;
   LDAPURLDesc *ludp = NULL;
-  const char *mod_name;
   LDAPMessage *result;
   LDAPMessage *entryIterator;
   int num = 0;
