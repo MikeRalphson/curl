@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.55 2007-08-14 12:02:10 gknauf Exp $
+# $Id: Makefile.netware,v 1.56 2007-08-14 13:01:40 gknauf Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -295,7 +295,7 @@ ifndef DISABLE_LDAP
 	@echo $(DL)import @$(SDK_LDAP)/clib/imports/ldapsdk.imp$(DL) >> $@
 	@echo $(DL)import @$(SDK_LDAP)/clib/imports/ldapssl.imp$(DL) >> $@
 	@echo $(DL)import @$(SDK_LDAP)/clib/imports/ldapx.imp$(DL) >> $@
-	@echo $(DL)module ldapx$(DL) >> $@
+	@echo $(DL)module ldapsdk$(DL) >> $@
 endif
 	@echo $(DL)module clib$(DL) >> $@
 else
@@ -310,7 +310,7 @@ ifndef DISABLE_LDAP
 	@echo $(DL)import @$(SDK_LDAP)/libc/imports/lldapsdk.imp$(DL) >> $@
 	@echo $(DL)import @$(SDK_LDAP)/libc/imports/lldapssl.imp$(DL) >> $@
 	@echo $(DL)import @$(SDK_LDAP)/libc/imports/lldapx.imp$(DL) >> $@
-	@echo $(DL)module lldapx$(DL) >> $@
+	@echo $(DL)module lldapsdk$(DL) >> $@
 endif
 	@echo $(DL)module libc$(DL) >> $@
 endif
