@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.64 2007-07-11 09:08:03 gknauf Exp $
+ * $Id: http_ntlm.c,v 1.65 2007-08-14 10:28:21 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -916,6 +916,13 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
 #endif
     useroff = domoff + domlen;
     hostoff = useroff + userlen;
+
+    /*
+     * In the case the server sets the flag NTLMFLAG_NEGOTIATE_UNICODE, we
+     * need to filter it off because libcurl doesn't UNICODE encode the
+     * strings it packs into the NTLM authenticate packet.
+     */
+    ntlm->flags &= ~NTLMFLAG_NEGOTIATE_UNICODE;
 
     /* Create the big type-3 message binary blob */
     size = snprintf((char *)ntlmbuf, sizeof(ntlmbuf),
