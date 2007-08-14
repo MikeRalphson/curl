@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.41 2007-08-07 17:40:56 gknauf Exp $
+# $Id: Makefile.m32,v 1.42 2007-08-14 14:48:25 gknauf Exp $
 #
 ## Makefile for building libcurl.a with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8)
@@ -64,7 +64,7 @@ endif
 ifdef IPV6
   CFLAGS += -DENABLE_IPV6
 endif
-DLL_LIBS += -lws2_32 -lwinmm
+DLL_LIBS += -lws2_32 -lwinmm -lwldap32
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 
 # Makefile.inc provides the CSOURCES and HHEADERS defines
