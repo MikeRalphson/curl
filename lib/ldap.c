@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.73 2007-08-13 16:37:51 danf Exp $
+ * $Id: ldap.c,v 1.74 2007-08-15 08:18:37 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -126,7 +126,7 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
   int rc = 0;
   LDAP *server;
   LDAPURLDesc *ludp = NULL;
-  LDAPMessage *result;
+  LDAPMessage *result = NULL;
   LDAPMessage *entryIterator;
   int num = 0;
   struct SessionHandle *data=conn->data;
@@ -245,6 +245,8 @@ quit:
   LDAP_TRACE (("Received %d entries\n", num));
   if (rc == LDAP_SIZELIMIT_EXCEEDED)
      infof(data, "There are more than %d entries\n", num);
+  if (result)
+     ldap_msgfree(result);
   if (ludp)
      ldap_free_urldesc(ludp);
   if (server)
