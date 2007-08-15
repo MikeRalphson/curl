@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.340 2007-08-01 21:20:01 bagder Exp $
+ * $Id: urldata.h,v 1.341 2007-08-15 16:17:32 gknauf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -34,6 +34,7 @@
 #define PORT_HTTPS 443
 #define PORT_DICT 2628
 #define PORT_LDAP 389
+#define PORT_LDAPS 636
 #define PORT_TFTP 69
 #define PORT_SSH 22
 
