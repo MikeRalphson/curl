@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.52 2006-11-24 22:14:40 bagder Exp $
+ * $Id: version.c,v 1.53 2007-08-15 14:49:16 patrickm Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -57,8 +57,9 @@ char *curl_version(void)
   size_t len;
   size_t left = sizeof(version);
   strcpy(ptr, LIBCURL_NAME "/" LIBCURL_VERSION );
-  ptr=strchr(ptr, '\0');
-  left -= strlen(ptr);
+  len = strlen(ptr);
+  left -= len;
+  ptr += len;
 
   len = Curl_ssl_version(ptr, left);
   left -= len;
