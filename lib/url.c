@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.640 2007-08-11 20:57:54 bagder Exp $
+ * $Id: url.c,v 1.641 2007-08-16 14:08:47 gknauf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3061,6 +3061,23 @@ static CURLcode setup_connection_internals(struct SessionHandle *data,
     return CURLE_UNSUPPORTED_PROTOCOL;
 #endif
   }
+
+#ifdef HAVE_LDAP_SSL
+  else if (strequal(conn->protostr, "LDAPS")) {
+#ifndef CURL_DISABLE_LDAP
+    conn->protocol |= PROT_LDAP|PROT_SSL;
+    conn->port = PORT_LDAPS;
+    conn->remote_port = PORT_LDAPS;
+    conn->curl_do = Curl_ldap;
+    /* no LDAP-specific done */
+    conn->curl_done = (Curl_done_func)ZERO_NULL;
+#else
+    failf(data, LIBCURL_NAME
+          " was built with LDAP disabled!");
+    return CURLE_UNSUPPORTED_PROTOCOL;
+#endif
+  }
+#endif /* CURL_LDAP_USE_SSL */
 
   else if (strequal(conn->protostr, "FILE")) {
 #ifndef CURL_DISABLE_FILE

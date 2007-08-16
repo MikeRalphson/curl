@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.53 2007-08-15 14:49:16 patrickm Exp $
+ * $Id: version.c,v 1.54 2007-08-16 14:08:47 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -120,6 +120,9 @@ static const char * const protocols[] = {
 #endif
 #ifndef CURL_DISABLE_LDAP
   "ldap",
+#ifdef HAVE_LDAP_SSL
+  "ldaps",
+#endif
 #endif
 #ifndef CURL_DISABLE_HTTP
   "http",
