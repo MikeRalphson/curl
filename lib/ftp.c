@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.427 2007-08-17 22:22:43 bagder Exp $
+ * $Id: ftp.c,v 1.428 2007-08-17 22:31:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2144,8 +2144,8 @@ static CURLcode ftp_state_rest_resp(struct connectdata *conn,
   default:
 #ifdef CURL_FTP_HTTPSTYLE_HEAD
     if (ftpcode == 350) {
-      result = Curl_client_write(conn, CLIENTWRITE_BOTH,
-                               (char *)"Accept-ranges: bytes\r\n", 0);
+      char buffer[24]= { "Accept-ranges: bytes\r\n" };
+      result = Curl_client_write(conn, CLIENTWRITE_BOTH, buffer, 0);
       if(result)
         return result;
     }
