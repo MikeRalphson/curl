@@ -1,5 +1,5 @@
 #############################################################
-# $Id: Makefile.m32,v 1.34 2007-08-19 00:26:24 gknauf Exp $
+# $Id: Makefile.m32,v 1.35 2007-08-19 23:23:50 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8), libssh2 (0.17), zlib (1.2.3)
@@ -90,12 +90,12 @@ curl_OBJECTS := $(patsubst %.c,%.o,$(strip $(CURL_SOURCES)))
 all: curl.exe
 
 curl.exe: curl.res $(curl_OBJECTS) $(curl_DEPENDENCIES)
-	$(RM) $@
+	-$(RM) $@
 	$(LINK) $< $(curl_OBJECTS) $(curl_LDADD)
 
 # We don't have nroff normally under win32
 # hugehelp.c: ../README.curl ../curl.1 mkhelp.pl
-# 	$(RM) hugehelp.c
+# 	-$(RM) hugehelp.c
 # 	$(NROFF) -man ../curl.1 | $(PERL) mkhelp.pl ../README.curl > hugehelp.c
 
 .c.o:
@@ -105,7 +105,7 @@ curl.exe: curl.res $(curl_OBJECTS) $(curl_DEPENDENCIES)
 	$(RC) $(RCFLAGS) $< -o $@
 
 clean:
-	$(RM) $(curl_OBJECTS)
+	-$(RM) $(curl_OBJECTS)
 
 distrib: clean
-	$(RM) $(curl_PROGRAMS)
+	-$(RM) $(curl_PROGRAMS)
