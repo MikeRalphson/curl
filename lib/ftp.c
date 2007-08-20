@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.428 2007-08-17 22:31:51 bagder Exp $
+ * $Id: ftp.c,v 1.429 2007-08-20 21:54:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2120,10 +2120,13 @@ static CURLcode ftp_state_size_resp(struct connectdata *conn,
         return result;
     }
 #endif
+    Curl_pgrsSetDownloadSize(data, filesize);
     result = ftp_state_post_size(conn);
   }
-  else if(instate == FTP_RETR_SIZE)
+  else if(instate == FTP_RETR_SIZE) {
+    Curl_pgrsSetDownloadSize(data, filesize);
     result = ftp_state_post_retr_size(conn, filesize);
+  }
   else if(instate == FTP_STOR_SIZE) {
     data->reqdata.resume_from = filesize;
     result = ftp_state_ul_setup(conn, TRUE);
