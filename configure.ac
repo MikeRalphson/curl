@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.247 2007-08-20 12:50:44 gknauf Exp $
+# $Id: configure.ac,v 1.248 2007-08-20 15:51:45 gknauf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -568,7 +568,7 @@ if test x$CURL_DISABLE_LDAP != x1 ; then
     curl_ldap_msg="yes (winldap)"
     AC_DEFINE(CURL_LDAP_WIN, 1, [Use W$ LDAP implementation])
     case $host in
-      *-*-cygwin* | *-*-mingw* | *-*-pw32*)
+      *-*-cygwin* | *-*-pw32*)
         AC_DEFINE(CURL_LDAP_HYBRID, 1, [W$ LDAP with non-W$ compiler])
         ;;
     esac
