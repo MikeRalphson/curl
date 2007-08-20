@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.246 2007-08-11 20:57:54 bagder Exp $
+# $Id: configure.ac,v 1.247 2007-08-20 12:50:44 gknauf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1728,6 +1728,7 @@ AC_CHECK_HEADERS(
         assert.h \
         unistd.h \
         stdlib.h \
+        ldap_ssl.h \
         limits.h \
         arpa/inet.h \
         net/if.h \
