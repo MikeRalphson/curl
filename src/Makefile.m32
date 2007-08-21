@@ -1,5 +1,5 @@
 #########################################################################
-# $Id: Makefile.m32,v 1.37 2007-08-20 23:31:57 gknauf Exp $
+# $Id: Makefile.m32,v 1.38 2007-08-21 02:42:29 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8), libssh2 (0.17), zlib (1.2.3)
@@ -41,6 +41,7 @@ LDFLAGS = -s
 RC = windres
 RCFLAGS = --include-dir=../include -O COFF -i
 RM = del /q /f
+CP = copy
 
 # We may need these someday
 # PERL = perl
@@ -95,7 +96,7 @@ ifdef LDAPS
     curl_LDADD += -L"$(LDAP_SDK)/lib/mscvc" -lldapsdk -lldapssl -lldapx
   endif
 endif
-curl_LDADD += -lwsock32 -lws2_32 -lwinmm -lwldap32
+curl_LDADD += -lws2_32 -lwinmm -lwldap32
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 
 # Makefile.inc provides the CSOURCES and HHEADERS defines
@@ -118,6 +119,10 @@ curl.exe: curl.res $(curl_OBJECTS) $(curl_DEPENDENCIES)
 # 	-$(RM) hugehelp.c
 # 	$(NROFF) -man ../curl.1 | $(PERL) mkhelp.pl ../README.curl > hugehelp.c
 
+hugehelp.c:
+	@echo Creating $@
+	@$(CP) hugehelp.c.cvs $@
+
 .c.o:
 	$(COMPILE) -c $<
 
@@ -125,7 +130,12 @@ curl.exe: curl.res $(curl_OBJECTS) $(curl_DEPENDENCIES)
 	$(RC) $(RCFLAGS) $< -o $@
 
 clean:
+ifeq "$(wildcard hugehelp.c.cvs)" "hugehelp.c.cvs"
+	-$(RM) hugehelp.c
+endif
 	-$(RM) $(curl_OBJECTS)
 
 distrib: clean
 	-$(RM) $(curl_PROGRAMS)
+
+
