@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.79 2007-08-22 10:14:57 gknauf Exp $
+ * $Id: ldap.c,v 1.80 2007-08-22 18:05:46 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -133,10 +133,10 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
           LDAP_VENDOR_NAME, LDAP_VENDOR_VERSION);
   infof(data, "LDAP local: %s\n", data->change.url);
 
-#ifndef HAVE_LDAP_URL_PARSE
-  rc = _ldap_url_parse(conn, &ludp);
-#else
+#ifdef HAVE_LDAP_URL_PARSE
   rc = ldap_url_parse(data->change.url, &ludp);
+#else
+  rc = _ldap_url_parse(conn, &ludp);
 #endif
   if (rc != 0) {
     failf(data, "LDAP local: %s", ldap_err2string(rc));
@@ -622,5 +622,5 @@ static void _ldap_free_urldesc (LDAPURLDesc *ludp)
   }
   free (ludp);
 }
-#endif  /* HAVE_LDAP_URL_PARSE */
+#endif  /* !HAVE_LDAP_URL_PARSE */
 #endif  /* CURL_DISABLE_LDAP */
