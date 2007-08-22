@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.78 2007-08-20 23:31:26 gknauf Exp $
+ * $Id: ldap.c,v 1.79 2007-08-22 10:14:57 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -235,6 +235,7 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
       status = CURLE_SSL_CERTPROBLEM;
       goto quit;
     }
+/*
     rc = ldap_start_tls_s(server, NULL, NULL);
     if (rc != LDAP_SUCCESS) {
       failf(data, "LDAP local: ERROR starting SSL/TLS mode: %s",
@@ -242,6 +243,7 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
       status = CURLE_SSL_CERTPROBLEM;
       goto quit;
     }
+*/
 #else
     /* we should probably never come up to here since configure
        should check in first place if we can support LDAP SSL/TLS */
