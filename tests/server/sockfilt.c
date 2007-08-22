@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.33 2007-08-22 13:57:49 bagder Exp $
+ * $Id: sockfilt.c,v 1.34 2007-08-22 14:09:13 bagder Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -306,6 +306,12 @@ static int juggle(curl_socket_t *sockfdp,
           return FALSE;
         }
         logmsg("> %d bytes data, server => client", buffer_len);
+
+        if(buffer_len > (ssize_t)sizeof(buffer)) {
+          logmsg("ERROR: %d bytes of data does not fit within the %d "
+                 "bytes buffer", buffer_len, sizeof(buffer));
+          return FALSE;
+        }
 
         /*
          * To properly support huge data chunks, we need to repeat the call
