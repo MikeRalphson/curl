@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.84 2007-08-20 17:53:38 danf Exp $
+# $Id: ftpserver.pl,v 1.85 2007-08-23 18:45:28 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -585,7 +585,7 @@ sub PASV_command {
         local $SIG{ALRM} = sub { die "alarm\n" };
 
 	# assume swift operations unless explicitly slow
-	alarm ($controldelay?20:7);
+	alarm ($controldelay?20:10);
 
         # Wait for 'CNCT'
 	my $input;
