@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.321 2007-07-01 22:01:19 bagder Exp $
+ * $Id: curl.h,v 1.322 2007-08-23 14:30:24 patrickm Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -95,6 +95,11 @@ extern "C" {
   typedef long long curl_off_t;
 #define CURL_FORMAT_OFF_T "%I64d"
 #else /* GCC or Watcom on Windows  */
+#if defined(__ILEC400__)
+/* OS400 C compiler. */
+  typedef long long curl_off_t;
+#define CURL_FORMAT_OFF_T "%lld"
+#else /* OS400 C compiler. */
 
 /* "normal" POSIX approach, do note that this does not necessarily mean that
    the type is >32 bits, see the SIZEOF_CURL_OFF_T define for that! */
@@ -120,6 +125,7 @@ extern "C" {
 #else /* LARGE_FILE support */
 #define CURL_FORMAT_OFF_T "%ld"
 #endif
+#endif /* OS400 C compiler. */
 #endif /* GCC or Watcom on Windows */
 #endif /* (_MSC_VER && !__POCC__) || (__LCC__ && WIN32) */
 
@@ -517,7 +523,8 @@ typedef enum {
  */
 #if defined(__STDC__) || defined(_MSC_VER) || defined(__cplusplus) || \
   defined(__HP_aCC) || defined(__BORLANDC__) || defined(__LCC__) || \
-  defined(__POCC__) || defined(__SALFORDC__) || defined(__HIGHC__)
+  defined(__POCC__) || defined(__SALFORDC__) || defined(__HIGHC__) || \
+  defined(__ILEC400__)
   /* This compiler is believed to have an ISO compatible preprocessor */
 #define CURL_ISOCPP
 #else
