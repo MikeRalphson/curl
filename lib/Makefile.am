@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.119 2007-07-12 10:44:46 gknauf Exp $
+# $Id: Makefile.am,v 1.120 2007-08-23 14:58:10 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -34,6 +34,7 @@ EXTRA_DIST = Makefile.b32 Makefile.m32 Makefile.vc6 Makefile.riscos	\
  libcurl.framework.make libcurl.plist libcurl.rc config-amigaos.h	\
  amigaos.c amigaos.h makefile.amiga Makefile.netware nwlib.c nwos.c	\
  libcurl.imp msvcproj.head msvcproj.foot config-win32ce.h		\
+ config-os400.h setup-os400.h \
  Makefile.Watcom config-tpf.h $(DOCS) $(VCPROJ)
 
 CLEANFILES = $(DSP) $(VCPROJ)
