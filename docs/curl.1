@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.218 2007-07-20 17:29:43 danf Exp $
+.\" * $Id: curl.1,v 1.219 2007-08-23 14:33:08 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "28 Feb 2007" "Curl 7.16.2" "Curl Manual"
@@ -658,6 +658,10 @@ This option can be used multiple times to load multiple config files.
 Append this option to any ordinary curl command line, and you will get a
 libcurl-using source code written to the file that does the equivalent
 operation of what your command line operation does!
+
+NOTE: this does not properly support -F and the sending of multipart
+formposts, so in those cases the output program will be missing necessary
+calls to \fIcurl_formadd(3)\fP, and possibly more.
 
 If this option is used several times, the last given file name will be used.
 .IP "--limit-rate <speed>"
