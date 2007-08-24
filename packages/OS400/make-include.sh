@@ -2,7 +2,7 @@
 #
 #       Installation of the include files in the OS/400 library.
 #
-# $Id: make-include.sh,v 1.1 2007-08-23 14:30:24 patrickm Exp $
+# $Id: make-include.sh,v 1.2 2007-08-24 15:56:59 patrickm Exp $
 
 SCRIPTDIR=`dirname "${0}"`
 . "${SCRIPTDIR}/initscript.sh"
@@ -15,7 +15,7 @@ SRCPF="${LIBIFSNAME}/H.FILE"
 
 if action_needed "${SRCPF}"
 then    CMD="CRTSRCPF FILE(${TARGETLIB}/H) RCDLEN(112)"
-        CMD="${CMD} TEXT('curl: Header files')"
+        CMD="${CMD} CCSID(${TGTCCSID}) TEXT('curl: Header files')"
         system "${CMD}"
 fi
 
