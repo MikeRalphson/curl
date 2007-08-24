@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.8 2007-08-01 21:20:01 bagder Exp $
+ * $Id: nss.c,v 1.9 2007-08-24 09:06:17 patrickm Exp $
  ***************************************************************************/
 
 /*
@@ -601,6 +601,6 @@ ssize_t Curl_nss_recv(struct connectdata * conn, /* connection data */
 
 size_t Curl_nss_version(char *buffer, size_t size)
 {
-  return snprintf(buffer, size, " NSS/%s", NSS_VERSION);
+  return snprintf(buffer, size, "NSS/%s", NSS_VERSION);
 }
 #endif /* USE_NSS */

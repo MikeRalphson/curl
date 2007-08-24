@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.31 2007-08-01 21:20:01 bagder Exp $
+ * $Id: gtls.c,v 1.32 2007-08-24 09:06:17 patrickm Exp $
  ***************************************************************************/
 
 /*
@@ -691,7 +691,7 @@ void Curl_gtls_session_free(void *ptr)
 
 size_t Curl_gtls_version(char *buffer, size_t size)
 {
-  return snprintf(buffer, size, " GnuTLS/%s", gnutls_check_version(NULL));
+  return snprintf(buffer, size, "GnuTLS/%s", gnutls_check_version(NULL));
 }
 
 #endif /* USE_GNUTLS */
