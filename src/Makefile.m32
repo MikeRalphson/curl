@@ -1,5 +1,5 @@
 #########################################################################
-# $Id: Makefile.m32,v 1.39 2007-08-21 03:04:46 gknauf Exp $
+# $Id: Makefile.m32,v 1.40 2007-08-24 17:08:49 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8), libssh2 (0.17), zlib (1.2.3)
@@ -90,11 +90,14 @@ ifdef IPV6
 endif
 ifdef LDAPS
   CFLAGS += -DHAVE_LDAP_SSL
-  ifdef USE_LDAP_NOVELL
-    # INCLUDES += -I"$(LDAP_SDK)/inc"
-    CFLAGS += -DCURL_HAS_NOVELL_LDAPSDK
-    curl_LDADD += -L"$(LDAP_SDK)/lib/mscvc" -lldapsdk -lldapssl -lldapx
-  endif
+endif
+ifdef USE_LDAP_NOVELL
+  CFLAGS += -DCURL_HAS_NOVELL_LDAPSDK
+  curl_LDADD += -L"$(LDAP_SDK)/lib/mscvc" -lldapsdk -lldapssl -lldapx
+endif
+ifdef USE_LDAP_OPENLDAP
+  CFLAGS += -DCURL_HAS_OPENLDAP_LDAPSDK
+  curl_LDADD += -L"$(LDAP_SDK)/lib" -lldap -llber
 endif
 curl_LDADD += -lws2_32 -lwinmm -lwldap32
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
