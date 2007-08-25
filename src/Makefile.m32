@@ -1,5 +1,5 @@
 #########################################################################
-# $Id: Makefile.m32,v 1.40 2007-08-24 17:08:49 gknauf Exp $
+# $Id: Makefile.m32,v 1.41 2007-08-25 12:08:38 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2) and
 ## optionally OpenSSL (0.9.8), libssh2 (0.17), zlib (1.2.3)
@@ -99,7 +99,12 @@ ifdef USE_LDAP_OPENLDAP
   CFLAGS += -DCURL_HAS_OPENLDAP_LDAPSDK
   curl_LDADD += -L"$(LDAP_SDK)/lib" -lldap -llber
 endif
-curl_LDADD += -lws2_32 -lwinmm -lwldap32
+ifndef USE_LDAP_NOVELL
+ifndef USE_LDAP_OPENLDAP
+curl_LDADD += -lwldap32
+endif
+endif
+curl_LDADD += -lws2_32 -lwinmm
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 
 # Makefile.inc provides the CSOURCES and HHEADERS defines
