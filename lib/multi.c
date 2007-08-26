@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.148 2007-06-26 21:09:28 bagder Exp $
+ * $Id: multi.c,v 1.149 2007-08-26 05:53:26 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -690,7 +690,7 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
     return CURLM_BAD_EASY_HANDLE; /* twasn't found */
 }
 
-bool Curl_multi_canPipeline(struct Curl_multi* multi)
+bool Curl_multi_canPipeline(const struct Curl_multi* multi)
 {
   return multi->pipelining_enabled;
 }

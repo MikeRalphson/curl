@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.185 2007-07-01 22:01:19 bagder Exp $
+ * $Id: hostip.c,v 1.186 2007-08-26 05:53:26 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -200,7 +200,7 @@ create_hostcache_id(const char *server, int port)
 }
 
 struct hostcache_prune_data {
-  int cache_timeout;
+  long cache_timeout;
   time_t now;
 };
 
@@ -232,7 +232,7 @@ hostcache_timestamp_remove(void *datap, void *hc)
  * Prune the DNS cache. This assumes that a lock has already been taken.
  */
 static void
-hostcache_prune(struct curl_hash *hostcache, int cache_timeout, time_t now)
+hostcache_prune(struct curl_hash *hostcache, long cache_timeout, time_t now)
 {
   struct hostcache_prune_data user;
 

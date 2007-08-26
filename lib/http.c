@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.332 2007-08-17 20:21:32 bagder Exp $
+ * $Id: http.c,v 1.333 2007-08-26 05:53:26 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1055,7 +1055,7 @@ CURLcode add_buffer(send_buffer *in, const void *inptr, size_t size)
  * Pass headers WITH the colon.
  */
 bool
-Curl_compareheader(char *headerline,    /* line to check */
+Curl_compareheader(const char *headerline, /* line to check */
                    const char *header,  /* header keyword _with_ colon */
                    const char *content) /* content string to find */
 {
@@ -1067,8 +1067,8 @@ Curl_compareheader(char *headerline,    /* line to check */
   size_t hlen = strlen(header);
   size_t clen;
   size_t len;
-  char *start;
-  char *end;
+  const char *start;
+  const char *end;
 
   if(!strnequal(headerline, header, hlen))
     return FALSE; /* doesn't start with header */
@@ -1119,7 +1119,7 @@ Curl_compareheader(char *headerline,    /* line to check */
 CURLcode Curl_proxyCONNECT(struct connectdata *conn,
                            int sockindex,
                            char *hostname,
-                           int remote_port)
+                           unsigned short remote_port)
 {
   int subversion=0;
   struct SessionHandle *data=conn->data;

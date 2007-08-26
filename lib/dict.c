@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.49 2007-03-31 21:06:40 bagder Exp $
+ * $Id: dict.c,v 1.50 2007-08-26 05:53:26 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,13 +82,13 @@
 /* The last #include file should be: */
 #include "memdebug.h"
 
-static char *unescape_word(struct SessionHandle *data, char *inp)
+static char *unescape_word(struct SessionHandle *data, const char *inp)
 {
   char *newp;
   char *dictp;
   char *ptr;
   int len;
-  unsigned char byte;
+  char byte;
   int olen=0;
 
   newp = curl_easy_unescape(data, inp, 0, &len);
@@ -100,7 +100,7 @@ static char *unescape_word(struct SessionHandle *data, char *inp)
     /* According to RFC2229 section 2.2, these letters need to be escaped with
        \[letter] */
     for(ptr = newp;
-        (byte = (unsigned char)*ptr) != 0;
+        (byte = *ptr) != 0;
         ptr++) {
       if ((byte <= 32) || (byte == 127) ||
           (byte == '\'') || (byte == '\"') || (byte == '\\')) {

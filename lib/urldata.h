@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.341 2007-08-15 16:17:32 gknauf Exp $
+ * $Id: urldata.h,v 1.342 2007-08-26 05:53:26 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -132,7 +132,7 @@
    of need. */
 #define HEADERSIZE 256
 
-#define CURLEASY_MAGIC_NUMBER 0xc0dedbad
+#define CURLEASY_MAGIC_NUMBER 0xc0dedbadU
 
 /* Just a convenience macro to get the larger value out of two given.
    We prefix with CURL to prevent name collisions. */
@@ -1354,7 +1354,7 @@ struct UserDefined {
 
   curl_proxytype proxytype; /* what kind of proxy that is in use */
 
-  int dns_cache_timeout; /* DNS cache timeout */
+  long dns_cache_timeout; /* DNS cache timeout */
   long buffer_size;      /* size of receive buffer to use */
 
   void *private_data; /* Private data */
