@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.10 2007-07-29 12:54:05 bagder Exp $
+ * $Id: sslgen.h,v 1.11 2007-08-27 06:31:28 danf Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -71,7 +71,7 @@ int Curl_ssl_check_cxn(struct connectdata *conn);
 
 CURLcode Curl_ssl_shutdown(struct connectdata *conn, int sockindex);
 
-bool Curl_ssl_data_pending(struct connectdata *conn,
+bool Curl_ssl_data_pending(const struct connectdata *conn,
                            int connindex);
 
 #if !defined(USE_SSL) && !defined(SSLGEN_C)

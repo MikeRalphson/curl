@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.h,v 1.4 2007-04-03 18:25:18 yangtse Exp $
+ * $Id: socks.h,v 1.5 2007-08-27 06:31:28 danf Exp $
  ***************************************************************************/
 
 /*
@@ -28,7 +28,7 @@
  * final destination server.
  */
 CURLcode Curl_SOCKS4(const char *proxy_name,
-                     char *hostname,
+                     const char *hostname,
                      int remote_port,
                      int sockindex,
                      struct connectdata *conn);
@@ -39,7 +39,7 @@ CURLcode Curl_SOCKS4(const char *proxy_name,
  */
 CURLcode Curl_SOCKS5(const char *proxy_name,
                      const char *proxy_password,
-                     char *hostname,
+                     const char *hostname,
                      int remote_port,
                      int sockindex,
                      struct connectdata *conn);

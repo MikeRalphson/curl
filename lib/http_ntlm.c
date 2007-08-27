@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.65 2007-08-14 10:28:21 bagder Exp $
+ * $Id: http_ntlm.c,v 1.66 2007-08-27 06:31:28 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -218,8 +218,8 @@ static void print_hex(FILE *handle, const char *buf, size_t len)
 
 CURLntlm Curl_input_ntlm(struct connectdata *conn,
                          bool proxy,   /* if proxy or not */
-                         char *header) /* rest of the www-authenticate:
-                                          header */
+                         const char *header) /* rest of the www-authenticate:
+                                                header */
 {
   /* point to the correct struct with this */
   struct ntlmdata *ntlm;

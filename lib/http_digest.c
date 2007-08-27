@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.30 2007-07-22 10:17:52 bagder Exp $
+ * $Id: http_digest.c,v 1.31 2007-08-27 06:31:28 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -56,8 +56,8 @@ Proxy-Authenticate: Digest realm="testrealm", nonce="1053604598"
 
 CURLdigest Curl_input_digest(struct connectdata *conn,
                              bool proxy,
-                             char *header) /* rest of the *-authenticate:
-                                              header */
+                             const char *header) /* rest of the *-authenticate:
+                                                    header */
 {
   bool more = TRUE;
   char *token = NULL;
@@ -212,8 +212,8 @@ static void md5_to_ascii(unsigned char *source, /* 16 bytes */
 
 CURLcode Curl_output_digest(struct connectdata *conn,
                             bool proxy,
-                            unsigned char *request,
-                            unsigned char *uripath)
+                            const unsigned char *request,
+                            const unsigned char *uripath)
 {
   /* We have a Digest setup for this, use it!  Now, to get all the details for
      this sorted out, I must urge you dear friend to read up on the RFC2617

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.19 2007-04-04 23:41:35 danf Exp $
+ * $Id: http_negotiate.c,v 1.20 2007-08-27 06:31:28 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -113,7 +113,7 @@ log_gss_error(struct connectdata *conn, OM_uint32 error_status, char *prefix)
   infof(conn->data, "%s", buf);
 }
 
-int Curl_input_negotiate(struct connectdata *conn, char *header)
+int Curl_input_negotiate(struct connectdata *conn, const char *header)
 {
   struct negotiatedata *neg_ctx = &conn->data->state.negotiate;
   OM_uint32 major_status, minor_status, minor_status2;
