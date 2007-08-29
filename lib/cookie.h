@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.h,v 1.24 2006-08-30 16:17:06 giva Exp $
+ * $Id: cookie.h,v 1.25 2007-08-29 05:36:53 danf Exp $
  ***************************************************************************/
 
 #include <stdio.h>
@@ -84,17 +84,18 @@ struct SessionHandle;
  */
 
 struct Cookie *Curl_cookie_add(struct SessionHandle *data,
-                               struct CookieInfo *, bool header, char *line,
-                               char *domain, char *path);
+                               struct CookieInfo *, bool header, char *lineptr,
+                               const char *domain, const char *path);
 
 struct CookieInfo *Curl_cookie_init(struct SessionHandle *data,
-                                    char *, struct CookieInfo *, bool);
-struct Cookie *Curl_cookie_getlist(struct CookieInfo *, char *, char *, bool);
+                                    const char *, struct CookieInfo *, bool);
+struct Cookie *Curl_cookie_getlist(struct CookieInfo *, const char *,
+		                   const char *, bool);
 void Curl_cookie_freelist(struct Cookie *);
 void Curl_cookie_clearall(struct CookieInfo *cookies);
 void Curl_cookie_clearsess(struct CookieInfo *cookies);
 void Curl_cookie_cleanup(struct CookieInfo *);
-int Curl_cookie_output(struct CookieInfo *, char *);
+int Curl_cookie_output(struct CookieInfo *, const char *);
 
 #if defined(CURL_DISABLE_HTTP) || defined(CURL_DISABLE_COOKIES)
 #define Curl_cookie_list(x) NULL

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.48 2007-06-12 08:15:02 bagder Exp $
+ * $Id: tftp.c,v 1.49 2007-08-29 05:36:53 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -114,7 +114,7 @@ typedef enum {
   TFTP_ERR_ILLEGAL,
   TFTP_ERR_UNKNOWNID,
   TFTP_ERR_EXISTS,
-  TFTP_ERR_NOSUCHUSER,
+  TFTP_ERR_NOSUCHUSER,	/* This will never be triggered by this code */
   TFTP_ERR_TIMEOUT,
   TFTP_ERR_NORESPONSE
 } tftp_error_t;
@@ -148,7 +148,6 @@ typedef struct tftp_state_data {
 /* Forward declarations */
 static CURLcode tftp_rx(tftp_state_data_t *state, tftp_event_t event) ;
 static CURLcode tftp_tx(tftp_state_data_t *state, tftp_event_t event) ;
-void tftp_set_timeouts(tftp_state_data_t *state) ;
 
 /**********************************************************
  *
@@ -160,7 +159,7 @@ void tftp_set_timeouts(tftp_state_data_t *state) ;
  *
  *
  **********************************************************/
-void tftp_set_timeouts(tftp_state_data_t *state)
+static void tftp_set_timeouts(tftp_state_data_t *state)
 {
 
   struct SessionHandle *data = state->conn->data;
@@ -240,12 +239,12 @@ static void setpacketblock(tftp_packet_t *packet, unsigned short num)
   packet->data[3] = (unsigned char)(num & 0xff);
 }
 
-static unsigned short getrpacketevent(tftp_packet_t *packet)
+static unsigned short getrpacketevent(const tftp_packet_t *packet)
 {
   return (unsigned short)((packet->data[0] << 8) | packet->data[1]);
 }
 
-static unsigned short getrpacketblock(tftp_packet_t *packet)
+static unsigned short getrpacketblock(const tftp_packet_t *packet)
 {
   return (unsigned short)((packet->data[2] << 8) | packet->data[3]);
 }
