@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.1 2007-08-23 14:30:24 patrickm Exp $
+ * $Id: ccsidcurl.c,v 1.2 2007-08-30 20:34:58 danf Exp $
  *
  ***************************************************************************/
 
@@ -1039,6 +1039,7 @@ curl_easy_setopt_ccsid(CURL * curl, CURLoption tag, ...)
   case CURLOPT_FTP_ACCOUNT:
   case CURLOPT_FTP_ALTERNATIVE_TO_USER:
   case CURLOPT_INTERFACE:
+  case CURLOPT_KEYPASSWD:
   case CURLOPT_KRBLEVEL:
   case CURLOPT_NETRC_FILE:
   case CURLOPT_POSTFIELDS:
@@ -1053,7 +1054,6 @@ curl_easy_setopt_ccsid(CURL * curl, CURLoption tag, ...)
   case CURLOPT_SSLCERTTYPE:
   case CURLOPT_SSLENGINE:
   case CURLOPT_SSLKEY:
-  case CURLOPT_SSLKEYPASSWD:
   case CURLOPT_SSLKEYTYPE:
   case CURLOPT_SSL_CIPHER_LIST:
   case CURLOPT_URL:

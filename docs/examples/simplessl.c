@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: simplessl.c,v 1.7 2007-07-12 21:11:10 danf Exp $
+ * $Id: simplessl.c,v 1.8 2007-08-30 20:34:57 danf Exp $
  */
 
 #include <stdio.h>
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
       /* sorry, for engine we must set the passphrase
          (if the key has one...) */
       if (pPassphrase)
-        curl_easy_setopt(curl,CURLOPT_SSLKEYPASSWD,pPassphrase);
+        curl_easy_setopt(curl,CURLOPT_KEYPASSWD,pPassphrase);
 
       /* if we use a key stored in a crypto engine,
          we must set the key type to "ENG" */

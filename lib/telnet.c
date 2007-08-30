@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.90 2007-03-25 02:30:58 yangtse Exp $
+ * $Id: telnet.c,v 1.91 2007-08-30 20:34:58 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1390,7 +1390,7 @@ CURLcode Curl_telnet(struct connectdata *conn, bool *done)
       now = Curl_tvnow();
       if(Curl_tvdiff(now, conn->created) >= data->set.timeout) {
         failf(data, "Time-out");
-        code = CURLE_OPERATION_TIMEOUTED;
+        code = CURLE_OPERATION_TIMEDOUT;
         keepon = FALSE;
       }
     }

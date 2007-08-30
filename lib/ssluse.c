@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.183 2007-08-27 06:31:28 danf Exp $
+ * $Id: ssluse.c,v 1.184 2007-08-30 20:34:58 danf Exp $
  ***************************************************************************/
 
 /*
@@ -1492,7 +1492,7 @@ Curl_ossl_connect_step2(struct connectdata *conn,
   if(*timeout_ms < 0) {
     /* a precaution, no need to continue if time already is up */
     failf(data, "SSL connection timeout");
-    return CURLE_OPERATION_TIMEOUTED;
+    return CURLE_OPERATION_TIMEDOUT;
   }
 
   err = SSL_connect(connssl->handle);

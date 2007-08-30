@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.9 2007-08-24 09:06:17 patrickm Exp $
+ * $Id: nss.c,v 1.10 2007-08-30 20:34:57 danf Exp $
  ***************************************************************************/
 
 /*
@@ -550,7 +550,7 @@ int Curl_nss_send(struct connectdata *conn,  /* connection data */
 
     if(err == PR_IO_TIMEOUT_ERROR) {
       failf(data, "SSL connection timeout");
-      return CURLE_OPERATION_TIMEOUTED;
+      return CURLE_OPERATION_TIMEDOUT;
     }
 
     failf(conn->data, "SSL write: error %d\n", err);
@@ -591,7 +591,7 @@ ssize_t Curl_nss_recv(struct connectdata * conn, /* connection data */
     }
     if(err == PR_IO_TIMEOUT_ERROR) {
       failf(data, "SSL connection timeout");
-      return CURLE_OPERATION_TIMEOUTED;
+      return CURLE_OPERATION_TIMEDOUT;
     }
     failf(conn->data, "SSL read: errno %d", err);
     return -1;

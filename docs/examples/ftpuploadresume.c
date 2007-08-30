@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpuploadresume.c,v 1.2 2007-07-12 21:11:10 danf Exp $
+ * $Id: ftpuploadresume.c,v 1.3 2007-08-30 20:34:57 danf Exp $
  *
  * Upload to FTP, resuming failed transfers
  *
@@ -122,10 +122,10 @@ int upload(CURL *curlhandle, const char * remotepath, const char * localpath,
 
 			fseek(f, uploaded_len, SEEK_SET);
 
-			curl_easy_setopt(curlhandle, CURLOPT_FTPAPPEND, 1);
+			curl_easy_setopt(curlhandle, CURLOPT_APPEND, 1);
 		}
 		else { /* no */
-			curl_easy_setopt(curlhandle, CURLOPT_FTPAPPEND, 0);
+			curl_easy_setopt(curlhandle, CURLOPT_APPEND, 0);
 		}
 
 		r = curl_easy_perform(curlhandle);
