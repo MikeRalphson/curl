@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.34 2007-08-22 14:09:13 bagder Exp $
+ * $Id: sockfilt.c,v 1.35 2007-08-30 18:26:19 danf Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -320,8 +320,8 @@ static int juggle(curl_socket_t *sockfdp,
         nread_stdin = 0;
         do {
           /* get data in the buffer at the correct position */
-          ssize_t rc = read(fileno(stdin), &buffer[nread_stdin],
-                            buffer_len - nread_stdin);
+          rc = read(fileno(stdin), &buffer[nread_stdin],
+                    buffer_len - nread_stdin);
           logmsg("read %d bytes", rc);
           if(rc <= 0)
             return FALSE;
