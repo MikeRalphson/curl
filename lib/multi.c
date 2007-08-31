@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.150 2007-08-30 18:26:20 danf Exp $
+ * $Id: multi.c,v 1.151 2007-08-31 17:54:01 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -523,7 +523,7 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
       if(res != CURLE_OK) {
         /* FIXME: may need to do more cleanup here */
         curl_multi_remove_handle(multi_handle, easy_handle);
-        return res;
+        return CURLM_OUT_OF_MEMORY;
       }
     }
   }
