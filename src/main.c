@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.425 2007-08-30 20:34:58 danf Exp $
+ * $Id: main.c,v 1.426 2007-08-31 19:36:33 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -4323,15 +4323,15 @@ operate(struct Configurable *config, int argc, argv_item_t argv[])
 
         /* new in curl 7.15.5 */
         if(config->ftp_ssl_reqd)
-          my_setopt(curl, CURLOPT_USE_SSL, CURLFTPSSL_ALL);
+          my_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_ALL);
 
         /* new in curl 7.11.0 */
         else if(config->ftp_ssl)
-          my_setopt(curl, CURLOPT_USE_SSL, CURLFTPSSL_TRY);
+          my_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_TRY);
 
         /* new in curl 7.16.0 */
         else if(config->ftp_ssl_control)
-          my_setopt(curl, CURLOPT_USE_SSL, CURLFTPSSL_CONTROL);
+          my_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_CONTROL);
 
         /* new in curl 7.16.1 */
         if(config->ftp_ssl_ccc)

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.342 2007-08-26 05:53:26 danf Exp $
+ * $Id: urldata.h,v 1.343 2007-08-31 19:36:33 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1404,7 +1404,7 @@ struct UserDefined {
   bool ftp_use_epsv;     /* if EPSV is to be attempted or not */
   bool ftp_use_eprt;     /* if EPRT is to be attempted or not */
 
-  curl_ftpssl ftp_ssl;   /* if AUTH TLS is to be attempted etc */
+  curl_usessl ftp_ssl;   /* if AUTH TLS is to be attempted etc */
   curl_ftpauth ftpsslauth; /* what AUTH XXX to be attempted */
   curl_ftpccc ftp_ccc;   /* FTP CCC options */
   bool no_signal;        /* do not use any signal/alarm handler */
