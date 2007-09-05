@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.178 2007-08-30 20:34:57 danf Exp $
+ * $Id: connect.c,v 1.179 2007-09-05 22:01:57 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -437,6 +437,13 @@ static bool verifyconnect(curl_socket_t sockfd, int *error)
 #ifdef _WIN32_WCE
   /* Old WinCE versions don't support SO_ERROR */
   if (WSAENOPROTOOPT == err) {
+    SET_SOCKERRNO(0);
+    err = 0;
+  }
+#endif
+#ifdef __minix
+  /* Minix 3.1.x doesn't support getsockopt on UDP sockets */
+  if (EBADIOCTL == err) {
     SET_SOCKERRNO(0);
     err = 0;
   }
