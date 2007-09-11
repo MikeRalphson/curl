@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.365 2007-08-30 20:34:58 danf Exp $
+ * $Id: transfer.c,v 1.366 2007-09-11 22:21:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2367,6 +2367,11 @@ bool Curl_retry_request(struct connectdata *conn,
 {
   bool retry = FALSE;
   struct SessionHandle *data = conn->data;
+
+  /* if we're talking upload, we can't do the checks below, unless the protocol
+     is HTTP as when uploading over HTTP we will still get a response */
+  if(data->set.upload && !(conn->protocol&PROT_HTTP))
+    return retry;
 
   if((data->reqdata.keep.bytecount +
       data->reqdata.keep.headerbytecount == 0) &&
