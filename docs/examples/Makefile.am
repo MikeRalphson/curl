@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.45 2007-07-13 21:31:44 danf Exp $
+# $Id: Makefile.am,v 1.46 2007-09-13 22:20:35 danf Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -9,6 +9,7 @@ EXTRA_DIST = README Makefile.example makefile.dj $(COMPLICATED_EXAMPLES)
 INCLUDES = -I$(top_srcdir)/include
 
 LIBDIR = $(top_builddir)/lib
+CPPFLAGS = -DCURL_NO_OLDIES
 
 # Dependencies
 LDADD = $(LIBDIR)/libcurl.la
