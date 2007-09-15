@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.82 2007-08-25 12:10:30 gknauf Exp $
+ * $Id: ldap.c,v 1.83 2007-09-15 20:03:03 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -120,7 +120,7 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
   LDAPMessage *entryIterator;
   int num = 0;
   struct SessionHandle *data=conn->data;
-  int ldap_proto;
+  int ldap_proto = LDAP_VERSION3;
   int ldap_ssl = 0;
   char *val_b64;
   size_t val_b64_sz;
@@ -153,7 +153,6 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
 #ifdef LDAP_OPT_NETWORK_TIMEOUT
   ldap_set_option(NULL, LDAP_OPT_NETWORK_TIMEOUT, &ldap_timeout);
 #endif
-  ldap_proto = LDAP_VERSION3;
   ldap_set_option(NULL, LDAP_OPT_PROTOCOL_VERSION, &ldap_proto);
 
   if (ldap_ssl) {
@@ -289,6 +288,9 @@ CURLcode Curl_ldap(struct connectdata *conn, bool *done)
       goto quit;
     }
   }
+#ifdef CURL_LDAP_WIN
+  ldap_set_option(server, LDAP_OPT_PROTOCOL_VERSION, &ldap_proto);
+#endif
 
   rc = ldap_simple_bind_s(server,
                           conn->bits.user_passwd ? conn->user : NULL,
