@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.87 2007-09-17 18:12:11 danf Exp $
+# $Id: ftpserver.pl,v 1.88 2007-09-17 21:39:34 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -82,6 +82,7 @@ my $ipv6;
 my $ext; # append to log/pid file names
 my $grok_eprt;
 my $port = 8921; # just a default
+my $listenaddr = "127.0.0.1"; # just a default
 my $pidfile = ".ftpd.pid"; # a default, use --pidfile
 
 do {
@@ -107,6 +108,10 @@ do {
     }
     elsif($ARGV[0] eq "--port") {
         $port = $ARGV[1];
+        shift @ARGV;
+    }
+    elsif($ARGV[0] eq "--addr") {
+        $listenaddr = $ARGV[1];
         shift @ARGV;
     }
 } while(shift @ARGV);
@@ -569,7 +574,8 @@ sub PASV_command {
 
     if($cmd ne "EPSV") {
         # PASV reply
-        my $p="127,0,0,1";
+        my $p=$listenaddr;
+        $p =~ s/\./,/g;
         if($pasvbadip) {
             $p="1,2,3,4";
         }

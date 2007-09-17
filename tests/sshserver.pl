@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.20 2007-07-19 01:42:22 danf Exp $
+# $Id: sshserver.pl,v 1.21 2007-09-17 21:39:34 danf Exp $
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
 # Also creates the ssh configuration files (this could be moved to a
 # separate script).
@@ -15,6 +15,7 @@ use File::Spec;
 my $verbose=0; # set to 1 for debugging
 
 my $port = 8999;        # just our default, weird enough
+my $listenaddr = "127.0.0.1"; # address on which to listen
 
 my $path = `pwd`;
 chomp $path;
@@ -49,6 +50,10 @@ do {
     }
     elsif($ARGV[0] eq "-u") {
         $username=$ARGV[1];
+        shift @ARGV;
+    }
+    elsif($ARGV[0] eq "-l") {
+        $listenaddr=$ARGV[1];
         shift @ARGV;
     }
     elsif($ARGV[0] =~ /^(\d+)$/) {
@@ -160,7 +165,7 @@ AuthorizedKeysFile $path/curl_client_key.pub
 HostKey $path/curl_host_dsa_key
 PidFile $path/.ssh.pid
 Port $port
-ListenAddress localhost
+ListenAddress $listenaddr
 Protocol 2
 AllowTcpForwarding yes
 GatewayPorts no
@@ -210,7 +215,7 @@ my @dsahostkey = do { local $/ = ' '; <DSAKEYFILE> };
 close DSAKEYFILE || die "Could not close DSAKEYFILE";
 
 open(KNOWNHOSTS, ">$knownhostsfile") || die "Could not write $knownhostsfile";
-print KNOWNHOSTS "[127.0.0.1]:$port ssh-dss $dsahostkey[1]\n" || die 'Could not write to KNOWNHOSTS';
+print KNOWNHOSTS "[$listenaddr]:$port ssh-dss $dsahostkey[1]\n" || die 'Could not write to KNOWNHOSTS';
 close KNOWNHOSTS || die "Could not close KNOWNHOSTS";
 
 open(SSHFILE, ">$conffile_ssh") || die "Could not write $conffile_ssh";
