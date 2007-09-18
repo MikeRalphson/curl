@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.343 2007-08-31 19:36:33 danf Exp $
+ * $Id: urldata.h,v 1.344 2007-09-18 22:21:54 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -183,6 +183,7 @@ struct ssl_connect_data {
 #endif /* USE_GNUTLS */
 #ifdef USE_NSS
   PRFileDesc *handle;
+  char *client_nickname;
 #endif /* USE_NSS */
 #ifdef USE_QSOSSL
   SSLHandle *handle;
