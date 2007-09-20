@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.88 2007-09-17 21:39:34 danf Exp $
+# $Id: ftpserver.pl,v 1.89 2007-09-20 20:39:17 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -112,6 +112,7 @@ do {
     }
     elsif($ARGV[0] eq "--addr") {
         $listenaddr = $ARGV[1];
+	$listenaddr =~ s/^\[(.*)\]$/\1/;
         shift @ARGV;
     }
 } while(shift @ARGV);
