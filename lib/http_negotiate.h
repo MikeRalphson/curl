@@ -21,16 +21,16 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.h,v 1.5 2007-08-27 06:31:28 danf Exp $
+ * $Id: http_negotiate.h,v 1.6 2007-09-21 11:05:31 bagder Exp $
  ***************************************************************************/
 
 #ifdef HAVE_GSSAPI
 
 /* this is for Negotiate header input */
-int Curl_input_negotiate(struct connectdata *conn, const char *header);
+int Curl_input_negotiate(struct connectdata *conn, bool proxy, const char *header);
 
 /* this is for creating Negotiate header output */
-CURLcode Curl_output_negotiate(struct connectdata *conn);
+CURLcode Curl_output_negotiate(struct connectdata *conn, bool proxy);
 
 void Curl_cleanup_negotiate(struct SessionHandle *data);
 
