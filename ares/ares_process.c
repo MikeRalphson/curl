@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.41 2007-07-14 13:08:50 bagder Exp $ */
+/* $Id: ares_process.c,v 1.42 2007-09-22 21:04:16 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -504,9 +504,12 @@ static struct query *next_server(ares_channel channel, struct query *query, time
         }
       query->server = 0;
 
-      /* Only one try if we're using TCP. */
-      if (query->using_tcp)
-        break;
+      /* You might think that with TCP we only need one try. However,
+       * even when using TCP, servers can time-out our connection just
+       * as we're sending a request, or close our connection because
+       * they die, or never send us a reply because they get wedged or
+       * tickle a bug that drops our request.
+       */
     }
   return end_query(channel, query, query->error_status, NULL, 0);
 }
