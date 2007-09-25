@@ -18,8 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.31 2007-09-25 06:43:58 danf Exp $
+ * $Id: strequal.c,v 1.32 2007-09-25 17:33:56 danf Exp $
  ***************************************************************************/
+
+#ifndef _GNU_SOURCE
+/* glibc needs this to define the prototype for strcasestr */
+#define _GNU_SOURCE 1
+#endif
 
 #include "setup.h"
 
