@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.28 2007-08-27 06:31:28 danf Exp $
+ * $Id: sslgen.c,v 1.29 2007-09-25 06:45:05 danf Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -390,7 +390,7 @@ CURLcode Curl_ssl_addsessionid(struct connectdata *conn,
 }
 
 
-#endif
+#endif /* USE_SSL */
 
 void Curl_ssl_close_all(struct SessionHandle *data)
 {
