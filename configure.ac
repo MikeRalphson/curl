@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.253 2007-09-18 22:21:54 bagder Exp $
+# $Id: configure.ac,v 1.254 2007-09-25 06:43:58 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1900,6 +1900,7 @@ AC_CHECK_FUNCS( strtoll \
                 select \
                 strdup \
                 strstr \
+                strcasestr \
                 strtok_r \
                 uname \
                 strcasecmp \

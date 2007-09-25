@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.30 2007-04-01 07:51:30 bagder Exp $
+ * $Id: strequal.c,v 1.31 2007-09-25 06:43:58 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -90,6 +90,9 @@ int curl_strnequal(const char *first, const char *second, size_t max)
  */
 char *Curl_strcasestr(const char *haystack, const char *needle)
 {
+#if defined(HAVE_STRCASESTR)
+  return strcasestr(haystack, needle);
+#else
   size_t nlen = strlen(needle);
   size_t hlen = strlen(haystack);
 
@@ -99,6 +102,7 @@ char *Curl_strcasestr(const char *haystack, const char *needle)
     haystack++;
   }
   return NULL;
+#endif
 }
 
 #ifndef HAVE_STRLCAT
