@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.366 2007-09-11 22:21:12 bagder Exp $
+ * $Id: transfer.c,v 1.367 2007-09-26 12:44:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2257,10 +2257,13 @@ CURLcode Curl_follow(struct SessionHandle *data,
      * violation, many webservers expect this misbehavior. So these servers
      * often answers to a POST request with an error page.  To be sure that
      * libcurl gets the page that most user agents would get, libcurl has to
-     * force GET:
+     * force GET.
+     *
+     * This behaviour can be overriden with CURLOPT_POST301.
      */
-    if( data->set.httpreq == HTTPREQ_POST
-        || data->set.httpreq == HTTPREQ_POST_FORM) {
+    if( (data->set.httpreq == HTTPREQ_POST
+         || data->set.httpreq == HTTPREQ_POST_FORM)
+        && !data->set.post301) {
       infof(data,
             "Violate RFC 2616/10.3.2 and switch from POST to GET\n");
       data->set.httpreq = HTTPREQ_GET;

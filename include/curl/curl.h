@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.324 2007-08-31 19:36:33 danf Exp $
+ * $Id: curl.h,v 1.325 2007-09-26 12:44:59 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1123,6 +1123,9 @@ typedef enum {
      server for protocols that support it, SFTP/SCP/FILE */
   CINIT(NEW_FILE_PERMS, LONG, 159),
   CINIT(NEW_DIRECTORY_PERMS, LONG, 160),
+
+  /* Obey RFC 2616/10.3.2 and keep POSTs as POSTs after a 301 */
+  CINIT(POST301, LONG, 161),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

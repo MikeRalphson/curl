@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.645 2007-08-31 19:36:33 danf Exp $
+ * $Id: url.c,v 1.646 2007-09-26 12:44:59 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -922,6 +922,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * headers. This should mostly be used to detect never-ending loops.
      */
     data->set.maxredirs = va_arg(param, long);
+    break;
+
+  case CURLOPT_POST301:
+    /*
+     * Obey RFC 2616/10.3.2 and resubmit a POST as a POST after a 301.
+     */
+    data->set.post301 = (bool)(0 != va_arg(param, long));
     break;
 
   case CURLOPT_POST:

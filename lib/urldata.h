@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.345 2007-09-26 12:00:01 bagder Exp $
+ * $Id: urldata.h,v 1.346 2007-09-26 12:44:59 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1306,6 +1306,7 @@ struct UserDefined {
   long followlocation; /* as in HTTP Location: */
   long maxredirs;    /* maximum no. of http(s) redirects to follow, set to -1
                         for infinity */
+  bool post301;      /* Obey RFC 2616/10.3.2 and keep POSTs as POSTs after a 301 */
   bool free_referer; /* set TRUE if 'referer' points to a string we
                         allocated */
   curl_off_t postfieldsize; /* if POST, this might have a size to use instead
