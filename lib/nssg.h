@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nssg.h,v 1.2 2007-08-01 21:20:01 bagder Exp $
+ * $Id: nssg.h,v 1.3 2007-09-27 02:45:58 danf Exp $
  ***************************************************************************/
 
 /*
@@ -33,7 +33,7 @@ CURLcode Curl_nss_connect_nonblocking(struct connectdata *conn,
                                       int sockindex,
                                       bool *done);
 /* close a SSL connection */
-void Curl_nss_close(struct connectdata *conn, int index);
+void Curl_nss_close(struct connectdata *conn, int sockindex);
 
 /* tell NSS to close down all open information regarding connections (and
    thus session ID caching etc) */
