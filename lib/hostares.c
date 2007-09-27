@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.32 2007-06-11 13:35:33 bagder Exp $
+ * $Id: hostares.c,v 1.33 2007-09-27 12:05:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -278,7 +278,7 @@ CURLcode Curl_wait_for_resolv(struct connectdata *conn,
     /* a name was not resolved */
     if((timeout < 0) || (conn->async.status == ARES_ETIMEOUT)) {
       failf(data, "Resolving host timed out: %s", conn->host.dispname);
-      rc = CURLE_OPERATION_TIMEDOUT;
+      rc = CURLE_COULDNT_RESOLVE_HOST;
     }
     else if(conn->async.done) {
       failf(data, "Could not resolve host: %s (%s)", conn->host.dispname,
