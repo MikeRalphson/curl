@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.92 2007-08-29 05:36:53 danf Exp $
+ * $Id: file.c,v 1.93 2007-09-27 01:45:23 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -373,12 +373,12 @@ CURLcode Curl_file(struct connectdata *conn, bool *done)
 
     if(fstated) {
       const struct tm *tm;
-      time_t clock = (time_t)statbuf.st_mtime;
+      time_t filetime = (time_t)statbuf.st_mtime;
 #ifdef HAVE_GMTIME_R
       struct tm buffer;
-      tm = (const struct tm *)gmtime_r(&clock, &buffer);
+      tm = (const struct tm *)gmtime_r(&filetime, &buffer);
 #else
-      tm = gmtime(&clock);
+      tm = gmtime(&filetime);
 #endif
       /* format: "Tue, 15 Nov 1994 12:45:26 GMT" */
       snprintf(buf, BUFSIZE-1,

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib506.c,v 1.15 2007-07-23 18:51:22 danf Exp $
+ * $Id: lib506.c,v 1.16 2007-09-27 01:45:23 danf Exp $
  */
 
 #include "test.h"
@@ -31,14 +31,14 @@ struct userdata {
 };
 
 /* lock callback */
-static void my_lock(CURL *handle, curl_lock_data data, curl_lock_access access,
+static void my_lock(CURL *handle, curl_lock_data data, curl_lock_access laccess,
           void *useptr )
 {
   const char *what;
   struct userdata *user = (struct userdata *)useptr;
 
   (void)handle;
-  (void)access;
+  (void)laccess;
 
   switch ( data ) {
     case CURL_LOCK_DATA_SHARE:

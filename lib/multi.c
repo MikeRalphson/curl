@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.151 2007-08-31 17:54:01 danf Exp $
+ * $Id: multi.c,v 1.152 2007-09-27 01:45:23 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -218,7 +218,7 @@ void curl_multi_dump(CURLM *multi_handle);
 static void multistate(struct Curl_one_easy *easy, CURLMstate state)
 {
 #ifdef CURLDEBUG
-  long index = -5000;
+  long connectindex = -5000;
 #endif
   CURLMstate oldstate = easy->state;
 
@@ -231,12 +231,12 @@ static void multistate(struct Curl_one_easy *easy, CURLMstate state)
 #ifdef CURLDEBUG
   if(easy->state > CURLM_STATE_CONNECT &&
      easy->state < CURLM_STATE_COMPLETED)
-    index = easy->easy_conn->connectindex;
+    connectindex = easy->easy_conn->connectindex;
 
   infof(easy->easy_handle,
         "STATE: %s => %s handle %p; (connection #%ld) \n",
         statename[oldstate], statename[easy->state],
-        (char *)easy, index);
+        (char *)easy, connectindex);
 #endif
   if(state == CURLM_STATE_COMPLETED)
     /* changing to COMPLETED means there's one less easy handle 'alive' */
