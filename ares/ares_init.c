@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.60 2007-09-22 20:45:50 bagder Exp $ */
+/* $Id: ares_init.c,v 1.61 2007-09-28 14:28:14 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -136,6 +136,7 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   channel->nservers = -1;
   channel->ndomains = -1;
   channel->nsort = -1;
+  channel->tcp_connection_generation = 0;
   channel->lookups = NULL;
   channel->queries = NULL;
   channel->domains = NULL;
@@ -201,10 +202,12 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
       server = &channel->servers[i];
       server->udp_socket = ARES_SOCKET_BAD;
       server->tcp_socket = ARES_SOCKET_BAD;
+      server->tcp_connection_generation = ++channel->tcp_connection_generation;
       server->tcp_lenbuf_pos = 0;
       server->tcp_buffer = NULL;
       server->qhead = NULL;
       server->qtail = NULL;
+      server->is_broken = 0;
     }
 
   init_id_key(&channel->id_key, ARES_ID_KEY_LEN);

@@ -1,4 +1,4 @@
-/* $Id: ares_destroy.c,v 1.9 2007-05-30 20:49:14 bagder Exp $ */
+/* $Id: ares_destroy.c,v 1.10 2007-09-28 14:28:14 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -65,8 +65,8 @@ void ares_destroy(ares_channel channel)
     query->callback(query->arg, ARES_EDESTRUCTION, NULL, 0);
     if (query->tcpbuf)
       free(query->tcpbuf);
-    if (query->skip_server)
-      free(query->skip_server);
+    if (query->server_info)
+      free(query->server_info);
     free(query);
   }
 
