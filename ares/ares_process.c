@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.47 2007-09-28 14:28:14 sesse Exp $ */
+/* $Id: ares_process.c,v 1.48 2007-09-28 14:46:51 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -936,7 +936,7 @@ static struct query *end_query (ares_channel channel, struct query *query, int s
     }
  
   /* Invoke the callback */ 
-  query->callback(query->arg, status, abuf, alen);
+  query->callback(query->arg, status, query->timeouts, abuf, alen);
   for (q = &channel->queries; *q; q = &(*q)->next)
     {
       if (*q == query)

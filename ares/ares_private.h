@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.26 2007-09-28 14:28:14 sesse Exp $ */
+/* $Id: ares_private.h,v 1.27 2007-09-28 14:46:51 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -152,6 +152,7 @@ struct query {
 
   /* Next query in chain */
   struct query *next;
+  int timeouts; /* number of timeouts we saw for this request */
 };
 
 /* Per-server state for a query */
@@ -195,6 +196,8 @@ struct ares_channeldata {
   int ndots;
   int udp_port;
   int tcp_port;
+  int socket_send_buffer_size;
+  int socket_receive_buffer_size;
   char **domains;
   int ndomains;
   struct apattern *sortlist;

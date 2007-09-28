@@ -1,4 +1,4 @@
-/* $Id: ares_cancel.c,v 1.7 2007-09-28 14:28:14 sesse Exp $ */
+/* $Id: ares_cancel.c,v 1.8 2007-09-28 14:46:51 sesse Exp $ */
 
 /* Copyright (C) 2004 by Daniel Stenberg et al
  *
@@ -31,7 +31,7 @@ void ares_cancel(ares_channel channel)
   for (query = channel->queries; query; query = next)
   {
     next = query->next;
-    query->callback(query->arg, ARES_ETIMEOUT, NULL, 0);
+    query->callback(query->arg, ARES_ETIMEOUT, 0, NULL, 0);
     free(query->tcpbuf);
     free(query->server_info);
     free(query);

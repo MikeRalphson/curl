@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.32 2007-07-03 16:21:57 gknauf Exp $ */
+/* $Id: ares.h,v 1.33 2007-09-28 14:46:51 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -193,11 +193,11 @@ struct timeval;
 struct sockaddr;
 struct ares_channeldata;
 typedef struct ares_channeldata *ares_channel;
-typedef void (*ares_callback)(void *arg, int status, unsigned char *abuf,
-                              int alen);
-typedef void (*ares_host_callback)(void *arg, int status,
+typedef void (*ares_callback)(void *arg, int status, int timeouts,
+                              unsigned char *abuf, int alen);
+typedef void (*ares_host_callback)(void *arg, int status, int timeouts,
                                    struct hostent *hostent);
-typedef void (*ares_nameinfo_callback)(void *arg, int status,
+typedef void (*ares_nameinfo_callback)(void *arg, int status, int timeouts,
                                        char *node, char *service);
 
 int ares_init(ares_channel *channelptr);
