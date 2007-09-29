@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.74 2007-09-28 21:45:05 bagder Exp $
+ * $Id: ssh.c,v 1.75 2007-09-29 21:34:34 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1764,6 +1764,11 @@ CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
   curl_socket_t sock;
   CURLcode result;
   struct SessionHandle *data = conn->data;
+
+  if (data->reqdata.proto.ssh) {
+    Curl_safefree(data->reqdata.proto.ssh);
+    data->reqdata.proto.ssh = NULL;
+  }
 
   result = ssh_init(conn);
   if (result)
