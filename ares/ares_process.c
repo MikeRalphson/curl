@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.52 2007-09-29 14:21:47 sesse Exp $ */
+/* $Id: ares_process.c,v 1.53 2007-09-29 14:25:14 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -634,7 +634,6 @@ void ares__send_query(ares_channel channel, struct query *query, time_t now)
           server->qhead = sendreq;
         }
       server->qtail = sendreq;
-      query->timeout = 0;
       query->server_info[query->server].tcp_connection_generation =
         server->tcp_connection_generation;
     }
@@ -656,10 +655,10 @@ void ares__send_query(ares_channel channel, struct query *query, time_t now)
           next_server(channel, query, now);
           return;
         }
-      query->timeout = now
-          + ((query->try == 0) ? channel->timeout
-             : channel->timeout << query->try / channel->nservers);
     }
+    query->timeout = now
+        + ((query->try == 0) ? channel->timeout
+           : channel->timeout << query->try / channel->nservers);
 }
 
 /*
