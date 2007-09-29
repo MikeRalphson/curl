@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.55 2007-09-29 18:18:47 sesse Exp $ */
+/* $Id: ares_process.c,v 1.56 2007-09-29 21:57:05 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -44,6 +44,7 @@
 #include <sys/filio.h>
 #endif
 
+#include <assert.h>
 #include <string.h>
 #include <stdlib.h>
 #include <fcntl.h>

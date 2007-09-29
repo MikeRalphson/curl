@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.29 2007-09-29 13:52:14 sesse Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.30 2007-09-29 21:57:05 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -215,7 +215,7 @@ static int fake_hostent(const char *name, int family, ares_host_callback callbac
       const char *p;
       for (p = name; *p; p++)
         {
-          if (!isdigit(*p) && *p != '.') {
+          if (!ISDIGIT(*p) && *p != '.') {
             return 0;
           } else if (*p == '.') {
             numdots++;
