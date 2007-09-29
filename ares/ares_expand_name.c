@@ -1,4 +1,4 @@
-/* $Id: ares_expand_name.c,v 1.12 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: ares_expand_name.c,v 1.13 2007-09-29 13:38:17 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -73,6 +73,14 @@ int ares_expand_name(const unsigned char *encoded, const unsigned char *abuf,
   if (!*s)
     return ARES_ENOMEM;
   q = *s;
+
+  if (len == 0) {
+    // RFC2181 says this should be ".": the root of the DNS tree.
+    // Since this function strips trailing dots though, it becomes ""
+    q[0] = '\0';
+    *enclen = 1;  // the caller should move one byte to get past this
+    return ARES_SUCCESS;
+  }
 
   /* No error-checking necessary; it was all done by name_length(). */
   p = encoded;
