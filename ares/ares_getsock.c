@@ -1,4 +1,4 @@
-/* $Id: ares_getsock.c,v 1.5 2007-04-03 18:25:18 yangtse Exp $ */
+/* $Id: ares_getsock.c,v 1.6 2007-09-29 18:18:47 sesse Exp $ */
 
 /* Copyright (C) 2005 - 2007, Daniel Stenberg
  *
@@ -35,7 +35,7 @@ int ares_getsock(ares_channel channel,
   ares_socket_t *socks = (ares_socket_t *)s;
 
   /* No queries, no file descriptors. */
-  if (!channel->queries)
+  if (ares__is_list_empty(&(channel->all_queries)))
     return 0;
 
   for (i = 0;
