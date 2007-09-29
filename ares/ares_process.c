@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.51 2007-09-29 14:09:14 sesse Exp $ */
+/* $Id: ares_process.c,v 1.52 2007-09-29 14:21:47 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -399,13 +399,17 @@ static void read_udp_packets(ares_channel channel, fd_set *read_fds,
          * extra system calls and confusion. */
         FD_CLR(server->udp_socket, read_fds);
 
-      count = sread(server->udp_socket, buf, sizeof(buf));
-      if (count == -1 && try_again(SOCKERRNO))
-        continue;
-      else if (count <= 0)
-        handle_error(channel, i, now);
-
-      process_answer(channel, buf, (int)count, i, 0, now);
+      /* To reduce event loop overhead, read and process as many
+       * packets as we can. */
+      do {
+        count = sread(server->udp_socket, buf, sizeof(buf));
+        if (count == -1 && try_again(SOCKERRNO))
+          continue;
+        else if (count <= 0)
+          handle_error(channel, i, now);
+        else
+          process_answer(channel, buf, (int)count, i, 0, now);
+       } while (count > 0);
     }
 }
 
