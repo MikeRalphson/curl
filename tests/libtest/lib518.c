@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib518.c,v 1.32 2007-09-30 01:01:43 yangtse Exp $
+ * $Id: lib518.c,v 1.33 2007-09-30 01:27:39 yangtse Exp $
  */
 
 #include "test.h"
@@ -385,7 +385,7 @@ static int rlimit(int keep_open)
        rl.rlim_cur < num_open.rlim_max;
        rl.rlim_cur++) {
     if ((fd[rl.rlim_cur] > 0) &&
-       ((unsigned int)fd[rl.rlim_cur] > num_open.rlim_cur) {
+       ((unsigned int)fd[rl.rlim_cur] > num_open.rlim_cur)) {
       sprintf(strbuff, "select limit is FD_SETSIZE %d", FD_SETSIZE);
       store_errmsg(strbuff, 0);
       fprintf(stderr, "%s\n", msgbuff);
