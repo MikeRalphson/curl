@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.30 2007-09-29 21:57:05 sesse Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.31 2007-09-30 00:08:01 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -146,6 +146,7 @@ static void next_lookup(struct host_query *hquery)
           break;
         }
     }
+  end_hquery(hquery, status, NULL);
 }
 
 static void host_callback(void *arg, int status, int timeouts,
