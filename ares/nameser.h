@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.21 2007-07-04 10:54:15 gknauf Exp $ */
+/* $Id: nameser.h,v 1.22 2007-09-30 00:37:47 yangtse Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -149,6 +149,11 @@ typedef enum __ns_opcode {
 
 #define T_CNAME                ns_t_cname
 
+#define NS_MAXDNAME   256     /* maximum domain name */
+#define MAXDNAME      NS_MAXDNAME
+
+#define NS_MAXCDNAME  255     /* maximum compressed domain name */
+#define MAXCDNAME     NS_MAXCDNAME
 
 #define NS_PACKETSZ   512     /* maximum packet size */
 #define PACKETSZ       NS_PACKETSZ
