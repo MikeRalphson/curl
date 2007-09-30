@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.57 2007-09-30 02:12:11 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.58 2007-09-30 19:43:23 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -815,13 +815,13 @@ static int configure_socket(int s, ares_channel channel)
   /* Set the socket's send and receive buffer sizes. */
   if ((channel->socket_send_buffer_size > 0) &&
       setsockopt(s, SOL_SOCKET, SO_SNDBUF,
-                 (const void*)&channel->socket_send_buffer_size,
+                 (void *)&channel->socket_send_buffer_size,
                  sizeof(channel->socket_send_buffer_size)) == -1)
     return -1;
 
   if ((channel->socket_receive_buffer_size > 0) &&
       setsockopt(s, SOL_SOCKET, SO_RCVBUF,
-                 (const void*)&channel->socket_receive_buffer_size,
+                 (void *)&channel->socket_receive_buffer_size,
                  sizeof(channel->socket_receive_buffer_size)) == -1)
     return -1;
 
@@ -854,7 +854,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
    */
   opt = 1;
   if (setsockopt(s, IPPROTO_TCP, TCP_NODELAY,
-                 (const void*)&opt, sizeof(opt)) == -1)
+                 (void *)&opt, sizeof(opt)) == -1)
     {
        close(s);
        return -1;
