@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib503.c,v 1.16 2007-03-10 00:19:05 yangtse Exp $
+ * $Id: lib503.c,v 1.17 2007-10-02 16:05:28 yangtse Exp $
  */
 
 #include "test.h"
@@ -48,7 +48,7 @@ int test(char *URL)
     return TEST_ERR_MAJOR_BAD;
   }
 
-  curl_easy_setopt(c, CURLOPT_PROXY, arg2); /* set in first.c */
+  curl_easy_setopt(c, CURLOPT_PROXY, libtest_arg2); /* set in first.c */
   curl_easy_setopt(c, CURLOPT_URL, URL);
   curl_easy_setopt(c, CURLOPT_USERPWD, "test:ing");
   curl_easy_setopt(c, CURLOPT_PROXYUSERPWD, "test:ing");

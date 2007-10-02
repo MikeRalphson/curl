@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib504.c,v 1.25 2007-03-10 00:19:05 yangtse Exp $
+ * $Id: lib504.c,v 1.26 2007-10-02 16:05:28 yangtse Exp $
  */
 
 #include "test.h"
@@ -53,7 +53,7 @@ int test(char *URL)
 
   /* the point here being that there must not run anything on the given
      proxy port */
-  curl_easy_setopt(c, CURLOPT_PROXY, arg2);
+  curl_easy_setopt(c, CURLOPT_PROXY, libtest_arg2);
   curl_easy_setopt(c, CURLOPT_URL, URL);
   curl_easy_setopt(c, CURLOPT_VERBOSE, 1);
 

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib541.c,v 1.1 2007-09-11 22:23:57 bagder Exp $
+ * $Id: lib541.c,v 1.2 2007-10-02 16:05:28 yangtse Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -41,36 +41,36 @@ int test(char *URL)
   struct_stat file_info;
   int error;
 
-  if (!arg2) {
+  if (!libtest_arg2) {
     fprintf(stderr, "Usage: <url> <file-to-upload>\n");
     return -1;
   }
 
   /* get the file size of the local file */
-  hd = stat(arg2, &file_info);
+  hd = stat(libtest_arg2, &file_info);
   if(hd == -1) {
     /* can't open file, bail out */
     error = ERRNO;
     fprintf(stderr, "stat() failed with error: %d %s\n",
             error, strerror(error));
-    fprintf(stderr, "WARNING: cannot open file %s\n", arg2);
+    fprintf(stderr, "WARNING: cannot open file %s\n", libtest_arg2);
     return -1;
   }
 
   if(! file_info.st_size) {
-    fprintf(stderr, "WARNING: file %s has no size!\n", arg2);
+    fprintf(stderr, "WARNING: file %s has no size!\n", libtest_arg2);
     return -4;
   }
 
   /* get a FILE * of the same file, could also be made with
      fdopen() from the previous descriptor, but hey this is just
      an example! */
-  hd_src = fopen(arg2, "rb");
+  hd_src = fopen(libtest_arg2, "rb");
   if(NULL == hd_src) {
     error = ERRNO;
     fprintf(stderr, "fopen() failed with error: %d %s\n",
             error, strerror(error));
-    fprintf(stderr, "Error opening file: %s\n", arg2);
+    fprintf(stderr, "Error opening file: %s\n", libtest_arg2);
     return -2; /* if this happens things are major weird */
   }
 

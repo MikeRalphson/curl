@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib536.c,v 1.11 2007-05-02 06:02:13 danf Exp $
+ * $Id: lib536.c,v 1.12 2007-10-02 16:05:28 yangtse Exp $
  */
 
 #include "test.h"
@@ -108,7 +108,7 @@ int test(char *URL)
   curl_easy_reset(easy);
 
   curl_easy_setopt(easy, CURLOPT_FAILONERROR, 1);
-  curl_easy_setopt(easy, CURLOPT_URL, arg2);
+  curl_easy_setopt(easy, CURLOPT_URL, libtest_arg2);
 
   if (curl_multi_add_handle(multi, easy) != CURLM_OK) {
     printf("curl_multi_add_handle() 2 failed\n");

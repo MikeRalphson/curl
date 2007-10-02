@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib533.c,v 1.14 2007-03-10 00:19:05 yangtse Exp $
+ * $Id: lib533.c,v 1.15 2007-10-02 16:05:28 yangtse Exp $
  */
 
 /* used for test case 533, 534 and 535 */
@@ -102,7 +102,7 @@ int test(char *URL)
           /* make us re-use the same handle all the time, and try resetting
              the handle first too */
           curl_easy_reset(curl);
-          curl_easy_setopt(curl, CURLOPT_URL, arg2);
+          curl_easy_setopt(curl, CURLOPT_URL, libtest_arg2);
           curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
           curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1);
 

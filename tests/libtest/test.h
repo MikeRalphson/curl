@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: test.h,v 1.18 2007-07-15 20:59:43 bagder Exp $
+ * $Id: test.h,v 1.19 2007-10-02 16:05:28 yangtse Exp $
  */
 
 /* Now include the setup.h file from libcurl's private libdir (the source
@@ -36,8 +36,8 @@
 #define TEST_ERR_MAJOR_BAD     100
 #define TEST_ERR_RUNS_FOREVER   99
 
-extern char *arg2; /* set by first.c to the argv[2] or NULL */
-extern char *arg3; /* set by first.c to the argv[3] or NULL */
+extern char *libtest_arg2; /* set by first.c to the argv[2] or NULL */
+extern char *libtest_arg3; /* set by first.c to the argv[3] or NULL */
 
 /* argc and argv as passed in to the main() function */
 extern int test_argc;

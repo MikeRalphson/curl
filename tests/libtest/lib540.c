@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib540.c,v 1.4 2007-09-12 10:46:14 bagder Exp $
+ * $Id: lib540.c,v 1.5 2007-10-02 16:05:28 yangtse Exp $
  *
  * This is the 'proxyauth.c' test app posted by Shmulik Regev on the libcurl
  * mailing list on 10 Jul 2007, converted to a test case.
@@ -18,8 +18,8 @@
 
 #include "test.h"
 
-#define PROXY arg2
-#define PROXYUSERPWD arg3
+#define PROXY libtest_arg2
+#define PROXYUSERPWD libtest_arg3
 #define HOST test_argv[4]
 
 static void init(CURLM *cm, const char* url, const char* userpwd,

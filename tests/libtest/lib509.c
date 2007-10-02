@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.23 2007-03-16 22:44:46 bagder Exp $
+ * $Id: lib509.c,v 1.24 2007-10-02 16:05:28 yangtse Exp $
  */
 
 #include "test.h"
@@ -206,8 +206,8 @@ int test(char *URL)
   char ml_timedout = FALSE;
   char mp_timedout = FALSE;
 
-  if(arg2) {
-    portnum = atoi(arg2);
+  if(libtest_arg2) {
+    portnum = atoi(libtest_arg2);
   }
 
   if (curl_global_init(CURL_GLOBAL_ALL) != CURLE_OK) {
