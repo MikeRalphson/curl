@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.442 2007-10-02 15:26:30 yangtse Exp $
+ * $Id: ftp.c,v 1.443 2007-10-02 19:19:47 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1316,8 +1316,11 @@ static CURLcode ftp_state_post_listtype(struct connectdata *conn)
                  lstArg? " ": "",
                  lstArg? lstArg: "" );
 
-  if(!cmd)
+  if(!cmd) {
+    if(lstArg)
+      free(lstArg);
     return CURLE_OUT_OF_MEMORY;
+  }
 
   NBFTPSENDF(conn, "%s",cmd);
 
