@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.83 2007-09-15 20:03:03 gknauf Exp $
+ * $Id: ldap.c,v 1.84 2007-10-02 14:48:38 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,6 +45,7 @@
 
 #ifdef CURL_LDAP_WIN            /* Use W$ LDAP implementation. */
 # include <winldap.h>
+# include <winber.h>
 #else
 #define LDAP_DEPRECATED 1       /* Be sure ldap_init() is defined. */
 # include <ldap.h>
