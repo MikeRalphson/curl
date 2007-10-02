@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.647 2007-09-27 01:45:23 danf Exp $
+ * $Id: url.c,v 1.648 2007-10-02 15:26:30 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2884,7 +2884,7 @@ static CURLcode setup_range(struct SessionHandle *data)
     else
       req->range = strdup(data->set.str[STRING_SET_RANGE]);
 
-    req->rangestringalloc = req->range?TRUE:FALSE;
+    req->rangestringalloc = (unsigned char)(req->range?TRUE:FALSE);
 
     if(!req->range)
       return CURLE_OUT_OF_MEMORY;
