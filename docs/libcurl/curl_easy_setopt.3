@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.195 2007-08-31 19:36:33 danf Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.196 2007-10-02 09:56:52 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "30 Aug 2007" "libcurl 7.17.0" "libcurl Manual"
@@ -619,6 +619,13 @@ redirections have been followed, the next redirect will cause an error
 \fICURLOPT_FOLLOWLOCATION\fP is used at the same time. Added in 7.15.1:
 Setting the limit to 0 will make libcurl refuse any redirect. Set it to -1 for
 an infinite number of redirects (which is the default)
+.IP CURLOPT_POST301
+A non-zero parameter tells the library to respect RFC 2616/10.3.2 and not
+convert POST requests into GET requests when following a 301 redirection. The
+non-RFC behaviour is ubiquitous in web browsers, so the library does the
+conversion by default to maintain consistency. However, a server may requires
+a POST to remain a POST after such a redirection. This option is meaningful
+only when setting \fICURLOPT_FOLLOWLOCATION\fP.  (Added in 7.17.1)
 .IP CURLOPT_PUT
 A non-zero parameter tells the library to use HTTP PUT to transfer data. The
 data should be set with \fICURLOPT_READDATA\fP and \fICURLOPT_INFILESIZE\fP.
