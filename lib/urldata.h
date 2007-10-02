@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.346 2007-09-26 12:44:59 bagder Exp $
+ * $Id: urldata.h,v 1.347 2007-10-02 10:21:36 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -296,7 +296,6 @@ struct HTTP {
 
   /* For FORM posting */
   struct Form form;
-  struct Curl_chunker chunk;
 
   struct back {
     curl_read_callback fread_func; /* backup storage for fread pointer */
@@ -817,6 +816,11 @@ struct connectdata {
      caution that this might very well vary between different times this
      connection is used! */
   struct SessionHandle *data;
+
+  /* chunk is for HTTP chunked encoding, but is in the general connectdata
+     struct only because we can do just about any protocol through a HTTP proxy
+     and a HTTP proxy may in fact respond using chunked encoding */
+  struct Curl_chunker chunk;
 
   bool inuse; /* This is a marker for the connection cache logic. If this is
                  TRUE this handle is being used by an easy handle and cannot
