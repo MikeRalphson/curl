@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.46 2007-05-31 11:34:32 bagder Exp $
+ * $Id: select.c,v 1.47 2007-10-03 16:26:56 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -183,7 +183,7 @@ int Curl_socket_ready(curl_socket_t readfd, curl_socket_t writefd,
   fd_set fds_err;
   curl_socket_t maxfd;
 #endif
-  struct timeval initial_tv;
+  struct timeval initial_tv = {0,0};
   int pending_ms = 0;
   int error;
   int r;
@@ -358,7 +358,7 @@ int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms)
   fd_set fds_err;
   curl_socket_t maxfd;
 #endif
-  struct timeval initial_tv;
+  struct timeval initial_tv = {0,0};
   bool fds_none = TRUE;
   unsigned int i;
   int pending_ms = 0;
