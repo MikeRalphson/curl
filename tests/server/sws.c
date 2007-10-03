@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.103 2007-10-02 10:13:37 bagder Exp $
+ * $Id: sws.c,v 1.104 2007-10-03 23:38:07 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -788,7 +788,6 @@ int main(int argc, char *argv[])
 #ifdef CURL_SWS_FORK_ENABLED
   bool use_fork = FALSE;
 #endif
-  int opt;
 
   while(argc>arg) {
     if(!strcmp("--version", argv[arg])) {
@@ -951,15 +950,17 @@ int main(int argc, char *argv[])
 #endif
     logmsg("====> Client connect");
 
+#ifdef TCP_NODELAY
     /*
      * Disable the Nagle algorithm to make it easier to send out a large
      * response in many small segments to torture the clients more.
      */
-    opt = 1;
+    flag = 1;
     if (setsockopt(msgsock, IPPROTO_TCP, TCP_NODELAY,
-                   (void *)&opt, sizeof(opt)) == -1) {
+                   (void *)&flag, sizeof(flag)) == -1) {
       logmsg("====> TCP_NODELAY failed");
     }
+#endif
 
   do {
       if(get_request(msgsock, &req))
