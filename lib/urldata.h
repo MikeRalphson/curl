@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.347 2007-10-02 10:21:36 bagder Exp $
+ * $Id: urldata.h,v 1.348 2007-10-03 08:00:42 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1289,6 +1289,7 @@ enum dupstring {
   STRING_SSL_RANDOM_FILE, /* path to file containing "random" data */
   STRING_USERAGENT,       /* User-Agent string */
   STRING_USERPWD,         /* <user:password>, if used */
+  STRING_SSH_HOST_PUBLIC_KEY_MD5, /* md5 of host public key in ascii hex */
 
   /* -- end of strings -- */
   STRING_LAST /* not used, just an end-of-list marker */
