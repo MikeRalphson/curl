@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.c,v 1.4 2007-08-02 14:42:16 bagder Exp $
+ * $Id: qssl.c,v 1.5 2007-10-03 08:07:50 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -220,7 +220,7 @@ static CURLcode Curl_qsossl_handshake(struct connectdata * conn, int sockindex)
   case SSL_ERROR_BAD_CERTIFICATE:
   case SSL_ERROR_BAD_CERT_SIG:
   case SSL_ERROR_NOT_TRUSTED_ROOT:
-    return CURLE_SSL_PEER_CERTIFICATE;
+    return CURLE_PEER_FAILED_VERIFICATION;
 
   case SSL_ERROR_BAD_CIPHER_SUITE:
   case SSL_ERROR_NO_CIPHERS:

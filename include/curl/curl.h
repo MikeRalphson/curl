@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.326 2007-10-03 08:00:42 bagder Exp $
+ * $Id: curl.h,v 1.327 2007-10-03 08:07:50 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -367,7 +367,8 @@ typedef enum {
   CURLE_UNKNOWN_TELNET_OPTION,   /* 48 - User specified an unknown option */
   CURLE_TELNET_OPTION_SYNTAX ,   /* 49 - Malformed telnet option */
   CURLE_OBSOLETE50,              /* 50 - NOT USED */
-  CURLE_SSL_PEER_CERTIFICATE,    /* 51 - peer's certificate wasn't ok */
+  CURLE_PEER_FAILED_VERIFICATION, /* 51 - peer's certificate or fingerprint
+                                     wasn't verified fine */
   CURLE_GOT_NOTHING,             /* 52 - when this is a specific error */
   CURLE_SSL_ENGINE_NOTFOUND,     /* 53 - SSL crypto engine not found */
   CURLE_SSL_ENGINE_SETFAILED,    /* 54 - can not set SSL crypto engine as
@@ -416,9 +417,13 @@ typedef enum {
                           the obsolete stuff removed! */
 
 /* Backwards compatibility with older names */
+
+/* The following were added in 7.17.1 */
 /* These are scheduled to disappear by 2009 */
+#define CURLE_SSL_PEER_CERTIFICATE CURLE_PEER_FAILED_VERIFICATION
 
 /* The following were added in 7.17.0 */
+/* These are scheduled to disappear by 2009 */
 #define CURLE_OBSOLETE CURLE_OBSOLETE50 /* noone should be using this! */
 #define CURLE_BAD_PASSWORD_ENTERED CURLE_OBSOLETE46
 #define CURLE_BAD_CALLING_ORDER CURLE_OBSOLETE44

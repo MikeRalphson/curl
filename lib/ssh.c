@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.76 2007-10-03 08:00:42 bagder Exp $
+ * $Id: ssh.c,v 1.77 2007-10-03 08:07:50 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -371,7 +371,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
                 "Remote %s is not equal to %s",
                 buf, data->set.str[STRING_SSH_HOST_PUBLIC_KEY_MD5]);
           state(conn, SSH_SESSION_FREE);
-          sshc->actualCode = CURLE_FAILED_INIT;
+          sshc->actualCode = CURLE_PEER_FAILED_VERIFICATION;
           break;
         }
       }
