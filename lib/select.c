@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.47 2007-10-03 16:26:56 yangtse Exp $
+ * $Id: select.c,v 1.48 2007-10-03 16:58:10 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -53,18 +53,10 @@
 
 #if defined(USE_WINSOCK) || defined(TPF)
 #define VERIFY_SOCK(x) do { } while (0)
-#define VERIFY_NFDS(x) do { } while (0)
 #else
 #define VALID_SOCK(s) (((s) >= 0) && ((s) < FD_SETSIZE))
 #define VERIFY_SOCK(x) do { \
   if(!VALID_SOCK(x)) { \
-    SET_SOCKERRNO(EINVAL); \
-    return -1; \
-  } \
-} while(0)
-#define VALID_NFDS(n) (((n) >= 0) && ((n) <= FD_SETSIZE))
-#define VERIFY_NFDS(x) do { \
-  if(!VALID_NFDS(x)) { \
     SET_SOCKERRNO(EINVAL); \
     return -1; \
   } \
@@ -80,8 +72,6 @@
 #else
 #define error_is_EINTR  (0)
 #endif
-
-#define SMALL_POLLNFDS  0x20
 
 /*
  * Internal function used for waiting a specific amount of ms
