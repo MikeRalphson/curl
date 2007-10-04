@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.104 2007-10-03 23:38:07 yangtse Exp $
+ * $Id: sws.c,v 1.105 2007-10-04 02:09:33 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -711,11 +711,12 @@ static int send_doc(curl_socket_t sock, struct httprequest *req)
     /* Ok, we send no more than 200 bytes at a time, just to make sure that
        larger chunks are split up so that the client will need to do multiple
        recv() calls to get it and thus we exercise that code better */
-    int num = count;
+    size_t num = count;
     if(num > 200)
       num = 200;
     written = swrite(sock, buffer, num);
     if (written < 0) {
+      fclose(dump);
       logmsg("Sending response failed and we bailed out!");
       return -1;
     }
