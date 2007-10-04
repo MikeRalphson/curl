@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.25 2007-09-28 14:46:51 sesse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.26 2007-10-04 08:09:04 sesse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -252,7 +252,7 @@ static void nameinfo_callback(void *arg, int status, int timeouts, struct hosten
       niquery->callback(niquery->arg, ARES_SUCCESS, 0, ipbuf, service);
       return;
     }
-  niquery->callback(niquery->arg, status, 0, NULL, NULL);
+  niquery->callback(niquery->arg, status, niquery->timeouts, NULL, NULL);
   free(niquery);
 }
 
