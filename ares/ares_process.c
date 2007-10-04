@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.58 2007-09-30 19:43:23 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.59 2007-10-04 08:12:12 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -526,12 +526,6 @@ static void process_answer(ares_channel channel, unsigned char *abuf,
       if (rcode == SERVFAIL || rcode == NOTIMP || rcode == REFUSED)
         {
           skip_server(channel, query, whichserver);
-          if (query->server == whichserver)
-            next_server(channel, query, now);
-          return;
-        }
-      if (!same_questions(query->qbuf, query->qlen, abuf, alen))
-        {
           if (query->server == whichserver)
             next_server(channel, query, now);
           return;
