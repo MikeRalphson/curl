@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.181 2007-10-03 08:58:40 bagder Exp $
+ * $Id: connect.c,v 1.182 2007-10-04 10:01:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -380,6 +380,7 @@ static CURLcode bindlocal(struct connectdata *conn,
         port = ntohs(((struct sockaddr_in6 *)&add)->sin6_port);
 #endif
       infof(data, "Local port: %d\n", port);
+      conn->bits.bound = TRUE;
       return CURLE_OK;
     }
     if(--portnum > 0) {

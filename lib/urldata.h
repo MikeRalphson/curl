@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.349 2007-10-03 08:45:00 bagder Exp $
+ * $Id: urldata.h,v 1.350 2007-10-04 10:01:41 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -609,6 +609,8 @@ struct ConnectBits {
   bool proxy_connect_closed; /* set true if a proxy disconnected the
                                 connection in a CONNECT request with auth, so
                                 that libcurl should reconnect and continue. */
+  bool bound; /* set true if bind() has already been done on this socket/
+                 connection */
 };
 
 struct hostname {
