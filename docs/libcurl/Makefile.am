@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.25 2006-07-26 22:19:42 bagder Exp $
+# $Id: Makefile.am,v 1.26 2007-10-04 22:05:25 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -57,7 +57,7 @@ PDFPAGES = curl_easy_cleanup.pdf curl_easy_getinfo.pdf curl_easy_init.pdf \
 
 CLEANFILES = $(HTMLPAGES) $(PDFPAGES)
 
-EXTRA_DIST = $(man_MANS) $(HTMLPAGES) index.html $(PDFPAGES) libcurl.m4
+EXTRA_DIST = $(man_MANS) $(HTMLPAGES) index.html $(PDFPAGES) libcurl.m4 ABI
 
 MAN2HTML= roffit --mandir=. < $< >$@
 
