@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.329 2007-10-03 08:58:40 bagder Exp $
+ * $Id: curl.h,v 1.330 2007-10-06 17:20:06 giva Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -151,6 +151,7 @@ extern "C" {
 /* The check above prevents the winsock2 inclusion if winsock.h already was
    included, since they can't co-exist without problems */
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #endif
 #else
 
