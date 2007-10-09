@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.37 2007-09-27 01:45:23 danf Exp $
+ * $Id: sockfilt.c,v 1.38 2007-10-09 23:21:29 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -678,9 +678,9 @@ int main(int argc, char *argv[])
   }
   else {
     error = ERRNO;
-    logmsg("fopen() failed with error: %d %s\n", error, strerror(error));
-    logmsg("Error opening file: %s\n", pidname);
-    logmsg("Couldn't write pid file\n");
+    logmsg("fopen() failed with error: %d %s", error, strerror(error));
+    logmsg("Error opening file: %s", pidname);
+    logmsg("Couldn't write pid file");
     sclose(sock);
     return 1;
   }
