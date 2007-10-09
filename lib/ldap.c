@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.85 2007-10-09 23:25:58 gknauf Exp $
+ * $Id: ldap.c,v 1.86 2007-10-09 23:51:55 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -52,6 +52,9 @@
 # endif
 #else
 #define LDAP_DEPRECATED 1       /* Be sure ldap_init() is defined. */
+#ifdef HAVE_LBER_H
+# include <lber.h>
+#endif
 # include <ldap.h>
 #if (defined(HAVE_LDAP_SSL) && defined(HAVE_LDAP_SSL_H))
 # include <ldap_ssl.h>
