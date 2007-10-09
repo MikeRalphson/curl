@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.254 2007-09-25 06:43:58 danf Exp $
+# $Id: configure.ac,v 1.255 2007-10-09 23:44:14 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -544,6 +544,8 @@ AC_HELP_STRING([--with-lber-lib=libname],[Specify name of lber lib file]),
 
 if test x$CURL_DISABLE_LDAP != x1 ; then
 
+  AC_CHECK_HEADERS(ldap.h)
+
   if test -z "$LDAPLIBNAME" ; then
     case $host in
       *-*-cygwin* | *-*-mingw* | *-*-pw32*)
@@ -569,6 +571,8 @@ if test x$CURL_DISABLE_LDAP != x1 ; then
 fi
 
 if test x$CURL_DISABLE_LDAP != x1 ; then
+
+  AC_CHECK_HEADERS(lber.h)
 
   if test "$LBERLIBNAME" ; then
     dnl If name is "no" then don't define this library at all
