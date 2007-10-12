@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.444 2007-10-12 13:36:38 patrickm Exp $
+ * $Id: ftp.c,v 1.445 2007-10-12 18:49:14 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -220,7 +220,7 @@ const struct Curl_handler Curl_handler_ftp_proxy = {
 };
 
 
-# ifdef USE_SSL
+#ifdef USE_SSL
 /*
  * HTTP-proxyed FTPS protocol handler.
  */
@@ -240,7 +240,7 @@ const struct Curl_handler Curl_handler_ftps_proxy = {
   PORT_FTPS,                            /* defport */
   PROT_HTTP                             /* protocol */
 };
-# endif
+#endif
 #endif
 
 
@@ -4109,10 +4109,17 @@ static CURLcode Curl_ftp_setup_connection(struct connectdata * conn)
     /* Unless we have asked to tunnel ftp operations through the proxy, we
        switch and use HTTP operations only */
 #ifndef CURL_DISABLE_HTTP
-  if (conn->handler == &Curl_handler_ftp)
-    conn->handler = &Curl_handler_ftp_proxy;
-  else
-    conn->handler = &Curl_handler_ftps_proxy;
+    if (conn->handler == &Curl_handler_ftp)
+      conn->handler = &Curl_handler_ftp_proxy;
+    else {
+#ifdef USE_SSL
+      conn->handler = &Curl_handler_ftps_proxy;
+#else
+      failf(data, "FTPS not supported!");
+      return CURLE_UNSUPPORTED_PROTOCOL;
+#endif
+    }
+
 #else
     failf(data, "FTP over http proxy requires HTTP support built-in!");
     return CURLE_UNSUPPORTED_PROTOCOL;

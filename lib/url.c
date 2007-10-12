@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.652 2007-10-12 13:36:38 patrickm Exp $
+ * $Id: url.c,v 1.653 2007-10-12 18:49:14 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -194,7 +194,7 @@ extern sigjmp_buf curl_jmpenv;
  * Protocol table.
  */
 
-static const struct Curl_handler * protocols[] = {
+static const struct Curl_handler * const protocols[] = {
 
 #ifndef CURL_DISABLE_HTTP
   &Curl_handler_http,
@@ -3020,7 +3020,7 @@ static CURLcode setup_range(struct SessionHandle *data)
 static CURLcode setup_connection_internals(struct SessionHandle *data,
                                            struct connectdata *conn)
 {
-  const struct Curl_handler * * pp;
+  const struct Curl_handler * const * pp;
   const struct Curl_handler * p;
   CURLcode result;
 
@@ -3028,7 +3028,7 @@ static CURLcode setup_connection_internals(struct SessionHandle *data,
 
   /* Scan protocol handler table. */
 
-  for (pp = protocols; p = *pp; pp++)
+  for (pp = protocols; (p = *pp) != NULL; pp++)
     if (strequal(p->scheme, conn->protostr)) {
       /* Protocol found in table. Perform setup complement if some. */
       conn->handler = p;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.339 2007-10-12 13:36:38 patrickm Exp $
+ * $Id: http.c,v 1.340 2007-10-12 18:49:14 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -110,9 +110,11 @@
  */
 
 static CURLcode Curl_https_connecting(struct connectdata *conn, bool *done);
+#ifdef USE_SSL
 static int Curl_https_getsock(struct connectdata *conn,
                               curl_socket_t *socks,
                               int numsocks);
+#endif
 
 /*
  * HTTP handler interface.
