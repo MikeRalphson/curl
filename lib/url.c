@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.653 2007-10-12 18:49:14 danf Exp $
+ * $Id: url.c,v 1.654 2007-10-12 20:53:43 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -189,6 +189,20 @@ static void flush_cookies(struct SessionHandle *data, int cleanup);
 extern sigjmp_buf curl_jmpenv;
 #endif
 
+#ifdef SIGALRM
+static
+RETSIGTYPE alarmfunc(int sig)
+{
+  /* this is for "-ansi -Wall -pedantic" to stop complaining!   (rabe) */
+  (void)sig;
+#ifdef HAVE_SIGSETJMP
+  siglongjmp(curl_jmpenv, 1);
+#endif
+  return;
+}
+#endif /* SIGALRM */
+#endif /* WIN32 */
+#endif /* USE_ARES */
 
 /*
  * Protocol table.
@@ -263,22 +277,6 @@ const struct Curl_handler Curl_handler_dummy = {
   0,                                    /* defport */
   0                                     /* protocol */
 };
-
-
-#ifdef SIGALRM
-static
-RETSIGTYPE alarmfunc(int sig)
-{
-  /* this is for "-ansi -Wall -pedantic" to stop complaining!   (rabe) */
-  (void)sig;
-#ifdef HAVE_SIGSETJMP
-  siglongjmp(curl_jmpenv, 1);
-#endif
-  return;
-}
-#endif /* SIGALRM */
-#endif /* WIN32 */
-#endif /* USE_ARES */
 
 #ifdef CURL_DISABLE_VERBOSE_STRINGS
 #define verboseconnect(x)  do { } while (0)
