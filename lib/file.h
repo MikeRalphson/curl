@@ -21,10 +21,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.h,v 1.14 2007-01-16 22:22:23 bagder Exp $
+ * $Id: file.h,v 1.15 2007-10-12 13:36:38 patrickm Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_FILE
-CURLcode Curl_file(struct connectdata *, bool *done);
+extern const struct Curl_handler Curl_handler_file;
+
 CURLcode Curl_file_done(struct connectdata *, CURLcode, bool premature);
 CURLcode Curl_file_connect(struct connectdata *);
 #endif

@@ -21,9 +21,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_ldap.h,v 1.1 2007-08-11 20:57:54 bagder Exp $
+ * $Id: curl_ldap.h,v 1.2 2007-10-12 13:36:38 patrickm Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_LDAP
-CURLcode Curl_ldap(struct connectdata *conn, bool *done);
+extern const struct Curl_handler Curl_handler_ldap;
+
+#ifdef HAVE_LDAP_SSL
+extern const struct Curl_handler Curl_handler_ldaps;
+#endif
+
 #endif
 #endif /* __CURL_LDAP_H */
