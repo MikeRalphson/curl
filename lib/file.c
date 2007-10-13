@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.94 2007-10-12 13:36:38 patrickm Exp $
+ * $Id: file.c,v 1.95 2007-10-13 00:47:53 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -95,6 +95,8 @@
  */
 
 static CURLcode Curl_file(struct connectdata *, bool *done);
+static CURLcode Curl_file_done(struct connectdata *conn,
+                               CURLcode status, bool premature);
 
 /*
  * FILE scheme handler.
@@ -193,8 +195,8 @@ CURLcode Curl_file_connect(struct connectdata *conn)
   return CURLE_OK;
 }
 
-CURLcode Curl_file_done(struct connectdata *conn,
-                        CURLcode status, bool premature)
+static CURLcode Curl_file_done(struct connectdata *conn,
+                               CURLcode status, bool premature)
 {
   struct FILEPROTO *file = conn->data->reqdata.proto.file;
   (void)status; /* not used */
