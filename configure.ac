@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.256 2007-10-10 13:00:11 yangtse Exp $
+# $Id: configure.ac,v 1.257 2007-10-13 14:23:15 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -221,6 +221,8 @@ CURL_CHECK_HEADER_WINSOCK
 CURL_CHECK_HEADER_WINSOCK2
 CURL_CHECK_HEADER_WS2TCPIP
 
+CURL_CHECK_HEADER_WINLDAP
+CURL_CHECK_HEADER_WINBER
 
 dnl ************************************************************
 dnl switch off particular protocols
