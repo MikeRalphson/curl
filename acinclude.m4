@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.130 2007-10-14 23:47:15 yangtse Exp $
+# $Id: acinclude.m4,v 1.131 2007-10-15 16:24:46 danf Exp $
 ###########################################################################
 
 
@@ -266,6 +266,7 @@ AC_DEFUN([CURL_CHECK_HEADER_LBER], [
 #endif
 #include <windows.h>
 #else
+#include <stddef.h>
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
@@ -295,6 +296,7 @@ AC_DEFUN([CURL_CHECK_HEADER_LBER], [
 #endif
 #include <windows.h>
 #else
+#include <stddef.h>
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
@@ -434,6 +436,7 @@ AC_DEFUN([CURL_CHECK_HEADER_LDAPSSL], [
 #endif
 #include <windows.h>
 #else
+#include <stddef.h>
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
@@ -495,6 +498,7 @@ AC_DEFUN([CURL_CHECK_LIBS_LDAP], [
 #endif
 #include <windows.h>
 #else
+#include <stddef.h>
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
@@ -507,7 +511,7 @@ AC_DEFUN([CURL_CHECK_LIBS_LDAP], [
 #endif
 #ifdef HAVE_LDAP_H
 #include <ldap.h>
-#endif"
+#endif
       ],[
         BerValue *bvp = NULL;
         BerElement *bep = ber_init(bvp);
@@ -1685,6 +1689,7 @@ dnl
 AC_DEFUN([CURL_CHECK_WORKING_RESOLVER],[
 AC_MSG_CHECKING([if "localhost" resolves])
 AC_TRY_RUN([
+#include <stddef.h>
 #include <string.h>
 #include <sys/types.h>
 #include <netdb.h>

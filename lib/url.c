@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.655 2007-10-13 00:47:53 danf Exp $
+ * $Id: url.c,v 1.656 2007-10-15 16:24:46 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -242,7 +242,7 @@ static const struct Curl_handler * const protocols[] = {
   &Curl_handler_ldap,
 #endif
 
-#if defined(HAVE_LDAP_SSL) && !defined(CURL_DISABLE_SSL)
+#if !defined(CURL_DISABLE_LDAP) && defined(HAVE_LDAP_SSL)
   &Curl_handler_ldaps,
 #endif
 
