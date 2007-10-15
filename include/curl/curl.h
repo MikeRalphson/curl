@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.330 2007-10-06 17:20:06 giva Exp $
+ * $Id: curl.h,v 1.331 2007-10-15 18:32:01 patrickm Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -659,7 +659,7 @@ typedef enum {
    */
   CINIT(INFILESIZE, LONG, 14),
 
-  /* POST input fields. */
+  /* POST static input fields. */
   CINIT(POSTFIELDS, OBJECTPOINT, 15),
 
   /* Set the referer page (needed by some CGIs) */
@@ -1155,6 +1155,9 @@ typedef enum {
      curl_opensocket_callback */
   CINIT(OPENSOCKETFUNCTION, FUNCTIONPOINT, 163),
   CINIT(OPENSOCKETDATA, OBJECTPOINT, 164),
+
+  /* POST volatile input fields. */
+  CINIT(COPYPOSTFIELDS, OBJECTPOINT, 165),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

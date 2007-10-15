@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.369 2007-10-02 10:21:36 bagder Exp $
+ * $Id: transfer.c,v 1.370 2007-10-15 18:32:01 patrickm Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -233,7 +233,7 @@ CURLcode Curl_readrewind(struct connectdata *conn)
   /* We have sent away data. If not using CURLOPT_POSTFIELDS or
      CURLOPT_HTTPPOST, call app to rewind
   */
-  if(data->set.str[STRING_POSTFIELDS] ||
+  if(data->set.postfields ||
      (data->set.httpreq == HTTPREQ_POST_FORM))
     ; /* do nothing */
   else {
