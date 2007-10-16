@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.657 2007-10-15 18:32:01 patrickm Exp $
+ * $Id: url.c,v 1.658 2007-10-16 18:09:57 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -771,8 +771,10 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
                      va_list param)
 {
   char *argptr;
-  curl_off_t bigsize;
   CURLcode result = CURLE_OK;
+#ifndef CURL_DISABLE_HTTP
+  curl_off_t bigsize;
+#endif
 
   switch(option) {
   case CURLOPT_DNS_CACHE_TIMEOUT:
