@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.182 2007-10-04 10:01:41 bagder Exp $
+ * $Id: connect.c,v 1.183 2007-10-17 00:10:00 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -692,8 +692,9 @@ singleipconnect(struct connectdata *conn,
   addr->family=ai->ai_family;
   addr->socktype=conn->socktype;
   addr->protocol=ai->ai_protocol;
-  addr->addrlen=(ai->ai_addrlen<=sizeof(struct Curl_sockaddr_storage))?
-    ai->ai_addrlen:sizeof(struct Curl_sockaddr_storage);
+  addr->addrlen =
+    (ai->ai_addrlen < (socklen_t)sizeof(struct Curl_sockaddr_storage)) ?
+     ai->ai_addrlen : (socklen_t)sizeof(struct Curl_sockaddr_storage);
   memcpy(&addr->addr, ai->ai_addr, addr->addrlen);
 
   /* optionally use callback to get the socket */
