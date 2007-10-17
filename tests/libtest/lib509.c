@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.24 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: lib509.c,v 1.25 2007-10-17 16:58:37 yangtse Exp $
  */
 
 #include "test.h"
@@ -34,13 +34,6 @@
 
 #define MAIN_LOOP_HANG_TIMEOUT     90 * 1000
 #define MULTI_PERFORM_HANG_TIMEOUT 60 * 1000
-
-/*
- * We use this ZERO_NULL to avoid picky compiler warnings,
- * when assigning a NULL pointer to a function pointer var.
- */
-
-#define ZERO_NULL 0
 
 int portnum; /* the HTTPS port number we use */
 

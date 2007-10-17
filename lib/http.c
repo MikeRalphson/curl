@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.341 2007-10-15 18:32:01 patrickm Exp $
+ * $Id: http.c,v 1.342 2007-10-17 16:58:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -121,16 +121,16 @@ static int Curl_https_getsock(struct connectdata *conn,
  */
 const struct Curl_handler Curl_handler_http = {
   "HTTP",                               /* scheme */
-  NULL,                                 /* setup_connection */
+  ZERO_NULL,                            /* setup_connection */
   Curl_http,                            /* do_it */
   Curl_http_done,                       /* done */
-  NULL,                                 /* do_more */
+  ZERO_NULL,                            /* do_more */
   Curl_http_connect,                    /* connect_it */
-  NULL,                                 /* connecting */
-  NULL,                                 /* doing */
-  NULL,                                 /* proto_getsock */
-  NULL,                                 /* doing_getsock */
-  NULL,                                 /* disconnect */
+  ZERO_NULL,                            /* connecting */
+  ZERO_NULL,                            /* doing */
+  ZERO_NULL,                            /* proto_getsock */
+  ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* disconnect */
   PORT_HTTP,                            /* defport */
   PROT_HTTP,                            /* protocol */
 };
@@ -141,16 +141,16 @@ const struct Curl_handler Curl_handler_http = {
  */
 const struct Curl_handler Curl_handler_https = {
   "HTTPS",                              /* scheme */
-  NULL,                                 /* setup_connection */
+  ZERO_NULL,                            /* setup_connection */
   Curl_http,                            /* do_it */
   Curl_http_done,                       /* done */
-  NULL,                                 /* do_more */
+  ZERO_NULL,                            /* do_more */
   Curl_http_connect,                    /* connect_it */
   Curl_https_connecting,                /* connecting */
-  NULL,                                 /* doing */
+  ZERO_NULL,                            /* doing */
   Curl_https_getsock,                   /* proto_getsock */
-  NULL,                                 /* doing_getsock */
-  NULL,                                 /* disconnect */
+  ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* disconnect */
   PORT_HTTPS,                           /* defport */
   PROT_HTTP | PROT_HTTPS | PROT_SSL     /* protocol */
 };

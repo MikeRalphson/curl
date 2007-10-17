@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.446 2007-10-13 00:47:53 danf Exp $
+ * $Id: ftp.c,v 1.447 2007-10-17 16:58:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -207,16 +207,16 @@ const struct Curl_handler Curl_handler_ftps = {
 
 const struct Curl_handler Curl_handler_ftp_proxy = {
   "FTP",                                /* scheme */
-  NULL,                                 /* setup_connection */
+  ZERO_NULL,                            /* setup_connection */
   Curl_http,                            /* do_it */
   Curl_http_done,                       /* done */
-  NULL,                                 /* do_more */
-  NULL,                                 /* connect_it */
-  NULL,                                 /* connecting */
-  NULL,                                 /* doing */
-  NULL,                                 /* proto_getsock */
-  NULL,                                 /* doing_getsock */
-  NULL,                                 /* disconnect */
+  ZERO_NULL,                            /* do_more */
+  ZERO_NULL,                            /* connect_it */
+  ZERO_NULL,                            /* connecting */
+  ZERO_NULL,                            /* doing */
+  ZERO_NULL,                            /* proto_getsock */
+  ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* disconnect */
   PORT_FTP,                             /* defport */
   PROT_HTTP                             /* protocol */
 };
@@ -229,16 +229,16 @@ const struct Curl_handler Curl_handler_ftp_proxy = {
 
 const struct Curl_handler Curl_handler_ftps_proxy = {
   "FTPS",                               /* scheme */
-  NULL,                                 /* setup_connection */
+  ZERO_NULL,                            /* setup_connection */
   Curl_http,                            /* do_it */
   Curl_http_done,                       /* done */
-  NULL,                                 /* do_more */
-  NULL,                                 /* connect_it */
-  NULL,                                 /* connecting */
-  NULL,                                 /* doing */
-  NULL,                                 /* proto_getsock */
-  NULL,                                 /* doing_getsock */
-  NULL,                                 /* disconnect */
+  ZERO_NULL,                            /* do_more */
+  ZERO_NULL,                            /* connect_it */
+  ZERO_NULL,                            /* connecting */
+  ZERO_NULL,                            /* doing */
+  ZERO_NULL,                            /* proto_getsock */
+  ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* disconnect */
   PORT_FTPS,                            /* defport */
   PROT_HTTP                             /* protocol */
 };

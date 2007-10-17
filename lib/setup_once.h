@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.27 2007-09-05 22:01:57 danf Exp $
+ * $Id: setup_once.h,v 1.28 2007-10-17 16:58:32 yangtse Exp $
  ***************************************************************************/
 
 
@@ -378,6 +378,14 @@ typedef int sig_atomic_t;
 #endif
 
 
+/*
+ * We use this ZERO_NULL to avoid picky compiler warnings,
+ * when assigning a NULL pointer to a function pointer var.
+ */
+
+#define ZERO_NULL 0
+
+
 #if defined (__LP64__) && defined(__hpux) && !defined(_XOPEN_SOURCE_EXTENDED)
 #include <sys/socket.h>
 /* HP-UX has this oddity where it features a few functions that don't work
@@ -459,6 +467,7 @@ inline static ssize_t Curl_hp_recvfrom(int s, void *buf, size_t len, int flags,
 #define recvfrom(a,b,c,d,e,f) Curl_hp_recvfrom((a),(b),(c),(d),(e),(f))
 
 #endif /* HPUX work-around */
+
 
 #endif /* __SETUP_ONCE_H */
 
