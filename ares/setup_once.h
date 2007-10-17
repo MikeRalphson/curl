@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.24 2007-10-17 16:59:24 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.25 2007-10-17 18:18:27 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -88,7 +88,7 @@ struct timeval {
 #define SEND_4TH_ARG MSG_NOSIGNAL
 #else
 #define SEND_4TH_ARG 0
-#endif 
+#endif
 
 
 #if defined(__minix)
@@ -120,7 +120,6 @@ struct timeval {
  * SEND_TYPE_RETV must also be defined.
  */
 
-#ifdef HAVE_RECV
 #if !defined(RECV_TYPE_ARG1) || \
     !defined(RECV_TYPE_ARG2) || \
     !defined(RECV_TYPE_ARG3) || \
@@ -176,7 +175,7 @@ struct timeval {
 
 
 /*
- * Uppercase macro versions of ANSI/ISO is*() functions/macros which 
+ * Uppercase macro versions of ANSI/ISO is*() functions/macros which
  * avoid negative number inputs with argument byte codes > 127.
  */
 
