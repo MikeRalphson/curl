@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.661 2007-10-17 18:06:32 yangtse Exp $
+ * $Id: url.c,v 1.662 2007-10-17 19:29:06 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1039,8 +1039,8 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
        *  Check that request length does not overflow the size_t type.
        */
 
-      if ((sizeof(curl_off_t) != sizeof(size_t)) &&
-          ((data->set.postfieldsize < 0) ||
+      if ((data->set.postfieldsize < 1) ||
+          ((sizeof(curl_off_t) != sizeof(size_t)) &&
            (data->set.postfieldsize > (curl_off_t)((size_t)-1))))
         result = CURLE_OUT_OF_MEMORY;
       else {
