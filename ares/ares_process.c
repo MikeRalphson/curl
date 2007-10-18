@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.60 2007-10-08 14:38:51 giva Exp $ */
+/* $Id: ares_process.c,v 1.61 2007-10-18 17:17:18 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -725,10 +725,10 @@ void ares__send_query(ares_channel channel, struct query *query, time_t now)
 }
 
 /*
- * nonblock() set the given socket to either blocking or non-blocking mode
+ * setsocknonblock sets the given socket to either blocking or non-blocking mode
  * based on the 'nonblock' boolean argument. This function is highly portable.
  */
-static int nonblock(ares_socket_t sockfd,    /* operate on this */
+static int setsocknonblock(ares_socket_t sockfd,    /* operate on this */
                     int nonblock   /* TRUE or FALSE */)
 {
 #undef SETBLOCK
@@ -798,7 +798,7 @@ static int nonblock(ares_socket_t sockfd,    /* operate on this */
 
 static int configure_socket(int s, ares_channel channel)
 {
-  nonblock(s, TRUE);
+  setsocknonblock(s, TRUE);
 
 #if defined(FD_CLOEXEC) && !defined(MSDOS)
   /* Configure the socket fd as close-on-exec. */
