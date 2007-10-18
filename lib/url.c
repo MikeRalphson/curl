@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.662 2007-10-17 19:29:06 yangtse Exp $
+ * $Id: url.c,v 1.663 2007-10-18 01:04:57 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2126,7 +2126,7 @@ CURLcode Curl_disconnect(struct connectdata *conn)
     Curl_ntlm_cleanup(conn);
   }
 
-  if(conn->handler->disconnect)
+  if(conn->handler && conn->handler->disconnect)
     /* This is set if protocol-specific cleanups should be made */
     conn->handler->disconnect(conn);
 
