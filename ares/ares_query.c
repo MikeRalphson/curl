@@ -1,4 +1,4 @@
-/* $Id: ares_query.c,v 1.14 2007-09-29 18:18:47 sesse Exp $ */
+/* $Id: ares_query.c,v 1.15 2007-10-18 01:01:20 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -53,13 +53,13 @@ void ares__rc4(rc4_key* key, unsigned char *buffer_ptr, int buffer_len)
   state = &key->state[0];
   for(counter = 0; counter < buffer_len; counter ++)
   {
-	x = (x + 1) % 256;
-	y = (state[x] + y) % 256;
-	ARES_SWAP_BYTE(&state[x], &state[y]);
+    x = (unsigned char)((x + 1) % 256);
+    y = (unsigned char)((state[x] + y) % 256);
+    ARES_SWAP_BYTE(&state[x], &state[y]);
 
-	xorIndex = (state[x] + state[y]) % 256;
+    xorIndex = (unsigned char)((state[x] + state[y]) % 256);
 
-	buffer_ptr[counter] ^= state[xorIndex];
+    buffer_ptr[counter] = (unsigned char)(buffer_ptr[counter]^state[xorIndex]);
   }
   key->x = x;
   key->y = y;
