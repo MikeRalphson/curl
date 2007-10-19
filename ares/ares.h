@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.34 2007-09-28 15:15:39 sesse Exp $ */
+/* $Id: ares.h,v 1.35 2007-10-19 10:52:28 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -158,17 +158,10 @@ typedef int ares_socket_t;
 #define ares_socket_typedef
 #endif /* ares_socket_typedef */
 
-#ifdef WIN32
 typedef void (*ares_sock_state_cb)(void *data,
-                                   SOCKET socket,
+                                   ares_socket_t socket_fd,
                                    int readable,
                                    int writable);
-#else
-typedef void (*ares_sock_state_cb)(void *data,
-                                   int socket,
-                                   int readable,
-                                   int writable);
-#endif
 
 struct apattern;
 
