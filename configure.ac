@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.260 2007-10-18 16:24:14 yangtse Exp $
+# $Id: configure.ac,v 1.261 2007-10-19 12:15:00 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -239,6 +239,7 @@ case $host in
     #
     if test "$ICC" = "yes"; then
       dnl figure out icc version
+      AC_MSG_CHECKING([icc version])
       iccver=`$CC -dumpversion`
       iccnhi=`echo $iccver | cut -d . -f1`
       iccnlo=`echo $iccver | cut -d . -f2`
