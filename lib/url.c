@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.665 2007-10-20 15:11:51 yangtse Exp $
+ * $Id: url.c,v 1.666 2007-10-20 15:47:16 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -683,9 +683,9 @@ CURLcode Curl_open(struct SessionHandle **curl)
     data->set.fread_func = (curl_read_callback)fread;
 
     /* conversion callbacks for non-ASCII hosts */
-    data->set.convfromnetwork = (curl_conv_callback)ZERO_NULL;
-    data->set.convtonetwork   = (curl_conv_callback)ZERO_NULL;
-    data->set.convfromutf8    = (curl_conv_callback)ZERO_NULL;
+    data->set.convfromnetwork = ZERO_NULL;
+    data->set.convtonetwork   = ZERO_NULL;
+    data->set.convfromutf8    = ZERO_NULL;
 
 #if defined(CURL_DOES_CONVERSIONS) && defined(HAVE_ICONV)
     /* conversion descriptors for iconv calls */
