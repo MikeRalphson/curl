@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.664 2007-10-18 10:54:49 patrickm Exp $
+ * $Id: url.c,v 1.665 2007-10-20 15:11:51 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3101,7 +3101,7 @@ static CURLcode setup_connection_internals(struct SessionHandle *data,
       }
 
       conn->port = p->defport;
-      conn->remote_port = p->defport;
+      conn->remote_port = (unsigned short)p->defport;
       conn->protocol |= p->protocol;
       return CURLE_OK;
     }

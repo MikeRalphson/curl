@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.66 2007-10-18 17:31:19 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.67 2007-10-20 15:11:51 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -266,8 +266,8 @@ int ares_save_options(ares_channel channel, struct ares_options *options,
   options->timeout = channel->timeout;
   options->tries   = channel->tries;
   options->ndots   = channel->ndots;
-  options->udp_port = channel->udp_port;
-  options->tcp_port = channel->tcp_port;
+  options->udp_port = (unsigned short)channel->udp_port;
+  options->tcp_port = (unsigned short)channel->tcp_port;
   options->sock_state_cb     = channel->sock_state_cb;
   options->sock_state_cb_data = channel->sock_state_cb_data;
 
