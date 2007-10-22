@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.667 2007-10-22 09:25:45 bagder Exp $
+ * $Id: url.c,v 1.668 2007-10-22 15:05:35 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2058,6 +2058,9 @@ static void conn_free(struct connectdata *conn)
   if(CURL_SOCKET_BAD != conn->sock[FIRSTSOCKET])
     sclose(conn->sock[FIRSTSOCKET]);
 
+  if (conn->data->reqdata.current_conn == conn) {
+    conn->data->reqdata.current_conn = NULL;
+  }
   Curl_safefree(conn->user);
   Curl_safefree(conn->passwd);
   Curl_safefree(conn->proxyuser);
@@ -4513,4 +4516,17 @@ CURLcode Curl_do_more(struct connectdata *conn)
     result = conn->handler->do_more(conn);
 
   return result;
+}
+
+/* Called on connect, and if there's already a protocol-specific struct
+   allocated for a different connection, this frees it that it can be setup
+   properly later on. */
+void Curl_reset_reqproto(struct connectdata *conn)
+{
+  struct SessionHandle *data = conn->data;
+  if (data->reqdata.proto.generic && data->reqdata.current_conn != conn) {
+    free(data->reqdata.proto.generic);
+    data->reqdata.proto.generic = NULL;
+  }
+  data->reqdata.current_conn = conn;
 }

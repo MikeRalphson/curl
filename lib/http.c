@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.342 2007-10-17 16:58:32 yangtse Exp $
+ * $Id: http.c,v 1.343 2007-10-22 15:05:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1894,13 +1894,16 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
      the rest of the request in the PERFORM phase. */
   *done = TRUE;
 
+  /* If there already is a protocol-specific struct allocated for this
+     sessionhandle, deal with it */
+  Curl_reset_reqproto(conn);
+
   if(!data->reqdata.proto.http) {
     /* Only allocate this struct if we don't already have it! */
 
-    http = (struct HTTP *)malloc(sizeof(struct HTTP));
+    http = (struct HTTP *)calloc(sizeof(struct HTTP), 1);
     if(!http)
       return CURLE_OUT_OF_MEMORY;
-    memset(http, 0, sizeof(struct HTTP));
     data->reqdata.proto.http = http;
   }
   else

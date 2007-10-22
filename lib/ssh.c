@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.79 2007-10-17 16:58:32 yangtse Exp $
+ * $Id: ssh.c,v 1.80 2007-10-22 15:05:35 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1846,10 +1846,9 @@ static CURLcode Curl_ssh_connect(struct connectdata *conn, bool *done)
   CURLcode result;
   struct SessionHandle *data = conn->data;
 
-  if (data->reqdata.proto.ssh) {
-    Curl_safefree(data->reqdata.proto.ssh);
-    data->reqdata.proto.ssh = NULL;
-  }
+  /* If there already is a protocol-specific struct allocated for this
+     sessionhandle, deal with it */
+  Curl_reset_reqproto(conn);
 
   result = ssh_init(conn);
   if (result)

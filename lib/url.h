@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.35 2007-09-27 01:45:23 danf Exp $
+ * $Id: url.h,v 1.36 2007-10-22 15:05:35 bagder Exp $
  ***************************************************************************/
 
 #include <stdarg.h> /* to make sure we have ap_list */
@@ -83,5 +83,10 @@ CURLcode Curl_doing_fdset(struct connectdata *conn,
                           fd_set *write_fd_set,
                           int *max_fdp);
 #endif
+
+/* Called on connect, and if there's already a protocol-specific struct
+   allocated for a different connection, this frees it that it can be setup
+   properly later on. */
+void Curl_reset_reqproto(struct connectdata *conn);
 
 #endif
