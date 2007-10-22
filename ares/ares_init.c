@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.67 2007-10-20 15:11:51 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.68 2007-10-22 23:31:40 gknauf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -107,7 +107,6 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   int i;
   int status = ARES_SUCCESS;
   struct server_state *server;
-  struct timeval tv;
 
 #ifdef CURLDEBUG
   const char *env = getenv("CARES_MEMDEBUG");
@@ -147,8 +146,7 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   channel->sock_state_cb = NULL;
   channel->sock_state_cb_data = NULL;
 
-  gettimeofday(&tv, NULL);
-  channel->last_timeout_processed = tv.tv_sec;
+  channel->last_timeout_processed = (long)time(NULL);
 
   /* Initialize our lists of queries */
   ares__init_list_head(&(channel->all_queries));
