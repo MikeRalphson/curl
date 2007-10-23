@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib508.c,v 1.5 2006-10-25 09:20:44 yangtse Exp $
+ * $Id: lib508.c,v 1.6 2007-10-23 15:10:48 yangtse Exp $
  */
 
 #include "test.h"
@@ -31,7 +31,7 @@ static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userp)
     return 1;                        /* we return 1 byte at a time! */
   }
 
-  return -1;                         /* no more data left to deliver */
+  return 0;                         /* no more data left to deliver */
 }
 
 int test(char *URL)
