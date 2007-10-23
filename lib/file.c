@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.97 2007-10-22 15:05:35 bagder Exp $
+ * $Id: file.c,v 1.98 2007-10-23 15:16:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -148,6 +148,16 @@ CURLcode Curl_file_connect(struct connectdata *conn)
       return CURLE_OUT_OF_MEMORY;
     }
     data->reqdata.proto.file = file;
+  }
+  else {
+    /* file is not a protocol that can deal with "persistancy" */
+    file = data->reqdata.proto.file;
+    Curl_safefree(file->freepath);
+    if(file->fd != -1)
+      close(file->fd);
+    file->path = NULL;
+    file->freepath = NULL;
+    file->fd = -1;
   }
 
 #if defined(WIN32) || defined(MSDOS) || defined(__EMX__)
