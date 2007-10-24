@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.135 2007-10-19 16:15:42 yangtse Exp $
+# $Id: acinclude.m4,v 1.136 2007-10-24 16:40:59 yangtse Exp $
 ###########################################################################
 
 
@@ -513,7 +513,7 @@ AC_DEFUN([CURL_CHECK_LIBS_WINLDAP], [
     done
   ])
   #
-  curl_cv_save_LIBS=$LIBS
+  curl_cv_save_LIBS="$LIBS"
   curl_cv_ldap_LIBS="unknown"
   #
   for x_nlibs in '' "$u_libs" \
@@ -551,7 +551,7 @@ AC_DEFUN([CURL_CHECK_LIBS_WINLDAP], [
     ])
   done
   #
-  LIBS=$curl_cv_save_LIBS
+  LIBS="$curl_cv_save_LIBS"
   #
   case X-"$curl_cv_ldap_LIBS" in
     X-unknown)
@@ -606,7 +606,7 @@ AC_DEFUN([CURL_CHECK_LIBS_LDAP], [
     done
   ])
   #
-  curl_cv_save_LIBS=$LIBS
+  curl_cv_save_LIBS="$LIBS"
   curl_cv_ldap_LIBS="unknown"
   #
   for x_nlibs in '' "$u_libs" \
@@ -658,7 +658,7 @@ AC_DEFUN([CURL_CHECK_LIBS_LDAP], [
     ])
   done
   #
-  LIBS=$curl_cv_save_LIBS
+  LIBS="$curl_cv_save_LIBS"
   #
   case X-"$curl_cv_ldap_LIBS" in
     X-unknown)
