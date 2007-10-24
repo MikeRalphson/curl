@@ -1,7 +1,7 @@
-# $Id: DISABLED,v 1.14 2007-10-24 21:27:25 bagder Exp $
+# $Id: DISABLED,v 1.15 2007-10-24 22:48:23 danf Exp $
 # This file can be used to specify test cases that should not run when all
 # test cases are run by runtests.pl. Just add the plain test case numbers, one
 # per line.
 # Lines starting with '#' letters are treated as comments.
 #1009
-
+2003
