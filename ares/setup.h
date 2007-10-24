@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.26 2007-06-02 19:48:29 bagder Exp $ */
+/* $Id: setup.h,v 1.27 2007-10-24 14:39:07 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -95,10 +95,6 @@
     defined(__POCC__)
 #else
 #define ssize_t int
-#endif
-
-#ifndef HAVE_WS2TCPIP_H
-#define socklen_t int
 #endif
 
 #endif /* HAVE_CONFIG_H */

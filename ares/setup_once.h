@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.25 2007-10-17 18:18:27 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.26 2007-10-24 14:39:07 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -88,6 +88,24 @@ struct timeval {
 #define SEND_4TH_ARG MSG_NOSIGNAL
 #else
 #define SEND_4TH_ARG 0
+#endif
+
+
+/*
+ * Windows build targets have socklen_t definition in
+ * ws2tcpip.h but some versions of ws2tcpip.h do not
+ * have the definition. It seems that when the socklen_t
+ * definition is missing from ws2tcpip.h the definition
+ * for INET_ADDRSTRLEN is also missing, and that when one
+ * definition is present the other one also is available.
+ */
+
+#if defined(WIN32) && !defined(HAVE_SOCKLEN_T)
+#  if ( defined(_MSC_VER) && !defined(INET_ADDRSTRLEN) ) || \
+      (!defined(_MSC_VER) && !defined(HAVE_WS2TCPIP_H) )
+#    define socklen_t int
+#    define HAVE_SOCKLEN_T
+#  endif
 #endif
 
 

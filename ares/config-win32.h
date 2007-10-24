@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.15 2007-02-06 19:09:57 giva Exp $ */
+/* $Id: config-win32.h,v 1.16 2007-10-24 14:39:07 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -144,11 +144,6 @@
 #define ssize_t __int64
 #else
 #define ssize_t int
-#endif
-
-/* Define to 'int' if socklen_t is not an available 'typedefed' type */
-#ifndef HAVE_WS2TCPIP_H
-#define socklen_t int
 #endif
 
 /* ---------------------------------------------------------------- */
