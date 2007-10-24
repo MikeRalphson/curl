@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.353 2007-10-22 15:05:35 bagder Exp $
+ * $Id: urldata.h,v 1.354 2007-10-24 21:09:59 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -794,8 +794,13 @@ struct HandleData {
                   this syntax. */
   curl_off_t resume_from; /* continue [ftp] transfer from here */
 
-  /* Protocol specific data */
-
+  /* Protocol specific data.
+   *
+   *************************************************************************
+   * Note that this data will be REMOVED after each request, so anything that
+   * should be kept/stored on a per-connection basis and thus live for the
+   * next requst on the same connection MUST be put in the connectdata struct!
+   *************************************************************************/
   union {
     struct HTTP *http;
     struct HTTP *https;  /* alias, just for the sake of being more readable */
