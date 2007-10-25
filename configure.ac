@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.261 2007-10-19 12:15:00 yangtse Exp $
+# $Id: configure.ac,v 1.262 2007-10-25 22:30:35 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -55,6 +55,7 @@ AC_SUBST(AR)
 if test "x$AR" = "xar-was-not-found-by-configure"; then
   AC_MSG_WARN([ar was not found, this may ruin your chances to build fine])
 fi
+AC_SUBST(libext)
 
 dnl figure out the libcurl version
 VERSION=`$SED -ne 's/^#define LIBCURL_VERSION "\(.*\)"/\1/p' ${srcdir}/include/curl/curlver.h`

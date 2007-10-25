@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-config.in,v 1.29 2007-09-14 01:24:59 danf Exp $
+# $Id: curl-config.in,v 1.30 2007-10-25 22:30:35 danf Exp $
 ###########################################################################
 #
 # The idea to this kind of setup info script was stolen from numerous
@@ -41,10 +41,11 @@ Available values for OPTION include:
   --cflags    pre-processor and compiler flags
   --checkfor [version] check for (lib)curl of the specified version
   --features  newline separated list of enabled features
-  --protocols newline separated list of enabled protocols
   --help      display this help and exit
   --libs      library linking information
   --prefix    curl install prefix
+  --protocols newline separated list of enabled protocols
+  --static-libs static libcurl library linking information
   --version   output version information
   --vernum    output the version information as a number (hexadecimal)
 EOF
@@ -198,6 +199,10 @@ while test $# -gt 0; do
 	else
 	  echo ${CURLLIBDIR}-lcurl @LDFLAGS@ @LIBS@
 	fi
+	;;
+
+    --static-libs)
+	echo @libdir@/libcurl.@libext@ @LDFLAGS@ @LIBCURL_LIBS@ @LIBS@
 	;;
 
     *)
