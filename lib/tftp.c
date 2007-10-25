@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.55 2007-10-25 07:47:38 bagder Exp $
+ * $Id: tftp.c,v 1.56 2007-10-25 09:34:16 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -612,10 +612,12 @@ static CURLcode Curl_tftp_connect(struct connectdata *conn, bool *done)
      sessionhandle, deal with it */
   Curl_reset_reqproto(conn);
 
-  state = conn->data->reqdata.proto.tftp = calloc(sizeof(tftp_state_data_t),
-                                                  1);
-  if(!state)
-    return CURLE_OUT_OF_MEMORY;
+  if(!(state = conn->data->reqdata.proto.tftp)) {
+    state = conn->data->reqdata.proto.tftp = calloc(sizeof(tftp_state_data_t),
+                                                    1);
+    if(!state)
+      return CURLE_OUT_OF_MEMORY;
+  }
 
   conn->bits.close = FALSE; /* keep it open if possible */
 
