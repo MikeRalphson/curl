@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.54 2007-10-17 16:58:32 yangtse Exp $
+ * $Id: tftp.c,v 1.55 2007-10-25 07:47:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -605,8 +605,12 @@ static CURLcode tftp_state_machine(tftp_state_data_t *state,
 static CURLcode Curl_tftp_connect(struct connectdata *conn, bool *done)
 {
   CURLcode code;
-  tftp_state_data_t     *state;
+  tftp_state_data_t *state;
   int rc;
+
+  /* If there already is a protocol-specific struct allocated for this
+     sessionhandle, deal with it */
+  Curl_reset_reqproto(conn);
 
   state = conn->data->reqdata.proto.tftp = calloc(sizeof(tftp_state_data_t),
                                                   1);
