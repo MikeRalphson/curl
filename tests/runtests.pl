@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.253 2007-10-25 18:07:13 yangtse Exp $
+# $Id: runtests.pl,v 1.254 2007-10-25 19:39:52 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1746,7 +1746,8 @@ sub singletest {
         $DBGCURL=$CMDLINE;
     }
 
-    if($valgrind) {
+    my $usevalgrind = $valgrind && ((getpart("verify", "valgrind"))[0] !~ /disable/);
+    if($usevalgrind) {
         $CMDLINE = "$valgrind ".$valgrind_tool."--leak-check=yes --num-callers=16 ${valgrind_logfile}=log/valgrind$testnum $CMDLINE";
     }
 
@@ -2091,9 +2092,7 @@ sub singletest {
 
     if($valgrind) {
         # this is the valid protocol blurb curl should generate
-        my @disable= getpart("verify", "valgrind");
-
-        if($disable[0] !~ /disable/) {
+        if($usevalgrind) {
 
             opendir(DIR, "log") ||
                 return 0; # can't open log dir
@@ -2121,7 +2120,7 @@ sub singletest {
         }
         else {
             if(!$short) {
-                logmsg " valgrind SKIPPED";
+                logmsg " valgrind SKIPPED\n";
             }
             $ok .= "-"; # skipped
         }
