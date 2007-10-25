@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.252 2007-10-25 14:30:52 bagder Exp $
+# $Id: runtests.pl,v 1.253 2007-10-25 18:07:13 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2728,6 +2728,9 @@ sub displaylogs {
         }
         if(($log =~ /^file\d+\.txt/) && ($log !~ /^file$testnum\.txt/)) {
             next; # skip fileNnn.txt of other tests
+        }
+        if(($log =~ /^valgrind\d+/) && ($log !~ /^valgrind$testnum/)) {
+            next; # skip valgrindNnn of other tests
         }
         logmsg "=== Start of file $log\n";
         displaylogcontent("$LOGDIR/$log");
