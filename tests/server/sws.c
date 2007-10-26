@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.107 2007-10-25 19:40:05 patrickm Exp $
+ * $Id: sws.c,v 1.108 2007-10-26 00:36:36 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -468,6 +468,11 @@ void storerequest(char *reqbuf, ssize_t totalsize)
 
   if (totalsize == 0)
     return;
+  else if (totalsize < 0) {
+    logmsg("Invalid size (%d bytes) for request input. Not written to %s",
+           totalsize, REQUEST_DUMP);
+    return;
+  }
 
   do {
     dump = fopen(REQUEST_DUMP, "ab");
