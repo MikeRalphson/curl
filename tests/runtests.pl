@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.254 2007-10-25 19:39:52 danf Exp $
+# $Id: runtests.pl,v 1.255 2007-10-26 19:26:04 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2376,12 +2376,14 @@ sub serverfortest {
         return "no server specified";
     }
 
-    my $proto = lc($what[0]);
-    chomp $proto;
-    if (! grep /^$proto$/, @protocols) {
-        if (substr($proto,0,5) ne "socks") {
-		return "curl lacks any $proto support";
-        }
+    for (@what) {
+	my $proto = lc($_);
+	chomp $proto;
+	if (! grep /^$proto$/, @protocols) {
+	    if (substr($proto,0,5) ne "socks") {
+		    return "curl lacks any $proto support";
+	    }
+	}
     }
 
     return &startservers(@what);
