@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.670 2007-10-25 09:41:35 bagder Exp $
+ * $Id: url.c,v 1.671 2007-10-26 01:12:33 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1053,7 +1053,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
            to mark that postfields is used rather than read function or
            form data.
          */
-        p = malloc(data->set.postfieldsize? data->set.postfieldsize: 1);
+        p = malloc((size_t)(data->set.postfieldsize?data->set.postfieldsize:1));
 
         if (!p)
           result = CURLE_OUT_OF_MEMORY;
