@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.120 2007-08-23 14:58:10 bagder Exp $
+# $Id: Makefile.am,v 1.121 2007-10-29 10:19:07 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -50,7 +50,7 @@ INCLUDES = -I$(top_srcdir)/include \
            -I$(top_builddir)/lib   \
            -I$(top_srcdir)/lib
 
-VERSION=-version-info 4:0:0
+VERSION=-version-info 4:1:0
 
 # This flag accepts an argument of the form current[:revision[:age]]. So,
 # passing -version-info 3:12:1 sets current to 3, revision to 12, and age to
