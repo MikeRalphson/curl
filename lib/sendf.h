@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.41 2007-10-29 18:32:20 danf Exp $
+ * $Id: sendf.h,v 1.42 2007-10-29 20:57:03 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -70,7 +70,7 @@ CURLcode Curl_write(struct connectdata *conn,
 
 /* the function used to output verbose information */
 int Curl_debug(struct SessionHandle *handle, curl_infotype type,
-               const char *data, size_t size,
+               char *data, size_t size,
                struct connectdata *conn);
 
 
