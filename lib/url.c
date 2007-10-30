@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.671 2007-10-26 01:12:33 yangtse Exp $
+ * $Id: url.c,v 1.672 2007-10-30 23:00:40 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3638,10 +3638,12 @@ static CURLcode CreateConnection(struct SessionHandle *data,
    * file: is a special case in that it doesn't need a network connection
    ***********************************************************************/
 #ifndef CURL_DISABLE_FILE
-  if (strequal(conn->protostr, "FILE")) {
+  if(conn->protocol & PROT_FILE) {
+    bool done;
     /* this is supposed to be the connect function so we better at least check
        that the file is present here! */
-    result = Curl_file_connect(conn);
+    DEBUGASSERT(conn->handler->connect_it);
+    result = conn->handler->connect_it(conn, &done);
 
     /* Setup a "faked" transfer that'll do nothing */
     if(CURLE_OK == result) {
@@ -3652,8 +3654,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
 
       result = setup_range(data);
       if(result) {
-        if(conn->handler->done)
-          result = conn->handler->done(conn, result, FALSE);
+        DEBUGASSERT(conn->handler->done);
+        conn->handler->done(conn, result, FALSE);
         return result;
       }
 
