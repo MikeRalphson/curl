@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.263 2007-10-29 22:13:00 bagder Exp $
+# $Id: configure.ac,v 1.264 2007-10-31 23:33:58 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1356,8 +1356,9 @@ if test X"$OPT_LIBSSH2" != Xno; then
   AC_CHECK_HEADERS(libssh2.h,
     curl_ssh_msg="enabled (libSSH2)"
     LIBSSH2_ENABLED=1
-    AC_DEFINE(USE_LIBSSH2, 1, [if libSSH2 is in use]))
+    AC_DEFINE(USE_LIBSSH2, 1, [if libSSH2 is in use])
     AC_SUBST(USE_LIBSSH2, [1])
+  )
 
   if test X"$OPT_LIBSSH2" != Xoff &&
      test "$LIBSSH2_ENABLED" != "1"; then
