@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.264 2007-10-31 23:33:58 danf Exp $
+# $Id: configure.ac,v 1.265 2007-11-01 18:55:01 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1292,6 +1292,7 @@ else
   if test "$HAVE_LIBZ" = "1" && test "$HAVE_ZLIB_H" != "1"
   then
     AC_MSG_WARN([configure found only the libz lib, not the header file!])
+    HAVE_LIBZ=""
   elif test "$HAVE_LIBZ" != "1" && test "$HAVE_ZLIB_H" = "1"
   then
     AC_MSG_WARN([configure found only the libz header file, not the lib!])
