@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.450 2007-10-26 19:26:41 danf Exp $
+ * $Id: ftp.c,v 1.451 2007-11-01 21:43:56 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2947,8 +2947,8 @@ static CURLcode Curl_ftp_multi_statemach(struct connectdata *conn,
   }
 
   rc = Curl_socket_ready(ftpc->sendleft?CURL_SOCKET_BAD:sock, /* reading */
-                   ftpc->sendleft?sock:CURL_SOCKET_BAD, /* writing */
-                   0);
+                         ftpc->sendleft?sock:CURL_SOCKET_BAD, /* writing */
+                         0);
 
   if(rc == -1) {
     failf(data, "select/poll error");
@@ -2980,8 +2980,8 @@ static CURLcode ftp_easy_statemach(struct connectdata *conn)
     }
 
     rc = Curl_socket_ready(ftpc->sendleft?CURL_SOCKET_BAD:sock, /* reading */
-                     ftpc->sendleft?sock:CURL_SOCKET_BAD, /* writing */
-                     (int)timeout_ms);
+                           ftpc->sendleft?sock:CURL_SOCKET_BAD, /* writing */
+                           (int)timeout_ms);
 
     if(rc == -1) {
       failf(data, "select/poll error");
