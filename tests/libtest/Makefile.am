@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.56 2007-10-25 19:40:05 patrickm Exp $
+# $Id: Makefile.am,v 1.57 2007-11-01 00:36:56 danf Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -35,7 +35,7 @@ INCLUDES = -I$(top_srcdir)/include/curl \
 
 LIBDIR = $(top_builddir)/lib
 
-EXTRA_DIST = test75.pl test307.pl test610.pl test613.pl
+EXTRA_DIST = test75.pl test307.pl test610.pl test613.pl test1013.pl
 
 # files used only in some libcurl test programs
 TESTUTIL = testutil.c testutil.h
