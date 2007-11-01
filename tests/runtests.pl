@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.255 2007-10-26 19:26:04 danf Exp $
+# $Id: runtests.pl,v 1.256 2007-11-01 17:42:39 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1832,7 +1832,7 @@ sub singletest {
     if($cmd) {
 	my $rc = runclient("$cmd");
 	if($rc != 0) {
-	    logmsg "postcheck failure\n";
+	    logmsg " postcheck FAILED\n";
 	    return 1;
 	}
 	logmsg "postchecked $cmd\n" if($verbose);
