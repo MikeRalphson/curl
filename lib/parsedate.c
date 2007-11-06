@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.23 2006-12-05 14:57:43 bagder Exp $
+ * $Id: parsedate.c,v 1.24 2007-11-06 16:20:04 giva Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -154,7 +154,7 @@ static const struct tzinfo tz[]= {
    0 monday - 6 sunday
 */
 
-static int checkday(char *check, size_t len)
+static int checkday(const char *check, size_t len)
 {
   int i;
   const char * const *what;
@@ -173,7 +173,7 @@ static int checkday(char *check, size_t len)
   return found?i:-1;
 }
 
-static int checkmonth(char *check)
+static int checkmonth(const char *check)
 {
   int i;
   const char * const *what;
@@ -193,7 +193,7 @@ static int checkmonth(char *check)
 /* return the time zone offset between GMT and the input one, in number
    of seconds or -1 if the timezone wasn't found/legal */
 
-static int checktz(char *check)
+static int checktz(const char *check)
 {
   unsigned int i;
   const struct tzinfo *what;
