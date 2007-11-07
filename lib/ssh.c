@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.81 2007-11-05 09:30:45 bagder Exp $
+ * $Id: ssh.c,v 1.82 2007-11-07 09:21:36 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1801,7 +1801,7 @@ static CURLcode ssh_easy_statemach(struct connectdata *conn)
   struct ssh_conn *sshc = &conn->proto.sshc;
   CURLcode result = CURLE_OK;
 
-  while (sshc->state != SSH_STOP) {
+  while(sshc->state != SSH_STOP) {
     result = ssh_statemach_act(conn);
     if(result) {
       break;

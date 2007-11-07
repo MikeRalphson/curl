@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.453 2007-11-05 09:45:09 bagder Exp $
+ * $Id: ftp.c,v 1.454 2007-11-07 09:21:35 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -111,7 +111,7 @@
 #endif
 
 #ifdef CURL_DISABLE_VERBOSE_STRINGS
-#define ftp_pasv_verbose(a,b,c,d)  do { } while (0)
+#define ftp_pasv_verbose(a,b,c,d)  do { } while(0)
 #endif
 
 /* Local API functions */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.95 2007-11-07 05:52:03 danf Exp $
+ * $Id: telnet.c,v 1.96 2007-11-07 09:21:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -959,12 +959,12 @@ void telrcv(struct connectdata *conn,
   struct TELNET *tn = (struct TELNET *)data->reqdata.proto.telnet;
 
 #define startskipping() \
-    if (startwrite >= 0) \
+    if(startwrite >= 0) \
        Curl_client_write(conn, CLIENTWRITE_BODY, (char *)&inbuf[startwrite], in-startwrite); \
     startwrite = -1
 
 #define writebyte() \
-    if (startwrite < 0) \
+    if(startwrite < 0) \
       startwrite = in
 
 #define bufferflush() startskipping()

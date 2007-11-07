@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.24 2007-11-06 16:20:04 giva Exp $
+ * $Id: parsedate.c,v 1.25 2007-11-07 09:21:35 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -325,7 +325,7 @@ static time_t Curl_parsedate(const char *date)
           yearnum = val;
           found = TRUE;
           if(yearnum < 1900) {
-            if (yearnum > 70)
+            if(yearnum > 70)
               yearnum += 1900;
             else
               yearnum += 2000;

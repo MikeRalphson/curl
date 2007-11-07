@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.38 2007-10-02 10:21:36 bagder Exp $
+ * $Id: http_chunks.c,v 1.39 2007-11-07 09:21:35 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -118,7 +118,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
 
   /* the original data is written to the client, but we go on with the
      chunk read process, to properly calculate the content length*/
-  if (data->set.http_te_skip && !k->ignorebody)
+  if(data->set.http_te_skip && !k->ignorebody)
     Curl_client_write(conn, CLIENTWRITE_BODY, datap,datalen);
 
   while(length) {
@@ -178,7 +178,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       if(*datap == 0x0a) {
         /* we're now expecting data to come, unless size was zero! */
         if(0 == ch->datasize) {
-          if (conn->bits.trailerHdrPresent!=TRUE) {
+          if(conn->bits.trailerHdrPresent!=TRUE) {
             /* No Trailer: header found - revert to original Curl processing */
             ch->state = CHUNK_STOPCR;
 
@@ -221,7 +221,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       case IDENTITY:
 #endif
         if(!k->ignorebody) {
-          if ( !data->set.http_te_skip )
+          if( !data->set.http_te_skip )
             result = Curl_client_write(conn, CLIENTWRITE_BODY, datap,
                                        piece);
           else
@@ -298,7 +298,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
     case CHUNK_TRAILER:
       /* conn->trailer is assumed to be freed in url.c on a
          connection basis */
-      if (conn->trlPos >= conn->trlMax) {
+      if(conn->trlPos >= conn->trlMax) {
         char *ptr;
         if(conn->trlMax) {
           conn->trlMax *= 2;
@@ -333,10 +333,10 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       break;
 
     case CHUNK_TRAILER_POSTCR:
-      if (*datap == 0x0a) {
+      if(*datap == 0x0a) {
         conn->trailer[conn->trlPos++]=0x0a;
         conn->trailer[conn->trlPos]=0;
-        if (conn->trlPos==2) {
+        if(conn->trlPos==2) {
           ch->state = CHUNK_STOP;
           datap++;
           length--;
@@ -362,7 +362,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
             return(CHUNKE_BAD_CHUNK);
           }
 #endif /* CURL_DOES_CONVERSIONS */
-          if ( !data->set.http_te_skip )
+          if( !data->set.http_te_skip )
             Curl_client_write(conn, CLIENTWRITE_HEADER,
                               conn->trailer, conn->trlPos);
         }
@@ -389,7 +389,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       break;
 
     case CHUNK_STOP:
-      if (*datap == 0x0a) {
+      if(*datap == 0x0a) {
         datap++;
         length--;
 
