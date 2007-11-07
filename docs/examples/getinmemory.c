@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: getinmemory.c,v 1.11 2007-07-16 21:22:12 danf Exp $
+ * $Id: getinmemory.c,v 1.12 2007-11-07 04:53:37 danf Exp $
  *
  * Example source code to show how the callback function can be used to
  * download data into a chunk of memory instead of storing it in a file.
@@ -97,6 +97,9 @@ int main(int argc, char **argv)
 
   if(chunk.memory)
     free(chunk.memory);
+
+  /* we're done with libcurl, so clean it up */
+  curl_global_cleanup();
 
   return 0;
 }
