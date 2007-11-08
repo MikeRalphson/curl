@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.356 2007-11-08 10:22:49 bagder Exp $
+ * $Id: urldata.h,v 1.357 2007-11-08 10:25:23 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -432,7 +432,7 @@ typedef enum {
   SSH_NO_STATE = -1,  /* Used for "nextState" so say there is none */
   SSH_STOP = 0,       /* do nothing state, stops the state machine */
 
-  SSH_S_STARTUP,      /* Session startup, First rate in SSH-CONNECT */
+  SSH_S_STARTUP,      /* Session startup, First state in SSH-CONNECT */
   SSH_AUTHLIST,
   SSH_AUTH_PKEY_INIT,
   SSH_AUTH_PKEY,
