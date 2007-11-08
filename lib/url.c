@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.673 2007-11-05 09:45:09 bagder Exp $
+ * $Id: url.c,v 1.674 2007-11-08 19:28:25 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1059,7 +1059,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
           result = CURLE_OUT_OF_MEMORY;
         else {
           if(data->set.postfieldsize)
-            memcpy(p, argptr, data->set.postfieldsize);
+            memcpy(p, argptr, (size_t)data->set.postfieldsize);
 
           data->set.str[STRING_COPYPOSTFIELDS] = p;
         }
