@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.83 2007-11-08 10:22:49 bagder Exp $
+ * $Id: ssh.c,v 1.84 2007-11-08 16:43:01 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -370,7 +370,7 @@ static CURLcode ssh_getworkingpath(struct connectdata *conn,
                                                    real path to work with */
 {
   struct SessionHandle *data = conn->data;
-  char *real_path;
+  char *real_path = NULL;
   char *working_path;
   int working_path_len;
 
