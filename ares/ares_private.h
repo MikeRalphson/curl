@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.29 2007-10-02 02:18:01 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.30 2007-11-08 18:13:54 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -17,6 +17,14 @@
  * this software for any purpose.  It is provided "as is"
  * without express or implied warranty.
  */
+
+/*
+ * Define WIN32 when build target is Win32 API
+ */
+
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32)
+#define WIN32
+#endif
 
 #include <stdio.h>
 #include <sys/types.h>

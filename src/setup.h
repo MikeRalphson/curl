@@ -20,18 +20,16 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.51 2007-06-30 23:45:57 gknauf Exp $
+ * $Id: setup.h,v 1.52 2007-11-08 18:13:55 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
 
-#if !defined(WIN32) && defined(__WIN32__)
-/* Borland fix */
-#define WIN32
-#endif
+/*
+ * Define WIN32 when build target is Win32 API
+ */
 
-#if !defined(WIN32) && defined(_WIN32)
-/* VS2005 on x64 fix */
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32)
 #define WIN32
 #endif
 

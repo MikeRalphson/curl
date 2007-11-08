@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.35 2007-10-19 10:52:28 yangtse Exp $ */
+/* $Id: ares.h,v 1.36 2007-11-08 18:13:54 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -17,6 +17,14 @@
 
 #ifndef ARES__H
 #define ARES__H
+
+/*
+ * Define WIN32 when build target is Win32 API
+ */
+
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32)
+#define WIN32
+#endif
 
 #include <sys/types.h>
 

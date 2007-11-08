@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.332 2007-11-06 17:18:27 yangtse Exp $
+ * $Id: curl.h,v 1.333 2007-11-08 18:13:59 yangtse Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -28,6 +28,14 @@
 */
 
 #include "curlver.h" /* the libcurl version defines */
+
+/*
+ * Define WIN32 when build target is Win32 API
+ */
+
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32)
+#define WIN32
+#endif
 
 #include <stdio.h>
 #include <limits.h>
@@ -40,12 +48,6 @@
 # include <sys/types.h>
 # include <time.h>
 #endif /* defined (vms) */
-
-#if defined(_WIN32) && !defined(WIN32)
-/* Chris Lewis mentioned that he doesn't get WIN32 defined, only _WIN32 so we
-   make this adjustment to catch this. */
-#define WIN32 1
-#endif
 
 #if defined(WIN32) && !defined(_WIN32_WCE) && !defined(__GNUC__) && \
   !defined(__CYGWIN__) || defined(__MINGW32__)
