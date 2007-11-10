@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.13 2007-06-14 11:21:48 bagder Exp $
+ * $Id: select.h,v 1.14 2007-11-10 04:23:15 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -40,13 +40,16 @@
 #undef  HAVE_POLL_FINE
 #define HAVE_POLL_FINE 1
 #define poll(x,y,z) WSAPoll((x),(y),(z))
+#if defined(_MSC_VER) && defined(POLLRDNORM)
+#define HAVE_STRUCT_POLLFD 1
+#endif
 #endif
 
 /*
  * Definition of pollfd struct and constants for platforms lacking them.
  */
 
-#ifndef HAVE_SYS_POLL_H
+#if !defined(HAVE_STRUCT_POLLFD) && !defined(HAVE_SYS_POLL_H)
 
 #define POLLIN      0x01
 #define POLLPRI     0x02
