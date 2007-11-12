@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.84 2007-11-08 16:43:01 yangtse Exp $
+ * $Id: ssh.c,v 1.85 2007-11-12 09:24:05 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1876,11 +1876,11 @@ static CURLcode ssh_connect(struct connectdata *conn, bool *done)
   ssh = &conn->proto.sshc;
 
 #ifdef CURL_LIBSSH2_DEBUG
-  if(ssh->user) {
-    infof(data, "User: %s\n", ssh->user);
+  if(conn->user) {
+    infof(data, "User: %s\n", conn->user);
   }
-  if(ssh->passwd) {
-    infof(data, "Password: %s\n", ssh->passwd);
+  if(conn->passwd) {
+    infof(data, "Password: %s\n", conn->passwd);
   }
 #endif /* CURL_LIBSSH2_DEBUG */
   sock = conn->sock[FIRSTSOCKET];
