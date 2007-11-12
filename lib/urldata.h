@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.357 2007-11-08 10:25:23 bagder Exp $
+ * $Id: urldata.h,v 1.358 2007-11-12 23:04:44 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -490,7 +490,6 @@ typedef enum {
    Everything that is strictly related to a connection is banned from this
    struct. */
 struct SSHPROTO {
-  curl_off_t *bytecountp;
   char *path;                   /* the path we operate on */
 };
 
