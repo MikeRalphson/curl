@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.675 2007-11-12 21:38:43 bagder Exp $
+ * $Id: url.c,v 1.676 2007-11-12 21:42:20 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3111,9 +3111,9 @@ static CURLcode setup_connection_internals(struct SessionHandle *data,
       return CURLE_OK;
     }
 
-  /* Protocol not found in table, but we don't have to assign it to anything
-     since it is already assign to a dummy-struct in the CreateConnection()
-     struct when the connectdata struct is allocated. */
+  /* The protocol was not found in the table, but we don't have to assign it
+     to anything since it is already assigned to a dummy-struct in the
+     CreateConnection() function when the connectdata struct is allocated. */
   failf(data, "Protocol %s not supported or disabled in " LIBCURL_NAME,
         conn->protostr);
   return CURLE_UNSUPPORTED_PROTOCOL;
