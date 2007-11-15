@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.39 2007-11-07 09:21:35 bagder Exp $
+ * $Id: http_chunks.c,v 1.40 2007-11-15 21:45:45 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -178,7 +178,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
       if(*datap == 0x0a) {
         /* we're now expecting data to come, unless size was zero! */
         if(0 == ch->datasize) {
-          if(conn->bits.trailerHdrPresent!=TRUE) {
+          if(conn->bits.trailerhdrpresent!=TRUE) {
             /* No Trailer: header found - revert to original Curl processing */
             ch->state = CHUNK_STOPCR;
 

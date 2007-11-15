@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.100 2007-11-07 09:21:35 bagder Exp $
+ * $Id: file.c,v 1.101 2007-11-15 21:45:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -378,7 +378,6 @@ static CURLcode Curl_file(struct connectdata *conn, bool *done)
 
   *done = TRUE; /* unconditionally */
 
-  Curl_readwrite_init(conn);
   Curl_initinfo(data);
   Curl_pgrsStartNow(data);
 

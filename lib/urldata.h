@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.358 2007-11-12 23:04:44 bagder Exp $
+ * $Id: urldata.h,v 1.359 2007-11-15 21:45:45 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -600,7 +600,7 @@ struct ConnectBits {
                          requests */
   bool netrc;         /* name+password provided by netrc */
 
-  bool trailerHdrPresent; /* Set when Trailer: header found in HTTP response.
+  bool trailerhdrpresent; /* Set when Trailer: header found in HTTP response.
                              Required to determine whether to look for trailers
                              in case of Transfer-Encoding: chunking */
   bool done;          /* set to FALSE when Curl_do() is called and set to TRUE
