@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.32 2007-10-02 08:12:30 bagder Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.33 2007-11-15 08:36:25 sesse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -160,13 +160,13 @@ static void host_callback(void *arg, int status, int timeouts,
     {
       if (hquery->family == AF_INET)
         {
-          status = ares_parse_a_reply(abuf, alen, &host);
+          status = ares_parse_a_reply(abuf, alen, &host, NULL, NULL);
           if (host && channel->nsort)
             sort_addresses(host, channel->sortlist, channel->nsort);
         }
       else if (hquery->family == AF_INET6)
         {
-          status = ares_parse_aaaa_reply(abuf, alen, &host);
+          status = ares_parse_aaaa_reply(abuf, alen, &host, NULL, NULL);
           if (host && channel->nsort)
             sort6_addresses(host, channel->sortlist, channel->nsort);
         }
