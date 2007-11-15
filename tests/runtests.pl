@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.256 2007-11-01 17:42:39 danf Exp $
+# $Id: runtests.pl,v 1.257 2007-11-15 22:41:31 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -726,8 +726,7 @@ sub runhttpserver {
 
     if($httppid <= 0 || !kill(0, $httppid)) {
         # it is NOT alive
-        logmsg "RUN: failed to start the HTTP server\n";
-        stopservers($verbose);
+        logmsg "RUN: failed to start the HTTP$nameext server\n";
         return (0,0);
     }
 
