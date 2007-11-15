@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.17 2007-11-07 18:18:42 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.18 2007-11-15 19:44:01 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -174,19 +174,29 @@
 /* ---------------------------------------------------------------- */
 
 /* Define this if you have address family AF_INET6 */
+#ifdef HAVE_WINSOCK2_H
 #define HAVE_AF_INET6 1
+#endif
 
 /* Define this if you have protocol family PF_INET6 */
+#ifdef HAVE_WINSOCK2_H
 #define HAVE_PF_INET6 1
+#endif
 
 /* Define this if you have struct in6_addr */
+#ifdef HAVE_WS2TCPIP_H
 #define HAVE_STRUCT_IN6_ADDR 1
+#endif
 
 /* Define this if you have struct sockaddr_in6 */
+#ifdef HAVE_WS2TCPIP_H
 #define HAVE_STRUCT_SOCKADDR_IN6 1
+#endif
 
 /* Define this if you have sockaddr_in6 with scopeid */
+#ifdef HAVE_WS2TCPIP_H
 #define HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID 1
+#endif
 
 
 #endif  /* __ARES_CONFIG_WIN32_H */
