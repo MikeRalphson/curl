@@ -1,4 +1,4 @@
-/* $Id: ares_parse_aaaa_reply.c,v 1.7 2007-11-15 19:44:01 yangtse Exp $ */
+/* $Id: ares_parse_aaaa_reply.c,v 1.8 2007-11-16 09:36:00 sesse Exp $ */
 
 /* Copyright 2005 Dominick Meglio
  *
@@ -236,9 +236,6 @@ int ares_parse_aaaa_reply(const unsigned char *abuf, int alen,
         free(aliases[i]);
       free(aliases);
     }
-  for (i = 0; i < naliases; i++)
-    free(aliases[i]);
-  free(aliases);
   free(addrs);
   free(hostname);
   return status;
