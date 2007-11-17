@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.46 2007-09-13 22:20:35 danf Exp $
+# $Id: Makefile.am,v 1.47 2007-11-17 10:22:45 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -9,7 +9,13 @@ EXTRA_DIST = README Makefile.example makefile.dj $(COMPLICATED_EXAMPLES)
 INCLUDES = -I$(top_srcdir)/include
 
 LIBDIR = $(top_builddir)/lib
-CPPFLAGS = -DCURL_NO_OLDIES
+
+if STATICLIB
+# we need this define when building with a static lib on Windows
+STATICCPPFLAGS = -DCURL_STATICLIB
+endif
+
+CPPFLAGS = -DCURL_NO_OLDIES $(STATICCPPFLAGS)
 
 # Dependencies
 LDADD = $(LIBDIR)/libcurl.la
