@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.30 2007-11-07 09:21:36 bagder Exp $
+ * $Id: sslgen.c,v 1.31 2007-11-18 09:45:05 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -243,6 +243,7 @@ Curl_ssl_connect_nonblocking(struct connectdata *conn, int sockindex,
 #else
 #ifdef USE_NSS
   *done = TRUE; /* fallback to BLOCKING */
+  conn->ssl[sockindex].use = TRUE;
   return Curl_nss_connect(conn, sockindex);
 #else
 #ifdef USE_QSOSSL
