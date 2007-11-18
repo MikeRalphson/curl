@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.23 2007-11-17 17:43:33 yangtse Exp $
+# $Id: sshserver.pl,v 1.24 2007-11-18 01:16:44 yangtse Exp $
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
 # Also creates the ssh configuration files (this could be moved to a
 # separate script).
@@ -42,6 +42,8 @@ my @sftppath = qw(
     /usr/lib/misc
     /usr/local/sbin
     /usr/freeware/bin
+    /opt/ssh/sbin
+    /opt/ssh/libexec
     );
 
 my $username = $ENV{USER};
@@ -131,14 +133,13 @@ if ($verbose) {
 
 # Verify minimum OpenSSH version.
 if (($ssh_daemon !~ /OpenSSH/) || (10 * $ssh_ver_major + $ssh_ver_minor < 37)) {
-    my $info;
     if(!$ssh_daemon) {
-        $info = "OpenSSH not found";
+        print "SSH server daemon found is not an OpenSSH daemon\n";
     }
     else {
-        $info = "Found OpenSSH $ssh_ver_major.$ssh_ver_minor"
+        print "SSH server daemon found is OpenSSH $ssh_ver_major.$ssh_ver_minor\n";
     }
-    print "$info: SCP, SFTP and SOCKS tests require OpenSSH 3.7 or later\n";
+    print "SCP, SFTP and SOCKS tests require OpenSSH 3.7 or later\n";
     exit 1;
 }
 
