@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.24 2007-11-18 01:16:44 yangtse Exp $
+# $Id: sshserver.pl,v 1.25 2007-11-19 01:49:28 yangtse Exp $
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
 # Also creates the ssh configuration files (this could be moved to a
 # separate script).
@@ -135,6 +135,8 @@ if ($verbose) {
 if (($ssh_daemon !~ /OpenSSH/) || (10 * $ssh_ver_major + $ssh_ver_minor < 37)) {
     if(!$ssh_daemon) {
         print "SSH server daemon found is not an OpenSSH daemon\n";
+        chomp($tmpstr = qx($sshd -V 2>&1));
+        print "$tmpstr\n";
     }
     else {
         print "SSH server daemon found is OpenSSH $ssh_ver_major.$ssh_ver_minor\n";
