@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.258 2007-11-16 23:06:53 bagder Exp $
+# $Id: runtests.pl,v 1.259 2007-11-19 17:20:32 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2380,12 +2380,18 @@ sub startservers {
 		}
             	if(!$run{'socks'}) {
 		    my $sshversion=`ssh -V 2>&1`;
-                    if ($sshversion =~ /SSH_(\d+)\.(\d+)/i) {
-                       if ($1*10+$2 < 37) {
-		       # need 3.7 for socks5 - http://www.openssh.com/txt/release-3.7
-                           return "ssh version ($1.$2) insufficient; need at least 3.7";
-		       }
-                    } else {
+                    if($sshversion =~ /OpenSSH[_-](\d+)\.(\d+)/i) {
+                        if ($1*10+$2 < 36) {
+                            # need 3.7 for socks5 - http://www.openssh.com/txt/release-3.7
+                            return "OpenSSH version ($1.$2) insufficient; need at least 3.7";
+                        }
+                    }
+                    elsif($sshversion =~ /Sun[_-]SSH[_-](\d+)\.(\d+)/i) {
+                        if ($1*10+$2 < 11) {
+                            return "SunSSH version ($1.$2) insufficient; need at least 1.1";
+                        }
+                    }
+                    else {
                        return "Unsupported ssh client\n";
                     }
 
