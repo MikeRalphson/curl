@@ -1,6 +1,7 @@
-/* $Id: ares_ipv6.h,v 1.6 2007-11-15 19:44:01 yangtse Exp $ */
+/* $Id: ares_ipv6.h,v 1.7 2007-11-19 15:47:01 bagder Exp $ */
 
-/*
+/* Copyright (C) 2005 by Dominick Meglio
+ *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
  * fee is hereby granted, provided that the above copyright
