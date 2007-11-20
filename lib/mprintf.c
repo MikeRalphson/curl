@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * $Id: mprintf.c,v 1.60 2007-11-05 09:45:09 bagder Exp $
+ * $Id: mprintf.c,v 1.61 2007-11-20 10:03:33 bagder Exp $
  *
  *************************************************************************
  *
@@ -686,8 +686,11 @@ static int dprintf_formatf(
       width = p->width;
 
     /* pick up the specified precision */
-    if(p->flags & FLAGS_PRECPARAM)
+    if(p->flags & FLAGS_PRECPARAM) {
       prec = vto[p->precision].data.num;
+      param_num++; /* since the precision is extraced from a parameter, we
+                      must skip that to get to the next one properly */
+    }
     else if(p->flags & FLAGS_PREC)
       prec = p->precision;
     else
