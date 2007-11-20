@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.677 2007-11-15 21:45:45 bagder Exp $
+ * $Id: url.c,v 1.678 2007-11-20 22:59:10 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -354,7 +354,7 @@ static void flush_cookies(struct SessionHandle *data, int cleanup)
       Curl_cookie_loadfiles(data);
     }
 
-    /* we have a "destination" for all the cookies to get dumped to */
+    /* if we have a destination file for all the cookies to get dumped to */
     if(Curl_cookie_output(data->cookies, data->set.str[STRING_COOKIEJAR]))
       infof(data, "WARNING: failed to save cookies in %s\n",
             data->set.str[STRING_COOKIEJAR]);
@@ -1184,7 +1184,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
       if(!cl)
         return CURLE_OUT_OF_MEMORY;
 
-      data->change.cookielist = cl;
+      data->change.cookielist = cl; /* store the list for later use */
     }
     break;
 
@@ -1854,17 +1854,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
           /* use shared cookie list, first free own one if any */
           if(data->cookies)
             Curl_cookie_cleanup(data->cookies);
+          /* enable cookies since we now use a share that uses cookies! */
           data->cookies = data->share->cookies;
         }
 #endif   /* CURL_DISABLE_HTTP */
         Curl_share_unlock(data, CURL_LOCK_DATA_SHARE);
 
       }
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_COOKIES)
-      /* check cookie list is set */
-      if(!data->cookies)
-        data->cookies = Curl_cookie_init(data, NULL, NULL, TRUE );
-#endif   /* CURL_DISABLE_HTTP */
       /* check for host cache not needed,
        * it will be done by curl_easy_perform */
     }
