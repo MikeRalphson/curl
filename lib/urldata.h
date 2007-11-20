@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.360 2007-11-20 22:57:24 bagder Exp $
+ * $Id: urldata.h,v 1.361 2007-11-20 23:17:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1199,7 +1199,8 @@ struct UrlState {
   struct digestdata proxydigest; /* state data for proxy Digest auth */
 
 #ifdef HAVE_GSSAPI
-  struct negotiatedata negotiate; /* state data for Negotiate auth */
+  struct negotiatedata negotiate; /* state data for host Negotiate auth */
+  struct negotiatedata proxyneg; /* state data for proxy Negotiate auth */
 #endif
 
   struct auth authhost;  /* auth details for host */
