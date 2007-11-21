@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# $Id: httpsserver.pl,v 1.9 2007-03-08 02:38:49 danf Exp $
+# $Id: httpsserver.pl,v 1.10 2007-11-21 17:50:30 yangtse Exp $
 # This is the HTTPS and FTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -60,7 +60,7 @@ my $conffile="$path/stunnel.conf";	# stunnel configuration data
 my $certfile="$srcdir/stunnel.pem";	# stunnel server certificate
 my $pidfile="$path/.$proto.pid";	# stunnel process pid file
 
-open(CONF, ">$conffile") || return 1;
+open(CONF, ">$conffile") || exit 1;
 print CONF "
 	CApath=$path
 	cert = $certfile
