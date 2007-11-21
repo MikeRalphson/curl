@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.678 2007-11-20 22:59:10 bagder Exp $
+ * $Id: url.c,v 1.679 2007-11-21 22:37:55 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4575,8 +4575,8 @@ CURLcode Curl_do(struct connectdata **connp, bool *done)
       }
     }
 
-    if(result == CURLE_OK)
-      /* pre readwrite must be called after the protocol-specific DO function */
+    if((result == CURLE_OK) && *done)
+      /* do_complete must be called after the protocol-specific DO function */
       do_complete(conn);
   }
   return result;
@@ -4588,6 +4588,10 @@ CURLcode Curl_do_more(struct connectdata *conn)
 
   if(conn->handler->do_more)
     result = conn->handler->do_more(conn);
+
+  if(result == CURLE_OK)
+    /* do_complete must be called after the protocol-specific DO function */
+    do_complete(conn);
 
   return result;
 }
