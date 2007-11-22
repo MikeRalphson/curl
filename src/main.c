@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.431 2007-11-20 10:08:43 bagder Exp $
+ * $Id: main.c,v 1.432 2007-11-22 09:36:28 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2059,18 +2059,20 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
            */
           char *p = strchr(nextarg, '=');
           long size = 0;
-          size_t nlen;
+          int nlen;
+          char is_file;
           if(!p)
             p = strchr(nextarg, '@');
-          if(!p) {
-            warnf(config, "bad use of --data-urlencode\n");
-            return PARAM_BAD_USE;
+          if (p) {
+            nlen = p - nextarg; /* length of the name part */
+            is_file = *p++; /* pass the separator */
           }
-          nlen = p - nextarg; /* length of the name part */
-          if('@' == *p) {
+          else {
+            nlen = is_file = -1;
+            p = nextarg;
+          }
+          if('@' == is_file) {
             /* a '@' letter, it means that a file name or - (stdin) follows */
-
-            p++; /* pass the separator */
 
             if(curlx_strequal("-", p)) {
               file = stdin;
@@ -2090,7 +2092,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
               fclose(file);
           }
           else {
-            GetStr(&postdata, ++p);
+            GetStr(&postdata, p);
             size = strlen(postdata);
           }
 
@@ -2108,8 +2110,10 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
               char *n = malloc(outlen);
               if(!n)
                 return PARAM_NO_MEM;
-
-              snprintf(n, outlen, "%.*s=%s", nlen, nextarg, enc);
+              if (nlen > 0) /* only append '=' if we have a name */
+                snprintf(n, outlen, "%.*s=%s", nlen, nextarg, enc);
+              else
+                strcpy(n, enc);
               curl_free(enc);
               free(postdata);
               if(n) {
