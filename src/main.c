@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.432 2007-11-22 09:36:28 bagder Exp $
+ * $Id: main.c,v 1.433 2007-11-22 09:39:04 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2059,7 +2059,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
            */
           char *p = strchr(nextarg, '=');
           long size = 0;
-          int nlen;
+          size_t nlen;
           char is_file;
           if(!p)
             p = strchr(nextarg, '@');
