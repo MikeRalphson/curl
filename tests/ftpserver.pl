@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.91 2007-10-27 01:02:57 danf Exp $
+# $Id: ftpserver.pl,v 1.92 2007-11-23 04:03:46 yangtse Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -163,7 +163,7 @@ sub sysread_or_die {
 }
 
 sub startsf {
-    my $cmd="./server/sockfilt --port $port --logfile log/sockctrl$ftpdnum$ext.log --pidfile .sockfilt$ftpdnum$ext.pid $ipv6";
+    my $cmd="$srcdir/server/sockfilt --port $port --logfile log/sockctrl$ftpdnum$ext.log --pidfile .sockfilt$ftpdnum$ext.pid $ipv6";
     $sfpid = open2(*SFREAD, *SFWRITE, $cmd);
 
     print STDERR "$cmd\n" if($verbose);
@@ -548,7 +548,7 @@ sub PASV_command {
 
     # We fire up a new sockfilt to do the data transfer for us.
     $slavepid = open2(\*DREAD, \*DWRITE,
-                      "./server/sockfilt --port 0 --logfile log/sockdata$ftpdnum$ext.log --pidfile $pidf $ipv6");
+                      "$srcdir/server/sockfilt --port 0 --logfile log/sockdata$ftpdnum$ext.log --pidfile $pidf $ipv6");
 
     print DWRITE "PING\n";
     my $pong;
@@ -680,7 +680,7 @@ sub PORT_command {
 
     # We fire up a new sockfilt to do the data transfer for us.
     # FIX: make it use IPv6 if need be
-    my $filtcmd="./server/sockfilt --connect $port --addr $addr --logfile log/sockdata$ftpdnum$ext.log --pidfile .sockdata$ftpdnum$ext.pid $ipv6";
+    my $filtcmd="$srcdir/server/sockfilt --connect $port --addr $addr --logfile log/sockdata$ftpdnum$ext.log --pidfile .sockdata$ftpdnum$ext.pid $ipv6";
     $slavepid = open2(\*DREAD, \*DWRITE, $filtcmd);
 
     print STDERR "$filtcmd\n" if($verbose);
