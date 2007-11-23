@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.263 2007-11-23 09:50:45 yangtse Exp $
+# $Id: runtests.pl,v 1.264 2007-11-23 12:18:45 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -258,8 +258,11 @@ $ENV{'CURL_CA_BUNDLE'}=undef;
 sub checkdied {
     use POSIX ":sys_wait_h";
     my $pid = $_[0];
+    if(not defined $pid || $pid <= 0) {
+        return 0;
+    }
     my $rc = waitpid($pid, &WNOHANG);
-    return $rc == $pid;
+    return ($rc == $pid)?1:0;
 }
 
 #######################################################################
