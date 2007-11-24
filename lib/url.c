@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.680 2007-11-24 23:16:55 bagder Exp $
+ * $Id: url.c,v 1.681 2007-11-24 23:18:21 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2249,7 +2249,7 @@ static void Curl_printPipeline(struct curl_llist *pipeline)
   curr = pipeline->head;
   while(curr) {
     struct SessionHandle *data = (struct SessionHandle *) curr->ptr;
-    infof(data, "Handle in pipeline: %s\n", data->reqdata.path);
+    infof(data, "Handle in pipeline: %s\n", data->state.path);
     curr = curr->next;
   }
 }

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.61 2007-11-24 23:16:55 bagder Exp $
+ * $Id: tftp.c,v 1.62 2007-11-24 23:18:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -676,10 +676,6 @@ static CURLcode Curl_tftp_done(struct connectdata *conn, CURLcode status,
   (void)status; /* unused */
   (void)premature; /* not used */
 
-#if 0
-  free(conn->data->reqdata.proto.tftp);
-  conn->data->reqdata.proto.tftp = NULL;
-#endif
   Curl_pgrsDone(conn);
 
   return CURLE_OK;
