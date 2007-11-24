@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.110 2007-11-20 23:02:58 bagder Exp $
+ * $Id: easy.c,v 1.111 2007-11-24 23:16:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -528,9 +528,9 @@ void Curl_easy_addmulti(struct SessionHandle *data,
 
 void Curl_easy_initHandleData(struct SessionHandle *data)
 {
-    memset(&data->reqdata, 0, sizeof(struct HandleData));
+    memset(&data->req, 0, sizeof(struct SingleRequest));
 
-    data->reqdata.maxdownload = -1;
+    data->req.maxdownload = -1;
 }
 
 /*
@@ -676,11 +676,11 @@ void curl_easy_reset(CURL *curl)
 {
   struct SessionHandle *data = (struct SessionHandle *)curl;
 
-  Curl_safefree(data->reqdata.pathbuffer);
-  data->reqdata.pathbuffer=NULL;
+  Curl_safefree(data->state.pathbuffer);
+  data->state.pathbuffer=NULL;
 
-  Curl_safefree(data->reqdata.proto.generic);
-  data->reqdata.proto.generic=NULL;
+  Curl_safefree(data->state.proto.generic);
+  data->state.proto.generic=NULL;
 
   /* zero out UserDefined data: */
   Curl_freeset(data);

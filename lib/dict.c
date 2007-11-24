@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.53 2007-11-07 09:21:35 bagder Exp $
+ * $Id: dict.c,v 1.54 2007-11-24 23:16:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -155,8 +155,8 @@ static CURLcode Curl_dict(struct connectdata *conn, bool *done)
   struct SessionHandle *data=conn->data;
   curl_socket_t sockfd = conn->sock[FIRSTSOCKET];
 
-  char *path = data->reqdata.path;
-  curl_off_t *bytecount = &data->reqdata.keep.bytecount;
+  char *path = data->state.path;
+  curl_off_t *bytecount = &data->req.bytecount;
 
   *done = TRUE; /* unconditionally */
 

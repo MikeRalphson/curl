@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.26 2007-11-05 09:45:09 bagder Exp $
+ * $Id: content_encoding.c,v 1.27 2007-11-24 23:16:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -77,7 +77,7 @@ exit_zlib(z_stream *z, zlibInitState *zlib_init, CURLcode result)
 
 static CURLcode
 inflate_stream(struct connectdata *conn,
-               struct Curl_transfer_keeper *k)
+               struct SingleRequest *k)
 {
   int allow_restart = 1;
   z_stream *z = &k->z;          /* zlib state structure */
@@ -152,7 +152,7 @@ inflate_stream(struct connectdata *conn,
 
 CURLcode
 Curl_unencode_deflate_write(struct connectdata *conn,
-                            struct Curl_transfer_keeper *k,
+                            struct SingleRequest *k,
                             ssize_t nread)
 {
   z_stream *z = &k->z;          /* zlib state structure */
@@ -265,7 +265,7 @@ static enum {
 
 CURLcode
 Curl_unencode_gzip_write(struct connectdata *conn,
-                         struct Curl_transfer_keeper *k,
+                         struct SingleRequest *k,
                          ssize_t nread)
 {
   z_stream *z = &k->z;          /* zlib state structure */
