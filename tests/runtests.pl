@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.266 2007-11-26 02:45:24 yangtse Exp $
+# $Id: runtests.pl,v 1.267 2007-11-26 14:07:09 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1105,7 +1105,7 @@ sub runsocksserver {
     }
 
     my $flag=$debugprotocol?"-v ":"";
-    my $cmd="ssh -D ${HOSTIP}:$SOCKSPORT -N -F curl_ssh_config ${USER}\@${HOSTIP} -p ${SSHPORT} -vv >log/ssh.log 2>&1";
+    my $cmd="ssh -D $SOCKSPORT -N -F curl_ssh_config ${USER}\@${HOSTIP} -p ${SSHPORT} -vv >log/ssh.log 2>&1";
     logmsg "TRACESSH:runsocksserver: calling startnew with cmd: $cmd\n";
     my ($sshpid, $pid2) =
         startnew($cmd, $pidfile, 15, 1); # start the server in a new process
