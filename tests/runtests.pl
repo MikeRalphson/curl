@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.265 2007-11-25 03:55:53 yangtse Exp $
+# $Id: runtests.pl,v 1.266 2007-11-26 02:45:24 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1116,6 +1116,9 @@ sub runsocksserver {
         # it is NOT alive
         logmsg "RUN: failed to start the SOCKS server\n";
         # failed to talk to it properly. Kill the server and return failure
+        logmsg "=== Start of file log/ssh.log\n";
+        displaylogcontent("log/ssh.log");
+        logmsg "=== End of file log/ssh.log\n";
         logmsg "TRACESSH:runsocksserver: calling stopserver with sshpid: $sshpid pid2: $pid2\n";
         stopserver("$sshpid $pid2");
         $doesntrun{$pidfile} = 1;
