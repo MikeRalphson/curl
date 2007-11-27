@@ -1,5 +1,5 @@
 #/usr/bin/env perl
-# $Id: sshserver.pl,v 1.29 2007-11-26 02:45:24 yangtse Exp $
+# $Id: sshserver.pl,v 1.30 2007-11-27 00:52:30 yangtse Exp $
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
 # Also creates the ssh configuration files (this could be moved to a
 # separate script).
@@ -290,6 +290,7 @@ CheckHostIP no
 Compression no
 ConnectTimeout 20
 ForwardX11 no
+GatewayPorts no
 HostbasedAuthentication yes
 NoHostAuthenticationForLocalhost no
 # Newer OpenSSH options
