@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyaddr.c,v 1.24 2007-09-28 14:46:51 sesse Exp $ */
+/* $Id: ares_gethostbyaddr.c,v 1.25 2007-11-28 15:18:27 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -142,7 +142,11 @@ static void next_lookup(struct addr_query *aquery)
           return;
         case 'f':
           status = file_lookup(&aquery->addr, aquery->family, &host);
-          if (status != ARES_ENOTFOUND)
+
+          /* this status check below previously checked for !ARES_ENOTFOUND,
+             but we should not assume that this single error code is the one
+             that can occur, as that is in fact no longer the case */
+          if (status == ARES_SUCCESS)
             {
               end_aquery(aquery, status, host);
               return;
