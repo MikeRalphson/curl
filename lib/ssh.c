@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.87 2007-11-24 23:16:55 bagder Exp $
+ * $Id: ssh.c,v 1.88 2007-11-29 11:25:10 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1736,7 +1736,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         break;
       }
       else if(rc) {
-        infof(data, "Failed to get channel EOF\n");
+        infof(data, "Failed to get channel EOF: %d\n", rc);
       }
     }
     state(conn, SSH_SCP_WAIT_CLOSE);
@@ -1749,7 +1749,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         break;
       }
       else if(rc) {
-        infof(data, "Channel failed to close\n");
+        infof(data, "Channel failed to close: %d\n", rc);
       }
     }
     state(conn, SSH_SCP_CHANNEL_FREE);
