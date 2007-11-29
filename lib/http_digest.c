@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.32 2007-11-07 09:21:35 bagder Exp $
+ * $Id: http_digest.c,v 1.33 2007-11-29 22:14:48 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -90,19 +90,19 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
     Curl_digest_cleanup_one(d);
 
     while(more) {
-      char value[32];
-      char content[128];
+      char value[256];
+      char content[1024];
       size_t totlen=0;
 
       while(*header && ISSPACE(*header))
         header++;
 
       /* how big can these strings be? */
-      if((2 == sscanf(header, "%31[^=]=\"%127[^\"]\"",
+      if((2 == sscanf(header, "%255[^=]=\"%1023[^\"]\"",
                       value, content)) ||
          /* try the same scan but without quotes around the content but don't
             include the possibly trailing comma, newline or carriage return */
-         (2 ==  sscanf(header, "%31[^=]=%127[^\r\n,]",
+         (2 ==  sscanf(header, "%255[^=]=%1023[^\r\n,]",
                        value, content)) ) {
         if(strequal(value, "nonce")) {
           d->nonce = strdup(content);
