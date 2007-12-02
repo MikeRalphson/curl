@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.362 2007-11-24 23:16:55 bagder Exp $
+ * $Id: urldata.h,v 1.363 2007-12-02 23:38:24 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1439,6 +1439,8 @@ struct UserDefined {
                             content-encoded (chunked, compressed) */
   long new_file_perms;    /* Permissions to use when creating remote files */
   long new_directory_perms; /* Permissions to use when creating remote dirs */
+  bool proxy_transfer_mode; /* set transfer mode (;type=<a|i>) when doing FTP
+                               via an HTTP proxy */
 
   char *str[STRING_LAST]; /* array of strings, pointing to allocated memory */
 };

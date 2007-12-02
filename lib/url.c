@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.681 2007-11-24 23:18:21 bagder Exp $
+ * $Id: url.c,v 1.682 2007-12-02 23:38:24 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2035,6 +2035,23 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * Uses these permissions instead of 0755
      */
     data->set.new_directory_perms = va_arg(param, long);
+    break;
+  case CURLOPT_PROXY_TRANSFER_MODE:
+    /*
+     * set transfer mode (;type=<a|i>) when doing FTP via an HTTP proxy
+     */
+    switch (va_arg(param, long)) {
+      case 0:
+        data->set.proxy_transfer_mode = FALSE;
+        break;
+      case 1:
+        data->set.proxy_transfer_mode = TRUE;
+        break;
+      default:
+        /* reserve other values for future use */
+        result = CURLE_FAILED_INIT;
+        break;
+    }
     break;
 
   default:

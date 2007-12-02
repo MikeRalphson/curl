@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.334 2007-11-22 16:35:08 yangtse Exp $
+ * $Id: curl.h,v 1.335 2007-12-02 23:38:24 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1181,6 +1181,9 @@ typedef enum {
 
   /* POST volatile input fields. */
   CINIT(COPYPOSTFIELDS, OBJECTPOINT, 165),
+
+  /* set transfer mode (;type=<a|i>) when doing FTP via an HTTP proxy */
+  CINIT(PROXY_TRANSFER_MODE, LONG, 166),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
