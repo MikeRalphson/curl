@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.32 2007-11-19 09:24:24 bagder Exp $
+ * $Id: sslgen.c,v 1.33 2007-12-03 11:48:09 bagder Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -96,6 +96,7 @@ bool
 Curl_clone_ssl_config(struct ssl_config_data *source,
                       struct ssl_config_data *dest)
 {
+  dest->sessionid = source->sessionid;
   dest->verifyhost = source->verifyhost;
   dest->verifypeer = source->verifypeer;
   dest->version = source->version;
