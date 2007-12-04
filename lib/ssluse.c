@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.188 2007-12-03 11:39:28 bagder Exp $
+ * $Id: ssluse.c,v 1.189 2007-12-04 00:15:03 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1581,7 +1581,7 @@ static CURLcode servercert(struct connectdata *conn,
                            struct ssl_connect_data *connssl,
                            bool strict)
 {
-  CURLcode retcode;
+  CURLcode retcode = CURLE_OK;
   char *str;
   long lerr;
   ASN1_TIME *certdate;
