@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.352 2007-12-02 23:38:24 bagder Exp $
+ * $Id: http.c,v 1.353 2007-12-05 21:20:14 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2687,9 +2687,11 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
           /* set the upload size to the progress meter */
           Curl_pgrsSetUploadSize(data, postsize?postsize:-1);
 
-          /* set the pointer to mark that we will send the post body using
-             the read callback */
-          http->postdata = (char *)&http->postdata;
+          /* set the pointer to mark that we will send the post body using the
+             read callback, but only if we're not in authenticate
+             negotiation  */
+          if(!conn->bits.authneg)
+            http->postdata = (char *)&http->postdata;
         }
       }
       /* issue the request */
