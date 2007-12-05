@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib547.c,v 1.1 2007-12-05 11:08:56 bagder Exp $
+ * $Id: lib547.c,v 1.2 2007-12-05 11:10:24 bagder Exp $
  *
  * argv1 = URL
  * argv2 = proxy
@@ -16,6 +16,7 @@
 
 #define UPLOADTHIS "this is the blurb we want to upload\n"
 
+#ifndef LIB548
 static size_t readcallback(void  *ptr,
                            size_t size,
                            size_t nmemb,
@@ -28,6 +29,7 @@ static size_t readcallback(void  *ptr,
   }
   return 0;
 }
+#endif
 
 int test(char *URL)
 {
