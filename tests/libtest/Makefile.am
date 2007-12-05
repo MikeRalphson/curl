@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.57 2007-11-01 00:36:56 danf Exp $
+# $Id: Makefile.am,v 1.58 2007-12-05 11:08:56 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -48,7 +48,7 @@ noinst_PROGRAMS = lib500 lib501 lib502 lib503 lib504 lib505 lib506	\
   lib507 lib508 lib509 lib510 lib511 lib512 lib513 lib514 lib515 lib516	\
   lib517 lib518 lib519 lib520 lib521 lib523 lib524 lib525 lib526 lib527	\
   lib529 lib530 lib532 lib533 lib536 lib537 lib540 lib541 lib542 lib543 \
-  lib544 lib545
+  lib544 lib545 lib547 lib548
 
 # Dependencies (may need to be overriden)
 LDADD = $(LIBDIR)/libcurl.la
@@ -138,3 +138,8 @@ lib544_SOURCES = lib544.c $(SUPPORTFILES)
 
 lib545_SOURCES = lib544.c $(SUPPORTFILES)
 lib545_CFLAGS = -DLIB545
+
+lib547_SOURCES = lib547.c $(SUPPORTFILES)
+
+lib548_SOURCES = lib547.c $(SUPPORTFILES)
+lib548_CFLAGS = -DLIB548
