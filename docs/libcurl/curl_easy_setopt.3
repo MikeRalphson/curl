@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.204 2007-12-02 23:38:24 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.205 2007-12-08 22:52:39 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "30 Aug 2007" "libcurl 7.17.0" "libcurl Manual"
@@ -670,7 +670,9 @@ and \fICURLOPT_READDATA\fP options but then you must make sure to not set
 \fICURLOPT_POSTFIELDS\fP to anything but NULL. When providing data with a
 callback, you must transmit it using chunked transfer-encoding or you must set
 the size of the data with the \fICURLOPT_POSTFIELDSIZE\fP or
-\fICURLOPT_POSTFIELDSIZE_LARGE\fP option.
+\fICURLOPT_POSTFIELDSIZE_LARGE\fP option. To enable chunked encoding, you
+simply pass in the appropriate Transfer-Encoding header, see the
+post-callback.c example.
 
 You can override the default POST Content-Type: header by setting your own
 with \fICURLOPT_HTTPHEADER\fP.
