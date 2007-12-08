@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib547.c,v 1.3 2007-12-05 21:20:14 bagder Exp $
+ * $Id: lib547.c,v 1.4 2007-12-08 22:53:49 bagder Exp $
  *
  * argv1 = URL
  * argv2 = proxy
@@ -87,9 +87,7 @@ int test(char *URL)
   curl_easy_setopt(curl, CURLOPT_IOCTLDATA, &counter);
   curl_easy_setopt(curl, CURLOPT_READFUNCTION, readcallback);
   curl_easy_setopt(curl, CURLOPT_READDATA, &counter);
-  /* TODO: We should be able to do the POST fine without setting the size
-     and we should do a test to verify that but until we do that we set
-     the size of the request-body */
+  /* We CANNOT do the POST fine without setting the size (or choose chunked)! */
   curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, strlen(UPLOADTHIS));
 #endif
   curl_easy_setopt(curl, CURLOPT_POST, 1);
