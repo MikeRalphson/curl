@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.25 2007-11-07 09:21:35 bagder Exp $
+ * $Id: parsedate.c,v 1.26 2007-12-08 22:50:55 bagder Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -84,7 +84,7 @@
 
 #include <curl/curl.h>
 
-static time_t Curl_parsedate(const char *date);
+static time_t parsedate(const char *date);
 
 const char * const Curl_wkday[] =
 {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
@@ -223,7 +223,7 @@ enum assume {
   DATE_TIME
 };
 
-static time_t Curl_parsedate(const char *date)
+static time_t parsedate(const char *date)
 {
   time_t t = 0;
   int wdaynum=-1;  /* day of the week number, 0-6 (mon-sun) */
@@ -421,5 +421,5 @@ static time_t Curl_parsedate(const char *date)
 time_t curl_getdate(const char *p, const time_t *now)
 {
   (void)now;
-  return Curl_parsedate(p);
+  return parsedate(p);
 }

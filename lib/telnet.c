@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.97 2007-11-24 23:16:55 bagder Exp $
+ * $Id: telnet.c,v 1.98 2007-12-08 22:50:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -125,8 +125,8 @@ static void printsub(struct SessionHandle *data,
                      size_t length);
 static void suboption(struct connectdata *);
 
-static CURLcode Curl_telnet(struct connectdata *conn, bool *done);
-static CURLcode Curl_telnet_done(struct connectdata *conn,
+static CURLcode telnet_do(struct connectdata *conn, bool *done);
+static CURLcode telnet_done(struct connectdata *conn,
                                  CURLcode, bool premature);
 
 /* For negotiation compliant to RFC 1143 */
@@ -182,8 +182,8 @@ struct TELNET {
 const struct Curl_handler Curl_handler_telnet = {
   "TELNET",                             /* scheme */
   ZERO_NULL,                            /* setup_connection */
-  Curl_telnet,                          /* do_it */
-  Curl_telnet_done,                     /* done */
+  telnet_do,                            /* do_it */
+  telnet_done,                          /* done */
   ZERO_NULL,                            /* do_more */
   ZERO_NULL,                            /* connect_it */
   ZERO_NULL,                            /* connecting */
@@ -1117,7 +1117,7 @@ void telrcv(struct connectdata *conn,
   bufferflush();
 }
 
-static CURLcode Curl_telnet_done(struct connectdata *conn,
+static CURLcode telnet_done(struct connectdata *conn,
                                  CURLcode status, bool premature)
 {
   struct TELNET *tn = (struct TELNET *)conn->data->state.proto.telnet;
@@ -1132,7 +1132,7 @@ static CURLcode Curl_telnet_done(struct connectdata *conn,
   return CURLE_OK;
 }
 
-static CURLcode Curl_telnet(struct connectdata *conn, bool *done)
+static CURLcode telnet_do(struct connectdata *conn, bool *done)
 {
   CURLcode code;
   struct SessionHandle *data = conn->data;

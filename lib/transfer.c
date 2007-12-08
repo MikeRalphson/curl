@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.374 2007-11-24 23:16:55 bagder Exp $
+ * $Id: transfer.c,v 1.375 2007-12-08 22:50:55 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2219,8 +2219,8 @@ CURLcode Curl_follow(struct SessionHandle *data,
 }
 
 static CURLcode
-Curl_connect_host(struct SessionHandle *data,
-                  struct connectdata **conn)
+connect_host(struct SessionHandle *data,
+             struct connectdata **conn)
 {
   CURLcode res = CURLE_OK;
   int urlchanged = FALSE;
@@ -2327,7 +2327,7 @@ CURLcode Curl_perform(struct SessionHandle *data)
    */
 
   do {
-    res = Curl_connect_host(data, &conn);   /* primary connection */
+    res = connect_host(data, &conn);   /* primary connection */
 
     if(res == CURLE_OK) {
       bool do_done;
