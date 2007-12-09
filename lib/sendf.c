@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.136 2007-12-08 22:50:55 bagder Exp $
+ * $Id: sendf.c,v 1.137 2007-12-09 22:31:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -160,7 +160,7 @@ static size_t convert_lineends(struct SessionHandle *data,
     if(*startPtr == '\n') {
       /* This block of incoming data starts with the
          previous block's LF so get rid of it */
-      memcpy(startPtr, startPtr+1, size-1);
+      memmove(startPtr, startPtr+1, size-1);
       size--;
       /* and it wasn't a bare CR but a CRLF conversion instead */
       data->state.crlf_conversions++;
