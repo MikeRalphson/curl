@@ -2,7 +2,7 @@
 #
 #       libcurl compilation script for the OS/400.
 #
-# $Id: make-lib.sh,v 1.1 2007-08-23 14:30:24 patrickm Exp $
+# $Id: make-lib.sh,v 1.2 2007-12-10 17:09:09 patrickm Exp $
 
 SCRIPTDIR=`dirname "${0}"`
 . "${SCRIPTDIR}/initscript.sh"
@@ -138,7 +138,7 @@ then    CMD="CRTSRVPGM SRVPGM(${TARGETLIB}/${SRVPGM})"
         CMD="${CMD} SRCFILE(${TARGETLIB}/TOOLS) SRCMBR(BNDSRC)"
         CMD="${CMD} MODULE(${TARGETLIB}/OS400)"
         CMD="${CMD} BNDDIR(${TARGETLIB}/${STATBNDDIR})"
-        CMD="${CMD} BNDSRVPGM(QADRTTS)"
+        CMD="${CMD} BNDSRVPGM(QADRTTS QGLDCLNT QGLDBRDR)"
         CMD="${CMD} TEXT('curl API library')"
         CMD="${CMD} TGTRLS(${TGTRLS})"
         system "${CMD}"

@@ -1,4 +1,4 @@
-$Id: README.OS400,v 1.4 2007-10-15 18:32:01 patrickm Exp $
+$Id: README.OS400,v 1.5 2007-12-10 17:09:09 patrickm Exp $
 
 Implementation notes:
 
@@ -181,8 +181,8 @@ objects:
 _ Library CURL. All other objects will be stored in this library.
 _ Modules for all libcurl units.
 _ Binding directory CURL_A, to be used at calling program link time for
-  statically binding the modules (specify BNDSRVPGM(QADRTTS) when creating a
-  program using CURL_A).
+  statically binding the modules (specify BNDSRVPGM(QADRTTS QGLDCLNT QGLDBRDR)
+  when creating a program using CURL_A).
 _ Service program CURL, to be used at calling program run-time when this program
   has dynamically bound curl at link time.
 _ Binding directory CURL. To be used to dynamically bind libcurl when linking a

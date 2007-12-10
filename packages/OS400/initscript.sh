@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: initscript.sh,v 1.1 2007-08-23 14:30:24 patrickm Exp $
+# $Id: initscript.sh,v 1.2 2007-12-10 17:09:09 patrickm Exp $
 
 case "${SCRIPTDIR}" in
 /*)     ;;
@@ -35,7 +35,7 @@ TGTCCSID='500'                  # Target CCSID of objects
 DEBUG='*ALL'                    # Debug level
 OPTIMIZE='10'                   # Optimisation level
 OUTPUT='*NONE'                   # Compilation output option.
-TGTRLS='V5R1M0'                 # Target OS release
+TGTRLS='V5R2M0'                 # Target OS release
 
 export TARGETLIB STATBNDDIR DYNBNDDIR SRVPGM TGTCCSID DEBUG OPTIMIZE OUTPUTC
 export TGTRLS
