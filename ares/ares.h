@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.38 2007-11-15 19:44:01 yangtse Exp $ */
+/* $Id: ares.h,v 1.39 2007-12-10 16:14:02 giva Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -245,7 +245,7 @@ int ares_expand_name(const unsigned char *encoded, const unsigned char *abuf,
 int ares_expand_string(const unsigned char *encoded, const unsigned char *abuf,
                      int alen, unsigned char **s, long *enclen);
 
-#ifndef s6_addr
+#if !defined(HAVE_STRUCT_IN6_ADDR) && !defined(s6_addr)
 struct in6_addr {
   union {
     unsigned char _S6_u8[16];
