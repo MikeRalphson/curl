@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.354 2007-12-08 22:50:55 bagder Exp $
+ * $Id: http.c,v 1.355 2007-12-13 10:00:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2613,17 +2613,19 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
           return result;
       }
 
-      if(data->set.postfields) {
+      /* For really small posts we don't use Expect: headers at all, and for
+         the somewhat bigger ones we allow the app to disable it. Just make
+         sure that the expect100header is always set to the preferred value
+         here. */
+      if(postsize > TINY_INITIAL_POST_SIZE) {
+        result = expect100(data, req_buffer);
+        if(result)
+          return result;
+      }
+      else
+        data->state.expect100header = FALSE;
 
-        /* for really small posts we don't use Expect: headers at all, and for
-           the somewhat bigger ones we allow the app to disable it */
-        if(postsize > TINY_INITIAL_POST_SIZE) {
-          result = expect100(data, req_buffer);
-          if(result)
-            return result;
-        }
-        else
-          data->state.expect100header = FALSE;
+      if(data->set.postfields) {
 
         if(!data->state.expect100header &&
            (postsize < MAX_INITIAL_POST_SIZE))  {
