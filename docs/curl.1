@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.233 2007-12-12 11:22:15 bagder Exp $
+.\" * $Id: curl.1,v 1.234 2007-12-14 11:19:56 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "20 Nov 2007" "Curl 7.17.2" "Curl Manual"
@@ -1152,6 +1152,9 @@ If this option is used several times, each occurrence will toggle it on/off.
 .IP "-u/--user <user:password>"
 Specify user and password to use for server authentication. Overrides
 \fI-n/--netrc\fP and \fI--netrc-optional\fP.
+
+If you just give the user name (without entering a colon) curl will prompt for
+a password.
 
 If you use an SSPI-enabled curl binary and do NTLM authentication, you can
 force curl to pick up the user name and password from your environment by
