@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.18 2007-11-15 19:44:01 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.19 2007-12-18 18:08:19 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2006 by Daniel Stenberg et al
  *
@@ -167,6 +167,20 @@
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 #define _CRT_SECURE_NO_DEPRECATE 1
 #define _CRT_NONSTDC_NO_DEPRECATE 1
+#endif
+
+/* VS2008 does not support Windows build targets prior to WinXP, */
+/* so, if no build target has been defined we will target WinXP. */
+#if defined(_MSC_VER) && (_MSC_VER >= 1500)
+#  ifndef _WIN32_WINNT
+#    define _WIN32_WINNT 0x0501
+#  endif
+#  ifndef WINVER
+#    define WINVER 0x0501
+#  endif
+#  if (_WIN32_WINNT < 0x0501) || (WINVER < 0x0501)
+#    error VS2008 does not support Windows build targets prior to WinXP
+#  endif
 #endif
 
 /* ---------------------------------------------------------------- */
