@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.53 2007-06-28 22:31:18 gknauf Exp $
+# $Id: testcurl.pl,v 1.54 2007-12-20 21:21:43 danf Exp $
 ###########################################################################
 
 ###########################
@@ -68,7 +68,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.53 $';
+$version='$Revision: 1.54 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -294,7 +294,7 @@ $str1066os = undef;
 
 # Make $pwd to become the path without newline. We'll use that in order to cut
 # off that path from all possible logs and error messages etc.
-$pwd = cwd();
+$pwd = getcwd();
 
 if (-d $CURLDIR) {
   if ($CVS && -d "$CURLDIR/CVS") {
