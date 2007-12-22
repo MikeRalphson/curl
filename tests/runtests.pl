@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.268 2007-11-26 14:26:40 yangtse Exp $
+# $Id: runtests.pl,v 1.269 2007-12-22 18:25:43 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -59,6 +59,7 @@
 use strict;
 #use Time::HiRes qw( gettimeofday );
 #use warnings;
+use Cwd;
 
 @INC=(@INC, $ENV{'srcdir'}, ".");
 
@@ -133,8 +134,7 @@ my $memdump="$LOGDIR/memdump";
 # the path to the script that analyzes the memory debug output file:
 my $memanalyze="$perl $srcdir/memanalyze.pl";
 
-my $pwd;          # current working directory
-chomp($pwd = `pwd`);
+my $pwd = getcwd();          # current working directory
 
 my $start;
 my $forkserver=0;
