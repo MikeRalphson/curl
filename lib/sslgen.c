@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.34 2007-12-24 23:45:48 bagder Exp $
+ * $Id: sslgen.c,v 1.35 2007-12-25 13:26:01 gknauf Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -386,7 +386,7 @@ CURLcode Curl_ssl_addsessionid(struct connectdata *conn,
   store->age = data->state.sessionage;    /* set current age */
   if (store->name)
     /* free it if there's one already present */
-    free(store->name)
+    free(store->name);
   store->name = clone_host;               /* clone host name */
   store->remote_port = conn->remote_port; /* port number */
 
