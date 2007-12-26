@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.683 2007-12-08 22:50:55 bagder Exp $
+ * $Id: url.c,v 1.684 2007-12-26 23:29:36 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3242,7 +3242,7 @@ static char *detect_proxy(struct connectdata *conn)
         if(conn->proxytype == CURLPROXY_HTTP) {
           /* force this connection's protocol to become HTTP */
           conn->protocol = PROT_HTTP | bits;
-          conn->bits.httpproxy = TRUE;
+          conn->bits.proxy = conn->bits.httpproxy = TRUE;
         }
       }
     } /* if(!nope) - it wasn't specified non-proxy */
