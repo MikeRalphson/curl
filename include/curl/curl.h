@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.335 2007-12-02 23:38:24 bagder Exp $
+ * $Id: curl.h,v 1.336 2008-01-02 21:40:12 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -510,10 +510,12 @@ typedef CURLcode (*curl_ssl_ctx_callback)(CURL *curl,    /* easy handle */
                                           void *userptr);
 
 typedef enum {
-  CURLPROXY_HTTP = 0,
-  CURLPROXY_SOCKS4 = 4,
-  CURLPROXY_SOCKS5 = 5
-} curl_proxytype;
+  CURLPROXY_HTTP = 0,   /* added in 7.10 */
+  CURLPROXY_SOCKS4 = 4, /* support added in 7.15.2, enum existed already
+                           in 7.10 */
+  CURLPROXY_SOCKS5 = 5, /* added in 7.10 */
+  CURLPROXY_SOCKS4A = 6 /* added in 7.17.2 */
+} curl_proxytype;  /* this enum was added in 7.10 */
 
 #define CURLAUTH_NONE         0       /* nothing */
 #define CURLAUTH_BASIC        (1<<0)  /* Basic (default) */
@@ -958,7 +960,7 @@ typedef enum {
   CINIT(SHARE, OBJECTPOINT, 100),
 
   /* indicates type of proxy. accepted values are CURLPROXY_HTTP (default),
-     CURLPROXY_SOCKS4 and CURLPROXY_SOCKS5. */
+     CURLPROXY_SOCKS4, CURLPROXY_SOCKS4A and CURLPROXY_SOCKS5. */
   CINIT(PROXYTYPE, LONG, 101),
 
   /* Set the Accept-Encoding string. Use this to tell a server you would like
