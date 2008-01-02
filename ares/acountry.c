@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.1 2007-12-11 17:21:12 giva Exp $
+ * $Id: acountry.c,v 1.2 2008-01-02 05:30:52 giva Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -93,9 +93,14 @@ int main(int argc, char **argv)
   WSAStartup(wVersionRequested, &wsaData);
 #endif
 
-  while ((ch = ares_getopt(argc, argv, "vh?")) != -1)
+  while ((ch = ares_getopt(argc, argv, "dvh?")) != -1)
     switch (ch)
       {
+      case 'd':
+#ifdef WATT32
+        dbug_init();
+#endif
+        break;
       case 'v':
         verbose++;
         break;
