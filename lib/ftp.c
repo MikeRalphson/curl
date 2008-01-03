@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.458 2008-01-02 21:40:12 bagder Exp $
+ * $Id: ftp.c,v 1.459 2008-01-03 15:18:27 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1888,11 +1888,11 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     break;
   case CURLPROXY_SOCKS4:
     result = Curl_SOCKS4(conn->proxyuser, newhost, newport,
-                         SECONDARYSOCKET, conn, false);
+                         SECONDARYSOCKET, conn, FALSE);
     break;
   case CURLPROXY_SOCKS4A:
     result = Curl_SOCKS4(conn->proxyuser, newhost, newport,
-                         SECONDARYSOCKET, conn, true);
+                         SECONDARYSOCKET, conn, TRUE);
     break;
   default:
     failf(data, "unknown proxytype option given");
