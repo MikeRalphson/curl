@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.272 2008-01-04 13:00:40 yangtse Exp $
+# $Id: runtests.pl,v 1.273 2008-01-04 19:56:56 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1157,7 +1157,7 @@ sub runsocksserver {
         $doesntrun{$pidfile} = 1;
         return (0,0);
     }
-    logmsg "ssh server found $sshd is $sshdverstr" if($verbose);
+    logmsg "ssh server found $sshd is $sshdverstr\n" if($verbose);
 
     # Find out ssh client canonical file name
     my $ssh = find_ssh();
