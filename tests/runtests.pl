@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.273 2008-01-04 19:56:56 yangtse Exp $
+# $Id: runtests.pl,v 1.274 2008-01-04 23:31:04 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2040,6 +2040,12 @@ sub singletest {
         if(($filemode eq "text") && $has_textaware) {
             # text mode when running on windows: fix line endings
             map s/\r\n/\n/g, @actual;
+        }
+
+        if($hash{'nonewline'}) {
+            # Yes, we must cut off the final newline from the final line
+            # of the protocol data
+            chomp($validstdout[$#validstdout]);
         }
 
         $res = compare("stdout", \@actual, \@validstdout);
