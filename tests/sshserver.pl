@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.35 2008-01-04 03:04:30 yangtse Exp $
+# $Id: sshserver.pl,v 1.36 2008-01-04 13:24:17 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -740,7 +740,7 @@ if(($sshid =~ /OpenSSH/) && ($sshvernum >= 370)) {
 }
 
 if((($sshid =~ /OpenSSH/) && ($sshvernum >= 370)) ||
-    ($sshid =~ /SunSSH/)) {
+   (($sshid =~ /SunSSH/) && ($sshvernum >= 120))) {
     push @cfgarr, 'ConnectTimeout 30';
 }
 
@@ -758,12 +758,12 @@ if(($sshid =~ /OpenSSH/) && ($sshvernum >= 440)) {
 }
 
 if((($sshid =~ /OpenSSH/) && ($sshvernum >= 380)) ||
-    ($sshid =~ /SunSSH/)) {
+   (($sshid =~ /SunSSH/) && ($sshvernum >= 120))) {
     push @cfgarr, 'ForwardX11Trusted no';
 }
 
 if((($sshid =~ /OpenSSH/) && ($sshvernum >= 400)) ||
-    ($sshid =~ /SunSSH/)) {
+   (($sshid =~ /SunSSH/) && ($sshvernum >= 120))) {
     push @cfgarr, 'HashKnownHosts no';
 }
 
@@ -786,7 +786,7 @@ if(($sshid =~ /OpenSSH/) && ($sshvernum >= 430)) {
 }
 
 if((($sshid =~ /OpenSSH/) && ($sshvernum >= 370)) ||
-    ($sshid =~ /SunSSH/)) {
+   (($sshid =~ /SunSSH/) && ($sshvernum >= 120))) {
     push @cfgarr, 'RekeyLimit 1G';
 }
 
@@ -795,7 +795,7 @@ if(($sshid =~ /OpenSSH/) && ($sshvernum >= 390)) {
 }
 
 if((($sshid =~ /OpenSSH/) && ($sshvernum >= 380)) ||
-    ($sshid =~ /SunSSH/)) {
+   (($sshid =~ /SunSSH/) && ($sshvernum >= 120))) {
     push @cfgarr, 'ServerAliveCountMax 3';
     push @cfgarr, 'ServerAliveInterval 0';
 }
