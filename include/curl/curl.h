@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.337 2008-01-02 22:23:27 bagder Exp $
+ * $Id: curl.h,v 1.338 2008-01-04 23:01:01 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1171,6 +1171,11 @@ typedef enum {
 
   /* set transfer mode (;type=<a|i>) when doing FTP via an HTTP proxy */
   CINIT(PROXY_TRANSFER_MODE, LONG, 166),
+
+  /* Set using of SOCKS5 to resolve host names locally instead of sending them
+     to the proxy to let it resolve them. Valid only if CURLOPT_PROXYTYPE ==
+     CURLPROXY_SOCKS5, otherwise ignored. */
+  CINIT(SOCKS5_RESOLVE_LOCAL, LONG, 167),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
