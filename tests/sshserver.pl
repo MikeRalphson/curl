@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.36 2008-01-04 13:24:17 yangtse Exp $
+# $Id: sshserver.pl,v 1.37 2008-01-04 14:12:10 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -746,6 +746,9 @@ if((($sshid =~ /OpenSSH/) && ($sshvernum >= 370)) ||
 
 if(($sshid =~ /OpenSSH/) && ($sshvernum >= 390)) {
     push @cfgarr, 'ControlMaster no';
+}
+
+if(($sshid =~ /OpenSSH/) && ($sshvernum >= 420)) {
     push @cfgarr, 'ControlPath none';
 }
 
