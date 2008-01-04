@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.270 2008-01-03 20:48:22 yangtse Exp $
+# $Id: runtests.pl,v 1.271 2008-01-04 03:05:33 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -56,12 +56,14 @@
 
 # These should be the only variables that might be needed to get edited:
 
+BEGIN {
+    @INC=(@INC, $ENV{'srcdir'}, ".");
+}
+
 use strict;
 #use Time::HiRes qw( gettimeofday );
 #use warnings;
 use Cwd;
-
-@INC=(@INC, $ENV{'srcdir'}, ".");
 
 # Variables and subs imported from sshhelp module
 use sshhelp qw(
