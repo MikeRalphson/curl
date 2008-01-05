@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.364 2008-01-04 23:01:01 bagder Exp $
+ * $Id: urldata.h,v 1.365 2008-01-05 22:04:18 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1441,9 +1441,6 @@ struct UserDefined {
   long new_directory_perms; /* Permissions to use when creating remote dirs */
   bool proxy_transfer_mode; /* set transfer mode (;type=<a|i>) when doing FTP
                                via an HTTP proxy */
-  bool socks5_resolve_local; /* resolve host names locally even if a SOCKS5
-                                proxy in use.  Valid only if CURLOPT_PROXYTYPE
-                                == CURLPROXY_SOCKS5, otherwise ignored. */
   char *str[STRING_LAST]; /* array of strings, pointing to allocated memory */
 };
 

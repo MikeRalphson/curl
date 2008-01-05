@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.18 2008-01-04 23:01:01 bagder Exp $
+ * $Id: socks.c,v 1.19 2008-01-05 22:04:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -390,7 +390,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
   curl_socket_t sock = conn->sock[sockindex];
   struct SessionHandle *data = conn->data;
   long timeout;
-  bool socks5_resolve_local = data->set.socks5_resolve_local;
+  bool socks5_resolve_local = data->set.proxytype == CURLPROXY_SOCKS5;
   const size_t hostname_len = strlen(hostname);
   int packetsize = 0;
 

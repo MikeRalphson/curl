@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.687 2008-01-04 23:01:01 bagder Exp $
+ * $Id: url.c,v 1.688 2008-01-05 22:04:18 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2052,14 +2052,6 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
         result = CURLE_FAILED_INIT;
         break;
     }
-    break;
-
-  case CURLOPT_SOCKS5_RESOLVE_LOCAL:
-    /*
-     * Enable or disable using of SOCKS5 proxy server to resolve domain names
-     * instead of using platform API like gethostbyname_r etc
-     */
-    data->set.socks5_resolve_local = (bool)(0 != va_arg(param, long));
     break;
 
   default:
