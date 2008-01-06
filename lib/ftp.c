@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.460 2008-01-06 12:56:34 bagder Exp $
+ * $Id: ftp.c,v 1.461 2008-01-06 21:41:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1882,6 +1882,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
 
   switch(data->set.proxytype) {
   case CURLPROXY_SOCKS5:
+  case CURLPROXY_SOCKS5_HOSTNAME:
     result = Curl_SOCKS5(conn->proxyuser, conn->proxypasswd, newhost, newport,
                          SECONDARYSOCKET, conn);
     break;
