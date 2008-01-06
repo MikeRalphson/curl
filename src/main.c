@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.443 2008-01-05 22:04:18 bagder Exp $
+ * $Id: main.c,v 1.444 2008-01-06 12:56:19 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1517,7 +1517,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
     {"*z", "disable-eprt", FALSE},
     {"$a", "ftp-ssl",    FALSE},
     {"$b", "ftp-pasv",   FALSE},
-    {"$c", "socks5ip",   TRUE},
+    {"$c", "socks5",   TRUE},
     {"$c", "socks",      TRUE}, /* this is how the option once was documented
                                    but we prefer the --socks5 version for
                                    explicit version */
@@ -1547,7 +1547,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
     {"$#", "raw",        FALSE},
     {"$0", "post301",    FALSE},
     {"$1", "no-keep-alive",    FALSE},
-    {"$2", "socks5",    TRUE},
+    {"$2", "socks5-hostname",    TRUE},
 
     {"0", "http1.0",     FALSE},
     {"1", "tlsv1",       FALSE},
