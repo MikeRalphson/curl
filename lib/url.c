@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.690 2008-01-06 21:41:38 bagder Exp $
+ * $Id: url.c,v 1.691 2008-01-08 14:52:07 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4432,6 +4432,13 @@ CURLcode Curl_done(struct connectdata **connp,
     result = CURLE_OK;
 
   Curl_pgrsDone(conn); /* done with the operation */
+
+  /* if the transfer was completed in a paused state there can be buffered
+     data left to write and then kill */
+  if(data->state.tempwrite) {
+    free(data->state.tempwrite);
+    data->state.tempwrite = NULL;
+  }
 
   /* for ares-using, make sure all possible outstanding requests are properly
      cancelled before we proceed */
