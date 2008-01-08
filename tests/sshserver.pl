@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.38 2008-01-06 02:02:55 yangtse Exp $
+# $Id: sshserver.pl,v 1.39 2008-01-08 00:40:02 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -373,6 +373,16 @@ if((! -e $hstprvkeyf) || (! -e $hstpubkeyf) ||
 #  [1] Option only available if activated at compile time
 #  [2] Option specific for portable versions
 #  [3] Option not used in our ssh server config file
+
+
+#***************************************************************************
+# Increased loglevel to debug autobuild's publickey authentication
+# failures when using OpenSSH 2.9.9 or SunSSH
+#
+if((($sshdid =~ /OpenSSH/) && ($sshvernum == 299)) ||
+    ($sshdid =~ /SunSSH/)) {
+    $loglevel = 'DEBUG3';
+}
 
 
 #***************************************************************************
