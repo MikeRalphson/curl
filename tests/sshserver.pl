@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.39 2008-01-08 00:40:02 yangtse Exp $
+# $Id: sshserver.pl,v 1.40 2008-01-08 19:18:25 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -67,6 +67,7 @@ use sshhelp qw(
     logmsg
     sshversioninfo
     );
+
 
 #***************************************************************************
 
@@ -376,16 +377,6 @@ if((! -e $hstprvkeyf) || (! -e $hstpubkeyf) ||
 
 
 #***************************************************************************
-# Increased loglevel to debug autobuild's publickey authentication
-# failures when using OpenSSH 2.9.9 or SunSSH
-#
-if((($sshdid =~ /OpenSSH/) && ($sshvernum == 299)) ||
-    ($sshdid =~ /SunSSH/)) {
-    $loglevel = 'DEBUG3';
-}
-
-
-#***************************************************************************
 # Initialize sshd config with options actually supported in OpenSSH 2.9.9
 #
 logmsg 'generating ssh server config file...' if($verbose);
@@ -619,6 +610,7 @@ if(! -e $knownhosts) {
         exit 1;
     }
 }
+
 
 #***************************************************************************
 #  ssh client configuration file options we might use and version support
