@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.185 2007-11-05 09:45:09 bagder Exp $
+ * $Id: connect.c,v 1.186 2008-01-08 01:05:50 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -694,7 +694,7 @@ singleipconnect(struct connectdata *conn,
   addr->protocol=ai->ai_protocol;
   addr->addrlen =
     (ai->ai_addrlen < (socklen_t)sizeof(struct Curl_sockaddr_storage)) ?
-     ai->ai_addrlen : (socklen_t)sizeof(struct Curl_sockaddr_storage);
+     (unsigned int)ai->ai_addrlen : sizeof(struct Curl_sockaddr_storage);
   memcpy(&addr->addr, ai->ai_addr, addr->addrlen);
 
   /* If set, use opensocket callback to get the socket */
