@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.63 2007-12-08 22:50:55 bagder Exp $
+ * $Id: tftp.c,v 1.64 2008-01-09 19:11:56 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -613,7 +613,8 @@ static CURLcode tftp_connect(struct connectdata *conn, bool *done)
      sessionhandle, deal with it */
   Curl_reset_reqproto(conn);
 
-  if(!(state = conn->data->state.proto.tftp)) {
+  state = conn->data->state.proto.tftp;
+  if(!state) {
     state = conn->data->state.proto.tftp = calloc(sizeof(tftp_state_data_t),
                                                   1);
     if(!state)

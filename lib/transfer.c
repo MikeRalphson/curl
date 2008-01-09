@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.376 2008-01-08 14:52:07 bagder Exp $
+ * $Id: transfer.c,v 1.377 2008-01-09 19:11:56 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -137,7 +137,7 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
   else if(nread == CURL_READFUNC_PAUSE) {
     struct SingleRequest *k = &data->req;
     k->keepon |= KEEP_READ_PAUSE; /* mark reading as paused */
-    return 0; /* nothing was read */
+    return CURLE_OK; /* nothing was read */
   }
   else if((size_t)nread > buffersize)
     /* the read function returned a too large value */

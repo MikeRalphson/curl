@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.444 2008-01-06 12:56:19 bagder Exp $
+ * $Id: main.c,v 1.445 2008-01-09 19:11:56 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2138,7 +2138,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           }
           else {
             GetStr(&postdata, p);
-            size = strlen(postdata);
+            size = (long)strlen(postdata);
           }
 
           if(!postdata) {
