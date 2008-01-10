@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.40 2008-01-08 19:18:25 yangtse Exp $
+# $Id: sshserver.pl,v 1.41 2008-01-10 16:19:14 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -830,7 +830,7 @@ if($error) {
 }
 @cfgarr = ();
 
-
+logmsg "TRACESSH:sshserver.pl: sshd will use pidfile $path/.ssh.pid";
 #***************************************************************************
 # Start the ssh server daemon without forking it
 #
