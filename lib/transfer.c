@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.377 2008-01-09 19:11:56 yangtse Exp $
+ * $Id: transfer.c,v 1.378 2008-01-10 09:16:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2152,9 +2152,9 @@ CURLcode Curl_follow(struct SessionHandle *data,
    * a HTTP (proxy-) authentication scheme other than Basic.
    */
   switch(data->info.httpcode) {
-    /* 401 - Act on a www-authentication, we keep on moving and do the
+    /* 401 - Act on a WWW-Authenticate, we keep on moving and do the
        Authorization: XXXX header in the HTTP request code snippet */
-    /* 407 - Act on a proxy-authentication, we keep on moving and do the
+    /* 407 - Act on a Proxy-Authenticate, we keep on moving and do the
        Proxy-Authorization: XXXX header in the HTTP request code snippet */
     /* 300 - Multiple Choices */
     /* 306 - Not used */
