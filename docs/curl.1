@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.239 2008-01-08 14:52:07 bagder Exp $
+.\" * $Id: curl.1,v 1.240 2008-01-11 14:20:41 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "5 Jan 2008" "Curl 7.18.0" "Curl Manual"
@@ -974,9 +974,9 @@ This option can be used multiple times.
 random data. The data is used to seed the random engine for SSL connections.
 See also the \fI--egd-file\fP option.
 .IP "-r/--range <range>"
-(HTTP/FTP)
-Retrieve a byte range (i.e a partial document) from a HTTP/1.1 or FTP
-server. Ranges can be specified in a number of ways.
+(HTTP/FTP/FILE) Retrieve a byte range (i.e a partial document) from a
+HTTP/1.1, FTP server or a local FILE. Ranges can be specified in a number of
+ways.
 .RS
 .TP 10
 .B 0-499
