@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.279 2008-01-11 21:59:05 yangtse Exp $
+# $Id: runtests.pl,v 1.280 2008-01-12 00:12:16 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -671,7 +671,7 @@ sub verifyssh {
         # since runsshserver() unlinks previous pidfile
         if(!kill(0, $pid)) {
             logmsg "RUN: SSH server has died after starting up\n";
-            checkdied($pid)
+            checkdied($pid);
             unlink($SSHPIDFILE);
             $pid = -1;
         }
@@ -694,7 +694,7 @@ sub verifysocks {
         # since runsocksserver() unlinks previous pidfile
         if(!kill(0, $pid)) {
             logmsg "RUN: SOCKS server has died after starting up\n";
-            checkdied($pid)
+            checkdied($pid);
             unlink($SOCKSPIDFILE);
             $pid = -1;
         }
