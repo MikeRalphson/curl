@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.41 2008-01-10 16:19:14 yangtse Exp $
+# $Id: sshserver.pl,v 1.42 2008-01-12 04:32:03 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -71,7 +71,7 @@ use sshhelp qw(
 
 #***************************************************************************
 
-my $verbose = 1;              # set to 1 for debugging
+my $verbose = 0;              # set to 1 for debugging
 my $debugprotocol = 0;        # set to 1 for protocol debugging
 my $port = 8999;              # our default SCP/SFTP server port
 my $socksport = $port + 1;    # our default SOCKS4/5 server port
@@ -121,7 +121,7 @@ while(@ARGV) {
 #***************************************************************************
 # Logging level for ssh server and client
 #
-my $loglevel = $debugprotocol?'DEBUG2':'INFO';
+my $loglevel = $debugprotocol?'DEBUG3':'DEBUG2';
 
 
 #***************************************************************************
@@ -830,7 +830,7 @@ if($error) {
 }
 @cfgarr = ();
 
-logmsg "TRACESSH:sshserver.pl: sshd will use pidfile $path/.ssh.pid";
+
 #***************************************************************************
 # Start the ssh server daemon without forking it
 #
