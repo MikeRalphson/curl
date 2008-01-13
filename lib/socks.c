@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.20 2008-01-09 19:11:56 yangtse Exp $
+ * $Id: socks.c,v 1.21 2008-01-13 04:39:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -392,7 +392,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
   long timeout;
   bool socks5_resolve_local = (bool)(data->set.proxytype == CURLPROXY_SOCKS5);
   const size_t hostname_len = strlen(hostname);
-  int packetsize = 0;
+  ssize_t packetsize = 0;
 
   /* RFC1928 chapter 5 specifies max 255 chars for domain name in packet */
   if(!socks5_resolve_local && hostname_len > 255)

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.449 2008-01-12 22:56:12 bagder Exp $
+ * $Id: main.c,v 1.450 2008-01-13 04:39:32 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1466,7 +1466,9 @@ static int sockoptcallback(void *clientp, curl_socket_t curlfd,
   struct Configurable *config = (struct Configurable *)clientp;
   int onoff = 1; /* this callback is only used if we ask for keepalives on the
                     connection */
-  long keepidle = config->alivetime;
+#if defined(TCP_KEEPIDLE) || defined(TCP_KEEPINTVL)
+  int keepidle = (int)config->alivetime;
+#endif
 
   switch (purpose) {
   case CURLSOCKTYPE_IPCXN:
