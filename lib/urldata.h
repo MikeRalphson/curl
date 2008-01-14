@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.367 2008-01-10 10:30:20 bagder Exp $
+ * $Id: urldata.h,v 1.368 2008-01-14 16:51:32 giva Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -73,6 +73,9 @@
 #include "ssl.h"
 #include "err.h"
 #endif /* USE_OPENSSL */
+#ifdef USE_GNUTLS
+#error Configuration error; cannot use GnuTLS *and* OpenSSL.
+#endif
 #endif /* USE_SSLEAY */
 
 #ifdef USE_GNUTLS
