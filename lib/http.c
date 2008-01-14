@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.356 2008-01-10 10:30:20 bagder Exp $
+ * $Id: http.c,v 1.357 2008-01-14 22:02:15 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2705,8 +2705,10 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
           /* set the pointer to mark that we will send the post body using the
              read callback, but only if we're not in authenticate
              negotiation  */
-          if(!conn->bits.authneg)
+          if(!conn->bits.authneg) {
             http->postdata = (char *)&http->postdata;
+            http->postsize = postsize;
+          }
         }
       }
       /* issue the request */
