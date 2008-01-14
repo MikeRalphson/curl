@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.21 2008-01-13 04:39:32 yangtse Exp $
+ * $Id: socks.c,v 1.22 2008-01-14 19:40:10 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -566,7 +566,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
   socksreq[2] = 0; /* must be zero */
 
   if(!socks5_resolve_local) {
-    packetsize = 5 + hostname_len + 2;
+    packetsize = (ssize_t)(5 + hostname_len + 2);
 
     socksreq[3] = 3; /* ATYP: domain name = 3 */
     socksreq[4] = (char) hostname_len; /* address length */
