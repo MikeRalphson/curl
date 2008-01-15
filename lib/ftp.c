@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.463 2008-01-11 17:35:10 yangtse Exp $
+ * $Id: ftp.c,v 1.464 2008-01-15 23:19:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -934,7 +934,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
     rc = getnameinfo((struct sockaddr *)&ss, sslen, hbuf, sizeof(hbuf), NULL,
                      0, NIFLAGS);
     if(rc) {
-      failf(data, "getnameinfo() returned %d \n", rc);
+      failf(data, "getnameinfo() returned %d", rc);
       return CURLE_FTP_PORT_FAILED;
     }
     host = hbuf; /* use this host name */
@@ -2630,7 +2630,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
           ftpc->count1 = 1;
           break;
         default:
-          failf(data, "unsupported parameter to CURLOPT_FTPSSLAUTH: %d\n",
+          failf(data, "unsupported parameter to CURLOPT_FTPSSLAUTH: %d",
                 data->set.ftpsslauth);
           return CURLE_FAILED_INIT; /* we don't know what to do */
         }

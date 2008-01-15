@@ -7,7 +7,7 @@
  *
  * Copyright (c) 1995, 1996, 1997, 1998, 1999 Kungliga Tekniska Högskolan
  * (Royal Institute of Technology, Stockholm, Sweden).
- * Copyright (c) 2004 - 2007 Daniel Stenberg
+ * Copyright (c) 2004 - 2008 Daniel Stenberg
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +37,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * $Id: krb4.c,v 1.46 2007-11-07 09:21:35 bagder Exp $
+ * $Id: krb4.c,v 1.47 2008-01-15 23:19:02 bagder Exp $
  */
 
 #include "setup.h"
@@ -362,7 +362,7 @@ CURLcode Curl_krb_kauth(struct connectdata *conn)
     tmp=0;
   }
   if(!tmp || !ptr) {
-    Curl_failf(conn->data, "Failed to decode base64 in reply.\n");
+    Curl_failf(conn->data, "Failed to decode base64 in reply");
     Curl_set_command_prot(conn, save);
     return CURLE_FTP_WEIRD_SERVER_REPLY;
   }
