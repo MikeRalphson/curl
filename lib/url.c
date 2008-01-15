@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.692 2008-01-10 10:30:20 bagder Exp $
+ * $Id: url.c,v 1.693 2008-01-15 22:15:55 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -457,11 +457,8 @@ CURLcode Curl_close(struct SessionHandle *data)
     return CURLE_OK;
   }
 
-  if( ! (data->share && data->share->hostcache) ) {
-    if( !Curl_global_host_cache_use(data)) {
-      Curl_hash_destroy(data->dns.hostcache);
-    }
-  }
+  if(data->dns.hostcachetype == HCACHE_PRIVATE)
+    Curl_hash_destroy(data->dns.hostcache);
 
   if(data->state.rangestringalloc)
     free(data->state.range);
@@ -782,10 +779,13 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
   case CURLOPT_DNS_USE_GLOBAL_CACHE:
     {
       long use_cache = va_arg(param, long);
-      if(use_cache)
+      if(use_cache) {
         Curl_global_host_cache_init();
-
-      data->set.global_dns_cache = (bool)(0 != use_cache);
+        data->dns.hostcachetype = HCACHE_GLOBAL;
+      }
+      else
+        /* not global makes it private by default then */
+        data->dns.hostcachetype = HCACHE_PRIVATE;
     }
     break;
   case CURLOPT_SSL_CIPHER_LIST:
