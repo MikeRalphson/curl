@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.369 2008-01-15 22:15:55 bagder Exp $
+ * $Id: urldata.h,v 1.370 2008-01-15 22:44:12 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1443,6 +1443,7 @@ struct UserDefined {
   curl_ftpauth ftpsslauth; /* what AUTH XXX to be attempted */
   curl_ftpccc ftp_ccc;   /* FTP CCC options */
   bool no_signal;        /* do not use any signal/alarm handler */
+  bool global_dns_cache; /* subject for future removal */
   bool tcp_nodelay;      /* whether to enable TCP_NODELAY or not */
   bool ignorecl;         /* ignore content length */
   bool ftp_skip_ip;      /* skip the IP address the FTP server passes on to
