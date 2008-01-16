@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.281 2008-01-14 19:28:54 yangtse Exp $
+# $Id: runtests.pl,v 1.282 2008-01-16 22:08:37 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -373,8 +373,8 @@ sub startnew {
 #
 sub checkcmd {
     my ($cmd)=@_;
-    my @paths=("/usr/sbin", "/usr/local/sbin", "/sbin", "/usr/bin",
-               "/usr/local/bin", split(":", $ENV{'PATH'}));
+    my @paths=(split(":", $ENV{'PATH'}), "/usr/sbin", "/usr/local/sbin",
+               "/sbin", "/usr/bin", "/usr/local/bin", );
     for(@paths) {
         if( -x "$_/$cmd") {
             return "$_/$cmd";
