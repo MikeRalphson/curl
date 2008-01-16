@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.380 2008-01-15 23:19:02 bagder Exp $
+ * $Id: transfer.c,v 1.381 2008-01-16 12:24:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -829,6 +829,15 @@ CURLcode Curl_readwrite(struct connectdata *conn,
                      server keeps it open for us! */
                   infof(data, "HTTP 1.0, assume close after body\n");
                   conn->bits.close = TRUE;
+                }
+                else if(k->httpversion >= 11 &&
+                        !conn->bits.close) {
+                  /* If HTTP version is >= 1.1 and connection is persistent
+                     server supports pipelining. */
+                  DEBUGF(infof(data,
+                               "HTTP 1.1 or later with persistent connection, "
+                               "pipelining supported\n"));
+                  conn->server_supports_pipelining = TRUE;
                 }
 
                 switch(k->httpcode) {

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.370 2008-01-15 22:44:12 bagder Exp $
+ * $Id: urldata.h,v 1.371 2008-01-16 12:24:00 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -952,11 +952,16 @@ struct connectdata {
   bool writechannel_inuse; /* whether the write channel is in use by an easy
                               handle */
   bool is_in_pipeline;     /* TRUE if this connection is in a pipeline */
+  bool server_supports_pipelining; /* TRUE if server supports pipelining,
+                                      set after first response */
 
   struct curl_llist *send_pipe; /* List of handles waiting to
                                    send on this pipeline */
   struct curl_llist *recv_pipe; /* List of handles waiting to read
                                    their responses on this pipeline */
+  struct curl_llist *pend_pipe; /* List of pending handles on
+                                   this pipeline */
+#define MAX_PIPELINE_LENGTH 5
 
   char* master_buffer; /* The master buffer allocated on-demand;
                           used for pipelining. */
