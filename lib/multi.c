@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.158 2008-01-16 12:24:00 bagder Exp $
+ * $Id: multi.c,v 1.159 2008-01-16 21:33:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -944,8 +944,12 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
         easy->result = addHandleToSendOrPendPipeline(easy->easy_handle,
                                                      easy->easy_conn);
         if(CURLE_OK == easy->result) {
-          if (easy->easy_handle->state.is_in_pipeline)
+          if (easy->easy_handle->state.is_in_pipeline) {
             multistate(easy, CURLM_STATE_WAITDO);
+            if(isHandleAtHead(easy->easy_handle,
+                              easy->easy_conn->send_pipe))
+              result = CURLM_CALL_MULTI_PERFORM;
+          }
           else {
             if(async)
               /* We're now waiting for an asynchronous name lookup */
