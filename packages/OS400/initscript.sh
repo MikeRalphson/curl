@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: initscript.sh,v 1.2 2007-12-10 17:09:09 patrickm Exp $
+# $Id: initscript.sh,v 1.3 2008-01-16 16:04:47 patrickm Exp $
 
 case "${SCRIPTDIR}" in
 /*)     ;;
@@ -20,6 +20,12 @@ TOPDIR=`dirname "${SCRIPTDIR}"`
 TOPDIR=`dirname "${TOPDIR}"`
 export SCRIPTDIR TOPDIR
 
+#  Extract the SONAME from the library makefile.
+
+SONAME=`sed -e '/^VERSION=/!d' -e 's/^.* \([0-9]*\):.*$/\1/'           \
+                                                < "${TOPDIR}/lib/Makefile.am"`
+export SONAME
+
 
 ################################################################################
 #
@@ -30,7 +36,7 @@ export SCRIPTDIR TOPDIR
 TARGETLIB='CURL'                # Target OS/400 program library
 STATBNDDIR='CURL_A'             # Static binding directory.
 DYNBNDDIR='CURL'                # Dynamic binding directory.
-SRVPGM='CURL'                   # Service program.
+SRVPGM="CURL.${SONAME}"         # Service program.
 TGTCCSID='500'                  # Target CCSID of objects
 DEBUG='*ALL'                    # Debug level
 OPTIMIZE='10'                   # Optimisation level

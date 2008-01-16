@@ -2,7 +2,7 @@
 #
 #       libcurl compilation script for the OS/400.
 #
-# $Id: make-lib.sh,v 1.2 2007-12-10 17:09:09 patrickm Exp $
+# $Id: make-lib.sh,v 1.3 2008-01-16 16:04:47 patrickm Exp $
 
 SCRIPTDIR=`dirname "${0}"`
 . "${SCRIPTDIR}/initscript.sh"
@@ -28,7 +28,7 @@ fi
 
 echo '#pragma comment(user, "libcurl version '"${LIBCURL_VERSION}"'")' > os400.c
 echo '#pragma comment(date)' >> os400.c
-echo '#pragma comment(copyright, "Copyright (C) 1998-2007 Daniel Stenberg et al. OS/400 version by P. Monnerat")' >> os400.c
+echo '#pragma comment(copyright, "Copyright (C) 1998-2008 Daniel Stenberg et al. OS/400 version by P. Monnerat")' >> os400.c
 make_module     OS400           os400.c
 LINK=                           # No need to rebuild service program yet.
 MODULES=
@@ -113,12 +113,13 @@ EXPORTS=`grep '^CURL_EXTERN[ 	]'                                      \
 
 BSF="${LIBIFSNAME}/TOOLS.FILE/BNDSRC.MBR"
 
-if action_needed "${BSF}"
+if action_needed "${BSF}" Makefile.am
 then    LINK=YES
 fi
 
 if [ "${LINK}" ]
-then    echo " STRPGMEXP PGMLVL(*CURRENT) SIGNATURE('LIBCURL')" > "${BSF}"
+then    echo " STRPGMEXP PGMLVL(*CURRENT) SIGNATURE('LIBCURL_${SONAME}')" \
+            > "${BSF}"
         for EXPORT in ${EXPORTS}
         do      echo ' EXPORT    SYMBOL("'"${EXPORT}"'")' >> "${BSF}"
         done
