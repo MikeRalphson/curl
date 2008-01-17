@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.451 2008-01-16 21:01:30 yangtse Exp $
+ * $Id: main.c,v 1.452 2008-01-17 18:03:07 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2262,7 +2262,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           if(subletter == 'b') {
             /* forced binary */
             err = file2memory(&postdata, &size, file);
-            config->postfieldsize = size;
+            config->postfieldsize = (curl_off_t)size;
           }
           else
             err = file2string(&postdata, file);
