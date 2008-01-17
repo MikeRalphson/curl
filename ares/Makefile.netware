@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.37 2007-12-11 17:24:43 giva Exp $
+# $Id: Makefile.netware,v 1.38 2008-01-17 01:20:03 gknauf Exp $
 #
 ## Makefile for building libcares (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -21,7 +21,7 @@ endif
 TARGETS = adig.nlm ahost.nlm acountry.nlm
 LTARGET = libcares.$(LIBEXT)
 VERSION	= $(LIBCARES_VERSION)
-COPYR	= Copyright (C) 1996 - 2007, Daniel Stenberg, <daniel@haxx.se>
+COPYR	= Copyright (C) 1996 - 2008, Daniel Stenberg, <daniel@haxx.se>
 DESCR	= cURL $(subst .def,,$(notdir $@)) $(LIBCARES_VERSION_STR) - http://curl.haxx.se
 MTSAFE	= YES
 STACK	= 64000
