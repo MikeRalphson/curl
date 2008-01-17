@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.18 2007-09-30 01:27:39 yangtse Exp $
+ * $Id: lib537.c,v 1.19 2008-01-17 18:57:50 yangtse Exp $
  */
 
 #include "test.h"
@@ -148,12 +148,27 @@ static int rlimit(int keep_open)
 
   if (rl.rlim_cur != rl.rlim_max) {
 
+#ifdef OPEN_MAX
+    if ((rl.rlim_cur > 0) &&
+        (rl.rlim_cur < OPEN_MAX)) {
+      fprintf(stderr, "raising soft limit up to OPEN_MAX\n");
+      rl.rlim_cur = OPEN_MAX;
+      if (setrlimit(RLIMIT_NOFILE, &rl) != 0) {
+        /* on failure don't abort just issue a warning */
+        store_errmsg("setrlimit() failed", ERRNO);
+        fprintf(stderr, "%s\n", msgbuff);
+        msgbuff[0] = '\0';
+      }
+    }
+#endif
+
     fprintf(stderr, "raising soft limit up to hard limit\n");
     rl.rlim_cur = rl.rlim_max;
     if (setrlimit(RLIMIT_NOFILE, &rl) != 0) {
+      /* on failure don't abort just issue a warning */
       store_errmsg("setrlimit() failed", ERRNO);
       fprintf(stderr, "%s\n", msgbuff);
-      return -2;
+      msgbuff[0] = '\0';
     }
 
     /* get current open file limits */
