@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.453 2008-01-18 05:58:00 yangtse Exp $
+ * $Id: main.c,v 1.454 2008-01-19 10:30:15 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -741,7 +741,7 @@ static void help(void)
     "    --socks4 <host[:port]> SOCKS4 proxy on given host + port",
     "    --socks4a <host[:port]> SOCKS4a proxy on given host + port",
     "    --socks5 <host[:port]> SOCKS5 proxy on given host + port",
-    "    --socks5-hostname <host[:port]> SOCKS5 proxy, pass name instead of IP",
+    "    --socks5-hostname <host[:port]> SOCKS5 proxy, pass host name to proxy",
     " -Y/--speed-limit   Stop transfer if below speed-limit for 'speed-time' secs",
     " -y/--speed-time    Time needed to trig speed-limit abort. Defaults to 30",
     " -2/--sslv2         Use SSLv2 (SSL)",
