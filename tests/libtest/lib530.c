@@ -5,13 +5,16 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.14 2008-01-19 10:14:46 bagder Exp $
+ * $Id: lib530.c,v 1.15 2008-01-20 22:53:56 yangtse Exp $
  */
 
 #include "test.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#define ENABLE_CURLX_PRINTF
+#include "curlx.h"
 
 #include "testutil.h"
 
