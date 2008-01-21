@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.270 2008-01-11 14:00:47 bagder Exp $
+# $Id: configure.ac,v 1.271 2008-01-21 20:22:33 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -323,10 +323,29 @@ AC_HELP_STRING([--disable-ldap],[Disable LDAP support]),
        AC_DEFINE(CURL_DISABLE_LDAP, 1, [to disable LDAP])
        AC_SUBST(CURL_DISABLE_LDAP, [1])
        ;;
-  *)   AC_MSG_RESULT(yes)
+  *)
+       case $host in
+         *-*-cygwin*)
+           # Force no ldap. config/build process is broken for cygwin
+           AC_DEFINE(CURL_DISABLE_LDAP, 1, [to disable LDAP])
+           AC_SUBST(CURL_DISABLE_LDAP, [1])
+           AC_MSG_RESULT(no)
+           ;;
+         *)
+           AC_MSG_RESULT(yes)
+       esac
        ;;
-  esac ],
-       AC_MSG_RESULT(yes)
+  esac ],[
+       case $host in
+         *-*-cygwin*)
+           # Force no ldap. config/build process is broken for cygwin
+           AC_DEFINE(CURL_DISABLE_LDAP, 1, [to disable LDAP])
+           AC_SUBST(CURL_DISABLE_LDAP, [1])
+           AC_MSG_RESULT(no)
+           ;;
+         *)
+           AC_MSG_RESULT(yes)
+       esac ]
 )
 AC_MSG_CHECKING([whether to support ldaps])
 AC_ARG_ENABLE(ldaps,
