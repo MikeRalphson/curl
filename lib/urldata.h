@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.371 2008-01-16 12:24:00 bagder Exp $
+ * $Id: urldata.h,v 1.372 2008-01-21 23:48:58 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1194,7 +1194,6 @@ struct UrlState {
 
   bool pipe_broke; /* TRUE if the connection we were pipelined on broke
                       and we need to restart from the beginning */
-  bool cancelled; /* TRUE if the request was cancelled */
 
 #ifndef WIN32
 /* do FTP line-end conversions on most platforms */

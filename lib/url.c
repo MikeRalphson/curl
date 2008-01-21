@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.695 2008-01-16 12:24:00 bagder Exp $
+ * $Id: url.c,v 1.696 2008-01-21 23:48:58 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2477,7 +2477,7 @@ ConnectionExists(struct SessionHandle *data,
     }
 
     if(match) {
-      if(!Curl_isPipeliningEnabled(data)) {
+      if(!check->is_in_pipeline) {
         /* The check for a dead socket makes sense only in the
            non-pipelining case */
         bool dead = SocketIsDead(check->sock[FIRSTSOCKET]);

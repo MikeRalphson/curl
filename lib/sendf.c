@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.138 2008-01-08 14:52:07 bagder Exp $
+ * $Id: sendf.c,v 1.139 2008-01-21 23:48:58 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -418,11 +418,6 @@ CURLcode Curl_client_write(struct connectdata *conn,
 {
   struct SessionHandle *data = conn->data;
   size_t wrote;
-
-  if(data->state.cancelled) {
-    /* We just suck everything into a black hole */
-    return CURLE_OK;
-  }
 
   /* If reading is actually paused, we're forced to append this chunk of data
      to the already held data, but only if it is the same type as otherwise it
