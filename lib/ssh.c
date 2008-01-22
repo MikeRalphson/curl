@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.89 2008-01-15 23:19:02 bagder Exp $
+ * $Id: ssh.c,v 1.90 2008-01-22 17:26:42 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -733,7 +733,11 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         break;
       }
       else {
-        failf(data, "Failure initialising sftp session");
+        char *err_msg;
+
+        (void)libssh2_session_last_error(sshc->ssh_session,
+                                         &err_msg, NULL, 0);
+        failf(data, "Failure initializing sftp session: %s", err_msg);
         state(conn, SSH_SESSION_FREE);
         sshc->actualcode = CURLE_FAILED_INIT;
         break;
