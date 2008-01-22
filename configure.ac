@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.271 2008-01-21 20:22:33 yangtse Exp $
+# $Id: configure.ac,v 1.272 2008-01-22 14:52:54 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1865,6 +1865,7 @@ AC_CHECK_HEADERS(
         utime.h \
         sys/utime.h \
         sys/poll.h \
+        poll.h \
         sys/resource.h \
         libgen.h \
         locale.h \
@@ -2127,6 +2128,8 @@ if test "$disable_poll" = "no"; then
     AC_RUN_IFELSE([
 #ifdef HAVE_SYS_POLL_H
 #include <sys/poll.h>
+#elif defined(HAVE_POLL_H)
+#include <poll.h>
 #endif
 
   int main(void)

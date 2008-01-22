@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.454 2008-01-19 10:30:15 bagder Exp $
+ * $Id: main.c,v 1.455 2008-01-22 14:52:54 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -85,6 +85,8 @@
 
 #ifdef HAVE_SYS_POLL_H
 #include <sys/poll.h>
+#elif defined(HAVE_POLL_H)
+#include <poll.h>
 #endif
 
 #ifdef HAVE_LOCALE_H

@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,13 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.h,v 1.14 2007-11-10 04:23:15 yangtse Exp $
+ * $Id: select.h,v 1.15 2008-01-22 14:52:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
 #ifdef HAVE_SYS_POLL_H
 #include <sys/poll.h>
+#elif defined(HAVE_POLL_H)
+#include <poll.h>
 #endif
 
 /*
@@ -49,7 +51,9 @@
  * Definition of pollfd struct and constants for platforms lacking them.
  */
 
-#if !defined(HAVE_STRUCT_POLLFD) && !defined(HAVE_SYS_POLL_H)
+#if !defined(HAVE_STRUCT_POLLFD) && \
+    !defined(HAVE_SYS_POLL_H) && \
+    !defined(HAVE_POLL_H)
 
 #define POLLIN      0x01
 #define POLLPRI     0x02
