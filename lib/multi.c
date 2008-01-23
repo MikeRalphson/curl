@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.161 2008-01-21 23:48:58 bagder Exp $
+ * $Id: multi.c,v 1.162 2008-01-23 12:22:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -584,13 +584,18 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
          alive connections when this is removed */
       multi->num_alive--;
 
-    if(easy->easy_handle->state.is_in_pipeline &&
+    if(easy->easy_conn &&
+        easy->easy_handle->state.is_in_pipeline &&
         easy->state > CURLM_STATE_WAITDO &&
-        easy->state < CURLM_STATE_COMPLETED)
+        easy->state < CURLM_STATE_COMPLETED) {
       /* If the handle is in a pipeline and has started sending off its
          request but not received its reponse yet, we need to close
          connection. */
       easy->easy_conn->bits.close = TRUE;
+      /* Set connection owner so that Curl_done() closes it.
+         We can sefely do this here since connection is killed. */
+      easy->easy_conn->data = easy->easy_handle;
+    }
 
     /* The timer must be shut down before easy->multi is set to NULL,
        else the timenode will remain in the splay tree after
