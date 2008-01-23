@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.357 2008-01-14 22:02:15 bagder Exp $
+ * $Id: http.c,v 1.358 2008-01-23 22:22:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2374,7 +2374,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
           }
           co = co->next; /* next cookie please */
         }
-        Curl_cookie_freelist(store); /* free the cookie list */
+        Curl_cookie_freelist(store, FALSE); /* free the cookie list */
       }
       if(addcookies && (CURLE_OK == result)) {
         if(!count)
