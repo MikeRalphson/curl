@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.455 2008-01-22 14:52:54 yangtse Exp $
+ * $Id: main.c,v 1.456 2008-01-23 06:11:11 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -157,6 +157,18 @@ char **__crt0_glob_function (char *arg)
 }
 #endif /* __DJGPP__ */
 #endif /* MSDOS */
+
+#ifndef STDIN_FILENO
+#define STDIN_FILENO  fileno(stdin)
+#endif
+
+#ifndef STDOUT_FILENO
+#define STDOUT_FILENO  fileno(stdout)
+#endif
+
+#ifndef STDERR_FILENO
+#define STDERR_FILENO  fileno(stderr)
+#endif
 
 #define CURL_PROGRESS_STATS 0 /* default progress display */
 #define CURL_PROGRESS_BAR   1
