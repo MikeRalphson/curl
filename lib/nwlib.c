@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nwlib.c,v 1.9 2007-11-07 09:21:35 bagder Exp $
+ * $Id: nwlib.c,v 1.10 2008-01-23 02:10:40 gknauf Exp $
  ***************************************************************************/
 
 #ifdef NETWARE /* Novell NetWare */
@@ -35,8 +35,6 @@
 #include <nks/thread.h>
 #include <nks/synch.h>
 
-#include "memory.h"
-#include "memdebug.h"
 
 typedef struct
 {
