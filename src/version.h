@@ -20,12 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.h,v 1.92 2004-03-24 07:27:58 bagder Exp $
+ * $Id: version.h,v 1.93 2008-01-24 14:14:34 gknauf Exp $
  ***************************************************************************/
 
 #include <curl/curlver.h>
 
 #define CURL_NAME "curl"
+#define CURL_COPYRIGHT LIBCURL_COPYRIGHT
 #define CURL_VERSION LIBCURL_VERSION
 #define CURL_VERSION_MAJOR LIBCURL_VERSION_MAJOR
 #define CURL_VERSION_MINOR LIBCURL_VERSION_MINOR
