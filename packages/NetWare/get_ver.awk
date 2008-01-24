@@ -18,11 +18,11 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: get_ver.awk,v 1.6 2008-01-24 15:27:06 gknauf Exp $
+# * $Id: get_ver.awk,v 1.7 2008-01-24 15:39:51 gknauf Exp $
 # ***************************************************************************
 # awk script which fetches curl / ares version number and string from input
 # file and writes them to STDOUT. Here you can get an awk version for Win32:
-# http://www.gknw.net/development/prgtools/awk.zip
+# http://www.gknw.net/development/prgtools/awk-20070501.zip
 #
 BEGIN {
   if (match (ARGV[1], /curlver.h/)) {
