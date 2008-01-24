@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.h,v 1.93 2008-01-24 14:14:34 gknauf Exp $
+ * $Id: version.h,v 1.94 2008-01-24 14:15:49 gknauf Exp $
  ***************************************************************************/
 
 #include <curl/curlver.h>
