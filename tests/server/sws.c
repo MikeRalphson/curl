@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.109 2008-01-25 05:07:04 yangtse Exp $
+ * $Id: sws.c,v 1.110 2008-01-25 05:08:53 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -1000,6 +1000,16 @@ int main(int argc, char *argv[])
       logmsg("====> TCP_NODELAY failed");
     }
 #endif
+
+  /* full initialization for new request after connection */
+  memset(&req, 0, sizeof(req));
+  req.testno = DOCNUMBER_NOTHING;
+  req.open = TRUE;
+  req.auth_req = FALSE;
+  req.auth = FALSE;
+  req.digest = FALSE;
+  req.ntlm = FALSE;
+  req.pipelining = FALSE;
 
   do {
       if(get_request(msgsock, &req))
