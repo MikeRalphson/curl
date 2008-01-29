@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.25 2007-10-17 16:58:37 yangtse Exp $
+ * $Id: lib509.c,v 1.26 2008-01-29 23:10:25 bagder Exp $
  */
 
 #include "test.h"
@@ -224,6 +224,8 @@ int test(char *URL)
 
   curl_easy_setopt(p.curl, CURLOPT_SSL_VERIFYPEER, FALSE);
   curl_easy_setopt(p.curl, CURLOPT_SSL_VERIFYHOST, 1);
+
+  curl_easy_setopt(p.curl, CURLOPT_VERBOSE, 1);
 
   if ((multi = curl_multi_init()) == NULL) {
     fprintf(stderr, "curl_multi_init() failed\n");
