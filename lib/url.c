@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.696 2008-01-21 23:48:58 bagder Exp $
+ * $Id: url.c,v 1.697 2008-01-29 12:58:25 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4414,11 +4414,6 @@ CURLcode Curl_done(struct connectdata **connp,
 
   Curl_expire(data, 0); /* stop timer */
 
-  if(conn->bits.done)
-    return CURLE_OK; /* Curl_done() has already been called */
-
-  conn->bits.done = TRUE; /* called just now! */
-
   if(Curl_removeHandleFromPipeline(data, conn->recv_pipe) &&
      conn->readchannel_inuse)
     conn->readchannel_inuse = FALSE;
@@ -4426,6 +4421,16 @@ CURLcode Curl_done(struct connectdata **connp,
      conn->writechannel_inuse)
     conn->writechannel_inuse = FALSE;
   Curl_removeHandleFromPipeline(data, conn->pend_pipe);
+
+  if(conn->bits.done ||
+     (conn->send_pipe->size + conn->recv_pipe->size != 0 &&
+      !data->set.reuse_forbid &&
+      !conn->bits.close))
+    /* Stop if Curl_done() has already been called or pipeline
+       is not empty and we do not have to close connection. */
+    return CURLE_OK;
+
+  conn->bits.done = TRUE; /* called just now! */
 
   /* Cleanup possible redirect junk */
   if(data->req.newurl) {
