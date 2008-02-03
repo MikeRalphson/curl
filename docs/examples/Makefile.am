@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.47 2007-11-17 10:22:45 bagder Exp $
+# $Id: Makefile.am,v 1.48 2008-02-03 12:28:48 bagder Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -33,5 +33,5 @@ noinst_PROGRAMS = 10-at-a-time anyauthput cookie_interface \
 COMPLICATED_EXAMPLES = \
  curlgtk.c curlx.c htmltitle.cc cacertinmem.c ftpuploadresume.c \
  ghiper.c hiperfifo.c htmltidy.c multithread.c \
- opensslthreadlock.c sampleconv.c synctime.c
+ opensslthreadlock.c sampleconv.c synctime.c threaded-ssl.c
 
