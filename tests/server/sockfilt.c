@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.38 2007-10-09 23:21:29 yangtse Exp $
+ * $Id: sockfilt.c,v 1.39 2008-02-06 16:54:01 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -671,10 +671,10 @@ int main(int argc, char *argv[])
 
   pidfile = fopen(pidname, "w");
   if(pidfile) {
-    int pid = (int)getpid();
-    fprintf(pidfile, "%d\n", pid);
+    long pid = (long)getpid();
+    fprintf(pidfile, "%ld\n", pid);
     fclose(pidfile);
-    logmsg("Wrote pid %d to %s", pid, pidname);
+    logmsg("Wrote pid %ld to %s", pid, pidname);
   }
   else {
     error = ERRNO;
