@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.31 2008-02-06 16:54:01 yangtse Exp $
+ * $Id: tftpd.c,v 1.32 2008-02-06 17:35:17 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -665,7 +665,7 @@ static int validate_access(struct testcase *test,
 
   logmsg("trying to get file: %s mode %x", filename, mode);
 
-  if(!strncmp("verifiedserver", filename, 15)) {
+  if(!strncmp("verifiedserver", filename, 14)) {
     char weare[128];
     size_t count = sprintf(weare, "WE ROOLZ: %ld\r\n", (long)getpid());
 
