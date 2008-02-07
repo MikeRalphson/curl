@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.c,v 1.7 2008-01-15 23:19:02 bagder Exp $
+ * $Id: qssl.c,v 1.8 2008-02-07 22:25:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -172,17 +172,8 @@ static CURLcode Curl_qsossl_handshake(struct connectdata * conn, int sockindex)
   if(!data->set.ssl.verifyhost)
     h->exitPgm = Curl_qsossl_trap_cert;
 
-  if(data->set.connecttimeout) {
-    timeout_ms = data->set.connecttimeout;
-
-    if(data->set.timeout)
-      if(timeout_ms > data->set.timeout)
-        timeout_ms = data->set.timeout;
-    }
-  else if(data->set.timeout)
-    timeout_ms = data->set.timeout;
-  else
-    timeout_ms = DEFAULT_CONNECT_TIMEOUT;
+  /* figure out how long time we should wait at maximum */
+  timeout_ms = Curl_timeleft(conn, NULL, TRUE);
 
   /* SSL_Handshake() timeout resolution is second, so round up. */
 

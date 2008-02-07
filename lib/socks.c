@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.22 2008-01-14 19:40:10 yangtse Exp $
+ * $Id: socks.c,v 1.23 2008-02-07 22:25:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -138,18 +138,7 @@ CURLcode Curl_SOCKS4(const char *proxy_name,
   struct SessionHandle *data = conn->data;
 
   /* get timeout */
-  if(data->set.timeout && data->set.connecttimeout) {
-    if(data->set.timeout < data->set.connecttimeout)
-      timeout = data->set.timeout;
-    else
-      timeout = data->set.connecttimeout;
-  }
-  else if(data->set.timeout)
-    timeout = data->set.timeout;
-  else if(data->set.connecttimeout)
-    timeout = data->set.connecttimeout;
-  else
-    timeout = DEFAULT_CONNECT_TIMEOUT;
+  timeout = Curl_timeleft(conn, NULL, TRUE);
 
   Curl_nonblock(sock, FALSE);
 
@@ -403,18 +392,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
   }
 
   /* get timeout */
-  if(data->set.timeout && data->set.connecttimeout) {
-    if(data->set.timeout < data->set.connecttimeout)
-      timeout = data->set.timeout;
-    else
-      timeout = data->set.connecttimeout;
-  }
-  else if(data->set.timeout)
-    timeout = data->set.timeout;
-  else if(data->set.connecttimeout)
-    timeout = data->set.connecttimeout;
-  else
-    timeout = DEFAULT_CONNECT_TIMEOUT;
+  timeout = Curl_timeleft(conn, NULL, TRUE);
 
   Curl_nonblock(sock, TRUE);
 
