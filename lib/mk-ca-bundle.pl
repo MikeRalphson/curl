@@ -19,7 +19,7 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: mk-ca-bundle.pl,v 1.2 2008-02-08 01:58:11 gknauf Exp $
+# * $Id: mk-ca-bundle.pl,v 1.3 2008-02-08 02:38:12 gknauf Exp $
 # ***************************************************************************
 # This Perl script creates a fresh ca-bundle.crt file for use with libcurl. 
 # It downloads certdata.txt from Mozilla's source tree (see URL below),
@@ -36,8 +36,6 @@ use MIME::Base64;
 use LWP::UserAgent;
 
 my $url = 'http://lxr.mozilla.org/seamonkey/source/security/nss/lib/ckfw/builtins/certdata.txt?raw=1';
-my $crt = 'ca-bundle.crt';
-my $tmp = 'mytmpfile.txt';
 # If the OpenSSL commandline is not in search path you can configure it here!
 my $openssl = 'openssl';
 
@@ -45,7 +43,7 @@ getopts('hilnuv');
 
 if ($opt_h) {
   $0 =~ s/\\/\//g;
-  printf("Usage:\t%s [-i] [-l] [-n] [-u] [-v]\n", substr($0, rindex($0, '/') + 1));
+  printf("Usage:\t%s [-i] [-l] [-n] [-u] [-v] [<outputfile>]\n", substr($0, rindex($0, '/') + 1));
   print "\t-i\tprint version info about used modules\n";
   print "\t-l\tprint license info about certdata.txt\n";
   print "\t-n\tno download of certdata.txt (to use existing)\n";
@@ -62,6 +60,8 @@ if ($opt_i) {
   print ("=" x 78 . "\n");
 }
 
+my $crt = $ARGV[0] || 'ca-bundle.crt';
+my $tmp = 'mytmpfile.txt';
 my $txt = substr($url, rindex($url, '/') + 1);
 $txt =~ s/\?.*//;
 if (!$opt_n) {
