@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.36 2008-02-07 22:25:04 bagder Exp $
+ * $Id: gtls.c,v 1.37 2008-02-08 22:02:00 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -110,8 +110,10 @@ static int _Curl_gtls_init(void)
 
 int Curl_gtls_cleanup(void)
 {
-  if(gtls_inited)
+  if(gtls_inited) {
     gnutls_global_deinit();
+    gtls_inited = FALSE;
+  }
   return 1;
 }
 
