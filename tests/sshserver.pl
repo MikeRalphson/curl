@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.46 2008-02-08 13:54:02 yangtse Exp $
+# $Id: sshserver.pl,v 1.47 2008-02-08 17:32:58 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -446,7 +446,7 @@ push @cfgarr, 'RhostsRSAAuthentication no';
 push @cfgarr, 'RSAAuthentication no';
 push @cfgarr, 'ServerKeyBits 768';
 push @cfgarr, 'StrictModes no';
-push @cfgarr, "Subsystem sftp $sftpsrv -f AUTH -l $loglevel";
+push @cfgarr, "Subsystem sftp $sftpsrv";
 push @cfgarr, 'SyslogFacility AUTH';
 push @cfgarr, 'UseLogin no';
 push @cfgarr, 'X11Forwarding no';
