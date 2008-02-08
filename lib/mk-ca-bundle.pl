@@ -19,7 +19,7 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: mk-ca-bundle.pl,v 1.1 2008-02-08 01:08:25 gknauf Exp $
+# * $Id: mk-ca-bundle.pl,v 1.2 2008-02-08 01:58:11 gknauf Exp $
 # ***************************************************************************
 # This Perl script creates a fresh ca-bundle.crt file for use with libcurl. 
 # It downloads certdata.txt from Mozilla's source tree (see URL below),
@@ -41,12 +41,13 @@ my $tmp = 'mytmpfile.txt';
 # If the OpenSSL commandline is not in search path you can configure it here!
 my $openssl = 'openssl';
 
-getopts('hinuv');
+getopts('hilnuv');
 
 if ($opt_h) {
   $0 =~ s/\\/\//g;
-  printf("Usage:\t%s [-i] [-n] [-u] [-v]\n", substr($0, rindex($0, '/') + 1));
+  printf("Usage:\t%s [-i] [-l] [-n] [-u] [-v]\n", substr($0, rindex($0, '/') + 1));
   print "\t-i\tprint version info about used modules\n";
+  print "\t-l\tprint license info about certdata.txt\n";
   print "\t-n\tno download of certdata.txt (to use existing)\n";
   print "\t-u\tunlink (remove) certdata.txt after processing\n";
   print "\t-v\tbe verbose and print out processed CAs\n";
@@ -108,8 +109,10 @@ while (<TXT>) {
   if (/\*\*\*\*\* BEGIN LICENSE BLOCK \*\*\*\*\*/) {
     open(CRT, ">>$crt") or die "Couldn't open $crt: $!";
     print CRT;
+    print if ($opt_l);
     while (<TXT>) {
       print CRT;
+      print if ($opt_l);
       last if (/\*\*\*\*\* END LICENSE BLOCK \*\*\*\*\*/);
     }
     close(CRT) or die "Couldn't close $crt: $!";
@@ -117,7 +120,7 @@ while (<TXT>) {
   next if /^#/;
   next if /^\s*$/;
   chomp;
-  if (/(\$RCSfile: mk-ca-bundle.pl,v $\s+\$Revision: 1.1 $\s+\$Date: 2008-02-08 01:08:25 $)\"/) {
+  if (/^CVS_ID\s+\"(.*)\"/) {
     open(CRT, ">>$crt") or die "Couldn't open $crt: $!";
     print CRT "# $1\n";
     close(CRT) or die "Couldn't close $crt: $!";
