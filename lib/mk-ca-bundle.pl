@@ -19,7 +19,7 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: mk-ca-bundle.pl,v 1.3 2008-02-08 02:38:12 gknauf Exp $
+# * $Id: mk-ca-bundle.pl,v 1.4 2008-02-09 15:00:07 gknauf Exp $
 # ***************************************************************************
 # This Perl script creates a fresh ca-bundle.crt file for use with libcurl. 
 # It downloads certdata.txt from Mozilla's source tree (see URL below),
@@ -143,7 +143,7 @@ while (<TXT>) {
     print CRT "\n";
     print CRT "$val\n";
     print CRT ("=" x length($val) . "\n");
-    close(CRT) or die "Couldn't close $file: $!";
+    close(CRT) or die "Couldn't close $crt: $!";
     open(TMP, ">$tmp") or die "Couldn't open $tmp: $!";
     print TMP "$val\n";
     print TMP "-----BEGIN CERTIFICATE-----\n";
