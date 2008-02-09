@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.59 2008-02-08 11:12:54 bagder Exp $
+# $Id: Makefile.am,v 1.60 2008-02-09 15:07:35 gknauf Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -134,5 +134,5 @@ uninstall-hook:
 
 ca-bundle: lib/mk-ca-bundle.pl
 	@echo "generate a fresh ca-bundle.crt"
-	@mv lib/ca-bundle.crt lib/ca-bundle.crt.old
+	@-mv -vbVt lib/ca-bundle.crt lib/ca-bundle.crt.old
 	@perl $< -l -u lib/ca-bundle.crt
