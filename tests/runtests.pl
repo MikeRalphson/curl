@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.285 2008-02-08 13:54:02 yangtse Exp $
+# $Id: runtests.pl,v 1.286 2008-02-10 02:52:17 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -702,9 +702,15 @@ sub verifysftp {
         logmsg "RUN: SFTP server cannot find $sftpexe\n";
         return -1;
     }
+    # Find out ssh client canonical file name
+    my $ssh = find_ssh();
+    if(!$ssh) {
+        logmsg "RUN: SFTP server cannot find $sshexe\n";
+        return -1;
+    }
     # Connect to sftp server, authenticate and run a remote pwd
     # command using our generated configuration and key files
-    my $cmd = "$sftp -b $sftpcmds -F $sftpconfig $ip > $sftplog 2>&1";
+    my $cmd = "$sftp -b $sftpcmds -F $sftpconfig -S $ssh $ip > $sftplog 2>&1";
     my $res = runclient($cmd);
     # Search for pwd command response in log file
     if(open(SFTPLOGFILE, "<$sftplog")) {
@@ -756,7 +762,6 @@ my %protofunc = ('http' => \&verifyhttp,
                  'ftps' => \&verifyftp,
                  'tftp' => \&verifyftp,
                  'ssh' => \&verifyssh,
-                 'sftp' => \&verifysftp,
                  'socks' => \&verifysocks);
 
 sub verifyserver {
@@ -1179,9 +1184,9 @@ sub runsshserver {
 
     # once it is known that the ssh server is alive, sftp server verification
     # is performed actually connecting to it, authenticating and performing a
-    # very simple remote command.
+    # very simple remote command.  This verification is tried only one time.
 
-    if(!verifyserver("sftp",$ip,$port)) {
+    if(verifysftp("sftp",$ip,$port) < 1) {
         logmsg "RUN: SFTP server failed verification\n";
         # failed to talk to it properly. Kill the server and return failure
         display_sftplog();
