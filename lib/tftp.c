@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.66 2008-02-07 22:25:04 bagder Exp $
+ * $Id: tftp.c,v 1.67 2008-02-11 18:27:36 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -191,8 +191,6 @@ const struct Curl_handler Curl_handler_tftp = {
  **********************************************************/
 static void tftp_set_timeouts(tftp_state_data_t *state)
 {
-
-  struct SessionHandle *data = state->conn->data;
   time_t maxtime, timeout;
   long timeout_ms;
 
@@ -248,7 +246,8 @@ static void tftp_set_timeouts(tftp_state_data_t *state)
   if(state->retry_time<1)
     state->retry_time=1;
 
-  infof(data, "set timeouts for state %d; Total %d, retry %d maxtry %d\n",
+  infof(state->conn->data,
+  	"set timeouts for state %d; Total %d, retry %d maxtry %d\n",
         state->state, (state->max_time-state->start_time),
         state->retry_time, state->retry_max);
 }
