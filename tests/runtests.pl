@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.286 2008-02-10 02:52:17 yangtse Exp $
+# $Id: runtests.pl,v 1.287 2008-02-11 20:10:36 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1805,10 +1805,6 @@ sub singletest {
     }
 
     if(!$why) {
-        $why = serverfortest($testnum);
-    }
-
-    if(!$why) {
         my @keywords = getpart("info", "keywords");
         my $k;
         for $k (@keywords) {
@@ -1817,6 +1813,10 @@ sub singletest {
             	$why = "disabled by keyword";
             }
         }
+    }
+
+    if(!$why) {
+        $why = serverfortest($testnum);
     }
 
     if(!$why) {
