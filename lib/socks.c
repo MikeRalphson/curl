@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.23 2008-02-07 22:25:04 bagder Exp $
+ * $Id: socks.c,v 1.24 2008-02-11 22:03:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -139,6 +139,12 @@ CURLcode Curl_SOCKS4(const char *proxy_name,
 
   /* get timeout */
   timeout = Curl_timeleft(conn, NULL, TRUE);
+
+  if(timeout < 0) {
+    /* time-out, bail out, go home */
+    failf(data, "Connection time-out");
+    return CURLE_OPERATION_TIMEDOUT;
+  }
 
   Curl_nonblock(sock, FALSE);
 
@@ -393,6 +399,12 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
 
   /* get timeout */
   timeout = Curl_timeleft(conn, NULL, TRUE);
+
+  if(timeout < 0) {
+    /* time-out, bail out, go home */
+    failf(data, "Connection time-out");
+    return CURLE_OPERATION_TIMEDOUT;
+  }
 
   Curl_nonblock(sock, TRUE);
 
