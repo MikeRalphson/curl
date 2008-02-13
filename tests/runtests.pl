@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.288 2008-02-12 13:47:56 yangtse Exp $
+# $Id: runtests.pl,v 1.289 2008-02-13 06:06:57 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -911,7 +911,7 @@ sub runhttpsserver {
         $doesntrun{$pidfile} = 1;
         return (0,0);
     }
-    $pid2 = $pid3;
+    # Here pid3 is actually the pid returned by the unsecure-http server.
 
     if($verbose) {
         logmsg "RUN: HTTPS server is now running PID $httpspid\n";
@@ -1053,7 +1053,7 @@ sub runftpsserver {
         $doesntrun{$pidfile} = 1;
         return (0,0);
     }
-    $pid2 = $pid3;
+    # Here pid3 is actually the pid returned by the unsecure-ftp server.
 
     if($verbose) {
         logmsg "RUN: FTPS server is now running PID $ftpspid\n";
