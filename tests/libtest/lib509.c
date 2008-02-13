@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib509.c,v 1.26 2008-01-29 23:10:25 bagder Exp $
+ * $Id: lib509.c,v 1.27 2008-02-13 21:36:24 bagder Exp $
  */
 
 #include "test.h"
@@ -331,11 +331,14 @@ int test(char *URL)
   return i;
 }
 #endif /* YASSL_VERSION */
-#else /* USE_SSLEAY */
+#endif /* USE_SSLEAY */
+
+#if !defined(USE_SSLEAY) || defined(YASSL_VERSION)
 
 int test(char *URL)
 {
   (void)URL;
+
   if (curl_global_init(CURL_GLOBAL_ALL) != CURLE_OK) {
     fprintf(stderr, "curl_global_init() failed\n");
     return TEST_ERR_MAJOR_BAD;
