@@ -19,7 +19,7 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: mk-ca-bundle.pl,v 1.9 2008-02-15 00:26:26 gknauf Exp $
+# * $Id: mk-ca-bundle.pl,v 1.10 2008-02-15 00:41:54 gknauf Exp $
 # ***************************************************************************
 # This Perl script creates a fresh ca-bundle.crt file for use with libcurl. 
 # It downloads certdata.txt from Mozilla's source tree (see URL below),
@@ -41,7 +41,7 @@ my $url = 'http://lxr.mozilla.org/seamonkey/source/security/nss/lib/ckfw/builtin
 # If the OpenSSL commandline is not in search path you can configure it here!
 my $openssl = 'openssl';
 
-my $version = '$Revision: 1.9 $';
+my $version = $1 if ('$Revision: 1.10 $' =~ /\s(\d+\.\d+)\s/);
 
 getopts('bhilnqtuv');
 
