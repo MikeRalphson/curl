@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.90 2008-01-22 17:26:42 yangtse Exp $
+ * $Id: ssh.c,v 1.91 2008-02-15 17:00:56 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -628,6 +628,10 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
       state(conn, SSH_AUTH_DONE);
     }
     else {
+      char *err_msg;
+      (void)libssh2_session_last_error(sshc->ssh_session,
+                                       &err_msg, NULL, 0);
+      infof(data, "SSH public key authentication failed: %s\n", err_msg);
       state(conn, SSH_AUTH_PASS_INIT);
     }
     break;
