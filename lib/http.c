@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.360 2008-01-31 12:04:33 bagder Exp $
+ * $Id: http.c,v 1.361 2008-02-15 08:56:06 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2182,8 +2182,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
      (conn->bits.httpproxy && !conn->bits.tunnel_proxy) )?
     "Pragma: no-cache\r\n":NULL;
 
-  if(!checkheaders(data, "Accept:"))
-    http->p_accept = "Accept: */*\r\n";
+  http->p_accept = checkheaders(data, "Accept:")?NULL:"Accept: */*\r\n";
 
   if(( (HTTPREQ_POST == httpreq) ||
        (HTTPREQ_POST_FORM == httpreq) ||
