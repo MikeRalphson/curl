@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.699 2008-02-03 12:31:35 bagder Exp $
+ * $Id: url.c,v 1.700 2008-02-15 21:38:54 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3682,7 +3682,8 @@ static CURLcode CreateConnection(struct SessionHandle *data,
       result = setup_range(data);
       if(result) {
         DEBUGASSERT(conn->handler->done);
-        conn->handler->done(conn, result, FALSE);
+        /* we ignore the return code for the protocol-specific DONE */
+        (void)conn->handler->done(conn, result, FALSE);
         return result;
       }
 
