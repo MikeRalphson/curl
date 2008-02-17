@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.39 2008-02-06 16:54:01 yangtse Exp $
+ * $Id: sockfilt.c,v 1.40 2008-02-17 04:36:08 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -180,6 +180,13 @@ static int juggle(curl_socket_t *sockfdp,
     test 1003 which tests exceedingly large server response lines */
   unsigned char buffer[17010];
   char data[16];
+
+#ifdef HAVE_GETPPID
+  /* As a last resort, quit if sockfilt process becomes orphan. Just in case
+     parent ftpserver process has died without killing its sockfilt children */
+  if(getppid() <= 1)
+    return FALSE;
+#endif
 
   timeout.tv_sec = 120;
   timeout.tv_usec = 0;
