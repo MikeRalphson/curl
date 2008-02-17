@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.164 2008-02-03 12:31:35 bagder Exp $
+ * $Id: multi.c,v 1.165 2008-02-17 13:38:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -615,8 +615,11 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
        (easy->easy_conn->data == easy->easy_handle)) {
 
       /* Curl_done() clears the conn->data field to lose the association
-         between the easy handle and the connection */
-      Curl_done(&easy->easy_conn, easy->result, premature);
+         between the easy handle and the connection
+
+         Note that this ignores the return code simply because there's nothing
+         really useful to do with it anyway! */
+      (void)Curl_done(&easy->easy_conn, easy->result, premature);
 
       if(easy->easy_conn)
         /* the connection is still alive, set back the association to enable
