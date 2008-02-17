@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.362 2008-02-17 13:40:35 bagder Exp $
+ * $Id: http.c,v 1.363 2008-02-17 13:49:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1832,7 +1832,7 @@ CURLcode Curl_http_done(struct connectdata *conn,
   if(status != CURLE_OK)
     return (status);
 
-  if(!premature && /* this check is pointless is the DONE is done before the
+  if(!premature && /* this check is pointless when DONE is called before the
                       entire operation is complete */
      !conn->bits.retry &&
      ((http->readbytecount +
