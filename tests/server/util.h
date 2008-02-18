@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.14 2007-07-12 01:07:49 gknauf Exp $
+ * $Id: util.h,v 1.15 2008-02-18 20:13:30 yangtse Exp $
  ***************************************************************************/
 
 void logmsg(const char *msg, ...);
@@ -49,6 +49,6 @@ void win32_cleanup(void);
 /* returns the path name to the test case file */
 char *test2file(long testno);
 
-void go_sleep(long ms);
+int wait_ms(int timeout_ms);
 
 #endif  /* __SERVER_UTIL_H */
