@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.243 2008-01-25 22:35:06 bagder Exp $
+.\" * $Id: curl.1,v 1.244 2008-02-18 11:40:52 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "5 Jan 2008" "Curl 7.18.0" "Curl Manual"
@@ -361,9 +361,10 @@ DER and ENG are recognized types.  If not specified, PEM is assumed.
 
 If this option is used several times, the last one will be used.
 .IP "--cacert <CA certificate>"
-(SSL) Tells curl to use the specified certificate file to verify the
-peer. The file may contain multiple CA certificates. The certificate(s) must
-be in PEM format.
+(SSL) Tells curl to use the specified certificate file to verify the peer. The
+file may contain multiple CA certificates. The certificate(s) must be in PEM
+format. Normally curl is built to use a default file for this, so this option
+is typically used to alter that default file.
 
 curl recognizes the environment variable named 'CURL_CA_BUNDLE' if that is
 set, and uses the given path as a path to a CA cert bundle. This option
