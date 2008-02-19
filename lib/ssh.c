@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.93 2008-02-19 15:07:50 yangtse Exp $
+ * $Id: ssh.c,v 1.94 2008-02-19 17:25:19 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -277,20 +277,20 @@ static CURLcode libssh2_session_error_to_CURLE(int err)
 
 static LIBSSH2_ALLOC_FUNC(libssh2_malloc)
 {
+  (void)abstract; /* arg not used */
   return malloc(count);
-  (void)abstract;
 }
 
 static LIBSSH2_REALLOC_FUNC(libssh2_realloc)
 {
+  (void)abstract; /* arg not used */
   return realloc(ptr, count);
-  (void)abstract;
 }
 
 static LIBSSH2_FREE_FUNC(libssh2_free)
 {
+  (void)abstract; /* arg not used */
   free(ptr);
-  (void)abstract;
 }
 
 /*
