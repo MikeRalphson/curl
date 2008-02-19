@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.92 2008-02-18 13:05:46 yangtse Exp $
+ * $Id: ssh.c,v 1.93 2008-02-19 15:07:50 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -233,6 +233,9 @@ static CURLcode sftp_libssh2_error_to_CURLE(unsigned long err)
   switch (err) {
     case LIBSSH2_FX_OK:
       return CURLE_OK;
+
+    case LIBSSH2_ERROR_ALLOC:
+      return CURLE_OUT_OF_MEMORY;
 
     case LIBSSH2_FX_NO_SUCH_FILE:
     case LIBSSH2_FX_NO_SUCH_PATH:
@@ -1206,7 +1209,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         failf(data, "Upload failed: %s", sftp_libssh2_strerror(err));
         if(sshc->secondCreateDirs) {
           state(conn, SSH_SFTP_CLOSE);
-          sshc->actualcode = err;
+          sshc->actualcode = sftp_libssh2_error_to_CURLE(err);
           break;
         }
         else if(((err == LIBSSH2_FX_NO_SUCH_FILE) ||
@@ -1415,7 +1418,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
     }
     else if(sshc->readdir_len <= 0) {
       err = libssh2_sftp_last_error(sshc->sftp_session);
-      sshc->actualcode = err;
+      sshc->actualcode = sftp_libssh2_error_to_CURLE(err);
       failf(data, "Could not open remote file for reading: %s :: %d",
             sftp_libssh2_strerror(err),
             libssh2_session_last_errno(sshc->ssh_session));
@@ -1647,10 +1650,9 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
 
         ssh_err = libssh2_session_last_error(sshc->ssh_session,
                                              &err_msg, NULL, 0);
-        err = libssh2_session_error_to_CURLE(ssh_err);
         failf(conn->data, "%s", err_msg);
         state(conn, SSH_SCP_CHANNEL_FREE);
-        sshc->actualcode = err;
+        sshc->actualcode = libssh2_session_error_to_CURLE(ssh_err);
         break;
       }
     }
@@ -1694,10 +1696,9 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
 
         ssh_err = libssh2_session_last_error(sshc->ssh_session,
                                              &err_msg, NULL, 0);
-        err = libssh2_session_error_to_CURLE(ssh_err);
         failf(conn->data, "%s", err_msg);
         state(conn, SSH_SCP_CHANNEL_FREE);
-        sshc->actualcode = err;
+        sshc->actualcode = libssh2_session_error_to_CURLE(ssh_err);
         break;
       }
     }
