@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.10 2008-02-19 16:13:52 gknauf Exp $
+ * $Id: ftpupload.c,v 1.11 2008-02-19 16:23:03 gknauf Exp $
  */
 
 #include <stdio.h>
@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   static const char buf_2 [] = "RNTO " RENAME_FILE_TO;
 
   /* get the file size of the local file */
-  if (stat(LOCAL_FILE, &file_info)) {
+  if(stat(LOCAL_FILE, &file_info)) {
     printf("Couldnt open '%s': %s\n", LOCAL_FILE, strerror(errno));
     exit(1);
   }
