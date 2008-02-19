@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.192 2008-02-07 22:25:04 bagder Exp $
+ * $Id: ssluse.c,v 1.193 2008-02-19 23:10:17 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -1323,6 +1323,10 @@ ossl_connect_step1(struct connectdata *conn,
 
   */
   SSL_CTX_set_options(connssl->ctx, SSL_OP_ALL);
+
+  /* disable SSLv2 in the default case (i.e. allow SSLv3 and TLSv1) */
+  if(data->set.ssl.version == CURL_SSLVERSION_DEFAULT)
+    SSL_CTX_set_options(connssl->ctx, SSL_OP_NO_SSLv2);
 
 #if 0
   /*

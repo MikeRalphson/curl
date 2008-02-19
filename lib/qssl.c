@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.c,v 1.9 2008-02-11 22:03:31 bagder Exp $
+ * $Id: qssl.c,v 1.10 2008-02-19 23:10:17 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -90,7 +90,7 @@ static CURLcode Curl_qsossl_init_session(struct SessionHandle * data)
   memset((char *) &initappstr, 0, sizeof initappstr);
   initappstr.applicationID = certname;
   initappstr.applicationIDLen = strlen(certname);
-  initappstr.protocol = SSL_VERSION_CURRENT;
+  initappstr.protocol = TLSV1_SSLV3;
   initappstr.sessionType = SSL_REGISTERED_AS_CLIENT;
   rc = SSL_Init_Application(&initappstr);
 
@@ -190,7 +190,7 @@ static CURLcode Curl_qsossl_handshake(struct connectdata * conn, int sockindex)
 
   default:
   case CURL_SSLVERSION_DEFAULT:
-    h->protocol = SSL_VERSION_CURRENT;
+    h->protocol = TLSV1_SSLV3;
     break;
 
   case CURL_SSLVERSION_TLSv1:
