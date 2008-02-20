@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpupload.c,v 1.12 2008-02-20 12:33:45 gknauf Exp $
+ * $Id: ftpupload.c,v 1.13 2008-02-20 12:36:35 gknauf Exp $
  */
 
 #include <stdio.h>
@@ -33,10 +33,9 @@
 #define RENAME_FILE_TO  "renamed-and-fine.txt"
 
 /* NOTE: if you want this example to work on Windows with libcurl as a
-   DLL, you MUST also provide a read callback with
-   CURLOPT_READFUNCTION. Failing to do so will give you a crash since a
-   DLL may not use the variable's memory when passed in to it from an app
-   like this. */
+   DLL, you MUST also provide a read callback with CURLOPT_READFUNCTION.
+   Failing to do so will give you a crash since a DLL may not use the
+   variable's memory when passed in to it from an app like this. */
 static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
   /* in real-world cases, this would probably get this data differently
