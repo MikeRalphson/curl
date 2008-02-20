@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.42 2008-02-20 09:56:26 bagder Exp $
+ * $Id: gtls.c,v 1.43 2008-02-20 10:01:28 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -501,7 +501,7 @@ Curl_gtls_connect(struct connectdata *conn,
   ptr = gnutls_mac_get_name(gnutls_mac_get(session));
   infof(data, "\t MAC: %s\n", ptr);
 
-  connssl->state = ssl_connection_complete;
+  conn->ssl[sockindex].state = ssl_connection_complete;
 
   if(!ssl_sessionid) {
     /* this session was not previously in the cache, add it now */
