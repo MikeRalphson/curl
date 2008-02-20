@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.701 2008-02-17 13:43:32 bagder Exp $
+ * $Id: url.c,v 1.702 2008-02-20 08:28:02 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1481,8 +1481,6 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     result = setstropt(&data->set.str[STRING_SET_URL],
                             va_arg(param, char *));
     data->change.url = data->set.str[STRING_SET_URL];
-    if(data->change.url)
-      data->change.url_changed = TRUE;
     break;
   case CURLOPT_PORT:
     /*

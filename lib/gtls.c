@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.40 2008-02-16 13:44:23 bagder Exp $
+ * $Id: gtls.c,v 1.41 2008-02-20 08:28:02 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -230,7 +230,9 @@ Curl_gtls_connect(struct connectdata *conn,
   void *ssl_sessionid;
   size_t ssl_idsize;
 
-  if(!gtls_inited) _Curl_gtls_init();
+  if(!gtls_inited)
+    _Curl_gtls_init();
+
   /* GnuTLS only supports TLSv1 (and SSLv3?) */
   if(data->set.ssl.version == CURL_SSLVERSION_SSLv2) {
     failf(data, "GnuTLS does not support SSLv2");
