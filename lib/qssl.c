@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.c,v 1.10 2008-02-19 23:10:17 gknauf Exp $
+ * $Id: qssl.c,v 1.11 2008-02-20 09:56:26 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -258,8 +258,11 @@ CURLcode Curl_qsossl_connect(struct connectdata * conn, int sockindex)
       SSL_Destroy(connssl->handle);
       connssl->handle = NULL;
       connssl->use = FALSE;
+      connssl->state = ssl_connection_none;
     }
   }
+  if (rc == CURLE_OK)
+    connssl->state = ssl_connection_complete;
 
   return rc;
 }

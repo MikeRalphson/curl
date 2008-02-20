@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.375 2008-02-20 08:28:02 bagder Exp $
+ * $Id: urldata.h,v 1.376 2008-02-20 09:56:27 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -168,11 +168,19 @@ typedef enum {
   ssl_connect_done
 } ssl_connect_state;
 
+typedef enum {
+  ssl_connection_none,
+  ssl_connection_negotiating,
+  ssl_connection_complete
+} ssl_connection_state;
+
 /* struct for data related to each SSL connection */
 struct ssl_connect_data {
-  bool use;        /* use ssl encrypted communications TRUE/FALSE, not
-                      necessarily using it atm but at least asked to or
-                      meaning to use it */
+  /* Use ssl encrypted communications TRUE/FALSE, not necessarily using it atm
+     but at least asked to or meaning to use it. See 'state' for the exact
+     current state of the connection. */
+  bool use;
+  ssl_connection_state state;
 #ifdef USE_SSLEAY
   /* these ones requires specific SSL-types */
   SSL_CTX* ctx;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.16 2008-02-19 23:10:17 gknauf Exp $
+ * $Id: nss.c,v 1.17 2008-02-20 09:56:26 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1021,6 +1021,8 @@ CURLcode Curl_nss_connect(struct connectdata * conn, int sockindex)
       curlerr = CURLE_SSL_CACERT;
     goto error;
   }
+
+  connssl->state = ssl_connection_complete;
 
   display_conn_info(conn, connssl->handle);
 

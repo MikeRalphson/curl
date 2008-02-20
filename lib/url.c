@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.702 2008-02-20 08:28:02 bagder Exp $
+ * $Id: url.c,v 1.703 2008-02-20 09:56:26 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2439,10 +2439,17 @@ ConnectionExists(struct SessionHandle *data,
              ssl options as well */
           if(!Curl_ssl_config_matches(&needle->ssl_config,
                                       &check->ssl_config)) {
-            infof(data,
-                  "Connection #%ld has different SSL parameters, "
-                  "can't reuse\n",
-                  check->connectindex );
+            DEBUGF(infof(data,
+                         "Connection #%ld has different SSL parameters, "
+                         "can't reuse\n",
+                         check->connectindex));
+            continue;
+          }
+          else if(check->ssl[FIRSTSOCKET].state != ssl_connection_complete) {
+            DEBUGF(infof(data,
+                         "Connection #%ld has not started ssl connect, "
+                         "can't reuse\n",
+                         check->connectindex));
             continue;
           }
         }

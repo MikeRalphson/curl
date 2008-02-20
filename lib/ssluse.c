@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.193 2008-02-19 23:10:17 gknauf Exp $
+ * $Id: ssluse.c,v 1.194 2008-02-20 09:56:26 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1737,7 +1737,8 @@ ossl_connect_common(struct connectdata *conn,
         connssl->connecting_state?sockfd:CURL_SOCKET_BAD;
 
       while(1) {
-        int what = Curl_socket_ready(readfd, writefd, nonblocking?0:(int)timeout_ms);
+        int what = Curl_socket_ready(readfd, writefd,
+                                     nonblocking?0:(int)timeout_ms);
         if(what > 0)
           /* readable or writable, go loop in the outer loop */
           break;
@@ -1775,11 +1776,11 @@ ossl_connect_common(struct connectdata *conn,
   }
 
   if(ssl_connect_done==connssl->connecting_state) {
+    connssl->state = ssl_connection_complete;
     *done = TRUE;
   }
-  else {
+  else
     *done = FALSE;
-  }
 
   /* Reset our connect state machine */
   connssl->connecting_state = ssl_connect_1;
