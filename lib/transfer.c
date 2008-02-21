@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.383 2008-02-20 08:28:02 bagder Exp $
+ * $Id: transfer.c,v 1.384 2008-02-21 17:52:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2389,8 +2389,12 @@ CURLcode Curl_perform(struct SessionHandle *data)
         if(CURLE_OK == res)
           res = res2;
       }
-      else
-        /* Curl_do() failed, clean up left-overs in the done-call */
+      else if(conn)
+        /* Curl_do() failed, clean up left-overs in the done-call, but note
+           that at some cases the conn pointer is NULL when Curl_do() failed
+           and the connection cache is very small so only call Curl_done() if
+           conn is still "alive".
+        */
         res2 = Curl_done(&conn, res, FALSE);
 
       /*
