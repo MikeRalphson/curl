@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.703 2008-02-20 09:56:26 bagder Exp $
+ * $Id: url.c,v 1.704 2008-02-21 12:28:45 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4392,8 +4392,13 @@ CURLcode Curl_done(struct connectdata **connp,
                    bool premature)
 {
   CURLcode result;
-  struct connectdata *conn = *connp;
-  struct SessionHandle *data = conn->data;
+  struct connectdata *conn;
+  struct SessionHandle *data;
+
+  DEBUGASSERT(*connp);
+
+  conn = *connp;
+  data = conn->data;
 
   Curl_expire(data, 0); /* stop timer */
 
