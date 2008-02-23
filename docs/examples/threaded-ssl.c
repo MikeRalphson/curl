@@ -5,23 +5,29 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: threaded-ssl.c,v 1.1 2008-02-03 12:28:48 bagder Exp $
+ * $Id: threaded-ssl.c,v 1.2 2008-02-23 23:00:24 bagder Exp $
  *
  * A multi-threaded example that uses pthreads and fetches 4 remote files at
- * once over HTTPS. The lock callbacks and stuff assume OpenSSL so far.
- * Should be expanded to do optional GnuTLS style locking.
+ * once over HTTPS. The lock callbacks and stuff assume OpenSSL or GnuTLS
+ * (libgcrypt) so far.
  *
- * OpenSSL docs for this: http://www.openssl.org/docs/crypto/threads.html
+ * OpenSSL docs for this:
+ *   http://www.openssl.org/docs/crypto/threads.html
+ * gcrypt docs for this:
+ *   http://gnupg.org/documentation/manuals/gcrypt/Multi_002dThreading.html
  */
+
+#define USE_OPENSSL /* or USE_GNUTLS accordingly */
 
 #include <stdio.h>
 #include <pthread.h>
 #include <curl/curl.h>
-#include <openssl/crypto.h>
 
 /* we have this global to let the callback get easy access to it */
 static pthread_mutex_t *lockarray;
 
+#ifdef USE_OPENSSL
+#include <openssl/crypto.h>
 static void lock_callback(int mode, int type, char *file, int line)
 {
   (void)file;
@@ -66,6 +72,21 @@ static void kill_locks(void)
 
   OPENSSL_free(lockarray);
 }
+#endif
+
+#ifdef USE_GNUTLS
+#include <gcrypt.h>
+#include <errno.h>
+
+GCRY_THREAD_OPTION_PTHREAD_IMPL;
+
+void init_locks(void)
+{
+  gcry_control(GCRYCTL_SET_THREAD_CBS);
+}
+
+#define kill_locks()
+#endif
 
 /* List of URLs to fetch.*/
 const char *urls[]= {
