@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.43 2008-02-20 10:01:28 bagder Exp $
+ * $Id: gtls.c,v 1.44 2008-02-25 07:51:39 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -233,7 +233,7 @@ Curl_gtls_connect(struct connectdata *conn,
   if(!gtls_inited)
     _Curl_gtls_init();
 
-  /* GnuTLS only supports TLSv1 (and SSLv3?) */
+  /* GnuTLS only supports SSLv3 and TLSv1 */
   if(data->set.ssl.version == CURL_SSLVERSION_SSLv2) {
     failf(data, "GnuTLS does not support SSLv2");
     return CURLE_SSL_CONNECT_ERROR;
@@ -279,6 +279,13 @@ Curl_gtls_connect(struct connectdata *conn,
   rc = gnutls_set_default_priority(session);
   if(rc < 0)
     return CURLE_SSL_CONNECT_ERROR;
+
+  if(data->set.ssl.version == CURL_SSLVERSION_SSLv3) {
+    int protocol_priority[] = { GNUTLS_SSL3, 0 };
+    gnutls_protocol_set_priority(session, protocol_priority);
+    if(rc < 0)
+      return CURLE_SSL_CONNECT_ERROR;
+  }
 
   /* Sets the priority on the certificate types supported by gnutls. Priority
      is higher for types specified before others. After specifying the types
