@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.20 2008-02-26 15:06:44 yangtse Exp $
+ * $Id: util.c,v 1.21 2008-02-26 23:06:15 gknauf Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -236,5 +236,5 @@ bool write_pidfile(const char *filename)
   fprintf(pidfile, "%ld\n", pid);
   fclose(pidfile);
   logmsg("Wrote pid %ld to %s", pid, filename);
-  return true;
+  return TRUE;
 }
