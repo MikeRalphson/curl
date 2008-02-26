@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.15 2008-02-18 20:13:30 yangtse Exp $
+ * $Id: util.h,v 1.16 2008-02-26 15:06:44 yangtse Exp $
  ***************************************************************************/
 
 void logmsg(const char *msg, ...);
@@ -50,5 +50,7 @@ void win32_cleanup(void);
 char *test2file(long testno);
 
 int wait_ms(int timeout_ms);
+
+bool write_pidfile(const char *filename);
 
 #endif  /* __SERVER_UTIL_H */
