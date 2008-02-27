@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib552.c,v 1.2 2008-01-04 15:39:06 yangtse Exp $
+ * $Id: lib552.c,v 1.3 2008-02-27 09:06:15 bagder Exp $
  *
  * argv1 = URL
  * argv2 = proxy with embedded user+password
@@ -67,7 +67,7 @@ void dump(const char *text,
 
 static
 int my_trace(CURL *handle, curl_infotype type,
-             unsigned char *data, size_t size,
+             char *data, size_t size,
              void *userp)
 {
   struct data *config = (struct data *)userp;
@@ -100,7 +100,7 @@ int my_trace(CURL *handle, curl_infotype type,
     break;
   }
 
-  dump(text, stderr, data, size, config->trace_ascii);
+  dump(text, stderr, (unsigned char *)data, size, config->trace_ascii);
   return 0;
 }
 
