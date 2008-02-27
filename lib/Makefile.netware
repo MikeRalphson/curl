@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.80 2008-02-26 21:41:19 gknauf Exp $
+# $Id: Makefile.netware,v 1.81 2008-02-27 01:36:01 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -80,6 +80,7 @@ PERL	= perl
 AWK	= awk
 YACC	= bison -y
 CP	= cp -afv
+MKDIR	= mkdir
 # RM	= rm -f
 # if you want to mark the target as MTSAFE you will need a tool for
 # generating the xdc data for the linker; here's a minimal tool:
@@ -258,11 +259,8 @@ distclean: clean
 	-$(RM) $(TARGET).$(LIBEXT) $(TARGET).nlm
 	-$(RM) certdata.txt ca-bundle.crt
 
-$(INSTDIR):
-	@mkdir $@
-
-$(OBJDIR):
-	@mkdir $@
+$(OBJDIR) $(INSTDIR):
+	@$(MKDIR) $@
 
 $(TARGET).$(LIBEXT): $(OBJS)
 	@echo Creating $@

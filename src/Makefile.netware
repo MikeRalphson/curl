@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.71 2008-02-26 21:42:38 gknauf Exp $
+# $Id: Makefile.netware,v 1.72 2008-02-27 01:36:01 gknauf Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -80,6 +80,7 @@ PERL	= perl
 # http://www.gknw.net/development/prgtools/awk-20070501.zip
 AWK	= awk
 CP	= cp -afv
+MKDIR	= mkdir
 # RM	= rm -f
 # if you want to mark the target as MTSAFE you will need a tool for
 # generating the xdc data for the linker; here's a minimal tool:
@@ -247,11 +248,8 @@ endif
 distclean: clean
 	-$(RM) $(TARGET).nlm
 
-$(INSTDIR):
-	@mkdir $@
-
-$(OBJDIR):
-	@mkdir $@
+$(OBJDIR) $(INSTDIR):
+	@$(MKDIR) $@
 
 $(TARGET).nlm: $(OBJS) $(OBJX) $(OBJDIR)/$(TARGET).def $(XDCDATA)
 	@echo Linking $@
