@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.22 2008-02-28 00:55:06 yangtse Exp $
+ * $Id: util.c,v 1.23 2008-02-28 09:38:32 yangtse Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -218,7 +218,7 @@ int wait_ms(int timeout_ms)
   return r;
 }
 
-bool write_pidfile(const char *filename)
+int write_pidfile(const char *filename)
 {
   FILE *pidfile;
   long pid;
@@ -227,10 +227,10 @@ bool write_pidfile(const char *filename)
   pidfile = fopen(filename, "w");
   if(!pidfile) {
     logmsg("Couldn't write pid file: %s %s", filename, strerror(ERRNO));
-    return FALSE;
+    return 0; /* fail */
   }
   fprintf(pidfile, "%ld\n", pid);
   fclose(pidfile);
   logmsg("Wrote pid %ld to %s", pid, filename);
-  return TRUE;
+  return 1; /* success */
 }
