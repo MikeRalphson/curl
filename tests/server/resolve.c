@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2006, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.7 2006-10-11 16:01:20 yangtse Exp $
+ * $Id: resolve.c,v 1.8 2008-02-28 00:55:06 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -32,16 +32,9 @@
  */
 #include "setup.h" /* portability help from the lib directory */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
-#include <time.h>
-#include <ctype.h>
-#include <sys/time.h>
-#include <sys/types.h>
-
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

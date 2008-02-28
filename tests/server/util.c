@@ -18,17 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.21 2008-02-26 23:06:15 gknauf Exp $
+ * $Id: util.c,v 1.22 2008-02-28 00:55:06 yangtse Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
-#include <sys/types.h>
-
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

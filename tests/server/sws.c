@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.115 2008-02-26 15:06:44 yangtse Exp $
+ * $Id: sws.c,v 1.116 2008-02-28 00:55:06 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -29,16 +29,9 @@
  */
 #include "setup.h" /* portability help from the lib directory */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
-#include <time.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <ctype.h>
-
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif

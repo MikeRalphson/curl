@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.47 2008-02-27 14:54:18 yangtse Exp $
+ * $Id: sockfilt.c,v 1.48 2008-02-28 00:55:06 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -48,16 +48,9 @@
  */
 #include "setup.h" /* portability help from the lib directory */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
-#include <time.h>
-#include <ctype.h>
-#include <sys/time.h>
-#include <sys/types.h>
-
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
