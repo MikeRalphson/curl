@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.275 2008-02-18 11:35:12 bagder Exp $
+# $Id: configure.ac,v 1.276 2008-02-29 17:13:40 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1750,6 +1750,9 @@ if test "x$RECENTAIX" = "xyes"; then
          dnl the optimizer assumes that pointers can only point to
          dnl an object of the same type.
          CFLAGS="$CFLAGS -qnoansialias"
+         dnl Force AIX xlc to stop after the compilation phase, and not
+         dnl generate object code, when the source compiles with errors.
+         CFLAGS="$CFLAGS -qhalt=e"
        )
 
 
