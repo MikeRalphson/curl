@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.364 2008-02-18 19:53:31 bagder Exp $
+ * $Id: http.c,v 1.365 2008-03-01 22:32:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2357,6 +2357,14 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
                   "Proxy-Connection: Keep-Alive\r\n":"",
                   te
                 );
+
+    /*
+     * Free userpwd now --- cannot reuse this for Negotiate and possibly NTLM
+     * with basic and digest, it will be freed anyway by the next request
+     */
+
+    Curl_safefree (conn->allocptr.userpwd);
+    conn->allocptr.userpwd = NULL;
 
     if(result)
       return result;
