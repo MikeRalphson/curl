@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.50 2008-02-28 10:15:21 yangtse Exp $
+ * $Id: sockfilt.c,v 1.51 2008-03-05 18:27:31 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -907,7 +907,7 @@ int main(int argc, char *argv[])
     if(rc) {
       error = SOCKERRNO;
       logmsg("Error connecting to port %d: (%d) %s",
-             port, error, strerror(error));
+             connectport, error, strerror(error));
       goto sockfilt_cleanup;
     }
     logmsg("====> Client connect");
