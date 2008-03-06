@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.276 2008-02-29 17:13:40 yangtse Exp $
+# $Id: configure.ac,v 1.277 2008-03-06 17:22:45 mmarek Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -977,18 +977,18 @@ if test x"$want_gss" = xyes; then
       gnu_gss=yes
     ],
     [
-      dnl not found, check Heimdal
-      AC_CHECK_HEADER(gssapi.h,
+      dnl not found, check MIT
+      AC_CHECK_HEADER(gssapi/gssapi.h,
         [
           dnl found in the given dirs
-          AC_DEFINE(HAVE_GSSHEIMDAL, 1, [if you have the Heimdal gssapi libraries])
+          AC_DEFINE(HAVE_GSSMIT, 1, [if you have the MIT gssapi libraries])
         ],
         [
-          dnl not found, check in gssapi/ subdir
-          AC_CHECK_HEADER(gssapi/gssapi.h,
+          dnl not found, check for Heimdal
+          AC_CHECK_HEADER(gssapi.h,
             [
               dnl found
-              AC_DEFINE(HAVE_GSSMIT, 1, [if you have the MIT gssapi libraries])
+              AC_DEFINE(HAVE_GSSHEIMDAL, 1, [if you have the Heimdal gssapi libraries])
             ],
             [
               dnl no header found, disabling GSS
