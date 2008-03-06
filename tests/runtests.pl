@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.290 2008-02-20 12:14:31 bagder Exp $
+# $Id: runtests.pl,v 1.291 2008-03-06 01:11:43 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1957,13 +1957,11 @@ sub singletest {
         unlink($memdump);
     }
 
+    # create a (possibly-empty) file before starting the test
     my @inputfile=getpart("client", "file");
-    if(@inputfile) {
-        # we need to generate a file before this test is invoked
-        my %fileattr = getpartattr("client", "file");
-
-        my $filename=$fileattr{'name'};
-
+    my %fileattr = getpartattr("client", "file");
+    my $filename=$fileattr{'name'};
+    if(@inputfile || $filename) {
         if(!$filename) {
             logmsg "ERROR: section client=>file has no name attribute\n";
             return -1;
