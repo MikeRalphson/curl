@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.341 2008-01-10 10:30:20 bagder Exp $
+ * $Id: curl.h,v 1.342 2008-03-11 07:37:40 mmarek Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1790,5 +1790,10 @@ CURL_EXTERN CURLcode curl_easy_pause(CURL *handle, int bitmask);
   stuff before they can be included! */
 #include "easy.h" /* nothing in curl is fun without the easy stuff */
 #include "multi.h"
+
+/* the typechecker doesn't work in C++ (yet) */
+#if (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3)) && !defined(__cplusplus)
+#include "typecheck-gcc.h"
+#endif /* gcc >= 4.3 && !__cplusplus */
 
 #endif /* __CURL_CURL_H */

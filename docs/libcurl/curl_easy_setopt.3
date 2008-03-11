@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.212 2008-02-19 23:10:07 gknauf Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.213 2008-03-11 07:37:40 mmarek Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "5 Jan 2008" "libcurl 7.18.0" "libcurl Manual"
@@ -1374,6 +1374,11 @@ operations.
 
 If the crypto device cannot be set, \fICURLE_SSL_ENGINE_SETFAILED\fP is
 returned.
+
+Note that even though this option doesn't need any parameter, in some
+configurations \fIcurl_easy_setopt\fP might be defined as a macro taking
+exactly three arguments. Therefore, it's recommended to pass a dummy value as
+parameter.
 .IP CURLOPT_SSLVERSION
 Pass a long as parameter to control what version of SSL/TLS to attempt to use.
 The available options are:

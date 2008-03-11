@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.113 2008-01-15 22:44:12 bagder Exp $
+ * $Id: easy.c,v 1.114 2008-03-11 07:37:40 mmarek Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -348,6 +348,7 @@ CURL *curl_easy_init(void)
  * easy handle.
  */
 
+#undef curl_easy_setopt
 CURLcode curl_easy_setopt(CURL *curl, CURLoption tag, ...)
 {
   va_list arg;
