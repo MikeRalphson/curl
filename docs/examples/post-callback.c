@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: post-callback.c,v 1.7 2007-07-16 21:22:12 danf Exp $
+ * $Id: post-callback.c,v 1.8 2008-03-13 12:36:22 bagder Exp $
  *
  * An example source code that issues a HTTP POST and we provide the actual
  * data through a read callback.
@@ -75,7 +75,7 @@ int main(void)
     */
 #ifdef USE_CHUNKED
     {
-      curl_slist *chunk = NULL;
+      struct curl_slist *chunk = NULL;
 
       chunk = curl_slist_append(chunk, "Transfer-Encoding: chunked");
       res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
@@ -98,7 +98,7 @@ int main(void)
     /* A less good option would be to enforce HTTP 1.0, but that might also
        have other implications. */
     {
-      curl_slist *chunk = NULL;
+      struct curl_slist *chunk = NULL;
 
       chunk = curl_slist_append(chunk, "Expect:");
       res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
