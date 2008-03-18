@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.97 2008-03-13 21:43:30 bagder Exp $
+ * $Id: ssh.c,v 1.98 2008-03-18 22:59:04 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -956,14 +956,14 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
         break;
       }
 
-      if(sshc->quote_path1) {
-        Curl_safefree(sshc->quote_path1);
-        sshc->quote_path1 = NULL;
-      }
-      if(sshc->quote_path2) {
-        Curl_safefree(sshc->quote_path2);
-        sshc->quote_path2 = NULL;
-      }
+      failf(data, "Unknown SFTP command");
+      Curl_safefree(sshc->quote_path1);
+      sshc->quote_path1 = NULL;
+      Curl_safefree(sshc->quote_path2);
+      sshc->quote_path2 = NULL;
+      state(conn, SSH_SFTP_CLOSE);
+      sshc->actualcode = CURLE_QUOTE_ERROR;
+      break;
     }
   }
   if(!sshc->quote_item) {
