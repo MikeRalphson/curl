@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.166 2008-02-20 08:28:02 bagder Exp $
+ * $Id: multi.c,v 1.167 2008-03-18 08:14:37 mmarek Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1778,6 +1778,7 @@ static CURLMcode multi_socket(struct Curl_multi *multi,
   return result;
 }
 
+#undef curl_multi_setopt
 CURLMcode curl_multi_setopt(CURLM *multi_handle,
                             CURLMoption option, ...)
 {
