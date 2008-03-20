@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.279 2008-03-20 08:09:24 mmarek Exp $
+# $Id: configure.ac,v 1.280 2008-03-20 20:08:44 danf Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -625,6 +625,8 @@ if test x$CURL_DISABLE_LDAP != x1 ; then
       AC_MSG_WARN(["$LDAPLIBNAME" is not an LDAP library: LDAP disabled])
       AC_DEFINE(CURL_DISABLE_LDAP, 1, [to disable LDAP])
       AC_SUBST(CURL_DISABLE_LDAP, [1])])
+      AC_DEFINE(CURL_DISABLE_LDAPS, 1, [to disable LDAPS])
+      AC_SUBST(CURL_DISABLE_LDAPS, [1])
   else
     dnl Try to find the right ldap libraries for this system
     CURL_CHECK_LIBS_LDAP
@@ -633,6 +635,8 @@ if test x$CURL_DISABLE_LDAP != x1 ; then
         AC_MSG_WARN([Cannot find libraries for LDAP support: LDAP disabled])
         AC_DEFINE(CURL_DISABLE_LDAP, 1, [to disable LDAP])
         AC_SUBST(CURL_DISABLE_LDAP, [1])
+        AC_DEFINE(CURL_DISABLE_LDAPS, 1, [to disable LDAPS])
+        AC_SUBST(CURL_DISABLE_LDAPS, [1])
         ;;
     esac
   fi
@@ -648,6 +652,8 @@ if test x$CURL_DISABLE_LDAP != x1 ; then
         AC_MSG_WARN(["$LBERLIBNAME" is not an LBER library: LDAP disabled])
         AC_DEFINE(CURL_DISABLE_LDAP, 1, [to disable LDAP])
         AC_SUBST(CURL_DISABLE_LDAP, [1])])
+        AC_DEFINE(CURL_DISABLE_LDAPS, 1, [to disable LDAPS])
+        AC_SUBST(CURL_DISABLE_LDAPS, [1])
     fi
   fi
 fi
