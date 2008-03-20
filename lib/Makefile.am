@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.123 2008-02-18 11:35:13 bagder Exp $
+# $Id: Makefile.am,v 1.124 2008-03-20 08:09:24 mmarek Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -112,6 +112,11 @@ if CABUNDLE
 	echo '#define CURL_CA_BUNDLE @CURL_CA_BUNDLE@' >> $@
 else
 	echo '#undef CURL_CA_BUNDLE /* unknown default path */' >> $@
+endif
+if CAPATH
+	echo '#define CURL_CA_PATH @CURL_CA_PATH@' >> $@
+else
+	echo '#undef CURL_CA_PATH /* unknown default path */' >>$@
 endif
 
 # this hook is mainly for non-unix systems to build even if configure

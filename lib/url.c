@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.704 2008-02-21 12:28:45 bagder Exp $
+ * $Id: url.c,v 1.705 2008-03-20 08:09:24 mmarek Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -746,10 +746,12 @@ CURLcode Curl_open(struct SessionHandle **curl)
     data->set.ssl.verifypeer = TRUE;
     data->set.ssl.verifyhost = 2;
     data->set.ssl.sessionid = TRUE; /* session ID caching enabled by default */
-#ifdef CURL_CA_BUNDLE
-    /* This is our preferred CA cert bundle since install time */
+    /* This is our preferred CA cert bundle/path since install time */
+#if defined(CURL_CA_BUNDLE)
     res = setstropt(&data->set.str[STRING_SSL_CAFILE],
                          (char *) CURL_CA_BUNDLE);
+#elif defined(CURL_CA_PATH)
+    res = setstropt(&data->set.str[STRING_SSL_CAPATH], (char *) CURL_CA_PATH);
 #endif
   }
 
