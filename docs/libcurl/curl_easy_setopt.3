@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.214 2008-03-11 12:18:00 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.215 2008-03-25 19:17:26 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "5 Jan 2008" "libcurl 7.18.0" "libcurl Manual"
@@ -310,6 +310,9 @@ Pass a pointer to whatever you want passed in to your
 \fICURLOPT_DEBUGFUNCTION\fP in the last void * argument. This pointer is not
 used by libcurl, it is only passed to the callback.
 .IP CURLOPT_SSL_CTX_FUNCTION
+This option does only function for libcurl powered by OpenSSL. If libcurl was
+built against another SSL library, this functionality is absent.
+
 Function pointer that should match the following prototype: \fBCURLcode
 sslctxfun(CURL *curl, void *sslctx, void *parm);\fP This function gets called
 by libcurl just before the initialization of an SSL connection after having
