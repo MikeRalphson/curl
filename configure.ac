@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.280 2008-03-20 20:08:44 danf Exp $
+# $Id: configure.ac,v 1.281 2008-03-27 23:10:24 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1380,7 +1380,7 @@ if test X"$OPT_LIBSSH2" != Xno; then
   yes)
     dnl --with-libssh2 (without path) used
     PREFIX_LIBSSH2=/usr/local/lib
-    LIB_LIBSSH2="$PREFIX_LIBSSH2/lib$libsuff"
+    LIB_LIBSSH2="$PREFIX_LIBSSH2$libsuff"
     ;;
   off)
     dnl no --with-libssh2 option given, just check default places
