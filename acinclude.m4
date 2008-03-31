@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.138 2008-03-20 08:09:24 mmarek Exp $
+# $Id: acinclude.m4,v 1.139 2008-03-31 12:09:43 mmarek Exp $
 ###########################################################################
 
 
@@ -2583,11 +2583,11 @@ AC_HELP_STRING([--without-ca-path], [Don't use a default CA path]),
 
   if test "x$ca" != "xno"; then
     CURL_CA_BUNDLE='"'$ca'"'
-    AC_SUBST(CURL_CA_BUNDLE)
+    AC_DEFINE_UNQUOTED(CURL_CA_BUNDLE, "$ca", [Location of default ca bundle])
     AC_MSG_RESULT([$ca])
   elif test "x$capath" != "xno"; then
     CURL_CA_PATH="\"$capath\""
-    AC_SUBST(CURL_CA_PATH)
+    AC_DEFINE_UNQUOTED(CURL_CA_PATH, "$capath", [Location of default ca path])
     AC_MSG_RESULT([$capath (capath)])
   else
     AC_MSG_RESULT([no])

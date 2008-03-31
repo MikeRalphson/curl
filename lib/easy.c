@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.116 2008-03-20 08:09:24 mmarek Exp $
+ * $Id: easy.c,v 1.117 2008-03-31 12:09:43 mmarek Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -83,7 +83,6 @@
 #include "easyif.h"
 #include "select.h"
 #include "sendf.h" /* for failf function prototype */
-#include <ca-bundle.h>
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>

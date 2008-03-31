@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.124 2008-03-20 08:09:24 mmarek Exp $
+# $Id: Makefile.am,v 1.125 2008-03-31 12:09:43 mmarek Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -100,30 +100,6 @@ libcurl_la_SOURCES = $(CSOURCES) $(HHEADERS)
 
 WIN32SOURCES = $(CSOURCES)
 WIN32HEADERS = $(HHEADERS) config-win32.h
-
-BUILT_SOURCES = $(top_builddir)/lib/ca-bundle.h
-
-$(top_builddir)/lib/ca-bundle.h: Makefile.in Makefile
-	@if test -f $@; then \
-	  chmod 0644 $@; \
-	fi
-	echo "/* This file is generated automatically */" > $@
-if CABUNDLE
-	echo '#define CURL_CA_BUNDLE @CURL_CA_BUNDLE@' >> $@
-else
-	echo '#undef CURL_CA_BUNDLE /* unknown default path */' >> $@
-endif
-if CAPATH
-	echo '#define CURL_CA_PATH @CURL_CA_PATH@' >> $@
-else
-	echo '#undef CURL_CA_PATH /* unknown default path */' >>$@
-endif
-
-# this hook is mainly for non-unix systems to build even if configure
-# isn't run
-dist-hook:
-	chmod 0644 $(distdir)/ca-bundle.h
-	echo "/* ca bundle path set in here*/" > $(distdir)/ca-bundle.h
 
 DSPOUT = | awk '{printf("%s\r\n", $$0)}' >> $(DSP)
 VCPROJOUT = | awk '{printf("%s\r\n", $$0)}' >> $(VCPROJ)

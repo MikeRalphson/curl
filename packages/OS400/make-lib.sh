@@ -2,26 +2,11 @@
 #
 #       libcurl compilation script for the OS/400.
 #
-# $Id: make-lib.sh,v 1.3 2008-01-16 16:04:47 patrickm Exp $
+# $Id: make-lib.sh,v 1.4 2008-03-31 12:09:43 mmarek Exp $
 
 SCRIPTDIR=`dirname "${0}"`
 . "${SCRIPTDIR}/initscript.sh"
 cd "${TOPDIR}/lib"
-
-
-#       Create ca-bundle.h file.
-
-if action_needed "ca-bundle.h"
-then    echo "/* This file is generated automatically */" > ca-bundle.h
-        echo "#ifndef CURL_CA_BUNDLE" >> ca-bundle.h
-
-        if [ "${CABUNDLE}" ]
-        then    echo '#define CURL_CA_BUNDLE @CURL_CA_BUNDLE@' >> ca-bundle.h
-        else    echo '#undef CURL_CA_BUNDLE /* unknown */' >> ca-bundle.h
-        fi
-
-        echo "#endif" >> ca-bundle.h
-fi
 
 
 #      Create and compile the identification source file.

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.281 2008-03-27 23:10:24 bagder Exp $
+# $Id: configure.ac,v 1.282 2008-03-31 12:09:43 mmarek Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1622,9 +1622,6 @@ dnl Check for the CA bundle
 dnl **********************************************************************
 
 CURL_CHECK_CA_BUNDLE
-
-AM_CONDITIONAL(CABUNDLE, test x$ca != xno)
-AM_CONDITIONAL(CAPATH, test x$capath != xno)
 
 dnl **********************************************************************
 dnl Check for the presence of IDN libraries and headers
