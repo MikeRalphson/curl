@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.61 2008-02-10 01:32:43 gknauf Exp $
+# $Id: Makefile.am,v 1.62 2008-03-31 03:01:13 danf Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -72,7 +72,7 @@ test-torture:
 endif
 
 examples:
-	@(cd docs/examples; $(MAKE) all)
+	@(cd docs/examples; $(MAKE) check)
 
 #
 # Build source and binary rpms. For rpm-3.0 and above, the ~/.rpmmacros

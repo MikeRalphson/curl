@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.49 2008-02-18 15:32:34 gknauf Exp $
+# $Id: Makefile.am,v 1.50 2008-03-31 03:01:13 danf Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -21,7 +21,7 @@ CPPFLAGS = -DCURL_NO_OLDIES $(STATICCPPFLAGS)
 # Dependencies
 LDADD = $(LIBDIR)/libcurl.la
 
-# Makefile.inc provides the noinst_PROGRAMS and COMPLICATED_EXAMPLES defines
+# Makefile.inc provides the check_PROGRAMS and COMPLICATED_EXAMPLES defines
 include Makefile.inc
 
 
