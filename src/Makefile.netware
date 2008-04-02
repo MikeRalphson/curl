@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.72 2008-02-27 01:36:01 gknauf Exp $
+# $Id: Makefile.netware,v 1.73 2008-04-02 03:08:21 gknauf Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -251,7 +251,7 @@ distclean: clean
 $(OBJDIR) $(INSTDIR):
 	@$(MKDIR) $@
 
-$(TARGET).nlm: $(OBJS) $(OBJX) $(OBJDIR)/$(TARGET).def $(XDCDATA)
+$(TARGET).nlm: $(OBJS) $(OBJDIR)/$(TARGET).def $(XDCDATA)
 	@echo Linking $@
 	@-$(RM) $@
 	@$(LD) $(LDFLAGS) $(OBJDIR)/$(TARGET).def
