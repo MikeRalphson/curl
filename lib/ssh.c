@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.98 2008-03-18 22:59:04 danf Exp $
+ * $Id: ssh.c,v 1.99 2008-04-03 20:56:59 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1180,7 +1180,9 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
     if(data->set.upload)
       state(conn, SSH_SFTP_UPLOAD_INIT);
     else {
-      if(sftp_scp->path[strlen(sftp_scp->path)-1] == '/')
+      if(data->set.opt_no_body)
+        state(conn, SSH_STOP);
+      else if(sftp_scp->path[strlen(sftp_scp->path)-1] == '/')
         state(conn, SSH_SFTP_READDIR_INIT);
       else
         state(conn, SSH_SFTP_DOWNLOAD_INIT);
