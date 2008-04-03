@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: smooth-gtk-thread.c,v 1.1 2008-01-20 11:12:11 bagder Exp $
+ * $Id: smooth-gtk-thread.c,v 1.2 2008-04-03 20:28:33 danf Exp $
  *
  * This is a multi threaded application that uses a progress bar to show
  * status.  It uses Gtk+ to make a smooth pulse.
@@ -33,7 +33,7 @@
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 int j = 0;
 gint num_urls = 9; /* Just make sure this is less than urls[]*/
-char *urls[]= {
+const char * const urls[]= {
   "90022",
   "90023",
   "90024",
@@ -58,7 +58,6 @@ void *pull_one_url(void *NaN)
   CURLcode res;
   gchar *http;
   FILE *outfile;
-  gint i;
 
   /* Stop threads from entering unless j is incremented */
   pthread_mutex_lock(&lock);
@@ -167,7 +166,9 @@ static gboolean cb_delete(GtkWidget *window, gpointer data)
 int main(int argc, char **argv)
 {
   GtkWidget *top_window, *outside_frame, *inside_frame, *progress_bar;
-  GtkAdjustment *adj;
+
+  /* Must initialize libcurl before any threads are started */
+  curl_global_init(CURL_GLOBAL_ALL);
 
   /* Init thread */
   g_thread_init(NULL);
