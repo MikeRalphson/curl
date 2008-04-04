@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: sshserver.pl,v 1.49 2008-04-04 14:08:36 yangtse Exp $
+# $Id: sshserver.pl,v 1.50 2008-04-04 14:47:32 yangtse Exp $
 #***************************************************************************
 
 # Starts sshd for use in the SCP, SFTP and SOCKS curl test harness tests.
@@ -606,12 +606,11 @@ if(sshd_supports_opt('UsePAM','no')) {
     push @cfgarr, 'UsePAM no';
 }
 
-if($sshdid =~ /SunSSH/) {
+if($sshdid =~ /OpenSSH/) {
     # http://bugs.opensolaris.org/bugdatabase/view_bug.do?bug_id=6492415
-    push @cfgarr, '# UsePrivilegeSeparation yes';
-}
-elsif(sshd_supports_opt('UsePrivilegeSeparation','no')) {
-    push @cfgarr, 'UsePrivilegeSeparation no';
+    if(sshd_supports_opt('UsePrivilegeSeparation','no')) {
+        push @cfgarr, 'UsePrivilegeSeparation no';
+    }
 }
 
 if(sshd_supports_opt('VerifyReverseMapping','no')) {
