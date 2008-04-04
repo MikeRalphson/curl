@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.68 2007-10-22 23:31:40 gknauf Exp $ */
+/* $Id: ares_init.c,v 1.69 2008-04-04 20:05:23 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -1333,13 +1333,9 @@ static void randomize_key(unsigned char* key,int key_data_len)
   }
 #else /* !WIN32 */
 #ifdef RANDOM_FILE
-  char buffer[256];
   FILE *f = fopen(RANDOM_FILE, "rb");
   if(f) {
-    size_t i;
-    size_t rc = fread(buffer, key_data_len, 1, f);
-    for(i=0; i<rc && counter < key_data_len; i++)
-      key[counter++]=buffer[i];
+    counter = fread(key, 1, key_data_len, f);
     fclose(f);
   }
 #endif
