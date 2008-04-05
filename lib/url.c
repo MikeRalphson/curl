@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.708 2008-04-03 21:44:50 bagder Exp $
+ * $Id: url.c,v 1.709 2008-04-05 21:13:31 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -719,7 +719,7 @@ CURLcode Curl_open(struct SessionHandle **curl)
     /* Set the default size of the SSL session ID cache */
     data->set.ssl.numsessions = 5;
 
-    data->set.proxyport = 1080;
+    data->set.proxyport = CURL_DEFAULT_PROXY_PORT; /* from url.h */
     data->set.proxytype = CURLPROXY_HTTP; /* defaults to HTTP proxy */
     data->set.httpauth = CURLAUTH_BASIC;  /* defaults to basic */
     data->set.proxyauth = CURLAUTH_BASIC; /* defaults to basic */
