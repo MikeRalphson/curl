@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.466 2008-02-07 22:25:04 bagder Exp $
+ * $Id: ftp.c,v 1.467 2008-04-05 21:02:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2563,7 +2563,8 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
     switch(ftpc->state) {
     case FTP_WAIT220:
       if(ftpcode != 220) {
-        failf(data, "This doesn't seem like a nice ftp-server response");
+        failf(data, "Got a %03d ftp-server response when 220 was expected",
+              ftpcode);
         return CURLE_FTP_WEIRD_SERVER_REPLY;
       }
 
