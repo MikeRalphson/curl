@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.5 2008-01-16 16:04:47 patrickm Exp $
+ * $Id: ccsidcurl.c,v 1.6 2008-04-07 13:09:17 patrickm Exp $
  *
  ***************************************************************************/
 
@@ -864,6 +864,12 @@ curl_formadd_ccsid(struct curl_httppost * * httppost,
     case CURLFORM_CONTENTHEADER:
       if (!forms)
         value = (char *) va_arg(arg, struct curl_slist *);
+
+      break;
+
+    case CURLFORM_STREAM:
+      if (!forms)
+        value = (char *) va_arg(arg, void *);
 
       break;
 
