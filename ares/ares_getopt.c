@@ -3,7 +3,7 @@
  * on 2007-04-11.  Lifted from version 5.2 of the 'Open Mash' project with
  * the modified BSD license, BSD license without the advertising clause.
  *
- * $Id: ares_getopt.c,v 1.6 2007-04-16 15:35:34 yangtse Exp $
+ * $Id: ares_getopt.c,v 1.7 2008-04-07 12:40:05 yangtse Exp $
  */
 
 /*
@@ -82,7 +82,7 @@ ares_getopt(int nargc, char * const nargv[], const char *ostr)
         }
     }                                         /* option letter okay? */
     if ((optopt = (int)*place++) == (int)':' ||
-        !(oli = strchr(ostr, optopt))) {
+        (oli = strchr(ostr, optopt)) == NULL) {
         /*
          * if the user didn't specify '-' as an option,
          * assume it means EOF.
