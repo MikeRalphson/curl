@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib554.c,v 1.1 2008-03-31 10:02:25 bagder Exp $
+ * $Id: lib554.c,v 1.2 2008-04-07 15:40:49 yangtse Exp $
  */
 
 #include "test.h"
@@ -59,7 +59,7 @@ int test(char *URL)
                         CURLFORM_END);
 
   if(formrc)
-    printf("curl_formadd(1) = %d\n", formrc);
+    printf("curl_formadd(1) = %d\n", (int)formrc);
 
   /* Fill in the filename field */
   formrc = curl_formadd(&formpost,
@@ -69,7 +69,7 @@ int test(char *URL)
                         CURLFORM_END);
 
   if(formrc)
-    printf("curl_formadd(2) = %d\n", formrc);
+    printf("curl_formadd(2) = %d\n", (int)formrc);
 
   /* Fill in a submit field too */
   formrc = curl_formadd(&formpost,
@@ -79,7 +79,7 @@ int test(char *URL)
                         CURLFORM_END);
 
   if(formrc)
-    printf("curl_formadd(3) = %d\n", formrc);
+    printf("curl_formadd(3) = %d\n", (int)formrc);
 
   if (curl_global_init(CURL_GLOBAL_ALL) != CURLE_OK) {
     fprintf(stderr, "curl_global_init() failed\n");
