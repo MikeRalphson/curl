@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.26 2008-04-04 20:24:41 bagder Exp $
+ * $Id: adig.c,v 1.27 2008-04-07 12:44:47 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -303,6 +303,8 @@ static void callback(void *arg, int status, int timeouts,
   int id, qr, opcode, aa, tc, rd, ra, rcode;
   unsigned int qdcount, ancount, nscount, arcount, i;
   const unsigned char *aptr;
+
+  (void) timeouts;
 
   /* Display the query name if given. */
   if (name)
