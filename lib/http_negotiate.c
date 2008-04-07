@@ -18,12 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.25 2008-03-01 22:32:03 bagder Exp $
+ * $Id: http_negotiate.c,v 1.26 2008-04-07 09:26:31 mmarek Exp $
  ***************************************************************************/
 #include "setup.h"
 
 #ifdef HAVE_GSSAPI
-#ifdef HAVE_GSSMIT
+#ifdef HAVE_OLD_GSSMIT
 #define GSS_C_NT_HOSTBASED_SERVICE gss_nt_service_name
 #endif
 

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.282 2008-03-31 12:09:43 mmarek Exp $
+# $Id: configure.ac,v 1.283 2008-04-07 09:26:31 mmarek Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -983,15 +983,14 @@ if test x"$want_gss" = xyes; then
       gnu_gss=yes
     ],
     [
-      dnl not found, check MIT
-      AC_CHECK_HEADER(gssapi/gssapi.h,
-        [
-          dnl found in the given dirs
-          AC_DEFINE(HAVE_GSSMIT, 1, [if you have the MIT gssapi libraries])
-        ],
-        [
-          dnl not found, check for Heimdal
-          AC_CHECK_HEADER(gssapi.h,
+      dnl not found, check Heimdal or MIT
+      AC_CHECK_HEADERS(
+        [gssapi/gssapi.h gssapi/gssapi_generic.h gssapi/gssapi_krb5.h],
+        [],
+        [not_mit=1])
+      if test "x$not_mit" = "x1"; then
+        dnl MIT not found, check for Heimdal
+        AC_CHECK_HEADER(gssapi.h,
             [
               dnl found
               AC_DEFINE(HAVE_GSSHEIMDAL, 1, [if you have the Heimdal gssapi libraries])
@@ -1002,8 +1001,30 @@ if test x"$want_gss" = xyes; then
               AC_MSG_WARN(disabling GSSAPI since no header files was found)
             ]
           )
-        ]
-      )
+      else
+        dnl MIT found
+        AC_DEFINE(HAVE_GSSMIT, 1, [if you have the MIT gssapi libraries])
+        dnl check if we have a really old MIT kerberos (<= 1.2)
+        AC_MSG_CHECKING([if gssapi headers declare GSS_C_NT_HOSTBASED_SERVICE])
+        AC_TRY_COMPILE([
+#include <gssapi/gssapi.h>
+#include <gssapi/gssapi_generic.h>
+#include <gssapi/gssapi_krb5.h>
+          ],[
+            gss_import_name(
+                            (OM_uint32 *)0,
+                            (gss_buffer_t)0,
+                            GSS_C_NT_HOSTBASED_SERVICE,
+                            (gss_name_t *)0);
+          ],[
+            AC_MSG_RESULT([yes])
+          ],[
+            AC_MSG_RESULT([no])
+            AC_DEFINE(HAVE_OLD_GSSMIT, 1, [if you have an old MIT gssapi library, lacking GSS_C_NT_HOSTBASED_SERVICE])
+          ]
+         )
+
+      fi
     ]
   )
 else
