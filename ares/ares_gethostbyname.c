@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.35 2007-11-28 10:46:40 bagder Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.36 2008-04-07 14:20:05 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -159,7 +159,7 @@ static void host_callback(void *arg, int status, int timeouts,
 {
   struct host_query *hquery = (struct host_query *) arg;
   ares_channel channel = hquery->channel;
-  struct hostent *host;
+  struct hostent *host = NULL;
 
   hquery->timeouts += timeouts;
   if (status == ARES_SUCCESS)
