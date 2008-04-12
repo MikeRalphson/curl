@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: post-callback.c,v 1.8 2008-03-13 12:36:22 bagder Exp $
+ * $Id: post-callback.c,v 1.9 2008-04-12 08:35:04 bagder Exp $
  *
  * An example source code that issues a HTTP POST and we provide the actual
  * data through a read callback.
@@ -36,7 +36,7 @@ static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userp)
     return 1;                        /* we return 1 byte at a time! */
   }
 
-  return -1;                         /* no more data left to deliver */
+  return 0;                          /* no more data left to deliver */
 }
 
 int main(void)
