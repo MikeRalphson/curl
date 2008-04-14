@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.27 2008-04-12 11:50:51 bagder Exp $
+ * $Id: http_negotiate.c,v 1.28 2008-04-14 15:22:45 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -211,8 +211,10 @@ int Curl_input_negotiate(struct connectdata *conn, bool proxy,
         }
         else {
           free(input_token.value);
-          input_token.value = NULL;
           input_token.value = malloc(mechTokenLength);
+          if (input_token.value == NULL)
+            return CURLE_OUT_OF_MEMORY;
+
           memcpy(input_token.value, mechToken,mechTokenLength);
           input_token.length = mechTokenLength;
           free(mechToken);
