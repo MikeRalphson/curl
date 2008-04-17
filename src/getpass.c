@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.21 2007-07-20 16:01:05 gknauf Exp $
+ * $Id: getpass.c,v 1.22 2008-04-17 00:45:34 danf Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -184,7 +184,7 @@ static bool ttyecho(bool enable, int fd)
   static struct_term noecho;
 #endif
   if(!enable) {
-  /* dissable echo by extracting the current 'withecho' mode and remove the
+  /* disable echo by extracting the current 'withecho' mode and remove the
      ECHO bit and set back the struct */
 #ifdef HAVE_TERMIOS_H
     tcgetattr(fd, &withecho);

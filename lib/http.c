@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.368 2008-03-31 10:16:34 bagder Exp $
+ * $Id: http.c,v 1.369 2008-04-17 00:45:34 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -104,6 +104,8 @@
 /* The last #include file should be: */
 #include "memdebug.h"
 
+/* Default proxy timeout in milliseconds */
+#define PROXY_TIMEOUT (3600*1000)
 
 /*
  * Forward declarations.
@@ -1221,7 +1223,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
   CURLcode result;
   int res;
   long timeout =
-    data->set.timeout?data->set.timeout:3600000; /* in milliseconds */
+    data->set.timeout?data->set.timeout:PROXY_TIMEOUT; /* in milliseconds */
   curl_socket_t tunnelsocket = conn->sock[sockindex];
   curl_off_t cl=0;
   bool closeConnection = FALSE;

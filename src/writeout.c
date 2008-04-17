@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.30 2006-03-21 22:30:03 bagder Exp $
+ * $Id: writeout.c,v 1.31 2008-04-17 00:45:34 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -93,10 +93,10 @@ static const struct variable replacements[]={
   {NULL, VAR_NONE}
 };
 
-void ourWriteOut(CURL *curl, char *writeinfo)
+void ourWriteOut(CURL *curl, const char *writeinfo)
 {
   FILE *stream = stdout;
-  char *ptr=writeinfo;
+  const char *ptr=writeinfo;
   char *stringp;
   long longinfo;
   double doubleinfo;
