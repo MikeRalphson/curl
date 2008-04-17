@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib555.c,v 1.1 2008-04-16 21:11:47 bagder Exp $
+ * $Id: lib555.c,v 1.2 2008-04-17 11:59:46 yangtse Exp $
  *
  * This test case is supposed to be identical to 547 except that this uses the
  * multi interface and 547 is easy interface.
@@ -60,7 +60,7 @@ static curlioerr ioctlcallback(CURL *handle,
 
 int test(char *URL)
 {
-  CURLcode res;
+  int res;
   CURL *curl;
   int counter=0;
   CURLM *m;
@@ -142,6 +142,6 @@ int test(char *URL)
 
   curl_global_cleanup();
 
-  return (int)res;
+  return res;
 }
 
