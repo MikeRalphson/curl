@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.291 2008-03-06 01:11:43 danf Exp $
+# $Id: runtests.pl,v 1.292 2008-04-21 17:19:44 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2102,12 +2102,14 @@ sub singletest {
     chomp $cmd;
     subVariables \$cmd;
     if($cmd) {
+	logmsg "postcheck $cmd\n" if($verbose);
 	my $rc = runclient("$cmd");
-	if($rc != 0) {
+	# Must run the postcheck command in torture mode in order
+	# to clean up, but the result can't be relied upon.
+	if($rc != 0 && !$torture) {
 	    logmsg " postcheck FAILED\n";
 	    return 1;
 	}
-	logmsg "postchecked $cmd\n" if($verbose);
     }
 
     # remove the special FTP command file after each test!
