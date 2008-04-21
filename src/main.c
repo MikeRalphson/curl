@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.457 2008-04-14 14:42:07 bagder Exp $
+ * $Id: main.c,v 1.458 2008-04-21 23:16:24 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2593,7 +2593,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         char buffer[32];
         curl_off_t off;
         warnf(config,
-              "A specfied range MUST include at least one dash (-). "
+              "A specified range MUST include at least one dash (-). "
               "Appending one for you!\n");
         off = curlx_strtoofft(nextarg, NULL, 10);
         snprintf(buffer, sizeof(buffer), "%Od-", off);
