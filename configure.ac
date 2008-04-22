@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.284 2008-04-20 19:15:08 yangtse Exp $
+# $Id: configure.ac,v 1.285 2008-04-22 12:40:05 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2000,8 +2000,6 @@ AC_CHECK_FUNCS( strtoll \
                 strcasecmp \
                 stricmp \
                 strcmpi \
-                fflush \
-                fsync \
                 gethostbyaddr \
                 gettimeofday \
                 inet_addr \
