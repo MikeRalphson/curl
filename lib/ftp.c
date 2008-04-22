@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.468 2008-04-17 00:45:33 danf Exp $
+ * $Id: ftp.c,v 1.469 2008-04-22 22:53:54 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -110,8 +110,13 @@
 #define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV
 #endif
 
+#ifdef __SYMBIAN32__
+/* Symbian OS panics when given a timeout much greater than 1/2 hour */
+#define RESP_TIMEOUT (1800*1000)
+#else
 /* Default response timeout in milliseconds */
 #define RESP_TIMEOUT (3600*1000)
+#endif
 
 #ifdef CURL_DISABLE_VERBOSE_STRINGS
 #define ftp_pasv_verbose(a,b,c,d)  do { } while(0)

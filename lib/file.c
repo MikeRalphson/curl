@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.107 2008-04-17 00:45:33 danf Exp $
+ * $Id: file.c,v 1.108 2008-04-22 22:53:54 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -90,7 +90,7 @@
 /* The last #include file should be: */
 #include "memdebug.h"
 
-#if defined(WIN32) || defined(MSDOS) || defined(__EMX__)
+#if defined(WIN32) || defined(MSDOS) || defined(__EMX__) || defined(__SYMBIAN32__)
 #define MSDOS_FILESYSTEM 1
 #endif
 

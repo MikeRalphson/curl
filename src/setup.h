@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.52 2007-11-08 18:13:55 yangtse Exp $
+ * $Id: setup.h,v 1.53 2008-04-22 22:53:54 danf Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -29,7 +29,7 @@
  * Define WIN32 when build target is Win32 API
  */
 
-#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32)
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32) && !defined(__SYMBIAN32__)
 #define WIN32
 #endif
 
@@ -56,6 +56,10 @@
 
 #ifdef __AMIGA__
 #include "config-amigaos.h"
+#endif
+
+#ifdef __SYMBIAN32__
+#include "config-symbian.h"
 #endif
 
 #ifdef TPF

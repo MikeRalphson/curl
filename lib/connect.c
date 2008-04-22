@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.187 2008-02-07 22:25:04 bagder Exp $
+ * $Id: connect.c,v 1.188 2008-04-22 22:53:54 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -92,6 +92,11 @@
 
 /* The last #include file should be: */
 #include "memdebug.h"
+
+#ifdef __SYMBIAN32__
+/* This isn't actually supported under Symbian OS */
+#undef SO_NOSIGPIPE
+#endif
 
 static bool verifyconnect(curl_socket_t sockfd, int *error);
 

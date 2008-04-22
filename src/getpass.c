@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpass.c,v 1.22 2008-04-17 00:45:34 danf Exp $
+ * $Id: getpass.c,v 1.23 2008-04-22 22:53:54 danf Exp $
  ***************************************************************************/
 
 /* This file is a reimplementation of the previous one, due to license
@@ -95,9 +95,18 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 #define DONE
 #endif /* VMS */
 
+
 #ifdef WIN32
 /* Windows implementation */
 #include <conio.h>
+#endif
+
+#ifdef __SYMBIAN32__
+#define getch() getchar()
+#endif
+
+#if defined(WIN32) || defined(__SYMBIAN32__)
+
 char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 {
   size_t i;
@@ -105,7 +114,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
 
   for(i=0; i<buflen; i++) {
     buffer[i] = getch();
-    if ( buffer[i] == '\r' ) {
+    if ( buffer[i] == '\r' || buffer[i] == '\n' ) {
       buffer[i] = 0;
       break;
     }
@@ -115,8 +124,10 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
            previous one as well */
         i = i - (i>=1?2:1);
   }
+#ifndef __SYMBIAN32__  
   /* since echo is disabled, print a newline */
   fputs("\n", stderr);
+#endif
   /* if user didn't hit ENTER, terminate buffer */
   if (i==buflen)
     buffer[buflen-1]=0;
@@ -124,7 +135,7 @@ char *getpass_r(const char *prompt, char *buffer, size_t buflen)
   return buffer; /* we always return success */
 }
 #define DONE
-#endif /* WIN32 */
+#endif /* WIN32 || __SYMBIAN32__ */
 
 #ifdef NETWARE
 /* NetWare implementation */

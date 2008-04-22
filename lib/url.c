@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.709 2008-04-05 21:13:31 bagder Exp $
+ * $Id: url.c,v 1.710 2008-04-22 22:53:54 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -149,6 +149,10 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 
 /* The last #include file should be: */
 #include "memdebug.h"
+
+#ifdef __SYMBIAN32__
+#undef SIGALRM
+#endif
 
 /* Local static prototypes */
 static long ConnectionKillOne(struct SessionHandle *data);
