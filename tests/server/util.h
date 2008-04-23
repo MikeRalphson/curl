@@ -20,12 +20,14 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.h,v 1.18 2008-02-28 09:38:32 yangtse Exp $
+ * $Id: util.h,v 1.19 2008-04-23 23:55:34 yangtse Exp $
  ***************************************************************************/
 
 void logmsg(const char *msg, ...);
 
 #define TEST_DATA_PATH "%s/data/test%ld"
+
+#define SERVERLOGS_LOCK "log/serverlogs.lock"
 
 /* global variable, where to find the 'data' dir */
 extern const char *path;
@@ -52,5 +54,9 @@ char *test2file(long testno);
 int wait_ms(int timeout_ms);
 
 int write_pidfile(const char *filename);
+
+void set_advisor_read_lock(const char *filename);
+
+void clear_advisor_read_lock(const char *filename);
 
 #endif  /* __SERVER_UTIL_H */

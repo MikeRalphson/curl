@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.119 2008-04-22 13:07:27 yangtse Exp $
+ * $Id: sws.c,v 1.120 2008-04-23 23:55:34 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -988,6 +988,8 @@ int main(int argc, char *argv[])
       break;
     }
 
+    set_advisor_read_lock(SERVERLOGS_LOCK);
+
 #ifdef CURL_SWS_FORK_ENABLED
     if(use_fork) {
       /* The fork enabled version just forks off the child and don't care
@@ -1063,6 +1065,8 @@ int main(int argc, char *argv[])
     logmsg("====> Client disconnect");
     sclose(msgsock);
 
+    clear_advisor_read_lock(SERVERLOGS_LOCK);
+
     if (req.testno == DOCNUMBER_QUIT)
       break;
 #ifdef CURL_SWS_FORK_ENABLED
@@ -1071,6 +1075,8 @@ int main(int argc, char *argv[])
   }
 
   sclose(sock);
+
+  clear_advisor_read_lock(SERVERLOGS_LOCK);
 
   return 0;
 }

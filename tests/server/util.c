@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.23 2008-02-28 09:38:32 yangtse Exp $
+ * $Id: util.c,v 1.24 2008-04-23 23:55:34 yangtse Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -233,4 +233,40 @@ int write_pidfile(const char *filename)
   fclose(pidfile);
   logmsg("Wrote pid %ld to %s", pid, filename);
   return 1; /* success */
+}
+
+void set_advisor_read_lock(const char *filename)
+{
+  FILE *lockfile;
+  int error;
+  int res;
+
+  do {
+    lockfile = fopen(filename, "wb");
+  } while((lockfile == NULL) && ((error = ERRNO) == EINTR));
+  if(lockfile == NULL) {
+    logmsg("Error creating lock file %s error: %d %s",
+           filename, error, strerror(error));
+    return;
+  }
+
+  do {
+    res = fclose(lockfile);
+  } while(res && ((error = ERRNO) == EINTR));
+  if(res)
+    logmsg("Error closing lock file %s error: %d %s",
+           filename, error, strerror(error));
+}
+
+void clear_advisor_read_lock(const char *filename)
+{
+  int error;
+  int res;
+
+  do {
+    res = unlink(filename);
+  } while(res && ((error = ERRNO) == EINTR));
+  if(res)
+    logmsg("Error removing lock file %s error: %d %s",
+           filename, error, strerror(error));
 }
