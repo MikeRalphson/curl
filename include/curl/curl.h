@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.348 2008-04-22 22:53:54 danf Exp $
+ * $Id: curl.h,v 1.349 2008-04-30 21:20:09 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1587,9 +1587,10 @@ typedef enum {
   CURLINFO_COOKIELIST       = CURLINFO_SLIST  + 28,
   CURLINFO_LASTSOCKET       = CURLINFO_LONG   + 29,
   CURLINFO_FTP_ENTRY_PATH   = CURLINFO_STRING + 30,
+  CURLINFO_REDIRECT_URL     = CURLINFO_STRING + 31,
   /* Fill in new entries below here! */
 
-  CURLINFO_LASTONE          = 30
+  CURLINFO_LASTONE          = 31
 } CURLINFO;
 
 /* CURLINFO_RESPONSE_CODE is the new name for the option previously known as
