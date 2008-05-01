@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.294 2008-04-25 04:19:51 yangtse Exp $
+# $Id: runtests.pl,v 1.295 2008-05-01 10:51:16 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2179,6 +2179,9 @@ sub singletest {
     if (@validstdout) {
         # verify redirected stdout
         my @actual = loadarray($STDOUT);
+
+        # variable-replace in the stdout we have from the test case file
+        @validstdout = fixarray(@validstdout);
 
         # get all attributes
         my %hash = getpartattr("verify", "stdout");
