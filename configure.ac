@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.285 2008-04-22 12:40:05 yangtse Exp $
+# $Id: configure.ac,v 1.286 2008-05-01 21:34:34 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1861,6 +1861,7 @@ AC_CHECK_HEADERS(
         arpa/inet.h \
         net/if.h \
         netinet/in.h \
+        sys/un.h \
         netinet/tcp.h \
         netdb.h \
         sys/sockio.h \
@@ -1906,6 +1907,9 @@ dnl default includes
 #endif
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
+#ifdef HAVE_SYS_UN_H
+#include <sys/un.h>
 #endif
 ]
 )
