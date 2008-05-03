@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.286 2008-05-01 21:34:34 bagder Exp $
+# $Id: configure.ac,v 1.287 2008-05-03 22:04:39 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2270,6 +2270,8 @@ AC_HELP_STRING([--disable-ares],[Disable c-ares for name lookups]),
 void curl_dofree() { }
 void curl_sclose() { }
 void curl_domalloc() { }
+void curl_docalloc() { }
+void curl_socket() { }
 
 int main(void)
 {
