@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.387 2008-04-30 21:20:09 bagder Exp $
+ * $Id: transfer.c,v 1.388 2008-05-03 21:45:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -228,15 +228,20 @@ checkhttpprefix(struct SessionHandle *data,
 }
 
 /*
- * Curl_readrewind() rewinds the read stream. This typically (so far) only
- * used for HTTP POST/PUT with multi-pass authentication when a sending was
- * denied and a resend is necessary.
+ * Curl_readrewind() rewinds the read stream. This is typically used for HTTP
+ * POST/PUT with multi-pass authentication when a sending was denied and a
+ * resend is necessary.
  */
 CURLcode Curl_readrewind(struct connectdata *conn)
 {
   struct SessionHandle *data = conn->data;
 
   conn->bits.rewindaftersend = FALSE; /* we rewind now */
+
+  /* explicitly switch of sending data on this transfer now since we are about
+     to restart a new transfer and thus we want to avoid inadvertently sending
+     more data on the existing connection until the next request starts */
+  data->req.keepon &= ~KEEP_WRITE;
 
   /* We have sent away data. If not using CURLOPT_POSTFIELDS or
      CURLOPT_HTTPPOST, call app to rewind
