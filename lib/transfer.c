@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.389 2008-05-03 21:49:16 bagder Exp $
+ * $Id: transfer.c,v 1.390 2008-05-06 04:37:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2356,7 +2356,7 @@ CURLcode Curl_perform(struct SessionHandle *data)
   CURLcode res2;
   struct connectdata *conn=NULL;
   char *newurl = NULL; /* possibly a new URL to follow to! */
-  int follow = FOLLOW_NONE;
+  followtype follow = FOLLOW_NONE;
 
   data->state.used_interface = Curl_if_easy;
 
