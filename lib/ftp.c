@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.470 2008-04-28 21:29:17 bagder Exp $
+ * $Id: ftp.c,v 1.471 2008-05-07 21:02:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -622,9 +622,13 @@ CURLcode Curl_GetFTPResponse(ssize_t *nreadp, /* return number of bytes read */
   struct timeval now = Curl_tvnow();
   size_t nread;
   int cache_skip=0;
+  int value_to_be_ignored=0;
 
   if(ftpcode)
     *ftpcode = 0; /* 0 for errors */
+  else
+    /* make the pointer point to something for the rest of this function */
+    ftpcode = &value_to_be_ignored;
 
   *nreadp=0;
 
