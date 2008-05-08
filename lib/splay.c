@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: splay.c,v 1.9 2008-05-07 15:41:41 yangtse Exp $
+ * $Id: splay.c,v 1.10 2008-05-08 05:45:01 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -349,9 +349,9 @@ void Curl_splayprint(struct Curl_tree * t, int d, char output)
 
   if(output) {
 #ifdef TEST_SPLAY
-    printf("%ld[%d]", t->key.tv_usec, i);
+    printf("%ld[%d]", (long)t->key.tv_usec, i);
 #else
-    printf("%ld.%ld[%d]", t->key.tv_sec, t->key.tv_usec, i);
+    printf("%ld.%ld[%d]", (long)t->key.tv_sec, (long)t->key.tv_usec, i);
 #endif
   }
 
