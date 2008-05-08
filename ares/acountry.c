@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.2 2008-01-02 05:30:52 giva Exp $
+ * $Id: acountry.c,v 1.3 2008-05-08 22:14:17 bagder Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -42,6 +42,9 @@
 #include <ctype.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
 #endif
 
 #if defined(WIN32)

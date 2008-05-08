@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.29 2008-04-07 19:12:35 yangtse Exp $
+ * $Id: adig.c,v 1.30 2008-05-08 22:14:17 bagder Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -31,6 +31,9 @@
 #include <unistd.h>
 #endif
 #include <netdb.h>
+#endif
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
 #endif
 
 #include <stdio.h>
