@@ -1,4 +1,4 @@
-/* $Id: ares_parse_a_reply.c,v 1.13 2007-11-15 19:44:01 yangtse Exp $ */
+/* $Id: ares_parse_a_reply.c,v 1.14 2008-05-08 22:11:39 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -28,6 +28,9 @@
 #ifdef HAVE_ARPA_NAMESER_COMPAT_H
 #include <arpa/nameser_compat.h>
 #endif
+#endif
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
 #endif
 
 #include <stdlib.h>

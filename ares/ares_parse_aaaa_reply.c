@@ -1,4 +1,4 @@
-/* $Id: ares_parse_aaaa_reply.c,v 1.8 2007-11-16 09:36:00 sesse Exp $ */
+/* $Id: ares_parse_aaaa_reply.c,v 1.9 2008-05-08 22:11:39 bagder Exp $ */
 
 /* Copyright 2005 Dominick Meglio
  *
@@ -30,6 +30,9 @@
 #ifdef HAVE_ARPA_NAMESER_COMPAT_H
 #include <arpa/nameser_compat.h>
 #endif
+#endif
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
 #endif
 
 #include <stdlib.h>

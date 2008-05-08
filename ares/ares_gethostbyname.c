@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.36 2008-04-07 14:20:05 yangtse Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.37 2008-05-08 22:11:38 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -36,6 +36,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
+#endif
 
 #include "ares.h"
 #include "ares_private.h"

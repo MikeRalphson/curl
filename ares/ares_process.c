@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.61 2007-10-18 17:17:18 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.62 2008-05-08 22:11:39 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -44,6 +44,9 @@
 #endif
 #endif /* WIN32 && !WATT32 */
 
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
