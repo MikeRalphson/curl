@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.h,v 1.42 2007-10-29 20:57:03 danf Exp $
+ * $Id: sendf.h,v 1.43 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -65,7 +65,7 @@ int Curl_read(struct connectdata *conn, curl_socket_t sockfd,
 /* internal write-function, does plain socket, SSL and krb4 */
 CURLcode Curl_write(struct connectdata *conn,
                     curl_socket_t sockfd,
-                    void *mem, size_t len,
+                    const void *mem, size_t len,
                     ssize_t *written);
 
 /* the function used to output verbose information */

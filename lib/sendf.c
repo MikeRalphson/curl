@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.141 2008-02-20 09:56:26 bagder Exp $
+ * $Id: sendf.c,v 1.142 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -312,7 +312,7 @@ CURLcode Curl_sendf(curl_socket_t sockfd, struct connectdata *conn,
 
 static ssize_t send_plain(struct connectdata *conn,
                           int num,
-                          void *mem,
+                          const void *mem,
                           size_t len)
 {
   curl_socket_t sockfd = conn->sock[num];
@@ -347,7 +347,7 @@ static ssize_t send_plain(struct connectdata *conn,
  */
 CURLcode Curl_write(struct connectdata *conn,
                     curl_socket_t sockfd,
-                    void *mem,
+                    const void *mem,
                     size_t len,
                     ssize_t *written)
 {

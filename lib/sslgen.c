@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.36 2008-02-20 09:56:26 bagder Exp $
+ * $Id: sslgen.c,v 1.37 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -578,7 +578,7 @@ struct curl_slist *Curl_ssl_engines_list(struct SessionHandle *data)
 /* return number of sent (non-SSL) bytes */
 ssize_t Curl_ssl_send(struct connectdata *conn,
                       int sockindex,
-                      void *mem,
+                      const void *mem,
                       size_t len)
 {
 #ifdef USE_SSLEAY

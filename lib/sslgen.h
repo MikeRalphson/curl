@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.11 2007-08-27 06:31:28 danf Exp $
+ * $Id: sslgen.h,v 1.12 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -44,7 +44,7 @@ CURLcode Curl_ssl_set_engine(struct SessionHandle *data, const char *engine);
 CURLcode Curl_ssl_set_engine_default(struct SessionHandle *data);
 ssize_t Curl_ssl_send(struct connectdata *conn,
                       int sockindex,
-                      void *mem,
+                      const void *mem,
                       size_t len);
 ssize_t Curl_ssl_recv(struct connectdata *conn, /* connection data */
                       int sockindex,            /* socketindex */

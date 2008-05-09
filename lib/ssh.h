@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.9 2007-10-12 13:36:38 patrickm Exp $
+ * $Id: ssh.h,v 1.10 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
@@ -29,12 +29,12 @@ extern const struct Curl_handler Curl_handler_scp;
 extern const struct Curl_handler Curl_handler_sftp;
 
 ssize_t Curl_scp_send(struct connectdata *conn, int sockindex,
-                      void *mem, size_t len);
+                      const void *mem, size_t len);
 ssize_t Curl_scp_recv(struct connectdata *conn, int sockindex,
                       char *mem, size_t len);
 
 ssize_t Curl_sftp_send(struct connectdata *conn, int sockindex,
-                       void *mem, size_t len);
+                       const void *mem, size_t len);
 ssize_t Curl_sftp_recv(struct connectdata *conn, int sockindex,
                        char *mem, size_t len);
 

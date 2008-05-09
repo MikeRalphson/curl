@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.h,v 1.29 2007-07-29 12:54:05 bagder Exp $
+ * $Id: ssluse.h,v 1.30 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 /*
@@ -58,7 +58,7 @@ void Curl_ossl_cleanup(void);
 
 ssize_t Curl_ossl_send(struct connectdata *conn,
                        int sockindex,
-                       void *mem,
+                       const void *mem,
                        size_t len);
 ssize_t Curl_ossl_recv(struct connectdata *conn, /* connection data */
                        int num,                  /* socketindex */

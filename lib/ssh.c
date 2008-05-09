@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.99 2008-04-03 20:56:59 bagder Exp $
+ * $Id: ssh.c,v 1.100 2008-05-09 11:27:55 mmarek Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2199,7 +2199,7 @@ static CURLcode scp_done(struct connectdata *conn, CURLcode status,
 
 /* return number of received (decrypted) bytes */
 ssize_t Curl_scp_send(struct connectdata *conn, int sockindex,
-                      void *mem, size_t len)
+                      const void *mem, size_t len)
 {
   ssize_t nwrite;
   (void)sockindex; /* we only support SCP on the fixed known primary socket */
@@ -2347,7 +2347,7 @@ static CURLcode sftp_done(struct connectdata *conn, CURLcode status,
 
 /* return number of sent bytes */
 ssize_t Curl_sftp_send(struct connectdata *conn, int sockindex,
-                       void *mem, size_t len)
+                       const void *mem, size_t len)
 {
   ssize_t nwrite;   /* libssh2_sftp_write() used to return size_t in 0.14
                        but is changed to ssize_t in 0.15. These days we don't
