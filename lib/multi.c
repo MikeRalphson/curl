@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.169 2008-05-07 15:41:41 yangtse Exp $
+ * $Id: multi.c,v 1.170 2008-05-09 12:59:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -722,6 +722,12 @@ static int waitconnect_getsock(struct connectdata *conn,
     return GETSOCK_BLANK;
 
   sock[0] = conn->sock[FIRSTSOCKET];
+
+  /* when we've sent a CONNECT to a proxy, we should rather wait for the
+     socket to become readable to be able to get the response headers */
+  if(conn->bits.tunnel_connecting)
+    return GETSOCK_READSOCK(0);
+
   return GETSOCK_WRITESOCK(0);
 }
 
