@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.287 2008-05-03 22:04:39 bagder Exp $
+# $Id: configure.ac,v 1.288 2008-05-09 16:31:51 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -673,36 +673,6 @@ if test x$CURL_DISABLE_LDAP != x1 ; then
     curl_ldap_msg="enabled (OpenLDAP)"
   fi
 fi
-
-dnl **********************************************************************
-dnl Check for the presence of the winmm library.
-dnl **********************************************************************
-
-case $host in
-  *-*-cygwin*)
-    dnl Under Cygwin, winmm exists but is not needed as WIN32 is not #defined
-    dnl and gettimeofday() will be used regardless of the outcome of this test.
-    dnl Skip this test, otherwise -lwinmm will be needlessly added to LIBS
-    dnl (and recorded as such in the .la file, potentially affecting downstream
-    dnl clients of the library.)
-    ;;
-  *)
-    AC_MSG_CHECKING([for timeGetTime in winmm])
-    my_ac_save_LIBS=$LIBS
-    LIBS="-lwinmm $LIBS"
-    AC_TRY_LINK([#include <windef.h>
-                 #include <mmsystem.h>
-                 ],
-                 [timeGetTime();],
-                 [ dnl worked!
-                 AC_MSG_RESULT([yes])
-                 ],
-                 [ dnl failed, restore LIBS
-                 LIBS=$my_ac_save_LIBS
-                 AC_MSG_RESULT(no)]
-               )
-    ;;
-esac
 
 dnl **********************************************************************
 dnl Checks for IPv6
@@ -2006,6 +1976,7 @@ AC_CHECK_FUNCS( strtoll \
                 strcmpi \
                 gethostbyaddr \
                 gettimeofday \
+                clock_gettime \
                 inet_addr \
                 inet_ntoa \
                 inet_pton \

@@ -1,5 +1,5 @@
 #########################################################################
-# $Id: Makefile.m32,v 1.3 2008-04-02 03:11:34 gknauf Exp $
+# $Id: Makefile.m32,v 1.4 2008-05-09 16:31:51 yangtse Exp $
 #
 ## Makefile for building curl examples with MingW32
 ## and optionally OpenSSL (0.9.8), libssh2 (0.18), zlib (1.2.3)
@@ -106,7 +106,7 @@ ifndef USE_LDAP_OPENLDAP
 curl_LDADD += -lwldap32
 endif
 endif
-curl_LDADD += -lws2_32 -lwinmm
+curl_LDADD += -lws2_32
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 
 # Makefile.inc provides the check_PROGRAMS and COMPLICATED_EXAMPLES defines
