@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.30 2007-11-08 18:13:54 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.31 2008-05-09 16:31:11 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -266,6 +266,8 @@ int ares__get_hostent(FILE *fp, int family, struct hostent **host);
 int ares__read_line(FILE *fp, char **buf, int *bufsize);
 void ares__free_query(struct query *query);
 short ares__generate_new_id(rc4_key* key);
+struct timeval ares__tvnow(void);
+long ares__tvdiff(struct timeval t1, struct timeval t2);
 
 #define ARES_SWAP_BYTE(a,b) \
   { unsigned char swapByte = *(a);  *(a) = *(b);  *(b) = swapByte; }

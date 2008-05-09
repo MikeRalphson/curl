@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.23 2007-11-15 19:44:01 yangtse Exp $ */
+/* $Id: nameser.h,v 1.24 2008-05-09 16:31:11 yangtse Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -28,13 +28,6 @@ struct iovec
 
 int ares_writev (SOCKET s, const struct iovec *vector, size_t count);
 #define writev(s,vect,count)  ares_writev(s,vect,count)
-
-#ifndef HAVE_GETTIMEOFDAY
-struct timezone { int dummy; };
-#endif
-
-int ares_gettimeofday(struct timeval *tv, struct timezone *tz);
-#define gettimeofday(tv,tz) ares_gettimeofday(tv,tz)
 
 #endif  /* !NETWARE */
 
