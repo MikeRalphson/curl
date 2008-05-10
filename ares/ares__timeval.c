@@ -1,4 +1,4 @@
-/* $Id: ares__timeval.c,v 1.1 2008-05-09 16:30:24 yangtse Exp $ */
+/* $Id: ares__timeval.c,v 1.2 2008-05-10 23:50:55 yangtse Exp $ */
 
 /* Copyright (C) 2008 by Daniel Stenberg et al
  *
@@ -46,7 +46,7 @@ struct timeval ares__tvnow(void)
   */
   struct timeval now;
   struct timespec tsnow;
-  (void)clock_gettime(CLOCK_MONOTONIC, &tsnow)
+  (void)clock_gettime(CLOCK_MONOTONIC, &tsnow);
   now.tv_sec = tsnow.tv_sec;
   now.tv_usec = tsnow.tv_nsec / 1000;
   return now;

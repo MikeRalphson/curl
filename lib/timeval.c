@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.29 2008-05-09 16:31:51 yangtse Exp $
+ * $Id: timeval.c,v 1.30 2008-05-10 23:50:56 yangtse Exp $
  ***************************************************************************/
 
 #include "timeval.h"
@@ -52,7 +52,7 @@ struct timeval curlx_tvnow(void)
   */
   struct timeval now;
   struct timespec tsnow;
-  (void)clock_gettime(CLOCK_MONOTONIC, &tsnow)
+  (void)clock_gettime(CLOCK_MONOTONIC, &tsnow);
   now.tv_sec = tsnow.tv_sec;
   now.tv_usec = tsnow.tv_nsec / 1000;
   return now;
