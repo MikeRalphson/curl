@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.349 2008-04-30 21:20:09 bagder Exp $
+ * $Id: curl.h,v 1.350 2008-05-12 21:43:28 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -447,6 +447,8 @@ typedef enum {
 
   CURLE_SSL_SHUTDOWN_FAILED,     /* 80 - Failed to shut down the SSL
                                     connection */
+  CURLE_AGAIN,                   /* 81 - socket is not ready for send/recv,
+                                    wait till it's ready and try again */
   CURL_LAST /* never use! */
 } CURLcode;
 

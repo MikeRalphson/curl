@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.49 2007-11-07 09:21:36 bagder Exp $
+ * $Id: strerror.c,v 1.50 2008-05-12 21:43:29 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -260,6 +260,9 @@ curl_easy_strerror(CURLcode error)
 
   case CURLE_SSH:
     return "Error in the SSH layer";
+
+  case CURLE_AGAIN:
+    return "Socket not ready for send/recv";
 
     /* error codes not used by current libcurl */
   case CURLE_OBSOLETE4:
