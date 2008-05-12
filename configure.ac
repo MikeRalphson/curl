@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.289 2008-05-10 15:46:08 yangtse Exp $
+# $Id: configure.ac,v 1.290 2008-05-12 02:04:22 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -568,9 +568,10 @@ dnl socket lib?
 AC_CHECK_FUNC(connect, , [ AC_CHECK_LIB(socket, connect) ])
 
 dnl **********************************************************************
-dnl Check for libraries needed for function clock_gettime
+dnl In case that function clock_gettime with monotonic timer is available,
+dnl check for additional required libraries.
 dnl **********************************************************************
-CURL_CHECK_LIBS_CLOCK_GETTIME
+CURL_CHECK_LIBS_CLOCK_GETTIME_MONOTONIC
 
 dnl **********************************************************************
 dnl The preceding library checks are all potentially useful for test

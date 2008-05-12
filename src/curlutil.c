@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlutil.c,v 1.5 2008-05-10 23:50:57 yangtse Exp $
+ * $Id: curlutil.c,v 1.6 2008-05-12 02:04:22 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -41,7 +41,7 @@ struct timeval cutil_tvnow(void)
   return now;
 }
 
-#elif defined(HAVE_CLOCK_GETTIME) && defined(CLOCK_MONOTONIC)
+#elif defined(HAVE_CLOCK_GETTIME_MONOTONIC)
 
 struct timeval cutil_tvnow(void)
 {

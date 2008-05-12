@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: timeval.c,v 1.30 2008-05-10 23:50:56 yangtse Exp $
+ * $Id: timeval.c,v 1.31 2008-05-12 02:04:22 yangtse Exp $
  ***************************************************************************/
 
 #include "timeval.h"
@@ -39,7 +39,7 @@ struct timeval curlx_tvnow(void)
   return now;
 }
 
-#elif defined(HAVE_CLOCK_GETTIME) && defined(CLOCK_MONOTONIC)
+#elif defined(HAVE_CLOCK_GETTIME_MONOTONIC)
 
 struct timeval curlx_tvnow(void)
 {

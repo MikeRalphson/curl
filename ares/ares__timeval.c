@@ -1,4 +1,4 @@
-/* $Id: ares__timeval.c,v 1.2 2008-05-10 23:50:55 yangtse Exp $ */
+/* $Id: ares__timeval.c,v 1.3 2008-05-12 02:04:22 yangtse Exp $ */
 
 /* Copyright (C) 2008 by Daniel Stenberg et al
  *
@@ -33,7 +33,7 @@ struct timeval ares__tvnow(void)
   return now;
 }
 
-#elif defined(HAVE_CLOCK_GETTIME) && defined(CLOCK_MONOTONIC)
+#elif defined(HAVE_CLOCK_GETTIME_MONOTONIC)
 
 struct timeval ares__tvnow(void)
 {
