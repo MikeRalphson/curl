@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.142 2008-05-14 13:54:36 yangtse Exp $
+# $Id: acinclude.m4,v 1.143 2008-05-14 16:14:35 yangtse Exp $
 ###########################################################################
 
 
@@ -54,6 +54,41 @@ AC_DEFUN([CURL_CHECK_HEADER_WINDOWS], [
         [Define to 1 if you have the windows.h header file.])
       AC_DEFINE_UNQUOTED(WIN32_LEAN_AND_MEAN, 1,
         [Define to avoid automatic inclusion of winsock.h])
+      ;;
+  esac
+])
+
+
+dnl CURL_CHECK_NATIVE_WINDOWS
+dnl -------------------------------------------------
+dnl Check if building a native Windows target
+
+AC_DEFUN([CURL_CHECK_NATIVE_WINDOWS], [
+  AC_REQUIRE([CURL_CHECK_HEADER_WINDOWS])dnl
+  AC_CACHE_CHECK([whether build target is a native Windows one], [ac_cv_native_windows], [
+    if test "$ac_cv_header_windows_h" = "no"; then
+      ac_cv_native_windows="no"
+    else
+      AC_COMPILE_IFELSE([
+        AC_LANG_PROGRAM([
+        ],[
+#ifdef __MINGW32__
+          int dummy=1;
+#else
+          Not a native Windows build target.
+#endif
+        ])
+      ],[
+        ac_cv_native_windows="yes"
+      ],[
+        ac_cv_native_windows="no"
+      ])
+    fi
+  ])
+  case "$ac_cv_native_windows" in
+    yes)
+      AC_DEFINE_UNQUOTED(NATIVE_WINDOWS, 1,
+        [Define to 1 if you are building a native Windows target.])
       ;;
   esac
 ])
@@ -2570,41 +2605,6 @@ AC_DEFUN([CURL_CHECK_VARIADIC_MACROS], [
     yes)
       AC_DEFINE_UNQUOTED(HAVE_VARIADIC_MACROS_GCC, 1,
         [Define to 1 if compiler supports old gcc variadic macro style.])
-      ;;
-  esac
-])
-
-
-dnl CURL_CHECK_NATIVE_WINDOWS
-dnl -------------------------------------------------
-dnl Check if building a native Windows target
-
-AC_DEFUN([CURL_CHECK_NATIVE_WINDOWS], [
-  AC_REQUIRE([CURL_CHECK_HEADER_WINDOWS])dnl
-  AC_CACHE_CHECK([whether build target is a native Windows one], [ac_cv_native_windows], [
-    if test "$ac_cv_header_windows_h" = "no"; then
-      ac_cv_native_windows="no"
-    else
-      AC_COMPILE_IFELSE([
-        AC_LANG_PROGRAM([
-        ],[
-#ifdef __MINGW32__
-          int dummy=1;
-#else
-          Not a native Windows build target.
-#endif
-        ])
-      ],[
-        ac_cv_native_windows="yes"
-      ],[
-        ac_cv_native_windows="no"
-      ])
-    fi
-  ])
-  case "$ac_cv_native_windows" in
-    yes)
-      AC_DEFINE_UNQUOTED(NATIVE_WINDOWS, 1,
-        [Define to 1 if you are building a native Windows target.])
       ;;
   esac
 ])
