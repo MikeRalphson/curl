@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.291 2008-05-14 16:14:35 yangtse Exp $
+# $Id: configure.ac,v 1.292 2008-05-14 16:17:23 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2296,8 +2296,6 @@ AC_HELP_STRING([--disable-verbose],[Disable verbose strings]),
   esac ],
        AC_MSG_RESULT(yes)
 )
-
-CURL_CHECK_NATIVE_WINDOWS
 
 dnl ************************************************************
 dnl enable SSPI support
