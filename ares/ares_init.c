@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.71 2008-05-13 20:48:48 bagder Exp $ */
+/* $Id: ares_init.c,v 1.72 2008-05-15 00:00:19 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -108,6 +108,7 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   int i;
   int status = ARES_SUCCESS;
   struct server_state *server;
+  struct timeval now;
 
 #ifdef CURLDEBUG
   const char *env = getenv("CARES_MEMDEBUG");
@@ -124,6 +125,8 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
     *channelptr = NULL;
     return ARES_ENOMEM;
   }
+
+  now = ares__tvnow();
 
   /* Set everything to distinguished values so we know they haven't
    * been set yet.
@@ -147,7 +150,7 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   channel->sock_state_cb = NULL;
   channel->sock_state_cb_data = NULL;
 
-  channel->last_timeout_processed = (long)time(NULL);
+  channel->last_timeout_processed = (time_t)now.tv_sec;
 
   /* Initialize our lists of queries */
   ares__init_list_head(&(channel->all_queries));
