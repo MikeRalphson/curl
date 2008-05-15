@@ -5,10 +5,11 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: anyauthput.c,v 1.4 2008-02-27 09:06:15 bagder Exp $
+ * $Id: anyauthput.c,v 1.5 2008-05-15 22:31:23 danf Exp $
  */
 
 #include <stdio.h>
+#include <stdint.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <unistd.h>
