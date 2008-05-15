@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.63 2008-05-13 20:48:48 bagder Exp $ */
+/* $Id: ares_process.c,v 1.64 2008-05-15 22:57:33 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -110,7 +110,7 @@ int ares__timedout(struct timeval *now,
 
   if(secs > 0)
     return 1; /* yes, timed out */
-  if(secs < -1)
+  if(secs < 0)
     return 0; /* nope, not timed out */
 
   /* if the full seconds were identical, check the sub second parts */

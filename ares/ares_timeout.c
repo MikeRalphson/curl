@@ -1,4 +1,4 @@
-/* $Id: ares_timeout.c,v 1.11 2008-05-13 20:48:48 bagder Exp $ */
+/* $Id: ares_timeout.c,v 1.12 2008-05-15 22:57:33 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -64,8 +64,8 @@ struct timeval *ares_timeout(ares_channel channel, struct timeval *maxtv,
     }
 
   if(min_offset != -1) {
-    nextstop = now;
-    ares__timeadd(&now, min_offset);
+    nextstop.tv_sec = min_offset/1000;
+    nextstop.tv_usec = (min_offset%1000)*1000;
   }
 
   /* If we found a minimum timeout and it's sooner than the one specified in
