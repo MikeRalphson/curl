@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.292 2008-05-14 16:17:23 yangtse Exp $
+# $Id: configure.ac,v 1.293 2008-05-17 01:20:56 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -151,7 +151,7 @@ AC_PROG_LIBTOOL
 
 AC_MSG_CHECKING([if we need -no-undefined])
 case $host in
-  *-*-cygwin | *-*-mingw* | *-*-pw32*)
+  *-*-cygwin* | *-*-mingw* | *-*-pw32* | *-*-cegcc*)
     need_no_undefined=yes
     ;;
   *)
