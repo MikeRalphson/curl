@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.294 2008-05-18 20:13:13 yangtse Exp $
+# $Id: configure.ac,v 1.295 2008-05-19 02:50:30 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -506,7 +506,14 @@ then
   dnl This is for winsock systems
   if test "$ac_cv_header_windows_h" = "yes"; then
     if test "$ac_cv_header_winsock_h" = "yes"; then
-      winsock_LIB="-lwinsock"
+      case $host in
+        *-*-mingw32ce*)
+          winsock_LIB="-lwinsock"
+          ;;
+        *)
+          winsock_LIB="-lwsock32"
+          ;;
+      esac
     fi
     if test "$ac_cv_header_winsock2_h" = "yes"; then
       winsock_LIB="-lws2_32"
