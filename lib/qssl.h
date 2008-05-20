@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.h,v 1.2 2007-07-30 21:41:12 bagder Exp $
+ * $Id: qssl.h,v 1.3 2008-05-20 10:21:50 patrickm Exp $
  ***************************************************************************/
 
 /*
@@ -38,7 +38,7 @@ int Curl_qsossl_shutdown(struct connectdata * conn, int sockindex);
 
 ssize_t Curl_qsossl_send(struct connectdata * conn,
                          int sockindex,
-                         void * mem,
+                         const void * mem,
                          size_t len);
 ssize_t Curl_qsossl_recv(struct connectdata * conn, /* connection data */
                          int num,                   /* socketindex */

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: initscript.sh,v 1.4 2008-04-07 13:09:17 patrickm Exp $
+# $Id: initscript.sh,v 1.5 2008-05-20 10:21:50 patrickm Exp $
 
 case "${SCRIPTDIR}" in
 /*)     ;;
@@ -40,10 +40,10 @@ SRVPGM="CURL.${SONAME}"         # Service program.
 TGTCCSID='500'                  # Target CCSID of objects
 DEBUG='*ALL'                    # Debug level
 OPTIMIZE='10'                   # Optimisation level
-OUTPUT='*NONE'                   # Compilation output option.
+OUTPUT='*NONE'                  # Compilation output option.
 TGTRLS='V5R2M0'                 # Target OS release
 
-export TARGETLIB STATBNDDIR DYNBNDDIR SRVPGM TGTCCSID DEBUG OPTIMIZE OUTPUTC
+export TARGETLIB STATBNDDIR DYNBNDDIR SRVPGM TGTCCSID DEBUG OPTIMIZE OUTPUT
 export TGTRLS
 
 

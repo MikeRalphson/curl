@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup-os400.h,v 1.1 2007-08-23 14:30:24 patrickm Exp $
+ * $Id: setup-os400.h,v 1.2 2008-05-20 10:21:50 patrickm Exp $
  ***************************************************************************/
 
 /* The following must be defined BEFORE common header files inclusion. */
@@ -136,5 +136,21 @@ extern OM_uint32 Curl_gss_delete_sec_context_a(OM_uint32 * minor_status,
 #define ldap_get_dn             Curl_ldap_get_dn_a
 #define ldap_first_attribute    Curl_ldap_first_attribute_a
 #define ldap_next_attribute     Curl_ldap_next_attribute_a
+
+/* Some socket functions must be wrapped to process textual addresses
+   like AF_UNIX. */
+
+extern int Curl_os400_connect(int sd, struct sockaddr * destaddr, int addrlen);
+extern int Curl_os400_bind(int sd, struct sockaddr * localaddr, int addrlen);
+extern int Curl_os400_sendto(int sd, char * buffer, int buflen, int flags,
+            struct sockaddr * dstaddr, int addrlen);
+extern int Curl_os400_recvfrom(int sd, char * buffer, int buflen, int flags,
+                                struct sockaddr * fromaddr, int * addrlen);
+
+#define connect                 Curl_os400_connect
+#define bind                    Curl_os400_bind
+#define sendto                  Curl_os400_sendto
+#define recvfrom                Curl_os400_recvfrom
+
 
 #endif /* __SETUP_OS400_H */
