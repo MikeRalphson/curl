@@ -1,4 +1,4 @@
-/* $Id: ares__timeval.c,v 1.3 2008-05-12 02:04:22 yangtse Exp $ */
+/* $Id: ares__timeval.c,v 1.4 2008-05-20 01:24:19 yangtse Exp $ */
 
 /* Copyright (C) 2008 by Daniel Stenberg et al
  *
@@ -81,6 +81,7 @@ struct timeval ares__tvnow(void)
 
 #endif
 
+#if 0 /* Not used */
 /*
  * Make sure that the first argument is the more recent time, as otherwise
  * we'll get a weird negative time-diff back...
@@ -92,4 +93,5 @@ long ares__tvdiff(struct timeval newer, struct timeval older)
   return (newer.tv_sec-older.tv_sec)*1000+
     (newer.tv_usec-older.tv_usec)/1000;
 }
+#endif
 
