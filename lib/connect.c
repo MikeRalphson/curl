@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.191 2008-05-12 21:43:28 bagder Exp $
+ * $Id: connect.c,v 1.192 2008-05-21 21:08:31 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -51,9 +51,6 @@
 #endif
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
-#endif
-#ifdef HAVE_NETINET_IN_H
-#include <netinet/in.h>
 #endif
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>

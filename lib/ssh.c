@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.100 2008-05-09 11:27:55 mmarek Exp $
+ * $Id: ssh.c,v 1.101 2008-05-21 21:08:31 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -109,9 +109,6 @@
 #if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
 #include "inet_ntoa_r.h"
 #endif
-
-#define _MPRINTF_REPLACE /* use our functions only */
-#include <curl/mprintf.h>
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
