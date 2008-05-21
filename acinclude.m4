@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.153 2008-05-21 14:04:14 yangtse Exp $
+# $Id: acinclude.m4,v 1.154 2008-05-21 18:24:09 yangtse Exp $
 ###########################################################################
 
 
@@ -773,9 +773,7 @@ dnl an equivalent type if socklen_t not available
 
 AC_DEFUN([CURL_CHECK_TYPE_SOCKLEN_T], [
   AC_REQUIRE([CURL_CHECK_HEADER_WS2TCPIP])dnl
-  AC_CHECK_TYPE([socklen_t], [
-    dnl socklen_t is available
-  ],[
+  AC_CHECK_TYPE([socklen_t], ,[
     dnl socklen_t not available
     AC_CACHE_CHECK([for socklen_t equivalent],
       [curl_cv_socklen_t_equiv], [
