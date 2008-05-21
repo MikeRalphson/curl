@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.151 2008-05-20 17:30:41 yangtse Exp $
+# $Id: acinclude.m4,v 1.152 2008-05-21 13:57:50 yangtse Exp $
 ###########################################################################
 
 
@@ -829,7 +829,7 @@ AC_DEFUN([CURL_CHECK_TYPE_SOCKLEN_T], [
         ;;
       *)
         AC_DEFINE_UNQUOTED(socklen_t, $curl_cv_socklen_t_equiv,
-          [type to use in place of socklen_t if not defined])
+          [Type to use in place of socklen_t when system does not provide it.])
         AC_DEFINE_UNQUOTED(HAVE_SOCKLEN_T, 1,
           [Define to 1 if socklen_t is available or a equivalent is defined.])
         ;;
