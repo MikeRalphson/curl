@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.13 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: lib505.c,v 1.14 2008-05-22 21:49:52 danf Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -116,10 +116,10 @@ int test(char *URL)
   headerlist = hl;
 
   /* enable uploading */
-  curl_easy_setopt(curl, CURLOPT_UPLOAD, TRUE) ;
+  curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 
   /* enable verbose */
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, TRUE) ;
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
   /* specify target */
   curl_easy_setopt(curl,CURLOPT_URL, URL);

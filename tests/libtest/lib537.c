@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.19 2008-01-17 18:57:50 yangtse Exp $
+ * $Id: lib537.c,v 1.20 2008-05-22 21:49:53 danf Exp $
  */
 
 #include "test.h"
@@ -486,7 +486,7 @@ int test(char *URL)
   }
 
   curl_easy_setopt(curl, CURLOPT_URL, URL);
-  curl_easy_setopt(curl, CURLOPT_HEADER, TRUE);
+  curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 
   res = curl_easy_perform(curl);
 

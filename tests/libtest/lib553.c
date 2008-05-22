@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib553.c,v 1.1 2008-01-16 22:54:54 bagder Exp $
+ * $Id: lib553.c,v 1.2 2008-05-22 21:49:53 danf Exp $
  *
  * This test case and code is based on the bug recipe Joe Malicki provided for
  * bug report #1871269, fixed on Jan 14 2008 before the 7.18.0 release.
@@ -60,10 +60,10 @@ int test(char *URL)
 
   curl_easy_setopt(curl, CURLOPT_URL, URL);
   curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
-  curl_easy_setopt(curl, CURLOPT_POST, 1);
-  curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, POSTLEN);
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
-  curl_easy_setopt(curl, CURLOPT_HEADER, 1);
+  curl_easy_setopt(curl, CURLOPT_POST, 1L);
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)POSTLEN);
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+  curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
   curl_easy_setopt(curl, CURLOPT_READFUNCTION, myreadfunc);
   res = curl_easy_perform(curl);
   curl_easy_cleanup(curl);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib542.c,v 1.2 2007-09-27 17:22:10 danf Exp $
+ * $Id: lib542.c,v 1.3 2008-05-22 21:49:53 danf Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -50,13 +50,13 @@ int test(char *URL)
   }
 
   /* enable verbose */
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, TRUE) ;
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
   /* enable NOBODY */
-  curl_easy_setopt(curl, CURLOPT_NOBODY, TRUE) ;
+  curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
 
   /* disable HEADER */
-  curl_easy_setopt(curl, CURLOPT_HEADER, FALSE) ;
+  curl_easy_setopt(curl, CURLOPT_HEADER, 0L);
 
   /* specify target */
   curl_easy_setopt(curl,CURLOPT_URL, URL);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib524.c,v 1.3 2006-10-25 09:20:44 yangtse Exp $
+ * $Id: lib524.c,v 1.4 2008-05-22 21:49:53 danf Exp $
  */
 
 #include "test.h"
@@ -27,8 +27,8 @@ int test(char *URL)
   }
 
   curl_easy_setopt(curl, CURLOPT_URL, URL);
-  curl_easy_setopt(curl, CURLOPT_UPLOAD, 1);
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, TRUE);
+  curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
   res = curl_easy_perform(curl);
 

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib525.c,v 1.17 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: lib525.c,v 1.18 2008-05-22 21:49:53 danf Exp $
  */
 
 #include "test.h"
@@ -71,13 +71,13 @@ int test(char *URL)
   }
 
   /* enable uploading */
-  curl_easy_setopt(curl, CURLOPT_UPLOAD, TRUE) ;
+  curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 
   /* specify target */
   curl_easy_setopt(curl,CURLOPT_URL, URL);
 
   /* go verbose */
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
   /* use active FTP */
   curl_easy_setopt(curl, CURLOPT_FTPPORT, "-");

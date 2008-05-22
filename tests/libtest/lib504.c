@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib504.c,v 1.26 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: lib504.c,v 1.27 2008-05-22 21:49:52 danf Exp $
  */
 
 #include "test.h"
@@ -55,7 +55,7 @@ int test(char *URL)
      proxy port */
   curl_easy_setopt(c, CURLOPT_PROXY, libtest_arg2);
   curl_easy_setopt(c, CURLOPT_URL, URL);
-  curl_easy_setopt(c, CURLOPT_VERBOSE, 1);
+  curl_easy_setopt(c, CURLOPT_VERBOSE, 1L);
 
   if ((m = curl_multi_init()) == NULL) {
     fprintf(stderr, "curl_multi_init() failed\n");

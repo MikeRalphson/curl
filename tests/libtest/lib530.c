@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.16 2008-01-21 05:35:08 yangtse Exp $
+ * $Id: lib530.c,v 1.17 2008-05-22 21:49:53 danf Exp $
  */
 
 #include "test.h"
@@ -71,10 +71,10 @@ int test(char *URL)
     curl_easy_setopt(curl[i], CURLOPT_URL, target_url);
 
     /* go verbose */
-    curl_easy_setopt(curl[i], CURLOPT_VERBOSE, 1);
+    curl_easy_setopt(curl[i], CURLOPT_VERBOSE, 1L);
 
     /* include headers */
-    curl_easy_setopt(curl[i], CURLOPT_HEADER, 1);
+    curl_easy_setopt(curl[i], CURLOPT_HEADER, 1L);
 
     /* add handle to multi */
     if ((res = (int)curl_multi_add_handle(m, curl[i])) != CURLM_OK) {
@@ -91,7 +91,7 @@ int test(char *URL)
     }
   }
 
-  curl_multi_setopt(m, CURLMOPT_PIPELINING, 1);
+  curl_multi_setopt(m, CURLMOPT_PIPELINING, 1L);
 
   ml_timedout = FALSE;
   ml_start = tutil_tvnow();

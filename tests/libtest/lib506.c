@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib506.c,v 1.17 2008-02-27 09:06:15 bagder Exp $
+ * $Id: lib506.c,v 1.18 2008-05-22 21:49:52 danf Exp $
  */
 
 #include "test.h"
@@ -106,7 +106,7 @@ static void *fire(void *ptr)
   }
 
   headers = sethost(NULL);
-  curl_easy_setopt(curl, CURLOPT_VERBOSE,    1);
+  curl_easy_setopt(curl, CURLOPT_VERBOSE,    1L);
   curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
   curl_easy_setopt(curl, CURLOPT_URL,        tdata->url);
   printf( "CURLOPT_SHARE\n" );

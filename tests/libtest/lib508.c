@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib508.c,v 1.6 2007-10-23 15:10:48 yangtse Exp $
+ * $Id: lib508.c,v 1.7 2008-05-22 21:49:52 danf Exp $
  */
 
 #include "test.h"
@@ -59,7 +59,7 @@ int test(char *URL)
   curl_easy_setopt(curl, CURLOPT_URL, URL);
 
   /* Now specify we want to POST data */
-  curl_easy_setopt(curl, CURLOPT_POST, TRUE);
+  curl_easy_setopt(curl, CURLOPT_POST, 1L);
 
   /* Set the expected POST size */
   curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)pooh.sizeleft);
@@ -71,10 +71,10 @@ int test(char *URL)
   curl_easy_setopt(curl, CURLOPT_INFILE, &pooh);
 
   /* get verbose debug output please */
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
   /* include headers in the output */
-  curl_easy_setopt(curl, CURLOPT_HEADER, TRUE);
+  curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 
   /* Perform the request, res will get the return code */
   res = curl_easy_perform(curl);

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib503.c,v 1.17 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: lib503.c,v 1.18 2008-05-22 21:49:52 danf Exp $
  */
 
 #include "test.h"
@@ -52,8 +52,8 @@ int test(char *URL)
   curl_easy_setopt(c, CURLOPT_URL, URL);
   curl_easy_setopt(c, CURLOPT_USERPWD, "test:ing");
   curl_easy_setopt(c, CURLOPT_PROXYUSERPWD, "test:ing");
-  curl_easy_setopt(c, CURLOPT_HTTPPROXYTUNNEL, 1);
-  curl_easy_setopt(c, CURLOPT_HEADER, 1);
+  curl_easy_setopt(c, CURLOPT_HTTPPROXYTUNNEL, 1L);
+  curl_easy_setopt(c, CURLOPT_HEADER, 1L);
 
   if ((m = curl_multi_init()) == NULL) {
     fprintf(stderr, "curl_multi_init() failed\n");

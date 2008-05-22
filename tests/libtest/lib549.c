@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib549.c,v 1.1 2007-12-08 22:53:32 bagder Exp $
+ * $Id: lib549.c,v 1.2 2008-05-22 21:49:53 danf Exp $
  *
  * argv1 = URL
  * argv2 = proxy
@@ -32,11 +32,11 @@ int test(char *URL)
 
   curl_easy_setopt(curl, CURLOPT_PROXY, libtest_arg2);
   curl_easy_setopt(curl, CURLOPT_URL, URL);
-  curl_easy_setopt(curl, CURLOPT_PROXY_TRANSFER_MODE, 1);
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, TRUE);
+  curl_easy_setopt(curl, CURLOPT_PROXY_TRANSFER_MODE, 1L);
+  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
   if(libtest_arg3)
     /* enable ascii/text mode */
-    curl_easy_setopt(curl, CURLOPT_TRANSFERTEXT, TRUE);
+    curl_easy_setopt(curl, CURLOPT_TRANSFERTEXT, 1L);
 
   res = curl_easy_perform(curl);
 
