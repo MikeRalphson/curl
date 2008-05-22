@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: curlgtk.c,v 1.6 2008-04-03 20:28:45 danf Exp $
+ * $Id: curlgtk.c,v 1.7 2008-05-22 21:20:08 danf Exp $
  */
 /* Copyright (c) 2000 David Odin (aka DindinX) for MandrakeSoft */
 /* an attempt to use the curl library in concert with a gtk-threaded application */
@@ -58,7 +58,7 @@ void *my_thread(void *ptr)
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, outfile);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, my_write_func);
     curl_easy_setopt(curl, CURLOPT_READFUNCTION, my_read_func);
-    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, FALSE);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
     curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, my_progress_func);
     curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, Bar);
 

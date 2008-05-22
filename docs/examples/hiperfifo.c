@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: hiperfifo.c,v 1.6 2008-05-19 20:40:53 bagder Exp $
+ * $Id: hiperfifo.c,v 1.7 2008-05-22 21:20:09 danf Exp $
  *
  * Example application source code using the multi socket interface to
  * download many files at once.
@@ -327,10 +327,10 @@ static void new_conn(char *url, GlobalInfo *g )
   curl_easy_setopt(conn->easy, CURLOPT_URL, conn->url);
   curl_easy_setopt(conn->easy, CURLOPT_WRITEFUNCTION, write_cb);
   curl_easy_setopt(conn->easy, CURLOPT_WRITEDATA, &conn);
-  curl_easy_setopt(conn->easy, CURLOPT_VERBOSE, 1);
+  curl_easy_setopt(conn->easy, CURLOPT_VERBOSE, 1L);
   curl_easy_setopt(conn->easy, CURLOPT_ERRORBUFFER, conn->error);
   curl_easy_setopt(conn->easy, CURLOPT_PRIVATE, conn);
-  curl_easy_setopt(conn->easy, CURLOPT_NOPROGRESS, 0);
+  curl_easy_setopt(conn->easy, CURLOPT_NOPROGRESS, 0L);
   curl_easy_setopt(conn->easy, CURLOPT_PROGRESSFUNCTION, prog_cb);
   curl_easy_setopt(conn->easy, CURLOPT_PROGRESSDATA, conn);
   fprintf(MSG_OUT,

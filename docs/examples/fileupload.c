@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: fileupload.c,v 1.3 2007-07-12 21:11:10 danf Exp $
+ * $Id: fileupload.c,v 1.4 2008-05-22 21:20:09 danf Exp $
  */
 
 #include <stdio.h>
@@ -36,7 +36,7 @@ int main(void)
                      "file:///home/dast/src/curl/debug/new");
 
     /* tell it to "upload" to the URL */
-    curl_easy_setopt(curl, CURLOPT_UPLOAD, 1);
+    curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 
     /* set where to read from (on Windows you need to use READFUNCTION too) */
     curl_easy_setopt(curl, CURLOPT_READDATA, fd);
@@ -46,7 +46,7 @@ int main(void)
                      (curl_off_t)file_info.st_size);
 
     /* enable verbose for easier tracing */
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
     res = curl_easy_perform(curl);
 

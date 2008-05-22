@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: threaded-ssl.c,v 1.3 2008-04-03 20:28:33 danf Exp $
+ * $Id: threaded-ssl.c,v 1.4 2008-05-22 21:20:09 danf Exp $
  *
  * A multi-threaded example that uses pthreads and fetches 4 remote files at
  * once over HTTPS. The lock callbacks and stuff assume OpenSSL or GnuTLS
@@ -106,8 +106,8 @@ static void *pull_one_url(void *url)
   curl_easy_setopt(curl, CURLOPT_URL, url);
   /* this example doesn't verify the server's certificate, which means we
      might be downloading stuff from an impostor */
-  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
-  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
   curl_easy_perform(curl); /* ignores error */
   curl_easy_cleanup(curl);
 
