@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.299 2008-05-20 15:55:31 yangtse Exp $
+# $Id: configure.ac,v 1.300 2008-05-26 15:09:28 bagder Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -590,6 +590,15 @@ then
   ],[
     AC_MSG_RESULT([no])
   ])
+fi
+
+if test "$HAVE_GETHOSTBYNAME" != "1"
+then
+  dnl gethostbyname in the network lib - for Haiku OS
+  AC_CHECK_LIB(network, gethostbyname,
+               [HAVE_GETHOSTBYNAME="1"
+               LIBS="$LIBS -lnetwork"
+               ])
 fi
 
 if test "$HAVE_GETHOSTBYNAME" != "1"
