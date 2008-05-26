@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.22 2008-05-08 22:14:17 bagder Exp $
+ * $Id: ahost.c,v 1.23 2008-05-26 13:52:25 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -141,6 +141,8 @@ int main(int argc, char **argv)
 static void callback(void *arg, int status, int timeouts, struct hostent *host)
 {
   char **p;
+
+  (void)timeouts;
 
   if (status != ARES_SUCCESS)
     {
