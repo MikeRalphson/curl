@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.17 2008-02-20 09:56:26 bagder Exp $
+ * $Id: nss.c,v 1.18 2008-05-26 01:59:00 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -65,10 +65,6 @@
 
 /* The last #include file should be: */
 #include "memdebug.h"
-
-#ifndef min
-#define min(a, b)   ((a) < (b) ? (a) : (b))
-#endif
 
 #define SSL_DIR "/etc/pki/nssdb"
 

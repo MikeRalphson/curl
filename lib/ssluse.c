@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.198 2008-05-09 11:27:55 mmarek Exp $
+ * $Id: ssluse.c,v 1.199 2008-05-26 01:59:00 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -69,10 +69,6 @@
 
 /* The last #include file should be: */
 #include "memdebug.h"
-
-#ifndef min
-#define min(a, b)   ((a) < (b) ? (a) : (b))
-#endif
 
 #if OPENSSL_VERSION_NUMBER >= 0x0090581fL
 #define HAVE_SSL_GET1_SESSION 1
