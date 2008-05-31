@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.102 2008-05-28 20:31:28 bagder Exp $
+ * $Id: ssh.c,v 1.103 2008-05-31 01:37:21 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2175,7 +2175,7 @@ static CURLcode ssh_do(struct connectdata *conn, bool *done)
    disconnecting operations that takes a while */
 static CURLcode scp_disconnect(struct connectdata *conn)
 {
-  CURLcode result;
+  CURLcode result = CURLE_OK;
 
   Curl_safefree(conn->data->state.proto.ssh);
   conn->data->state.proto.ssh = NULL;
@@ -2331,7 +2331,7 @@ static CURLcode sftp_doing(struct connectdata *conn,
    disconnecting operations that takes a while */
 static CURLcode sftp_disconnect(struct connectdata *conn)
 {
-  CURLcode result;
+  CURLcode result = CURLE_OK;
 
   DEBUGF(infof(conn->data, "SSH DISCONNECT starts now\n"));
 
