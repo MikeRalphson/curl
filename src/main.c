@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.460 2008-04-25 00:41:44 danf Exp $
+ * $Id: main.c,v 1.461 2008-06-01 16:01:37 curlvms Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3915,11 +3915,14 @@ operate(struct Configurable *config, int argc, argv_item_t argv[])
 
         res = getparameter(flag, nextarg, &passarg, config);
         if(res) {
-          const char *reason = param2text(res);
-          if(res != PARAM_HELP_REQUESTED)
+          int retval = CURLE_OK;
+          if(res != PARAM_HELP_REQUESTED) {
+            const char *reason = param2text(res);
             helpf(config->errors, "option %s: %s\n", origopt, reason);
+            retval = CURLE_FAILED_INIT;
+          }
           clean_getout(config);
-          return CURLE_FAILED_INIT;
+          return retval;
         }
 
         if(passarg) /* we're supposed to skip this */
