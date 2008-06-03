@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.351 2008-05-20 10:21:50 patrickm Exp $
+ * $Id: curl.h,v 1.352 2008-06-03 18:00:48 danf Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -379,7 +379,7 @@ typedef enum {
   CURLE_WRITE_ERROR,             /* 23 */
   CURLE_OBSOLETE24,              /* 24 - NOT USED */
   CURLE_UPLOAD_FAILED,           /* 25 - failed upload "command" */
-  CURLE_READ_ERROR,              /* 26 - could open/read from file */
+  CURLE_READ_ERROR,              /* 26 - couldn't open/read from file */
   CURLE_OUT_OF_MEMORY,           /* 27 */
   /* Note: CURLE_OUT_OF_MEMORY may sometimes indicate a conversion error
            instead of a memory allocation error if CURL_DOES_CONVERSIONS
