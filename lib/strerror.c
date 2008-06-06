@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.50 2008-05-12 21:43:29 bagder Exp $
+ * $Id: strerror.c,v 1.51 2008-06-06 18:40:21 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -221,6 +221,9 @@ curl_easy_strerror(CURLcode error)
 
   case CURLE_SSL_SHUTDOWN_FAILED:
     return "Failed to shut down the SSL connection";
+
+  case CURLE_SSL_CRL_BADFILE:
+    return "Failed to load CRL file (path? access rights?, format?)";
 
   case CURLE_SEND_FAIL_REWIND:
     return "Send failed since rewinding of the data stream failed";

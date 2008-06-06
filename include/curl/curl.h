@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.353 2008-06-06 17:33:36 bagder Exp $
+ * $Id: curl.h,v 1.354 2008-06-06 18:40:21 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -452,7 +452,10 @@ typedef enum {
   CURLE_SSL_SHUTDOWN_FAILED,     /* 80 - Failed to shut down the SSL
                                     connection */
   CURLE_AGAIN,                   /* 81 - socket is not ready for send/recv,
-                                    wait till it's ready and try again */
+                                    wait till it's ready and try again (Added
+                                    in 7.18.2) */
+  CURLE_SSL_CRL_BADFILE,         /* 82 - could not load CRL file, missing or
+                                    wrong format (Added in 7.18.3) */
   CURL_LAST /* never use! */
 } CURLcode;
 
@@ -1199,6 +1202,9 @@ typedef enum {
   /* Callback function for seeking in the input stream */
   CINIT(SEEKFUNCTION, FUNCTIONPOINT, 167),
   CINIT(SEEKDATA, OBJECTPOINT, 168),
+
+  /* CRL file */
+  CINIT(CRLFILE, OBJECTPOINT, 169),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

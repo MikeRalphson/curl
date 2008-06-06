@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.711 2008-04-30 21:20:09 bagder Exp $
+ * $Id: url.c,v 1.712 2008-06-06 18:40:21 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1810,6 +1810,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     /* This does not work on windows. */
     result = setstropt(&data->set.str[STRING_SSL_CAPATH],
                             va_arg(param, char *));
+    break;
+  case CURLOPT_CRLFILE:
+    /*
+     * Set CRL file info for SSL connection. Specify file name of the CRL
+     * to check certificates revocation
+     */
+    result = setstropt(&data->set.str[STRING_SSL_CRLFILE],
+                       va_arg(param, char *));
     break;
   case CURLOPT_TELNETOPTIONS:
     /*
@@ -3951,6 +3959,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   */
   data->set.ssl.CApath = data->set.str[STRING_SSL_CAPATH];
   data->set.ssl.CAfile = data->set.str[STRING_SSL_CAFILE];
+  data->set.ssl.CRLfile = data->set.str[STRING_SSL_CRLFILE];
   data->set.ssl.random_file = data->set.str[STRING_SSL_RANDOM_FILE];
   data->set.ssl.egdsocket = data->set.str[STRING_SSL_EGDSOCKET];
   data->set.ssl.cipher_list = data->set.str[STRING_SSL_CIPHER_LIST];
