@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.61 2008-05-12 21:43:29 bagder Exp $
+ * $Id: getinfo.c,v 1.62 2008-06-06 17:33:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -209,6 +209,10 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     /* Return the URL this request would have been redirected to if that
        option had been enabled! */
     *param_charp = data->info.wouldredirect;
+    break;
+  case CURLINFO_PRIMARY_IP:
+    /* Return the ip address of the most recent (primary) connection */
+    *param_charp = data->info.ip;
     break;
   default:
     return CURLE_BAD_FUNCTION_ARGUMENT;
