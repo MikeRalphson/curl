@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.154 2008-05-21 18:24:09 yangtse Exp $
+# $Id: acinclude.m4,v 1.155 2008-06-06 18:44:39 yangtse Exp $
 ###########################################################################
 
 
@@ -72,7 +72,8 @@ AC_DEFUN([CURL_CHECK_NATIVE_WINDOWS], [
       AC_COMPILE_IFELSE([
         AC_LANG_PROGRAM([[
         ]],[[
-#if defined(__MINGW32__) || defined(__MINGW32CE__)
+#if defined(__MINGW32__) || defined(__MINGW32CE__) || \
+   (defined(_MSC_VER) && (defined(_WIN32) || defined(_WIN64)))
           int dummy=1;
 #else
           Not a native Windows build target.
