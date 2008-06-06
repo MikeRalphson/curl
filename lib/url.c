@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.712 2008-06-06 18:40:21 bagder Exp $
+ * $Id: url.c,v 1.713 2008-06-06 20:52:32 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1817,6 +1817,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * to check certificates revocation
      */
     result = setstropt(&data->set.str[STRING_SSL_CRLFILE],
+                       va_arg(param, char *));
+    break;
+  case CURLOPT_ISSUERCERT:
+    /*
+     * Set Issuer certificate file
+     * to check certificates issuer
+     */
+    result = setstropt(&data->set.str[STRING_SSL_ISSUERCERT],
                        va_arg(param, char *));
     break;
   case CURLOPT_TELNETOPTIONS:
@@ -3960,6 +3968,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
   data->set.ssl.CApath = data->set.str[STRING_SSL_CAPATH];
   data->set.ssl.CAfile = data->set.str[STRING_SSL_CAFILE];
   data->set.ssl.CRLfile = data->set.str[STRING_SSL_CRLFILE];
+  data->set.ssl.issuercert = data->set.str[STRING_SSL_ISSUERCERT];
   data->set.ssl.random_file = data->set.str[STRING_SSL_RANDOM_FILE];
   data->set.ssl.egdsocket = data->set.str[STRING_SSL_EGDSOCKET];
   data->set.ssl.cipher_list = data->set.str[STRING_SSL_CIPHER_LIST];

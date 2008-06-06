@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.380 2008-06-06 18:40:22 bagder Exp $
+ * $Id: urldata.h,v 1.381 2008-06-06 20:52:32 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -213,6 +213,7 @@ struct ssl_config_data {
   char *CApath;          /* certificate dir (doesn't work on windows) */
   char *CAfile;          /* cerficate to verify peer against */
   char *CRLfile;         /* CRL to check cerficate revocation */
+  char *issuercert;      /* optional issuer cerficate filename */
   char *random_file;     /* path to file containing "random" data */
   char *egdsocket;       /* path to file containing the EGD daemon socket */
   char *cipher_list;     /* list of ciphers to use */
@@ -1319,6 +1320,7 @@ enum dupstring {
   STRING_USERPWD,         /* <user:password>, if used */
   STRING_SSH_HOST_PUBLIC_KEY_MD5, /* md5 of host public key in ascii hex */
   STRING_SSL_CRLFILE,     /* crl file to check certificate */
+  STRING_SSL_ISSUERCERT,  /* issuer cert file to check certificate */
 
   /* -- end of strings -- */
   STRING_LAST /* not used, just an end-of-list marker */
