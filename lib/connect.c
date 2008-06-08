@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.193 2008-06-06 17:33:36 bagder Exp $
+ * $Id: connect.c,v 1.194 2008-06-08 15:52:03 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -76,6 +76,9 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
+
+#define _MPRINTF_REPLACE /* use our functions only */
+#include <curl/mprintf.h>
 
 #include "urldata.h"
 #include "sendf.h"
