@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.355 2008-06-06 20:52:32 bagder Exp $
+ * $Id: curl.h,v 1.356 2008-06-08 21:04:47 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -455,9 +455,9 @@ typedef enum {
                                     wait till it's ready and try again (Added
                                     in 7.18.2) */
   CURLE_SSL_CRL_BADFILE,         /* 82 - could not load CRL file, missing or
-                                    wrong format (Added in 7.18.3) */
+                                    wrong format (Added in 7.19.0) */
   CURLE_SSL_ISSUER_ERROR,        /* 83 - Issuer check failed.  (Added in
-                                    7.18.3) */
+                                    7.19.0) */
   CURL_LAST /* never use! */
 } CURLcode;
 
