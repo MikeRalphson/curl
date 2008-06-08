@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.83 2008-03-31 12:51:44 gknauf Exp $
+# $Id: Makefile.netware,v 1.84 2008-06-08 22:29:34 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -94,7 +94,7 @@ LIBARCH_L = $(shell $(AWK) 'BEGIN {print tolower(ARGV[1])}' $(LIBARCH))
 -include $(OBJDIR)/version.inc
 
 # Global flags for all compilers
-CFLAGS	= $(OPT) -D$(DB) -DNETWARE -DHAVE_CONFIG_H -nostdinc
+CFLAGS	+= $(OPT) -D$(DB) -DNETWARE -DHAVE_CONFIG_H -nostdinc
 
 ifeq ($(CC),mwccnlm)
 LD	= mwldnlm
