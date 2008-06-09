@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: typecheck-gcc.h,v 1.4 2008-05-20 10:21:50 patrickm Exp $
+ * $Id: typecheck-gcc.h,v 1.5 2008-06-09 11:13:19 mmarek Exp $
  ***************************************************************************/
 
 /* wraps curl_easy_setopt() with typechecking */
@@ -224,6 +224,8 @@ _CURL_WARNING(_curl_easy_getinfo_err_curl_slist,
    (option) == CURLOPT_SSH_HOST_PUBLIC_KEY_MD5 ||                             \
    (option) == CURLOPT_SSH_PUBLIC_KEYFILE ||                                  \
    (option) == CURLOPT_SSH_PRIVATE_KEYFILE ||                                 \
+   (option) == CURLOPT_CRLFILE ||                                             \
+   (option) == CURLOPT_ISSUERCERT ||                                          \
    0)
 
 /* evaluates to true if option takes a curl_write_callback argument */
