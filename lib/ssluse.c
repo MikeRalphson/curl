@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.201 2008-06-06 20:52:32 bagder Exp $
+ * $Id: ssluse.c,v 1.202 2008-06-10 20:49:17 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -106,6 +106,13 @@
 #define SSL_METHOD_QUAL const
 #else
 #define SSL_METHOD_QUAL
+#endif
+
+#if OPENSSL_VERSION_NUMBER >= 0x00907000L
+/* 0.9.6 didn't have X509_STORE_set_flags() */
+#define HAVE_X509_STORE_SET_FLAGS 1
+#else
+#define X509_STORE_set_flags(x,y)
 #endif
 
 /*
