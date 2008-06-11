@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.202 2008-06-10 20:49:17 bagder Exp $
+ * $Id: ssluse.c,v 1.203 2008-06-11 15:26:04 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1698,7 +1698,7 @@ static CURLcode servercert(struct connectdata *conn,
 	connssl->server_cert = NULL;
 	return CURLE_SSL_ISSUER_ERROR;
       }
-      issuer = PEM_read_X509(fp,NULL,NULL,NULL);
+      issuer = PEM_read_X509(fp,NULL,ZERO_NULL,NULL);
       if (!issuer) {
         if (strict)
 	  failf(data, "SSL: Unable to read issuer cert (%s)\n",
