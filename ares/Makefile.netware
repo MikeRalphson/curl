@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.40 2008-02-27 01:43:12 gknauf Exp $
+# $Id: Makefile.netware,v 1.41 2008-06-11 00:07:08 gknauf Exp $
 #
 ## Makefile for building libcares (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -75,7 +75,7 @@ MKDIR	= mkdir
 MPKXDC	= mkxdc
 
 # Global flags for all compilers
-CFLAGS	= $(OPT) -D$(DB) -DNETWARE -DHAVE_CONFIG_H -nostdinc
+CFLAGS	+= $(OPT) -D$(DB) -DNETWARE -DHAVE_CONFIG_H -nostdinc
 
 ifeq ($(CC),mwccnlm)
 LD	= mwldnlm
