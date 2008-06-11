@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.21 2008-06-06 20:57:32 bagder Exp $
+ * $Id: nss.c,v 1.22 2008-06-11 17:01:59 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -743,7 +743,8 @@ static void display_conn_info(struct connectdata *conn, PRFileDesc *sock)
  * issuer check, so we provide comments that mimic the OpenSSL
  * X509_check_issued function (in x509v3/v3_purp.c)
  */
-static SECStatus check_issuer_cert(struct connectdata *conn, PRFileDesc *sock,
+static SECStatus check_issuer_cert(struct connectdata *conn,
+                                   PRFileDesc *sock,
                                    char* issuer_nickname)
 {
   CERTCertificate *cert,*cert_issuer,*issuer;

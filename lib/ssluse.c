@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.203 2008-06-11 15:26:04 yangtse Exp $
+ * $Id: ssluse.c,v 1.204 2008-06-11 17:01:59 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1934,6 +1934,16 @@ Curl_ossl_connect(struct connectdata *conn,
   DEBUGASSERT(done);
 
   return CURLE_OK;
+}
+
+bool Curl_ossl_data_pending(const struct connectdata *conn,
+                            int connindex)
+{
+  if(conn->ssl[connindex].handle)
+    /* SSL is in use */
+    return (bool)(0 != SSL_pending(conn->ssl[connindex].handle));
+  else
+    return FALSE;
 }
 
 /* return number of sent (non-SSL) bytes */
