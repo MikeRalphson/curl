@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.22 2008-06-11 17:01:59 bagder Exp $
+ * $Id: nss.c,v 1.23 2008-06-12 22:00:35 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1177,7 +1177,7 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
       goto error;
     }
     else {
-      infof("SSL certificate issuer check ok\n");
+      infof(data, "SSL certificate issuer check ok\n");
     }
   }
 
