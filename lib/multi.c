@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.172 2008-05-28 20:56:19 bagder Exp $
+ * $Id: multi.c,v 1.173 2008-06-13 21:16:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1980,7 +1980,7 @@ static int checkPendPipeline(struct connectdata *conn)
     while(pipeLen < MAX_PIPELINE_LENGTH && curr) {
       Curl_llist_move(conn->pend_pipe, curr,
                       conn->send_pipe, conn->send_pipe->tail);
-      Curl_pgrsTime(curr->ptr, TIMER_CONNECT);
+      Curl_pgrsTime(curr->ptr, TIMER_PRETRANSFER);
       ++result; /* count how many handles we moved */
       curr = conn->pend_pipe->head;
       ++pipeLen;
