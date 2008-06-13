@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.296 2008-06-08 20:53:50 bagder Exp $
+# $Id: runtests.pl,v 1.297 2008-06-13 20:45:34 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2698,7 +2698,7 @@ sub serverfortest {
 	chomp $proto;
 	if (! grep /^$proto$/, @protocols) {
 	    if (substr($proto,0,5) ne "socks") {
-		    return "curl lacks any $proto support";
+		    return "curl lacks $proto support";
 	    }
 	}
     }
