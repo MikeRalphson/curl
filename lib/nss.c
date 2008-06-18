@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.23 2008-06-12 22:00:35 bagder Exp $
+ * $Id: nss.c,v 1.24 2008-06-18 21:48:51 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -62,6 +62,7 @@
 #include <prio.h>
 #include <secitem.h>
 #include <secport.h>
+#include <certdb.h>
 
 #include "memory.h"
 #include "easyif.h" /* for Curl_convert_from_utf8 prototype */
@@ -766,7 +767,8 @@ static SECStatus check_issuer_cert(struct connectdata *conn,
 
   if ((!cert_issuer) || (!issuer))
     res = SECFailure;
-  else if (CERT_CompareCerts(cert_issuer,issuer)==PR_FALSE)
+  else if (SECITEM_CompareItem(&cert_issuer->derCert,
+                               &issuer->derCert)!=SECEqual)
     res = SECFailure;
 
   CERT_DestroyCertificate(cert);
