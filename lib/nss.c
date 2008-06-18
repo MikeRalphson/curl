@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.24 2008-06-18 21:48:51 bagder Exp $
+ * $Id: nss.c,v 1.25 2008-06-18 21:50:40 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -744,8 +744,7 @@ static void display_conn_info(struct connectdata *conn, PRFileDesc *sock)
  * issuer check, so we provide comments that mimic the OpenSSL
  * X509_check_issued function (in x509v3/v3_purp.c)
  */
-static SECStatus check_issuer_cert(struct connectdata *conn,
-                                   PRFileDesc *sock,
+static SECStatus check_issuer_cert(PRFileDesc *sock,
                                    char* issuer_nickname)
 {
   CERTCertificate *cert,*cert_issuer,*issuer;
@@ -1172,7 +1171,7 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
       strncpy(nickname, data->set.str[STRING_SSL_ISSUERCERT], PATH_MAX);
       nickname[PATH_MAX-1]=0; /* make sure this is zero terminated */
     }
-    if (check_issuer_cert(conn,connssl->handle,nickname)==SECFailure) {
+    if (check_issuer_cert(connssl->handle, nickname) == SECFailure) {
       infof(data,"SSL certificate issuer check failed\n");
       free(nickname);
       curlerr = CURLE_SSL_ISSUER_ERROR;
