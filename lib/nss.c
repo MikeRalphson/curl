@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.25 2008-06-18 21:50:40 bagder Exp $
+ * $Id: nss.c,v 1.26 2008-06-18 22:01:55 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -924,6 +924,9 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
   int curlerr;
 
   curlerr = CURLE_SSL_CONNECT_ERROR;
+
+  if (connssl->state == ssl_connection_complete)
+    return CURLE_OK;
 
   /* FIXME. NSS doesn't support multiple databases open at the same time. */
   if(!initialized) {
