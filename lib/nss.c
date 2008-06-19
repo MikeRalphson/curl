@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.26 2008-06-18 22:01:55 bagder Exp $
+ * $Id: nss.c,v 1.27 2008-06-19 05:42:45 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -43,6 +43,7 @@
 #include "strequal.h"
 #include "select.h"
 #include "sslgen.h"
+#include "strequal.h" 
 
 #define _MPRINTF_REPLACE /* use the internal *printf() functions */
 #include <curl/mprintf.h>
@@ -203,7 +204,7 @@ static SECStatus set_ciphers(struct SessionHandle *data, PRFileDesc * model,
     found = PR_FALSE;
 
     for(i=0; i<ciphernum; i++) {
-      if(!strcasecmp(cipher, cipherlist[i].name)) {
+      if(strequal(cipher, cipherlist[i].name)) {
         cipher_state[i] = PR_TRUE;
         found = PR_TRUE;
         break;
