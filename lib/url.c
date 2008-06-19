@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.713 2008-06-06 20:52:32 bagder Exp $
+ * $Id: url.c,v 1.714 2008-06-19 08:31:23 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2511,9 +2511,10 @@ ConnectionExists(struct SessionHandle *data,
     }
 
     if(match) {
-      if(pipeLen == 0) {
-        /* The check for a dead socket makes sense only if there
-           are no handles in pipeline */
+      if(!pipeLen && !check->inuse) {
+        /* The check for a dead socket makes sense only if there are no
+           handles in pipeline and the connection isn't already marked in
+           use */
         bool dead = SocketIsDead(check->sock[FIRSTSOCKET]);
         if(dead) {
           check->data = data;
