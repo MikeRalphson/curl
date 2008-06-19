@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.463 2008-06-08 20:53:50 bagder Exp $
+ * $Id: main.c,v 1.464 2008-06-19 00:30:02 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3646,6 +3646,8 @@ static void free_config_fields(struct Configurable *config)
     free(config->pubkey);
   if (config->referer)
     free(config->referer);
+  if (config->hostpubmd5)
+    free(config->hostpubmd5);
 
   curl_slist_free_all(config->quote); /* checks for config->quote == NULL */
   curl_slist_free_all(config->prequote);
