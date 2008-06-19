@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.173 2008-06-13 21:16:10 bagder Exp $
+ * $Id: multi.c,v 1.174 2008-06-19 21:32:51 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -965,6 +965,11 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
       easy->result = Curl_is_resolved(easy->easy_conn, &dns);
 
       if(dns) {
+        /* Update sockets here. Mainly because the socket(s) may have been
+           closed and the application thus needs to be told, even if it is
+           likely that the same socket(s) will again be used further down. */
+        singlesocket(multi, easy);
+
         /* Perform the next step in the connection phase, and then move on
            to the WAITCONNECT state */
         easy->result = Curl_async_resolved(easy->easy_conn,
