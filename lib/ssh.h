@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.11 2008-06-20 10:43:32 bagder Exp $
+ * $Id: ssh.h,v 1.12 2008-06-20 10:45:26 bagder Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
@@ -37,8 +37,6 @@ ssize_t Curl_sftp_send(struct connectdata *conn, int sockindex,
                        const void *mem, size_t len);
 ssize_t Curl_sftp_recv(struct connectdata *conn, int sockindex,
                        char *mem, size_t len);
-bool Curl_ssh_enabled(struct connectdata *conn,
-                      int prot);
 
 #define Curl_ssh_enabled(conn,prot) (conn->protocol & prot)
 
