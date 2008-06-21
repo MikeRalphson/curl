@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nssg.h,v 1.4 2008-06-11 17:01:59 bagder Exp $
+ * $Id: nssg.h,v 1.5 2008-06-21 21:19:42 bagder Exp $
  ***************************************************************************/
 
 #ifdef USE_NSS
@@ -45,7 +45,7 @@ void Curl_nss_cleanup(void);
 
 int Curl_nss_send(struct connectdata *conn,
                   int sockindex,
-                  void *mem,
+                  const void *mem,
                   size_t len);
 ssize_t Curl_nss_recv(struct connectdata *conn, /* connection data */
                       int num,                  /* socketindex */

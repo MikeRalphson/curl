@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.29 2008-06-20 11:15:54 bagder Exp $
+ * $Id: nss.c,v 1.30 2008-06-21 21:19:42 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1195,7 +1195,7 @@ error:
 /* return number of sent (non-SSL) bytes */
 int Curl_nss_send(struct connectdata *conn,  /* connection data */
                   int sockindex,             /* socketindex */
-                  void *mem,                 /* send this data */
+                  const void *mem,           /* send this data */
                   size_t len)                /* amount to write */
 {
   PRInt32 err;
