@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.129 2008-06-21 21:19:42 bagder Exp $
+# $Id: Makefile.am,v 1.130 2008-06-21 21:21:29 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -47,8 +47,8 @@ LIBCURL_LIBS = @LIBCURL_LIBS@
 # we use srcdir/lib for the lib-private header files
 
 INCLUDES = -I$(top_srcdir)/include \
-           -I$(top_builddir)/lib
-
+           -I$(top_builddir)/lib   \
+	   -I$(top_srcdir)/lib
 
 VERSION=-version-info 5:0:1
 
