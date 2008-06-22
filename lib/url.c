@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.714 2008-06-19 08:31:23 bagder Exp $
+ * $Id: url.c,v 1.715 2008-06-22 06:57:00 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3839,7 +3839,7 @@ static CURLcode CreateConnection(struct SessionHandle *data,
    * The conn->host.name is currently [user:passwd@]host[:port] where host
    * could be a hostname, IPv4 address or IPv6 address.
    *************************************************************/
-  if((1 == sscanf(conn->host.name, "[%*39[0-9a-fA-F:.]%c", &endbracket)) &&
+  if((1 == sscanf(conn->host.name, "[%*39[0123456789abcdefABCDEF:.]%c", &endbracket)) &&
      (']' == endbracket)) {
     /* this is a RFC2732-style specified IP-address */
     conn->bits.ipv6_ip = TRUE;
