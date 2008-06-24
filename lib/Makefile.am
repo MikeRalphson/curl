@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.130 2008-06-21 21:21:29 bagder Exp $
+# $Id: Makefile.am,v 1.131 2008-06-24 08:52:35 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -26,7 +26,8 @@ DSP = curllib.dsp
 VCPROJ = curllib.vcproj
 
 DOCS = README.encoding README.memoryleak README.ares README.curlx	\
- README.hostip README.multi_socket README.httpauth README.pipelining
+ README.hostip README.multi_socket README.httpauth README.pipelining    \
+ README.NSS
 
 EXTRA_DIST = Makefile.b32 Makefile.m32 Makefile.vc6 Makefile.riscos	\
  $(DSP) curllib.dsw config-win32.h config-win32ce.h config-riscos.h	\
