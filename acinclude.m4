@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.159 2008-06-29 03:19:20 yangtse Exp $
+# $Id: acinclude.m4,v 1.160 2008-06-29 11:08:52 yangtse Exp $
 ###########################################################################
 
 
@@ -2001,8 +2001,10 @@ AC_DEFUN([CURL_CHECK_FUNC_CLOCK_GETTIME_MONOTONIC], [
 #endif
     ]],[[
 #if defined(_POSIX_MONOTONIC_CLOCK) && (_POSIX_MONOTONIC_CLOCK > 0)
-      dnl The monotonic clock will not be used unless the feature test macro is
-      dnl defined with a value greater than zero indicating _always_ supported.
+      /*
+      The monotonic clock will not be used unless the feature test macro is
+      defined with a value greater than zero indicating _always_ supported.
+      */
       struct timespec ts;
       (void)clock_gettime(CLOCK_MONOTONIC, &ts);
 #else
