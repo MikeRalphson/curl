@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.160 2008-06-29 11:08:52 yangtse Exp $
+# $Id: acinclude.m4,v 1.161 2008-06-30 14:10:27 yangtse Exp $
 ###########################################################################
 
 
@@ -1980,7 +1980,7 @@ dnl Check if monotonic clock_gettime is available.
 AC_DEFUN([CURL_CHECK_FUNC_CLOCK_GETTIME_MONOTONIC], [
   AC_REQUIRE([AC_HEADER_TIME])dnl
   AC_CHECK_HEADERS(sys/types.h unistd.h sys/time.h time.h)
-  AC_MSG_CHECKING([for monotonic clock_gettime])
+  AC_MSG_CHECKING([for POSIX always supported monotonic clock_gettime])
   AC_COMPILE_IFELSE([
     AC_LANG_PROGRAM([[
 #ifdef HAVE_SYS_TYPES_H
