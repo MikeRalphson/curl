@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.24 2008-05-09 16:31:11 yangtse Exp $ */
+/* $Id: nameser.h,v 1.25 2008-06-30 12:48:25 bagder Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -12,8 +12,6 @@
 #include <sys/types.h>
 
 #ifndef NETWARE
-
-#define MAXHOSTNAMELEN 256
 
 /* Structure for scatter/gather I/O.  */
 struct iovec
