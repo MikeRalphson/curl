@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.302 2008-07-01 00:30:44 yangtse Exp $
+# $Id: configure.ac,v 1.303 2008-07-01 10:29:25 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -251,7 +251,9 @@ esac
 
 AC_MSG_CHECKING([whether we are using the IBM C compiler])
 CURL_CHECK_DEF([__IBMC__], [], [silent])
-if test "$curl_cv_have_def___IBMC__" = "yes"; then
+CURL_CHECK_DEF([__IBMCPP__], [], [silent])
+if test "$curl_cv_have_def___IBMC__" = "yes" ||
+  test "$curl_cv_have_def___IBMCPP__" = "yes"; then
   AC_MSG_RESULT([yes])
   dnl Ensure that compiler optimizations are always thread-safe.
   CFLAGS="$CFLAGS -qthreaded"
