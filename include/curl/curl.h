@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.356 2008-06-08 21:04:47 bagder Exp $
+ * $Id: curl.h,v 1.357 2008-07-01 21:53:47 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -64,7 +64,7 @@
    libc5-based Linux systems. Only include it on system that are known to
    require it! */
 #if defined(_AIX) || defined(__NOVELL_LIBC__) || defined(__NetBSD__) || \
-    defined(__minix) || defined(__SYMBIAN32__)
+    defined(__minix) || defined(__SYMBIAN32__) || defined(__INTEGRITY)
 #include <sys/select.h>
 #endif
 
