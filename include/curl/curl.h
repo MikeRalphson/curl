@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.357 2008-07-01 21:53:47 bagder Exp $
+ * $Id: curl.h,v 1.358 2008-07-02 18:34:00 danf Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -71,7 +71,7 @@
 #ifndef _WIN32_WCE
 #include <sys/socket.h>
 #endif
-#ifndef __WATCOMC__
+#if !defined(WIN32) || !defined(__WATCOMC__)
 #include <sys/time.h>
 #endif
 #include <sys/types.h>

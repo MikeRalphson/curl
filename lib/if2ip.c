@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.53 2008-04-22 22:53:54 danf Exp $
+ * $Id: if2ip.c,v 1.54 2008-07-02 18:34:01 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -39,7 +39,8 @@
  */
 #if !defined(WIN32) && !defined(__BEOS__) && !defined(__CYGWIN__) && \
     !defined(__riscos__) && !defined(__INTERIX) && !defined(NETWARE) && \
-    !defined(__AMIGA__) && !defined(__minix) && !defined(__SYMBIAN32__)
+    !defined(__AMIGA__) && !defined(__minix) && !defined(__SYMBIAN32__) && \
+    !defined(__WATCOMC__)
 
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
