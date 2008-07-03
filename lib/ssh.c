@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.103 2008-05-31 01:37:21 yangtse Exp $
+ * $Id: ssh.c,v 1.104 2008-07-03 06:56:03 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -714,6 +714,8 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
      * At this point we have an authenticated ssh session.
      */
     infof(data, "Authentication complete\n");
+
+    Curl_pgrsTime(conn->data, TIMER_APPCONNECT); /* SSH is connected */
 
     conn->sockfd = sock;
     conn->writesockfd = CURL_SOCKET_BAD;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.717 2008-07-01 21:53:18 bagder Exp $
+ * $Id: url.c,v 1.718 2008-07-03 06:56:04 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4328,6 +4328,7 @@ static CURLcode setup_conn(struct connectdata *conn,
     }
     else {
       Curl_pgrsTime(data, TIMER_CONNECT); /* we're connected already */
+      Curl_pgrsTime(data, TIMER_APPCONNECT); /* we're connected already */
       conn->bits.tcpconnect = TRUE;
       *protocol_done = TRUE;
       if(data->set.verbose)

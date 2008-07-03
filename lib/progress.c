@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.85 2007-11-24 23:16:55 bagder Exp $
+ * $Id: progress.c,v 1.86 2008-07-03 06:56:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -170,6 +170,10 @@ void Curl_pgrsTime(struct SessionHandle *data, timerid timer)
     break;
   case TIMER_CONNECT:
     data->progress.t_connect =
+      Curl_tvdiff_secs(Curl_tvnow(), data->progress.t_startsingle);
+    break;
+  case TIMER_APPCONNECT:
+    data->progress.t_appconnect =
       Curl_tvdiff_secs(Curl_tvnow(), data->progress.t_startsingle);
     break;
   case TIMER_PRETRANSFER:

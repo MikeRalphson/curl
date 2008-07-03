@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.62 2008-06-06 17:33:36 bagder Exp $
+ * $Id: getinfo.c,v 1.63 2008-07-03 06:56:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -136,6 +136,9 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     break;
   case CURLINFO_CONNECT_TIME:
     *param_doublep = data->progress.t_connect;
+    break;
+  case CURLINFO_APPCONNECT_TIME:
+    *param_doublep = data->progress.t_appconnect;
     break;
   case CURLINFO_PRETRANSFER_TIME:
     *param_doublep =  data->progress.t_pretransfer;
