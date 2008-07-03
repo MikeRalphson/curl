@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.37 2008-05-08 22:11:38 bagder Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.38 2008-07-03 11:32:35 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -176,6 +176,15 @@ static void host_callback(void *arg, int status, int timeouts,
       else if (hquery->family == AF_INET6)
         {
           status = ares_parse_aaaa_reply(abuf, alen, &host, NULL, NULL);
+          if (status == ARES_ENODATA)
+            {
+              /* The query returned something (e.g. CNAME) but there were no
+                 AAAA records.  Try looking up A instead.  */
+              hquery->family = AF_INET;
+              ares_search(hquery->channel, hquery->name, C_IN, T_A, host_callback,
+                          hquery);
+              return;
+            }
           if (host && channel->nsort)
             sort6_addresses(host, channel->sortlist, channel->nsort);
         }
