@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.372 2008-06-22 20:38:16 bagder Exp $
+ * $Id: http.c,v 1.373 2008-07-03 08:47:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -369,7 +369,7 @@ CURLcode Curl_http_auth_act(struct connectdata *conn)
   bool pickproxy = FALSE;
   CURLcode code = CURLE_OK;
 
-  if(100 == data->req.httpcode)
+  if(100 <= data->req.httpcode && 199 >= data->req.httpcode)
     /* this is a transient response code, ignore */
     return CURLE_OK;
 
