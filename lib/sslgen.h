@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.13 2008-06-11 17:01:59 bagder Exp $
+ * $Id: sslgen.h,v 1.14 2008-07-05 03:31:41 yangtse Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -63,7 +63,7 @@ int Curl_ssl_check_cxn(struct connectdata *conn);
 #else
 /* When SSL support is not present, just define away these function calls */
 #define Curl_ssl_init() 1
-#define Curl_ssl_cleanup()
+#define Curl_ssl_cleanup() do { } while (0)
 #define Curl_ssl_connect(x,y) CURLE_FAILED_INIT
 #define Curl_ssl_connect_nonblocking(x,y,z) (z=z, CURLE_FAILED_INIT)
 #define Curl_ssl_close_all(x)
