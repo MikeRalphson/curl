@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.471 2008-05-07 21:02:21 bagder Exp $
+ * $Id: ftp.c,v 1.472 2008-07-07 20:37:08 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -279,6 +279,7 @@ static void freedirs(struct ftp_conn *ftpc)
     }
     free(ftpc->dirs);
     ftpc->dirs = NULL;
+    ftpc->dirdepth = 0;
   }
   if(ftpc->file) {
     free(ftpc->file);
