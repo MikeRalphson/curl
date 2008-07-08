@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_formadd.3,v 1.17 2008-03-31 10:02:24 bagder Exp $
+.\" $Id: curl_formadd.3,v 1.18 2008-07-08 21:16:18 danf Exp $
 .\"
 .TH curl_formadd 3 "24 June 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -128,9 +128,9 @@ you've called \fIcurl_easy_cleanup(3)\fP for the curl handle.
 
 See example below.
 .SH RETURN VALUE
-0 means everything was ok, non-zero means an error occurred as
+0 means everything was ok, non-zero means an error occurred corresponding
+to a CURL_FORMADD_* constant defined in
 .I <curl/curl.h>
-defines.
 .SH EXAMPLE
 .nf
 
