@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.465 2008-06-26 01:43:53 danf Exp $
+ * $Id: main.c,v 1.466 2008-07-10 20:29:27 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -748,6 +748,7 @@ static void help(void)
     "    --raw           Pass HTTP \"raw\", without any transfer decoding (H)",
     " -e/--referer       Referer URL (H)",
     " -O/--remote-name   Write output to a file named as the remote file",
+    "    --remote-name-all Use the remote file name for all URLs",
     " -R/--remote-time   Set the remote file's time on the local output",
     " -X/--request <command> Specify request command to use",
     "    --retry <num>   Retry request <num> times if transient problems occur",
