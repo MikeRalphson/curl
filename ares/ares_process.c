@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.64 2008-05-15 22:57:33 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.65 2008-07-10 08:21:48 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -133,13 +133,11 @@ int ares__timeadd(struct timeval *now,
 }
 
 /* return time offset between now and (future) check, in milliseconds */
-int ares__timeoffset(struct timeval *now,
-                     struct timeval *check)
+long ares__timeoffset(struct timeval *now,
+                      struct timeval *check)
 {
-  int secs = (check->tv_sec - now->tv_sec); /* this many seconds */
-  int us = (check->tv_usec - now->tv_usec); /* this many microseconds */
-
-  return secs*1000 + us/1000; /* return them combined as milliseconds */
+  return (check->tv_sec - now->tv_sec)*1000 +
+         (check->tv_usec - now->tv_usec)/1000;
 }
 
 

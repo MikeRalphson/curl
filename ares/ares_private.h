@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.33 2008-05-20 01:24:21 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.34 2008-07-10 08:21:48 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -268,8 +268,8 @@ int ares__timedout(struct timeval *now,
 int ares__timeadd(struct timeval *now,
                   int millisecs);
 /* return time offset between now and (future) check, in milliseconds */
-int ares__timeoffset(struct timeval *now,
-                     struct timeval *check);
+long ares__timeoffset(struct timeval *now,
+                      struct timeval *check);
 void ares__rc4(rc4_key* key,unsigned char *buffer_ptr, int buffer_len);
 void ares__send_query(ares_channel channel, struct query *query,
                       struct timeval *now);
