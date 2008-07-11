@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.718 2008-07-03 06:56:04 bagder Exp $
+ * $Id: url.c,v 1.719 2008-07-11 09:08:27 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4278,10 +4278,12 @@ static CURLcode setup_conn(struct connectdata *conn,
      lingering set from a previous invoke */
   conn->bits.proxy_connect_closed = FALSE;
 
-  /*************************************************************
-   * Set user-agent for HTTP
-   *************************************************************/
-  if((conn->protocol&PROT_HTTP) && data->set.str[STRING_USERAGENT]) {
+  /*
+   * Set user-agent. Used for HTTP, but since we can attempt to tunnel
+   * basically anything through a http proxy we can't limit this based on
+   * protocol.
+   */
+  if(data->set.str[STRING_USERAGENT]) {
     Curl_safefree(conn->allocptr.uagent);
     conn->allocptr.uagent =
       aprintf("User-Agent: %s\r\n", data->set.str[STRING_USERAGENT]);
