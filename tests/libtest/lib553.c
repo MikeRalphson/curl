@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib553.c,v 1.2 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib553.c,v 1.3 2008-07-11 18:23:06 danf Exp $
  *
  * This test case and code is based on the bug recipe Joe Malicki provided for
  * bug report #1871269, fixed on Jan 14 2008 before the 7.18.0 release.
@@ -39,36 +39,47 @@ static size_t myreadfunc(void *ptr, size_t size, size_t nmemb, void *stream)
 #define SIZE_HEADERS 5000
 
 static char buf[SIZE_HEADERS + 100];
+
 int test(char *URL)
 {
   CURL *curl;
   CURLcode res;
   int i;
-  struct curl_slist *headerlist=NULL;
+  struct curl_slist *headerlist=NULL, *hl;
 
   curl_global_init(CURL_GLOBAL_ALL);
   curl = curl_easy_init();
 
-  for (i = 0; i < NUM_HEADERS; i++) {
-    int len;
-    len = sprintf(buf, "Header%d: ", i);
-    memset(&buf[len], 'A', SIZE_HEADERS);
-    buf[len + SIZE_HEADERS]=0; /* zero terminate */
-    headerlist = curl_slist_append(headerlist,  buf);
+  if(curl) {
+    for (i = 0; i < NUM_HEADERS; i++) {
+      int len = sprintf(buf, "Header%d: ", i);
+      memset(&buf[len], 'A', SIZE_HEADERS);
+      buf[len + SIZE_HEADERS]=0; /* zero terminate */
+      hl = curl_slist_append(headerlist,  buf);
+      if (!hl)
+        goto errout;
+      headerlist = hl;
+    }
+    hl = curl_slist_append(headerlist, "Expect: ");
+    if (!hl)
+      goto errout;
+    headerlist = hl;
+
+    curl_easy_setopt(curl, CURLOPT_URL, URL);
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
+    curl_easy_setopt(curl, CURLOPT_POST, 1L);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)POSTLEN);
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, myreadfunc);
+    res = curl_easy_perform(curl);
+
+errout:
+    curl_easy_cleanup(curl);
+
+    curl_slist_free_all(headerlist);
   }
-  headerlist = curl_slist_append(headerlist, "Expect: ");
-
-  curl_easy_setopt(curl, CURLOPT_URL, URL);
-  curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
-  curl_easy_setopt(curl, CURLOPT_POST, 1L);
-  curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)POSTLEN);
-  curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-  curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-  curl_easy_setopt(curl, CURLOPT_READFUNCTION, myreadfunc);
-  res = curl_easy_perform(curl);
-  curl_easy_cleanup(curl);
-
-  curl_slist_free_all(headerlist);
+  curl_global_cleanup();
 
   return (int)res;
 }
