@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.251 2008-07-10 08:00:05 bagder Exp $
+.\" * $Id: curl.1,v 1.252 2008-07-11 10:50:30 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -1556,6 +1556,10 @@ The resource referenced in the URL does not exist
 An unspecified error occurred during the SSH session
 .IP 80
 Failed to shut down the SSL connection
+.IP 82
+Could not load CRL file, missing or wrong format (added in 7.19.0)
+.IP 83
+Issuer check failed (added in 7.19.0)
 .IP XX
 There will appear more error codes here in future releases. The existing ones
 are meant to never change.
