@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.94 2008-04-23 23:55:34 yangtse Exp $
+# $Id: ftpserver.pl,v 1.95 2008-07-11 17:18:37 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -550,6 +550,7 @@ sub PASV_command {
     if($prev > 0) {
         print "kill existing server: $prev\n" if($verbose);
         kill(9, $prev);
+        waitpid($prev, 0);
     }
 
     # We fire up a new sockfilt to do the data transfer for us.
