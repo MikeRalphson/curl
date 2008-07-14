@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.140 2008-07-14 16:10:29 yangtse Exp $
+ * $Id: setup.h,v 1.141 2008-07-14 16:58:34 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -171,6 +171,15 @@
 
 #ifdef HAVE_EXTRA_STRDUP_H
 #  include <extra/strdup.h>
+#endif
+
+#ifdef TPF
+#  include <strings.h>    /* for bzero, strcasecmp, and strncasecmp */
+#  include <string.h>     /* for strcpy and strlen */
+#  include <stdlib.h>     /* for rand and srand */
+#  include <sys/socket.h> /* for select and ioctl*/
+#  include <netdb.h>      /* for in_addr_t definition */
+#  include <tpf/sysapi.h> /* for tpf_process_signals */
 #endif
 
 #include <stdio.h>
