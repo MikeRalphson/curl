@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.12 2007-04-03 10:18:38 giva Exp $
+ * $Id: config.dos,v 1.13 2008-07-14 15:58:02 yangtse Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -132,10 +132,6 @@
 #elif defined(__HIGHC__)
   #define HAVE_SYS_TIME_H 1
 #endif
-
-#include <stdlib.h>
-#include <string.h>
-#include <tcp.h>    /* Watt-32 API */
 
 #undef word
 #undef byte
