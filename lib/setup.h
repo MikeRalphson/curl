@@ -20,17 +20,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.138 2008-06-30 13:07:06 bagder Exp $
+ * $Id: setup.h,v 1.139 2008-07-14 12:39:50 yangtse Exp $
  ***************************************************************************/
-
-#ifdef HTTP_ONLY
-#define CURL_DISABLE_TFTP
-#define CURL_DISABLE_FTP
-#define CURL_DISABLE_LDAP
-#define CURL_DISABLE_TELNET
-#define CURL_DISABLE_DICT
-#define CURL_DISABLE_FILE
-#endif /* HTTP_ONLY */
 
 /*
  * Define WIN32 when build target is Win32 API
@@ -81,6 +72,19 @@
 #endif
 
 #endif /* HAVE_CONFIG_H */
+
+/*
+ * Disable other protocols when http is the only one desired.
+ */
+
+#ifdef HTTP_ONLY
+#  define CURL_DISABLE_TFTP
+#  define CURL_DISABLE_FTP
+#  define CURL_DISABLE_LDAP
+#  define CURL_DISABLE_TELNET
+#  define CURL_DISABLE_DICT
+#  define CURL_DISABLE_FILE
+#endif
 
 /*
  * Include header files for windows builds before redefining anything.
