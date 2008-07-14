@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.139 2008-07-14 12:39:50 yangtse Exp $
+ * $Id: setup.h,v 1.140 2008-07-14 16:10:29 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -163,6 +163,14 @@
    files. Unixware needs it to build proper reentrant code. Others may also
    need it. */
 #define _REENTRANT
+#endif
+
+#ifdef HAVE_EXTRA_STRICMP_H
+#  include <extra/stricmp.h>
+#endif
+
+#ifdef HAVE_EXTRA_STRDUP_H
+#  include <extra/strdup.h>
 #endif
 
 #include <stdio.h>
