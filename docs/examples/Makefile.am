@@ -1,11 +1,18 @@
 #
-# $Id: Makefile.am,v 1.50 2008-03-31 03:01:13 danf Exp $
+# $Id: Makefile.am,v 1.51 2008-07-15 13:54:30 yangtse Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
 
 EXTRA_DIST = README Makefile.example Makefile.inc Makefile.m32 \
 	makefile.dj $(COMPLICATED_EXAMPLES)
+
+# Specify our include paths here, and do it relative to $(top_srcdir) and
+# $(top_builddir), to ensure that these paths which belong to the library
+# being currently built and tested are searched before the library which
+# might possibly already be installed in the system.
+#
+# $(top_srcdir)/include is for libcurl's external include files
 
 INCLUDES = -I$(top_srcdir)/include
 
