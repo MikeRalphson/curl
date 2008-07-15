@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: test.h,v 1.19 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: test.h,v 1.20 2008-07-15 05:46:50 yangtse Exp $
  */
 
 /* Now include the setup.h file from libcurl's private libdir (the source
@@ -15,7 +15,7 @@
 
 #include "setup.h"
 
-#include <curl.h>
+#include <curl/curl.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

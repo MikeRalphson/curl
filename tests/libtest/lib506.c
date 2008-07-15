@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib506.c,v 1.18 2008-05-22 21:49:52 danf Exp $
+ * $Id: lib506.c,v 1.19 2008-07-15 05:46:50 yangtse Exp $
  */
 
 #include "test.h"
@@ -13,7 +13,7 @@
 #include <ctype.h>
 #include <errno.h>
 
-#include <mprintf.h>
+#include <curl/mprintf.h>
 
 const char *HOSTHEADER = "Host: www.host.foo.com";
 const char *JAR = "log/jar506";
