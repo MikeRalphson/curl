@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.28 2007-11-08 18:13:54 yangtse Exp $ */
+/* $Id: setup.h,v 1.29 2008-07-15 16:43:39 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -38,6 +38,16 @@
 #endif
 
 #endif /* HAVE_CONFIG_H */
+
+/*
+ * Solaris needs _REENTRANT set for a few function prototypes and
+ * things to appear in the system header files. Unixware needs it
+ * to build proper reentrant code. Others may also need it.
+ */
+
+#ifndef _REENTRANT
+#  define _REENTRANT
+#endif
 
 /*
  * Include header files for windows builds before redefining anything.
