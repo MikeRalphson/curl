@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.14 2008-07-16 19:16:41 yangtse Exp $
+ * $Id: config.dos,v 1.15 2008-07-16 19:24:03 yangtse Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -64,7 +64,7 @@
 #define STDC_HEADERS           1
 #define TIME_WITH_SYS_TIME     1
 
-/* Qualifiers for send(), recv() and recv(). */
+/* Qualifiers for send(), recv() and recvfrom(). */
 
 #define SEND_TYPE_ARG1         int
 #define SEND_QUAL_ARG2         const
