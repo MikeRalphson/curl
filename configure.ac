@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.305 2008-07-04 04:03:55 yangtse Exp $
+# $Id: configure.ac,v 1.306 2008-07-16 14:17:56 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -294,6 +294,22 @@ if test "$curl_cv_have_def___IBMC__" = "yes" ||
   dnl Force compiler to stop after the compilation phase, without
   dnl generating an object code file when compilation has errors.
   CFLAGS="$CFLAGS -qhalt=e"
+else
+  AC_MSG_RESULT([no])
+fi
+
+AC_MSG_CHECKING([whether we are using the DEC/Compaq C compiler])
+CURL_CHECK_DEF([__DECC], [], [silent])
+CURL_CHECK_DEF([__DECC_VER], [], [silent])
+if test "$curl_cv_have_def___DECC" = "yes" ||
+  test "$curl_cv_have_def___DECC_VER" = "yes"; then
+  AC_MSG_RESULT([yes])
+  dnl Select strict ANSI C compiler mode
+  CFLAGS="$CFLAGS -std1"
+  dnl Generate verbose messages for errors and warnings
+  CFLAGS="$CFLAGS -verbose"
+  dnl Generate warnings for missing function prototypes
+  CFLAGS="$CFLAGS -warnprotos"
 else
   AC_MSG_RESULT([no])
 fi
