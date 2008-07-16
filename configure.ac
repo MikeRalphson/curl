@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.306 2008-07-16 14:17:56 yangtse Exp $
+# $Id: configure.ac,v 1.307 2008-07-16 19:16:41 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2068,9 +2068,8 @@ AC_TYPE_SIGNAL
 CURL_CHECK_FUNC_SELECT
 
 CURL_CHECK_FUNC_RECV
-
+CURL_CHECK_FUNC_RECVFROM
 CURL_CHECK_FUNC_SEND
-
 CURL_CHECK_MSG_NOSIGNAL
 
 dnl Checks for library functions.

@@ -2,7 +2,7 @@
 # c-ares Makefile for djgpp/gcc/Watt-32.
 #   By Gisle Vanem <giva@bgnett.no> 2004.
 #
-# $Id: Makefile.dj,v 1.19 2008-05-15 20:47:45 giva Exp $
+# $Id: Makefile.dj,v 1.20 2008-07-16 19:16:41 yangtse Exp $
 
 TOPDIR = ..
 
@@ -23,7 +23,11 @@ CFLAGS += -DWATT32 -DHAVE_AF_INET6 -DHAVE_PF_INET6 -DHAVE_IOCTLSOCKET \
           -DRECV_TYPE_ARG1='int'   -DRECV_TYPE_ARG2='void*' \
           -DRECV_TYPE_ARG3='int'   -DRECV_TYPE_ARG4='int' \
           -DRECV_TYPE_RETV='int'   -DHAVE_STRUCT_TIMEVAL \
-          -Dselect=select_s        -Dsocklen_t=int -UHAVE_CONFIG_H
+          -Dselect=select_s        -Dsocklen_t=int -UHAVE_CONFIG_H \
+          -DRECVFROM_TYPE_ARG1='int'  -DRECVFROM_TYPE_ARG2='void*' \
+          -DRECVFROM_TYPE_ARG3='int'  -DRECVFROM_TYPE_ARG4='int' \
+          -DRECVFROM_TYPE_ARG6='int*' -DRECVFROM_TYPE_RETV='int' \
+          -DRECVFROM_TYPE_ARG5='struct sockaddr*' -DHAVE_RECVFROM
 
 LDFLAGS = -s
 
