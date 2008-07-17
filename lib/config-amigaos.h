@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: config-amigaos.h,v 1.13 2008-07-16 19:16:41 yangtse Exp $
+ * $Id: config-amigaos.h,v 1.14 2008-07-17 03:07:54 yangtse Exp $
  ***************************************************************************/
 
 #ifdef __AMIGA__ /* Any AmigaOS flavour */
@@ -133,11 +133,11 @@
 
 #define HAVE_RECVFROM 1
 #define RECVFROM_TYPE_ARG1 long
-#define RECVFROM_TYPE_ARG2 char *
+#define RECVFROM_TYPE_ARG2 char
 #define RECVFROM_TYPE_ARG3 long
 #define RECVFROM_TYPE_ARG4 long
-#define RECVFROM_TYPE_ARG5 struct sockaddr *
-#define RECVFROM_TYPE_ARG6 long *
+#define RECVFROM_TYPE_ARG5 struct sockaddr
+#define RECVFROM_TYPE_ARG6 long
 #define RECVFROM_TYPE_RETV long
 
 #define HAVE_SEND 1

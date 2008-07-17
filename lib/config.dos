@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.15 2008-07-16 19:24:03 yangtse Exp $
+ * $Id: config.dos,v 1.16 2008-07-17 03:07:54 yangtse Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -80,11 +80,11 @@
 #define RECV_TYPE_RETV         int
 
 #define RECVFROM_TYPE_ARG1     int
-#define RECVFROM_TYPE_ARG2     void *
+#define RECVFROM_TYPE_ARG2     void
 #define RECVFROM_TYPE_ARG3     int
 #define RECVFROM_TYPE_ARG4     int
-#define RECVFROM_TYPE_ARG5     struct sockaddr *
-#define RECVFROM_TYPE_ARG6     int *
+#define RECVFROM_TYPE_ARG5     struct sockaddr
+#define RECVFROM_TYPE_ARG6     int
 #define RECVFROM_TYPE_RETV     int
 
 #define BSD
