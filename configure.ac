@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.307 2008-07-16 19:16:41 yangtse Exp $
+# $Id: configure.ac,v 1.308 2008-07-19 11:27:46 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -306,10 +306,12 @@ if test "$curl_cv_have_def___DECC" = "yes" ||
   AC_MSG_RESULT([yes])
   dnl Select strict ANSI C compiler mode
   CFLAGS="$CFLAGS -std1"
-  dnl Generate verbose messages for errors and warnings
-  CFLAGS="$CFLAGS -verbose"
   dnl Generate warnings for missing function prototypes
   CFLAGS="$CFLAGS -warnprotos"
+  dnl Select highest warning level
+  CFLAGS="$CFLAGS -msg_enable level6"
+  dnl Change some warnings into fatal errors
+  CFLAGS="$CFLAGS -msg_fatal toofewargs,toomanyargs"
 else
   AC_MSG_RESULT([no])
 fi
