@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.166 2008-07-20 09:46:52 yangtse Exp $
+# $Id: acinclude.m4,v 1.167 2008-07-20 09:51:52 yangtse Exp $
 ###########################################################################
 
 
@@ -1687,22 +1687,6 @@ AC_DEFUN([CURL_CHECK_FUNC_RECVFROM], [
                         ]])
                       ],[
                         curl_cv_func_recvfrom_args="$recvfrom_arg1,$recvfrom_arg2,$recvfrom_arg3,$recvfrom_arg4,$recvfrom_arg5,$recvfrom_arg6,$recvfrom_retv"
-                      ],[
-                        case $host in
-                          *-*-solaris*)
-                            echo "DEBUG: RECVFROM COMPILATION TEST -----" >&6
-                            echo "DEBUG: ARG1 = $recvfrom_arg1" >&6
-                            echo "DEBUG: ARG2 = $recvfrom_arg2" >&6
-                            echo "DEBUG: ARG3 = $recvfrom_arg3" >&6
-                            echo "DEBUG: ARG4 = $recvfrom_arg4" >&6
-                            echo "DEBUG: ARG5 = $recvfrom_arg5" >&6
-                            echo "DEBUG: ARG6 = $recvfrom_arg6" >&6
-                            echo "DEBUG: RETV = $recvfrom_retv" >&6
-                            echo "DEBUG: fails with conftest.err..." >&6
-                            sed 's/^/| /' conftest.err >&6
-                            echo "DEBUG: -------------------------------" >&6
-                            ;;
-                        esac
                       ])
                     fi
                   done
