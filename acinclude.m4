@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.165 2008-07-19 18:32:27 yangtse Exp $
+# $Id: acinclude.m4,v 1.166 2008-07-20 09:46:52 yangtse Exp $
 ###########################################################################
 
 
@@ -1644,7 +1644,7 @@ AC_DEFUN([CURL_CHECK_FUNC_RECVFROM], [
             for recvfrom_arg3 in 'size_t' 'int' 'socklen_t' 'unsigned int'; do
               for recvfrom_arg4 in 'int' 'unsigned int'; do
                 for recvfrom_arg5 in 'struct sockaddr *' 'void *'; do
-                  for recvfrom_arg6 in 'socklen_t *' 'int *' 'unsigned int *' 'size_t *'; do
+                  for recvfrom_arg6 in 'socklen_t *' 'int *' 'unsigned int *' 'size_t *' 'void *'; do
                     if test "$curl_cv_func_recvfrom_args" = "unknown"; then
                       AC_COMPILE_IFELSE([
                         AC_LANG_PROGRAM([[
