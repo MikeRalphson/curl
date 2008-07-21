@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.76 2008-07-17 03:07:54 yangtse Exp $
+# $Id: Makefile.netware,v 1.77 2008-07-21 00:36:56 yangtse Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -411,6 +411,7 @@ else
 	@echo $(DL)#define RECVFROM_TYPE_ARG5 struct sockaddr$(DL) >> $@
 	@echo $(DL)#define RECVFROM_TYPE_ARG6 int$(DL) >> $@
 	@echo $(DL)#define RECVFROM_TYPE_RETV ssize_t$(DL) >> $@
+	@echo $(DL)#define RECVFROM_TYPE_ARG2_IS_VOID 1$(DL) >> $@
 	@echo $(DL)#define SEND_QUAL_ARG2$(DL) >> $@
 	@echo $(DL)#define SEND_TYPE_ARG1 int$(DL) >> $@
 	@echo $(DL)#define SEND_TYPE_ARG2 void *$(DL) >> $@

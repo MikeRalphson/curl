@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.167 2008-07-20 09:51:52 yangtse Exp $
+# $Id: acinclude.m4,v 1.168 2008-07-21 00:36:55 yangtse Exp $
 ###########################################################################
 
 
@@ -1738,6 +1738,19 @@ AC_DEFUN([CURL_CHECK_FUNC_RECVFROM], [
         [Define to the type pointed by arg 5 for recvfrom.])
       AC_DEFINE_UNQUOTED(RECVFROM_TYPE_ARG6, $recvfrom_type_arg6,
         [Define to the type pointed by arg 6 for recvfrom.])
+      #
+      if test "$recvfrom_type_arg2" = "void"; then
+        AC_DEFINE_UNQUOTED(RECVFROM_TYPE_ARG2_IS_VOID, 1,
+          [Define to 1 if the type pointed by arg 2 for recvfrom is void.])
+      fi
+      if test "$recvfrom_type_arg5" = "void"; then
+        AC_DEFINE_UNQUOTED(RECVFROM_TYPE_ARG5_IS_VOID, 1,
+          [Define to 1 if the type pointed by arg 5 for recvfrom is void.])
+      fi
+      if test "$recvfrom_type_arg6" = "void"; then
+        AC_DEFINE_UNQUOTED(RECVFROM_TYPE_ARG6_IS_VOID, 1,
+          [Define to 1 if the type pointed by arg 6 for recvfrom is void.])
+      fi
       #
       case $prev_sh_opts in
         *f*)
