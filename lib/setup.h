@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.142 2008-07-14 17:31:39 yangtse Exp $
+ * $Id: setup.h,v 1.143 2008-07-21 15:39:54 giva Exp $
  ***************************************************************************/
 
 /*
@@ -271,6 +271,9 @@
 #include <tcp.h>
 #ifdef word
 #undef word
+#endif
+#ifdef byte
+#undef byte
 #endif
 
 #else /* MSDOS */
