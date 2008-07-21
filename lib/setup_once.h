@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.32 2008-07-17 03:07:54 yangtse Exp $
+ * $Id: setup_once.h,v 1.33 2008-07-21 03:06:08 yangtse Exp $
  ***************************************************************************/
 
 
@@ -227,6 +227,13 @@ struct timeval {
   /* */
 #endif
 #endif /* HAVE_RECVFROM */
+
+
+#ifdef RECVFROM_TYPE_ARG6_IS_VOID
+#  define RECVFROM_ARG6_T unsigned int
+#else
+#  define RECVFROM_ARG6_T RECVFROM_TYPE_ARG6
+#endif
 
 
 /*

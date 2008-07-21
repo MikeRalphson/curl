@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.29 2008-07-17 03:07:54 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.30 2008-07-21 03:06:08 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -220,6 +220,13 @@ struct timeval {
   /* */
 #endif
 #endif /* HAVE_RECVFROM */
+
+
+#ifdef RECVFROM_TYPE_ARG6_IS_VOID
+#  define RECVFROM_ARG6_T unsigned int
+#else
+#  define RECVFROM_ARG6_T RECVFROM_TYPE_ARG6
+#endif
 
 
 /*
