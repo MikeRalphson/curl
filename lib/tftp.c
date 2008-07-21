@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.69 2008-07-21 03:06:08 yangtse Exp $
+ * $Id: tftp.c,v 1.70 2008-07-21 03:59:23 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -420,7 +420,7 @@ static CURLcode tftp_rx(tftp_state_data_t *state, tftp_event_t event)
     }
 
     /* Check if completed (That is, a less than full packet is received) */
-    if(state->rbytes < sizeof(state->spacket)){
+    if(state->rbytes < (ssize_t)sizeof(state->spacket)){
       state->state = TFTP_STATE_FIN;
     }
     else {
