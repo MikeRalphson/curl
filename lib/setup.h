@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.143 2008-07-21 15:39:54 giva Exp $
+ * $Id: setup.h,v 1.144 2008-07-22 00:12:06 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -61,8 +61,7 @@
 #endif
 
 #ifdef __OS400__
-#include "config-os400.h"
-#include "setup-os400.h"
+#  include "config-os400.h"
 #endif
 
 #ifdef TPF
@@ -94,6 +93,14 @@
 #  define CURL_DISABLE_TELNET
 #  define CURL_DISABLE_DICT
 #  define CURL_DISABLE_FILE
+#endif
+
+/*
+ * OS/400 setup file includes some system headers.
+ */
+
+#ifdef __OS400__
+#  include "setup-os400.h"
 #endif
 
 /*
