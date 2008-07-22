@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.169 2008-07-22 18:56:46 yangtse Exp $
+# $Id: acinclude.m4,v 1.170 2008-07-22 19:04:16 yangtse Exp $
 ###########################################################################
 
 
@@ -107,6 +107,31 @@ CURL_DEF_TOKEN $1
   fi
   AS_VAR_POPDEF([ac_Def])dnl
   AS_VAR_POPDEF([ac_HaveDef])dnl
+])
+
+
+dnl CONFIGURE_WITH_REENTRANT
+dnl -------------------------------------------------
+dnl This macro ensures that configuration tests done
+dnl after this will execute with preprocessor symbol
+dnl _REENTRANT defined. This macro also ensures that
+dnl the generated config file will equally define it.
+
+AC_DEFUN([CONFIGURE_WITH_REENTRANT], [
+AC_BEFORE([$0], [AC_PREPROC_IFELSE])dnl
+AC_BEFORE([$0], [AC_COMPILE_IFELSE])dnl
+AC_BEFORE([$0], [AC_LINK_IFELSE])dnl
+AC_BEFORE([$0], [AC_RUN_IFELSE])dnl
+AH_VERBATIM([_REENTRANT],
+[/* Define _REENTRANT if not already defined */
+@%:@ifndef _REENTRANT
+@%:@ define _REENTRANT
+@%:@endif])
+cat >>confdefs.h <<_ACEOF
+[@%:@ifndef _REENTRANT
+@%:@ define _REENTRANT
+@%:@endif]
+_ACEOF
 ])
 
 

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.309 2008-07-20 17:18:29 yangtse Exp $
+# $Id: configure.ac,v 1.310 2008-07-22 19:04:16 yangtse Exp $
 ###########################################################################
 dnl Process this file with autoconf to produce a configure script.
 
@@ -140,6 +140,9 @@ AC_AIX
 
 dnl Checks for programs.
 AC_PROG_CC
+
+dnl Our configure and build reentrant settings
+CONFIGURE_WITH_REENTRANT
 
 dnl check for how to do large files
 AC_SYS_LARGEFILE
