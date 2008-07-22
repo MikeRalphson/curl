@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.170 2008-07-22 19:04:16 yangtse Exp $
+# $Id: acinclude.m4,v 1.171 2008-07-22 19:13:35 yangtse Exp $
 ###########################################################################
 
 
@@ -2625,7 +2625,6 @@ AC_DEFUN([CURL_CHECK_LOCALTIME_R],
       AC_MSG_RESULT(no)
       AC_MSG_CHECKING(whether localtime_r with -D_REENTRANT is declared)
       AC_EGREP_CPP(localtime_r,[
-#undef _REENTRANT
 #undef _REENTRANT
 #define _REENTRANT
 #include <time.h>],[
