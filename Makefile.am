@@ -18,8 +18,10 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.62 2008-03-31 03:01:13 danf Exp $
+# $Id: Makefile.am,v 1.63 2008-07-24 15:20:35 yangtse Exp $
 ###########################################################################
+
+ACLOCAL_AMFLAGS = -I .
 
 AUTOMAKE_OPTIONS = foreign
 

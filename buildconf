@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.47 2006-10-27 03:47:57 yangtse Exp $
+# $Id: buildconf,v 1.48 2008-07-24 15:20:35 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -209,6 +209,7 @@ PERL=`findtool ${PERL:-perl}`
 echo "buildconf: running libtoolize"
 $libtoolize --copy --automake --force || die "The libtoolize command failed"
 echo "buildconf: running aclocal"
+ACLOCAL_FLAGS="-I . $ACLOCAL_FLAGS"
 ${ACLOCAL:-aclocal} $ACLOCAL_FLAGS || die "The aclocal command line failed"
 if test -n "$PERL"; then
   echo "buildconf: running aclocal hack to convert all mv to mv -f"

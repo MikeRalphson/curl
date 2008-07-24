@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.171 2008-07-22 19:13:35 yangtse Exp $
+# $Id: acinclude.m4,v 1.172 2008-07-24 15:20:35 yangtse Exp $
 ###########################################################################
 
 
@@ -107,31 +107,6 @@ CURL_DEF_TOKEN $1
   fi
   AS_VAR_POPDEF([ac_Def])dnl
   AS_VAR_POPDEF([ac_HaveDef])dnl
-])
-
-
-dnl CONFIGURE_WITH_REENTRANT
-dnl -------------------------------------------------
-dnl This macro ensures that configuration tests done
-dnl after this will execute with preprocessor symbol
-dnl _REENTRANT defined. This macro also ensures that
-dnl the generated config file will equally define it.
-
-AC_DEFUN([CONFIGURE_WITH_REENTRANT], [
-AC_BEFORE([$0], [AC_PREPROC_IFELSE])dnl
-AC_BEFORE([$0], [AC_COMPILE_IFELSE])dnl
-AC_BEFORE([$0], [AC_LINK_IFELSE])dnl
-AC_BEFORE([$0], [AC_RUN_IFELSE])dnl
-AH_VERBATIM([_REENTRANT],
-[/* Define _REENTRANT if not already defined */
-@%:@ifndef _REENTRANT
-@%:@ define _REENTRANT
-@%:@endif])
-cat >>confdefs.h <<_ACEOF
-[@%:@ifndef _REENTRANT
-@%:@ define _REENTRANT
-@%:@endif]
-_ACEOF
 ])
 
 
@@ -2628,7 +2603,6 @@ AC_DEFUN([CURL_CHECK_LOCALTIME_R],
 #undef _REENTRANT
 #define _REENTRANT
 #include <time.h>],[
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT defined])
         AC_MSG_RESULT(yes)],
         AC_MSG_RESULT(no))])])
 ])
@@ -2670,7 +2644,6 @@ AC_DEFUN([CURL_CHECK_STRERROR_R],
 #undef _REENTRANT
 #define _REENTRANT
 #include <string.h>],[
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT defined])
         AC_MSG_RESULT(yes)],
         AC_MSG_RESULT(no)
         AC_DEFINE(HAVE_NO_STRERROR_R_DECL, 1, [we have no strerror_r() proto])
@@ -2761,7 +2734,6 @@ AC_DEFUN([CURL_CHECK_INET_NTOA_R],
 #define _REENTRANT
 #include <arpa/inet.h>],[
         AC_DEFINE(HAVE_INET_NTOA_R_DECL, 1, [inet_ntoa_r() is declared])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT defined])
         AC_MSG_RESULT(yes)],
         AC_MSG_RESULT(no))])])
 ])
@@ -2848,7 +2820,6 @@ AC_DEFUN([CURL_CHECK_GETHOSTBYADDR_R], [
       ],[
         AC_MSG_RESULT([yes])
         AC_DEFINE(HAVE_GETHOSTBYADDR_R_5, 1, [gethostbyaddr_r() takes 5 args])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT])
         ac_cv_gethostbyaddr_r_args="5"
       ],[
         AC_MSG_RESULT([no])
@@ -2904,7 +2875,6 @@ AC_DEFUN([CURL_CHECK_GETHOSTBYADDR_R], [
       ],[
         AC_MSG_RESULT([yes])
         AC_DEFINE(HAVE_GETHOSTBYADDR_R_7, 1, [gethostbyaddr_r() takes 7 args])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT])
         ac_cv_gethostbyaddr_r_args="7"
       ],[
         AC_MSG_RESULT([no])
@@ -2962,7 +2932,6 @@ AC_DEFUN([CURL_CHECK_GETHOSTBYADDR_R], [
       ],[
         AC_MSG_RESULT([yes])
         AC_DEFINE(HAVE_GETHOSTBYADDR_R_8, 1, [gethostbyaddr_r() takes 8 args])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT])
         ac_cv_gethostbyaddr_r_args="8"
       ],[
         AC_MSG_RESULT([no])
@@ -3068,7 +3037,6 @@ AC_DEFUN([CURL_CHECK_GETHOSTBYNAME_R], [
       ],[
         AC_MSG_RESULT([yes])
         AC_DEFINE(HAVE_GETHOSTBYNAME_R_3, 1, [gethostbyname_r() takes 3 args])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT])
         ac_cv_gethostbyname_r_args="3"
       ],[
         AC_MSG_RESULT([no])
@@ -3118,7 +3086,6 @@ AC_DEFUN([CURL_CHECK_GETHOSTBYNAME_R], [
       ],[
         AC_MSG_RESULT([yes])
         AC_DEFINE(HAVE_GETHOSTBYNAME_R_5, 1, [gethostbyname_r() takes 5 args])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT])
         ac_cv_gethostbyname_r_args="5"
       ],[
         AC_MSG_RESULT([no])
@@ -3168,7 +3135,6 @@ AC_DEFUN([CURL_CHECK_GETHOSTBYNAME_R], [
       ],[
         AC_MSG_RESULT([yes])
         AC_DEFINE(HAVE_GETHOSTBYNAME_R_6, 1, [gethostbyname_r() takes 6 args])
-        AC_DEFINE(NEED_REENTRANT, 1, [need REENTRANT])
         ac_cv_gethostbyname_r_args="6"
       ],[
         AC_MSG_RESULT([no])
