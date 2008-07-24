@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.298 2008-06-19 01:12:02 danf Exp $
+# $Id: runtests.pl,v 1.299 2008-07-24 02:16:48 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2963,11 +2963,10 @@ open(CMDLOG, ">$CURLLOG") ||
 #######################################################################
 
 # Display the contents of the given file.  Line endings are canonicalized
-# and excessively long files are truncated
+# and excessively long files are elided
 sub displaylogcontent {
     my ($file)=@_;
     if(open(SINGLE, "<$file")) {
-        my $lfcount;
         my $linecount = 0;
         my $truncate;
         my @tail;
@@ -2975,29 +2974,17 @@ sub displaylogcontent {
             $string =~ s/\r\n/\n/g;
             $string =~ s/[\r\f\032]/\n/g;
             $string .= "\n" unless ($string =~ /\n$/);
-            $lfcount = $string =~ tr/\n//;
-            if($lfcount == 1) {
-                $string =~ s/\n//;
-                $string =~ s/\s*\!$//;
-                $linecount++;
-                if ($truncate) {
-                    push @tail, " $string\n";
-                } else {
-                    logmsg " $string\n";
-                }
-            }
-            else {
-                for my $line (split("\n", $string)) {
-                    $line =~ s/\s*\!$//;
-                    $linecount++;
-                    if ($truncate) {
-                        push @tail, " $line\n";
-                    } else {
-                        logmsg " $line\n";
-		    }
-                }
-            }
-            $truncate = $linecount > 1000;
+            $string =~ tr/\n//;
+	    for my $line (split("\n", $string)) {
+		$line =~ s/\s*\!$//;
+		if ($truncate) {
+		    push @tail, " $line\n";
+		} else {
+		    logmsg " $line\n";
+		}
+		$linecount++;
+		$truncate = $linecount > 1000;
+	    }
         }
         if (@tail) {
             logmsg "=== File too long: lines here were removed\n";
