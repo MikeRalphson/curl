@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.2 2008-07-24 18:02:44 yangtse Exp $
+# $Id: reentrant.m4,v 1.1 2008-07-25 13:21:14 yangtse Exp $
 ###########################################################################
 
 
