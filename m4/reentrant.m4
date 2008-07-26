@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.1 2008-07-25 13:21:14 yangtse Exp $
+# $Id: reentrant.m4,v 1.2 2008-07-26 01:00:41 yangtse Exp $
 ###########################################################################
 
 
@@ -104,7 +104,6 @@ dnl makes function strtok_r compiler visible.
 
 AC_DEFUN([CHECK_NEED_REENTRANT_STRTOK_R], [
   #
-  AC_MSG_NOTICE([DEBUG:])
   AC_MSG_NOTICE([DEBUG:])
   AC_LINK_IFELSE([
     AC_LANG_FUNC_LINK_TRY([strtok_r])
@@ -743,6 +742,15 @@ AC_DEFUN([CHECK_NEED_REENTRANT_GETPROTOBYNAME_R], [
     ],[
       AC_MSG_NOTICE([DEBUG: getprotobyname_r proto wout finds... 4 args])
       tmp_getprotobyname_r="done"
+    ],[
+      case $host in
+        *-*-osf* | *-*-aix*)
+          AC_MSG_NOTICE([DEBUG: getprotobyname_r proto wout fails... 4 args])
+          echo "-------------------" >&6
+          sed 's/^/| /' conftest.err >&6
+          echo "-------------------" >&6
+          ;;
+      esac
     ])
   fi
   if test "$tmp_getprotobyname_r" = "proto_wout_def"; then
@@ -756,6 +764,15 @@ AC_DEFUN([CHECK_NEED_REENTRANT_GETPROTOBYNAME_R], [
     ],[
       AC_MSG_NOTICE([DEBUG: getprotobyname_r proto wout finds... 5 args])
       tmp_getprotobyname_r="done"
+    ],[
+      case $host in
+        *-*-osf* | *-*-aix*)
+          AC_MSG_NOTICE([DEBUG: getprotobyname_r proto wout fails... 5 args])
+          echo "-------------------" >&6
+          sed 's/^/| /' conftest.err >&6
+          echo "-------------------" >&6
+          ;;
+      esac
     ])
   fi
   #
@@ -771,6 +788,15 @@ AC_DEFUN([CHECK_NEED_REENTRANT_GETPROTOBYNAME_R], [
     ],[
       AC_MSG_NOTICE([DEBUG: getprotobyname_r proto with finds... 4 args])
       tmp_getprotobyname_r="needs_reentrant"
+    ],[
+      case $host in
+        *-*-osf* | *-*-aix*)
+          AC_MSG_NOTICE([DEBUG: getprotobyname_r proto with fails... 4 args])
+          echo "-------------------" >&6
+          sed 's/^/| /' conftest.err >&6
+          echo "-------------------" >&6
+          ;;
+      esac
     ])
   fi
   if test "$tmp_getprotobyname_r" = "proto_with_def"; then
@@ -785,6 +811,15 @@ AC_DEFUN([CHECK_NEED_REENTRANT_GETPROTOBYNAME_R], [
     ],[
       AC_MSG_NOTICE([DEBUG: getprotobyname_r proto with finds... 5 args])
       tmp_getprotobyname_r="needs_reentrant"
+    ],[
+      case $host in
+        *-*-osf* | *-*-aix*)
+          AC_MSG_NOTICE([DEBUG: getprotobyname_r proto with fails... 5 args])
+          echo "-------------------" >&6
+          sed 's/^/| /' conftest.err >&6
+          echo "-------------------" >&6
+          ;;
+      esac
     ])
   fi
   #
