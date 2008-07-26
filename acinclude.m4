@@ -18,8 +18,8 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.172 2008-07-24 15:20:35 yangtse Exp $
-###########################################################################
+# $Id: acinclude.m4,v 1.173 2008-07-26 12:11:22 yangtse Exp $
+#***************************************************************************
 
 
 dnl CURL_CHECK_COMPILER_HALT_ON_ERROR

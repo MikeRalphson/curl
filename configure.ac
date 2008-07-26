@@ -18,8 +18,8 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.311 2008-07-24 15:20:35 yangtse Exp $
-###########################################################################
+# $Id: configure.ac,v 1.312 2008-07-26 12:11:22 yangtse Exp $
+#***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)

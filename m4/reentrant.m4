@@ -18,8 +18,8 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.3 2008-07-26 01:24:50 yangtse Exp $
-###########################################################################
+# $Id: reentrant.m4,v 1.4 2008-07-26 12:11:22 yangtse Exp $
+#***************************************************************************
 
 
 dnl CHECK_NEED_REENTRANT_STRERROR_R
