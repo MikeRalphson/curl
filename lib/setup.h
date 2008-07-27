@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.144 2008-07-22 00:12:06 yangtse Exp $
+ * $Id: setup.h,v 1.145 2008-07-27 03:16:37 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -73,13 +73,15 @@
 #endif /* HAVE_CONFIG_H */
 
 /*
- * Solaris needs _REENTRANT set for a few function prototypes and
+ * HP-UX needs _REENTRANT set for a few function prototypes and
  * things to appear in the system header files. Unixware needs it
  * to build proper reentrant code. Others may also need it.
  */
 
-#ifndef _REENTRANT
-#  define _REENTRANT
+#ifdef NEED_REENTRANT
+#  ifndef _REENTRANT
+#    define _REENTRANT
+#  endif
 #endif
 
 /*

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.5 2008-07-27 01:36:45 yangtse Exp $
+# $Id: reentrant.m4,v 1.6 2008-07-27 03:16:37 yangtse Exp $
 #***************************************************************************
 
 
@@ -332,7 +332,7 @@ dnl CURL_CHECK_NEED_REENTRANT_FUNCTIONS_R
 dnl -------------------------------------------------
 dnl Checks if the preprocessor _REENTRANT definition
 dnl makes several _r functions compiler visible.
-dnl Internal macro for CONFIGURE_REENTRANT.
+dnl Internal macro for CURL_CONFIGURE_REENTRANT.
 
 AC_DEFUN([CURL_CHECK_NEED_REENTRANT_FUNCTIONS_R], [
   #
@@ -373,23 +373,18 @@ dnl -------------------------------------------------
 dnl This macro ensures that configuration tests done
 dnl after this will execute with preprocessor symbol
 dnl _REENTRANT defined. This macro also ensures that
-dnl the generated config file will equally define it.
-dnl Internal macro for CONFIGURE_REENTRANT.
+dnl the generated config file defines NEED_REENTRANT
+dnl and that in turn setup.h will define _REENTRANT.
+dnl Internal macro for CURL_CONFIGURE_REENTRANT.
 
 AC_DEFUN([CURL_CONFIGURE_FROM_NOW_ON_WITH_REENTRANT], [
-AH_VERBATIM([NEED_REENTRANT],
-[/* Configure process defines NEED_REENTRANT to 1 when it finds out that */
-/* _REENTRANT is required or already defined for proper configuration.  */
-@%:@undef NEED_REENTRANT
-@%:@if defined(NEED_REENTRANT) && !defined(_REENTRANT)
-@%:@ define _REENTRANT
-@%:@endif])
+AC_DEFINE(NEED_REENTRANT, 1,
+  [Define to 1 if _REENTRANT preprocessor symbol must be defined.])
 cat >>confdefs.h <<_ACEOF
 [@%:@ifndef _REENTRANT
 @%:@ define _REENTRANT
 @%:@endif]
 _ACEOF
-AC_DEFINE(NEED_REENTRANT, 1, [])
 ])
 
 
