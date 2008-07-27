@@ -18,19 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.314 2008-07-27 01:36:33 yangtse Exp $
+# $Id: configure.ac,v 1.315 2008-07-27 02:41:13 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
-
-dnl Explicitly include our m4 files first. Without these explicit inclusions
-dnl aclocal will actually find and include them automatically, but before it
-dnl does it might fully scan all other system installed m4 files. Doing this
-dnl explicit inclusion also allows us to override definitions of macros done
-dnl elsewhere in other packages with the ones done in our included files.
-m4_include([m4/reentrant.m4])
-m4_include([acinclude.m4])
 
 dnl We don't know the version number "statically" so we use a dash here
 AC_INIT([curl], [-], [a suitable curl mailing list => http://curl.haxx.se/mail/])
