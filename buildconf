@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.52 2008-07-28 15:15:13 yangtse Exp $
+# $Id: buildconf,v 1.53 2008-07-28 16:17:51 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -42,6 +42,18 @@ findtool(){
     fi
   done
 }
+
+#--------------------------------------------------------------------------
+# Ensure that buildconf runs from the subdirectory where configure.ac lives
+#
+if test ! -f configure.ac ||
+  test ! -f src/main.c ||
+  test ! -f lib/urldata.h ||
+  test ! -f include/curl/curl.h; then
+  echo "Can not run buildconf from outside of curl's source subdirectory!"
+  echo "Change to the subdirectory where buildconf is found, and try again."
+  exit 1
+fi
 
 #--------------------------------------------------------------------------
 # autoconf 2.57 or newer
