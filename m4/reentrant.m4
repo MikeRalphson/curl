@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.9 2008-07-29 17:45:34 yangtse Exp $
+# $Id: reentrant.m4,v 1.10 2008-07-29 18:01:29 yangtse Exp $
 #***************************************************************************
 
 
@@ -377,7 +377,7 @@ AC_DEFINE(NEED_REENTRANT, 1,
   [Define to 1 if _REENTRANT preprocessor symbol must be defined.])
 cat >>confdefs.h <<_ACEOF
 #ifndef _REENTRANT
-# define _REENTRANT
+#define _REENTRANT
 #endif
 _ACEOF
 ])
