@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.10 2008-07-29 18:01:29 yangtse Exp $
+# $Id: reentrant.m4,v 1.11 2008-07-29 18:23:11 yangtse Exp $
 #***************************************************************************
 
 
@@ -373,7 +373,7 @@ dnl and that in turn setup.h will define _REENTRANT.
 dnl Internal macro for CURL_CONFIGURE_REENTRANT.
 
 AC_DEFUN([CURL_CONFIGURE_FROM_NOW_ON_WITH_REENTRANT], [
-AC_DEFINE(NEED_REENTRANT, 1,
+AC_DEFINE([NEED_REENTRANT], [1],
   [Define to 1 if _REENTRANT preprocessor symbol must be defined.])
 cat >>confdefs.h <<_ACEOF
 #ifndef _REENTRANT
