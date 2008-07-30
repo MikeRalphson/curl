@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.30 2008-07-27 03:16:37 yangtse Exp $ */
+/* $Id: setup.h,v 1.31 2008-07-30 08:21:25 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2007 by Daniel Stenberg et al
  *
@@ -40,7 +40,7 @@
 #endif /* HAVE_CONFIG_H */
 
 /*
- * HP-UX needs _REENTRANT set for a few function prototypes and
+ * Tru64 needs _REENTRANT set for a few function prototypes and
  * things to appear in the system header files. Unixware needs it
  * to build proper reentrant code. Others may also need it.
  */
