@@ -18,10 +18,12 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.66 2008-07-29 02:26:21 yangtse Exp $
+# $Id: Makefile.am,v 1.67 2008-07-30 03:10:03 yangtse Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
+
+ACLOCAL_AMFLAGS = -I m4
 
 EXTRA_DIST = CHANGES COPYING maketgz reconf Makefile.dist curl-config.in \
  curl-style.el sample.emacs RELEASE-NOTES buildconf buildconf.bat libcurl.pc.in
