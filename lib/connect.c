@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.195 2008-07-28 18:35:34 danf Exp $
+ * $Id: connect.c,v 1.196 2008-07-30 21:55:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -772,6 +772,13 @@ singleipconnect(struct connectdata *conn,
     return CURL_SOCKET_BAD;
 
   *connected = FALSE; /* default is not connected */
+
+#ifdef CURLRES_IPV6
+  if (conn->scope && (addr->family == AF_INET6)) {
+    struct sockaddr_in6 *in6 = (struct sockaddr_in6 *)&addr->addr;
+    in6->sin6_scope_id = conn->scope;
+  }
+#endif
 
   /* FIXME: do we have Curl_printable_address-like with struct sockaddr* as
      argument? */

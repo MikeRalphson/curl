@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.359 2008-07-03 06:56:03 bagder Exp $
+ * $Id: curl.h,v 1.360 2008-07-30 21:55:26 bagder Exp $
  ***************************************************************************/
 
 /* If you have problems, all libcurl docs and details are found here:
@@ -1210,6 +1210,9 @@ typedef enum {
 
   /* Issuer certificate */
   CINIT(ISSUERCERT, OBJECTPOINT, 170),
+
+  /* (IPv6) Address scope */
+  CINIT(ADDRESS_SCOPE, LONG, 171),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;
