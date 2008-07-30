@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.120 2008-04-23 23:55:34 yangtse Exp $
+ * $Id: sws.c,v 1.121 2008-07-30 07:25:00 danf Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -351,7 +351,7 @@ int ProcessRequest(struct httprequest *req)
        headers, for the pipelining case mostly */
     req->checkindex += (end - line) + strlen(END_OF_HEADERS);
 
-  /* **** Persistancy ****
+  /* **** Persistency ****
    *
    * If the request is a HTTP/1.0 one, we close the connection unconditionally
    * when we're done.
@@ -539,7 +539,7 @@ static int get_request(curl_socket_t sock, struct httprequest *req)
     pipereq_length = req->offset - req->checkindex;
   }
 
-  /*** Init the httpreqest structure properly for the upcoming request ***/
+  /*** Init the httprequest structure properly for the upcoming request ***/
 
   req->checkindex = 0;
   req->offset = 0;
@@ -1049,7 +1049,7 @@ int main(int argc, char *argv[])
       send_doc(msgsock, &req);
 
       if((req.testno < 0) && (req.testno != DOCNUMBER_CONNECT)) {
-        logmsg("special request received, no persistancy");
+        logmsg("special request received, no persistency");
         break;
       }
       if(!req.open) {
