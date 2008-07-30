@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.38 2008-07-30 05:10:42 yangtse Exp $
+ * $Id: tftpd.c,v 1.39 2008-07-30 06:20:43 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -515,8 +515,8 @@ int main(int argc, char **argv)
 
   do {
     fromlen = sizeof(from);
-    n = (ssize_t)sreadfrom(sock, buf, sizeof(buf), 0,
-                           (struct sockaddr *)&from, &fromlen);
+    n = (ssize_t)recvfrom(sock, buf, sizeof(buf), 0,
+                          (struct sockaddr *)&from, &fromlen);
     if (n < 0) {
       logmsg("recvfrom:\n");
       result = 3;
