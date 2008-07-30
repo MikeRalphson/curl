@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.h,v 1.36 2007-10-12 13:36:38 patrickm Exp $
+ * $Id: http.h,v 1.37 2008-07-30 20:11:51 danf Exp $
  ***************************************************************************/
 #ifndef CURL_DISABLE_HTTP
 
@@ -34,6 +34,8 @@ extern const struct Curl_handler Curl_handler_https;
 bool Curl_compareheader(const char *headerline,  /* line to check */
                         const char *header,   /* header keyword _with_ colon */
                         const char *content); /* content string to find */
+
+char *Curl_copy_header_value(const char *h);
 
 /* ftp can use this as well */
 CURLcode Curl_proxyCONNECT(struct connectdata *conn,
