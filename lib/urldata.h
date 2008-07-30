@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.382 2008-07-03 06:56:04 bagder Exp $
+ * $Id: urldata.h,v 1.383 2008-07-30 00:09:03 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1211,7 +1211,8 @@ struct UrlState {
   bool pipe_broke; /* TRUE if the connection we were pipelined on broke
                       and we need to restart from the beginning */
 
-#ifndef WIN32
+#if !defined(WIN32) && !defined(MSDOS) && !defined(__EMX__) && \
+    !defined(__SYMBIAN32__)
 /* do FTP line-end conversions on most platforms */
 #define CURL_DO_LINEEND_CONV
   /* for FTP downloads: track CRLF sequences that span blocks */
