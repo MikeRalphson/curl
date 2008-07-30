@@ -18,8 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: reentrant.m4,v 1.11 2008-07-29 18:23:11 yangtse Exp $
+# $Id: reentrant.m4,v 1.12 2008-07-30 12:09:35 yangtse Exp $
 #***************************************************************************
+
+
+# serial 1.12
 
 
 dnl CURL_CHECK_NEED_REENTRANT_GMTIME_R
