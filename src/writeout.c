@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.33 2008-07-03 06:56:04 bagder Exp $
+ * $Id: writeout.c,v 1.34 2008-07-30 21:24:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -63,6 +63,7 @@ typedef enum {
   VAR_REDIRECT_COUNT,
   VAR_FTP_ENTRY_PATH,
   VAR_REDIRECT_URL,
+  VAR_SSL_VERIFY_RESULT,
   VAR_NUM_OF_VARS /* must be the last */
 } replaceid;
 
@@ -95,6 +96,7 @@ static const struct variable replacements[]={
   {"num_redirects", VAR_REDIRECT_COUNT},
   {"ftp_entry_path", VAR_FTP_ENTRY_PATH},
   {"redirect_url", VAR_REDIRECT_URL},
+  {"ssl_verify_result", VAR_SSL_VERIFY_RESULT},
   {NULL, VAR_NONE}
 };
 
@@ -240,6 +242,11 @@ void ourWriteOut(CURL *curl, const char *writeinfo)
                     curl_easy_getinfo(curl, CURLINFO_REDIRECT_URL, &stringp))
                    && stringp)
                   fputs(stringp, stream);
+                break;
+              case VAR_SSL_VERIFY_RESULT:
+                if(CURLE_OK ==
+                   curl_easy_getinfo(curl, CURLINFO_SSL_VERIFYRESULT, &longinfo))
+                  fprintf(stream, "%ld", longinfo);
                 break;
               default:
                 break;
