@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.721 2008-07-30 21:55:27 bagder Exp $
+ * $Id: url.c,v 1.722 2008-07-31 02:18:01 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3089,16 +3089,19 @@ static CURLcode ParseURLAndFillConnection(struct SessionHandle *data,
     path[0] = '/';
   }
 
-  if (conn->host.name[0] == '[' && !data->state.this_is_a_follow) {
+  if (conn->host.name[0] == '[') {
     /* This looks like an IPv6 address literal.  See if there is an address
        scope.  */
     char *percent = strstr (conn->host.name, "%25");
     if (percent) {
       char *endp;
-      conn->scope = strtoul (percent + 3, &endp, 10);
+      unsigned int scope = strtoul (percent + 3, &endp, 10);
       if (*endp == ']') {
         /* The address scope was well formed.  Knock it out of the hostname.  */
-        strcpy (percent, "]");
+        memmove(percent, endp, strlen(endp)+1);
+        if (!data->state.this_is_a_follow)
+          /* Don't honour a scope given in a Location: header */
+          conn->scope = scope;
       }
     }
   }
