@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.59 2008-08-01 06:07:43 yangtse Exp $
+# $Id: buildconf,v 1.60 2008-08-01 07:46:21 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -306,7 +306,6 @@ tmp_host_type=`uname -a | sed '/SunOS/s/.*\(SunOS\).*/\1/'`
 if test "x$tmp_host_type" = "xSunOS"; then
   ACLOCAL_FLAGS="$ACLOCAL_FLAGS --verbose"
 fi
-ACLOCAL_FLAGS="$ACLOCAL_FLAGS --verbose"
 
 echo "buildconf: running libtoolize"
 $libtoolize --copy --automake --force || die "The libtoolize command failed"
