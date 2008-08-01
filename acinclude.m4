@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.178 2008-08-01 06:07:43 yangtse Exp $
+# $Id: acinclude.m4,v 1.179 2008-08-01 06:21:34 yangtse Exp $
 #***************************************************************************
 
 
@@ -69,7 +69,7 @@ AC_DEFUN([CURL_CHECK_COMPILER_ARRAY_SIZE_NEGATIVE], [
 ])
 
 
-dnl CURL_CHECK_DEF(SYMBOL, [INCLUDES], [SILENT])
+dnl CURL_CHECK_DEF (SYMBOL, [INCLUDES], [SILENT])
 dnl -------------------------------------------------
 dnl Use the C preprocessor to find out if the given object-style symbol
 dnl is defined and get its expansion. This macro will not use default
@@ -3503,3 +3503,4 @@ AC_HELP_STRING([--without-ca-path], [Don't use a default CA path]),
     AC_MSG_RESULT([no])
   fi
 ])
+
