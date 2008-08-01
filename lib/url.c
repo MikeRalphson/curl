@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.725 2008-08-01 00:55:43 danf Exp $
+ * $Id: url.c,v 1.726 2008-08-01 02:09:08 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3396,7 +3396,7 @@ static CURLcode parse_proxy(struct SessionHandle *data,
     proxypasswd[0] = 0;
 
     if(1 <= sscanf(proxyptr,
-                   "%" MAX_CURL_USER_LENGTH_TXT"[^:]:"
+                   "%" MAX_CURL_USER_LENGTH_TXT"[^:@]:"
                    "%" MAX_CURL_PASSWORD_LENGTH_TXT "[^@]",
                    proxyuser, proxypasswd)) {
       CURLcode res = CURLE_OK;
