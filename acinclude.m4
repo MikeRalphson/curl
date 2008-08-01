@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.176 2008-07-30 03:10:03 yangtse Exp $
+# $Id: acinclude.m4,v 1.177 2008-08-01 05:24:19 yangtse Exp $
 #***************************************************************************
 
 
@@ -2523,34 +2523,6 @@ AC_DEFUN([CURL_CHECK_FUNC_SELECT], [
   fi
 ]) # AC_DEFUN
 
-
-dnl ************************************************************
-dnl check for "localhost", if it doesn't exist, we can't do the
-dnl gethostbyname_r tests!
-dnl 
-
-AC_DEFUN([CURL_CHECK_WORKING_RESOLVER],[
-AC_MSG_CHECKING([if "localhost" resolves])
-AC_TRY_RUN([
-#include <string.h>
-#include <sys/types.h>
-#include <netdb.h>
-#ifndef NULL
-#define NULL (void *)0
-#endif
-
-int
-main () {
-struct hostent *h;
-h = gethostbyname("localhost");
-exit (h == NULL ? 1 : 0); }],[
-      AC_MSG_RESULT(yes)],[
-      AC_MSG_RESULT(no)
-      AC_MSG_ERROR([can't figure out gethostbyname_r() since localhost doesn't resolve])
-
-      ]
-)
-])
 
 dnl ************************************************************
 dnl check for working getaddrinfo() that works with AI_NUMERICHOST
