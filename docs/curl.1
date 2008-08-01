@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.253 2008-07-30 21:24:19 bagder Exp $
+.\" * $Id: curl.1,v 1.254 2008-08-01 18:41:14 danf Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -106,8 +106,9 @@ the --option version of them. (This concept with --no options was added in
 7.19.0. Previously most options were toggled on/off on repeated use of the
 same command line option.)
 .IP "-a/--append"
-(FTP) When used in an FTP upload, this will tell curl to append to the target
+(FTP/SFTP) When used in an upload, this will tell curl to append to the target
 file instead of overwriting it. If the file doesn't exist, it will be created.
+Note that this flag is ignored by some SSH servers (including OpenSSH).
 .IP "-A/--user-agent <agent string>"
 (HTTP) Specify the User-Agent string to send to the HTTP server. Some badly
 done CGIs fail if this field isn't set to "Mozilla/4.0". To encode blanks in
