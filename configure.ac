@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.318 2008-08-01 19:01:35 yangtse Exp $
+# $Id: configure.ac,v 1.319 2008-08-02 01:44:13 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1246,28 +1246,6 @@ if test X"$OPT_SSL" != Xno; then
       fi
     fi
   fi
-
-  dnl This is for Msys/Mingw
-  case $host in
-    *-*-cygwin*)
-      dnl Under Cygwin this is extraneous and causes an unnecessary -lgdi32
-      dnl to be added to LIBS and recorded in the .la file.
-      ;;
-    *)
-      AC_MSG_CHECKING([for gdi32])
-      my_ac_save_LIBS=$LIBS
-      LIBS="-lgdi32 $LIBS"
-      AC_TRY_LINK([#include <windef.h>
-                   #include <wingdi.h>],
-                   [GdiFlush();],
-                   [ dnl worked!
-                   AC_MSG_RESULT([yes])],
-                   [ dnl failed, restore LIBS
-                   LIBS=$my_ac_save_LIBS
-                   AC_MSG_RESULT(no)]
-                  )
-      ;;
-  esac
 
   AC_CHECK_LIB(crypto, CRYPTO_lock,[
      HAVECRYPTO="yes"
