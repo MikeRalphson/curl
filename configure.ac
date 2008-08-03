@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.320 2008-08-03 01:01:05 yangtse Exp $
+# $Id: configure.ac,v 1.321 2008-08-03 03:14:05 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -303,6 +303,8 @@ if test "$curl_cv_have_def___DECC" = "yes" ||
   AC_MSG_RESULT([yes])
   dnl Select strict ANSI C compiler mode
   CFLAGS="$CFLAGS -std1"
+  dnl Turn off optimizer ANSI C aliasing rules
+  CFLAGS="$CFLAGS -noansi_alias"
   dnl Select a higher warning level than default level2
   CFLAGS="$CFLAGS -msg_enable level3"
   dnl Generate warnings for missing function prototypes
