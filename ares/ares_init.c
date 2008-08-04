@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.73 2008-06-30 12:48:25 bagder Exp $ */
+/* $Id: ares_init.c,v 1.74 2008-08-04 20:23:12 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -1464,11 +1464,11 @@ static int init_id_key(rc4_key* key,int key_data_len)
   if (!key_data_ptr)
     return ARES_ENOMEM;
 
-  randomize_key(key->state,key_data_len);
   state = &key->state[0];
   for(counter = 0; counter < 256; counter++)
     /* unnecessary AND but it keeps some compilers happier */
     state[counter] = (unsigned char)(counter & 0xff);
+  randomize_key(key->state,key_data_len);
   key->x = 0;
   key->y = 0;
   index1 = 0;
