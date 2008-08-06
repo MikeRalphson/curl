@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.377 2008-08-04 22:07:51 bagder Exp $
+ * $Id: http.c,v 1.378 2008-08-06 09:54:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -343,8 +343,6 @@ CURLcode Curl_http_perhapsrewind(struct connectdata *conn)
        safely skip this rewinding stuff, or this is attempted to get used
        when HTTP isn't activated */
     return CURLE_OK;
-
-  infof(data, "now in %s\n", __func__);
 
   switch(data->set.httpreq) {
   case HTTPREQ_GET:
