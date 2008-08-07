@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.51 2008-07-15 13:54:30 yangtse Exp $
+# $Id: Makefile.am,v 1.52 2008-08-07 00:29:08 yangtse Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign nostdinc
@@ -12,9 +12,11 @@ EXTRA_DIST = README Makefile.example Makefile.inc Makefile.m32 \
 # being currently built and tested are searched before the library which
 # might possibly already be installed in the system.
 #
+# $(top_builddir)/include is for libcurl's generated curl/curlbuild.h file
 # $(top_srcdir)/include is for libcurl's external include files
 
-INCLUDES = -I$(top_srcdir)/include
+INCLUDES = -I$(top_builddir)/include \
+           -I$(top_srcdir)/include
 
 LIBDIR = $(top_builddir)/lib
 

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: config-amigaos.h,v 1.14 2008-07-17 03:07:54 yangtse Exp $
+ * $Id: config-amigaos.h,v 1.15 2008-08-07 00:29:08 yangtse Exp $
  ***************************************************************************/
 
 #ifdef __AMIGA__ /* Any AmigaOS flavour */
@@ -103,7 +103,6 @@
 #define SELECT_TYPE_ARG1 int
 #define SELECT_TYPE_ARG234 (fd_set *)
 #define SELECT_TYPE_ARG5 (struct timeval *)
-#define SIZEOF_CURL_OFF_T 4
 
 #define STDC_HEADERS 1
 #define TIME_WITH_SYS_TIME 1

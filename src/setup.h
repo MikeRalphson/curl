@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.56 2008-07-30 08:27:02 yangtse Exp $
+ * $Id: setup.h,v 1.57 2008-08-07 00:29:08 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -185,10 +185,6 @@ int fileno( FILE *stream);
 
 #if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
 #include <sys/timeval.h>
-#endif
-
-#ifndef SIZEOF_CURL_OFF_T
-#define SIZEOF_CURL_OFF_T sizeof(curl_off_t)
 #endif
 
 #ifndef UNPRINTABLE_CHAR

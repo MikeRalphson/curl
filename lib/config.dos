@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.17 2008-07-21 00:36:55 yangtse Exp $
+ * $Id: config.dos,v 1.18 2008-08-07 00:29:08 yangtse Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -60,7 +60,6 @@
 
 #define RETSIGTYPE             void
 #define SIZEOF_LONG_DOUBLE     16
-#define SIZEOF_CURL_OFF_T      4   /* no huge file support */
 #define STDC_HEADERS           1
 #define TIME_WITH_SYS_TIME     1
 
