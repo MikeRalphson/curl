@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.90 2008-08-07 21:34:35 gknauf Exp $
+# $Id: Makefile.netware,v 1.91 2008-08-07 21:43:30 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -585,6 +585,6 @@ ca-bundle.crt: mk-ca-bundle.pl
 	@-$(PERL) $< -b -n $@
 
 $(CURL_INC)/curl/curlbuild.h: $(CURL_INC)/curl/curlbuild.h.dist
-	@cp $< $@
+	@$(CP) $< $@
 
  
