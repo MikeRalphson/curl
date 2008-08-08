@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.184 2008-08-08 11:34:08 yangtse Exp $
+# $Id: acinclude.m4,v 1.185 2008-08-08 16:25:07 yangtse Exp $
 #***************************************************************************
 
 
@@ -143,11 +143,11 @@ CURL_DEF_TOKEN $1
   rm -f conftest.yang2
 
   if test -z "$tmp_exp"; then
-    AS_VAR_SET([ac_HaveDef], [no])
+    AS_VAR_SET(ac_HaveDef, no)
     ifelse($3,,[AC_MSG_RESULT([no])])
   else
-    AS_VAR_SET([ac_HaveDef], [yes])
-    AS_VAR_SET([ac_Def], [$tmp_exp])
+    AS_VAR_SET(ac_HaveDef, yes)
+    AS_VAR_SET(ac_Def, $tmp_exp)
     ifelse($3,,[AC_MSG_RESULT([$tmp_exp])])
   fi
   AS_VAR_POPDEF([ac_Def])dnl
@@ -3660,8 +3660,8 @@ AC_DEFUN([DO_CURL_OFF_T_CHECK], [
         CURL_CHECK_DEF([$tmp_fmt], [$curl_includes_inttypes], [silent])
         AS_VAR_PUSHDEF([tmp_HaveDef], [curl_cv_have_def_$tmp_fmt])dnl
         AS_VAR_PUSHDEF([tmp_Def], [curl_cv_def_$tmp_fmt])dnl
-        if test AS_VAR_GET([tmp_HaveDef]) = "yes"; then
-          x_format=AS_VAR_GET([tmp_Def])
+        if test AS_VAR_GET(tmp_HaveDef) = "yes"; then
+          x_format=AS_VAR_GET(tmp_Def)
           x_typeof="$1"
           x_sizeof="$2"
         fi
