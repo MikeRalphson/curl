@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.61 2008-08-08 03:09:16 yangtse Exp $
+# $Id: testcurl.pl,v 1.62 2008-08-08 05:58:08 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.61 $';
+$version='$Revision: 1.62 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -492,16 +492,6 @@ if ($configurebuild) {
     # lib/Makefile.netware now copies curlbuild.h.dist as curlbuild.h
     system("$make -i -C lib -f Makefile.$targetos prebuild");
     system("$make -i -C src -f Makefile.$targetos prebuild");
-    # peek compiler predefined symbols...
-    system("echo | gcc -m32 -E -dM - >predef.txt");
-    logit "display predef.txt";
-    if(open(F, "predef.txt")) {
-        while (<F>) {
-            print;
-        }
-        close(F);
-    }
-    #
   }
 }
 
