@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.187 2008-08-08 17:42:58 yangtse Exp $
+# $Id: acinclude.m4,v 1.188 2008-08-09 17:26:24 yangtse Exp $
 #***************************************************************************
 
 
@@ -117,7 +117,7 @@ CURL_DEF_TOKEN $1
 
     echo "DEBUG: $tmp_exp"  >&6
 
-    if test "$tmp_exp" = "$1"; then
+    if test -z "$tmp_exp" || test "$tmp_exp" = "$1"; then
       tmp_exp=""
       echo "DEBUG: $tmp_exp"  >&6
     fi
