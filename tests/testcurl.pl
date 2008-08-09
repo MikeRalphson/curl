@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.63 2008-08-08 12:34:01 yangtse Exp $
+# $Id: testcurl.pl,v 1.64 2008-08-09 23:14:40 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.63 $';
+$version='$Revision: 1.64 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -493,6 +493,14 @@ if ($configurebuild) {
     system("$make -i -C lib -f Makefile.$targetos prebuild");
     system("$make -i -C src -f Makefile.$targetos prebuild");
   }
+}
+
+logit "display include/curl/curlbuild.h";
+if(open(F, "include/curl/curlbuild.h")) {
+  while (<F>) {
+    print if /^ *#define/;
+  }
+  close(F);
 }
 
 logit "display lib/config$confsuffix.h";
