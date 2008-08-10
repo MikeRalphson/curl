@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.64 2008-08-09 23:14:40 yangtse Exp $
+# $Id: testcurl.pl,v 1.65 2008-08-10 18:33:41 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.64 $';
+$version='$Revision: 1.65 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -486,9 +486,15 @@ if ($configurebuild) {
     system("xcopy /s /q ..\\$CURLDIR .");
     system("buildconf.bat");
   }
-  elsif (($^O eq 'linux') || ($targetos =~ /netware/)) {
-    system("cp -afr ../$CURLDIR/* ."); 
-    system("cp -af ../$CURLDIR/Makefile.dist Makefile"); 
+  elsif ($targetos =~ /netware/) {
+    system("cp -afr ../$CURLDIR/* .");
+    system("cp -af ../$CURLDIR/Makefile.dist Makefile");
+    system("$make -i -C lib -f Makefile.netware prebuild");
+    system("$make -i -C src -f Makefile.netware prebuild");
+  }
+  elsif ($^O eq 'linux') {
+    system("cp -afr ../$CURLDIR/* .");
+    system("cp -af ../$CURLDIR/Makefile.dist Makefile");
     system("cp -af ../$CURLDIR/include/curl/curlbuild.h.dist ./include/curl/curlbuild.h");
     system("$make -i -C lib -f Makefile.$targetos prebuild");
     system("$make -i -C src -f Makefile.$targetos prebuild");
@@ -498,7 +504,7 @@ if ($configurebuild) {
 logit "display include/curl/curlbuild.h";
 if(open(F, "include/curl/curlbuild.h")) {
   while (<F>) {
-    print if /^ *#define/;
+    print if (($1 =~ /^ *#define/) && ($1 !~ /^ *#define.*__CURL_CURLBUILD_H/));
   }
   close(F);
 }
