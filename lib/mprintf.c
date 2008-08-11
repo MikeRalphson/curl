@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.c,v 1.62 2008-06-30 12:58:15 bagder Exp $
+ * $Id: mprintf.c,v 1.63 2008-08-11 01:22:57 yangtse Exp $
  *
  * Purpose:
  *  A merge of Bjorn Reese's format() function and Daniel's dsprintf()
@@ -409,7 +409,7 @@ static long dprintf_Pass1(const char *format, va_stack_t *vto, char **endpos,
 #endif
           break;
         case 'O':
-#if SIZEOF_CURL_OFF_T > 4
+#if CURL_SIZEOF_CURL_OFF_T > 4
           flags |= FLAGS_LONGLONG;
 #else
           flags |= FLAGS_LONG;

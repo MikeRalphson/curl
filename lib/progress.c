@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: progress.c,v 1.86 2008-07-03 06:56:03 bagder Exp $
+ * $Id: progress.c,v 1.87 2008-08-11 01:22:57 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -86,7 +86,7 @@ static char *max5data(curl_off_t bytes, char *max5)
              (int)(bytes/ONE_MEGABYTE),
              (int)(bytes%ONE_MEGABYTE)/(ONE_MEGABYTE/10) );
   }
-#if SIZEOF_CURL_OFF_T > 4
+#if CURL_SIZEOF_CURL_OFF_T > 4
   else if(bytes < ( (curl_off_t)10000*ONE_MEGABYTE))
     /* 'XXXXM' is good until we're at 10000MB or above */
     snprintf(max5, 6, "%4" FORMAT_OFF_T "M", (curl_off_t)(bytes/ONE_MEGABYTE));
