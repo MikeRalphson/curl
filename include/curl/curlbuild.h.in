@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlbuild.h.in,v 1.1 2008-08-07 00:29:08 yangtse Exp $
+ * $Id: curlbuild.h.in,v 1.2 2008-08-11 18:27:21 yangtse Exp $
  ***************************************************************************/
 
 /* ================================================================ */
@@ -125,5 +125,11 @@ typedef CURL_OFF_T curl_off_t;
 
 /* The expected size of curl_off_t, as to be computed by sizeof. */
 #undef CURL_SIZEOF_CURL_OFF_T
+
+/* curl_off_t constant suffix. */
+#undef CURL_SUFFIX_CURL_OFF_T
+
+/* unsigned curl_off_t constant suffix. */
+#undef CURL_SUFFIX_CURL_OFF_TU
 
 #endif /* __CURL_CURLBUILD_H */
