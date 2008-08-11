@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.65 2008-08-10 18:33:41 yangtse Exp $
+# $Id: testcurl.pl,v 1.66 2008-08-11 00:15:20 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.65 $';
+$version='$Revision: 1.66 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -501,12 +501,18 @@ if ($configurebuild) {
   }
 }
 
-logit "display include/curl/curlbuild.h";
-if(open(F, "include/curl/curlbuild.h")) {
-  while (<F>) {
-    print if (($1 =~ /^ *#define/) && ($1 !~ /^ *#define.*__CURL_CURLBUILD_H/));
+if(-f "./include/curl/curlbuild.h") {
+  logit "display include/curl/curlbuild.h";
+  if(open(F, "<./include/curl/curlbuild.h")) {
+    while(<F>) {
+      my $ll = $_;
+      print $ll if(($ll =~ /^ *# *define/) && ($ll !~ /__CURL_CURLBUILD_H/));
+    }
+    close(F);
   }
-  close(F);
+}
+else {
+  mydie "no curlbuild.h created/found";
 }
 
 logit "display lib/config$confsuffix.h";
