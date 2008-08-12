@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.400 2008-08-08 20:37:54 danf Exp $
+ * $Id: transfer.c,v 1.401 2008-08-12 19:09:20 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -353,7 +353,7 @@ static CURLcode readwrite_data(struct SessionHandle *data,
                                struct SingleRequest *k,
                                int *didwhat, bool *done)
 {
-  CURLcode result;
+  CURLcode result = CURLE_OK;
   ssize_t nread; /* number of bytes read */
   bool is_empty_data = FALSE;
 
