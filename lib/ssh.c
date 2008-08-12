@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.106 2008-08-01 18:41:14 danf Exp $
+ * $Id: ssh.c,v 1.107 2008-08-12 20:21:40 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -84,7 +84,6 @@
 #include "sendf.h"
 #include "easyif.h" /* for Curl_convert_... prototypes */
 
-#include "if2ip.h"
 #include "hostip.h"
 #include "progress.h"
 #include "transfer.h"
@@ -101,7 +100,6 @@
 #include "strerror.h"
 #include "memory.h"
 #include "inet_ntop.h"
-#include "select.h"
 #include "parsedate.h" /* for the week day and month names */
 #include "sockaddr.h" /* required for Curl_sockaddr_storage */
 #include "multiif.h"
