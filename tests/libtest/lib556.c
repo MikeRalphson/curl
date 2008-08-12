@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib556.c,v 1.2 2008-05-13 21:43:37 bagder Exp $
+ * $Id: lib556.c,v 1.3 2008-08-12 18:32:55 danf Exp $
  */
 
 #include "test.h"
@@ -54,7 +54,7 @@ int test(char *URL)
 
         total += iolen;
 
-      } while((res == CURLE_AGAIN) && (total < 129));
+      } while(((res == CURLE_OK) || (res == CURLE_AGAIN)) && (total < 129));
     }
   }
 
