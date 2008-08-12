@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.79 2008-08-07 00:29:08 yangtse Exp $
+# $Id: Makefile.netware,v 1.80 2008-08-12 21:25:11 gknauf Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -20,7 +20,7 @@ endif
 
 # Edit the path below to point to the base of your OpenSSL package.
 ifndef OPENSSL_PATH
-OPENSSL_PATH = ../../openssl-0.9.8g
+OPENSSL_PATH = ../../openssl-0.9.8h
 endif
 
 # Edit the path below to point to the base of your LibSSH2 package.
