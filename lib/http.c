@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.378 2008-08-06 09:54:34 bagder Exp $
+ * $Id: http.c,v 1.379 2008-08-12 20:07:52 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1474,6 +1474,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
         case 0: /* timeout */
           break;
         default:
+          DEBUGASSERT(ptr+BUFSIZE-nread <= data->state.buffer+BUFSIZE+1);
           res = Curl_read(conn, tunnelsocket, ptr, BUFSIZE-nread, &gotbytes);
           if(res< 0)
             /* EWOULDBLOCK */
@@ -1506,6 +1507,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
               /* This means we are currently ignoring a response-body */
 
               nread = 0; /* make next read start over in the read buffer */
+              ptr=data->state.buffer;
               if(cl) {
                 /* A Content-Length based body: simply count down the counter
                    and make sure to break out of the loop when we're done! */
@@ -1565,6 +1567,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
                     /* end of response-headers from the proxy */
                     nread = 0; /* make next read start over in the read
                                   buffer */
+                    ptr=data->state.buffer;
                     if((407 == k->httpcode) && !data->state.authproblem) {
                       /* If we get a 407 response code with content length
                          when we have no auth problem, we must ignore the
