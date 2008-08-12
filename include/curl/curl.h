@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.361 2008-08-07 00:29:08 yangtse Exp $
+ * $Id: curl.h,v 1.362 2008-08-12 03:00:25 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -547,23 +547,6 @@ typedef enum {
    number is unique identifier */
 #ifdef CINIT
 #undef CINIT
-#endif
-/*
- * Figure out if we can use the ## operator, which is supported by ISO/ANSI C
- * and C++. Some compilers support it without setting __STDC__ or __cplusplus
- * so we need to carefully check for them too. We don't use configure-checks
- * for these since we want these headers to remain generic and working for all
- * platforms.
- */
-#if defined(__STDC__) || defined(_MSC_VER) || defined(__cplusplus) || \
-  defined(__HP_aCC) || defined(__BORLANDC__) || defined(__LCC__) || \
-  defined(__POCC__) || defined(__SALFORDC__) || defined(__HIGHC__) || \
-  defined(__ILEC400__)
-  /* This compiler is believed to have an ISO compatible preprocessor */
-#define CURL_ISOCPP
-#else
-  /* This compiler is believed NOT to have an ISO compatible preprocessor */
-#undef CURL_ISOCPP
 #endif
 
 #ifdef CURL_ISOCPP
