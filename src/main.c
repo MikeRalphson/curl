@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.470 2008-08-13 03:05:02 yangtse Exp $
+ * $Id: main.c,v 1.471 2008-08-13 13:07:50 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1399,7 +1399,9 @@ static int str2offset(curl_off_t *val, const char *str)
   /* this is a duplicate of the function that is also used in libcurl */
   *val = curlx_strtoofft(str, NULL, 0);
 
-  if ((*val == LLONG_MAX || *val == LLONG_MIN) && ERRNO == ERANGE)
+  if( ( (*val == LLONG_MAX) || 
+        (*val == LLONG_MIN) ) &&
+      (ERRNO == ERANGE) )
     return 1;
 #else
   *val = strtol(str, NULL, 0);
