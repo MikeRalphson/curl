@@ -2,7 +2,7 @@
 #  Watcom / OpenWatcom / Win32 makefile for libcurl.
 #  G. Vanem <gvanem@broadpark.no>
 #
-# $Id: Makefile.Watcom,v 1.19 2008-08-13 08:17:50 giva Exp $
+# $Id: Makefile.Watcom,v 1.20 2008-08-13 08:19:51 giva Exp $
 
 TARGETS = libcurl_wc.dll libcurl_wc_imp.lib
 
@@ -11,9 +11,8 @@ CC = wcc386
 CFLAGS = -3r -mf -d3 -hc -zff -zgf -zq -zm -zc -s -fr=con -w2 -fpi -oilrtfm -bt=nt &
          -bd -d+ -dWIN32 -dCURL_CA_BUNDLE=getenv("CURL_CA_BUNDLE")                 &
          -dBUILDING_LIBCURL -dHAVE_SPNEGO=1 -dENABLE_IPV6                          &
-         -dDEBUG_THREADING_GETADDRINFO -dDEBUG=1 -dCURLDEBUG -d_WIN32_WINNT=0x0501 &
-         -dWINBERAPI=__declspec(cdecl) -dWINLDAPAPI=__declspec(cdecl)              &
-         -I. -I..\include
+         -dDEBUG=1 -dCURLDEBUG -d_WIN32_WINNT=0x0501 -dWINBERAPI=__declspec(cdecl) &
+         -dWINLDAPAPI=__declspec(cdecl) -I. -I..\include
 
 #
 # Change to suite.
