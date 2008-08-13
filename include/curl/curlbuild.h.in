@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlbuild.h.in,v 1.2 2008-08-11 18:27:21 yangtse Exp $
+ * $Id: curlbuild.h.in,v 1.3 2008-08-13 15:32:20 yangtse Exp $
  ***************************************************************************/
 
 /* ================================================================ */
@@ -107,6 +107,9 @@
 #ifdef CURL_PULL_INTTYPES_H
 #  include <inttypes.h>
 #endif
+
+/* The expected size of long , as to be computed by sizeof. */
+#undef CURL_SIZEOF_LONG
 
 /* Signed integral data type used for curl_off_t. */
 #undef CURL_OFF_T

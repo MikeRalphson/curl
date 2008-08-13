@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.18 2008-08-13 03:05:00 yangtse Exp $
+ * $Id: strtoofft.h,v 1.19 2008-08-13 15:32:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -41,7 +41,7 @@
  * of 'long' the conversion funtion to use is strtol().
  */
 
-#if (CURL_SIZEOF_CURL_OFF_T > SIZEOF_LONG)
+#if (CURL_SIZEOF_CURL_OFF_T > CURL_SIZEOF_LONG)
 #  ifdef HAVE_STRTOLL
 #    define curlx_strtoofft strtoll
 #  else

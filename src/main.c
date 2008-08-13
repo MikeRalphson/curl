@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.471 2008-08-13 13:07:50 yangtse Exp $
+ * $Id: main.c,v 1.472 2008-08-13 15:32:21 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1387,7 +1387,7 @@ static int str2num(long *val, const char *str)
  */
 static int str2offset(curl_off_t *val, const char *str)
 {
-#if (CURL_SIZEOF_CURL_OFF_T > SIZEOF_LONG)
+#if (CURL_SIZEOF_CURL_OFF_T > CURL_SIZEOF_LONG)
   /* Ugly, but without going through a bunch of rigmarole, we don't have the
    * definitions for LLONG_{MIN,MAX} or LONG_LONG_{MIN,MAX}.
    */
