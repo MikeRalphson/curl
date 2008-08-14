@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.19 2008-08-13 15:32:21 yangtse Exp $
+ * $Id: strtoofft.h,v 1.20 2008-08-14 10:30:45 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -58,7 +58,7 @@
 #endif
 
 #define CURL_LLONG_MAX CURL_OFF_T_C(0x7FFFFFFFFFFFFFFF)
-#define CURL_LLONG_MIN CURL_OFF_T_C(0x8000000000000000)
+#define CURL_LLONG_MIN (-CURL_LLONG_MAX - CURL_OFF_T_C(1))
 
 #endif
 
