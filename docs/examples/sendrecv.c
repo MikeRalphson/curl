@@ -7,7 +7,7 @@
  *
  * An example of curl_easy_send() and curl_easy_recv() usage.
  *
- * $Id: sendrecv.c,v 1.1 2008-05-12 21:43:28 bagder Exp $
+ * $Id: sendrecv.c,v 1.2 2008-08-14 18:41:37 danf Exp $
  */
 
 #include <stdio.h>
@@ -18,7 +18,6 @@
 static int wait_on_socket(int sockfd, int for_recv, long timeout_ms)
 {
   struct timeval tv;
-  long seconds, usecs;
   fd_set infd, outfd, errfd;
   int res;
 
