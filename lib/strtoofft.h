@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.20 2008-08-14 10:30:45 yangtse Exp $
+ * $Id: strtoofft.h,v 1.21 2008-08-14 11:56:55 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -51,6 +51,7 @@
 #    else
        curl_off_t curlx_strtoll(const char *nptr, char **endptr, int base);
 #      define curlx_strtoofft curlx_strtoll
+#      define NEED_CURL_STRTOLL 1
 #    endif
 #  endif
 #else
