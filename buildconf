@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.62 2008-08-07 16:22:25 yangtse Exp $
+# $Id: buildconf,v 1.63 2008-08-14 23:55:24 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -270,6 +270,7 @@ for fname in .deps \
     config.sub \
     configure \
     curl-config \
+    curlbuild.h \
     depcomp \
     libcares.pc \
     libcurl.pc \
