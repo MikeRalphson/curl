@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.198 2008-08-14 18:30:19 yangtse Exp $
+# $Id: acinclude.m4,v 1.199 2008-08-15 02:58:15 yangtse Exp $
 #***************************************************************************
 
 
@@ -3886,8 +3886,8 @@ AC_DEFUN([CURL_CONFIGURE_CURL_OFF_T], [
   fi
   #
   CURL_DEFINE_UNQUOTED([CURL_OFF_T], [$x_typeof])
-  CURL_DEFINE_UNQUOTED([CURL_FMT_OFF_T], ["$x_format"])
-  CURL_DEFINE_UNQUOTED([CURL_FMT_OFF_TU], ["$u_format"])
+  CURL_DEFINE_UNQUOTED([CURL_FORMAT_CURL_OFF_T], ["$x_format"])
+  CURL_DEFINE_UNQUOTED([CURL_FORMAT_CURL_OFF_TU], ["$u_format"])
   CURL_DEFINE_UNQUOTED([CURL_FORMAT_OFF_T], ["%$x_format"])
   CURL_DEFINE_UNQUOTED([CURL_SIZEOF_CURL_OFF_T], [$x_sizeof])
   CURL_DEFINE_UNQUOTED([CURL_SUFFIX_CURL_OFF_T], [$curl_suffix_curl_off_t])

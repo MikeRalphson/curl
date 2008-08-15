@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.87 2008-01-31 12:21:57 bagder Exp $
+ * $Id: cookie.c,v 1.88 2008-08-15 02:58:15 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -940,7 +940,7 @@ static char *get_netscape_format(const struct Cookie *co)
     "%s\t"   /* tailmatch */
     "%s\t"   /* path */
     "%s\t"   /* secure */
-    "%" FORMAT_OFF_T "\t"   /* expires */
+    "%" CURL_FORMAT_CURL_OFF_T "\t"   /* expires */
     "%s\t"   /* name */
     "%s",    /* value */
     co->httponly?"#HttpOnly_":"",
