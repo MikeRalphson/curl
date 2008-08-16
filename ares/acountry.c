@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.4 2008-08-16 16:42:44 giva Exp $
+ * $Id: acountry.c,v 1.5 2008-08-16 17:05:42 giva Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -107,8 +107,6 @@ int main(int argc, char **argv)
       case 'v':
         verbose++;
         break;
-      case 't':
-        use_vc = 1;
       case 'h':
       case '?':
       default:
