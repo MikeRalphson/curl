@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.81 2008-08-13 18:43:53 yangtse Exp $
+# $Id: Makefile.netware,v 1.82 2008-08-16 03:27:08 yangtse Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -504,7 +504,6 @@ ifdef WITH_ZLIB
 endif
 ifdef WITH_SSL
 	@echo $(DL)#define USE_SSLEAY 1$(DL) >> $@
-	@echo $(DL)#define USE_OPENSSL 1$(DL) >> $@
 	@echo $(DL)#define HAVE_OPENSSL_X509_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_OPENSSL_SSL_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_OPENSSL_RSA_H 1$(DL) >> $@

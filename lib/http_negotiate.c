@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.29 2008-05-26 03:10:34 yangtse Exp $
+ * $Id: http_negotiate.c,v 1.30 2008-08-16 03:27:07 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -43,12 +43,16 @@
 #include "memory.h"
 
 #ifdef HAVE_SPNEGO
-# include <spnegohelp.h>
-# if defined(USE_OPENSSL) && !defined(USE_YASSLEMUL)
-#  include <openssl/objects.h>
-# else
-#  error "Can't compile SPNEGO support without OpenSSL."
-# endif
+#  include <spnegohelp.h>
+#  ifdef USE_SSLEAY
+#    ifdef USE_OPENSSL
+#      include <openssl/objects.h>
+#    else
+#      include <objects.h>
+#    endif
+#  else
+#    error "Can't compile SPNEGO support without OpenSSL."
+#  endif
 #endif
 
 #define _MPRINTF_REPLACE /* use our functions only */
