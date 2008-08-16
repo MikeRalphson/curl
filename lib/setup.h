@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.150 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: setup.h,v 1.151 2008-08-16 03:40:25 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -137,15 +137,19 @@
 
 #if (CURL_SIZEOF_CURL_OFF_T > 4)
 #  if (CURL_SIZEOF_LONG > 4)
-#    define FORMAT_OFF_T "ld"
+#    define FORMAT_OFF_T  "ld"
+#    define FORMAT_OFF_TU "lu"
 #  else
-#    define FORMAT_OFF_T "lld"
+#    define FORMAT_OFF_T  "lld"
+#    define FORMAT_OFF_TU "llu"
 #  endif
 #else
 #  if (CURL_SIZEOF_LONG > 2)
-#    define FORMAT_OFF_T "ld"
+#    define FORMAT_OFF_T  "ld"
+#    define FORMAT_OFF_TU "lu"
 #  else
-#    define FORMAT_OFF_T "lld"
+#    define FORMAT_OFF_T  "lld"
+#    define FORMAT_OFF_TU "llu"
 #  endif
 #endif
 
