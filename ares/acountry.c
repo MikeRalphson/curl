@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.3 2008-05-08 22:14:17 bagder Exp $
+ * $Id: acountry.c,v 1.4 2008-08-16 16:42:44 giva Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -47,7 +47,7 @@
 #include <strings.h>
 #endif
 
-#if defined(WIN32)
+#if defined(WIN32) && !defined(WATT32)
   #include <winsock.h>
 #else
   #include <arpa/inet.h>
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
   ares_channel channel;
   int    ch, status;
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(WATT32)
   WORD wVersionRequested = MAKEWORD(USE_WINSOCK,USE_WINSOCK);
   WSADATA wsaData;
   WSAStartup(wVersionRequested, &wsaData);
@@ -107,6 +107,8 @@ int main(int argc, char **argv)
       case 'v':
         verbose++;
         break;
+      case 't':
+        use_vc = 1;
       case 'h':
       case '?':
       default:
@@ -158,7 +160,7 @@ int main(int argc, char **argv)
   wait_ares(channel);
   ares_destroy(channel);
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(WATT32)
   WSACleanup();
 #endif
 
