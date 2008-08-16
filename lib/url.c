@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.728 2008-08-15 02:58:16 yangtse Exp $
+ * $Id: url.c,v 1.729 2008-08-16 01:34:00 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3185,7 +3185,7 @@ static CURLcode setup_range(struct SessionHandle *data)
       free(s->range);
 
     if(s->resume_from)
-      s->range = aprintf("%" CURL_FORMAT_CURL_OFF_TU "-", s->resume_from);
+      s->range = aprintf("%" FORMAT_OFF_TU "-", s->resume_from);
     else
       s->range = strdup(data->set.str[STRING_SET_RANGE]);
 

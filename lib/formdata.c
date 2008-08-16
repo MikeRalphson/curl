@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.106 2008-08-15 02:58:15 yangtse Exp $
+ * $Id: formdata.c,v 1.107 2008-08-16 01:34:00 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1674,7 +1674,7 @@ int main(int argc, argv_item_t argv[])
   } while(1);
 
   fprintf(stdout, "size: ");
-  fprintf(stdout, "%" CURL_FORMAT_CURL_OFF_T, size);
+  fprintf(stdout, "%" FORMAT_OFF_T, size);
   fprintf(stdout, "\n");
   if(errors)
     fprintf(stdout, "\n==> %d Test(s) failed!\n", errors);
