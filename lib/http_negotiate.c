@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_negotiate.c,v 1.30 2008-08-16 03:27:07 yangtse Exp $
+ * $Id: http_negotiate.c,v 1.31 2008-08-17 00:25:38 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -38,7 +38,7 @@
 #include "urldata.h"
 #include "sendf.h"
 #include "strequal.h"
-#include "base64.h"
+#include "curl_base64.h"
 #include "http_negotiate.h"
 #include "memory.h"
 

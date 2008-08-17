@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.381 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: http.c,v 1.382 2008-08-17 00:25:38 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -81,7 +81,7 @@
 #include "easyif.h" /* for Curl_convert_... prototypes */
 #include "formdata.h"
 #include "progress.h"
-#include "base64.h"
+#include "curl_base64.h"
 #include "cookie.h"
 #include "strequal.h"
 #include "sslgen.h"

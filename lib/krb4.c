@@ -37,7 +37,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * $Id: krb4.c,v 1.48 2008-05-09 11:27:55 mmarek Exp $
+ * $Id: krb4.c,v 1.49 2008-08-17 00:25:38 yangtse Exp $
  */
 
 #include "setup.h"
@@ -58,7 +58,7 @@
 #endif
 
 #include "urldata.h"
-#include "base64.h"
+#include "curl_base64.h"
 #include "ftp.h"
 #include "sendf.h"
 #include "krb4.h"
