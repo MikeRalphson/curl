@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.384 2008-07-30 21:55:27 bagder Exp $
+ * $Id: urldata.h,v 1.385 2008-08-17 01:57:10 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -74,6 +74,12 @@
 #include "pem.h"
 #include "ssl.h"
 #include "err.h"
+#ifdef HAVE_OPENSSL_ENGINE_H
+#include <engine.h>
+#endif
+#ifdef HAVE_OPENSSL_PKCS12_H
+#include <pkcs12.h>
+#endif
 #endif /* USE_OPENSSL */
 #ifdef USE_GNUTLS
 #error Configuration error; cannot use GnuTLS *and* OpenSSL.
