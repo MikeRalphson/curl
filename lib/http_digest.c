@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.34 2008-01-10 09:17:07 bagder Exp $
+ * $Id: http_digest.c,v 1.35 2008-08-17 00:01:26 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -34,7 +34,7 @@
 #include "sendf.h"
 #include "strequal.h"
 #include "base64.h"
-#include "md5.h"
+#include "curl_md5.h"
 #include "http_digest.h"
 #include "strtok.h"
 #include "url.h" /* for Curl_safefree() */

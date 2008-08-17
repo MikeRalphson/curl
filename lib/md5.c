@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: md5.c,v 1.12 2007-11-07 09:21:35 bagder Exp $
+ * $Id: md5.c,v 1.13 2008-08-17 00:01:26 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -338,7 +338,7 @@ static void Decode (UINT4 *output,
 #include <string.h>
 #endif
 
-#include "md5.h"
+#include "curl_md5.h"
 
 void Curl_md5it(unsigned char *outbuffer, /* 16 bytes */
                 const unsigned char *input)

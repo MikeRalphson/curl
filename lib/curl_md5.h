@@ -1,5 +1,5 @@
-#ifndef __MD5_H
-#define __MD5_H
+#ifndef __CURL_MD5_H
+#define __CURL_MD5_H
 /***************************************************************************
  *                                  _   _ ____  _     
  *  Project                     ___| | | |  _ \| |    
@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___ 
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2004, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: md5.h,v 1.4 2004-12-15 01:38:25 danf Exp $
+ * $Id: curl_md5.h,v 1.1 2008-08-17 00:01:26 yangtse Exp $
  ***************************************************************************/
 
 void Curl_md5it(unsigned char *output,
