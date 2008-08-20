@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.38 2008-07-09 18:39:49 bagder Exp $
+ * $Id: hostares.c,v 1.39 2008-08-20 23:32:50 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -73,6 +73,7 @@
 #include "strerror.h"
 #include "url.h"
 #include "multiif.h"
+#include "inet_pton.h"
 #include "connect.h"
 #include "select.h"
 
@@ -389,7 +390,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   }
 
 #ifdef ENABLE_IPV6 /* CURLRES_IPV6 */
-  if (inet_pton (AF_INET6, hostname, &in6) > 0) {
+  if (Curl_inet_pton (AF_INET6, hostname, &in6) > 0) {
     /* This must be an IPv6 address literal.  */
     return Curl_ip2addr6(&in6, hostname, port);
   }
