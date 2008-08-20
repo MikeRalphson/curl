@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.255 2008-08-20 19:45:43 danf Exp $
+.\" * $Id: curl.1,v 1.256 2008-08-20 21:06:56 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -752,9 +752,9 @@ If this option is used several times, the last one will be used.
 .IP "-M/--manual"
 Manual. Display the huge help text.
 .IP "-n/--netrc"
-Makes curl scan the \fI.netrc\fP file in the user's home directory for login
-name and password. This is typically used for ftp on unix. If used with http,
-curl will enable user authentication. See
+Makes curl scan the \fI.netrc\fP (\fI_netrc\fP on Windows) file in the user's
+home directory for login name and password. This is typically used for ftp on
+unix. If used with http, curl will enable user authentication. See
 .BR netrc(4)
 or
 .BR ftp(1)
