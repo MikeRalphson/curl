@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib557.c,v 1.2 2008-08-18 18:52:14 yangtse Exp $
+ * $Id: lib557.c,v 1.3 2008-08-20 23:29:08 yangtse Exp $
  */
 
 /*
@@ -18,19 +18,12 @@
 int curl_msprintf(char *buffer, const char *format, ...);
 
 
-#if (CURL_SIZEOF_CURL_OFF_T > 4)
-#  if (CURL_SIZEOF_LONG > 4)
-#    define MPRNT_SUFFIX_CURL_OFF_T  L
-#  else
-#    define MPRNT_SUFFIX_CURL_OFF_T  LL
-#  endif
+#if (CURL_SIZEOF_CURL_OFF_T > CURL_SIZEOF_LONG)
+#  define MPRNT_SUFFIX_CURL_OFF_T  LL
 #else
-#  if (CURL_SIZEOF_LONG > 2)
-#    define MPRNT_SUFFIX_CURL_OFF_T  L
-#  else
-#    define MPRNT_SUFFIX_CURL_OFF_T  LL
-#  endif
+#  define MPRNT_SUFFIX_CURL_OFF_T  L
 #endif
+
 
 #ifdef CURL_ISOCPP
 #  define MPRNT_OFF_T_C_HELPER2(Val,Suffix) Val ## Suffix
