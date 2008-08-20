@@ -1,4 +1,4 @@
-# $Id: Makefile.vc6,v 1.15 2008-05-22 16:10:57 yangtse Exp $
+# $Id: Makefile.vc6,v 1.16 2008-08-20 23:38:36 yangtse Exp $
 #
 # C-ares makefile for MSVC6+
 # G. Vanem <giva@bgnett.no>.
@@ -111,6 +111,7 @@ $(DEF_FILE): $(OBJECTS) Makefile.VC6
        @echo   ares_parse_ptr_reply   >> $@
        @echo   ares_parse_ns_reply    >> $@
        @echo   ares_process           >> $@
+       @echo   ares_process_fd        >> $@
        @echo   ares_query             >> $@
        @echo   ares_search            >> $@
        @echo   ares_strerror          >> $@
