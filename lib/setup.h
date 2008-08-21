@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.152 2008-08-20 23:29:07 yangtse Exp $
+ * $Id: setup.h,v 1.153 2008-08-21 00:06:16 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -212,17 +212,6 @@
 #    define USE_WINSOCK 1
 #  endif
 #endif
-
-
-#ifdef HAVE_LONGLONG
-#define LONG_LONG long long
-#define ENABLE_64BIT
-#else
-#ifdef _MSC_VER
-#define LONG_LONG __int64
-#define ENABLE_64BIT
-#endif /* _MSC_VER */
-#endif /* HAVE_LONGLONG */
 
 #ifdef HAVE_EXTRA_STRICMP_H
 #  include <extra/stricmp.h>

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.325 2008-08-13 19:49:19 yangtse Exp $
+# $Id: configure.ac,v 1.326 2008-08-21 00:06:15 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2001,7 +2001,8 @@ AC_CHECK_SIZEOF(time_t)
 AC_CHECK_SIZEOF(off_t)
 
 AC_CHECK_TYPE(long long,
-   [AC_DEFINE(HAVE_LONGLONG, 1, [if your compiler supports long long])]
+   [AC_DEFINE(HAVE_LONGLONG, 1,
+      [Define to 1 if the compiler supports the 'long long' data type.])]
    longlong="yes"
 )
 
