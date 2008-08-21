@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.326 2008-08-21 00:06:15 yangtse Exp $
+# $Id: configure.ac,v 1.327 2008-08-21 05:19:40 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1995,6 +1995,7 @@ CURL_CHECK_STRUCT_TIMEVAL
 CURL_VERIFY_RUNTIMELIBS
 
 AC_CHECK_SIZEOF(size_t)
+AC_CHECK_SIZEOF(int)
 AC_CHECK_SIZEOF(long)
 CURL_CONFIGURE_LONG
 AC_CHECK_SIZEOF(time_t)
