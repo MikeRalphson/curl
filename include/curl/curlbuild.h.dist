@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlbuild.h.dist,v 1.9 2008-08-15 02:58:15 yangtse Exp $
+ * $Id: curlbuild.h.dist,v 1.10 2008-08-21 06:58:12 yangtse Exp $
  ***************************************************************************/
 
 /* ================================================================ */
@@ -417,7 +417,7 @@
 /* ===================================== */
 
 #elif defined(_MSC_VER)
-#  if (_MSC_VER >= 900)
+#  if (_MSC_VER >= 900) && (_INTEGRAL_MAX_BITS >= 64)
 #    define CURL_SIZEOF_LONG        4
 #    define CURL_OFF_T              __int64
 #    define CURL_FORMAT_CURL_OFF_T  "I64d"

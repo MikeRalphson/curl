@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.c,v 1.67 2008-08-21 01:49:19 yangtse Exp $
+ * $Id: mprintf.c,v 1.68 2008-08-21 06:58:13 yangtse Exp $
  *
  * Purpose:
  *  A merge of Bjorn Reese's format() function and Daniel's dsprintf()
@@ -65,7 +65,7 @@
 #  define LONG_LONG_TYPE long long
 #  define HAVE_LONG_LONG_TYPE
 #else
-#  if defined(_MSC_VER) && (_MSC_VER >= 900)
+#  if defined(_MSC_VER) && (_MSC_VER >= 900) && (_INTEGRAL_MAX_BITS >= 64)
 #    define LONG_LONG_TYPE __int64
 #    define HAVE_LONG_LONG_TYPE
 #  else

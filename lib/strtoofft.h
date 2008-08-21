@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strtoofft.h,v 1.21 2008-08-14 11:56:55 yangtse Exp $
+ * $Id: strtoofft.h,v 1.22 2008-08-21 06:58:13 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,7 @@
 #  ifdef HAVE_STRTOLL
 #    define curlx_strtoofft strtoll
 #  else
-#    if defined(_MSC_VER) && (_MSC_VER >= 1300)
+#    if defined(_MSC_VER) && (_MSC_VER >= 1300) && (_INTEGRAL_MAX_BITS >= 64)
        _CRTIMP __int64 __cdecl _strtoi64(const char *, char **, int);
 #      define curlx_strtoofft _strtoi64
 #    else
