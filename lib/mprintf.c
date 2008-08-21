@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.c,v 1.65 2008-08-21 00:10:27 yangtse Exp $
+ * $Id: mprintf.c,v 1.66 2008-08-21 00:12:03 yangtse Exp $
  *
  * Purpose:
  *  A merge of Bjorn Reese's format() function and Daniel's dsprintf()
@@ -720,10 +720,10 @@ static int dprintf_formatf(
     case FORMAT_INT:
 #ifdef HAVE_LONG_LONG_TYPE
       if(p->flags & FLAGS_LONGLONG)
-        num = p->data.lnum;
+        num = (unsigned LONG_LONG_TYPE)p->data.lnum;
       else
 #endif
-        num = p->data.num;
+        num = (unsigned long)p->data.num;
       if(p->flags & FLAGS_CHAR) {
         /* Character.  */
         if(!(p->flags & FLAGS_LEFT))
