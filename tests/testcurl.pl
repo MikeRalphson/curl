@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.66 2008-08-11 00:15:20 yangtse Exp $
+# $Id: testcurl.pl,v 1.67 2008-08-22 18:18:20 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.66 $';
+$version='$Revision: 1.67 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -367,7 +367,7 @@ if ($CVS) {
   while (!cvsup()) {
     $att++;
     logit "failed CVS update attempt number $att.";
-    if ($att > 10) {
+    if ($att > 20) {
       $cvsstat=111;
       last; # get out of the loop
     }
