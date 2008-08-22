@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.154 2008-08-22 18:09:04 yangtse Exp $
+ * $Id: setup.h,v 1.155 2008-08-22 19:01:00 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -298,6 +298,9 @@
 #  define struct_stat                struct _stat
 #endif
 
+#ifndef struct_stat
+#  define struct_stat struct stat
+#endif
 
 /* Below we define some functions. They should
    1. close a socket

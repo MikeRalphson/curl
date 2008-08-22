@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.474 2008-08-22 18:09:04 yangtse Exp $
+ * $Id: main.c,v 1.475 2008-08-22 19:01:00 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -236,6 +236,10 @@ typedef enum {
 #  define fstat(fdes,stp)            _fstat(fdes, stp)
 #  define stat(fname,stp)            _stat(fname, stp)
 #  define struct_stat                struct _stat
+#endif
+
+#ifndef struct_stat
+#  define struct_stat struct stat
 #endif
 
 #ifdef CURL_DOES_CONVERSIONS
