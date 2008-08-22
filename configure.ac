@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.327 2008-08-21 05:19:40 yangtse Exp $
+# $Id: configure.ac,v 1.328 2008-08-22 07:58:30 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -140,6 +140,11 @@ CURL_CHECK_AIX_ALL_SOURCE
 
 dnl Our configure and build reentrant settings
 CURL_CONFIGURE_REENTRANT
+
+
+dnl check for off_t size once before enabling large files
+AC_CHECK_SIZEOF([off_t_before_largefile], [], [AC_INCLUDES_DEFAULT
+    typedef off_t off_t_before_largefile;])
 
 dnl check for how to do large files
 AC_SYS_LARGEFILE
