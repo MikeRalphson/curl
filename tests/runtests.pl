@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.301 2008-08-12 07:21:39 bagder Exp $
+# $Id: runtests.pl,v 1.302 2008-08-23 11:25:14 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2490,6 +2490,7 @@ sub stopservers {
             }
             $prev = $pid;
         }
+        delete $run{$server};
     }
     ftpkillslaves($verbose);
 }
