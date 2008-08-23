@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.67 2008-07-30 03:10:03 yangtse Exp $
+# $Id: Makefile.am,v 1.68 2008-08-23 22:02:41 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -137,3 +137,7 @@ uninstall-hook:
 ca-bundle: lib/mk-ca-bundle.pl
 	@echo "generate a fresh ca-bundle.crt"
 	@perl $< -b -l -u lib/ca-bundle.crt
+
+ca-firefox: lib/db2pem.sh
+	@echo "generate a fresh ca-bundle.crt"
+	./lib/firefox-db2pem.sh lib/ca-bundle.crt
