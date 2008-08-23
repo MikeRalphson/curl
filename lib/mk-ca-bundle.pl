@@ -19,7 +19,7 @@
 # * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # * KIND, either express or implied.
 # *
-# * $Id: mk-ca-bundle.pl,v 1.11 2008-08-21 17:51:22 bagder Exp $
+# * $Id: mk-ca-bundle.pl,v 1.12 2008-08-23 12:11:38 bagder Exp $
 # ***************************************************************************
 # This Perl script creates a fresh ca-bundle.crt file for use with libcurl. 
 # It downloads certdata.txt from Mozilla's source tree (see URL below),
@@ -41,7 +41,7 @@ my $url = 'http://mxr.mozilla.org/seamonkey/source//security/nss/lib/ckfw/builti
 # If the OpenSSL commandline is not in search path you can configure it here!
 my $openssl = 'openssl';
 
-my $version = $1 if ('$Revision: 1.11 $' =~ /\s(\d+\.\d+)\s/);
+my $version = $1 if ('$Revision: 1.12 $' =~ /\s(\d+\.\d+)\s/);
 
 getopts('bhilnqtuv');
 
@@ -163,7 +163,7 @@ while (<TXT>) {
             . MIME::Base64::encode($data)
             . "-----END CERTIFICATE-----\n";
     open(CRT, ">>$crt") or die "Couldn't open $crt: $!";
-    print CRT "\n$caname\n";
+    print CRT "\n\"$caname\"\n";
     print CRT ("=" x length($caname) . "\n");
     if (!$opt_t) {
       print CRT $pem;

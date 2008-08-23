@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.175 2008-08-08 01:52:09 danf Exp $
+ * $Id: multi.c,v 1.176 2008-08-23 12:11:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1009,7 +1009,17 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
       /* this is HTTP-specific, but sending CONNECT to a proxy is HTTP... */
       easy->result = Curl_http_connect(easy->easy_conn, &protocol_connect);
 
-      if(CURLE_OK == easy->result) {
+      if(easy->easy_conn->bits.proxy_connect_closed) {
+        /* reset the error buffer */
+        if(easy->easy_handle->set.errorbuffer)
+          easy->easy_handle->set.errorbuffer[0] = '\0';
+        easy->easy_handle->state.errorbuf = FALSE;
+
+	easy->result = CURLE_OK;
+	result = CURLM_CALL_MULTI_PERFORM;
+	multistate(easy, CURLM_STATE_CONNECT);
+      }
+      else if (CURLE_OK == easy->result) {
         if(!easy->easy_conn->bits.tunnel_connecting)
           multistate(easy, CURLM_STATE_WAITCONNECT);
       }
