@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.c,v 1.71 2008-08-23 02:04:55 yangtse Exp $
+ * $Id: mprintf.c,v 1.72 2008-08-23 02:35:16 yangtse Exp $
  *
  * Purpose:
  *  A merge of Bjorn Reese's format() function and Daniel's dsprintf()
@@ -726,7 +726,7 @@ static int dprintf_formatf(
     else
       prec = -1;
 
-    is_alt = p->flags & FLAGS_ALT;
+    is_alt = (p->flags & FLAGS_ALT) ? 1 : 0;
 
     switch (p->type) {
     case FORMAT_INT:
@@ -763,7 +763,7 @@ static int dprintf_formatf(
       /* Decimal integer.  */
       base = 10;
 
-      is_neg = (p->data.num.as_signed < (mp_intmax_t)0);
+      is_neg = (p->data.num.as_signed < (mp_intmax_t)0) ? 1 : 0;
       if(is_neg) {
         /* signed_num might fail to hold absolute negative minimum by 1 */
         signed_num = p->data.num.as_signed + (mp_intmax_t)1;
