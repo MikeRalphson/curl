@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.329 2008-08-23 12:11:38 bagder Exp $
+# $Id: configure.ac,v 1.330 2008-08-23 12:14:35 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2005,13 +2005,6 @@ AC_CHECK_SIZEOF(long)
 CURL_CONFIGURE_LONG
 AC_CHECK_SIZEOF(time_t)
 AC_CHECK_SIZEOF(off_t)
-
-dnl now check if curl_off_t is larger than off_t
-
-if test $ac_cv_sizeof_off_t -ge $ac_cv_sizeof_curl_off_t; then
-  AC_MSG_WARN([curl_off_t was detected to be larger than off_t.])
-fi
-
 
 AC_CHECK_TYPE(long long,
    [AC_DEFINE(HAVE_LONGLONG, 1,
