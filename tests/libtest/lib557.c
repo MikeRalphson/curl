@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib557.c,v 1.4 2008-08-21 05:19:40 yangtse Exp $
+ * $Id: lib557.c,v 1.5 2008-08-24 17:10:24 yangtse Exp $
  */
 
 /*
@@ -440,7 +440,7 @@ static int test_signed_int_formatting(void)
       si_test[i].result[j] = 'X';
     si_test[i].result[BUFSZ-1] = '\0';
 
-    (void)curl_msprintf(si_test[i].result, "%ld", si_test[i].num);
+    (void)curl_msprintf(si_test[i].result, "%d", si_test[i].num);
 
     if(memcmp(si_test[i].result,
               si_test[i].expected,
