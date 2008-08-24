@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.303 2008-08-24 15:57:52 yangtse Exp $
+# $Id: runtests.pl,v 1.304 2008-08-24 23:26:07 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1818,11 +1818,6 @@ sub singletest {
 
         $why = "curl lacks $f support";
         last;
-    }
-
-    my $dbghosttype=join(' ', runclientoutput("uname -a"));
-    if(($dbghosttype =~ /x86_64/) || ($dbghosttype =~ /ia64/)) {
-        $why = "debugging curl_mprintf" if($testnum != 557);
     }
 
     if(!$why) {
