@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.134 2008-08-24 20:42:51 bagder Exp $
+# $Id: Makefile.am,v 1.135 2008-08-24 21:26:42 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -58,7 +58,20 @@ INCLUDES = -I$(top_builddir)/include \
            -I$(top_builddir)/lib     \
            -I$(top_srcdir)/lib
 
-VERSION=-version-info 5:0:1
+if SONAME_BUMP
+#
+# Bumping of SONAME conditionally may seem like a weird thing to do, and yeah
+# it is. The problem is that we try to avoid the bump as hard as possible, but
+# yet it is still necessary for a few rare situations. The configure script will
+# attempt to figure out these situations, and it can be forced to consider this
+# to be such a case! See README.curl_off_t for further details.
+#
+# This conditional soname bump SHOULD be removed at next "proper" bump.
+#
+VERSIONINFO=-version-info 6:0:1
+else
+VERSIONINFO=-version-info 5:0:1
+endif
 
 # This flag accepts an argument of the form current[:revision[:age]]. So,
 # passing -version-info 3:12:1 sets current to 3, revision to 12, and age to
@@ -99,7 +112,7 @@ if MIMPURE
 MIMPURE = -mimpure-text
 endif
 
-libcurl_la_LDFLAGS = $(UNDEF) $(VERSION) $(MIMPURE) $(LIBCURL_LIBS)
+libcurl_la_LDFLAGS = $(UNDEF) $(VERSIONINFO) $(MIMPURE) $(LIBCURL_LIBS)
 
 # Makefile.inc provides the CSOURCES and HHEADERS defines
 include Makefile.inc
