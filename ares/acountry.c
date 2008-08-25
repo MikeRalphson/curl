@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.5 2008-08-16 17:05:42 giva Exp $
+ * $Id: acountry.c,v 1.6 2008-08-25 03:44:43 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -59,6 +59,10 @@
 #include "ares_getopt.h"
 #include "inet_net_pton.h"
 #include "inet_ntop.h"
+
+#ifndef INADDR_NONE
+#define INADDR_NONE 0xffffffff
+#endif
 
 static const char *usage      = "acountry [-vh?] {host|addr} ...\n";
 static const char  nerd_fmt[] = "%u.%u.%u.%u.zz.countries.nerd.dk";
