@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlrules.h,v 1.4 2008-08-15 02:58:15 yangtse Exp $
+ * $Id: curlrules.h,v 1.5 2008-08-25 01:18:49 yangtse Exp $
  ***************************************************************************/
 
 /* ================================================================ */
@@ -81,9 +81,9 @@
    Error Compilation_aborted_CURL_SIZEOF_LONG_is_missing
 #endif
 
-#ifndef CURL_OFF_T
-#  error "CURL_OFF_T definition is missing!"
-   Error Compilation_aborted_CURL_OFF_T_is_missing
+#ifndef CURL_TYPEOF_CURL_OFF_T
+#  error "CURL_TYPEOF_CURL_OFF_T definition is missing!"
+   Error Compilation_aborted_CURL_TYPEOF_CURL_OFF_T_is_missing
 #endif
 
 #ifndef CURL_FORMAT_CURL_OFF_T
@@ -211,6 +211,6 @@ typedef char
 #undef CURL_PULL_STDINT_H
 #undef CURL_PULL_INTTYPES_H
 
-#undef CURL_OFF_T
+#undef CURL_TYPEOF_CURL_OFF_T
 
 #endif /* __CURL_CURLRULES_H */
