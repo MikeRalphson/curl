@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.332 2008-08-25 12:49:13 bagder Exp $
+# $Id: configure.ac,v 1.333 2008-08-25 12:50:02 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2508,7 +2508,7 @@ AC_HELP_STRING([--disable-soname-bump],[Disable enforced SONAME bump]),
          soname_bump=yes
          ;;
   *)
-         AC_MSG_RESULT(nope: $enableval)
+         AC_MSG_RESULT(no)
          ;;
   esac ],
         AC_MSG_RESULT($soname_bump)
