@@ -2,11 +2,18 @@
 #
 #       Installation of the include files in the OS/400 library.
 #
-# $Id: make-include.sh,v 1.2 2007-08-24 15:56:59 patrickm Exp $
+# $Id: make-include.sh,v 1.3 2008-08-25 13:58:45 patrickm Exp $
 
 SCRIPTDIR=`dirname "${0}"`
 . "${SCRIPTDIR}/initscript.sh"
 cd "${TOPDIR}/include"
+
+
+#	Produce the curlbuild.h include file.
+
+if action_needed curl/curlbuild.h curl/curlbuild.h.dist
+then	cp -p curl/curlbuild.h.dist curl/curlbuild.h
+fi
 
 
 #       Create the OS/400 source program file for the include files.

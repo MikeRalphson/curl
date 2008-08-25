@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: initscript.sh,v 1.5 2008-05-20 10:21:50 patrickm Exp $
+# $Id: initscript.sh,v 1.6 2008-08-25 13:58:45 patrickm Exp $
 
 case "${SCRIPTDIR}" in
 /*)     ;;
@@ -22,7 +22,7 @@ export SCRIPTDIR TOPDIR
 
 #  Extract the SONAME from the library makefile.
 
-SONAME=`sed -e '/^VERSION=/!d' -e 's/^.* \([0-9]*\):.*$/\1/'           \
+SONAME=`sed -e '/^VERSIONINFO=/!d' -e 's/^.* \([0-9]*\):.*$/\1/' -e 'q' \
                                                 < "${TOPDIR}/lib/Makefile.am"`
 export SONAME
 
