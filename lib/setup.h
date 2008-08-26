@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.155 2008-08-22 19:01:00 yangtse Exp $
+ * $Id: setup.h,v 1.156 2008-08-26 01:40:19 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -300,6 +300,32 @@
 
 #ifndef struct_stat
 #  define struct_stat struct stat
+#endif
+
+/*
+ * Default sizeof(off_t) in case it hasn't been defined in config file.
+ */
+
+#ifndef SIZEOF_OFF_T
+#  if defined(__VMS) && (defined(__alpha) || defined(__ia64))
+#    if defined(_LARGEFILE)
+#      define SIZEOF_OFF_T 8
+#    endif
+#  elif defined(__OS400__) && defined(__ILEC400__)
+#    if defined(_LARGE_FILES)
+#      define SIZEOF_OFF_T 8
+#    endif
+#  elif defined(__MVS__) && defined(__IBMC__)
+#    if defined(_LP64) || defined(_LARGE_FILES)
+#      define SIZEOF_OFF_T 8
+#    endif
+#  elif defined(__370__) && defined(__IBMC__)
+#    if defined(_LP64) || defined(_LARGE_FILES)
+#      define SIZEOF_OFF_T 8
+#    endif
+#  else
+#    define SIZEOF_OFF_T 4
+#  endif
 #endif
 
 /* Below we define some functions. They should
