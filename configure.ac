@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.334 2008-08-26 12:54:12 yangtse Exp $
+# $Id: configure.ac,v 1.335 2008-08-26 16:46:46 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2003,7 +2003,8 @@ AC_CHECK_SIZEOF(time_t)
 AC_CHECK_SIZEOF(off_t)
 
 soname_bump=no
-if test $ac_cv_sizeof_off_t -ne $curl_sizeof_curl_off_t; then
+if test x"$ac_cv_native_windows" != "xyes" &&
+   test $ac_cv_sizeof_off_t -ne $curl_sizeof_curl_off_t; then
   AC_MSG_WARN([This libcurl built is probably not ABI compatible with previous])
   AC_MSG_WARN([builds! You MUST read lib/README.curl_off_t to figure it out.])
   soname_bump=yes
