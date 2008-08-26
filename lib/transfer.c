@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.403 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: transfer.c,v 1.404 2008-08-26 21:28:57 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2182,6 +2182,10 @@ CURLcode Curl_follow(struct SessionHandle *data,
         free(data->change.referer);
 
       data->change.referer = strdup(data->change.url);
+      if (!data->change.referer) {
+        data->change.referer_alloc = FALSE;
+        return CURLE_OUT_OF_MEMORY;
+      }
       data->change.referer_alloc = TRUE; /* yes, free this later */
     }
   }

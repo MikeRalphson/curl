@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.730 2008-08-21 16:20:38 giva Exp $
+ * $Id: url.c,v 1.731 2008-08-26 21:28:57 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2204,6 +2204,12 @@ CURLcode Curl_disconnect(struct connectdata *conn)
 
       Curl_ntlm_cleanup(conn);
     }
+  }
+
+  /* Cleanup possible redirect junk */
+  if(data->req.newurl) {
+    free(data->req.newurl);
+    data->req.newurl = NULL;
   }
 
   if(conn->handler->disconnect)
@@ -4483,7 +4489,7 @@ static CURLcode setup_conn(struct connectdata *conn,
   }
 #endif
 
-  return CURLE_OK;
+  return result;
 }
 
 CURLcode Curl_connect(struct SessionHandle *data,
