@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.333 2008-08-25 12:50:02 bagder Exp $
+# $Id: configure.ac,v 1.334 2008-08-26 12:54:12 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -348,6 +348,7 @@ case X-"$ac_cv_native_windows" in
     ac_cv_header_winber_h="no"
     ;;
 esac
+CURL_CHECK_WIN32_LARGEFILE
 
 dnl ************************************************************
 dnl switch off particular protocols
