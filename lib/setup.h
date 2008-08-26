@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.156 2008-08-26 01:40:19 yangtse Exp $
+ * $Id: setup.h,v 1.157 2008-08-26 10:48:52 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -323,7 +323,8 @@
 #    if defined(_LP64) || defined(_LARGE_FILES)
 #      define SIZEOF_OFF_T 8
 #    endif
-#  else
+#  endif
+#  ifndef SIZEOF_OFF_T
 #    define SIZEOF_OFF_T 4
 #  endif
 #endif
