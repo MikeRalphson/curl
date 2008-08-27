@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.34 2008-07-21 18:24:32 yangtse Exp $
+ * $Id: setup_once.h,v 1.35 2008-08-27 00:25:03 yangtse Exp $
  ***************************************************************************/
 
 
@@ -198,6 +198,7 @@ struct timeval {
 #endif /* HAVE_SEND */
 
 
+#if 0
 #if defined(HAVE_RECVFROM)
 /*
  * Currently recvfrom is only used on udp sockets.
@@ -234,6 +235,7 @@ struct timeval {
 #else
 #  define RECVFROM_ARG6_T RECVFROM_TYPE_ARG6
 #endif
+#endif /* if 0 */
 
 
 /*

@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.31 2008-07-21 18:24:32 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.32 2008-08-27 00:25:03 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -191,6 +191,7 @@ struct timeval {
 #endif /* HAVE_SEND */
 
 
+#if 0
 #if defined(HAVE_RECVFROM)
 /*
  * Currently recvfrom is only used on udp sockets.
@@ -227,6 +228,7 @@ struct timeval {
 #else
 #  define RECVFROM_ARG6_T RECVFROM_TYPE_ARG6
 #endif
+#endif /* if 0 */
 
 
 /*

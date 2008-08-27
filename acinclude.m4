@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.202 2008-08-26 12:54:12 yangtse Exp $
+# $Id: acinclude.m4,v 1.203 2008-08-27 00:25:02 yangtse Exp $
 #***************************************************************************
 
 
@@ -1733,8 +1733,13 @@ AC_DEFUN([CURL_CHECK_FUNC_RECVFROM], [
         done
       done
     ]) # AC-CACHE-CHECK
+    # Nearly last minute change for this release starts here
+    AC_DEFINE_UNQUOTED(HAVE_RECVFROM, 1,
+      [Define to 1 if you have the recvfrom function.])
+    ac_cv_func_recvfrom="yes"
+    # Nearly last minute change for this release ends here
     if test "$curl_cv_func_recvfrom_args" = "unknown"; then
-      AC_MSG_ERROR([Cannot find proper types to use for recvfrom args])
+      AC_MSG_WARN([Cannot find proper types to use for recvfrom args])
     else
       recvfrom_prev_IFS=$IFS; IFS=','
       set dummy `echo "$curl_cv_func_recvfrom_args" | sed 's/\*/\*/g'`
@@ -1801,7 +1806,7 @@ AC_DEFUN([CURL_CHECK_FUNC_RECVFROM], [
       ac_cv_func_recvfrom="yes"
     fi
   else
-    AC_MSG_ERROR([Unable to link function recvfrom])
+    AC_MSG_WARN([Unable to link function recvfrom])
   fi
 ])
 
