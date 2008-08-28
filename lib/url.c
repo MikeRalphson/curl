@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.731 2008-08-26 21:28:57 danf Exp $
+ * $Id: url.c,v 1.732 2008-08-28 06:28:07 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -888,6 +888,9 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     if(data->set.upload)
       /* If this is HTTP, PUT is what's needed to "upload" */
       data->set.httpreq = HTTPREQ_PUT;
+    else
+      /* In HTTP, the opposite of upload is either GET or a HEAD */
+      data->set.httpreq = data->set.opt_no_body?HTTPREQ_HEAD:HTTPREQ_GET;
     break;
   case CURLOPT_FILETIME:
     /*
