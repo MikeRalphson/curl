@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.157 2008-08-26 10:48:52 yangtse Exp $
+ * $Id: setup.h,v 1.158 2008-08-28 22:41:35 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -292,7 +292,7 @@
 #  include <io.h>
 #  include <sys/types.h>
 #  include <sys/stat.h>
-#  define lseek(fdes,offset,whence)  _lseek(fdes, offset, whence)
+#  define lseek(fdes,offset,whence)  _lseek(fdes, (long)offset, whence)
 #  define fstat(fdes,stp)            _fstat(fdes, stp)
 #  define stat(fname,stp)            _stat(fname, stp)
 #  define struct_stat                struct _stat
