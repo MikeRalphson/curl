@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.58 2008-08-07 00:29:08 yangtse Exp $
+# $Id: Makefile.am,v 1.59 2008-08-29 02:08:11 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -55,9 +55,9 @@ NROFF=env LC_ALL=C @NROFF@ @MANOPT@ # figured out by the configure script
 
 EXTRA_DIST = mkhelp.pl makefile.dj Makefile.vc6 Makefile.b32 Makefile.m32 \
 	Makefile.riscos config.h.in macos/curl.mcp.xml.sit.hqx		  \
-	macos/MACINSTALL.TXT macos/src/curl_GUSIConfig.cpp		  \
+	macos/MACINSTALL.TXT macos/src/curl_GUSIConfig.cpp curlsrc.dsp    \
 	macos/src/macos_main.cpp config-amigaos.h makefile.amiga curl.rc  \
-	Makefile.netware Makefile.inc Makefile.Watcom
+	Makefile.netware Makefile.inc Makefile.Watcom curlsrc.dsw
 
 MANPAGE=$(top_srcdir)/docs/curl.1
 README=$(top_srcdir)/docs/MANUAL
