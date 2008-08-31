@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: 10-at-a-time.c,v 1.7 2008-05-22 21:20:07 danf Exp $
+ * $Id: 10-at-a-time.c,v 1.8 2008-08-31 12:12:35 yangtse Exp $
  *
  * Example application source code using the multi interface to download many
  * files, but with a capped maximum amount of simultaneous transfers.
@@ -16,11 +16,10 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <curl/multi.h>
-#ifdef WIN32
-#include <windows.h>
+#ifndef WIN32
+#  include <unistd.h>
 #endif
+#include <curl/multi.h>
 
 static const char *urls[] = {
   "http://www.microsoft.com",

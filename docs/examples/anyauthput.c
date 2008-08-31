@@ -5,14 +5,27 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: anyauthput.c,v 1.6 2008-05-22 21:20:08 danf Exp $
+ * $Id: anyauthput.c,v 1.7 2008-08-31 12:12:35 yangtse Exp $
  */
 
 #include <stdio.h>
-#include <stdint.h>
 #include <fcntl.h>
+#ifdef WIN32
+#  include <io.h>
+#else
+#  include <stdint.h>
+#  include <unistd.h>
+#endif
+#include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
+
+#ifdef _MSC_VER
+#  ifdef _WIN64
+     typedef __int64 intptr_t;
+#  else
+     typedef int intptr_t;
+#  endif
+#endif
 
 #include <curl/curl.h>
 

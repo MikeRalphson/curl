@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: ftpuploadresume.c,v 1.4 2008-05-22 21:20:09 danf Exp $
+ * $Id: ftpuploadresume.c,v 1.5 2008-08-31 12:12:35 yangtse Exp $
  *
  * Upload to FTP, resuming failed transfers
  *
@@ -21,6 +21,9 @@
 
 #include <curl/curl.h>
 
+#if defined(_MSC_VER) && (_MSC_VER < 1300)
+#  error _snscanf requires MSVC 7.0 or later.
+#endif
 
 /* The MinGW headers are missing a few Win32 function definitions,
    you shouldn't need this if you use VC++ */
