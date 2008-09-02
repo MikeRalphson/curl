@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.192 2008-07-09 18:39:49 bagder Exp $
+ * $Id: hostip.c,v 1.193 2008-09-02 18:36:39 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -619,7 +619,7 @@ Curl_addrinfo *Curl_ip2addr(in_addr_t num, const char *hostname, int port)
   h->h_aliases = NULL;
 
   /* Now store the dotted version of the address */
-  snprintf((char *)h->h_name, 16, "%s", hostname);
+  snprintf(h->h_name, 16, "%s", hostname);
 
 #if defined(VMS) && \
     defined(__INITIAL_POINTER_SIZE) && (__INITIAL_POINTER_SIZE == 64)

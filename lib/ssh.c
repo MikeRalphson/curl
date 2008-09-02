@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.109 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: ssh.c,v 1.110 2008-09-02 18:36:39 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -765,7 +765,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
     else if(rc > 0) {
       /* It seems that this string is not always NULL terminated */
       tempHome[rc] = '\0';
-      sshc->homedir = (char *)strdup(tempHome);
+      sshc->homedir = strdup(tempHome);
       if(!sshc->homedir) {
         state(conn, SSH_SFTP_CLOSE);
         sshc->actualcode = CURLE_OUT_OF_MEMORY;

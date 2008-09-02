@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.46 2008-08-17 00:25:38 yangtse Exp $
+ * $Id: base64.c,v 1.47 2008-09-02 18:36:39 danf Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -117,7 +117,7 @@ size_t Curl_base64_decode(const char *src, unsigned char **outptr)
   /* Decode all but the last quantum (which may not decode to a
   multiple of 3 bytes) */
   for(i = 0; i < numQuantums - 1; i++) {
-    decodeQuantum((unsigned char *)newstr, src);
+    decodeQuantum(newstr, src);
     newstr += 3; src += 4;
   }
 
@@ -153,7 +153,7 @@ size_t Curl_base64_encode(struct SessionHandle *data,
   char *convbuf = NULL;
 #endif
 
-  char *indata = (char *)inp;
+  const char *indata = inp;
 
   *outptr = NULL; /* set to NULL in case of failure before we reach the end */
 
