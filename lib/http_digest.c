@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.36 2008-08-17 00:25:38 yangtse Exp $
+ * $Id: http_digest.c,v 1.37 2008-09-02 17:41:20 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -232,8 +232,8 @@ CURLcode Curl_output_digest(struct connectdata *conn,
   struct timeval now;
 
   char **allocuserpwd;
-  char *userp;
-  char *passwdp;
+  const char *userp;
+  const char *passwdp;
   struct auth *authp;
 
   struct SessionHandle *data = conn->data;
@@ -276,10 +276,10 @@ CURLcode Curl_output_digest(struct connectdata *conn,
 
   /* not set means empty */
   if(!userp)
-    userp=(char *)"";
+    userp="";
 
   if(!passwdp)
-    passwdp=(char *)"";
+    passwdp="";
 
   if(!d->nonce) {
     authp->done = FALSE;

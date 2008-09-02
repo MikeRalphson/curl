@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.382 2008-08-17 00:25:38 yangtse Exp $
+ * $Id: http.c,v 1.383 2008-09-02 17:41:20 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1337,7 +1337,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
       }
 
       /* Setup the proxy-authorization header, if any */
-      result = http_output_auth(conn, (char *)"CONNECT", host_port, TRUE);
+      result = http_output_auth(conn, "CONNECT", host_port, TRUE);
 
       if(CURLE_OK == result) {
         char *host=(char *)"";
@@ -2027,7 +2027,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
   char *host = conn->host.name;
   const char *te = ""; /* transfer-encoding */
   char *ptr;
-  char *request;
+  const char *request;
   Curl_HttpReq httpreq = data->set.httpreq;
   char *addcookies = NULL;
   curl_off_t included_body = 0;
@@ -2066,23 +2066,23 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
     request = data->set.str[STRING_CUSTOMREQUEST];
   else {
     if(data->set.opt_no_body)
-      request = (char *)"HEAD";
+      request = "HEAD";
     else {
       DEBUGASSERT((httpreq > HTTPREQ_NONE) && (httpreq < HTTPREQ_LAST));
       switch(httpreq) {
       case HTTPREQ_POST:
       case HTTPREQ_POST_FORM:
-        request = (char *)"POST";
+        request = "POST";
         break;
       case HTTPREQ_PUT:
-        request = (char *)"PUT";
+        request = "PUT";
         break;
       default: /* this should never happen */
       case HTTPREQ_GET:
-        request = (char *)"GET";
+        request = "GET";
         break;
       case HTTPREQ_HEAD:
-        request = (char *)"HEAD";
+        request = "HEAD";
         break;
       }
     }

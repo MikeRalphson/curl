@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.107 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: formdata.c,v 1.108 2008-09-02 17:41:20 danf Exp $
  ***************************************************************************/
 
 /*
@@ -325,7 +325,7 @@ static char *memdup(const char *src, size_t buffer_length)
   }
   else
     /* no length and a NULL src pointer! */
-    return strdup((char *)"");
+    return strdup("");
 
   buffer = (char*)malloc(length+add);
   if(!buffer)
