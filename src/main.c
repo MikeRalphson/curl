@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.479 2008-08-28 22:41:35 yangtse Exp $
+ * $Id: main.c,v 1.480 2008-09-02 06:48:11 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3867,7 +3867,7 @@ static void dumpeasycode(struct Configurable *config)
         if(!memcmp((char *)c, "[m]", 3)) {
 #if defined(_FILE_OFFSET_BITS) && (_FILE_OFFSET_BITS > 32)
           fprintf(out, "#define _FILE_OFFSET_BITS %d "
-                  "/* for curl_off_t magic */\n",
+                  "/* for pre libcurl 7.19.0 curl_off_t magic */\n",
                   _FILE_OFFSET_BITS);
 #endif
         }
