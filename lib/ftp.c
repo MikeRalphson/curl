@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.475 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: ftp.c,v 1.476 2008-09-02 23:12:02 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1825,6 +1825,11 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     connectport =
       (unsigned short)conn->port; /* we connect to the proxy's port */
 
+    if(!addr) {
+      failf(data, "Can't resolve proxy host %s:%d",
+            conn->proxy.name, connectport);
+      return CURLE_FTP_CANT_GET_HOST;
+    }
   }
   else {
     /* normal, direct, ftp connection */
@@ -1833,11 +1838,12 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
       /* BLOCKING */
       rc = Curl_wait_for_resolv(conn, &addr);
 
+    connectport = newport; /* we connect to the remote port */
+
     if(!addr) {
-      failf(data, "Can't resolve new host %s:%d", newhost, newport);
+      failf(data, "Can't resolve new host %s:%d", newhost, connectport);
       return CURLE_FTP_CANT_GET_HOST;
     }
-    connectport = newport; /* we connect to the remote port */
   }
 
   result = Curl_connecthost(conn,
