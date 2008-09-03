@@ -1,4 +1,4 @@
-/* $Id: curlmsg_vms.h,v 1.6 2008-05-30 23:53:25 curlvms Exp $                                                                     */
+/* $Id: curlmsg_vms.h,v 1.7 2008-09-03 20:51:36 curlvms Exp $                                                                     */
 /* CURLMSG_VMS.H                                                            */
 /* This defines the necessary bits to change CURLE_* error codes to VMS     */
 /* style error codes.  CURLMSG.H is built from CURLMSG.SDL which is built   */
@@ -107,5 +107,7 @@ long vms_cond[] =
 	CURL_SSH,
 	CURL_SSL_SHUTDOWN_FAILED,
 	CURL_AGAIN,
+	CURLE_SSL_CRL_BADFILE,
+	CURLE_SSL_ISSUER_ERROR,
         CURL_CURL_LAST
         };
