@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.47 2008-09-02 18:36:39 danf Exp $
+ * $Id: base64.c,v 1.48 2008-09-04 18:59:06 yangtse Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -271,7 +271,7 @@ int main(int argc, argv_item_t argv[], char **envp)
   data = (unsigned char *)suck(&dataLen);
   base64Len = Curl_base64_encode(handle, data, dataLen, &base64);
 
-  fprintf(stderr, "%d\n", base64Len);
+  fprintf(stderr, "%zu\n", base64Len);
   fprintf(stdout, "%s\n", base64);
 
   free(base64); free(data);

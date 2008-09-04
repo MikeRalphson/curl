@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2004 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2004 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.52 2008-06-06 20:52:32 bagder Exp $
+ * $Id: strerror.c,v 1.53 2008-09-04 18:59:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -720,7 +720,7 @@ const char *Curl_idn_strerror (struct connectdata *conn, int err)
       str = "dlopen() error";
       break;
     default:
-      snprintf(buf, max, "error %d", (int)err);
+      snprintf(buf, max, "error %d", err);
       str = NULL;
       break;
   }

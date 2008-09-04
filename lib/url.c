@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.734 2008-09-02 17:41:21 danf Exp $
+ * $Id: url.c,v 1.735 2008-09-04 18:59:06 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -411,7 +411,7 @@ CURLcode Curl_close(struct SessionHandle *data)
           if(data == (struct SessionHandle *) curr->ptr) {
             fprintf(stderr,
                     "MAJOR problem we %p are still in send pipe for %p done %d\n",
-                    data, connptr, connptr->bits.done);
+                    data, connptr, (int)connptr->bits.done);
           }
         }
       }
@@ -421,7 +421,7 @@ CURLcode Curl_close(struct SessionHandle *data)
           if(data == (struct SessionHandle *) curr->ptr) {
             fprintf(stderr,
                     "MAJOR problem we %p are still in recv pipe for %p done %d\n",
-                    data, connptr, connptr->bits.done);
+                    data, connptr, (int)connptr->bits.done);
           }
         }
       }
@@ -431,7 +431,7 @@ CURLcode Curl_close(struct SessionHandle *data)
           if(data == (struct SessionHandle *) curr->ptr) {
             fprintf(stderr,
                     "MAJOR problem we %p are still in pend pipe for %p done %d\n",
-                    data, connptr, connptr->bits.done);
+                    data, connptr, (int)connptr->bits.done);
           }
         }
       }

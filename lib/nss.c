@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.30 2008-06-21 21:19:42 bagder Exp $
+ * $Id: nss.c,v 1.31 2008-09-04 18:59:06 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1096,7 +1096,7 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
       n = strrchr(data->set.str[STRING_CERT], '/');
       if(n) {
         n++; /* skip last slash */
-        snprintf(nickname, PATH_MAX, "PEM Token #%ld:%s", 1, n);
+        snprintf(nickname, PATH_MAX, "PEM Token #%d:%s", 1, n);
       }
     }
     else {
@@ -1164,7 +1164,7 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
       n = strrchr(data->set.str[STRING_SSL_ISSUERCERT], '/');
       if (n) {
         n++; /* skip last slash */
-        snprintf(nickname, PATH_MAX, "PEM Token #%ld:%s", 1, n);
+        snprintf(nickname, PATH_MAX, "PEM Token #%d:%s", 1, n);
       }
     }
     else {
