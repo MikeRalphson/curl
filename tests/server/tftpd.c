@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.39 2008-07-30 06:20:43 yangtse Exp $
+ * $Id: tftpd.c,v 1.40 2008-09-04 05:29:10 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -505,7 +505,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  logmsg("Running IPv%d version on port UDP/%d",
+  logmsg("Running IPv%d version on port UDP/%hu",
 #ifdef ENABLE_IPV6
          (use_ipv6?6:4)
 #else
