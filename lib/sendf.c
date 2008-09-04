@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.143 2008-06-20 10:43:32 bagder Exp $
+ * $Id: sendf.c,v 1.144 2008-09-04 19:43:37 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -397,7 +397,7 @@ CURLcode Curl_write_plain(struct connectdata *conn,
 
 static CURLcode pausewrite(struct SessionHandle *data,
                            int type, /* what type of data */
-                           char *ptr,
+                           const char *ptr,
                            size_t len)
 {
   /* signalled to pause sending on this connection, but since we have data
@@ -429,6 +429,10 @@ static CURLcode pausewrite(struct SessionHandle *data,
 
    The bit pattern defines to what "streams" to write to. Body and/or header.
    The defines are in sendf.h of course.
+
+   If CURL_DO_LINEEND_CONV is enabled, data is converted IN PLACE to the
+   local character encoding.  This is a problem and should be changed in
+   the future to leave the original data alone.
  */
 CURLcode Curl_client_write(struct connectdata *conn,
                            int type,

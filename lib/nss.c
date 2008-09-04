@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.31 2008-09-04 18:59:06 yangtse Exp $
+ * $Id: nss.c,v 1.32 2008-09-04 19:43:35 danf Exp $
  ***************************************************************************/
 
 /*
@@ -367,7 +367,7 @@ done:
   return 1;
 }
 
-static int nss_load_crl(char* crlfilename, PRBool ascii)
+static int nss_load_crl(const char* crlfilename, PRBool ascii)
 {
   PRFileDesc *infile;
   PRStatus    prstat;
