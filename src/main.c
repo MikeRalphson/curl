@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.480 2008-09-02 06:48:11 bagder Exp $
+ * $Id: main.c,v 1.481 2008-09-04 14:57:03 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -576,7 +576,6 @@ static void warnf(struct Configurable *config, const char *fmt, ...)
     char *ptr;
     char print_buffer[256];
 
-    va_start(ap, fmt);
     va_start(ap, fmt);
     len = vsnprintf(print_buffer, sizeof(print_buffer), fmt, ap);
     va_end(ap);
