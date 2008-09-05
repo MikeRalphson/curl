@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.387 2008-09-05 14:29:22 bagder Exp $
+ * $Id: urldata.h,v 1.388 2008-09-05 16:13:21 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1358,6 +1358,7 @@ struct UserDefined {
                         for infinity */
   bool post301;      /* Obey RFC 2616/10.3.2 and keep POSTs as POSTs after a
                         301 */
+  bool post302;      /* keep POSTs as POSTs after a 302 */
   bool free_referer; /* set TRUE if 'referer' points to a string we
                         allocated */
   void *postfields;  /* if POST, set the fields' values here */
