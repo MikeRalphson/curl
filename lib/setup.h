@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.158 2008-08-28 22:41:35 yangtse Exp $
+ * $Id: setup.h,v 1.159 2008-09-05 01:27:24 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -48,8 +48,8 @@
 #endif
 #endif
 
-#ifdef macintosh
-#include "config-mac.h"
+#if defined(macintosh) && defined(__MRC__)
+#  include "config-mac.h"
 #endif
 
 #ifdef __AMIGA__

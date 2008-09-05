@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.57 2008-08-07 00:29:08 yangtse Exp $
+ * $Id: setup.h,v 1.58 2008-09-05 01:27:24 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -46,8 +46,8 @@
 #include "config-win32.h"
 #endif
 
-#ifdef macintosh
-#include "config-mac.h"
+#if defined(macintosh) && defined(__MRC__)
+#  include "config-mac.h"
 #endif
 
 #ifdef __riscos__
