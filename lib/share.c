@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.24 2008-03-18 08:14:37 mmarek Exp $
+ * $Id: share.c,v 1.25 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -36,8 +36,7 @@
 CURLSH *
 curl_share_init(void)
 {
-  struct Curl_share *share =
-    (struct Curl_share *)malloc(sizeof(struct Curl_share));
+  struct Curl_share *share = malloc(sizeof(struct Curl_share));
   if(share) {
     memset (share, 0, sizeof(struct Curl_share));
     share->specifier |= (1<<CURL_LOCK_DATA_SHARE);

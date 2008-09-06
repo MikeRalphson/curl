@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.477 2008-09-06 04:47:14 yangtse Exp $
+ * $Id: ftp.c,v 1.478 2008-09-06 05:29:05 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -550,7 +550,7 @@ static CURLcode ftp_readresp(curl_socket_t sockfd,
 
       if(clipamount) {
         ftpc->cache_size = clipamount;
-        ftpc->cache = (char *)malloc((int)ftpc->cache_size);
+        ftpc->cache = malloc((int)ftpc->cache_size);
         if(ftpc->cache)
           memcpy(ftpc->cache, ftpc->linestart_resp, (int)ftpc->cache_size);
         else
@@ -2751,7 +2751,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
 
     case FTP_PWD:
       if(ftpcode == 257) {
-        char *dir = (char *)malloc(nread+1);
+        char *dir = malloc(nread+1);
         char *store=dir;
         char *ptr=&data->state.buffer[4];  /* start on the first letter */
 

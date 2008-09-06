@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.39 2008-09-06 04:28:46 yangtse Exp $
+ * $Id: http_digest.c,v 1.40 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -320,7 +320,7 @@ CURLcode Curl_output_digest(struct connectdata *conn,
   Curl_md5it(md5buf, md5this);
   free(md5this); /* free this again */
 
-  ha1 = (unsigned char *)malloc(33); /* 32 digits and 1 zero byte */
+  ha1 = malloc(33); /* 32 digits and 1 zero byte */
   if(!ha1)
     return CURLE_OUT_OF_MEMORY;
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.20 2008-01-16 12:24:00 bagder Exp $
+ * $Id: llist.c,v 1.21 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -46,7 +46,7 @@ Curl_llist_alloc(curl_llist_dtor dtor)
 {
   struct curl_llist *list;
 
-  list = (struct curl_llist *)malloc(sizeof(struct curl_llist));
+  list = malloc(sizeof(struct curl_llist));
   if(NULL == list)
     return NULL;
 
@@ -62,8 +62,7 @@ int
 Curl_llist_insert_next(struct curl_llist *list, struct curl_llist_element *e,
                        const void *p)
 {
-  struct curl_llist_element *ne =
-    (struct curl_llist_element *) malloc(sizeof(struct curl_llist_element));
+  struct curl_llist_element *ne = malloc(sizeof(struct curl_llist_element));
   if(!ne)
     return 0;
 

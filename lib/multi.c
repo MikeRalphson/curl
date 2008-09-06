@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.177 2008-09-06 04:47:14 yangtse Exp $
+ * $Id: multi.c,v 1.178 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1427,7 +1427,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
     }
 
     /* now add a node to the Curl_message linked list with this info */
-    msg = (struct Curl_message *)malloc(sizeof(struct Curl_message));
+    msg = malloc(sizeof(struct Curl_message));
 
     if(!msg)
       return CURLM_OUT_OF_MEMORY;

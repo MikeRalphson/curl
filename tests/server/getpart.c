@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.25 2008-08-17 00:25:38 yangtse Exp $
+ * $Id: getpart.c,v 1.26 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -122,7 +122,7 @@ const char *spitout(FILE *stream,
     STATE_ILLEGAL
   } state = STATE_OUTSIDE;
 
-  string = (char *)malloc(stralloc);
+  string = malloc(stralloc);
   if(!string)
     return NULL;
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.44 2008-09-06 04:28:46 yangtse Exp $
+ * $Id: http_chunks.c,v 1.45 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -309,7 +309,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
         }
         else {
           conn->trlMax=128;
-          ptr = (char*)malloc(conn->trlMax);
+          ptr = malloc(conn->trlMax);
         }
         if(!ptr)
           return CHUNKE_OUT_OF_MEMORY;

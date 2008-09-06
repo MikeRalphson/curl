@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.125 2008-09-06 04:47:14 yangtse Exp $
+ * $Id: easy.c,v 1.126 2008-09-06 05:29:05 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -612,7 +612,7 @@ CURL *curl_easy_duphandle(CURL *incurl)
      * get setup on-demand in the code, as that would probably decrease
      * the likeliness of us forgetting to init a buffer here in the future.
      */
-    outcurl->state.headerbuff=(char*)malloc(HEADERSIZE);
+    outcurl->state.headerbuff = malloc(HEADERSIZE);
     if(!outcurl->state.headerbuff) {
       break;
     }

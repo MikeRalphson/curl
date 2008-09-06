@@ -1,4 +1,4 @@
-/* $Id: ares_parse_ptr_reply.c,v 1.14 2008-09-06 04:28:43 yangtse Exp $ */
+/* $Id: ares_parse_ptr_reply.c,v 1.15 2008-09-06 05:29:05 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -77,7 +77,7 @@ int ares_parse_ptr_reply(const unsigned char *abuf, int alen, const void *addr,
 
   /* Examine each answer resource record (RR) in turn. */
   hostname = NULL;
-  aliases = (char **) malloc(8 * sizeof(char *));
+  aliases = malloc(8 * sizeof(char *));
   if (!aliases)
     {
       free(ptrname);

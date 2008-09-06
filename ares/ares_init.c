@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.74 2008-08-04 20:23:12 bagder Exp $ */
+/* $Id: ares_init.c,v 1.75 2008-09-06 05:29:05 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -675,7 +675,7 @@ DhcpNameServer
       {
         if (bytes)
         {
-          line = (char *)malloc(bytes+1);
+          line = malloc(bytes+1);
           if (RegQueryValueEx(mykey, NAMESERVER, NULL, &data_type,
                               (unsigned char *)line, &bytes) ==
               ERROR_SUCCESS)
@@ -952,7 +952,7 @@ static int init_by_defaults(ares_channel channel)
     size_t len = 64;
     int res;
 
-    hostname = (char *)malloc(len);
+    hostname = malloc(len);
     if(!hostname) {
       rc = ARES_ENOMEM;
       goto error;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.408 2008-09-06 04:28:46 yangtse Exp $
+ * $Id: transfer.c,v 1.409 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2136,7 +2136,7 @@ static char *concat_url(const char *base, const char *relurl)
 
   urllen = strlen(url_clone);
 
-  newest=(char *)malloc( urllen + 1 + /* possible slash */
+  newest = malloc( urllen + 1 + /* possible slash */
 			 newlen + 1 /* zero byte */);
 
   if(!newest) {

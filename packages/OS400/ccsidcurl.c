@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.8 2008-09-06 04:28:46 yangtse Exp $
+ * $Id: ccsidcurl.c,v 1.9 2008-09-06 05:29:06 yangtse Exp $
  *
  ***************************************************************************/
 
@@ -727,7 +727,7 @@ curl_formadd_ccsid(struct curl_httppost * * httppost,
   /* Allocate the local curl_forms array. */
 
   lformlen = ALLOC_GRANULE;
-  lforms = (struct curl_forms *) malloc(lformlen * sizeof * lforms);
+  lforms = malloc(lformlen * sizeof(struct curl_forms));
 
   if (!lforms)
     return CURL_FORMADD_MEMORY;

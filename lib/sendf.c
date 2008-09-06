@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.146 2008-09-05 17:21:54 danf Exp $
+ * $Id: sendf.c,v 1.147 2008-09-06 05:29:06 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -91,7 +91,7 @@ struct curl_slist *curl_slist_append(struct curl_slist *list,
   struct curl_slist     *last;
   struct curl_slist     *new_item;
 
-  new_item = (struct curl_slist *) malloc(sizeof(struct curl_slist));
+  new_item = malloc(sizeof(struct curl_slist));
   if(new_item) {
     char *dupdata = strdup(data);
     if(dupdata) {

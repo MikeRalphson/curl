@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.c,v 1.78 2008-09-06 04:28:46 yangtse Exp $
+ * $Id: mprintf.c,v 1.79 2008-09-06 05:29:06 yangtse Exp $
  *
  * Purpose:
  *  A merge of Bjorn Reese's format() function and Daniel's dsprintf()
@@ -1068,7 +1068,7 @@ static int alloc_addbyter(int output, FILE *data)
   unsigned char outc = (unsigned char)output;
 
   if(!infop->buffer) {
-    infop->buffer=(char *)malloc(32);
+    infop->buffer = malloc(32);
     if(!infop->buffer) {
       infop->fail = 1;
       return -1; /* fail */
