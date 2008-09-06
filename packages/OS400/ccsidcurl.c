@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.7 2008-07-07 10:39:46 patrickm Exp $
+ * $Id: ccsidcurl.c,v 1.8 2008-09-06 04:28:46 yangtse Exp $
  *
  ***************************************************************************/
 
@@ -749,8 +749,7 @@ curl_formadd_ccsid(struct curl_httppost * * httppost,
 
     if (nargs >= lformlen) {
       lformlen += ALLOC_GRANULE;
-      tforms = (struct curl_forms *) realloc((char *) lforms,
-                                             lformlen * sizeof *lforms);
+      tforms = realloc(lforms, lformlen * sizeof *lforms);
 
       if (!tforms) {
         result = CURL_FORMADD_MEMORY;

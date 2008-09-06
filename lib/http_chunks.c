@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.43 2008-01-31 12:04:33 bagder Exp $
+ * $Id: http_chunks.c,v 1.44 2008-09-06 04:28:46 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -305,7 +305,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
         char *ptr;
         if(conn->trlMax) {
           conn->trlMax *= 2;
-          ptr = (char*)realloc(conn->trailer,conn->trlMax);
+          ptr = realloc(conn->trailer,conn->trlMax);
         }
         else {
           conn->trlMax=128;

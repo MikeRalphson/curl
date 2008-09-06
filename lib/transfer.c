@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.407 2008-09-05 17:59:00 danf Exp $
+ * $Id: transfer.c,v 1.408 2008-09-06 04:28:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -702,7 +702,7 @@ static CURLcode readwrite_headers(struct SessionHandle *data,
 	size_t newsize=CURLMAX((k->hbuflen+*nread)*3/2,
 			       data->state.headersize*2);
 	hbufp_index = k->hbufp - data->state.headerbuff;
-	newbuff = (char *)realloc(data->state.headerbuff, newsize);
+	newbuff = realloc(data->state.headerbuff, newsize);
 	if(!newbuff) {
 	  failf (data, "Failed to alloc memory for big header!");
 	  return CURLE_OUT_OF_MEMORY;
@@ -747,7 +747,7 @@ static CURLcode readwrite_headers(struct SessionHandle *data,
       size_t newsize=CURLMAX((k->hbuflen+full_length)*3/2,
 			     data->state.headersize*2);
       hbufp_index = k->hbufp - data->state.headerbuff;
-      newbuff = (char *)realloc(data->state.headerbuff, newsize);
+      newbuff = realloc(data->state.headerbuff, newsize);
       if(!newbuff) {
 	failf (data, "Failed to alloc memory for big header!");
 	return CURLE_OUT_OF_MEMORY;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.738 2008-09-05 17:58:59 danf Exp $
+ * $Id: url.c,v 1.739 2008-09-06 04:28:46 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -602,8 +602,7 @@ CURLcode Curl_ch_connc(struct SessionHandle *data,
       data->state.lastconnect = -1;
   }
   if(newamount > 0) {
-    newptr= (struct connectdata **)
-      realloc(c->connects, sizeof(struct connectdata *) * newamount);
+    newptr = realloc(c->connects, sizeof(struct connectdata *) * newamount);
     if(!newptr)
       /* we closed a few connections in vain, but so what? */
       return CURLE_OUT_OF_MEMORY;

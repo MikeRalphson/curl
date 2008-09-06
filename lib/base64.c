@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.48 2008-09-04 18:59:06 yangtse Exp $
+ * $Id: base64.c,v 1.49 2008-09-06 04:28:45 yangtse Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -356,7 +356,7 @@ void *suck(int *lenptr)
 
   do {
     cursize *= 2;
-    buf = (unsigned char *)realloc(buf, cursize);
+    buf = realloc(buf, cursize);
     memset(buf + len, 0, cursize - len);
     lastread = fread(buf + len, 1, cursize - len, stdin);
     len += lastread;
