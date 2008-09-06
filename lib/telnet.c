@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.99 2008-06-03 18:03:11 danf Exp $
+ * $Id: telnet.c,v 1.100 2008-09-06 04:47:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -241,7 +241,7 @@ CURLcode init_telnet(struct connectdata *conn)
 {
   struct TELNET *tn;
 
-  tn = (struct TELNET *)calloc(1, sizeof(struct TELNET));
+  tn = calloc(1, sizeof(struct TELNET));
   if(!tn)
     return CURLE_OUT_OF_MEMORY;
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.176 2008-08-23 12:11:38 bagder Exp $
+ * $Id: multi.c,v 1.177 2008-09-06 04:47:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -358,7 +358,7 @@ static struct curl_hash *sh_init(void)
 
 CURLM *curl_multi_init(void)
 {
-  struct Curl_multi *multi = (void *)calloc(sizeof(struct Curl_multi), 1);
+  struct Curl_multi *multi = calloc(sizeof(struct Curl_multi), 1);
 
   if(!multi)
     return NULL;
@@ -419,7 +419,7 @@ CURLMcode curl_multi_add_handle(CURLM *multi_handle,
     return CURLM_BAD_EASY_HANDLE;
 
   /* Now, time to add an easy handle to the multi stack */
-  easy = (struct Curl_one_easy *)calloc(sizeof(struct Curl_one_easy), 1);
+  easy = calloc(sizeof(struct Curl_one_easy), 1);
   if(!easy)
     return CURLM_OUT_OF_MEMORY;
 
@@ -2181,7 +2181,7 @@ static void add_closure(struct Curl_multi *multi,
                         struct SessionHandle *data)
 {
   int i;
-  struct closure *cl = (struct closure *)calloc(sizeof(struct closure), 1);
+  struct closure *cl = calloc(sizeof(struct closure), 1);
   struct closure *p=NULL;
   struct closure *n;
   if(cl) {

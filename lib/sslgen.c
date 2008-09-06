@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.41 2008-09-05 18:35:29 danf Exp $
+ * $Id: sslgen.c,v 1.42 2008-09-06 04:47:14 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -428,8 +428,7 @@ CURLcode Curl_ssl_initsessions(struct SessionHandle *data, long amount)
     /* this is just a precaution to prevent multiple inits */
     return CURLE_OK;
 
-  session = (struct curl_ssl_session *)
-    calloc(sizeof(struct curl_ssl_session), amount);
+  session = calloc(sizeof(struct curl_ssl_session), amount);
   if(!session)
     return CURLE_OUT_OF_MEMORY;
 

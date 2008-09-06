@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.111 2008-08-16 01:34:00 yangtse Exp $
+ * $Id: file.c,v 1.112 2008-09-06 04:47:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -202,7 +202,7 @@ static CURLcode file_connect(struct connectdata *conn, bool *done)
   Curl_reset_reqproto(conn);
 
   if(!data->state.proto.file) {
-    file = (struct FILEPROTO *)calloc(sizeof(struct FILEPROTO), 1);
+    file = calloc(sizeof(struct FILEPROTO), 1);
     if(!file) {
       free(real_path);
       return CURLE_OUT_OF_MEMORY;

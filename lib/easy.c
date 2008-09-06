@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.124 2008-09-05 09:37:37 bagder Exp $
+ * $Id: easy.c,v 1.125 2008-09-06 04:47:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -600,8 +600,7 @@ CURL *curl_easy_duphandle(CURL *incurl)
   bool fail = TRUE;
   struct SessionHandle *data=(struct SessionHandle *)incurl;
 
-  struct SessionHandle *outcurl = (struct SessionHandle *)
-    calloc(sizeof(struct SessionHandle), 1);
+  struct SessionHandle *outcurl = calloc(sizeof(struct SessionHandle), 1);
 
   if(NULL == outcurl)
     return NULL; /* failure */
