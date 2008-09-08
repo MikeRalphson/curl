@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.336 2008-09-02 12:07:08 bagder Exp $
+# $Id: configure.ac,v 1.337 2008-09-08 16:48:58 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -292,6 +292,20 @@ if test "$curl_cv_have_def___IBMC__" = "yes"; then
   dnl Force compiler to stop after the compilation phase, without
   dnl generating an object code file when compilation has errors.
   CFLAGS="$CFLAGS -qhalt=e"
+else
+  AC_MSG_RESULT([no])
+fi
+
+AC_MSG_CHECKING([whether we are using the Intel C compiler])
+CURL_CHECK_DEF([__INTEL_COMPILER], [], [silent])
+if test "$curl_cv_have_def___INTEL_COMPILER" = "yes"; then
+  AC_MSG_RESULT([yes])
+  dnl Select strict ANSI C conformance
+  CFLAGS="$CFLAGS -strict-ansi"
+  dnl Select ANSI C dialect
+  CFLAGS="$CFLAGS -std=c89"
+  dnl Disable use of ANSI C aliasing rules in optimizations
+  CFLAGS="$CFLAGS -no-ansi-alias"
 else
   AC_MSG_RESULT([no])
 fi
