@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.409 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: transfer.c,v 1.410 2008-09-08 07:39:05 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -658,9 +658,9 @@ static CURLcode readwrite_data(struct SessionHandle *data,
 
   if(((k->keepon & (KEEP_READ|KEEP_WRITE)) == KEEP_WRITE) &&
      conn->bits.close ) {
-    /* When we've read the entire thing and the close bit is set, the server may
-       now close the connection. If there's now any kind of sending going on from
-       our side, we need to stop that immediately. */
+    /* When we've read the entire thing and the close bit is set, the server
+       may now close the connection. If there's now any kind of sending going
+       on from our side, we need to stop that immediately. */
     infof(data, "we are done reading and this is set to close, stop send\n");
     k->keepon &= ~KEEP_WRITE; /* no writing anymore either */
   }
