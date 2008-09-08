@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.410 2008-09-08 07:39:05 bagder Exp $
+ * $Id: transfer.c,v 1.411 2008-09-08 19:34:58 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2012,7 +2012,7 @@ static bool is_absolute_url(const char *url)
   char prot[16]; /* URL protocol string storage */
   char letter;   /* used for a silly sscanf */
 
-  return 2 == sscanf(url, "%15[^?&/:]://%c", prot, &letter);
+  return (bool)(2 == sscanf(url, "%15[^?&/:]://%c", prot, &letter));
 }
 
 /*

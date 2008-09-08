@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.387 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: http.c,v 1.388 2008-09-08 19:34:58 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1958,11 +1958,11 @@ handle this request only supports 1.0. */
 static bool use_http_1_1(const struct SessionHandle *data,
                          const struct connectdata *conn)
 {
-  return (data->set.httpversion == CURL_HTTP_VERSION_1_1) ||
+  return (bool)((data->set.httpversion == CURL_HTTP_VERSION_1_1) ||
          ((data->set.httpversion != CURL_HTTP_VERSION_1_0) &&
           ((conn->httpversion == 11) ||
            ((conn->httpversion != 10) &&
-            (data->state.httpversion != 10))));
+            (data->state.httpversion != 10)))));
 }
 
 /* check and possibly add an Expect: header */

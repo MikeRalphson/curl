@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.197 2008-08-26 21:28:57 danf Exp $
+ * $Id: connect.c,v 1.198 2008-09-08 19:34:58 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -578,7 +578,7 @@ static bool trynextip(struct connectdata *conn,
       conn->sock[sockindex] = sockfd;
       conn->ip_addr = ai;
 
-      return Curl_store_ip_addr(conn) != CURLE_OK;
+      return (bool)(Curl_store_ip_addr(conn) != CURLE_OK);
     }
     ai = ai->ai_next;
   }
