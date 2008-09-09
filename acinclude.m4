@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.204 2008-09-03 18:04:47 danf Exp $
+# $Id: acinclude.m4,v 1.205 2008-09-09 12:19:16 yangtse Exp $
 #***************************************************************************
 
 
@@ -3231,6 +3231,7 @@ AC_DEFUN([CURL_CC_DEBUG_OPTS],
          dnl   which we know and do on purpose.
 
          WARN="-wd279,269,981,1418,1419"
+         WARN=""
 
          if test "$gccnum" -gt "600"; then
             dnl icc 6.0 and older doesn't have the -Wall flag
