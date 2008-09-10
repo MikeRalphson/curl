@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.340 2008-09-10 17:35:22 yangtse Exp $
+# $Id: configure.ac,v 1.341 2008-09-10 19:03:00 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2035,6 +2035,8 @@ CURL_CHECK_FUNC_SEND
 CURL_CHECK_MSG_NOSIGNAL
 
 CURL_CHECK_FUNC_GMTIME_R
+CURL_CHECK_FUNC_SIGACTION
+CURL_CHECK_FUNC_STRTOK_R
 CURL_CHECK_FUNC_STRTOLL
 
 dnl Checks for library functions.
@@ -2070,7 +2072,6 @@ AC_CHECK_FUNCS([basename \
   setlocale \
   setmode \
   setrlimit \
-  sigaction \
   siginterrupt \
   signal \
   sigsetjmp \
@@ -2082,7 +2083,6 @@ AC_CHECK_FUNCS([basename \
   stricmp \
   strlcat \
   strstr \
-  strtok_r \
   uname \
   utime
 ],[
