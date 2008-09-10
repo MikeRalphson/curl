@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.112 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: ssh.c,v 1.113 2008-09-10 13:39:35 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2437,7 +2437,7 @@ get_pathname(const char **cpp, char **path)
 {
   const char *cp = *cpp, *end;
   char quot;
-  u_int i, j;
+  unsigned int i, j;
   static const char * const WHITESPACE = " \t\r\n";
 
   cp += strspn(cp, WHITESPACE);
