@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.126 2008-09-06 05:29:05 yangtse Exp $
+ * $Id: easy.c,v 1.127 2008-09-10 07:16:11 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -852,7 +852,7 @@ CURLcode curl_easy_pause(CURL *curl, int action)
       if(data->state.tempwrite && (tempsize - chunklen)) {
         /* Ouch, the reading is again paused and the block we send is now
            "cached". If this is the final chunk we can leave it like this, but
-           if we have more chunks that is cached after this, we need to free
+           if we have more chunks that are cached after this, we need to free
            the newly cached one and put back a version that is truly the entire
            contents that is saved for later
         */

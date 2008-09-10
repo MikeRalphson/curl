@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: fileupload.c,v 1.4 2008-05-22 21:20:09 danf Exp $
+ * $Id: fileupload.c,v 1.5 2008-09-10 07:11:45 danf Exp $
  */
 
 #include <stdio.h>
@@ -27,7 +27,11 @@ int main(void)
     return 1; /* can't continue */
   }
 
-  stat("debugit", &file_info); /* to get the file size */
+  /* to get the file size */
+  if(fstat(fileno(fd), &file_info) != 0) {
+
+    return 1; /* can't continue */
+  }
 
   curl = curl_easy_init();
   if(curl) {
