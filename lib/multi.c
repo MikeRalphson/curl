@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.179 2008-09-08 12:15:09 bagder Exp $
+ * $Id: multi.c,v 1.180 2008-09-10 20:05:46 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -321,7 +321,7 @@ static size_t fd_key_compare(void*k1, size_t k1_len, void*k2, size_t k2_len)
 {
   (void) k1_len; (void) k2_len;
 
-  return ((*((int* ) k1)) == (*((int* ) k2))) ? 1 : 0;
+  return (*((int* ) k1)) == (*((int* ) k2));
 }
 
 static size_t hash_fd(void* key, size_t key_length, size_t slots_num)
