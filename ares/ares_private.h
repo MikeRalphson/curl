@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.34 2008-07-10 08:21:48 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.35 2008-09-11 04:02:49 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -93,6 +93,11 @@
 
 #include "ares_ipv6.h"
 #include "ares_llist.h"
+
+#ifndef HAVE_STRDUP
+#  include "ares_strdup.h"
+#  define strdup(ptr) ares_strdup(ptr)
+#endif
 
 struct query;
 

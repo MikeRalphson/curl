@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.21 2008-07-17 03:07:54 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.22 2008-09-11 04:02:49 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -78,6 +78,9 @@
 
 /* Define if you have the ioctlsocket function.  */
 #define HAVE_IOCTLSOCKET 1
+
+/* Define if you have the strdup function. */
+#define HAVE_STRDUP 1
 
 /* Define if you have the recv function. */
 #define HAVE_RECV 1

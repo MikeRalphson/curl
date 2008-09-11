@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.32 2008-07-30 08:27:02 yangtse Exp $ */
+/* $Id: setup.h,v 1.33 2008-09-11 04:02:49 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -150,11 +150,6 @@ int ares_strcasecmp(const char *s1, const char *s2);
    same */
 #define strncasecmp(a,b,c) ares_strncasecmp(a,b,c)
 #define strcasecmp(a,b) ares_strcasecmp(a,b)
-#ifdef _MSC_VER
-#  if _MSC_VER >= 1400
-#    define strdup(a) _strdup(a)
-#  endif
-#endif
 #endif
 
 /* IPv6 compatibility */
