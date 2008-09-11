@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.3 2008-09-10 19:26:30 yangtse Exp $
+# $Id: curl-functions.m4,v 1.4 2008-09-11 04:15:43 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -308,7 +308,8 @@ AC_DEFUN([CURL_CHECK_FUNC_GMTIME_R], [
     ])
   fi
   #
-  if test "$tst_works_gmtime_r" != "no"; then
+  if test "$tst_compi_gmtime_r" = "yes" &&
+    test "$tst_works_gmtime_r" != "no"; then
     AC_MSG_CHECKING([if gmtime_r usage allowed])
     if test "x$curl_disallow_gmtime_r" != "xyes"; then
       AC_MSG_RESULT([yes])
