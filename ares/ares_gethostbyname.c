@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.38 2008-07-03 11:32:35 bagder Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.39 2008-09-11 03:46:47 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -41,9 +41,9 @@
 #endif
 
 #include "ares.h"
-#include "ares_private.h"
 #include "inet_net_pton.h"
 #include "bitncmp.h"
+#include "ares_private.h"
 
 #ifdef WATT32
 #undef WIN32

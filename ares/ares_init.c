@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.75 2008-09-06 05:29:05 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.76 2008-09-11 03:46:47 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -58,8 +58,8 @@
 #include <time.h>
 #include <errno.h>
 #include "ares.h"
-#include "ares_private.h"
 #include "inet_net_pton.h"
+#include "ares_private.h"
 
 #ifdef WATT32
 #undef WIN32  /* Redefined in MingW/MSVC headers */

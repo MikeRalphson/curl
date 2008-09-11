@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.27 2007-10-04 08:09:52 sesse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.28 2008-09-11 03:46:47 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -42,9 +42,9 @@
 #include <string.h>
 
 #include "ares.h"
-#include "ares_private.h"
 #include "ares_ipv6.h"
 #include "inet_ntop.h"
+#include "ares_private.h"
 
 #ifdef WATT32
 #undef WIN32

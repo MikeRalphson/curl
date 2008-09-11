@@ -1,4 +1,4 @@
-/* $Id: ares__get_hostent.c,v 1.14 2007-06-02 19:42:25 bagder Exp $ */
+/* $Id: ares__get_hostent.c,v 1.15 2008-09-11 03:46:47 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -30,8 +30,8 @@
 #include <ctype.h>
 
 #include "ares.h"
-#include "ares_private.h"
 #include "inet_net_pton.h"
+#include "ares_private.h"
 
 int ares__get_hostent(FILE *fp, int family, struct hostent **host)
 {
