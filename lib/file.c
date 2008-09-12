@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.113 2008-09-10 20:05:45 danf Exp $
+ * $Id: file.c,v 1.114 2008-09-12 03:24:27 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -333,7 +333,8 @@ static CURLcode file_upload(struct connectdata *conn)
       failf(data, "Can't open %s for writing", file->path);
       return CURLE_WRITE_ERROR;
     }
-    fp = fdopen(fd, "wb");
+    close(fd);
+    fp = fopen(file->path, "wb");
   }
 
   if(!fp) {
