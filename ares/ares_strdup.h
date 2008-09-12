@@ -1,7 +1,7 @@
 #ifndef HEADER_CARES_STRDUP_H
 #define HEADER_CARES_STRDUP_H
 
-/* $Id: ares_strdup.h,v 1.1 2008-09-11 04:02:49 yangtse Exp $ */
+/* $Id: ares_strdup.h,v 1.2 2008-09-12 05:08:18 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *

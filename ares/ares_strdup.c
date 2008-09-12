@@ -1,5 +1,5 @@
 
-/* $Id: ares_strdup.c,v 1.1 2008-09-11 04:02:49 yangtse Exp $ */
+/* $Id: ares_strdup.c,v 1.2 2008-09-12 05:08:18 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
