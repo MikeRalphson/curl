@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.c,v 1.79 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: mprintf.c,v 1.80 2008-09-13 16:37:16 yangtse Exp $
  *
  * Purpose:
  *  A merge of Bjorn Reese's format() function and Daniel's dsprintf()
@@ -179,8 +179,6 @@ struct asprintf {
   int fail;     /* (!= 0) if an alloc has failed and thus
                    the output is not the complete data */
 };
-
-int curl_msprintf(char *buffer, const char *format, ...);
 
 static long dprintf_DollarString(char *input, char **end)
 {
