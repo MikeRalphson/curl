@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.6 2008-08-25 03:44:43 yangtse Exp $
+ * $Id: acountry.c,v 1.7 2008-09-13 01:35:15 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -240,7 +240,7 @@ struct search_list {
        const char *long_name;      /* normal country name */
      };
 
-const struct search_list *list_lookup(int number, const struct search_list *list, int num)
+static const struct search_list *list_lookup(int number, const struct search_list *list, int num)
 {
   while (num > 0 && list->long_name)
     {
