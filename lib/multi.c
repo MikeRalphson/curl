@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.181 2008-09-13 03:49:33 yangtse Exp $
+ * $Id: multi.c,v 1.182 2008-09-13 15:59:14 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -213,8 +213,6 @@ static const char * const statename[]={
   "DONE",
   "COMPLETED",
 };
-
-static void curl_multi_dump(CURLM *multi_handle);
 #endif
 
 /* always use this function to change state, to make debugging easier */
@@ -2232,7 +2230,7 @@ static void add_closure(struct Curl_multi *multi,
 }
 
 #ifdef CURLDEBUG
-static void curl_multi_dump(CURLM *multi_handle)
+void Curl_multi_dump(const struct Curl_multi *multi_handle)
 {
   struct Curl_multi *multi=(struct Curl_multi *)multi_handle;
   struct Curl_one_easy *easy;
