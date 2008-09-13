@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.485 2008-09-10 20:05:46 danf Exp $
+ * $Id: main.c,v 1.486 2008-09-13 03:55:21 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3757,11 +3757,11 @@ output_expected(const char* url, const char* uploadfile)
 
 static struct curl_slist *easycode;
 
-CURLcode _my_setopt(CURL *curl, struct Configurable *config, const char *name,
-                    CURLoption tag, ...);
+static CURLcode _my_setopt(CURL *curl, struct Configurable *config,
+                           const char *name, CURLoption tag, ...);
 
-CURLcode _my_setopt(CURL *curl, struct Configurable *config, const char *name,
-                    CURLoption tag, ...)
+static CURLcode _my_setopt(CURL *curl, struct Configurable *config,
+                           const char *name, CURLoption tag, ...)
 {
   va_list arg;
   CURLcode ret;
