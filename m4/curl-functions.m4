@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.9 2008-09-15 00:32:10 yangtse Exp $
+# $Id: curl-functions.m4,v 1.10 2008-09-15 15:32:53 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -217,10 +217,6 @@ AC_DEFUN([CURL_CHECK_FUNC_FDOPEN], [
     ],[
       AC_MSG_RESULT([no])
       tst_compi_fdopen="no"
-      dnl temporary debug tracing follows
-      echo " " >&6
-      sed 's/^/cc-fail> /' conftest.err >&6
-      echo " " >&6
     ])
   fi
   #
@@ -1611,10 +1607,6 @@ AC_DEFUN([CURL_CHECK_FUNC_STRTOK_R], [
     ],[
       AC_MSG_RESULT([no])
       tst_compi_strtok_r="no"
-      dnl temporary debug tracing follows
-      echo " " >&6
-      sed 's/^/cc-fail> /' conftest.err >&6
-      echo " " >&6
     ])
   fi
   #
@@ -1700,10 +1692,6 @@ AC_DEFUN([CURL_CHECK_FUNC_STRTOLL], [
     ],[
       AC_MSG_RESULT([no])
       tst_compi_strtoll="no"
-      dnl temporary debug tracing follows
-      echo " " >&6
-      sed 's/^/cc-fail> /' conftest.err >&6
-      echo " " >&6
     ])
   fi
   #
