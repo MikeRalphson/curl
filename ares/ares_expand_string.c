@@ -1,4 +1,4 @@
-/* $Id: ares_expand_string.c,v 1.6 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: ares_expand_string.c,v 1.7 2008-09-15 17:14:29 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -20,8 +20,12 @@
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"
 #else
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
+#ifdef HAVE_ARPA_NAMESER_H
 #include <arpa/nameser.h>
+#endif
 #endif
 
 #include <string.h>

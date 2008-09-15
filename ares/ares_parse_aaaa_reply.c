@@ -1,4 +1,4 @@
-/* $Id: ares_parse_aaaa_reply.c,v 1.9 2008-05-08 22:11:39 bagder Exp $ */
+/* $Id: ares_parse_aaaa_reply.c,v 1.10 2008-09-15 17:14:29 yangtse Exp $ */
 
 /* Copyright 2005 Dominick Meglio
  *
@@ -20,10 +20,18 @@
 #if defined(WIN32) && !defined(WATT32)
 #include "nameser.h"
 #else
+#ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
+#endif
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
-#include <arpa/inet.h>
+#endif
+#ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
+#endif
 #ifdef HAVE_ARPA_NAMESER_H
 #include <arpa/nameser.h>
 #endif
