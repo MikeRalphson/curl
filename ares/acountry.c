@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.7 2008-09-13 01:35:15 yangtse Exp $
+ * $Id: acountry.c,v 1.8 2008-09-15 15:28:26 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -59,6 +59,21 @@
 #include "ares_getopt.h"
 #include "inet_net_pton.h"
 #include "inet_ntop.h"
+
+#ifndef HAVE_STRDUP
+#  include "ares_strdup.h"
+#  define strdup(ptr) ares_strdup(ptr)
+#endif
+
+#ifndef HAVE_STRCASECMP
+#  include "ares_strcasecmp.h"
+#  define strcasecmp(p1,p2) ares_strcasecmp(p1,p2)
+#endif
+
+#ifndef HAVE_STRNCASECMP
+#  include "ares_strcasecmp.h"
+#  define strncasecmp(p1,p2,n) ares_strncasecmp(p1,p2,n)
+#endif
 
 #ifndef INADDR_NONE
 #define INADDR_NONE 0xffffffff

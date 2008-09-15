@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.33 2008-09-11 04:02:49 yangtse Exp $ */
+/* $Id: setup.h,v 1.34 2008-09-15 15:28:26 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -137,19 +137,6 @@
 
 #if !defined(HAVE_SYS_UIO_H) && !defined(WIN32) && !defined(MSDOS)
 #define HAVE_SYS_UIO_H
-#endif
-
-#if (defined(WIN32) || defined(WATT32)) && \
-   !(defined(__MINGW32__) || defined(NETWARE) || defined(__DJGPP__))
-/* protos for the functions we provide in windows_port.c */
-int ares_strncasecmp(const char *s1, const char *s2, int n);
-int ares_strcasecmp(const char *s1, const char *s2);
-
-/* use this define magic to prevent us from adding symbol names to the library
-   that is a high-risk to collide with another libraries' attempts to do the
-   same */
-#define strncasecmp(a,b,c) ares_strncasecmp(a,b,c)
-#define strcasecmp(a,b) ares_strcasecmp(a,b)
 #endif
 
 /* IPv6 compatibility */

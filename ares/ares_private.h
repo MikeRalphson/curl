@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.35 2008-09-11 04:02:49 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.36 2008-09-15 15:28:26 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -97,6 +97,16 @@
 #ifndef HAVE_STRDUP
 #  include "ares_strdup.h"
 #  define strdup(ptr) ares_strdup(ptr)
+#endif
+
+#ifndef HAVE_STRCASECMP
+#  include "ares_strcasecmp.h"
+#  define strcasecmp(p1,p2) ares_strcasecmp(p1,p2)
+#endif
+
+#ifndef HAVE_STRNCASECMP
+#  include "ares_strcasecmp.h"
+#  define strncasecmp(p1,p2,n) ares_strncasecmp(p1,p2,n)
 #endif
 
 struct query;

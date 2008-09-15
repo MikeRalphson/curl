@@ -1,6 +1,6 @@
 #include "setup.h"
 
-/* $Id: windows_port.c,v 1.18 2008-05-09 16:31:11 yangtse Exp $ */
+/* $Id: windows_port.c,v 1.19 2008-09-15 15:28:26 yangtse Exp $ */
 
 /* only do the following on windows
  */
@@ -31,27 +31,6 @@ WINAPI DllMain (HINSTANCE hnd, DWORD reason, LPVOID reserved)
   (void) reason;
   (void) reserved;
   return (TRUE);
-}
-#endif
-
-#ifndef __MINGW32__
-int
-ares_strncasecmp(const char *a, const char *b, int n)
-{
-    int i;
-
-    for (i = 0; i < n; i++) {
-        int c1 = ISUPPER(a[i]) ? tolower(a[i]) : a[i];
-        int c2 = ISUPPER(b[i]) ? tolower(b[i]) : b[i];
-        if (c1 != c2) return c1-c2;
-    }
-    return 0;
-}
-
-int
-ares_strcasecmp(const char *a, const char *b)
-{
-    return strncasecmp(a, b, strlen(a)+1);
 }
 #endif
 
