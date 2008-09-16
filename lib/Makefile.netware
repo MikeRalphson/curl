@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.105 2008-09-04 22:01:19 gknauf Exp $
+# $Id: Makefile.netware,v 1.106 2008-09-16 01:21:04 yangtse Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -379,6 +379,7 @@ ifeq ($(LIBARCH),CLIB)
 	@echo $(DL)#define OS "i586-pc-clib-NetWare"$(DL) >> $@
 	@echo $(DL)#define NETDB_USE_INTERNET 1$(DL) >> $@
 	@echo $(DL)#define HAVE_STRICMP 1$(DL) >> $@
+	@echo $(DL)#define HAVE_STRNICMP 1$(DL) >> $@
 	@echo $(DL)#define RECV_TYPE_ARG1 int$(DL) >> $@
 	@echo $(DL)#define RECV_TYPE_ARG2 char *$(DL) >> $@
 	@echo $(DL)#define RECV_TYPE_ARG3 int$(DL) >> $@
