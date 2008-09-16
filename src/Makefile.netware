@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.85 2008-09-16 01:21:06 yangtse Exp $
+# $Id: Makefile.netware,v 1.86 2008-09-16 18:23:16 yangtse Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -476,6 +476,7 @@ endif
 	@echo $(DL)#define HAVE_UNISTD_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_UTIME 1$(DL) >> $@
 	@echo $(DL)#define HAVE_UTIME_H 1$(DL) >> $@
+	@echo $(DL)#define HAVE_WRITEV 1$(DL) >> $@
 	@echo $(DL)#define RETSIGTYPE void$(DL) >> $@
 	@echo $(DL)#define SIZEOF_STRUCT_IN_ADDR 4$(DL) >> $@
 	@echo $(DL)#define STDC_HEADERS 1$(DL) >> $@
