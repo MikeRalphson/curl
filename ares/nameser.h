@@ -1,4 +1,4 @@
-/* $Id: nameser.h,v 1.25 2008-06-30 12:48:25 bagder Exp $ */
+/* $Id: nameser.h,v 1.26 2008-09-16 16:42:49 yangtse Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
@@ -13,19 +13,9 @@
 
 #ifndef NETWARE
 
-/* Structure for scatter/gather I/O.  */
-struct iovec
-{
-    void *iov_base;     /* Pointer to data.  */
-    size_t iov_len;     /* Length of data.  */
-};
-
 #ifndef __WATCOMC__
 #define getpid() _getpid()
 #endif
-
-int ares_writev (SOCKET s, const struct iovec *vector, size_t count);
-#define writev(s,vect,count)  ares_writev(s,vect,count)
 
 #endif  /* !NETWARE */
 
@@ -94,6 +84,8 @@ typedef enum __ns_type {
     ns_t_dname = 39,        /* Non-terminal DNAME (for IPv6) */
     ns_t_sink = 40,         /* Kitchen sink (experimentatl) */
     ns_t_opt = 41,          /* EDNS0 option (meta-RR) */
+    ns_t_apl = 42,          /* Address prefix list (RFC3123) */
+    ns_t_tkey = 249,        /* Transaction key */
     ns_t_tsig = 250,        /* Transaction signature. */
     ns_t_ixfr = 251,        /* Incremental zone transfer. */
     ns_t_axfr = 252,        /* Transfer zone of authority. */

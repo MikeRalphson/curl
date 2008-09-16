@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.36 2008-09-15 15:28:26 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.37 2008-09-16 16:42:48 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -43,6 +43,7 @@
 #undef  closesocket
 #define closesocket(s)    close_s(s)
 #define writev(s,v,c)     writev_s(s,v,c)
+#define HAVE_WRITEV 1
 #endif
 
 #ifdef NETWARE
@@ -107,6 +108,11 @@
 #ifndef HAVE_STRNCASECMP
 #  include "ares_strcasecmp.h"
 #  define strncasecmp(p1,p2,n) ares_strncasecmp(p1,p2,n)
+#endif
+
+#ifndef HAVE_WRITEV
+#  include "ares_writev.h"
+#  define writev(s,ptr,cnt) ares_writev(s,ptr,cnt)
 #endif
 
 struct query;

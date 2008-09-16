@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.345 2008-09-15 00:32:08 yangtse Exp $
+# $Id: configure.ac,v 1.346 2008-09-16 16:42:48 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1900,6 +1900,7 @@ AC_CHECK_HEADERS(
         sys/select.h \
         sys/socket.h \
         sys/ioctl.h \
+        sys/uio.h \
         assert.h \
         unistd.h \
         stdlib.h \
@@ -2051,6 +2052,7 @@ CURL_CHECK_FUNC_STRNCMPI
 CURL_CHECK_FUNC_STRNICMP
 CURL_CHECK_FUNC_STRTOK_R
 CURL_CHECK_FUNC_STRTOLL
+CURL_CHECK_FUNC_WRITEV
 
 dnl Checks for library functions.
 dnl AC_PROG_GCC_TRADITIONAL
