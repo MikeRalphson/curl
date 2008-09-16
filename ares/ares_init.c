@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.77 2008-09-15 17:14:29 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.78 2008-09-16 18:43:25 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -57,9 +57,6 @@
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#endif
-#ifdef HAVE_PROCESS_H
-#include <process.h>  /* Some have getpid() here */
 #endif
 #endif
 
