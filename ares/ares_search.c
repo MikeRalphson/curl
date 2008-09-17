@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.16 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: ares_search.c,v 1.17 2008-09-17 03:25:52 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -22,6 +22,10 @@
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
+
+#ifdef HAVE_STRINGS_H
+#  include <strings.h>
+#endif
 
 #include "ares.h"
 #include "ares_private.h"
