@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.350 2008-09-17 16:03:49 yangtse Exp $
+# $Id: configure.ac,v 1.351 2008-09-17 17:36:58 danf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1840,13 +1840,13 @@ then
   AC_DEFINE(DISABLED_THREADSAFE, 1,
     [Set to explicitly specify we don't want to use thread-safe functions])
 else
-  if test "$ipv6" != "yes"; then
+  dnl if test "$ipv6" != "yes"; then
     dnl dig around for gethostbyname_r()
     dnl the old gethostbyname_r check was done here
 
     dnl dig around for gethostbyaddr_r()
     dnl the old gethostbyaddr_r check was here BUT COMMENTED OUT
-  fi
+  dnl fi
 
   dnl poke around for inet_ntoa_r()
   CURL_CHECK_INET_NTOA_R()
