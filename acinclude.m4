@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.206 2008-09-12 01:16:26 yangtse Exp $
+# $Id: acinclude.m4,v 1.207 2008-09-17 08:14:28 yangtse Exp $
 #***************************************************************************
 
 
@@ -2598,26 +2598,6 @@ if test "$ac_cv_working_getaddrinfo" = "yes"; then
   IPV6_ENABLED=1
   AC_SUBST(IPV6_ENABLED)
 fi
-])
-
-
-AC_DEFUN([CURL_CHECK_LOCALTIME_R],
-[
-  dnl check for localtime_r
-  AC_CHECK_FUNCS(localtime_r,[
-    AC_MSG_CHECKING(whether localtime_r is declared)
-    AC_EGREP_CPP(localtime_r,[
-#undef _REENTRANT
-#include <time.h>],[
-      AC_MSG_RESULT(yes)],[
-      AC_MSG_RESULT(no)
-      AC_MSG_CHECKING(whether localtime_r with -D_REENTRANT is declared)
-      AC_EGREP_CPP(localtime_r,[
-#undef _REENTRANT
-#define _REENTRANT
-#include <time.h>],[
-        AC_MSG_RESULT(yes)],
-        AC_MSG_RESULT(no))])])
 ])
 
 
