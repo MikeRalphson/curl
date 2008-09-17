@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.78 2008-09-16 18:43:25 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.79 2008-09-17 01:02:57 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -19,11 +19,10 @@
 #include "setup.h"
 
 #if defined(WIN32) && !defined(WATT32)
-#include "nameser.h"
 #include <iphlpapi.h>
 #include <malloc.h>
+#endif
 
-#else
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>
 #endif
@@ -49,15 +48,16 @@
 #endif
 
 #ifdef HAVE_ARPA_NAMESER_H
-#include <arpa/nameser.h>
+#  include <arpa/nameser.h>
+#else
+#  include "nameser.h"
+#endif
+#ifdef HAVE_ARPA_NAMESER_COMPAT_H
+#  include <arpa/nameser_compat.h>
 #endif
 
-#ifdef HAVE_ARPA_NAMESER_COMPAT_H
-#include <arpa/nameser_compat.h>
-#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#endif
 #endif
 
 #include <stdio.h>

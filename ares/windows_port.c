@@ -1,24 +1,10 @@
 #include "setup.h"
 
-/* $Id: windows_port.c,v 1.20 2008-09-16 16:42:49 yangtse Exp $ */
+/* $Id: windows_port.c,v 1.21 2008-09-17 01:02:57 yangtse Exp $ */
 
 /* only do the following on windows
  */
 #if (defined(WIN32) || defined(WATT32)) && !defined(MSDOS)
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include <errno.h>
-#include <malloc.h>
-
-#ifdef WATT32
-#include <sys/socket.h>
-#else
-#include "nameser.h"
-#endif
-#include "ares.h"
-#include "ares_private.h"
 
 #ifdef __WATCOMC__
 /*
@@ -33,6 +19,5 @@ WINAPI DllMain (HINSTANCE hnd, DWORD reason, LPVOID reserved)
   return (TRUE);
 }
 #endif
-
 
 #endif /* WIN32 builds only */

@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.15 2007-10-16 21:27:51 sesse Exp $ */
+/* $Id: ares_search.c,v 1.16 2008-09-17 01:02:57 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,15 +16,12 @@
  */
 
 #include "setup.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
-
-#if defined(WIN32) && !defined(WATT32)
-#include "nameser.h"
-#endif
 
 #include "ares.h"
 #include "ares_private.h"

@@ -1,11 +1,11 @@
-/* $Id: nameser.h,v 1.28 2008-09-17 00:07:49 yangtse Exp $ */
+/* $Id: nameser.h,v 1.29 2008-09-17 01:02:57 yangtse Exp $ */
 
 #ifndef ARES_NAMESER_H
 #define ARES_NAMESER_H
 
 /* header file provided by liren@vivisimo.com */
 
-
+#ifndef HAVE_ARPA_NAMESER_H
 
 #define NS_PACKETSZ     512   /* maximum packet size */
 #define NS_MAXDNAME     256   /* maximum domain name */
@@ -117,9 +117,9 @@ typedef enum __ns_rcode {
     ns_r_badtime = 18
 } ns_rcode;
 
+#endif /* HAVE_ARPA_NAMESER_H */
 
-
-
+#ifndef HAVE_ARPA_NAMESER_COMPAT_H
 
 #define PACKETSZ         NS_PACKETSZ
 #define MAXDNAME         NS_MAXDNAME
@@ -189,6 +189,6 @@ typedef enum __ns_rcode {
 #define T_MAILA         ns_t_maila
 #define T_ANY           ns_t_any
 
-
+#endif /* HAVE_ARPA_NAMESER_COMPAT_H */
 
 #endif /* ARES_NAMESER_H */
