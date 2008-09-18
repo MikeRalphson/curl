@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: test.h,v 1.20 2008-07-15 05:46:50 yangtse Exp $
+ * $Id: test.h,v 1.21 2008-09-18 16:21:09 yangtse Exp $
  */
 
 /* Now include the setup.h file from libcurl's private libdir (the source
@@ -43,8 +43,9 @@ extern char *libtest_arg3; /* set by first.c to the argv[3] or NULL */
 extern int test_argc;
 extern char **test_argv;
 
-int select_test (int num_fds, fd_set *rd, fd_set *wr, fd_set *exc,
-                 struct timeval *tv);
+extern int select_test(int num_fds, fd_set *rd, fd_set *wr, fd_set *exc,
+                       struct timeval *tv);
 
-int test(char *URL); /* the actual test function provided by each individual
-                        libXXX.c file */
+extern int test(char *URL); /* the actual test function provided by each
+                               individual libXXX.c file */
+

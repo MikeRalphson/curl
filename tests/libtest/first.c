@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: first.c,v 1.17 2007-10-02 16:05:28 yangtse Exp $
+ * $Id: first.c,v 1.18 2008-09-18 16:21:09 yangtse Exp $
  */
 
 #include "test.h"
@@ -15,9 +15,6 @@
 extern void curl_memdebug(const char *);
 extern void curl_memlimit(int);
 #endif
-
-/* test is provided in the test code file */
-int test(char *url);
 
 int select_test (int num_fds, fd_set *rd, fd_set *wr, fd_set *exc,
                  struct timeval *tv)

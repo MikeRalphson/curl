@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.24 2008-04-23 23:55:34 yangtse Exp $
+ * $Id: util.c,v 1.25 2008-09-18 16:21:09 yangtse Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -58,9 +58,6 @@
 #if defined(ENABLE_IPV6) && defined(__MINGW32__)
 const struct in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};
 #endif
-
-/* someone else must set this properly */
-extern const char *serverlogfile;
 
 void logmsg(const char *msg, ...)
 {

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.742 2008-09-08 19:34:58 yangtse Exp $
+ * $Id: url.c,v 1.743 2008-09-18 16:21:09 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -183,10 +183,6 @@ static void flush_cookies(struct SessionHandle *data, int cleanup);
 
 #ifndef WIN32
 /* not for WIN32 builds */
-
-#ifdef HAVE_SIGSETJMP
-extern sigjmp_buf curl_jmpenv;
-#endif
 
 #ifdef SIGALRM
 static

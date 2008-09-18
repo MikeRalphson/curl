@@ -20,11 +20,15 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.62 2008-07-09 18:39:49 bagder Exp $
+ * $Id: hostip.h,v 1.63 2008-09-18 16:21:09 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
 #include "hash.h"
+
+#ifdef HAVE_SETJMP_H
+#include <setjmp.h>
+#endif
 
 #ifdef NETWARE
 #undef in_addr_t
@@ -287,7 +291,13 @@ void Curl_destroy_thread_data(struct Curl_async *async);
 #define CURL_INADDR_NONE INADDR_NONE
 #endif
 
-
-
+#ifdef HAVE_SIGSETJMP
+/* Forward-declaration of variable defined in hostip.c. Beware this
+ * is a global and unique instance. This is used to store the return
+ * address that we can jump back to from inside a signal handler.
+ * This is not thread-safe stuff.
+ */
+extern sigjmp_buf curl_jmpenv;
+#endif
 
 #endif
