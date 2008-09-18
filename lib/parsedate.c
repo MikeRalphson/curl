@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.28 2008-06-22 06:57:00 danf Exp $
+ * $Id: parsedate.c,v 1.29 2008-09-18 19:17:28 yangtse Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -83,6 +83,7 @@
 #endif
 
 #include <curl/curl.h>
+#include "parsedate.h"
 
 const char * const Curl_wkday[] =
 {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};

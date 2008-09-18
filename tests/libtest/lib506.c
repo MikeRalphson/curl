@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib506.c,v 1.20 2008-09-15 22:35:09 danf Exp $
+ * $Id: lib506.c,v 1.21 2008-09-18 19:17:28 yangtse Exp $
  */
 
 #include "test.h"
@@ -15,8 +15,8 @@
 
 #include <curl/mprintf.h>
 
-const char *HOSTHEADER = "Host: www.host.foo.com";
-const char *JAR = "log/jar506";
+static const char *HOSTHEADER = "Host: www.host.foo.com";
+static const char *JAR = "log/jar506";
 #define THREADS 2
 
 /* struct containing data of a thread */
