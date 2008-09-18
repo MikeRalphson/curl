@@ -5,12 +5,12 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib517.c,v 1.4 2008-09-05 08:15:21 bagder Exp $
+ * $Id: lib517.c,v 1.5 2008-09-18 19:02:40 yangtse Exp $
  */
 
 #include "test.h"
 
-const char *dates[]={
+static const char *dates[]={
   "Sun, 06 Nov 1994 08:49:37 GMT",
   "Sunday, 06-Nov-94 08:49:37 GMT",
   "Sun Nov  6 08:49:37 1994",

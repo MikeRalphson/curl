@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib552.c,v 1.5 2008-07-11 18:23:06 danf Exp $
+ * $Id: lib552.c,v 1.6 2008-09-18 19:02:40 yangtse Exp $
  *
  * argv1 = URL
  * argv2 = proxy with embedded user+password
@@ -106,15 +106,15 @@ int my_trace(CURL *handle, curl_infotype type,
 
 
 static size_t current_offset = 0;
-char data[70000]; /* MUST  be more than 64k OR MAX_INITIAL_POST_SIZE */
+static char databuf[70000]; /* MUST be more than 64k OR MAX_INITIAL_POST_SIZE */
 
 static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
   size_t  amount = nmemb * size; /* Total bytes curl wants */
-  size_t  available = sizeof data - current_offset;  /* What we have to give */
+  size_t  available = sizeof(databuf) - current_offset; /* What we have to give */
   size_t  given = amount < available ? amount : available; /* What is given */
   (void)stream;
-  memcpy(ptr, data + current_offset, given);
+  memcpy(ptr, databuf + current_offset, given);
   current_offset += given;
   return given;
 }
@@ -161,14 +161,14 @@ int test(char *URL)
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
     /* setup repeated data string */
-    for (i=0; i < sizeof data; ++i)
-        data[i] = fill[i % sizeof fill];
+    for (i=0; i < sizeof(databuf); ++i)
+        databuf[i] = fill[i % sizeof fill];
 
     /* Post */
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
 
     /* Setup read callback */
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long) sizeof data);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long) sizeof(databuf));
     curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
 
     /* Write callback */
