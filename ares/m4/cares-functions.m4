@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.5 2008-09-17 11:31:37 yangtse Exp $
+# $Id: cares-functions.m4,v 1.6 2008-09-18 02:23:33 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -200,7 +200,7 @@ dnl shell variable cares_disallow_getservbyport_r, then
 dnl HAVE_GETSERVBYPORT_R will be defined.
 
 AC_DEFUN([CARES_CHECK_FUNC_GETSERVBYPORT_R], [
-  AC_REQUIRE([CARES_INCLUDES_SYS_UIO])dnl
+  AC_REQUIRE([CARES_INCLUDES_NETDB])dnl
   #
   tst_links_getservbyport_r="unknown"
   tst_proto_getservbyport_r="unknown"

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.14 2008-09-17 16:03:49 yangtse Exp $
+# $Id: curl-functions.m4,v 1.15 2008-09-18 02:23:33 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -383,7 +383,7 @@ dnl shell variable curl_disallow_gethostbyaddr_r, then
 dnl HAVE_GETHOSTBYADDR_R will be defined.
 
 AC_DEFUN([CURL_CHECK_FUNC_GETHOSTBYADDR_R], [
-  AC_REQUIRE([CURL_INCLUDES_SYS_UIO])dnl
+  AC_REQUIRE([CURL_INCLUDES_NETDB])dnl
   #
   tst_links_gethostbyaddr_r="unknown"
   tst_proto_gethostbyaddr_r="unknown"
@@ -525,7 +525,7 @@ dnl shell variable curl_disallow_gethostbyname_r, then
 dnl HAVE_GETHOSTBYNAME_R will be defined.
 
 AC_DEFUN([CURL_CHECK_FUNC_GETHOSTBYNAME_R], [
-  AC_REQUIRE([CURL_INCLUDES_SYS_UIO])dnl
+  AC_REQUIRE([CURL_INCLUDES_NETDB])dnl
   #
   tst_links_gethostbyname_r="unknown"
   tst_proto_gethostbyname_r="unknown"
@@ -752,7 +752,7 @@ dnl shell variable curl_disallow_getservbyport_r, then
 dnl HAVE_GETSERVBYPORT_R will be defined.
 
 AC_DEFUN([CURL_CHECK_FUNC_GETSERVBYPORT_R], [
-  AC_REQUIRE([CURL_INCLUDES_SYS_UIO])dnl
+  AC_REQUIRE([CURL_INCLUDES_NETDB])dnl
   #
   tst_links_getservbyport_r="unknown"
   tst_proto_getservbyport_r="unknown"
