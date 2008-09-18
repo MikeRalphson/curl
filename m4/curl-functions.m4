@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.16 2008-09-18 10:07:52 yangtse Exp $
+# $Id: curl-functions.m4,v 1.17 2008-09-18 10:12:16 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -504,7 +504,7 @@ AC_DEFUN([CURL_CHECK_FUNC_GETHOSTBYADDR_R], [
       AC_DEFINE(HAVE_GETHOSTBYADDR_R_5, 1, [gethostbyaddr_r() takes 5 args])
     elif test "$tst_nargs_gethostbyaddr_r" -eq "7"; then
       AC_DEFINE(HAVE_GETHOSTBYADDR_R_7, 1, [gethostbyaddr_r() takes 7 args])
-    elif test "$tst_nargs_gethostbyaddr_r" -eq "6"; then
+    elif test "$tst_nargs_gethostbyaddr_r" -eq "8"; then
       AC_DEFINE(HAVE_GETHOSTBYADDR_R_8, 1, [gethostbyaddr_r() takes 8 args])
     fi
     #
