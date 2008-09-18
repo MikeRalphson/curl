@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.17 2008-09-18 10:12:16 yangtse Exp $
+# $Id: curl-functions.m4,v 1.18 2008-09-18 11:21:55 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -1735,6 +1735,12 @@ AC_DEFUN([CURL_CHECK_FUNC_STRERROR_R], [
     ])
   fi
   #
+  if test "$tst_works_glibc_strerror_r" = "yes"; then
+    tst_posix_strerror_r="no"
+  fi
+  if test "$tst_works_posix_strerror_r" = "yes"; then
+    tst_glibc_strerror_r="no"
+  fi
   if test "$tst_glibc_strerror_r" = "yes" &&
     test "$tst_works_glibc_strerror_r" != "no" &&
     test "$tst_posix_strerror_r" != "yes"; then
