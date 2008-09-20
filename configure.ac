@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.354 2008-09-19 18:39:24 yangtse Exp $
+# $Id: configure.ac,v 1.355 2008-09-20 12:44:44 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1274,6 +1274,24 @@ if test X"$OPT_SSL" != Xno; then
       fi
     fi
   fi
+
+  dnl This is for Msys/Mingw
+  case $host in
+    *-*-msys* | *-*-mingw*)
+      AC_MSG_CHECKING([for gdi32])
+      my_ac_save_LIBS=$LIBS
+      LIBS="-lgdi32 $LIBS"
+      AC_TRY_LINK([#include <windef.h>
+                   #include <wingdi.h>],
+                   [GdiFlush();],
+                   [ dnl worked!
+                   AC_MSG_RESULT([yes])],
+                   [ dnl failed, restore LIBS
+                   LIBS=$my_ac_save_LIBS
+                   AC_MSG_RESULT(no)]
+                  )
+      ;;
+  esac
 
   AC_CHECK_LIB(crypto, CRYPTO_lock,[
      HAVECRYPTO="yes"
