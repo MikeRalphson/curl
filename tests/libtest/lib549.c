@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib549.c,v 1.2 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib549.c,v 1.3 2008-09-20 04:26:57 yangtse Exp $
  *
  * argv1 = URL
  * argv2 = proxy
@@ -13,6 +13,8 @@
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 int test(char *URL)
 {

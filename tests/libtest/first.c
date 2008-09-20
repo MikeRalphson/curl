@@ -5,15 +5,14 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: first.c,v 1.18 2008-09-18 16:21:09 yangtse Exp $
+ * $Id: first.c,v 1.19 2008-09-20 04:26:55 yangtse Exp $
  */
 
 #include "test.h"
 
 #ifdef CURLDEBUG
-/* provide a proto for this debug function */
-extern void curl_memdebug(const char *);
-extern void curl_memlimit(int);
+#  define MEMDEBUG_NODEFINES
+#  include "memdebug.h"
 #endif
 
 int select_test (int num_fds, fd_set *rd, fd_set *wr, fd_set *exc,

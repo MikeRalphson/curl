@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib503.c,v 1.18 2008-05-22 21:49:52 danf Exp $
+ * $Id: lib503.c,v 1.19 2008-09-20 04:26:56 yangtse Exp $
  */
 
 #include "test.h"
@@ -13,6 +13,7 @@
 #include <sys/types.h>
 
 #include "testutil.h"
+#include "memdebug.h"
 
 #define MAIN_LOOP_HANG_TIMEOUT     90 * 1000
 #define MULTI_PERFORM_HANG_TIMEOUT 60 * 1000

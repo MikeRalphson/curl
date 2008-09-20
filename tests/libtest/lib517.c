@@ -5,10 +5,12 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib517.c,v 1.5 2008-09-18 19:02:40 yangtse Exp $
+ * $Id: lib517.c,v 1.6 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 static const char *dates[]={
   "Sun, 06 Nov 1994 08:49:37 GMT",

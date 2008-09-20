@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib530.c,v 1.17 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib530.c,v 1.18 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
@@ -21,6 +21,7 @@
 #endif
 
 #include "testutil.h"
+#include "memdebug.h"
 
 #define MAIN_LOOP_HANG_TIMEOUT     90 * 1000
 #define MULTI_PERFORM_HANG_TIMEOUT 60 * 1000

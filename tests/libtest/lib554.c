@@ -5,10 +5,12 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib554.c,v 1.4 2008-07-08 21:16:18 danf Exp $
+ * $Id: lib554.c,v 1.5 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 static char data[]="this is what we post to the silly web server\n";
 

@@ -5,13 +5,15 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib552.c,v 1.6 2008-09-18 19:02:40 yangtse Exp $
+ * $Id: lib552.c,v 1.7 2008-09-20 04:26:57 yangtse Exp $
  *
  * argv1 = URL
  * argv2 = proxy with embedded user+password
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 struct data {
   char trace_ascii; /* 1 or 0 */

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib547.c,v 1.5 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib547.c,v 1.6 2008-09-20 04:26:57 yangtse Exp $
  *
  * argv1 = URL
  * argv2 = proxy
@@ -13,6 +13,8 @@
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 #define UPLOADTHIS "this is the blurb we want to upload\n"
 

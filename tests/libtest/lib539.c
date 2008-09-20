@@ -5,10 +5,12 @@
   *                            | (__| |_| |  _ <| |___
   *                             \___|\___/|_| \_\_____|
   *
-  * $Id: lib539.c,v 1.1 2008-07-07 20:37:08 bagder Exp $
+  * $Id: lib539.c,v 1.2 2008-09-20 04:26:57 yangtse Exp $
   */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 int test(char *URL)
 {

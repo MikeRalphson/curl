@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib542.c,v 1.3 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib542.c,v 1.4 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -27,6 +27,8 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+
+#include "memdebug.h"
 
 /*
  * FTP get with NOBODY but no HEADER

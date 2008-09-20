@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib555.c,v 1.3 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib555.c,v 1.4 2008-09-20 04:26:57 yangtse Exp $
  *
  * This test case is supposed to be identical to 547 except that this uses the
  * multi interface and 547 is easy interface.
@@ -17,6 +17,7 @@
 
 #include "test.h"
 #include "testutil.h"
+#include "memdebug.h"
 
 #define MULTI_PERFORM_HANG_TIMEOUT 60 * 1000
 

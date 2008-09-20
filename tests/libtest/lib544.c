@@ -5,11 +5,12 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib544.c,v 1.2 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib544.c,v 1.3 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
 
+#include "memdebug.h"
 
 static char teststring[] =
   "This\0 is test binary data with an embedded NUL byte\n";

@@ -5,13 +5,15 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib553.c,v 1.3 2008-07-11 18:23:06 danf Exp $
+ * $Id: lib553.c,v 1.4 2008-09-20 04:26:57 yangtse Exp $
  *
  * This test case and code is based on the bug recipe Joe Malicki provided for
  * bug report #1871269, fixed on Jan 14 2008 before the 7.18.0 release.
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 #define POSTLEN 40960
 

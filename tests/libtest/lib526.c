@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib526.c,v 1.14 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib526.c,v 1.15 2008-09-20 04:26:57 yangtse Exp $
  */
 
 /*
@@ -34,6 +34,7 @@
 #include <fcntl.h>
 
 #include "testutil.h"
+#include "memdebug.h"
 
 #define MAIN_LOOP_HANG_TIMEOUT     90 * 1000
 #define MULTI_PERFORM_HANG_TIMEOUT 60 * 1000

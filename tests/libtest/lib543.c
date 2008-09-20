@@ -5,13 +5,15 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib543.c,v 1.1 2007-09-30 22:40:24 bagder Exp $
+ * $Id: lib543.c,v 1.2 2008-09-20 04:26:57 yangtse Exp $
  *
  * Based on Alex Fishman's bug report on September 30, 2007
  */
 
 #include "setup.h"
 #include "test.h"
+
+#include "memdebug.h"
 
 int test(char *URL)
 {

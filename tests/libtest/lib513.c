@@ -5,10 +5,12 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib513.c,v 1.4 2008-05-22 21:49:52 danf Exp $
+ * $Id: lib513.c,v 1.5 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userp)
 {

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib506.c,v 1.21 2008-09-18 19:17:28 yangtse Exp $
+ * $Id: lib506.c,v 1.22 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
@@ -14,6 +14,8 @@
 #include <errno.h>
 
 #include <curl/mprintf.h>
+
+#include "memdebug.h"
 
 static const char *HOSTHEADER = "Host: www.host.foo.com";
 static const char *JAR = "log/jar506";

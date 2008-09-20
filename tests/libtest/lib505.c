@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib505.c,v 1.14 2008-05-22 21:49:52 danf Exp $
+ * $Id: lib505.c,v 1.15 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "setup.h" /* struct_stat etc. */
@@ -27,6 +27,8 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+
+#include "memdebug.h"
 
 /*
  * This example shows an FTP upload, with a rename of the file just after

@@ -5,10 +5,12 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib510.c,v 1.6 2008-05-22 21:49:52 danf Exp $
+ * $Id: lib510.c,v 1.7 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 static const char *post[]={
   "one",

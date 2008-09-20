@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib537.c,v 1.20 2008-05-22 21:49:53 danf Exp $
+ * $Id: lib537.c,v 1.21 2008-09-20 04:26:57 yangtse Exp $
  */
 
 #include "test.h"
@@ -25,6 +25,8 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+
+#include "memdebug.h"
 
 #if !defined(HAVE_POLL_FINE)    && \
     !defined(USE_WINSOCK)       && \

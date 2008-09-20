@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib557.c,v 1.5 2008-08-24 17:10:24 yangtse Exp $
+ * $Id: lib557.c,v 1.6 2008-09-20 04:26:57 yangtse Exp $
  */
 
 /*
@@ -14,6 +14,8 @@
  */
 
 #include "test.h"
+
+#include "memdebug.h"
 
 int curl_msprintf(char *buffer, const char *format, ...);
 
