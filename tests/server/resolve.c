@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.8 2008-02-28 00:55:06 yangtse Exp $
+ * $Id: resolve.c,v 1.9 2008-09-20 12:33:02 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -61,7 +61,7 @@
 /* include memdebug.h last */
 #include "memdebug.h"
 
-char use_ipv6=FALSE;
+static char use_ipv6=FALSE;
 
 const char *serverlogfile=""; /* for a util.c function we don't use */
 
