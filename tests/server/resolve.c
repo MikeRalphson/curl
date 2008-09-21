@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.9 2008-09-20 12:33:02 yangtse Exp $
+ * $Id: resolve.c,v 1.10 2008-09-21 04:02:13 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
   }
 #endif
   if(rc)
-    printf("Resolving '%s' didn't work\n", host);
+    printf("Resolving IPv%d '%s' didn't work\n", (use_ipv6?6:4), host);
 
   return !rc?0:1;
 }
