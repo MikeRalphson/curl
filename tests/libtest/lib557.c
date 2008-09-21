@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib557.c,v 1.6 2008-09-20 04:26:57 yangtse Exp $
+ * $Id: lib557.c,v 1.7 2008-09-21 03:48:25 yangtse Exp $
  */
 
 /*
@@ -15,9 +15,9 @@
 
 #include "test.h"
 
-#include "memdebug.h"
+#include <curl/mprintf.h>
 
-int curl_msprintf(char *buffer, const char *format, ...);
+#include "memdebug.h"
 
 
 #if (CURL_SIZEOF_CURL_OFF_T > CURL_SIZEOF_LONG)
