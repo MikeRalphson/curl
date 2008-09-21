@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.125 2008-09-20 12:33:02 yangtse Exp $
+ * $Id: sws.c,v 1.126 2008-09-21 02:35:20 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -987,12 +987,7 @@ int main(int argc, char *argv[])
   }
 
   logmsg("Running IPv%d version on port %hu",
-#ifdef ENABLE_IPV6
-         (use_ipv6?6:4)
-#else
-         4
-#endif
-         , port );
+         (use_ipv6?6:4), port);
 
   /* start accepting connections */
   rc = listen(sock, 5);
