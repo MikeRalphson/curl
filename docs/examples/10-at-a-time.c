@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: 10-at-a-time.c,v 1.8 2008-08-31 12:12:35 yangtse Exp $
+ * $Id: 10-at-a-time.c,v 1.9 2008-09-22 17:27:24 danf Exp $
  *
  * Example application source code using the multi interface to download many
  * files, but with a capped maximum amount of simultaneous transfers.
@@ -113,7 +113,7 @@ int main(void)
 
   /* we can optionally limit the total amount of connections this multi handle
      uses */
-  curl_multi_setopt(cm, CURLMOPT_MAXCONNECTS, MAX);
+  curl_multi_setopt(cm, CURLMOPT_MAXCONNECTS, (long)MAX);
 
   for (C = 0; C < MAX; ++C) {
     init(cm, C);
