@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.388 2008-09-08 19:34:58 yangtse Exp $
+ * $Id: http.c,v 1.389 2008-09-22 20:42:13 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1813,6 +1813,13 @@ static CURLcode https_connecting(struct connectdata *conn, bool *done)
 {
   CURLcode result;
   DEBUGASSERT((conn) && (conn->protocol & PROT_HTTPS));
+
+  if(conn->ssl[FIRSTSOCKET].use) {
+    /* in some circumstances, this already has SSL enabled and then we don't
+       need to connect SSL again */
+    *done = TRUE;
+    return CURLE_OK;
+  }
 
   /* perform SSL initialization for this socket */
   result = Curl_ssl_connect_nonblocking(conn, FIRSTSOCKET, done);
