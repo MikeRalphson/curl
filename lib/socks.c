@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.25 2008-06-20 10:43:32 bagder Exp $
+ * $Id: socks.c,v 1.26 2008-09-22 23:12:10 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -88,7 +88,7 @@ static int blockread_all(struct connectdata *conn, /* connection data */
       result = ~CURLE_OK;
       break;
     }
-    result = Curl_read(conn, sockfd, buf, buffersize, &nread);
+    result = Curl_read_plain(sockfd, buf, buffersize, &nread);
     if(result)
       break;
 

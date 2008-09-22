@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.147 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: sendf.c,v 1.148 2008-09-22 23:12:09 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -534,6 +534,30 @@ CURLcode Curl_client_write(struct connectdata *conn,
   return CURLE_OK;
 }
 
+CURLcode Curl_read_plain(curl_socket_t sockfd,
+                         char *buf,
+                         size_t bytesfromsocket,
+                         ssize_t *n)
+{
+  ssize_t nread = sread(sockfd, buf, bytesfromsocket);
+
+  if(-1 == nread) {
+    int err = SOCKERRNO;
+#ifdef USE_WINSOCK
+    if(WSAEWOULDBLOCK == err)
+#else
+    if((EWOULDBLOCK == err) || (EAGAIN == err) || (EINTR == err))
+#endif
+      return -1;
+    else
+      return CURLE_RECV_ERROR;
+  }
+
+  /* we only return number of bytes read when we return OK */
+  *n = nread;
+  return CURLE_OK;
+}
+
 #ifndef MIN
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #endif
@@ -613,20 +637,13 @@ int Curl_read(struct connectdata *conn, /* connection data */
     if(conn->sec_complete)
       nread = Curl_sec_read(conn, sockfd, buffertofill,
                             bytesfromsocket);
-    else
-      nread = sread(sockfd, buffertofill, bytesfromsocket);
-
-    if(-1 == nread) {
-      int err = SOCKERRNO;
-#ifdef USE_WINSOCK
-      if(WSAEWOULDBLOCK == err)
-#else
-      if((EWOULDBLOCK == err) || (EAGAIN == err) || (EINTR == err))
-#endif
-        return -1;
+    else {
+      CURLcode ret = Curl_read_plain(sockfd, buffertofill, bytesfromsocket,
+                                     &nread);
+      if(ret)
+        return ret;
     }
   }
-
   if(nread >= 0) {
     if(pipelining) {
       memcpy(buf, conn->master_buffer, nread);
