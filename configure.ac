@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.355 2008-09-20 12:44:44 yangtse Exp $
+# $Id: configure.ac,v 1.356 2008-09-22 18:42:48 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -316,8 +316,12 @@ if test "$curl_cv_have_def___INTEL_COMPILER" = "yes"; then
   dnl #266: function declared implicitly
   CPPFLAGS="$CPPFLAGS -we 140,147,165,266"
   dnl Disable some remarks
+  dnl #279: controlling expression is constant
   dnl #981: operands are evaluated in unspecified order
   dnl #1469: "cc" clobber ignored
+  if test "$curl_cv_def___INTEL_COMPILER" -lt "910"; then
+    CPPFLAGS="$CPPFLAGS -wd 279"
+  fi
   CPPFLAGS="$CPPFLAGS -wd 981,1469"
   dnl Disable use of ANSI C aliasing rules in optimizations
   CFLAGS="$CFLAGS -no-ansi-alias"
