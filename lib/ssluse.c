@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.206 2008-09-05 14:29:21 bagder Exp $
+ * $Id: ssluse.c,v 1.207 2008-09-23 13:16:36 giva Exp $
  ***************************************************************************/
 
 /*
@@ -555,7 +555,7 @@ int cert_stuff(struct connectdata *conn,
 }
 
 /* returns non-zero on failure */
-static int x509_name_oneline(X509_NAME *a, char *buf, int size)
+static int x509_name_oneline(X509_NAME *a, char *buf, size_t size)
 {
 #if 0
   return X509_NAME_oneline(a, buf, size);
@@ -1744,7 +1744,8 @@ static int X509V3_ext(struct SessionHandle *data,
                       int certnum,
                       STACK_OF(X509_EXTENSION) *exts)
 {
-  int i, j;
+  int i;
+  size_t j;
 
   if(sk_X509_EXTENSION_num(exts) <= 0)
     /* no extensions, bail out */
