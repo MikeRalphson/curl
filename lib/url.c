@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.746 2008-09-24 01:08:02 danf Exp $
+ * $Id: url.c,v 1.747 2008-09-24 12:22:17 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -138,15 +138,10 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "http_ntlm.h"
 #include "socks.h"
 
-#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
-#include "inet_ntoa_r.h"
-#endif
-
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
 #include "memory.h"
-
 /* The last #include file should be: */
 #include "memdebug.h"
 

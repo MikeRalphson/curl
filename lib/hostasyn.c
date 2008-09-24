@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostasyn.c,v 1.19 2007-09-28 21:48:28 bagder Exp $
+ * $Id: hostasyn.c,v 1.20 2008-09-24 12:22:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -70,10 +70,6 @@
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
-
-#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
-#include "inet_ntoa_r.h"
-#endif
 
 #include "memory.h"
 /* The last #include file should be: */

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.209 2008-09-18 13:56:56 yangtse Exp $
+# $Id: acinclude.m4,v 1.210 2008-09-24 12:22:16 yangtse Exp $
 #***************************************************************************
 
 
@@ -2598,28 +2598,6 @@ if test "$ac_cv_working_getaddrinfo" = "yes"; then
   IPV6_ENABLED=1
   AC_SUBST(IPV6_ENABLED)
 fi
-])
-
-
-AC_DEFUN([CURL_CHECK_INET_NTOA_R],
-[
-  dnl determine if function definition for inet_ntoa_r exists.
-  AC_CHECK_FUNCS(inet_ntoa_r,[
-    AC_MSG_CHECKING(whether inet_ntoa_r is declared)
-    AC_EGREP_CPP(inet_ntoa_r,[
-#undef _REENTRANT
-#include <arpa/inet.h>],[
-      AC_DEFINE(HAVE_INET_NTOA_R_DECL, 1, [inet_ntoa_r() is declared])
-      AC_MSG_RESULT(yes)],[
-      AC_MSG_RESULT(no)
-      AC_MSG_CHECKING(whether inet_ntoa_r with -D_REENTRANT is declared)
-      AC_EGREP_CPP(inet_ntoa_r,[
-#undef _REENTRANT
-#define _REENTRANT
-#include <arpa/inet.h>],[
-        AC_DEFINE(HAVE_INET_NTOA_R_DECL, 1, [inet_ntoa_r() is declared])
-        AC_MSG_RESULT(yes)],
-        AC_MSG_RESULT(no))])])
 ])
 
 

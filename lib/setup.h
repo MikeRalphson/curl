@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.160 2008-09-19 18:39:24 yangtse Exp $
+ * $Id: setup.h,v 1.161 2008-09-24 12:22:16 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -454,10 +454,6 @@ int netware_init(void);
 #endif
 
 #define LIBIDN_REQUIRED_VERSION "0.4.1"
-
-#ifdef __UCLIBC__
-#define HAVE_INET_NTOA_R_2_ARGS 1
-#endif
 
 #if defined(USE_GNUTLS) || defined(USE_SSLEAY) || defined(USE_NSS) || defined(USE_QSOSSL)
 #define USE_SSL    /* SSL support has been enabled */

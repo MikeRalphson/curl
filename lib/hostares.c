@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.39 2008-08-20 23:32:50 yangtse Exp $
+ * $Id: hostares.c,v 1.40 2008-09-24 12:22:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -80,12 +80,7 @@
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
-#if defined(HAVE_INET_NTOA_R) && !defined(HAVE_INET_NTOA_R_DECL)
-#include "inet_ntoa_r.h"
-#endif
-
 #include "memory.h"
-
 /* The last #include file should be: */
 #include "memdebug.h"
 

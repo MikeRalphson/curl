@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.356 2008-09-22 18:42:48 yangtse Exp $
+# $Id: configure.ac,v 1.357 2008-09-24 12:22:16 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1881,7 +1881,7 @@ else
   dnl fi
 
   dnl poke around for inet_ntoa_r()
-  CURL_CHECK_INET_NTOA_R()
+  dnl the old inet_ntoa_r check was done here
 
   dnl is there a localtime_r()
   dnl the old localtime_r check was done here
@@ -2116,7 +2116,6 @@ AC_CHECK_FUNCS([basename \
   getrlimit \
   gettimeofday \
   inet_addr \
-  inet_ntoa \
   inet_pton \
   perror \
   pipe \

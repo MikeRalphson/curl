@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.50 2008-09-17 06:59:31 yangtse Exp $
+# $Id: Makefile.netware,v 1.51 2008-09-24 12:22:16 yangtse Exp $
 #
 ## Makefile for building libcares (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -357,7 +357,6 @@ endif
 	@echo $(DL)#define HAVE_GETPROTOBYNAME 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GMTIME_R 1$(DL) >> $@
 	@echo $(DL)#define HAVE_INET_ADDR 1$(DL) >> $@
-	@echo $(DL)#define HAVE_INET_NTOA 1$(DL) >> $@
 	@echo $(DL)#define HAVE_LL 1$(DL) >> $@
 	@echo $(DL)#define HAVE_LOCALTIME_R 1$(DL) >> $@
 	@echo $(DL)#define HAVE_MALLOC_H 1$(DL) >> $@
