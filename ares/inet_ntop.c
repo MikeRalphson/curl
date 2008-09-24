@@ -1,4 +1,4 @@
-/* $Id: inet_ntop.c,v 1.10 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: inet_ntop.c,v 1.11 2008-09-24 16:43:12 yangtse Exp $ */
 
 /* Copyright (c) 1996 by Internet Software Consortium.
  *
@@ -46,7 +46,7 @@
 #include "inet_ntop.h"
 
 
-#if !defined(HAVE_INET_NTOP) || !defined(HAVE_INET_NTOP_IPV6)
+#ifndef HAVE_INET_NTOP
 
 #ifdef SPRINTF_CHAR
 # define SPRINTF(x) strlen(sprintf/**/x)
