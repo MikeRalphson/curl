@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.357 2008-09-24 12:22:16 yangtse Exp $
+# $Id: configure.ac,v 1.358 2008-09-24 12:38:11 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2075,6 +2075,7 @@ CURL_CHECK_FUNC_GETHOSTBYNAME_R
 CURL_CHECK_FUNC_GETHOSTNAME
 CURL_CHECK_FUNC_GETSERVBYPORT_R
 CURL_CHECK_FUNC_GMTIME_R
+CURL_CHECK_FUNC_INET_NTOA_R
 CURL_CHECK_FUNC_LOCALTIME_R
 CURL_CHECK_FUNC_SIGACTION
 CURL_CHECK_FUNC_STRCASECMP
