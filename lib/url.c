@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.745 2008-09-19 17:46:59 danf Exp $
+ * $Id: url.c,v 1.746 2008-09-24 01:08:02 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4682,6 +4682,7 @@ static CURLcode do_init(struct connectdata *conn)
 
   conn->bits.done = FALSE; /* Curl_done() is not called yet */
   conn->bits.do_more = FALSE; /* by default there's no curl_do_more() to use */
+  data->state.expect100header = FALSE;
 
   /* NB: the content encoding software depends on this initialization */
   Curl_easy_initHandleData(data);
