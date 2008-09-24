@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.51 2008-09-24 12:22:16 yangtse Exp $
+# $Id: Makefile.netware,v 1.52 2008-09-24 19:13:01 yangtse Exp $
 #
 ## Makefile for building libcares (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -310,7 +310,6 @@ else
 	@echo $(DL)#define HAVE_DLOPEN 1$(DL) >> $@
 	@echo $(DL)#define HAVE_FTRUNCATE 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GETTIMEOFDAY 1$(DL) >> $@
-	@echo $(DL)#define HAVE_INET_PTON 1$(DL) >> $@
 	@echo $(DL)#define HAVE_INTTYPES_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_LIMITS_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_LONGLONG 1$(DL) >> $@

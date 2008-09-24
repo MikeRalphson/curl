@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.87 2008-09-24 12:22:17 yangtse Exp $
+# $Id: Makefile.netware,v 1.88 2008-09-24 19:13:02 yangtse Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -392,7 +392,6 @@ else
 	@echo $(DL)#define OS "i586-pc-libc-NetWare"$(DL) >> $@
 	@echo $(DL)#define HAVE_FTRUNCATE 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GETTIMEOFDAY 1$(DL) >> $@
-	@echo $(DL)#define HAVE_INET_PTON 1$(DL) >> $@
 	@echo $(DL)#define HAVE_INTTYPES_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_LIMITS_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_LONGLONG 1$(DL) >> $@

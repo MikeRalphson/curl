@@ -1,4 +1,4 @@
-/* $Id: inet_net_pton.c,v 1.14 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: inet_net_pton.c,v 1.15 2008-09-24 19:13:02 yangtse Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -46,8 +46,7 @@
 #include "ares_ipv6.h"
 #include "inet_net_pton.h"
 
-#if !defined(HAVE_INET_NET_PTON) || !defined(HAVE_INET_NET_PTON_IPV6) || \
-    !defined(HAVE_INET_PTON) || !defined(HAVE_INET_PTON_IPV6)
+#if !defined(HAVE_INET_NET_PTON) || !defined(HAVE_INET_NET_PTON_IPV6)
 
 /*
  * static int
@@ -424,7 +423,7 @@ ares_inet_net_pton(int af, const char *src, void *dst, size_t size)
 
 #endif
 
-#if !defined(HAVE_INET_PTON) || !defined(HAVE_INET_PTON_IPV6)
+#ifndef HAVE_INET_PTON
 int ares_inet_pton(int af, const char *src, void *dst)
 {
   int size, result;
