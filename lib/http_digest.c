@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.40 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: http_digest.c,v 1.41 2008-09-25 14:09:22 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -104,6 +104,12 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
             include the possibly trailing comma, newline or carriage return */
          (2 ==  sscanf(header, "%255[^=]=%1023[^\r\n,]",
                        value, content)) ) {
+        if(!strcmp("\"\"", content)) {
+          /* for the name="" case where we get only the "" in the content variable,
+           * simply clear the content then
+           */
+          content[0]=0;
+        }
         if(strequal(value, "nonce")) {
           d->nonce = strdup(content);
           if(!d->nonce)
