@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.307 2008-09-24 01:29:23 yangtse Exp $
+# $Id: runtests.pl,v 1.308 2008-09-26 14:08:33 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2108,7 +2108,7 @@ sub singletest {
             $cmdres = 1000;
         }
         else {
-            $cmdres /= 256;
+            $cmdres >>= 8;
         }
     }
     if(!$dumped_core) {
