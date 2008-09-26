@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.127 2008-09-26 01:08:24 yangtse Exp $
+ * $Id: sws.c,v 1.128 2008-09-26 11:21:22 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -74,7 +74,7 @@
 #ifdef ENABLE_IPV6
 static bool use_ipv6 = FALSE;
 #endif
-const char *ipv_inuse = "IPv4";
+static const char *ipv_inuse = "IPv4";
 
 #define REQBUFSIZ 150000
 #define REQBUFSIZ_TXT "149999"

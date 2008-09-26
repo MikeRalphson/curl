@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.42 2008-09-21 02:35:20 yangtse Exp $
+ * $Id: tftpd.c,v 1.43 2008-09-26 11:21:22 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -95,6 +95,11 @@
 
 /* include memdebug.h last */
 #include "memdebug.h"
+
+#ifdef ENABLE_IPV6
+static bool use_ipv6 = FALSE;
+#endif
+static const char *ipv_inuse = "IPv4";
 
 struct testcase {
   char *buffer;   /* holds the file data to send to the client */
@@ -407,7 +412,6 @@ const char *serverlogfile = DEFAULT_LOGFILE;
 
 #define REQUEST_DUMP  "log/server.input"
 
-static char use_ipv6=FALSE;
 
 int main(int argc, char **argv)
 {
@@ -445,7 +449,8 @@ int main(int argc, char **argv)
     }
     else if(!strcmp("--ipv6", argv[arg])) {
 #ifdef ENABLE_IPV6
-      use_ipv6=TRUE;
+      ipv_inuse = "IPv6";
+      use_ipv6 = TRUE;
 #endif
       arg++;
     }
@@ -515,8 +520,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  logmsg("Running IPv%d version on port UDP/%hu",
-         (use_ipv6?6:4), port);
+  logmsg("Running %s version on port UDP/%d", ipv_inuse, (int)port);
 
   do {
     fromlen = sizeof(from);
