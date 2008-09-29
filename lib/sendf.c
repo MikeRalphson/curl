@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.148 2008-09-22 23:12:09 bagder Exp $
+ * $Id: sendf.c,v 1.149 2008-09-29 11:13:37 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -534,7 +534,7 @@ CURLcode Curl_client_write(struct connectdata *conn,
   return CURLE_OK;
 }
 
-CURLcode Curl_read_plain(curl_socket_t sockfd,
+int Curl_read_plain(curl_socket_t sockfd,
                          char *buf,
                          size_t bytesfromsocket,
                          ssize_t *n)
