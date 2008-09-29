@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.361 2008-09-26 18:28:32 yangtse Exp $
+# $Id: configure.ac,v 1.362 2008-09-29 16:09:31 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -325,6 +325,8 @@ if test "$curl_cv_have_def___INTEL_COMPILER" = "yes"; then
   CPPFLAGS="$CPPFLAGS -wd 981,1469"
   dnl Disable use of ANSI C aliasing rules in optimizations
   CFLAGS="$CFLAGS -no-ansi-alias"
+  dnl Disable floating point optimizations
+  CFLAGS="$CFLAGS -fp-model precise -mp"
 else
   AC_MSG_RESULT([no])
 fi
