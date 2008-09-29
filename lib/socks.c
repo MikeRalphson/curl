@@ -18,11 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.26 2008-09-22 23:12:10 bagder Exp $
+ * $Id: socks.c,v 1.27 2008-09-29 21:46:04 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
+#ifndef CURL_DISABLE_PROXY
 #include <string.h>
 
 #ifdef NEED_MALLOC_H
@@ -686,3 +687,6 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
   Curl_nonblock(sock, TRUE);
   return CURLE_OK; /* Proxy was successful! */
 }
+
+#endif /* CURL_DISABLE_PROXY */
+
