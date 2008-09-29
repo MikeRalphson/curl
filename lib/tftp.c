@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.72 2008-09-02 18:36:39 danf Exp $
+ * $Id: tftp.c,v 1.73 2008-09-29 21:44:50 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -53,7 +53,6 @@
 #include <net/if.h>
 #endif
 #include <sys/ioctl.h>
-#include <signal.h>
 
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.127 2008-09-10 07:16:11 danf Exp $
+ * $Id: easy.c,v 1.128 2008-09-29 21:44:50 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -61,7 +61,6 @@
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
 #endif
-#include <signal.h>
 
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>

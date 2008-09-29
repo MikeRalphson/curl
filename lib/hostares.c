@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.40 2008-09-24 12:22:16 yangtse Exp $
+ * $Id: hostares.c,v 1.41 2008-09-29 21:44:50 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -50,10 +50,6 @@
 #include <in.h>
 #include <inet.h>
 #include <stdlib.h>
-#endif
-
-#ifdef HAVE_SETJMP_H
-#include <setjmp.h>
 #endif
 
 #ifdef HAVE_PROCESS_H

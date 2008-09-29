@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.53 2008-08-06 08:05:09 giva Exp $
+ * $Id: hostthre.c,v 1.54 2008-09-29 21:44:50 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -51,10 +51,6 @@
 #include <in.h>
 #include <inet.h>
 #include <stdlib.h>
-#endif
-
-#ifdef HAVE_SETJMP_H
-#include <setjmp.h>
 #endif
 
 #ifdef HAVE_PROCESS_H
