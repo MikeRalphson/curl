@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.749 2008-09-29 21:46:04 bagder Exp $
+ * $Id: url.c,v 1.750 2008-09-29 22:45:25 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4105,6 +4105,7 @@ static CURLcode create_conn(struct SessionHandle *data,
   }
 
 
+#ifndef CURL_DISABLE_PROXY
   /***********************************************************************
    * If this is supposed to use a proxy, we need to figure out the proxy
    * host name, so that we can re-use an existing connection
@@ -4117,6 +4118,7 @@ static CURLcode create_conn(struct SessionHandle *data,
     if(result != CURLE_OK)
       return result;
   }
+#endif /* CURL_DISABLE_PROXY */
 
   /***********************************************************************
    * file: is a special case in that it doesn't need a network connection
