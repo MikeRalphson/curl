@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.364 2008-09-29 21:46:04 bagder Exp $
+# $Id: configure.ac,v 1.365 2008-09-29 21:49:10 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -509,7 +509,7 @@ AC_HELP_STRING([--disable-ldaps],[Disable LDAPS support]),
        AC_SUBST(CURL_DISABLE_LDAPS, [1])
 )
 
-AC_MSG_CHECKING([whether to support proxiesy])
+AC_MSG_CHECKING([whether to support proxies])
 AC_ARG_ENABLE(proxy,
 AC_HELP_STRING([--enable-proxy],[Enable proxy support])
 AC_HELP_STRING([--disable-proxy],[Disable proxy support]),
