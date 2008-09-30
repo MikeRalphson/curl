@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.480 2008-09-29 21:46:04 bagder Exp $
+ * $Id: ftp.c,v 1.481 2008-09-30 09:51:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2188,6 +2188,10 @@ static CURLcode ftp_state_size_resp(struct connectdata *conn,
   curl_off_t filesize;
   char *buf = data->state.buffer;
 
+  if((instate != FTP_STOR_SIZE) && (ftpcode == 550))
+    /* the file doesn't exist and we're not about to upload */
+    return CURLE_REMOTE_FILE_NOT_FOUND;
+
   /* get the size from the ascii string: */
   filesize = (ftpcode == 213)?curlx_strtoofft(buf+4, NULL, 0):-1;
 
@@ -3165,6 +3169,7 @@ static CURLcode ftp_done(struct connectdata *conn, CURLcode status,
   case CURLE_UPLOAD_FAILED:
   case CURLE_REMOTE_ACCESS_DENIED:
   case CURLE_FILESIZE_EXCEEDED:
+  case CURLE_REMOTE_FILE_NOT_FOUND:
     /* the connection stays alive fine even though this happened */
     /* fall-through */
   case CURLE_OK: /* doesn't affect the control connection's status */
