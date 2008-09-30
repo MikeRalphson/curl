@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.128 2008-09-29 21:44:50 danf Exp $
+ * $Id: easy.c,v 1.129 2008-09-30 15:10:27 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -122,7 +122,7 @@ static CURLcode win32_init(void)
 #ifdef USE_WINSOCK
   WORD wVersionRequested;
   WSADATA wsaData;
-  int err;
+  int res;
 
 #if defined(ENABLE_IPV6) && (USE_WINSOCK < 2)
   Error IPV6_requires_winsock2
@@ -130,9 +130,9 @@ static CURLcode win32_init(void)
 
   wVersionRequested = MAKEWORD(USE_WINSOCK, USE_WINSOCK);
 
-  err = WSAStartup(wVersionRequested, &wsaData);
+  res = WSAStartup(wVersionRequested, &wsaData);
 
-  if(err != 0)
+  if(res != 0)
     /* Tell the user that we couldn't find a useable */
     /* winsock.dll.     */
     return CURLE_FAILED_INIT;
