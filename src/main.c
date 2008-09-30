@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.487 2008-09-17 17:33:24 danf Exp $
+ * $Id: main.c,v 1.488 2008-09-30 18:59:02 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -4500,7 +4500,7 @@ operate(struct Configurable *config, int argc, argv_item_t argv[])
           my_setopt(curl, CURLOPT_TCP_NODELAY, 1);
 
         /* where to store */
-        my_setopt(curl, CURLOPT_WRITEDATA, (FILE *)&outs);
+        my_setopt(curl, CURLOPT_WRITEDATA, &outs);
         /* what call to write */
         my_setopt(curl, CURLOPT_WRITEFUNCTION, my_fwrite);
 
