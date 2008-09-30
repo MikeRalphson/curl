@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.72 2008-09-02 17:41:20 danf Exp $
+ * $Id: http_ntlm.c,v 1.73 2008-09-30 15:06:03 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1111,7 +1111,7 @@ Curl_ntlm_cleanup(struct connectdata *conn)
 }
 
 #ifdef USE_WINDOWS_SSPI
-CURLcode Curl_ntlm_global_init()
+CURLcode Curl_ntlm_global_init(void)
 {
   /* If security interface is not yet initialized try to do this */
   if(s_hSecDll == NULL) {
@@ -1143,7 +1143,7 @@ CURLcode Curl_ntlm_global_init()
   return CURLE_OK;
 }
 
-void Curl_ntlm_global_cleanup()
+void Curl_ntlm_global_cleanup(void)
 {
   if(s_hSecDll != NULL) {
     FreeLibrary(s_hSecDll);
