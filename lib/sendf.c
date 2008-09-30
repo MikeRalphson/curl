@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.149 2008-09-29 11:13:37 bagder Exp $
+ * $Id: sendf.c,v 1.150 2008-09-30 12:50:52 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -638,7 +638,7 @@ int Curl_read(struct connectdata *conn, /* connection data */
       nread = Curl_sec_read(conn, sockfd, buffertofill,
                             bytesfromsocket);
     else {
-      CURLcode ret = Curl_read_plain(sockfd, buffertofill, bytesfromsocket,
+      int ret = Curl_read_plain(sockfd, buffertofill, bytesfromsocket,
                                      &nread);
       if(ret)
         return ret;
