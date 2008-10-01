@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.54 2008-09-26 11:21:22 yangtse Exp $
+ * $Id: sockfilt.c,v 1.55 2008-10-01 17:34:25 danf Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -406,13 +406,13 @@ static bool juggle(curl_socket_t *sockfdp,
   fd_set fds_read;
   fd_set fds_write;
   fd_set fds_err;
-  curl_socket_t sockfd;
-  curl_socket_t maxfd;
+  curl_socket_t sockfd = CURL_SOCKET_BAD;
+  curl_socket_t maxfd = CURL_SOCKET_BAD;
   ssize_t rc;
   ssize_t nread_socket;
   ssize_t bytes_written;
   ssize_t buffer_len;
-  int error;
+  int error = 0;
 
  /* 'buffer' is this excessively large only to be able to support things like
     test 1003 which tests exceedingly large server response lines */

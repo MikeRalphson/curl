@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: util.c,v 1.26 2008-09-26 00:17:01 yangtse Exp $
+ * $Id: util.c,v 1.27 2008-10-01 17:34:25 danf Exp $
  ***************************************************************************/
 #include "setup.h" /* portability help from the lib directory */
 
@@ -235,7 +235,7 @@ int write_pidfile(const char *filename)
 void set_advisor_read_lock(const char *filename)
 {
   FILE *lockfile;
-  int error;
+  int error = 0;
   int res;
 
   do {
@@ -257,7 +257,7 @@ void set_advisor_read_lock(const char *filename)
 
 void clear_advisor_read_lock(const char *filename)
 {
-  int error;
+  int error = 0;
   int res;
 
   do {

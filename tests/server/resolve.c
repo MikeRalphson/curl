@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: resolve.c,v 1.11 2008-09-26 11:21:22 yangtse Exp $
+ * $Id: resolve.c,v 1.12 2008-10-01 17:34:25 danf Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -71,7 +71,7 @@ const char *serverlogfile=""; /* for a util.c function we don't use */
 int main(int argc, char *argv[])
 {
   int arg=1;
-  char *host;
+  const char *host = NULL;
   int rc;
 
   while(argc>arg) {

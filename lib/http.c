@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.391 2008-09-29 21:44:50 danf Exp $
+ * $Id: http.c,v 1.392 2008-10-01 17:34:24 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -591,6 +591,9 @@ http_output_auth(struct connectdata *conn,
         if(result)
           return result;
       }
+#else
+      (void)request;
+      (void)path;
 #endif
       if(auth) {
         infof(data, "Proxy auth using %s with user '%s'\n",

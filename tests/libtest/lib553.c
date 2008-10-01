@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib553.c,v 1.4 2008-09-20 04:26:57 yangtse Exp $
+ * $Id: lib553.c,v 1.5 2008-10-01 17:34:25 danf Exp $
  *
  * This test case and code is based on the bug recipe Joe Malicki provided for
  * bug report #1871269, fixed on Jan 14 2008 before the 7.18.0 release.
@@ -45,7 +45,7 @@ static char buf[SIZE_HEADERS + 100];
 int test(char *URL)
 {
   CURL *curl;
-  CURLcode res;
+  CURLcode res = CURLE_FAILED_INIT;
   int i;
   struct curl_slist *headerlist=NULL, *hl;
 
