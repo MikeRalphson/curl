@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.70 2008-08-30 04:13:31 yangtse Exp $
+# $Id: Makefile.am,v 1.71 2008-10-01 18:29:13 danf Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -77,6 +77,10 @@ endif
 examples:
 	@(cd docs/examples; $(MAKE) check)
 
+clean-local:
+	@(cd tests; $(MAKE) clean)
+	@(cd docs; $(MAKE) clean)
+
 #
 # Build source and binary rpms. For rpm-3.0 and above, the ~/.rpmmacros
 # must contain the following line:
@@ -105,7 +109,7 @@ rpm:
 	mv $$RPM_TOPDIR/SRPMS/$(RPMDIST)-*.src.rpm .
 
 #
-# Build a Solaris pkkgadd format file
+# Build a Solaris pkgadd format file
 # run 'make pkgadd' once you've done './configure' and 'make' to make a Solaris pkgadd format
 # file (which ends up back in this directory).
 # The pkgadd file is in 'pkgtrans' format, so to install on Solaris, do
