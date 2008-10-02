@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.65 2008-10-02 14:42:57 yangtse Exp $
+ * $Id: hostip.h,v 1.66 2008-10-02 22:58:09 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -166,7 +166,7 @@ int Curl_resolv(struct connectdata *conn, const char *hostname,
                 int port, struct Curl_dns_entry **dnsentry);
 int Curl_resolv_timeout(struct connectdata *conn, const char *hostname,
                         int port, struct Curl_dns_entry **dnsentry,
-                        volatile long timeout);
+                        long timeoutms);
 
 /*
  * Curl_ipvalid() checks what CURL_IPRESOLVE_* requirements that might've
