@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.198 2008-10-01 17:34:25 danf Exp $
+ * $Id: hostip.c,v 1.199 2008-10-02 13:28:10 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -524,7 +524,7 @@ int Curl_resolv_timeout(struct connectdata *conn,
                         const char *hostname,
                         int port,
                         struct Curl_dns_entry **entry,
-                        long timeout)
+                        volatile long timeout)
 {
 #ifdef USE_ALARM_TIMEOUT 
 #ifdef HAVE_SIGACTION
