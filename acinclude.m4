@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.211 2008-09-30 12:39:54 yangtse Exp $
+# $Id: acinclude.m4,v 1.212 2008-10-02 03:56:55 yangtse Exp $
 #***************************************************************************
 
 
@@ -2599,57 +2599,6 @@ if test "$ac_cv_working_getaddrinfo" = "yes"; then
   AC_SUBST(IPV6_ENABLED)
 fi
 ])
-
-
-dnl **********************************************************************
-dnl CURL_DETECT_ICC ([ACTION-IF-YES])
-dnl
-dnl check if this is the Intel ICC compiler, and if so run the ACTION-IF-YES
-dnl sets the $ICC variable to "yes" or "no"
-dnl **********************************************************************
-AC_DEFUN([CURL_DETECT_ICC],
-[
-    ICC="no"
-    AC_MSG_CHECKING([for icc in use])
-    if test "$GCC" = "yes"; then
-       dnl check if this is icc acting as gcc in disguise
-       AC_EGREP_CPP([^__INTEL_COMPILER], [__INTEL_COMPILER],
-         dnl action if the text is found, this it has not been replaced by the
-         dnl cpp
-         ICC="no",
-         dnl the text was not found, it was replaced by the cpp
-         ICC="yes"
-         AC_MSG_RESULT([yes])
-         [$1]
-       )
-    fi
-    if test "$ICC" = "no"; then
-        # this is not ICC
-        AC_MSG_RESULT([no])
-    fi
-])
-
-dnl We create a function for detecting which compiler we use and then set as
-dnl pendantic compiler options as possible for that particular compiler. The
-dnl options are only used for debug-builds.
-
-AC_DEFUN([CURL_CC_DEBUG_OPTS],
-[
-    dnl strip off optimizer flags
-    NEWFLAGS=""
-    for flag in $CFLAGS; do
-      case "$flag" in
-      -O*)
-        dnl echo "cut off $flag"
-        ;;
-      *)
-        NEWFLAGS="$NEWFLAGS $flag"
-        ;;
-      esac
-    done
-    CFLAGS=$NEWFLAGS
-]) # AC-DEFUN
-
 
 
 # This is only a temporary fix. This macro is here to replace the broken one
