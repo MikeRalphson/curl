@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.67 2008-08-22 18:18:20 yangtse Exp $
+# $Id: testcurl.pl,v 1.68 2008-10-02 03:59:25 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.67 $';
+$version='$Revision: 1.68 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -272,6 +272,13 @@ if ($fixed < 4) {
     print F "confopts='$confopts'\n";
     print F "fixed='$fixed'\n";
     close(F);
+}
+
+# Enable picky compiler warnings unless explicitly disabled
+if (($confopts !~ /--enable-debug/) &&
+    ($confopts !~ /--enable-warnings/) &&
+    ($confopts !~ /--disable-warnings/)) {
+  $confopts .= " --enable-warnings";
 }
 
 my $str1066os = 'o' x 1066;
