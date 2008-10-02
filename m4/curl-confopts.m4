@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-confopts.m4,v 1.1 2008-10-02 03:56:56 yangtse Exp $
+# $Id: curl-confopts.m4,v 1.2 2008-10-02 04:17:36 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 1
+# serial 2
 
 
 dnl CURL_CHECK_OPTION_DEBUG
@@ -32,7 +32,7 @@ dnl --enable-debug or --disable-debug, and set shell
 dnl variable want_debug value as appropriate.
 
 AC_DEFUN([CURL_CHECK_OPTION_DEBUG], [
-  AC_BEFORE([$0],[CURL_CHECK_OPTION_DEBUG])dnl
+  AC_BEFORE([$0],[CURL_CHECK_OPTION_WARNINGS])dnl
   AC_BEFORE([$0],[AC_PROG_CC])dnl
   AC_MSG_CHECKING([whether to enable debug build options])
   OPT_DEBUG_BUILD="default"
