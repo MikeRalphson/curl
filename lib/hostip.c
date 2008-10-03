@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.200 2008-10-02 22:58:09 yangtse Exp $
+ * $Id: hostip.c,v 1.201 2008-10-03 00:35:22 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -598,7 +598,7 @@ int Curl_resolv_timeout(struct connectdata *conn,
   if(timeout)
     infof(conn->data, "timeout on name lookup is not supported\n");
 #else
-  (void)timeout; /* timeout not used with an async resolver */
+  (void)timeoutms; /* timeoutms not used with an async resolver */
 #endif
 #endif /* USE_ALARM_TIMEOUT */
 
