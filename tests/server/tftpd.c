@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.44 2008-10-02 13:28:10 yangtse Exp $
+ * $Id: tftpd.c,v 1.45 2008-10-03 03:42:44 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -760,9 +760,9 @@ static void timer(int signum)
  */
 static void sendtftp(struct testcase *test, struct formats *pf)
 {
-  struct tftphdr * volatile dp;
-  struct tftphdr * volatile ap;    /* ack packet */
-  volatile unsigned short block = 1;
+  struct tftphdr *dp;
+  struct tftphdr *ap;    /* ack packet */
+  unsigned short block = 1;
   int size;
   ssize_t n;
 #if defined(HAVE_ALARM) && defined(SIGALRM)
@@ -835,9 +835,9 @@ static void justtimeout(int signum)
  */
 static void recvtftp(struct testcase *test, struct formats *pf)
 {
-  struct tftphdr * volatile dp;
-  struct tftphdr * volatile ap;    /* ack buffer */
-  volatile unsigned short block = 0;
+  struct tftphdr *dp;
+  struct tftphdr *ap;    /* ack buffer */
+  unsigned short block = 0;
   ssize_t n, size;
 #if defined(HAVE_ALARM) && defined(SIGALRM)
   mysignal(SIGALRM, timer);
