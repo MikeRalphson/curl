@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.45 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: http_chunks.c,v 1.46 2008-10-07 23:20:06 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -81,6 +81,14 @@
 
  */
 
+/* Check for an ASCII hex digit.
+ We avoid the use of isxdigit to accommodate non-ASCII hosts. */
+static bool Curl_isxdigit(char digit)
+{
+  return (digit >= 0x30 && digit <= 0x39)    /* 0-9 */
+      || (digit >= 0x41 && digit <= 0x46)    /* A-F */
+      || (digit >= 0x61 && digit <= 0x66);   /* a-f */
+}
 
 void Curl_httpchunk_init(struct connectdata *conn)
 {
@@ -127,11 +135,7 @@ CHUNKcode Curl_httpchunk_read(struct connectdata *conn,
   while(length) {
     switch(ch->state) {
     case CHUNK_HEX:
-      /* Check for an ASCII hex digit.
-         We avoid the use of isxdigit to accommodate non-ASCII hosts. */
-      if((*datap >= 0x30 && *datap <= 0x39)    /* 0-9 */
-         || (*datap >= 0x41 && *datap <= 0x46)    /* A-F */
-         || (*datap >= 0x61 && *datap <= 0x66)) { /* a-f */
+      if(Curl_isxdigit(*datap)) {
         if(ch->hexindex < MAXNUM_SIZE) {
           ch->hexbuffer[ch->hexindex] = *datap;
           datap++;
