@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.750 2008-09-29 22:45:25 danf Exp $
+ * $Id: url.c,v 1.751 2008-10-07 21:56:56 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4238,6 +4238,12 @@ static CURLcode create_conn(struct SessionHandle *data,
     infof(data, "Re-using existing connection! (#%ld) with host %s\n",
           conn->connectindex,
           conn->proxy.name?conn->proxy.dispname:conn->host.dispname);
+    /* copy this IP address to the common buffer for the easy handle so that
+       the address can actually survice the removal of this connection. strcpy
+       is safe since the target buffer is big enough to hold the largest
+       possible IP address */
+    strcpy(data->info.ip, conn->ip_addr_str);
+
   }
   else {
     /*
