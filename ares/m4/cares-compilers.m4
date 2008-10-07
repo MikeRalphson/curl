@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.3 2008-10-07 13:13:34 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.4 2008-10-07 16:53:46 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -557,5 +557,5 @@ AC_DEFUN([CARES_VAR_STRIP], [
     fi
   done
   dnl squeeze whitespace out of result
-  [$1]=`eval echo $[$1]`
+  [$1]=`eval echo $ac_var_stripped`
 ])

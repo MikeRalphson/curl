@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.2 2008-10-07 13:13:34 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.3 2008-10-07 16:53:46 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -549,5 +549,5 @@ AC_DEFUN([CURL_VAR_STRIP], [
     fi
   done
   dnl squeeze whitespace out of result
-  [$1]=`eval echo $[$1]`
+  [$1]=`eval echo $ac_var_stripped`
 ])
