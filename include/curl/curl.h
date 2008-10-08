@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.366 2008-09-05 16:13:20 bagder Exp $
+ * $Id: curl.h,v 1.367 2008-10-08 10:39:44 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1140,6 +1140,10 @@ typedef enum {
      CURLINFO_CERTINFO after the transfer is complete. (Unfortunately) only
      working with OpenSSL-powered builds. */
   CINIT(CERTINFO, LONG, 172),
+
+  /* "name" and "pwd" to use when fetching. */
+  CINIT(USERNAME, OBJECTPOINT, 173),
+  CINIT(PASSWORD, OBJECTPOINT, 174),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

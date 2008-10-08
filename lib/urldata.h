@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.389 2008-09-05 17:58:53 danf Exp $
+ * $Id: urldata.h,v 1.390 2008-10-08 10:39:44 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1334,10 +1334,11 @@ enum dupstring {
   STRING_SSL_EGDSOCKET,   /* path to file containing the EGD daemon socket */
   STRING_SSL_RANDOM_FILE, /* path to file containing "random" data */
   STRING_USERAGENT,       /* User-Agent string */
-  STRING_USERPWD,         /* <user:password>, if used */
   STRING_SSH_HOST_PUBLIC_KEY_MD5, /* md5 of host public key in ascii hex */
   STRING_SSL_CRLFILE,     /* crl file to check certificate */
   STRING_SSL_ISSUERCERT,  /* issuer cert file to check certificate */
+  STRING_USERNAME,        /* <username>, if used */
+  STRING_PASSWORD,        /* <password>, if used */
 
   /* -- end of strings -- */
   STRING_LAST /* not used, just an end-of-list marker */
