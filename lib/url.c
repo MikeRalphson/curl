@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.752 2008-10-08 10:39:44 bagder Exp $
+ * $Id: url.c,v 1.753 2008-10-08 18:32:06 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1501,8 +1501,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * user:password to use in the operation
      */
     {
-      char* userpwd = va_arg(param, char *);
-      char* separator = strchr(userpwd, ':');
+      char* userpwd;
+      char* separator;
+
+      userpwd = va_arg(param, char *);
+      if(userpwd == NULL)
+        break;
+
+      separator = strchr(userpwd, ':');
       if (separator != NULL) {
 
         /* store username part of option */
