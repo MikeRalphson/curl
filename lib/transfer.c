@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.412 2008-10-07 23:15:02 danf Exp $
+ * $Id: transfer.c,v 1.413 2008-10-08 22:01:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1893,6 +1893,8 @@ CURLcode Curl_pretransfer(struct SessionHandle *data)
   data->state.authproblem = FALSE;
   data->state.authhost.want = data->set.httpauth;
   data->state.authproxy.want = data->set.proxyauth;
+  Curl_safefree(data->info.wouldredirect);
+  data->info.wouldredirect = NULL;
 
   /* If there is a list of cookie files to read, do it now! */
   if(data->change.cookielist) {
