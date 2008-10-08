@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.753 2008-10-08 18:32:06 yangtse Exp $
+ * $Id: url.c,v 1.754 2008-10-08 20:14:46 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1520,6 +1520,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
         else {
             memcpy(p, userpwd, username_len);
             p[username_len] = '\0';
+            Curl_safefree(data->set.str[STRING_USERNAME]);
             data->set.str[STRING_USERNAME] = p;
         }
 
