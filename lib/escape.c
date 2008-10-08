@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: escape.c,v 1.43 2008-09-09 21:15:50 danf Exp $
+ * $Id: escape.c,v 1.44 2008-10-08 01:17:51 danf Exp $
  ***************************************************************************/
 
 /* Escape and unescape URL encoding in strings. The functions return a new
@@ -138,6 +138,12 @@ char *curl_easy_escape(CURL *handle, const char *string, int inlength)
   return ns;
 }
 
+/*
+ * Unescapes the given URL escaped string of given length. Returns a
+ * pointer to a malloced string with length given in *olen.
+ * If length == 0, the length is assumed to be strlen(string).
+ * If olen == NULL, no output length is stored.
+ */
 char *curl_easy_unescape(CURL *handle, const char *string, int length,
                          int *olen)
 {

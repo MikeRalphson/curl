@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.392 2008-10-01 17:34:24 danf Exp $
+ * $Id: http.c,v 1.393 2008-10-08 01:17:51 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2046,11 +2046,11 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
   char *buf = data->state.buffer; /* this is a short cut to the buffer */
   CURLcode result=CURLE_OK;
   struct HTTP *http;
-  char *ppath = data->state.path;
+  const char *ppath = data->state.path;
   char ftp_typecode[sizeof(";type=?")] = "";
-  char *host = conn->host.name;
+  const char *host = conn->host.name;
   const char *te = ""; /* transfer-encoding */
-  char *ptr;
+  const char *ptr;
   const char *request;
   Curl_HttpReq httpreq = data->set.httpreq;
   char *addcookies = NULL;
