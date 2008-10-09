@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.369 2008-10-07 13:13:34 yangtse Exp $
+# $Id: configure.ac,v 1.370 2008-10-09 19:23:50 danf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2061,6 +2061,7 @@ AC_CHECK_FUNCS([basename \
   fork \
   geteuid \
   gethostbyaddr \
+  getifaddrs \
   getpass_r \
   getppid \
   getprotobyname \
