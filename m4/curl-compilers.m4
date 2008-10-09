@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.10 2008-10-09 03:02:25 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.11 2008-10-09 03:05:48 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 8
+# serial 11
 
 
 dnl CURL_CHECK_COMPILER
@@ -239,9 +239,8 @@ AC_DEFUN([CURL_CHECK_COMPILER_SGI], [
       compiler_id="SGIC"
     fi
   fi
-  if test "$compiler_id" != "SGIC"; then
+  if test "$compiler_id" = "SGIC"; then
     AC_MSG_RESULT([yes])
-    compiler_id="SGIC"
     flags_dbg_all="-g -g0 -g1 -g2 -g3"
     flags_dbg_yes="-g"
     flags_dbg_off="-g0"
