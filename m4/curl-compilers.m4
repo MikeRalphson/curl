@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.11 2008-10-09 03:05:48 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.12 2008-10-09 13:11:10 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -230,12 +230,12 @@ AC_DEFUN([CURL_CHECK_COMPILER_SGI], [
   CURL_CHECK_DEF([_COMPILER_VERSION], [], [silent])
   CURL_CHECK_DEF([__GNUC__], [], [silent])
   CURL_CHECK_DEF([__sgi], [], [silent])
-  if test "$curl_cv_have_def___GNUC__ " = "no"; then
+  if test "$curl_cv_have_def___GNUC__" = "no"; then
     if test "$curl_cv_have_def__SGI_COMPILER_VERSION" = "yes"; then
       compiler_id="SGIC"
     fi
-    if test "$curl_cv_have_def__COMPILER_VERSION " = "yes" &&
-      test "$curl_cv_have_def___sgi " = "yes"; then
+    if test "$curl_cv_have_def__COMPILER_VERSION" = "yes" &&
+      test "$curl_cv_have_def___sgi" = "yes"; then
       compiler_id="SGIC"
     fi
   fi
