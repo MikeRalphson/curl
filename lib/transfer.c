@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.413 2008-10-08 22:01:23 bagder Exp $
+ * $Id: transfer.c,v 1.414 2008-10-09 22:14:38 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -440,6 +440,7 @@ static CURLcode readwrite_data(struct SessionHandle *data,
        is non-headers. */
     if(k->str && !k->header && (nread > 0 || is_empty_data)) {
 
+#ifndef CURL_DISABLE_HTTP
       if(0 == k->bodywrites && !is_empty_data) {
 	/* These checks are only made the first time we are about to
 	   write a piece of the body */
@@ -501,6 +502,7 @@ static CURLcode readwrite_data(struct SessionHandle *data,
 
 	} /* this is HTTP */
       } /* this is the first time we write a body part */
+#endif /* CURL_DISABLE_HTTP */
       k->bodywrites++;
 
       /* pass data to the debug function before it gets "dechunked" */
@@ -883,6 +885,7 @@ static CURLcode readwrite_headers(struct SessionHandle *data,
       data->info.header_size += (long)headerlen;
       data->req.headerbytecount += (long)headerlen;
 
+#ifndef CURL_DISABLE_HTTP
       data->req.deductheadercount =
 	(100 <= k->httpcode && 199 >= k->httpcode)?data->req.headerbytecount:0;
 
@@ -893,7 +896,6 @@ static CURLcode readwrite_headers(struct SessionHandle *data,
 	*stop_reading = TRUE;
       }
 
-#ifndef CURL_DISABLE_HTTP
       if(!*stop_reading) {
 	/* Curl_http_auth_act() checks what authentication methods
 	 * that are available and decides which one (if any) to
@@ -2171,6 +2173,14 @@ CURLcode Curl_follow(struct SessionHandle *data,
                                       here */
                      followtype type) /* see transfer.h */
 {
+#ifdef CURL_DISABLE_HTTP
+  (void)data;
+  (void)newurl;
+  (void)type;
+  /* Location: following will not happen when HTTP is disabled */
+  return CURLE_TOO_MANY_REDIRECTS;
+#else
+
   /* Location: redirect */
   bool disallowport = FALSE;
 
@@ -2358,6 +2368,7 @@ CURLcode Curl_follow(struct SessionHandle *data,
   Curl_pgrsResetTimes(data);
 
   return CURLE_OK;
+#endif /* CURL_DISABLE_HTTP */
 }
 
 static CURLcode
