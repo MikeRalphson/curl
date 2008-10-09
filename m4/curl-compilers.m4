@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.8 2008-10-08 19:38:01 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.9 2008-10-09 00:50:50 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -337,8 +337,12 @@ AC_DEFUN([CURL_SET_COMPILER_BASIC_OPTS], [
         #
       HPUXC)
         #
-        dnl Placeholder
-        tmp_CFLAGS="$tmp_CFLAGS"
+        dnl Disallow run-time dereferencing of null pointers
+        tmp_CFLAGS="$tmp_CFLAGS -z"
+        dnl Disable some remarks
+        dnl #4227: padding struct with n bytes to align member
+        dnl #4255: padding size of struct with n bytes to alignment boundary
+        tmp_CFLAGS="$tmp_CFLAGS +W 4227,4255"
         ;;
         #
       IBMC)
