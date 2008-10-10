@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.199 2008-10-09 19:23:50 danf Exp $
+ * $Id: connect.c,v 1.200 2008-10-10 03:46:32 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -335,8 +335,10 @@ static CURLcode bindlocal(struct connectdata *conn,
       long ipver = data->set.ip_version;
       if (af == AF_INET)
         data->set.ip_version = CURL_IPRESOLVE_V4;
+#ifdef ENABLE_IPV6
       else if (af == AF_INET6)
         data->set.ip_version = CURL_IPRESOLVE_V6;
+#endif
 
       rc = Curl_resolv(conn, dev, 0, &h);
       if(rc == CURLRESOLV_PENDING)
