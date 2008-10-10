@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.15 2008-10-10 00:07:41 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.16 2008-10-10 02:32:46 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -706,7 +706,11 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
         #
         if test "$want_warnings" = "yes"; then
           dnl Issue all warnings
-          tmp_CFLAGS="$tmp_CFLAGS +w1"
+          dnl tmp_CFLAGS="$tmp_CFLAGS +w1"
+          dnl Due to the HP-UX socklen_t issue it is insane to use the +w1
+          dnl warning level. Until the issue is somehow fixed we will just
+          dnl use the +w2 warning level.
+          tmp_CFLAGS="$tmp_CFLAGS +w2"
         fi
         ;;
         #
