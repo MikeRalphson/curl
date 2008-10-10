@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.10 2008-09-13 16:37:16 yangtse Exp $
+ * $Id: ccsidcurl.c,v 1.11 2008-10-10 15:54:08 patrickm Exp $
  *
  ***************************************************************************/
 
@@ -728,7 +728,7 @@ curl_formadd_ccsid(struct curl_httppost * * httppost,
   /* Allocate the local curl_forms array. */
 
   lformlen = ALLOC_GRANULE;
-  lforms = malloc(lformlen * sizeof(struct curl_forms));
+  lforms = malloc(lformlen * sizeof *lforms);
 
   if (!lforms)
     return CURL_FORMADD_MEMORY;
@@ -1030,7 +1030,7 @@ curl_easy_setopt_ccsid(CURL * curl, CURLoption tag, ...)
   if (testwarn) {
     testwarn = 0;
 
-    if ((int) STRING_LAST != (int) STRING_SSL_ISSUERCERT + 1)
+    if ((int) STRING_LAST != (int) STRING_PASSWORD + 1)
       curl_mfprintf(stderr,
        "*** WARNING: curl_easy_setopt_ccsid() should be reworked ***\n");
     }
@@ -1075,6 +1075,8 @@ curl_easy_setopt_ccsid(CURL * curl, CURLoption tag, ...)
   case CURLOPT_SSH_HOST_PUBLIC_KEY_MD5:
   case CURLOPT_CRLFILE:
   case CURLOPT_ISSUERCERT:
+  case CURLOPT_USERNAME:
+  case CURLOPT_PASSWORD:
     s = va_arg(arg, char *);
     ccsid = va_arg(arg, unsigned int);
 

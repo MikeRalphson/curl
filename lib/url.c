@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.754 2008-10-08 20:14:46 danf Exp $
+ * $Id: url.c,v 1.755 2008-10-10 15:54:07 patrickm Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1536,14 +1536,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     break;
   case CURLOPT_USERNAME:
     /*
-     * user:password to use in the operation
+     * authentication user name to use in the operation
      */
     result = setstropt(&data->set.str[STRING_USERNAME],
                        va_arg(param, char *));
     break;
   case CURLOPT_PASSWORD:
     /*
-     * user:password to use in the operation
+     * authentication password to use in the operation
      */
     result = setstropt(&data->set.str[STRING_PASSWORD],
                        va_arg(param, char *));
