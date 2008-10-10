@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.15 2008-10-09 19:55:18 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.16 2008-10-10 00:07:41 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -328,6 +328,9 @@ AC_DEFUN([CARES_COMPILER_WORKS_IFELSE], [
     tmp_compiler_works="yes"
   ],[
     tmp_compiler_works="no"
+    echo " " >&6
+    sed 's/^/cc-fail> /' conftest.err >&6
+    echo " " >&6
   ])
   dnl linking capability verification
   if test "$tmp_compiler_works" = "yes"; then
@@ -341,6 +344,9 @@ AC_DEFUN([CARES_COMPILER_WORKS_IFELSE], [
       tmp_compiler_works="yes"
     ],[
       tmp_compiler_works="no"
+      echo " " >&6
+      sed 's/^/ln-fail> /' conftest.err >&6
+      echo " " >&6
     ])
   fi
   dnl only do runtime verification when not cross-compiling
@@ -359,6 +365,9 @@ AC_DEFUN([CARES_COMPILER_WORKS_IFELSE], [
       tmp_compiler_works="yes"
     ],[
       tmp_compiler_works="no"
+      echo " " >&6
+      echo "rn-fail test program exited with status $ac_status" >&6
+      echo " " >&6
     ])
   fi
   dnl branch upon test result
