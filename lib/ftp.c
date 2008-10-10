@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.483 2008-10-09 19:23:50 danf Exp $
+ * $Id: ftp.c,v 1.484 2008-10-10 02:14:46 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1393,7 +1393,8 @@ static CURLcode ftp_state_post_listtype(struct connectdata *conn)
 
       /* chop off the file part if format is dir/dir/file */
       slashPos = strrchr(lstArg,'/');
-      *(slashPos+1) = '\0';
+      if(slashPos)
+        *(slashPos+1) = '\0';
     }
   }
 
