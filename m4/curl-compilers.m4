@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.22 2008-10-11 16:59:44 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.23 2008-10-11 18:04:39 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 22
+# serial 23
 
 
 dnl CURL_CHECK_COMPILER
@@ -48,7 +48,7 @@ AC_DEFUN([CURL_CHECK_COMPILER], [
   CURL_CHECK_COMPILER_GNU
   CURL_CHECK_COMPILER_LCC
   CURL_CHECK_COMPILER_SGI_MIPSpro_C
-  CURL_CHECK_COMPILER_SGI_MIPS _C
+  CURL_CHECK_COMPILER_SGI_MIPS_C
   CURL_CHECK_COMPILER_SUN
   CURL_CHECK_COMPILER_TINYC
   #
