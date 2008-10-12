@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.25 2008-10-12 16:57:40 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.26 2008-10-12 22:52:25 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -273,9 +273,11 @@ AC_DEFUN([CARES_CHECK_COMPILER_SGI_MIPSpro_C], [
   AC_BEFORE([$0],[CARES_CHECK_COMPILER_SGI_MIPS_C])dnl
   AC_MSG_CHECKING([if compiler is SGI MIPSpro C])
   CURL_CHECK_DEF([__GNUC__], [], [silent])
+  CURL_CHECK_DEF([_COMPILER_VERSION], [], [silent])
   CURL_CHECK_DEF([_SGI_COMPILER_VERSION], [], [silent])
   if test "$curl_cv_have_def___GNUC__" = "no" &&
-    test "$curl_cv_have_def__SGI_COMPILER_VERSION" = "yes"; then
+    (test "$curl_cv_have_def__SGI_COMPILER_VERSION" = "yes" ||
+     test "$curl_cv_have_def__COMPILER_VERSION" = "yes"); then
     AC_MSG_RESULT([yes])
     compiler_id="SGI_MIPSpro_C"
     flags_dbg_all="-g -g0 -g1 -g2 -g3"
