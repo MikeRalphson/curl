@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.489 2008-10-09 18:47:02 danf Exp $
+ * $Id: main.c,v 1.490 2008-10-13 22:21:01 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3506,6 +3506,11 @@ int my_trace(CURL *handle, curl_infotype type,
   if(config->trace_stream)
     output = config->trace_stream;
 
+  if(!output) {
+    warnf(config, "Failed to create/open output");
+    return 0;
+  }
+
   if(config->tracetype == TRACE_PLAIN) {
     /*
      * This is the trace look that is similar to what libcurl makes on its
@@ -3524,25 +3529,24 @@ int my_trace(CURL *handle, curl_infotype type,
       for(i=0; i<size-1; i++) {
         if(data[i] == '\n') { /* LF */
           if(!newl) {
-            fprintf(config->trace_stream, "%s%s ",
-                    timebuf, s_infotype[type]);
+            fprintf(output, "%s%s ", timebuf, s_infotype[type]);
           }
-          fwrite(data+st, i-st+1, 1, config->trace_stream);
+          fwrite(data+st, i-st+1, 1, output);
           st = i+1;
           newl = FALSE;
         }
       }
       if(!newl)
-        fprintf(config->trace_stream, "%s%s ", timebuf, s_infotype[type]);
-      fwrite(data+st, i-st+1, 1, config->trace_stream);
+        fprintf(output, "%s%s ", timebuf, s_infotype[type]);
+      fwrite(data+st, i-st+1, 1, output);
       newl = (bool)(size && (data[size-1] != '\n'));
       traced_data = FALSE;
       break;
     case CURLINFO_TEXT:
     case CURLINFO_HEADER_IN:
       if(!newl)
-        fprintf(config->trace_stream, "%s%s ", timebuf, s_infotype[type]);
-      fwrite(data, size, 1, config->trace_stream);
+        fprintf(output, "%s%s ", timebuf, s_infotype[type]);
+      fwrite(data, size, 1, output);
       newl = (bool)(size && (data[size-1] != '\n'));
       traced_data = FALSE;
       break;
@@ -3556,11 +3560,10 @@ int my_trace(CURL *handle, curl_infotype type,
            being shown as the data _is_ shown then just not via this
            function */
         if(!config->isatty ||
-           ((config->trace_stream != stderr) &&
-            (config->trace_stream != stdout))) {
+           ((output != stderr) && (output != stdout))) {
           if(!newl)
-            fprintf(config->trace_stream, "%s%s ", timebuf, s_infotype[type]);
-          fprintf(config->trace_stream, "[data not shown]\n");
+            fprintf(output, "%s%s ", timebuf, s_infotype[type]);
+          fprintf(output, "[data not shown]\n");
           newl = FALSE;
           traced_data = TRUE;
         }
