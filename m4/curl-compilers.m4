@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.25 2008-10-12 22:52:25 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.26 2008-10-13 00:43:30 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -748,8 +748,14 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
       GNUC)
         #
         if test "$want_warnings" = "yes"; then
+          dnl Do not enable -pedantic when cross-compiling with a gcc older
+          dnl than 3.0, to avoid warnings from third party system headers.
+          if test "x$cross_compiling" != "xyes" ||
+            test "$compiler_num" -ge "300"; then
+            tmp_CFLAGS="$tmp_CFLAGS -pedantic"
+          fi
           dnl Set of options we believe *ALL* gcc versions support:
-          tmp_CFLAGS="$tmp_CFLAGS -pedantic -Wall -W -Winline -Wnested-externs"
+          tmp_CFLAGS="$tmp_CFLAGS -Wall -W -Winline -Wnested-externs"
           tmp_CFLAGS="$tmp_CFLAGS -Wmissing-prototypes -Wpointer-arith"
           tmp_CFLAGS="$tmp_CFLAGS -Wwrite-strings"
           dnl -Wcast-align is a bit too annoying on all gcc versions ;-)
@@ -784,6 +790,12 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
             dnl gcc 3.4 and later
             tmp_CFLAGS="$tmp_CFLAGS -Wdeclaration-after-statement"
           fi
+        fi
+        #
+        dnl Do not issue warnings for code in system include paths.
+        if test "$compiler_num" -ge "300"; then
+          dnl gcc 3.0 and later
+          tmp_CFLAGS="$tmp_CFLAGS -Wno-system-headers"
         fi
         ;;
         #
