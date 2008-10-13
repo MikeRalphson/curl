@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.201 2008-10-11 15:32:32 yangtse Exp $
+ * $Id: connect.c,v 1.202 2008-10-13 06:16:02 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -359,9 +359,7 @@ static CURLcode bindlocal(struct connectdata *conn,
          hostent_buf,
          sizeof(hostent_buf));
       */
-      data->state.os_errno = error = SOCKERRNO;
-      failf(data, "Couldn't bind to '%s', failed with errno %d: %s",
-            dev, error, Curl_strerror(conn, error));
+      failf(data, "Couldn't bind to '%s'", dev);
       if(h)
         Curl_resolv_unlock(data, h);
       return CURLE_INTERFACE_FAILED;
@@ -387,7 +385,7 @@ static CURLcode bindlocal(struct connectdata *conn,
        */
       if(setsockopt(sockfd, SOL_SOCKET, SO_BINDTODEVICE,
                      dev, strlen(dev)+1) != 0) {
-        error = ERRNO;
+        error = SOCKERRNO;
         infof(data, "SO_BINDTODEVICE %s failed with errno %d: %s; will do regular bind\n",
               dev, error, Curl_strerror(conn, error));
         /* This is typically "errno 1, error: Operation not permitted" if
