@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.93 2008-09-08 11:36:19 bagder Exp $
+ * $Id: cookie.c,v 1.94 2008-10-13 21:03:12 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -614,8 +614,7 @@ Curl_cookie_add(struct SessionHandle *data,
         co->next = clist->next; /* get the next-pointer first */
 
         /* then free all the old pointers */
-        if(clist->name)
-          free(clist->name);
+        free(clist->name);
         if(clist->value)
           free(clist->value);
         if(clist->domain)
