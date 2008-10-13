@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.27 2008-10-13 00:43:30 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.28 2008-10-13 17:06:06 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -750,9 +750,14 @@ AC_DEFUN([CARES_SET_COMPILER_WARNING_OPTS], [
           fi
           dnl Set of options we believe *ALL* gcc versions support:
           tmp_CFLAGS="$tmp_CFLAGS -Wall -W -Winline -Wnested-externs"
-          tmp_CFLAGS="$tmp_CFLAGS -Wmissing-prototypes -Wpointer-arith"
-          tmp_CFLAGS="$tmp_CFLAGS -Wwrite-strings"
+          tmp_CFLAGS="$tmp_CFLAGS -Wpointer-arith -Wwrite-strings"
           dnl -Wcast-align is a bit too annoying on all gcc versions ;-)
+          dnl Do not enable some warnings, when cross-compiling with a gcc
+          dnl older than 3.0, triggered on third party system headers.
+          if test "x$cross_compiling" != "xyes" ||
+            test "$compiler_num" -ge "300"; then
+            tmp_CFLAGS="$tmp_CFLAGS -Wmissing-prototypes"
+          fi
           if test "$compiler_num" -ge "207"; then
             dnl gcc 2.7 or later
             tmp_CFLAGS="$tmp_CFLAGS -Wmissing-declarations"
@@ -790,6 +795,13 @@ AC_DEFUN([CARES_SET_COMPILER_WARNING_OPTS], [
         if test "$compiler_num" -ge "300"; then
           dnl gcc 3.0 and later
           tmp_CFLAGS="$tmp_CFLAGS -Wno-system-headers"
+        else
+          dnl Disable some warnings, when cross-compiling with a gcc
+          dnl older than 3.0, triggered on third party system headers.
+          if test "x$cross_compiling" = "xyes"; then
+            tmp_CFLAGS="$tmp_CFLAGS -Wno-missing-prototypes"
+            tmp_CFLAGS="$tmp_CFLAGS -Wno-unused -Wno-shadow"
+          fi
         fi
         ;;
         #
