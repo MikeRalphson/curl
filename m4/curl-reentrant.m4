@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-reentrant.m4,v 1.2 2008-08-05 09:08:44 yangtse Exp $
+# $Id: curl-reentrant.m4,v 1.3 2008-10-14 18:44:27 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 2
+# serial 3
 
 dnl Note 1
 dnl ------
@@ -339,9 +339,6 @@ dnl makes several _r functions compiler visible.
 dnl Internal macro for CURL_CONFIGURE_REENTRANT.
 
 AC_DEFUN([CURL_CHECK_NEED_REENTRANT_FUNCTIONS_R], [
-  #
-  tmp_need_reentrant="no"
-  #
   if test "$tmp_need_reentrant" = "no"; then
     CURL_CHECK_NEED_REENTRANT_GMTIME_R
   fi
@@ -369,6 +366,24 @@ AC_DEFUN([CURL_CHECK_NEED_REENTRANT_FUNCTIONS_R], [
   if test "$tmp_need_reentrant" = "no"; then
     CURL_CHECK_NEED_REENTRANT_GETSERVBYPORT_R
   fi
+])
+
+
+dnl CURL_CHECK_NEED_REENTRANT_SYSTEM
+dnl -------------------------------------------------
+dnl Checks if the preprocessor _REENTRANT definition
+dnl must be unconditionally done for this platform.
+dnl Internal macro for CURL_CONFIGURE_REENTRANT.
+
+AC_DEFUN([CURL_CHECK_NEED_REENTRANT_SYSTEM], [
+  case $host in
+    *-*-solaris*)
+      tmp_need_reentrant="yes"
+      ;;
+    *)
+      tmp_need_reentrant="no"
+      ;;
+  esac
 ])
 
 
@@ -427,7 +442,10 @@ AC_DEFUN([CURL_CONFIGURE_REENTRANT], [
   #
   if test "$tmp_reentrant_initially_defined" = "no"; then
     AC_MSG_CHECKING([if _REENTRANT is actually needed])
-    CURL_CHECK_NEED_REENTRANT_FUNCTIONS_R
+    CURL_CHECK_NEED_REENTRANT_SYSTEM
+    if test "$tmp_need_reentrant" = "no"; then
+      CURL_CHECK_NEED_REENTRANT_FUNCTIONS_R
+    fi
     if test "$tmp_need_reentrant" = "yes"; then
       AC_MSG_RESULT([yes])
     else
