@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.30 2008-10-14 04:09:07 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.31 2008-10-14 04:59:22 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -940,7 +940,7 @@ AC_DEFUN([CARES_SET_COMPILER_WARNING_OPTS], [
         #
         if test "$want_warnings" = "yes"; then
           dnl Issue all warnings
-          dnl tmp_CFLAGS="$tmp_CFLAGS -Wall -Wextra -Wpadded"
+          tmp_CFLAGS="$tmp_CFLAGS -Wall -Wextra -Wpadded"
         fi
         ;;
         #
