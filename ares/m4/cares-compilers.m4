@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.33 2008-10-14 15:24:02 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.34 2008-10-14 23:06:39 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 33
+# serial 34
 
 
 dnl CARES_CHECK_COMPILER
@@ -970,7 +970,7 @@ AC_DEFUN([CARES_SET_COMPILER_WARNING_OPTS], [
         #
         if test "$want_warnings" = "yes"; then
           dnl Issue all warnings
-          tmp_CFLAGS="$tmp_CFLAGS -Wall -Wextra -Wpadded"
+          tmp_CFLAGS="$tmp_CFLAGS -Wall -Wextra"
         fi
         ;;
         #
