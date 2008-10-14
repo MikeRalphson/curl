@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urlglob.c,v 1.52 2008-10-13 21:39:12 bagder Exp $
+ * $Id: urlglob.c,v 1.53 2008-10-14 09:12:44 bagder Exp $
  ***************************************************************************/
 
 /* client-local setup.h */
@@ -551,8 +551,8 @@ char *glob_match_url(char *filename, URLGlob *glob)
       char *newstr;
       /* we append a single byte to allow for the trailing byte to be appended
          at the end of this function outside the while() loop */
-      allocsize = (appendlen + stringlen)*2 + 1;
-      newstr=realloc(target, allocsize);
+      allocsize = (appendlen + stringlen)*2;
+      newstr=realloc(target, allocsize + 1);
       if(NULL ==newstr) {
         free(target);
         return NULL;
