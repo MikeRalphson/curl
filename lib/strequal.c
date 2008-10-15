@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.34 2008-09-15 00:32:10 yangtse Exp $
+ * $Id: strequal.c,v 1.35 2008-10-15 09:56:34 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -73,29 +73,6 @@ int curl_strnequal(const char *first, const char *second, size_t max)
     return 1; /* they are equal this far */
 
   return toupper(*first) == toupper(*second);
-#endif
-}
-
-/*
- * Curl_strcasestr() finds the first occurrence of the substring needle in the
- * string haystack.  The terminating `\0' characters are not compared. The
- * matching is done CASE INSENSITIVE, which thus is the difference between
- * this and strstr().
- */
-char *Curl_strcasestr(const char *haystack, const char *needle)
-{
-#if defined(HAVE_STRCASESTR)
-  return strcasestr(haystack, needle);
-#else
-  size_t nlen = strlen(needle);
-  size_t hlen = strlen(haystack);
-
-  while(hlen-- >= nlen) {
-    if(curl_strnequal(haystack, needle, nlen))
-      return (char *)haystack;
-    haystack++;
-  }
-  return NULL;
 #endif
 }
 
