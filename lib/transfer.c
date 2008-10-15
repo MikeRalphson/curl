@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.415 2008-10-10 19:10:44 danf Exp $
+ * $Id: transfer.c,v 1.416 2008-10-15 07:43:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -152,6 +152,7 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
   else if((size_t)nread > buffersize) {
     /* the read function returned a too large value */
     *nreadp = 0;
+    failf(data, "read function returned funny value");
     return CURLE_READ_ERROR;
   }
 
