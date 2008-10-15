@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.309 2008-09-26 18:56:56 yangtse Exp $
+# $Id: runtests.pl,v 1.310 2008-10-15 17:41:02 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -486,6 +486,7 @@ sub torture {
         else {
             $ret = runclient($testcmd);
         }
+        #logmsg "$_ Returned " . $ret / 256 . "\n";
 
         # Now clear the variable again
         $ENV{'CURL_MEMLIMIT'} = undef;
@@ -1857,6 +1858,8 @@ sub singletest {
             if($o[0]) {
                 $why = $o[0];
                 chomp $why;
+            } elsif($?) {
+                $why = "precheck command error";
             }
             logmsg "prechecked $cmd\n" if($verbose);
         }
