@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.370 2008-10-09 19:23:50 danf Exp $
+# $Id: configure.ac,v 1.371 2008-10-15 18:10:02 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2534,15 +2534,15 @@ AC_SUBST(SUPPORT_PROTOCOLS)
 
 dnl squeeze whitespace out of some variables
 
-CFLAGS=`eval echo $CFLAGS`
-CPPFLAGS=`eval echo $CPPFLAGS`
-DEFS=`eval echo $DEFS`
-LDFLAGS=`eval echo $LDFLAGS`
-LIBS=`eval echo $LIBS`
+squeeze CFLAGS
+squeeze CPPFLAGS
+squeeze DEFS
+squeeze LDFLAGS
+squeeze LIBS
 
-CURL_LIBS=`eval echo $CURL_LIBS`
-LIBCURL_LIBS=`eval echo $LIBCURL_LIBS`
-TEST_SERVER_LIBS=`eval echo $TEST_SERVER_LIBS`
+squeeze CURL_LIBS
+squeeze LIBCURL_LIBS
+squeeze TEST_SERVER_LIBS
 
 AC_CONFIG_FILES([Makefile \
            docs/Makefile \
