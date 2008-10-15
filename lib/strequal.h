@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.h,v 1.18 2008-10-15 11:31:39 bagder Exp $
+ * $Id: strequal.h,v 1.19 2008-10-15 21:43:48 bagder Exp $
  ***************************************************************************/
 
 #include <curl/curl.h>
@@ -32,6 +32,12 @@
    argument is zero-byte terminated */
 #define checkprefix(a,b)    strnequal(a,b,strlen(a))
 
+/*
+ * Curl_ascii_equal() is for doing "ascii" case insensitive strings. This is
+ * meant to be locale independent and only compare strings we know are safe
+ * for this.
+ */
+int Curl_ascii_equal(const char *first, const char *second);
 
 #ifndef HAVE_STRLCAT
 #define strlcat(x,y,z) Curl_strlcat(x,y,z)

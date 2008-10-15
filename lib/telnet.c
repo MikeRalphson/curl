@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2007, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.102 2008-09-29 21:44:50 danf Exp $
+ * $Id: telnet.c,v 1.103 2008-10-15 21:43:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -833,7 +833,7 @@ static CURLcode check_telnet_options(struct connectdata *conn)
               option_keyword, option_arg) == 2) {
 
       /* Terminal type */
-      if(curl_strequal(option_keyword, "TTYPE")) {
+      if(Curl_ascii_equal(option_keyword, "TTYPE")) {
         strncpy(tn->subopt_ttype, option_arg, 31);
         tn->subopt_ttype[31] = 0; /* String termination */
         tn->us_preferred[CURL_TELOPT_TTYPE] = CURL_YES;
@@ -841,7 +841,7 @@ static CURLcode check_telnet_options(struct connectdata *conn)
       }
 
       /* Display variable */
-      if(curl_strequal(option_keyword, "XDISPLOC")) {
+      if(Curl_ascii_equal(option_keyword, "XDISPLOC")) {
         strncpy(tn->subopt_xdisploc, option_arg, 127);
         tn->subopt_xdisploc[127] = 0; /* String termination */
         tn->us_preferred[CURL_TELOPT_XDISPLOC] = CURL_YES;
@@ -849,7 +849,7 @@ static CURLcode check_telnet_options(struct connectdata *conn)
       }
 
       /* Environment variable */
-      if(curl_strequal(option_keyword, "NEW_ENV")) {
+      if(Curl_ascii_equal(option_keyword, "NEW_ENV")) {
         buf = strdup(option_arg);
         if(!buf)
           return CURLE_OUT_OF_MEMORY;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.91 2008-08-17 00:25:38 yangtse Exp $
+ * $Id: ldap.c,v 1.92 2008-10-15 21:43:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -198,7 +198,7 @@ static CURLcode Curl_ldap(struct connectdata *conn, bool *done)
   }
 
   /* Get the URL scheme ( either ldap or ldaps ) */
-  if(strequal(conn->protostr, "LDAPS"))
+  if(Curl_ascii_equal(conn->protostr, "LDAPS"))
     ldap_ssl = 1;
   infof(data, "LDAP local: trying to establish %s connection\n",
           ldap_ssl ? "encrypted" : "cleartext");
@@ -228,7 +228,7 @@ static CURLcode Curl_ldap(struct connectdata *conn, bool *done)
       /* Novell SDK supports DER or BASE64 files. */
       int cert_type = LDAPSSL_CERT_FILETYPE_B64;
       if((data->set.str[STRING_CERT_TYPE]) &&
-              (strequal(data->set.str[STRING_CERT_TYPE], "DER")))
+         (Curl_ascii_equal(data->set.str[STRING_CERT_TYPE], "DER")))
         cert_type = LDAPSSL_CERT_FILETYPE_DER;
       if(!ldap_ca) {
         failf(data, "LDAP local: ERROR %s CA cert not set!",
@@ -269,7 +269,7 @@ static CURLcode Curl_ldap(struct connectdata *conn, bool *done)
     if(data->set.ssl.verifypeer) {
       /* OpenLDAP SDK supports BASE64 files. */
       if((data->set.str[STRING_CERT_TYPE]) &&
-              (!strequal(data->set.str[STRING_CERT_TYPE], "PEM"))) {
+         (!Curl_ascii_equal(data->set.str[STRING_CERT_TYPE], "PEM"))) {
         failf(data, "LDAP local: ERROR OpenLDAP does only support PEM cert-type!");
         status = CURLE_SSL_CERTPROBLEM;
         goto quit;

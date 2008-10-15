@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.393 2008-10-08 01:17:51 danf Exp $
+ * $Id: http.c,v 1.394 2008-10-15 21:43:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -613,7 +613,7 @@ http_output_auth(struct connectdata *conn,
   if(!data->state.this_is_a_follow ||
      conn->bits.netrc ||
      !data->state.first_host ||
-     curl_strequal(data->state.first_host, conn->host.name) ||
+     Curl_ascii_equal(data->state.first_host, conn->host.name) ||
      data->set.http_disable_hostname_check_before_authentication) {
 
     /* Send web authentication header if needed */
@@ -2185,7 +2185,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
 
   ptr = checkheaders(data, "Host:");
   if(ptr && (!data->state.this_is_a_follow ||
-             curl_strequal(data->state.first_host, conn->host.name))) {
+             Curl_ascii_equal(data->state.first_host, conn->host.name))) {
 #if !defined(CURL_DISABLE_COOKIES)
     /* If we have a given custom Host: header, we extract the host name in
        order to possibly use it for cookie reasons later on. We only allow the
