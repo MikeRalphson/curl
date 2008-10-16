@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.368 2008-10-09 00:07:56 yangtse Exp $
+ * $Id: curl.h,v 1.369 2008-10-16 20:21:22 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1144,6 +1144,10 @@ typedef enum {
   /* "name" and "pwd" to use when fetching. */
   CINIT(USERNAME, OBJECTPOINT, 173),
   CINIT(PASSWORD, OBJECTPOINT, 174),
+
+    /* "name" and "pwd" to use with Proxy when fetching. */
+  CINIT(PROXYUSERNAME, OBJECTPOINT, 175),
+  CINIT(PROXYPASSWORD, OBJECTPOINT, 176),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

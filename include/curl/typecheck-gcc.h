@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: typecheck-gcc.h,v 1.6 2008-10-08 10:39:44 bagder Exp $
+ * $Id: typecheck-gcc.h,v 1.7 2008-10-16 20:21:22 bagder Exp $
  ***************************************************************************/
 
 /* wraps curl_easy_setopt() with typechecking */
@@ -199,6 +199,8 @@ _CURL_WARNING(_curl_easy_getinfo_err_curl_slist,
    (option) == CURLOPT_USERNAME ||                                            \
    (option) == CURLOPT_PASSWORD ||                                            \
    (option) == CURLOPT_PROXYUSERPWD ||                                        \
+   (option) == CURLOPT_PROXYUSERNAME ||                                       \
+   (option) == CURLOPT_PROXYPASSWORD ||                                       \
    (option) == CURLOPT_ENCODING ||                                            \
    (option) == CURLOPT_REFERER ||                                             \
    (option) == CURLOPT_USERAGENT ||                                           \
