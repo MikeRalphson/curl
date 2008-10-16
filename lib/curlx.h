@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlx.h,v 1.5 2008-10-15 21:43:48 bagder Exp $
+ * $Id: curlx.h,v 1.6 2008-10-16 08:23:48 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -65,7 +65,7 @@
 #define curlx_getenv curl_getenv
 #define curlx_strequal curl_strequal
 #define curlx_strnequal curl_strnequal
-#define curlx_ascii_equal Curl_ascii_equal
+#define curlx_raw_equal Curl_raw_equal
 #define curlx_mvsnprintf curl_mvsnprintf
 #define curlx_msnprintf curl_msnprintf
 #define curlx_maprintf curl_maprintf

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.49 2008-10-15 21:43:48 bagder Exp $
+ * $Id: gtls.c,v 1.50 2008-10-16 08:23:48 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -223,9 +223,9 @@ static gnutls_x509_crt_fmt do_file_type(const char *type)
 {
   if(!type || !type[0])
     return GNUTLS_X509_FMT_PEM;
-  if(Curl_ascii_equal(type, "PEM"))
+  if(Curl_raw_equal(type, "PEM"))
     return GNUTLS_X509_FMT_PEM;
-  if(Curl_ascii_equal(type, "DER"))
+  if(Curl_raw_equal(type, "DER"))
     return GNUTLS_X509_FMT_DER;
   return -1;
 }

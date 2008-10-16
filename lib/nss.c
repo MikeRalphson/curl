@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.35 2008-10-15 21:43:48 bagder Exp $
+ * $Id: nss.c,v 1.36 2008-10-16 08:23:48 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -201,7 +201,7 @@ static SECStatus set_ciphers(struct SessionHandle *data, PRFileDesc * model,
     found = PR_FALSE;
 
     for(i=0; i<NUM_OF_CIPHERS; i++) {
-      if(Curl_ascii_equal(cipher, cipherlist[i].name)) {
+      if(Curl_raw_equal(cipher, cipherlist[i].name)) {
         cipher_state[i] = PR_TRUE;
         found = PR_TRUE;
         break;
