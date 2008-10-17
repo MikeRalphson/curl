@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.369 2008-10-16 20:21:22 bagder Exp $
+ * $Id: curl.h,v 1.370 2008-10-17 03:59:02 yangtse Exp $
  ***************************************************************************/
 
 /*

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.391 2008-10-16 20:21:22 bagder Exp $
+ * $Id: urldata.h,v 1.392 2008-10-17 03:59:02 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
