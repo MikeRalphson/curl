@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.763 2008-10-17 13:23:21 bagder Exp $
+ * $Id: url.c,v 1.764 2008-10-17 13:33:13 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -234,7 +234,7 @@ static void close_connections(struct SessionHandle *data)
   long i;
   do
     i = ConnectionKillOne(data);
-  while(i != -1L);
+  } while(i != -1L);
 }
 
 void Curl_freeset(struct SessionHandle * data)
