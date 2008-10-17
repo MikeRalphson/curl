@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.204 2008-10-13 06:23:42 yangtse Exp $
+ * $Id: hostip.c,v 1.205 2008-10-17 12:49:02 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -928,8 +928,10 @@ Curl_addrinfo *Curl_he2ai(const struct hostent *he, int port)
     prevai = ai;
   }
 
-  if(result != CURLE_OK)
+  if(result != CURLE_OK) {
     Curl_freeaddrinfo(firstai);
+    firstai = NULL;
+  }
 
   return firstai;
 }
