@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.764 2008-10-17 13:33:13 yangtse Exp $
+ * $Id: url.c,v 1.765 2008-10-17 13:55:13 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -232,7 +232,7 @@ static void close_connections(struct SessionHandle *data)
 {
   /* Loop through all open connections and kill them one by one */
   long i;
-  do
+  do {
     i = ConnectionKillOne(data);
   } while(i != -1L);
 }
