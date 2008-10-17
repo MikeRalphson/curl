@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.36 2008-10-16 01:45:07 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.37 2008-10-17 17:11:11 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -380,7 +380,7 @@ dnl not reliable on ancient GNUC versions.
 AC_DEFUN([CARES_CONVERT_INCLUDE_TO_ISYSTEM], [
   AC_REQUIRE([CARES_SHFUNC_SQUEEZE])dnl
   tmp_has_include="no"
-  tmp_chg_FLAGS=$CFLAGS
+  tmp_chg_FLAGS="$CFLAGS"
   for word1 in $tmp_chg_FLAGS; do
     case "$word1" in
       -I*)
@@ -389,13 +389,13 @@ AC_DEFUN([CARES_CONVERT_INCLUDE_TO_ISYSTEM], [
     esac
   done
   if test "$tmp_has_include" = "yes"; then
-    tmp_chg_FLAGS=`echo $tmp_chg_FLAGS | sed 's/^-I/ -isystem /g'`
-    tmp_chg_FLAGS=`echo $tmp_chg_FLAGS | sed 's/ -I/ -isystem /g'`
+    tmp_chg_FLAGS=`echo "$tmp_chg_FLAGS" | "$SED" 's/^-I/ -isystem /g'`
+    tmp_chg_FLAGS=`echo "$tmp_chg_FLAGS" | "$SED" 's/ -I/ -isystem /g'`
     CFLAGS="$tmp_chg_FLAGS"
     squeeze CFLAGS
   fi
   tmp_has_include="no"
-  tmp_chg_FLAGS=$CPPFLAGS
+  tmp_chg_FLAGS="$CPPFLAGS"
   for word1 in $tmp_chg_FLAGS; do
     case "$word1" in
       -I*)
@@ -404,8 +404,8 @@ AC_DEFUN([CARES_CONVERT_INCLUDE_TO_ISYSTEM], [
     esac
   done
   if test "$tmp_has_include" = "yes"; then
-    tmp_chg_FLAGS=`echo $tmp_chg_FLAGS | sed 's/^-I/ -isystem /g'`
-    tmp_chg_FLAGS=`echo $tmp_chg_FLAGS | sed 's/ -I/ -isystem /g'`
+    tmp_chg_FLAGS=`echo "$tmp_chg_FLAGS" | "$SED" 's/^-I/ -isystem /g'`
+    tmp_chg_FLAGS=`echo "$tmp_chg_FLAGS" | "$SED" 's/ -I/ -isystem /g'`
     CPPFLAGS="$tmp_chg_FLAGS"
     squeeze CPPFLAGS
   fi
