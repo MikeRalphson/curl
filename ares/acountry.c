@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.9 2008-10-07 18:44:32 yangtse Exp $
+ * $Id: acountry.c,v 1.10 2008-10-17 19:04:53 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -523,7 +523,8 @@ static int is_addr(char *str, char **end)
 {
   int a0, a1, a2, a3, num, rc = 0, length = 0;
 
-  if ((num = sscanf(str,"%3d.%3d.%3d.%3d%n",&a0,&a1,&a2,&a3,&length)) == 4 &&
+  num = sscanf(str,"%3d.%3d.%3d.%3d%n",&a0,&a1,&a2,&a3,&length);
+  if( (num == 4) &&
       BYTE_OK(a0) && BYTE_OK(a1) && BYTE_OK(a2) && BYTE_OK(a3) &&
       length >= (3+4))
     {
@@ -583,8 +584,8 @@ static void find_country_from_cname(const char *cname, struct in_addr addr)
 
   if (ver_1)
     {
-      ccode_A2[0] = tolower(cname[2]);
-      ccode_A2[1] = tolower(cname[3]);
+      ccode_A2[0] = (char)tolower(cname[2]);
+      ccode_A2[1] = (char)tolower(cname[3]);
       ccode_A2[2] = '\0';
     }
   else
