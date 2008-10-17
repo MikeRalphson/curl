@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.395 2008-10-16 08:23:48 bagder Exp $
+ * $Id: http.c,v 1.396 2008-10-17 12:53:53 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -203,10 +203,9 @@ char *Curl_copy_header_value(const char *h)
     ++h;
 
   /* Find the first non-space letter */
-  for(start=h;
-      *start && ISSPACE(*start);
-      start++)
-    ;  /* empty loop */
+  start = h;
+  while(*start && ISSPACE(*start))
+    start++;
 
   /* data is in the host encoding so
      use '\r' and '\n' instead of 0x0d and 0x0a */
@@ -215,10 +214,12 @@ char *Curl_copy_header_value(const char *h)
     end = strchr(start, '\n');
   if(!end)
     end = strchr(start, '\0');
+  if(!end)
+    return NULL;
 
   /* skip all trailing space letters */
-  for(; ISSPACE(*end) && (end > start); end--)
-    ;  /* empty loop */
+  while((end > start) && ISSPACE(*end))
+    end--;
 
   /* get length of the type */
   len = end-start+1;

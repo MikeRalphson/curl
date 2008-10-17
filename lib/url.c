@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.761 2008-10-16 22:56:40 danf Exp $
+ * $Id: url.c,v 1.762 2008-10-17 12:53:53 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -231,8 +231,10 @@ void Curl_safefree(void *ptr)
 static void close_connections(struct SessionHandle *data)
 {
   /* Loop through all open connections and kill them one by one */
-  while(-1 != ConnectionKillOne(data))
-    ; /* empty loop */
+  long i;
+  do {
+    i = ConnectionKillOne(data);
+  while(i != -1L);
 }
 
 void Curl_freeset(struct SessionHandle * data)

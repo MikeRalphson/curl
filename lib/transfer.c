@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.416 2008-10-15 07:43:48 bagder Exp $
+ * $Id: transfer.c,v 1.417 2008-10-17 12:53:53 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1255,10 +1255,9 @@ static CURLcode readwrite_headers(struct SessionHandle *data,
       char *start;
 
       /* Find the first non-space letter */
-      for(start=k->p+17;
-	  *start && ISSPACE(*start);
-	  start++)
-	;  /* empty loop */
+      start = k->p + 17;
+      while(*start && ISSPACE(*start))
+        start++;
 
       /* Record the content-encoding for later use */
       if(checkprefix("identity", start))
