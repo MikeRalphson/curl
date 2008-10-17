@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.34 2008-09-30 17:04:05 yangtse Exp $
+ * $Id: adig.c,v 1.35 2008-10-17 11:26:36 bagder Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -151,6 +151,7 @@ static const char *opcodes[] = {
   "UPDATEA", "UPDATED", "UPDATEDA", "UPDATEM", "UPDATEMA",
   "ZONEINIT", "ZONEREF"
 };
+  struct in_addr inaddr;
 
 static const char *rcodes[] = {
   "NOERROR", "FORMERR", "SERVFAIL", "NXDOMAIN", "NOTIMP", "REFUSED",
@@ -212,11 +213,15 @@ int main(int argc, char **argv)
 
         case 's':
           /* Add a server, and specify servers in the option mask. */
-          hostent = gethostbyname(optarg);
-          if (!hostent || hostent->h_addrtype != AF_INET)
+          if (inet_pton(AF_INET, optarg, &inaddr) <= 0)
             {
-              fprintf(stderr, "adig: server %s not found.\n", optarg);
-              return 1;
+              hostent = gethostbyname(optarg);
+              if (!hostent || hostent->h_addrtype != AF_INET)
+                {
+                  fprintf(stderr, "adig: server %s not found.\n", optarg);
+                  return 1;
+                }
+              memcpy(&inaddr, hostent->h_addr, sizeof(struct in_addr));
             }
           options.servers = realloc(options.servers, (options.nservers + 1)
                                     * sizeof(struct in_addr));
@@ -225,7 +230,7 @@ int main(int argc, char **argv)
               fprintf(stderr, "Out of memory!\n");
               return 1;
             }
-          memcpy(&options.servers[options.nservers], hostent->h_addr,
+          memcpy(&options.servers[options.nservers], &inaddr,
                  sizeof(struct in_addr));
           options.nservers++;
           optmask |= ARES_OPT_SERVERS;
