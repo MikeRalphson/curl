@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.207 2008-10-17 15:29:35 yangtse Exp $
+ * $Id: hostip.c,v 1.208 2008-10-18 01:17:27 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -592,7 +592,7 @@ int Curl_resolv_timeout(struct connectdata *conn,
 
     /* alarm() makes a signal get sent when the timeout fires off, and that
        will abort system calls */
-    prev_alarm = alarm((unsigned int) (timeout ? timeout/1000L : timeout));
+    prev_alarm = alarm((unsigned int) (timeout/1000L));
   }
 
 #else
