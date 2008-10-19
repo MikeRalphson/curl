@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.493 2008-10-17 06:03:37 bagder Exp $
+ * $Id: main.c,v 1.494 2008-10-19 20:28:41 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -1818,9 +1818,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         return PARAM_OPTION_UNKNOWN;
       }
     }
-    if(hit < 0) {
-      return PARAM_OPTION_UNKNOWN;
-    }
+
     if(aliases[hit].extraparam) {
       /* this option requires an extra parameter */
       if(!longopt && parse[1]) {
