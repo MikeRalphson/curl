@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: share.c,v 1.25 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: share.c,v 1.26 2008-10-19 20:17:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -168,8 +168,10 @@ curl_share_cleanup(CURLSH *sh)
     return CURLSHE_IN_USE;
   }
 
-  if(share->hostcache)
+  if(share->hostcache) {
     Curl_hash_destroy(share->hostcache);
+    share->hostcache = NULL;
+  }
 
 #if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_COOKIES)
   if(share->cookies)

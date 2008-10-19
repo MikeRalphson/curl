@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: llist.c,v 1.21 2008-09-06 05:29:06 yangtse Exp $
+ * $Id: llist.c,v 1.22 2008-10-19 20:17:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -113,6 +113,8 @@ Curl_llist_remove(struct curl_llist *list, struct curl_llist_element *e,
   }
 
   list->dtor(user, e->ptr);
+
+  memset(e, 0, sizeof(struct curl_llist_element));
   free(e);
   --list->size;
 
@@ -126,6 +128,7 @@ Curl_llist_destroy(struct curl_llist *list, void *user)
     while(list->size > 0)
       Curl_llist_remove(list, list->tail, user);
 
+    memset(list, 0, sizeof(struct curl_llist));
     free(list);
   }
 }

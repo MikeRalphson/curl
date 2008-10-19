@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.209 2008-10-19 01:02:18 yangtse Exp $
+ * $Id: hostip.c,v 1.210 2008-10-19 20:17:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -695,6 +695,7 @@ static void freednsentry(void *freethis)
 
   Curl_freeaddrinfo(p->addr);
 
+  memset(p, 0, sizeof(struct Curl_dns_entry));
   free(p);
 }
 

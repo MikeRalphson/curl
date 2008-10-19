@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.766 2008-10-19 18:20:47 bagder Exp $
+ * $Id: url.c,v 1.767 2008-10-19 20:17:16 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -450,8 +450,11 @@ CURLcode Curl_close(struct SessionHandle *data)
     return CURLE_OK;
   }
 
-  if(data->dns.hostcachetype == HCACHE_PRIVATE)
+  if(data->dns.hostcachetype == HCACHE_PRIVATE) {
     Curl_hash_destroy(data->dns.hostcache);
+    data->dns.hostcachetype = HCACHE_NONE;
+    data->dns.hostcache = NULL;
+  }
 
   if(data->state.rangestringalloc)
     free(data->state.range);
