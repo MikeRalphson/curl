@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.418 2008-10-18 01:23:14 danf Exp $
+ * $Id: transfer.c,v 1.419 2008-10-19 04:48:15 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -111,11 +111,11 @@
 
 
 #ifndef CURL_DISABLE_HTTP
-static CURLcode readwrite_headers(struct SessionHandle *data,
-                                  struct connectdata *conn,
-                                  struct SingleRequest *k,
-                                  ssize_t *nread,
-                                  bool *stop_reading);
+static CURLcode readwrite_http_headers(struct SessionHandle *data,
+                                       struct connectdata *conn,
+                                       struct SingleRequest *k,
+                                       ssize_t *nread,
+                                       bool *stop_reading);
 #endif /* CURL_DISABLE_HTTP */
 
 /*
@@ -197,6 +197,7 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
   return CURLE_OK;
 }
 
+#ifndef CURL_DISABLE_HTTP
 /*
  * checkhttpprefix()
  *
@@ -241,6 +242,7 @@ checkhttpprefix(struct SessionHandle *data,
 #endif /* CURL_DOES_CONVERSIONS */
   return rc;
 }
+#endif   /* CURL_DISABLE_HTTP */
 
 /*
  * Curl_readrewind() rewinds the read stream. This is typically used for HTTP
@@ -432,7 +434,7 @@ static CURLcode readwrite_data(struct SessionHandle *data,
     if(k->header) {
       /* we are in parse-the-header-mode */
       bool stop_reading = FALSE;
-      result = readwrite_headers(data, conn, k, &nread, &stop_reading);
+      result = readwrite_http_headers(data, conn, k, &nread, &stop_reading);
       if(result)
 	return result;
       if(stop_reading)
@@ -679,13 +681,13 @@ static CURLcode readwrite_data(struct SessionHandle *data,
 
 #ifndef CURL_DISABLE_HTTP
 /*
- * Read any header lines from the server and pass them to the client app.
+ * Read any HTTP header lines from the server and pass them to the client app.
  */
-static CURLcode readwrite_headers(struct SessionHandle *data,
-                                  struct connectdata *conn,
-                                  struct SingleRequest *k,
-                                  ssize_t *nread,
-                                  bool *stop_reading)
+static CURLcode readwrite_http_headers(struct SessionHandle *data,
+                                       struct connectdata *conn,
+                                       struct SingleRequest *k,
+                                       ssize_t *nread,
+                                       bool *stop_reading)
 {
   CURLcode result;
 
