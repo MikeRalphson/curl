@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.494 2008-10-19 20:28:41 bagder Exp $
+ * $Id: main.c,v 1.495 2008-10-19 20:37:24 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -5064,12 +5064,15 @@ quit_curl:
   if(config->trace_fopened && config->trace_stream)
     fclose(config->trace_stream);
 
+  /* Dump the libcurl code if previously enabled.
+     NOTE: that this function relies on config->errors amongst other things
+     so not everything can be closed and cleaned before this is called */
+  dumpeasycode(config);
+
   if(config->errors_fopened)
     fclose(config->errors);
 
   main_free(); /* cleanup */
-
-  dumpeasycode(config);
 
   return res;
 }
