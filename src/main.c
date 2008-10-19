@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.495 2008-10-19 20:37:24 bagder Exp $
+ * $Id: main.c,v 1.496 2008-10-19 21:00:40 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2313,6 +2313,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
           }
           else {
             char *enc = curl_easy_escape(config->easy, postdata, size);
+            free(postdata); /* no matter if it worked or not */
             if(enc) {
               /* now make a string with the name from above and append the
                  encoded string */
@@ -2325,7 +2326,6 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
               else
                 strcpy(n, enc);
               curl_free(enc);
-              free(postdata);
               if(n) {
                 postdata = n;
               }
