@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.765 2008-10-17 13:55:13 yangtse Exp $
+ * $Id: url.c,v 1.766 2008-10-19 18:20:47 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4355,8 +4355,8 @@ static CURLcode create_conn(struct SessionHandle *data,
  */
 
 static CURLcode setup_conn(struct connectdata *conn,
-                                struct Curl_dns_entry *hostaddr,
-                                bool *protocol_done)
+                           struct Curl_dns_entry *hostaddr,
+                           bool *protocol_done)
 {
   CURLcode result=CURLE_OK;
   struct SessionHandle *data = conn->data;
@@ -4402,7 +4402,12 @@ static CURLcode setup_conn(struct connectdata *conn,
     if(CURL_SOCKET_BAD == conn->sock[FIRSTSOCKET]) {
       bool connected = FALSE;
 
-      /* Connect only if not already connected! */
+      /* Connect only if not already connected!
+       *
+       * NOTE: hostaddr can be NULL when passed to this function, but that is
+       * only for the case where we re-use an existing connection and thus
+       * this code section will not be reached with hostaddr == NULL.
+       */
       result = ConnectPlease(data, conn, hostaddr, &connected);
 
       if(connected) {
