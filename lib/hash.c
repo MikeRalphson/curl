@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.34 2008-10-19 20:17:16 yangtse Exp $
+ * $Id: hash.c,v 1.35 2008-10-19 20:41:03 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -272,7 +272,7 @@ Curl_hash_destroy(struct curl_hash *h)
 
   Curl_hash_clean(h);
 
-  memset(h, 0, sizeof(struct struct curl_hash));
+  memset(h, 0, sizeof(struct curl_hash));
   free(h);
 }
 
