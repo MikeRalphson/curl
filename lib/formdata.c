@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.111 2008-09-24 12:22:16 yangtse Exp $
+ * $Id: formdata.c,v 1.112 2008-10-20 21:56:35 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -743,8 +743,11 @@ CURLFORMcode FormAdd(struct curl_httppost **httppost,
         }
         if( !(form->flags & HTTPPOST_PTRNAME) &&
              (form == first_form) ) {
-          /* copy name (without strdup; possibly contains null characters) */
-          form->name = memdup(form->name, form->namelength);
+          /* Note that there's small risk that form->name is NULL here if the
+             app passed in a bad combo, so we better check for that first. */
+          if(form->name)
+            /* copy name (without strdup; possibly contains null characters) */
+            form->name = memdup(form->name, form->namelength);
           if(!form->name) {
             return_value = CURL_FORMADD_MEMORY;
             break;
