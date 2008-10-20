@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.15 2008-09-05 14:29:21 bagder Exp $
+ * $Id: sslgen.h,v 1.16 2008-10-20 23:07:48 danf Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -60,6 +60,20 @@ bool Curl_ssl_data_pending(const struct connectdata *conn,
                            int connindex);
 int Curl_ssl_check_cxn(struct connectdata *conn);
 void Curl_ssl_free_certinfo(struct SessionHandle *data);
+
+/* Functions to be used by SSL library adaptation functions */
+
+/* extract a session ID */
+int Curl_ssl_getsessionid(struct connectdata *conn,
+                          void **ssl_sessionid,
+                          size_t *idsize) /* set 0 if unknown */;
+/* add a new session ID */
+CURLcode Curl_ssl_addsessionid(struct connectdata *conn,
+                               void *ssl_sessionid,
+                               size_t idsize);
+
+#define SSL_SHUTDOWN_TIMEOUT 10000 /* ms */
+
 #else
 /* When SSL support is not present, just define away these function calls */
 #define Curl_ssl_init() 1
@@ -82,15 +96,4 @@ void Curl_ssl_free_certinfo(struct SessionHandle *data);
 
 #endif
 
-/* extract a session ID */
-int Curl_ssl_getsessionid(struct connectdata *conn,
-                          void **ssl_sessionid,
-                          size_t *idsize) /* set 0 if unknown */;
-/* add a new session ID */
-CURLcode Curl_ssl_addsessionid(struct connectdata *conn,
-                               void *ssl_sessionid,
-                               size_t idsize);
-
-#define SSL_SHUTDOWN_TIMEOUT 10000 /* ms */
-
-#endif
+#endif /* USE_SSL */
