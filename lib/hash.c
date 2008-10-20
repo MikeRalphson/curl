@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.35 2008-10-19 20:41:03 yangtse Exp $
+ * $Id: hash.c,v 1.36 2008-10-20 23:24:35 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -44,7 +44,6 @@ hash_element_dtor(void *user, void *element)
 
   h->dtor(e->ptr);
 
-  memset(e, 0, sizeof(struct curl_hash_element));
   free(e);
 }
 
@@ -272,7 +271,6 @@ Curl_hash_destroy(struct curl_hash *h)
 
   Curl_hash_clean(h);
 
-  memset(h, 0, sizeof(struct curl_hash));
   free(h);
 }
 
