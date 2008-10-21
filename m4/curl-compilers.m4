@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.38 2008-10-20 15:56:08 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.39 2008-10-21 17:54:18 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -921,6 +921,8 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
             tmp_CPPFLAGS="$tmp_CPPFLAGS -Wall -w2"
             dnl Perform extra compile-time code checking
             tmp_CPPFLAGS="$tmp_CPPFLAGS -Wcheck"
+            dnl Generate inlining diagnostics
+            tmp_CPPFLAGS="$tmp_CPPFLAGS -Winline"
           fi
           dnl Disable using EBP register in optimizations
           tmp_CFLAGS="$tmp_CFLAGS -fno-omit-frame-pointer"
@@ -928,6 +930,12 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
           tmp_CFLAGS="$tmp_CFLAGS -fno-builtin"
           dnl Disable inlining of functions
           tmp_CFLAGS="$tmp_CFLAGS -fno-inline"
+          dnl Disable some IPO for single file optimizations
+          tmp_CFLAGS="$tmp_CFLAGS -fno-inline-functions"
+          dnl Disable inlining of standard library functions
+          tmp_CFLAGS="$tmp_CFLAGS -nolib-inline"
+          dnl Disable inlining of user-defined functions
+          tmp_CFLAGS="$tmp_CFLAGS -Ob0"
           dnl Enable floating-point stack integrity checks
           tmp_CFLAGS="$tmp_CFLAGS -fpstkchk"
           dnl Enable run-time detection of buffer overruns.

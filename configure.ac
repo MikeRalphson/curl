@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.372 2008-10-20 15:56:08 yangtse Exp $
+# $Id: configure.ac,v 1.373 2008-10-21 17:54:18 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -173,6 +173,10 @@ dnl force libtool to build static libraries with PIC on AMD64-Linux & FreeBSD
 AC_MSG_CHECKING([if arch-OS host is AMD64-Linux/FreeBSD (to build static libraries with PIC)])
 case $host in
   x86_64*linux*|amd64*freebsd*|ia64*freebsd*)
+    AC_MSG_RESULT([yes])
+    with_pic=yes
+    ;;
+  i686*linux*)
     AC_MSG_RESULT([yes])
     with_pic=yes
     ;;
