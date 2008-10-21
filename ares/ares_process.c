@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.68 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.69 2008-10-21 01:58:23 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -906,7 +906,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
   /* Configure it. */
   if (configure_socket(s, channel) < 0)
     {
-       close(s);
+       closesocket(s);
        return -1;
     }
 
@@ -920,7 +920,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
   if (setsockopt(s, IPPROTO_TCP, TCP_NODELAY,
                  (void *)&opt, sizeof(opt)) == -1)
     {
-       close(s);
+       closesocket(s);
        return -1;
     }
 
@@ -929,14 +929,16 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
   sockin.sin_family = AF_INET;
   sockin.sin_addr = server->addr;
   sockin.sin_port = (unsigned short)(channel->tcp_port & 0xffff);
-  if (connect(s, (struct sockaddr *) &sockin, sizeof(sockin)) == -1) {
-    int err = SOCKERRNO;
+  if (connect(s, (struct sockaddr *) &sockin, sizeof(sockin)) == -1)
+    {
+      int err = SOCKERRNO;
 
-    if (err != EINPROGRESS && err != EWOULDBLOCK) {
-      closesocket(s);
-      return -1;
+      if (err != EINPROGRESS && err != EWOULDBLOCK)
+        {
+          closesocket(s);
+          return -1;
+        }
     }
-  }
 
   SOCK_STATE_CALLBACK(channel, s, 1, 0);
   server->tcp_buffer_pos = 0;
@@ -958,7 +960,7 @@ static int open_udp_socket(ares_channel channel, struct server_state *server)
   /* Set the socket non-blocking. */
   if (configure_socket(s, channel) < 0)
     {
-       close(s);
+       closesocket(s);
        return -1;
     }
 
@@ -969,8 +971,13 @@ static int open_udp_socket(ares_channel channel, struct server_state *server)
   sockin.sin_port = (unsigned short)(channel->udp_port & 0xffff);
   if (connect(s, (struct sockaddr *) &sockin, sizeof(sockin)) == -1)
     {
-      closesocket(s);
-      return -1;
+      int err = SOCKERRNO;
+
+      if (err != EINPROGRESS && err != EWOULDBLOCK)
+        {
+          closesocket(s);
+          return -1;
+        }
     }
 
   SOCK_STATE_CALLBACK(channel, s, 1, 0);
