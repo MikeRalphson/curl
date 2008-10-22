@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: parsedate.c,v 1.34 2008-10-16 08:23:48 bagder Exp $
+ * $Id: parsedate.c,v 1.35 2008-10-22 05:46:29 danf Exp $
  ***************************************************************************/
 /*
   A brief summary of the date string formats this parser groks:
@@ -96,7 +96,7 @@ const char * const Curl_month[]=
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
 struct tzinfo {
-  const char *name;
+  char name[5];
   int offset; /* +/- in minutes */
 };
 

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.150 2008-09-30 12:50:52 yangtse Exp $
+ * $Id: sendf.c,v 1.151 2008-10-22 05:46:29 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -661,7 +661,7 @@ int Curl_read(struct connectdata *conn, /* connection data */
 static int showit(struct SessionHandle *data, curl_infotype type,
                   char *ptr, size_t size)
 {
-  static const char * const s_infotype[CURLINFO_END] = {
+  static const char s_infotype[CURLINFO_END][3] = {
     "* ", "< ", "> ", "{ ", "} ", "{ ", "} " };
 
 #ifdef CURL_DOES_CONVERSIONS
