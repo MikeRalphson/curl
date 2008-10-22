@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.310 2008-10-15 17:41:02 danf Exp $
+# $Id: runtests.pl,v 1.311 2008-10-22 15:03:15 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1823,7 +1823,14 @@ sub singletest {
 
     my $dbghosttype=join(' ', runclientoutput("uname -a"));
     if(($dbghosttype =~ /SMP PREEMPT/) && ($dbghosttype =~ /i686 GNU/)) {
-        $why = "debugging icc build" if(($testnum != 1) && ($testnum != 100));
+        if(!$curl_debug) {
+            if(($testnum != 1)   && ($testnum != 100) &&
+               ($testnum != 500) && ($testnum != 507) &&
+               ($testnum != 517) && ($testnum != 534) &&
+               ($testnum != 557) && ($testnum != 1013)) {
+                $why = "debugging icc build";
+            }
+        }
     }
 
     if(!$why) {
