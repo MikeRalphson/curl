@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.397 2008-10-21 23:15:19 danf Exp $
+ * $Id: http.c,v 1.398 2008-10-22 17:36:48 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -606,6 +606,10 @@ http_output_auth(struct connectdata *conn,
         authproxy->multi = FALSE;
     }
   else
+#else
+  (void)request;
+  (void)path;
+  (void)proxytunnel;
 #endif /* CURL_DISABLE_PROXY */
     /* we have no proxy so let's pretend we're done authenticating
        with it */
