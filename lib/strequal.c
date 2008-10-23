@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.c,v 1.38 2008-10-16 08:23:48 bagder Exp $
+ * $Id: strequal.c,v 1.39 2008-10-23 01:20:57 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -159,6 +159,22 @@ int Curl_raw_equal(const char *first, const char *second)
      loop above is skipped because one of the strings reached zero, we must not
      return this as a successful match */
   return (my_toupper(*first) == my_toupper(*second));
+}
+
+int Curl_raw_nequal(const char *first, const char *second, size_t max)
+{
+  while(*first && *second && max) {
+    if(my_toupper(*first) != my_toupper(*second)) {
+      break;
+    }
+    max--;
+    first++;
+    second++;
+  }
+  if(0 == max)
+    return 1; /* they are equal this far */
+
+  return my_toupper(*first) == my_toupper(*second);
 }
 
 #ifndef HAVE_STRLCAT

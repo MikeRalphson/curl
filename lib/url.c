@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.767 2008-10-19 20:17:16 yangtse Exp $
+ * $Id: url.c,v 1.768 2008-10-23 01:20:57 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3337,7 +3337,7 @@ static char *detect_proxy(struct connectdata *conn)
   if(!no_proxy)
     no_proxy=curl_getenv("NO_PROXY");
 
-  if(!no_proxy || !strequal("*", no_proxy)) {
+  if(!no_proxy || !Curl_raw_equal("*", no_proxy)) {
     /* NO_PROXY wasn't specified or it wasn't just an asterisk */
     char *nope;
 

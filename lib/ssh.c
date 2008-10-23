@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.117 2008-10-22 05:46:29 danf Exp $
+ * $Id: ssh.c,v 1.118 2008-10-23 01:20:57 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -822,7 +822,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn)
     /*
      * Support some of the "FTP" commands
      */
-    if(curl_strnequal(sshc->quote_item->data, "PWD", 3)) {
+    if(curl_strequal("pwd", sshc->quote_item->data)) {
       /* output debug output if that is requested */
       if(data->set.verbose) {
         char tmp[PATH_MAX+1];

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.42 2008-09-06 04:47:14 yangtse Exp $
+ * $Id: sslgen.c,v 1.43 2008-10-23 01:20:57 danf Exp $
  ***************************************************************************/
 
 /* This file is for "generic" SSL functions that all libcurl internals should
@@ -63,8 +63,6 @@
 #include "progress.h"
 /* The last #include file should be: */
 #include "memdebug.h"
-
-static bool safe_strequal(char* str1, char* str2);
 
 static bool safe_strequal(char* str1, char* str2)
 {
@@ -228,7 +226,7 @@ int Curl_ssl_getsessionid(struct connectdata *conn,
     if(!check->sessionid)
       /* not session ID means blank entry */
       continue;
-    if(curl_strequal(conn->host.name, check->name) &&
+    if(Curl_raw_equal(conn->host.name, check->name) &&
        (conn->remote_port == check->remote_port) &&
        Curl_ssl_config_matches(&conn->ssl_config, &check->ssl_config)) {
       /* yes, we have a session ID! */

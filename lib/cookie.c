@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.96 2008-10-16 08:23:48 bagder Exp $
+ * $Id: cookie.c,v 1.97 2008-10-23 01:20:57 danf Exp $
  ***************************************************************************/
 
 /***
@@ -131,7 +131,7 @@ static bool tailmatch(const char *little, const char *bigone)
   if(littlelen > biglen)
     return FALSE;
 
-  return (bool)strequal(little, bigone+biglen-littlelen);
+  return (bool)Curl_raw_equal(little, bigone+biglen-littlelen);
 }
 
 /*

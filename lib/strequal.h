@@ -20,17 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strequal.h,v 1.20 2008-10-16 08:23:48 bagder Exp $
+ * $Id: strequal.h,v 1.21 2008-10-23 01:20:57 danf Exp $
  ***************************************************************************/
 
 #include <curl/curl.h>
 
 #define strequal(a,b) curl_strequal(a,b)
 #define strnequal(a,b,c) curl_strnequal(a,b,c)
-
-/* checkprefix() is a shorter version of the above, used when the first
-   argument is zero-byte terminated */
-#define checkprefix(a,b)    strnequal(a,b,strlen(a))
 
 /*
  * Curl_raw_equal() is for doing "raw" case insensitive strings. This is meant
@@ -40,6 +36,11 @@
  * The function is capable of comparing a-z case insensitively even for non-ascii.
  */
 int Curl_raw_equal(const char *first, const char *second);
+int Curl_raw_nequal(const char *first, const char *second, size_t max);
+
+/* checkprefix() is a shorter version of the above, used when the first
+   argument is zero-byte terminated */
+#define checkprefix(a,b)    Curl_raw_nequal(a,b,strlen(a))
 
 #ifndef HAVE_STRLCAT
 #define strlcat(x,y,z) Curl_strlcat(x,y,z)
