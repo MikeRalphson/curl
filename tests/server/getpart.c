@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getpart.c,v 1.27 2008-10-02 14:44:18 yangtse Exp $
+ * $Id: getpart.c,v 1.28 2008-10-23 14:07:28 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -34,6 +34,7 @@ struct SessionHandle {
 };
 
 #include "curl_base64.h"
+#include "memory.h"
 
 /* include memdebug.h last */
 #include "memdebug.h"
@@ -48,11 +49,19 @@ struct SessionHandle {
 #define show(x)
 #endif
 
+#if defined(_MSC_VER) && defined(_DLL)
+#  pragma warning(disable:4232) /* MSVC extension, dllimport identity */
+#endif
+
 curl_malloc_callback Curl_cmalloc = (curl_malloc_callback)malloc;
 curl_free_callback Curl_cfree = (curl_free_callback)free;
 curl_realloc_callback Curl_crealloc = (curl_realloc_callback)realloc;
 curl_strdup_callback Curl_cstrdup = (curl_strdup_callback)strdup;
 curl_calloc_callback Curl_ccalloc = (curl_calloc_callback)calloc;
+
+#if defined(_MSC_VER) && defined(_DLL)
+#  pragma warning(default:4232) /* MSVC extension, dllimport identity */
+#endif
 
 static
 char *appendstring(char *string, /* original string */
