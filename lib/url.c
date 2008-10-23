@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.768 2008-10-23 01:20:57 danf Exp $
+ * $Id: url.c,v 1.769 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -115,6 +115,7 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #include "multiif.h"
 #include "easyif.h"
 #include "speedcheck.h"
+#include "rawstr.h"
 
 /* And now for the protocols */
 #include "ftp.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.105 2008-10-16 08:23:48 bagder Exp $
+ * $Id: telnet.c,v 1.106 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -77,6 +77,7 @@
 #include "memory.h"
 #include "select.h"
 #include "strequal.h"
+#include "rawstr.h"
 
 /* The last #include file should be: */
 #include "memdebug.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.97 2008-10-23 01:20:57 danf Exp $
+ * $Id: cookie.c,v 1.98 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -96,6 +96,7 @@ Example set of cookies:
 #include "memory.h"
 #include "share.h"
 #include "strtoofft.h"
+#include "rawstr.h"
 
 /* The last #include file should be: */
 #ifdef CURLDEBUG

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.42 2008-10-16 08:23:48 bagder Exp $
+ * $Id: netrc.c,v 1.43 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -43,6 +43,7 @@
 #include "strequal.h"
 #include "strtok.h"
 #include "memory.h"
+#include "rawstr.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>

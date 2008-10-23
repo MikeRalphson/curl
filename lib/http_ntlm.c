@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.73 2008-09-30 15:06:03 yangtse Exp $
+ * $Id: http_ntlm.c,v 1.74 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -55,7 +55,7 @@
 #include "urldata.h"
 #include "easyif.h"  /* for Curl_convert_... prototypes */
 #include "sendf.h"
-#include "strequal.h"
+#include "rawstr.h"
 #include "curl_base64.h"
 #include "http_ntlm.h"
 #include "url.h"

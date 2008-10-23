@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.496 2008-10-19 21:00:40 bagder Exp $
+ * $Id: main.c,v 1.497 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -44,6 +44,7 @@
 #ifdef USE_ENVIRONMENT
 #include "writeenv.h"
 #endif
+#include "rawstr.h"
 
 #define CURLseparator   "--_curl_--"
 

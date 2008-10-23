@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.419 2008-10-19 04:48:15 danf Exp $
+ * $Id: transfer.c,v 1.420 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -33,6 +33,7 @@
 
 #include "strtoofft.h"
 #include "strequal.h"
+#include "rawstr.h"
 
 #ifdef WIN32
 #include <time.h>

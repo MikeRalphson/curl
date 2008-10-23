@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.211 2008-10-16 08:23:48 bagder Exp $
+ * $Id: ssluse.c,v 1.212 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -50,6 +50,7 @@
 #include "strequal.h"
 #include "select.h"
 #include "sslgen.h"
+#include "rawstr.h"
 
 #define _MPRINTF_REPLACE /* use the internal *printf() functions */
 #include <curl/mprintf.h>

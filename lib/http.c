@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.399 2008-10-23 01:20:57 danf Exp $
+ * $Id: http.c,v 1.400 2008-10-23 11:49:19 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -96,6 +96,7 @@
 #include "parsedate.h" /* for the week day and month names */
 #include "strtoofft.h"
 #include "multiif.h"
+#include "rawstr.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
