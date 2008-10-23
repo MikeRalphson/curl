@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.212 2008-10-02 03:56:55 yangtse Exp $
+# $Id: acinclude.m4,v 1.213 2008-10-23 00:38:23 yangtse Exp $
 #***************************************************************************
 
 
@@ -1235,6 +1235,9 @@ AC_DEFUN([CURL_CHECK_NI_WITHSCOPEID], [
     [ac_cv_working_ni_withscopeid], [
     AC_RUN_IFELSE([
       AC_LANG_PROGRAM([[
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
 #ifdef HAVE_STDIO_H
 #include <stdio.h>
 #endif
@@ -2317,6 +2320,9 @@ AC_DEFUN([CURL_CHECK_LIBS_CLOCK_GETTIME_MONOTONIC], [
       AC_MSG_CHECKING([if monotonic clock_gettime works])
       AC_RUN_IFELSE([
         AC_LANG_PROGRAM([[
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
