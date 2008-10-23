@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.25 2008-10-23 00:38:23 yangtse Exp $
+# $Id: curl-functions.m4,v 1.26 2008-10-23 09:05:22 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 25
+# serial 26
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -2692,7 +2692,7 @@ AC_DEFUN([CURL_CHECK_FUNC_STRERROR_R], [
   #
   if test "$tst_compi_strerror_r" = "yes" &&
      test "$tst_allow_strerror_r" = "unknown"; then
-    AC_MSG_NOTICE([cannot determine strerror_r() style: edit lib/config.h manually.])
+    AC_MSG_WARN([cannot determine strerror_r() style: edit lib/config.h manually.])
   fi
   #
 ])
