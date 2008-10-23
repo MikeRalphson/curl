@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.h,v 1.4 2008-10-23 14:07:28 yangtse Exp $
+ * $Id: tftp.h,v 1.5 2008-10-23 14:34:08 yangtse Exp $
  ***************************************************************************/
 
 /* This file is a rewrite/clone of the arpa/tftp.h file for systems without
@@ -45,12 +45,6 @@ struct tftphdr {
 #define th_stuff th_block
 #define th_code  th_block
 #define th_msg   th_data
-
-#define opcode_RRQ   1
-#define opcode_WRQ   2
-#define opcode_DATA  3
-#define opcode_ACK   4
-#define opcode_ERROR 5
 
 #define EUNDEF    0
 #define ENOTFOUND 1

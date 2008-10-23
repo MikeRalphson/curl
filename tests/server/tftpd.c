@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.47 2008-10-23 14:07:28 yangtse Exp $
+ * $Id: tftpd.c,v 1.48 2008-10-23 14:34:09 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -118,6 +118,11 @@ static int writeit(struct testcase *test, struct tftphdr **dpp, int ct,
                    int convert);
 static void mysignal(int, void (*func)(int));
 
+#define opcode_RRQ   1
+#define opcode_WRQ   2
+#define opcode_DATA  3
+#define opcode_ACK   4
+#define opcode_ERROR 5
 
 #define TIMEOUT         5
 
