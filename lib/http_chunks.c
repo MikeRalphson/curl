@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_chunks.c,v 1.46 2008-10-07 23:20:06 danf Exp $
+ * $Id: http_chunks.c,v 1.47 2008-10-24 01:27:00 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -85,9 +85,9 @@
  We avoid the use of isxdigit to accommodate non-ASCII hosts. */
 static bool Curl_isxdigit(char digit)
 {
-  return (digit >= 0x30 && digit <= 0x39)    /* 0-9 */
-      || (digit >= 0x41 && digit <= 0x46)    /* A-F */
-      || (digit >= 0x61 && digit <= 0x66);   /* a-f */
+  return (bool)( (digit >= 0x30 && digit <= 0x39)    /* 0-9 */
+              || (digit >= 0x41 && digit <= 0x46)    /* A-F */
+              || (digit >= 0x61 && digit <= 0x66) ); /* a-f */
 }
 
 void Curl_httpchunk_init(struct connectdata *conn)

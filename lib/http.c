@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.400 2008-10-23 11:49:19 bagder Exp $
+ * $Id: http.c,v 1.401 2008-10-24 01:27:00 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1836,13 +1836,10 @@ static CURLcode https_connecting(struct connectdata *conn, bool *done)
 
   /* perform SSL initialization for this socket */
   result = Curl_ssl_connect_nonblocking(conn, FIRSTSOCKET, done);
-  if(result) {
+  if(result)
     conn->bits.close = TRUE; /* a failed connection is marked for closure
                                 to prevent (bad) re-use or similar */
-    return result;
-  }
-
-  return CURLE_OK;
+  return result;
 }
 
 #ifdef USE_SSLEAY
