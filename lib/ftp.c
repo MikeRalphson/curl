@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.486 2008-10-23 01:20:57 danf Exp $
+ * $Id: ftp.c,v 1.487 2008-10-24 16:59:36 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -879,6 +879,8 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
   socklen_t sslen;
   char hbuf[NI_MAXHOST];
   struct sockaddr *sa=(struct sockaddr *)&ss;
+  struct sockaddr_in * const sa4 = (void *)sa;
+  struct sockaddr_in6 * const sa6 = (void *)sa;
   char tmp[1024];
   static const char mode[][5] = { "EPRT", "PORT" };
   int rc;
@@ -974,9 +976,9 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
 
     /* set port number to zero to make bind() pick "any" */
     if(sa->sa_family == AF_INET)
-      ((struct sockaddr_in *)sa)->sin_port=0;
+      sa4->sin_port = 0;
     else
-      ((struct sockaddr_in6 *)sa)->sin6_port =0;
+      sa6->sin6_port = 0;
 
     if(sslen > (socklen_t)sizeof(ss))
       sslen = sizeof(ss);
@@ -1027,10 +1029,10 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
 
     switch (sa->sa_family) {
     case AF_INET:
-      port = ntohs(((struct sockaddr_in *)sa)->sin_port);
+      port = ntohs(sa4->sin_port);
       break;
     case AF_INET6:
-      port = ntohs(((struct sockaddr_in6 *)sa)->sin6_port);
+      port = ntohs(sa6->sin6_port);
       break;
     default:
       break;
