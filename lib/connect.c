@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.204 2008-10-24 16:59:35 yangtse Exp $
+ * $Id: connect.c,v 1.205 2008-10-24 18:59:51 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -422,7 +422,9 @@ static CURLcode bindlocal(struct connectdata *conn,
     else { /* AF_INET6 */
       memset(&me6, 0, sizeof(me6));
       me6.sin6_family = AF_INET6;
-      me6.sin6_addr = in6addr_any;
+      /* in6addr_any isn't always available and since me6 has just been
+         cleared, it's not strictly necessary to use it here */
+      /*me6.sin6_addr = in6addr_any;*/
 
       sock = (struct sockaddr *)&me6;
       socksize = sizeof(me6);
