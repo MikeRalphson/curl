@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.392 2008-10-17 03:59:02 yangtse Exp $
+ * $Id: urldata.h,v 1.393 2008-10-25 05:41:02 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -106,6 +106,10 @@
 
 #ifdef HAVE_ZLIB_H
 #include <zlib.h>               /* for content-encoding */
+#ifdef __SYMBIAN32__
+/* zlib pollutes the namespace with this definition */
+#undef WIN32
+#endif
 #endif
 
 #ifdef USE_ARES
