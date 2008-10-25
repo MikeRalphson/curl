@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.185 2008-10-19 20:17:16 yangtse Exp $
+ * $Id: multi.c,v 1.186 2008-10-25 16:15:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -37,13 +37,16 @@
 #include "url.h"
 #include "connect.h"
 #include "progress.h"
-#include "memory.h"
 #include "easyif.h"
 #include "multiif.h"
 #include "sendf.h"
 #include "timeval.h"
 #include "http.h"
 
+#define _MPRINTF_REPLACE /* use our functions only */
+#include <curl/mprintf.h>
+
+#include "memory.h"
 /* The last #include file should be: */
 #include "memdebug.h"
 

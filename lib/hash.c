@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.37 2008-10-23 11:49:19 bagder Exp $
+ * $Id: hash.c,v 1.38 2008-10-25 16:15:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,9 +28,12 @@
 
 #include "hash.h"
 #include "llist.h"
-#include "memory.h"
 
-/* this must be the last include file */
+#define _MPRINTF_REPLACE /* use our functions only */
+#include <curl/mprintf.h>
+
+#include "memory.h"
+/* The last #include file should be: */
 #include "memdebug.h"
 
 static void
