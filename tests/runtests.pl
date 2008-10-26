@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.311 2008-10-22 15:03:15 yangtse Exp $
+# $Id: runtests.pl,v 1.312 2008-10-26 03:03:29 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1827,6 +1827,7 @@ sub singletest {
             if(($testnum != 1)   && ($testnum != 100) &&
                ($testnum != 500) && ($testnum != 507) &&
                ($testnum != 517) && ($testnum != 534) &&
+               ($testnum != 558) &&
                ($testnum != 557) && ($testnum != 1013)) {
                 $why = "debugging icc build";
             }
