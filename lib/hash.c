@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hash.c,v 1.38 2008-10-25 16:15:21 yangtse Exp $
+ * $Id: hash.c,v 1.39 2008-10-27 05:29:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -45,7 +45,8 @@ hash_element_dtor(void *user, void *element)
   if(e->key)
     free(e->key);
 
-  h->dtor(e->ptr);
+  if(e->ptr)
+    h->dtor(e->ptr);
 
   free(e);
 }

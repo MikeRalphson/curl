@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip6.c,v 1.44 2008-09-29 21:44:50 danf Exp $
+ * $Id: hostip6.c,v 1.45 2008-10-27 05:29:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -85,7 +85,8 @@
  */
 void Curl_freeaddrinfo(Curl_addrinfo *p)
 {
-  freeaddrinfo(p);
+  if(p)
+    freeaddrinfo(p);
 }
 
 #ifdef CURLRES_ASYNCH
