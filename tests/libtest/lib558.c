@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib558.c,v 1.2 2008-10-26 21:40:20 yangtse Exp $
+ * $Id: lib558.c,v 1.3 2008-10-27 03:00:47 yangtse Exp $
  */
 
 #include "test.h"
@@ -25,6 +25,35 @@
 
 #include "memory.h"
 #include "memdebug.h"
+
+
+static Curl_addrinfo *fake_ai(void)
+{
+  Curl_addrinfo *ai;
+  int ss_size;
+
+  ss_size = sizeof (struct sockaddr_in);
+
+  if((ai = calloc(1, sizeof(Curl_addrinfo))) == NULL)
+    return NULL;
+
+  if((ai->ai_canonname = strdup("dummy")) == NULL) {
+    free(ai);
+    return NULL;
+  }
+
+  if((ai->ai_addr = calloc(1, ss_size)) == NULL) {
+    free(ai->ai_canonname);
+    free(ai);
+    return NULL;
+  }
+
+  ai->ai_family = AF_INET;
+  ai->ai_addrlen = ss_size;
+
+  return ai;
+}
+
 
 int test(char *URL)
 {
@@ -67,7 +96,7 @@ int test(char *URL)
     return TEST_ERR_MAJOR_BAD;
   }
 
-  data_node->addr = Curl_ip2addr(INADDR_ANY, "dummy", 0);
+  data_node->addr = fake_ai();
   if(!data_node->addr) {
     printf("actual data creation failed\n");
     return TEST_ERR_MAJOR_BAD;
