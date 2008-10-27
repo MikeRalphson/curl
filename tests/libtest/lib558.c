@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib558.c,v 1.3 2008-10-27 03:00:47 yangtse Exp $
+ * $Id: lib558.c,v 1.4 2008-10-27 08:20:36 yangtse Exp $
  */
 
 #include "test.h"
@@ -50,6 +50,13 @@ static Curl_addrinfo *fake_ai(void)
 
   ai->ai_family = AF_INET;
   ai->ai_addrlen = ss_size;
+
+#if defined(ENABLE_IPV6) && defined(CURLDEBUG)
+  /* For tracing purposes log a fake call to getaddrinfo */
+  if(logfile)
+    fprintf(logfile, "ADDR %s:%d getaddrinfo() = %p\n",
+            __FILE__, __LINE__, (void *)ai);
+#endif
 
   return ai;
 }
