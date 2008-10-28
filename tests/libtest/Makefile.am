@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.76 2008-10-27 20:01:58 yangtse Exp $
+# $Id: Makefile.am,v 1.77 2008-10-28 00:35:08 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -164,7 +164,7 @@ lib556_SOURCES = lib556.c $(SUPPORTFILES)
 lib557_SOURCES = lib557.c $(SUPPORTFILES)
 
 lib558_SOURCES = lib558.c $(SUPPORTFILES)
-lib526_CFLAGS = -DLIB558
+lib558_CFLAGS = -DLIB558
 
 lib559_SOURCES = lib558.c $(SUPPORTFILES)
-lib526_CFLAGS = -DLIB559
+lib559_CFLAGS = -DLIB559
