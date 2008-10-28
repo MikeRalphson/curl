@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.12 2008-10-28 20:03:22 yangtse Exp $
+# $Id: cares-functions.m4,v 1.13 2008-10-28 20:07:40 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 11
+# serial 13
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -505,7 +505,7 @@ AC_DEFUN([CARES_CHECK_FUNC_GETADDRINFO_UNFREEABLE_AI_CANONNAME], [
         dnl exit code wasn't zero, getaddrinfo returns unfreeable ptr.
         AC_MSG_RESULT([yes])
         AC_DEFINE_UNQUOTED(HAVE_GETADDRINFO_UNFREEABLE_AI_CANONNAME, 1,
-          [Define to 1 if getaddrinfo returns unfreeable ai_addr pointer.])
+          [Define to 1 if getaddrinfo returns unfreeable ai_canonname pointer.])
       ])
     else
       dnl for cross-compiling a static check would be nice.

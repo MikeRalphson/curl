@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.28 2008-10-28 20:03:22 yangtse Exp $
+# $Id: curl-functions.m4,v 1.29 2008-10-28 20:07:40 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 27
+# serial 29
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -858,7 +858,7 @@ AC_DEFUN([CURL_CHECK_FUNC_GETADDRINFO_UNFREEABLE_AI_CANONNAME], [
         dnl exit code wasn't zero, getaddrinfo returns unfreeable ptr.
         AC_MSG_RESULT([yes])
         AC_DEFINE_UNQUOTED(HAVE_GETADDRINFO_UNFREEABLE_AI_CANONNAME, 1,
-          [Define to 1 if getaddrinfo returns unfreeable ai_addr pointer.])
+          [Define to 1 if getaddrinfo returns unfreeable ai_canonname pointer.])
       ])
     else
       dnl for cross-compiling a static check would be nice.
