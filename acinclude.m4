@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.213 2008-10-23 00:38:23 yangtse Exp $
+# $Id: acinclude.m4,v 1.214 2008-10-28 19:13:25 yangtse Exp $
 #***************************************************************************
 
 
@@ -2562,48 +2562,6 @@ AC_DEFUN([CURL_CHECK_FUNC_SELECT], [
       ac_cv_func_select="yes"
     fi
   fi
-])
-
-
-dnl ************************************************************
-dnl check for working getaddrinfo() that works with AI_NUMERICHOST
-dnl
-AC_DEFUN([CURL_CHECK_WORKING_GETADDRINFO],[
-  AC_CACHE_CHECK(for working getaddrinfo, ac_cv_working_getaddrinfo,[
-  AC_TRY_RUN( [
-#include <netdb.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-
-int main(void)
-{
-    struct addrinfo hints, *ai;
-    int error;
-
-    memset(&hints, 0, sizeof(hints));
-    hints.ai_flags = AI_NUMERICHOST;
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-    error = getaddrinfo("127.0.0.1", "8080", &hints, &ai);
-    if (error) {
-        return 1;
-    }
-    return 0;
-}
-],[
-  ac_cv_working_getaddrinfo="yes"
-],[
-  ac_cv_working_getaddrinfo="no"
-],[
-  ac_cv_working_getaddrinfo="yes"
-])])
-if test "$ac_cv_working_getaddrinfo" = "yes"; then
-  AC_DEFINE(HAVE_GETADDRINFO, 1, [Define if getaddrinfo exists and works])
-  AC_DEFINE(ENABLE_IPV6, 1, [Define if you want to enable IPv6 support])
-
-  IPV6_ENABLED=1
-  AC_SUBST(IPV6_ENABLED)
-fi
 ])
 
 
