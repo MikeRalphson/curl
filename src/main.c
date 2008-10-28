@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.498 2008-10-24 01:27:00 yangtse Exp $
+ * $Id: main.c,v 1.499 2008-10-28 19:51:04 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -97,7 +97,7 @@
 #define ENABLE_CURLX_PRINTF
 /* make the curlx header define all printf() functions to use the curlx_*
    versions instead */
-#include <curlx.h> /* header from the libcurl directory */
+#include "curlx.h" /* header from the libcurl directory */
 
 #if defined(CURL_DOES_CONVERSIONS) && defined(HAVE_ICONV)
 #include <iconv.h>
