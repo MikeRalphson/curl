@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.1 2008-10-30 13:45:25 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.2 2008-10-30 15:13:22 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -322,7 +322,6 @@ Curl_he2ai(const struct hostent *he, int port)
   }
 
   if(result != CURLE_OK) {
-    /* Use parenthesis to prevent memdebug from replacing this */
     Curl_freeaddrinfo(firstai);
     firstai = NULL;
   }
