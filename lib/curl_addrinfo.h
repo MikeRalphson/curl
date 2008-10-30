@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.h,v 1.1 2008-10-30 13:45:25 yangtse Exp $
+ * $Id: curl_addrinfo.h,v 1.2 2008-10-30 19:02:23 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -77,5 +77,21 @@ Curl_getaddrinfo_ex(const char *nodename,
 
 Curl_addrinfo *
 Curl_he2ai(const struct hostent *he, int port);
+
+
+#if defined(CURLDEBUG) && defined(HAVE_FREEADDRINFO)
+void
+curl_dofreeaddrinfo(struct addrinfo *freethis,
+                    int line, const char *source);
+#endif
+
+#if defined(CURLDEBUG) && defined(HAVE_GETADDRINFO)
+int
+curl_dogetaddrinfo(const char *hostname,
+                   const char *service,
+                   const struct addrinfo *hints,
+                   struct addrinfo **result,
+                   int line, const char *source);
+#endif
 
 #endif /* HEADER_CURL_ADDRINFO_H */

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.2 2008-10-30 15:13:22 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.3 2008-10-30 19:02:23 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -328,4 +328,58 @@ Curl_he2ai(const struct hostent *he, int port)
 
   return firstai;
 }
+
+
+#if defined(CURLDEBUG) && defined(HAVE_FREEADDRINFO)
+/*
+ * curl_dofreeaddrinfo()
+ *
+ * This is Strictly for memory tracing and are using the same style as the
+ * family otherwise present in memdebug.c. I put these ones here since they
+ * require a bunch of structs I didn't wanna include in memdebug.c
+ */
+
+void
+curl_dofreeaddrinfo(struct addrinfo *freethis,
+                    int line, const char *source)
+{
+  (freeaddrinfo)(freethis);
+  if(logfile)
+    fprintf(logfile, "ADDR %s:%d freeaddrinfo(%p)\n",
+            source, line, (void *)freethis);
+}
+#endif /* defined(CURLDEBUG) && defined(HAVE_FREEADDRINFO) */
+
+
+#if defined(CURLDEBUG) && defined(HAVE_GETADDRINFO)
+/*
+ * curl_dogetaddrinfo()
+ *
+ * This is Strictly for memory tracing and are using the same style as the
+ * family otherwise present in memdebug.c. I put these ones here since they
+ * require a bunch of structs I didn't wanna include in memdebug.c
+ */
+
+int
+curl_dogetaddrinfo(const char *hostname,
+                   const char *service,
+                   const struct addrinfo *hints,
+                   struct addrinfo **result,
+                   int line, const char *source)
+{
+  int res=(getaddrinfo)(hostname, service, hints, result);
+  if(0 == res) {
+    /* success */
+    if(logfile)
+      fprintf(logfile, "ADDR %s:%d getaddrinfo() = %p\n",
+              source, line, (void *)*result);
+  }
+  else {
+    if(logfile)
+      fprintf(logfile, "ADDR %s:%d getaddrinfo() failed\n",
+              source, line);
+  }
+  return res;
+}
+#endif /* defined(CURLDEBUG) && defined(HAVE_GETADDRINFO) */
 

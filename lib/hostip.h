@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.67 2008-10-30 13:45:26 yangtse Exp $
+ * $Id: hostip.h,v 1.68 2008-10-30 19:02:23 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -197,21 +197,13 @@ void Curl_hostcache_prune(struct SessionHandle *data);
 /* Return # of adresses in a Curl_addrinfo struct */
 int Curl_num_addresses (const Curl_addrinfo *addr);
 
-#ifdef CURLDEBUG
-void curl_dofreeaddrinfo(struct addrinfo *freethis,
-                         int line, const char *source);
-int curl_dogetaddrinfo(const char *hostname, const char *service,
-                       struct addrinfo *hints,
-                       struct addrinfo **result,
-                       int line, const char *source);
-#ifdef HAVE_GETNAMEINFO
+#if defined(CURLDEBUG) && defined(HAVE_GETNAMEINFO)
 int curl_dogetnameinfo(GETNAMEINFO_QUAL_ARG1 GETNAMEINFO_TYPE_ARG1 sa,
                        GETNAMEINFO_TYPE_ARG2 salen,
                        char *host, GETNAMEINFO_TYPE_ARG46 hostlen,
                        char *serv, GETNAMEINFO_TYPE_ARG46 servlen,
                        GETNAMEINFO_TYPE_ARG7 flags,
                        int line, const char *source);
-#endif
 #endif
 
 /* This is the callback function that is used when we build with asynch
