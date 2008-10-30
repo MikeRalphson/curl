@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.186 2008-10-25 16:15:21 yangtse Exp $
+ * $Id: multi.c,v 1.187 2008-10-30 13:45:26 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -315,7 +315,8 @@ static void sh_freeentry(void *freethis)
 {
   struct Curl_sh_entry *p = (struct Curl_sh_entry *) freethis;
 
-  free(p);
+  if(p)
+    free(p);
 }
 
 static size_t fd_key_compare(void*k1, size_t k1_len, void*k2, size_t k2_len)
