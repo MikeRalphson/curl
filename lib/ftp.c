@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.487 2008-10-24 16:59:36 yangtse Exp $
+ * $Id: ftp.c,v 1.488 2008-10-30 16:39:09 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -875,7 +875,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
    * IPv6-specific section
    */
   struct Curl_sockaddr_storage ss;
-  struct addrinfo *res, *ai;
+  Curl_ addrinfo *res, *ai;
   socklen_t sslen;
   char hbuf[NI_MAXHOST];
   struct sockaddr *sa=(struct sockaddr *)&ss;
