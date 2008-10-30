@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.16 2008-10-30 12:41:07 yangtse Exp $
+# $Id: cares-functions.m4,v 1.17 2008-10-30 13:50:15 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 15
+# serial 17
 
 
 dnl CARES_INCLUDES_ARPA_INET
