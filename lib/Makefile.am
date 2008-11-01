@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.137 2008-09-01 14:25:37 bagder Exp $
+# $Id: Makefile.am,v 1.138 2008-11-01 23:05:48 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -68,9 +68,9 @@ if SONAME_BUMP
 #
 # This conditional soname bump SHOULD be removed at next "proper" bump.
 #
-VERSIONINFO=-version-info 6:0:1
+VERSIONINFO=-version-info 6:1:1
 else
-VERSIONINFO=-version-info 5:0:1
+VERSIONINFO=-version-info 5:1:1
 endif
 
 # This flag accepts an argument of the form current[:revision[:age]]. So,
