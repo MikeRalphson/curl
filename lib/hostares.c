@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.43 2008-10-10 17:25:53 yangtse Exp $
+ * $Id: hostares.c,v 1.44 2008-11-01 23:49:54 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -399,9 +399,12 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
 
   switch(data->set.ip_version) {
   case CURL_IPRESOLVE_V4:
+  default: /* By default we try ipv4, as PF_UNSPEC isn't supported by c-ares.
+              This is a bit disturbing since users may very well assume that
+              both kinds of addresses are asked for, but the problem is really
+              in c-ares' end here. */
     family = PF_INET;
     break;
-  default: /* by default we try ipv6, as PF_UNSPEC isn't supported by (c-)ares */
   case CURL_IPRESOLVE_V6:
     family = PF_INET6;
     break;
