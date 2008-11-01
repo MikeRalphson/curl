@@ -1,4 +1,4 @@
-/* $Id: ares_send.c,v 1.18 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: ares_send.c,v 1.19 2008-11-01 18:35:19 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -95,7 +95,13 @@ void ares_send(ares_channel channel, const unsigned char *qbuf, int qlen,
 
   /* Initialize query status. */
   query->try = 0;
-  query->server = 0;
+
+  /* Choose the server to send the query to. If rotation is enabled, keep track
+   * of the next server we want to use. */
+  query->server = channel->last_server;
+  if (channel->rotate == 1)
+    channel->last_server = (channel->last_server + 1) % channel->nservers;
+
   for (i = 0; i < channel->nservers; i++)
     {
       query->server_info[i].skip_server = 0;

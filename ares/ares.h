@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.40 2008-05-13 20:48:48 bagder Exp $ */
+/* $Id: ares.h,v 1.41 2008-11-01 18:35:19 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007 by Daniel Stenberg
@@ -114,6 +114,7 @@ extern "C" {
 #define ARES_OPT_SOCK_SNDBUF    (1 << 11)
 #define ARES_OPT_SOCK_RCVBUF    (1 << 12)
 #define ARES_OPT_TIMEOUTMS      (1 << 13)
+#define ARES_OPT_ROTATE         (1 << 14)
 
 /* Nameinfo flag values */
 #define ARES_NI_NOFQDN                  (1 << 0)
@@ -184,6 +185,7 @@ struct ares_options {
   int timeout; /* in seconds or milliseconds, depending on options */
   int tries;
   int ndots;
+  int rotate;
   unsigned short udp_port;
   unsigned short tcp_port;
   int socket_send_buffer_size;
