@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.24 2008-11-01 16:52:57 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.25 2008-11-01 17:13:10 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -225,11 +225,11 @@
 /* Availability of freeaddrinfo, getaddrinfo and getnameinfo functions is quite */
 /* convoluted, compiler dependant and in some cases even build target dependat. */
 #if defined(HAVE_WS2TCPIP_H)
-#  if defined(_MSC_VER) && (_MSC_VER >= 1200)
+#  if defined(_WIN32_WINNT) && (_WIN32_WINNT >= 0x0501)
 #    define HAVE_FREEADDRINFO 1
 #    define HAVE_GETADDRINFO  1
 #    define HAVE_GETNAMEINFO  1
-#  elif defined(__MINGW32__) && defined(_WIN32_WINNT) && (_WIN32_WINNT >= 0x0501)
+#  elif defined(_MSC_VER) && (_MSC_VER >= 1200)
 #    define HAVE_FREEADDRINFO 1
 #    define HAVE_GETADDRINFO  1
 #    define HAVE_GETNAMEINFO  1
