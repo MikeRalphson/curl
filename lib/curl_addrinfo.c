@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.3 2008-10-30 19:02:23 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.4 2008-11-01 14:51:37 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -95,7 +95,7 @@ Curl_freeaddrinfo(Curl_addrinfo *cahead)
 /*
  * Curl_getaddrinfo_ex()
  *
- * This is a warapper function around system's getaddrinfo(), with
+ * This is a wrapper function around system's getaddrinfo(), with
  * the only difference that instead of returning a linked list of
  * addrinfo structs this one returns a linked list of Curl_addrinfo
  * ones. The memory allocated by this function *MUST* be free'd with
@@ -334,7 +334,7 @@ Curl_he2ai(const struct hostent *he, int port)
 /*
  * curl_dofreeaddrinfo()
  *
- * This is Strictly for memory tracing and are using the same style as the
+ * This is strictly for memory tracing and are using the same style as the
  * family otherwise present in memdebug.c. I put these ones here since they
  * require a bunch of structs I didn't wanna include in memdebug.c
  */
@@ -355,7 +355,7 @@ curl_dofreeaddrinfo(struct addrinfo *freethis,
 /*
  * curl_dogetaddrinfo()
  *
- * This is Strictly for memory tracing and are using the same style as the
+ * This is strictly for memory tracing and are using the same style as the
  * family otherwise present in memdebug.c. I put these ones here since they
  * require a bunch of structs I didn't wanna include in memdebug.c
  */
