@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.394 2008-11-03 14:58:08 yangtse Exp $
+ * $Id: urldata.h,v 1.395 2008-11-03 16:24:56 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -908,11 +908,10 @@ struct connectdata {
      cache entry remains locked. It gets unlocked in Curl_done() */
   Curl_addrinfo *ip_addr;
 
-  /* 'ip_addr_str' is the ip_addr data as a human readable malloc()ed string.
+  /* 'ip_addr_str' is the ip_addr data as a human readable string.
      It remains available as long as the connection does, which is longer than
-     the ip_addr itself. Set with Curl_store_ip_addr() when ip_addr has been
-     set. */
-  char *ip_addr_str;
+     the ip_addr itself. */
+  char ip_addr_str[MAX_IPADR_LEN];
 
   unsigned int scope;    /* address scope for IPv6 */
 
