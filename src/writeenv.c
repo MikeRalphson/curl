@@ -1,8 +1,8 @@
 /***************************************************************************
- *                                  _   _ ____  _     
- *  Project                     ___| | | |  _ \| |    
- *                             / __| | | | |_) | |    
- *                            | (__| |_| |  _ <| |___ 
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
  * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
@@ -10,7 +10,7 @@
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at http://curl.haxx.se/docs/copyright.html.
- * 
+ *
  * You may opt to use, copy, modify, merge, publish, distribute and/or sell
  * copies of the Software, and permit persons to whom the Software is
  * furnished to do so, under the terms of the COPYING file.
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeenv.c,v 1.10 2008-10-25 16:15:21 yangtse Exp $
+ * $Id: writeenv.c,v 1.11 2008-11-03 15:51:40 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,7 +82,7 @@ void ourWriteEnv(CURL *curl)
   char *string, numtext[10];
   long longinfo;
   double doubleinfo;
-  
+
   for (i=0; variables[i].name; i++) {
     switch (variables[i].type) {
     case writeenv_STRING:
@@ -94,7 +94,7 @@ void ourWriteEnv(CURL *curl)
 
     case writeenv_LONG:
       if (curl_easy_getinfo(curl, variables[i].id, &longinfo) == CURLE_OK) {
-        sprintf(numtext, "%5ld", longinfo);
+        curl_msprintf(numtext, "%5ld", longinfo);
         internalSetEnv(variables[i].name, numtext);
       }
       else
@@ -102,7 +102,7 @@ void ourWriteEnv(CURL *curl)
       break;
     case writeenv_DOUBLE:
       if (curl_easy_getinfo(curl, variables[i].id, &doubleinfo) == CURLE_OK) {
-        sprintf(numtext, "%6.2f", doubleinfo);
+        curl_msprintf(numtext, "%6.2f", doubleinfo);
         internalSetEnv(variables[i].name, numtext);
       }
       else
