@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.393 2008-10-25 05:41:02 danf Exp $
+ * $Id: urldata.h,v 1.394 2008-11-03 14:58:08 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -48,7 +48,8 @@
 #define CURL_DEFAULT_USER "anonymous"
 #define CURL_DEFAULT_PASSWORD "ftp@example.com"
 
-#define MAX_IPADR_LEN (4*9) /* should be enough to hold the longest ipv6 one */
+/* length of longest IPv6 address string including the trailing null */
+#define MAX_IPADR_LEN sizeof("ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255")
 
 #include "cookie.h"
 #include "formdata.h"
