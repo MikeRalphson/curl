@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.115 2008-09-29 21:44:50 danf Exp $
+ * $Id: file.c,v 1.116 2008-11-04 09:57:36 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -451,6 +451,8 @@ static CURLcode file_do(struct connectdata *conn, bool *done)
   if( -1 != fstat(fd, &statbuf)) {
     /* we could stat it, then read out the size */
     expected_size = statbuf.st_size;
+    /* and store the modification time */
+    data->info.filetime = (long)statbuf.st_mtime;
     fstated = TRUE;
   }
 
