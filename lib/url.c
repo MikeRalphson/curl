@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.770 2008-11-03 16:24:56 bagder Exp $
+ * $Id: url.c,v 1.771 2008-11-05 21:46:40 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1487,17 +1487,15 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     break;
   case CURLOPT_MAX_SEND_SPEED_LARGE:
     /*
-     * The max speed limit that sends transfer more than
-     * CURLOPT_MAX_SEND_PER_SECOND bytes per second the transfer is
-     * throttled..
+     * When transfer uploads are faster then CURLOPT_MAX_SEND_SPEED_LARGE
+     * bytes per second the transfer is throttled..
      */
     data->set.max_send_speed=va_arg(param, curl_off_t);
     break;
   case CURLOPT_MAX_RECV_SPEED_LARGE:
     /*
-     * The max speed limit that sends transfer more than
-     * CURLOPT_MAX_RECV_PER_SECOND bytes per second the transfer is
-     * throttled..
+     * When receiving data faster than CURLOPT_MAX_RECV_SPEED_LARGE bytes per
+     * second the transfer is throttled..
      */
     data->set.max_recv_speed=va_arg(param, curl_off_t);
     break;
