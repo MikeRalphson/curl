@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.96 2008-09-30 09:51:59 bagder Exp $
+# $Id: ftpserver.pl,v 1.97 2008-11-06 00:10:58 danf Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -207,6 +207,15 @@ sub sockfilt {
 }
 
 
+sub sockfiltsecondary {
+    my $l;
+    foreach $l (@_) {
+        printf DWRITE "DATA\n%04x\n", length($l);
+        print DWRITE $l;
+    }
+}
+
+
 # Send data to the client on the control stream, which happens to be plain
 # stdout.
 
@@ -237,8 +246,17 @@ sub sendcontrol {
 sub senddata {
     my $l;
     foreach $l (@_) {
-        printf DWRITE "DATA\n%04x\n", length($l);
-        print DWRITE $l;
+      if(!$controldelay) {
+        # spit it all out at once
+        sockfiltsecondary $l;
+      }
+      else {
+          # pause between each byte
+          for (split(//,$l)) {
+              sockfiltsecondary $_;
+              select(undef, undef, undef, 0.01);
+          }
+      }
     }
 }
 
