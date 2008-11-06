@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.h,v 1.68 2008-10-30 19:02:23 yangtse Exp $
+ * $Id: hostip.h,v 1.69 2008-11-06 17:19:57 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -102,11 +102,6 @@
 #define CURL_ASYNC_SUCCESS CURLE_OK
 #define ares_cancel(x) do {} while(0)
 #define ares_destroy(x) do {} while(0)
-#endif
-
-#if defined(CURLRES_IPV6) && defined(CURLRES_ARES)
-Curl_addrinfo *Curl_ip2addr6(struct in6_addr *in,
-                             const char *hostname, int port);
 #endif
 
 struct addrinfo;
@@ -223,10 +218,6 @@ CURLcode Curl_addrinfo6_callback(void *arg,
 #endif
                                  Curl_addrinfo *ai);
 
-
-/* [ipv4/ares only] Creates a Curl_addrinfo struct from a numerical-only IP
-   address */
-Curl_addrinfo *Curl_ip2addr(in_addr_t num, const char *hostname, int port);
 
 /* Clone a Curl_addrinfo struct, works protocol independently */
 Curl_addrinfo *Curl_addrinfo_copy(const void *orig, int port);

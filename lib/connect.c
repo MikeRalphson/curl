@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.206 2008-11-03 16:24:56 bagder Exp $
+ * $Id: connect.c,v 1.207 2008-11-06 17:19:57 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -91,7 +91,6 @@
 #include "multiif.h"
 #include "sockaddr.h" /* required for Curl_sockaddr_storage */
 #include "inet_ntop.h"
-#include "inet_pton.h"
 #include "sslgen.h" /* for Curl_ssl_check_cxn() */
 
 /* The last #include file should be: */
