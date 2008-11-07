@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib558.c,v 1.8 2008-10-31 14:46:48 yangtse Exp $
+ * $Id: lib558.c,v 1.9 2008-11-07 12:22:43 yangtse Exp $
  */
 
 #include "test.h"
@@ -163,7 +163,7 @@ cleanup:
 
   curl_global_cleanup();
 
-  return 0; /* OK */
+  return result;
 }
 
 
