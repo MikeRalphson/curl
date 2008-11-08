@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.378 2008-10-30 17:45:47 yangtse Exp $
+# $Id: configure.ac,v 1.379 2008-11-08 03:27:15 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2016,11 +2016,13 @@ CURL_CHECK_MSG_NOSIGNAL
 CURL_CHECK_FUNC_ALARM
 CURL_CHECK_FUNC_FDOPEN
 CURL_CHECK_FUNC_FREEADDRINFO
+CURL_CHECK_FUNC_FREEIFADDRS
 CURL_CHECK_FUNC_FTRUNCATE
 CURL_CHECK_FUNC_GETADDRINFO
 CURL_CHECK_FUNC_GETHOSTBYADDR_R
 CURL_CHECK_FUNC_GETHOSTBYNAME_R
 CURL_CHECK_FUNC_GETHOSTNAME
+CURL_CHECK_FUNC_GETIFADDRS
 CURL_CHECK_FUNC_GETSERVBYPORT_R
 CURL_CHECK_FUNC_GMTIME_R
 CURL_CHECK_FUNC_INET_NTOA_R
@@ -2063,7 +2065,6 @@ AC_CHECK_FUNCS([basename \
   fork \
   geteuid \
   gethostbyaddr \
-  getifaddrs \
   getpass_r \
   getppid \
   getprotobyname \
