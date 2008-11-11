@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.50 2008-10-16 08:23:48 bagder Exp $
+ * $Id: gtls.c,v 1.51 2008-11-11 22:19:27 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -262,6 +262,11 @@ Curl_gtls_connect(struct connectdata *conn,
 #else
   struct in_addr addr;
 #endif
+
+  if(conn->ssl[sockindex].state == ssl_connection_complete)
+    /* to make us tolerant against being called more than once for the
+       same connection */
+    return CURLE_OK;
 
   if(!gtls_inited)
     _Curl_gtls_init();

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.h,v 1.16 2008-10-20 23:07:48 danf Exp $
+ * $Id: sslgen.h,v 1.17 2008-11-11 22:19:27 bagder Exp $
  ***************************************************************************/
 
 bool Curl_ssl_config_matches(struct ssl_config_data* data,
@@ -79,7 +79,6 @@ CURLcode Curl_ssl_addsessionid(struct connectdata *conn,
 #define Curl_ssl_init() 1
 #define Curl_ssl_cleanup() do { } while (0)
 #define Curl_ssl_connect(x,y) CURLE_FAILED_INIT
-#define Curl_ssl_connect_nonblocking(x,y,z) (z=z, CURLE_FAILED_INIT)
 #define Curl_ssl_close_all(x)
 #define Curl_ssl_close(x,y)
 #define Curl_ssl_shutdown(x,y) CURLE_FAILED_INIT
