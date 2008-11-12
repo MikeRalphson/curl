@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib560.c,v 1.1 2008-11-11 21:59:25 bagder Exp $
+ * $Id: lib560.c,v 1.2 2008-11-12 22:26:06 danf Exp $
  *
  */
 #include "test.h"
@@ -28,6 +28,8 @@ int test(char *URL)
   int still_running; /* keep number of running handles */
 
   http_handle = curl_easy_init();
+  if (!http_handle)
+    return TEST_ERR_MAJOR_BAD;
 
   /* set options */
   curl_easy_setopt(http_handle, CURLOPT_URL, URL);
@@ -37,6 +39,10 @@ int test(char *URL)
 
   /* init a multi stack */
   multi_handle = curl_multi_init();
+  if (!multi_handle) {
+    curl_easy_cleanup(http_handle);
+    return TEST_ERR_MAJOR_BAD;
+  }
 
   /* add the individual transfers */
   curl_multi_add_handle(multi_handle, http_handle);
