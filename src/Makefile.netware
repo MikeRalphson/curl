@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.92 2008-11-13 01:36:05 gknauf Exp $
+# $Id: Makefile.netware,v 1.93 2008-11-13 01:39:10 gknauf Exp $
 #
 ## Makefile for building curl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -30,7 +30,7 @@ endif
 
 # Edit the path below to point to the base of your libidn package.
 ifndef LIBIDN_PATH
-LIBIDN_PATH = ../../libidn-1.9
+LIBIDN_PATH = ../../libidn-1.11
 endif
 
 ifndef INSTDIR
