@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.25 2008-11-01 17:13:10 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.26 2008-11-13 18:56:56 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -76,8 +76,11 @@
 /*                             FUNCTIONS                            */
 /* ---------------------------------------------------------------- */
 
-/* Define if you have the ioctlsocket function.  */
+/* Define if you have the ioctlsocket function. */
 #define HAVE_IOCTLSOCKET 1
+
+/* Define if you have a working ioctlsocket FIONBIO function. */
+#define HAVE_IOCTLSOCKET_FIONBIO 1
 
 /* Define if you have the strcasecmp function. */
 /* #define HAVE_STRCASECMP 1 */
