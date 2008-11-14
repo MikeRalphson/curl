@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.116 2008-11-04 09:57:36 bagder Exp $
+ * $Id: file.c,v 1.117 2008-11-14 23:17:32 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -57,7 +57,9 @@
 #ifdef HAVE_NET_IF_H
 #include <net/if.h>
 #endif
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>

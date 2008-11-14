@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.106 2008-10-23 11:49:19 bagder Exp $
+ * $Id: telnet.c,v 1.107 2008-11-14 23:17:32 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -52,7 +52,9 @@
 #ifdef HAVE_NET_IF_H
 #include <net/if.h>
 #endif
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>

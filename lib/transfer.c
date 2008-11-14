@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.421 2008-10-29 19:06:48 danf Exp $
+ * $Id: transfer.c,v 1.422 2008-11-14 23:17:32 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -63,7 +63,9 @@
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
 #endif
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
+#endif
 
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>

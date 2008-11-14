@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.208 2008-11-13 18:56:56 yangtse Exp $
+ * $Id: connect.c,v 1.209 2008-11-14 23:17:32 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -848,12 +848,14 @@ singleipconnect(struct connectdata *conn,
     switch (error) {
     case EINPROGRESS:
     case EWOULDBLOCK:
-#if defined(EAGAIN) && EAGAIN != EWOULDBLOCK
+#if defined(EAGAIN)
+#if (EAGAIN) != (EWOULDBLOCK)
       /* On some platforms EAGAIN and EWOULDBLOCK are the
        * same value, and on others they are different, hence
        * the odd #if
        */
     case EAGAIN:
+#endif
 #endif
       rc = waitconnect(sockfd, timeout_ms);
       break;
