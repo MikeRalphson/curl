@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.19 2008-11-13 18:56:56 yangtse Exp $
+# $Id: cares-functions.m4,v 1.20 2008-11-14 05:18:08 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 19
+# serial 20
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -60,7 +60,7 @@ cares_includes_fcntl="\
 #ifdef HAVE_UNISTD_H
 #  include <unistd.h>
 #endif
-#ifdef HAVE_STROPTS_H
+#ifdef HAVE_FCNTL_H
 #  include <fcntl.h>
 #endif
 /* includes end */"

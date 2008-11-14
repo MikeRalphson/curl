@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.36 2008-11-14 02:51:41 yangtse Exp $
+# $Id: curl-functions.m4,v 1.37 2008-11-14 05:18:08 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 36
+# serial 37
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -66,7 +66,7 @@ curl_includes_fcntl="\
 #ifdef HAVE_UNISTD_H
 #  include <unistd.h>
 #endif
-#ifdef HAVE_STROPTS_H
+#ifdef HAVE_FCNTL_H
 #  include <fcntl.h>
 #endif
 /* includes end */"
