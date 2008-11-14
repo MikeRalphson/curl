@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.21 2008-11-14 14:47:53 yangtse Exp $
+# $Id: cares-functions.m4,v 1.22 2008-11-14 15:26:27 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 21
+# serial 22
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -37,7 +37,7 @@ cares_includes_arpa_inet="\
 #  include <netinet/in.h>
 #endif
 #ifdef HAVE_ARPA_INET_H
-#  include <arpa_inet.h>
+#  include <arpa/inet.h>
 #endif
 /* includes end */"
   AC_CHECK_HEADERS(

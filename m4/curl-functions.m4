@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.38 2008-11-14 14:47:53 yangtse Exp $
+# $Id: curl-functions.m4,v 1.39 2008-11-14 15:26:27 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 38
+# serial 39
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -43,7 +43,7 @@ curl_includes_arpa_inet="\
 #  include <netinet/in.h>
 #endif
 #ifdef HAVE_ARPA_INET_H
-#  include <arpa_inet.h>
+#  include <arpa/inet.h>
 #endif
 /* includes end */"
   AC_CHECK_HEADERS(
