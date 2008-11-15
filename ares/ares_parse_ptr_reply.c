@@ -1,4 +1,4 @@
-/* $Id: ares_parse_ptr_reply.c,v 1.17 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: ares_parse_ptr_reply.c,v 1.18 2008-11-15 23:07:35 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -125,8 +125,15 @@ int ares_parse_ptr_reply(const unsigned char *abuf, int alen, const void *addr,
             }
           strncpy(aliases[aliascnt], rr_data, strlen(rr_data)+1);
           aliascnt++;
-          if ((aliascnt%8)==0)
-            aliases = realloc(aliases, (aliascnt/16+1) * sizeof(char *));
+          if ((aliascnt%8)==0) {
+            char **ptr;
+            ptr = realloc(aliases, (aliascnt/16+1) * sizeof(char *));
+            if(!ptr) {
+              status = ARES_ENOMEM;
+              break;
+            }
+            aliases = ptr;
+          }
         }
 
       if (rr_class == C_IN && rr_type == T_CNAME)
