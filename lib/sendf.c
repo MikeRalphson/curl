@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.153 2008-11-13 08:20:25 mmarek Exp $
+ * $Id: sendf.c,v 1.154 2008-11-16 12:42:53 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -47,7 +47,8 @@
 #define _MPRINTF_REPLACE /* use the internal *printf() functions */
 #include <curl/mprintf.h>
 
-#if defined(HAVE_KRB4) || defined(HAVE_GSSAPI)
+/* the krb4 functions only exists for FTP and if krb4 or gssapi is defined */
+#if !defined(CURL_DISABLE_FTP) && (defined(HAVE_KRB4) || defined(HAVE_GSSAPI))
 #include "krb4.h"
 #else
 #define Curl_sec_send(a,b,c,d) -1
