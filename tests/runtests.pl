@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.313 2008-10-27 20:09:35 yangtse Exp $
+# $Id: runtests.pl,v 1.314 2008-11-17 20:24:13 danf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -433,6 +433,7 @@ sub runclientoutput {
 # Memory allocation test and failure torture testing.
 #
 sub torture {
+    use POSIX "strftime";
     my $testcmd = shift;
     my $gdbline = shift;
 
@@ -469,7 +470,7 @@ sub torture {
             next;
         }
 
-        logmsg "Fail alloc no: $limit\r" if($verbose);
+        logmsg "Fail alloc no: $limit @ " . strftime ("%H:%M:%S", localtime) . "\r" if($verbose);
 
         # make the memory allocation function number $limit return failure
         $ENV{'CURL_MEMLIMIT'} = $limit;
