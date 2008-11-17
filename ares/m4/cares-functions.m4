@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.23 2008-11-17 03:54:05 yangtse Exp $
+# $Id: cares-functions.m4,v 1.24 2008-11-17 10:05:35 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 23
+# serial 24
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -1161,7 +1161,7 @@ AC_DEFUN([CARES_CHECK_FUNC_INET_PTON], [
             (ipv6a[13] != 0x0b) ||
             (ipv6a[14] != 0x76) ||
             (ipv6a[15] != 0xc8) ||
-            (ipv6a[25] != 0x01) )
+            (ipv6a[16] != 0x01) )
           exit(1); /* fail */
         /* - */
         if( (ipv6a[2]  != 0x0) ||

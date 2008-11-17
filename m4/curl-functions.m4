@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.40 2008-11-17 03:54:05 yangtse Exp $
+# $Id: curl-functions.m4,v 1.41 2008-11-17 10:05:35 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 40
+# serial 41
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -2265,7 +2265,7 @@ AC_DEFUN([CURL_CHECK_FUNC_INET_PTON], [
             (ipv6a[13] != 0x0b) ||
             (ipv6a[14] != 0x76) ||
             (ipv6a[15] != 0xc8) ||
-            (ipv6a[25] != 0x01) )
+            (ipv6a[16] != 0x01) )
           exit(1); /* fail */
         /* - */
         if( (ipv6a[2]  != 0x0) ||
