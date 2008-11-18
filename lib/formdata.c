@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.114 2008-11-14 19:22:40 danf Exp $
+ * $Id: formdata.c,v 1.115 2008-11-18 19:58:44 danf Exp $
  ***************************************************************************/
 
 /*
@@ -1211,8 +1211,11 @@ CURLcode Curl_getFormData(struct FormData **finalform,
         char *filebasename= NULL;
         if(!file->showfilename) {
           filebasename = strippath(file->contents);
-          if(!filebasename)
+          if(!filebasename) {
+            Curl_formclean(&firstform);
+            free(boundary);
             return CURLE_OUT_OF_MEMORY;
+          }
         }
 
         result = AddFormDataf(&form, &size,
