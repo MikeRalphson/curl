@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.382 2008-11-18 01:57:28 yangtse Exp $
+# $Id: configure.ac,v 1.383 2008-11-18 19:29:31 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -41,6 +41,8 @@ AM_MAINTAINER_MODE
 CURL_CHECK_OPTION_DEBUG
 CURL_CHECK_OPTION_OPTIMIZE
 CURL_CHECK_OPTION_WARNINGS
+
+CURL_CHECK_PATH_SEPARATOR
 
 dnl SED is mandatory for configure process and libtool.
 dnl Set it now, allowing it to be changed later.
