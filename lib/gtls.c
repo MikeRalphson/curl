@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.51 2008-11-11 22:19:27 bagder Exp $
+ * $Id: gtls.c,v 1.52 2008-11-18 08:53:51 danf Exp $
  ***************************************************************************/
 
 /*
@@ -49,6 +49,8 @@
 #include "parsedate.h"
 #include "connect.h" /* for the connect timeout */
 #include "select.h"
+#include "rawstr.h"
+
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 #include "memory.h"
