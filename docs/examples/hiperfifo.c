@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: hiperfifo.c,v 1.8 2008-11-19 15:30:41 bagder Exp $
+ * $Id: hiperfifo.c,v 1.9 2008-11-19 15:31:55 bagder Exp $
  *
  * Example application source code using the multi socket interface to
  * download many files at once.
@@ -182,8 +182,8 @@ static void event_cb(int fd, short kind, void *userp)
   CURLMcode rc;
 
   int action =
-    (kind&EV_READ:CURL_CSELECT_IN)|
-    (kind&EV_WRITE:CURL_CSELECT_OUT);
+    (kind&EV_READ?CURL_CSELECT_IN:0)|
+    (kind&EV_WRITE?CURL_CSELECT_OUT:0);
 
   do {
     rc = curl_multi_socket_action(g->multi, fd, action, &g->still_running);
@@ -404,7 +404,6 @@ static int init_fifo (GlobalInfo *g)
 int main(int argc, char **argv)
 {
   GlobalInfo g;
-  CURLMcode rc;
   (void)argc;
   (void)argv;
 
