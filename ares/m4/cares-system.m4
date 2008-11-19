@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-system.m4,v 1.1 2008-11-18 19:29:31 yangtse Exp $
+# $Id: cares-system.m4,v 1.2 2008-11-19 01:57:27 yangtse Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 1
+# serial 2
 
 
 dnl CARES_CHECK_PATH_SEPARATOR
@@ -57,10 +57,8 @@ AC_DEFUN([CARES_CHECK_PATH_SEPARATOR], [
       dnl Separator with the greater directory count is the auto-detected one.
       if test $tst_dirs_sem -gt $tst_dirs_col; then
         tst_auto_separator=';'
-        PATH_SEPARATOR=';'
       else
         tst_auto_separator=':'
-        PATH_SEPARATOR=':'
       fi
       if test -z "$PATH_SEPARATOR"; then
         dnl Simply use the auto-detected one when not already set.
