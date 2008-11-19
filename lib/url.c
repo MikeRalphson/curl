@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.771 2008-11-05 21:46:40 bagder Exp $
+ * $Id: url.c,v 1.772 2008-11-19 10:15:19 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2507,6 +2507,11 @@ ConnectionExists(struct SessionHandle *data,
 
     if(needle->bits.proxy != check->bits.proxy)
       /* don't do mixed proxy and non-proxy connections */
+      continue;
+
+    if(!canPipeline && check->inuse)
+      /* this request can't be pipelined but the checked connection is already
+         in use so we skip it */
       continue;
 
     if(!needle->bits.httpproxy || needle->protocol&PROT_SSL ||
