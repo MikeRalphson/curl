@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.404 2008-11-11 22:19:27 bagder Exp $
+ * $Id: http.c,v 1.405 2008-11-19 14:22:01 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -458,6 +458,10 @@ CURLcode Curl_http_auth_act(struct connectdata *conn)
   }
 
   if(pickhost || pickproxy) {
+    /* In case this is GSS auth, the newurl field is already allocated so
+       we must make sure to free it before allocating a new one. As figured
+       out in bug #2284386 */
+    Curl_safefree(data->req.newurl);
     data->req.newurl = strdup(data->change.url); /* clone URL */
     if(!data->req.newurl)
       return CURLE_OUT_OF_MEMORY;
