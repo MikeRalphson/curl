@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.314 2008-11-17 20:24:13 danf Exp $
+# $Id: runtests.pl,v 1.315 2008-11-19 21:56:11 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2097,9 +2097,11 @@ sub singletest {
     }
 
     if($gdbthis) {
+        my $gdbinit = "$TESTDIR/gdbinit$testnum";
         open(GDBCMD, ">$LOGDIR/gdbcmd");
         print GDBCMD "set args $cmdargs\n";
         print GDBCMD "show args\n";
+        print GDBCMD "source $gdbinit\n" if -e $gdbinit;
         close(GDBCMD);
     }
     # run the command line we built
