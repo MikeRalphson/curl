@@ -1,4 +1,4 @@
-/* $Id: ares_query.c,v 1.17 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: ares_query.c,v 1.18 2008-11-20 07:41:26 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -92,15 +92,15 @@ static struct query* find_query_by_id(ares_channel channel, int id)
    performed per id generation. In practice this search should happen only
    once per newly generated id
 */
-static int generate_unique_id(ares_channel channel)
+static unsigned short generate_unique_id(ares_channel channel)
 {
-  int id;
+  short id;
 
   do {
 	id = ares__generate_new_id(&channel->id_key);
   } while (find_query_by_id(channel,id));
 
-  return id;
+  return (unsigned short)id;
 }
 
 void ares_query(ares_channel channel, const char *name, int dnsclass,
