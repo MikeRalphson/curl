@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.26 2008-11-18 01:57:29 yangtse Exp $
+# $Id: cares-functions.m4,v 1.27 2008-11-20 07:59:26 danf Exp $
 #
 # Copyright (C) 2008 by Daniel Stenberg et al
 #
@@ -1545,9 +1545,9 @@ AC_DEFUN([CARES_CHECK_FUNC_IOCTL_FIONBIO], [
 
 dnl CARES_CHECK_FUNC_IOCTL_SIOCGIFADDR
 dnl -------------------------------------------------
-dnl Verify if ioctl with the SIOCGIFADDR command is
-dnl available, can be compiled, and seems to work. If
-dnl all of these are true, then HAVE_IOCTL_SIOCGIFADDR
+dnl Verify if ioctl with the SIOCGIFADDR command is available,
+dnl struct ifreq is defined, they can be compiled, and seem to
+dnl work. If all of these are true, then HAVE_IOCTL_SIOCGIFADDR
 dnl will be defined.
 
 AC_DEFUN([CARES_CHECK_FUNC_IOCTL_SIOCGIFADDR], [
@@ -1560,8 +1560,10 @@ AC_DEFUN([CARES_CHECK_FUNC_IOCTL_SIOCGIFADDR], [
     AC_COMPILE_IFELSE([
       AC_LANG_PROGRAM([[
         $cares_includes_stropts
+        #include <net/if.h>
       ]],[[
-        if(0 != ioctl(0, SIOCGIFADDR, 0))
+        struct ifreq ifr;
+        if(0 != ioctl(0, SIOCGIFADDR, &ifr))
           return 1;
       ]])
     ],[

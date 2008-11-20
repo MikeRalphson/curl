@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.43 2008-11-18 01:57:29 yangtse Exp $
+# $Id: curl-functions.m4,v 1.44 2008-11-20 07:59:26 danf Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -2649,9 +2649,9 @@ AC_DEFUN([CURL_CHECK_FUNC_IOCTL_FIONBIO], [
 
 dnl CURL_CHECK_FUNC_IOCTL_SIOCGIFADDR
 dnl -------------------------------------------------
-dnl Verify if ioctl with the SIOCGIFADDR command is
-dnl available, can be compiled, and seems to work. If
-dnl all of these are true, then HAVE_IOCTL_SIOCGIFADDR
+dnl Verify if ioctl with the SIOCGIFADDR command is available,
+dnl struct ifreq is defined, they can be compiled, and seem to
+dnl work. If all of these are true, then HAVE_IOCTL_SIOCGIFADDR
 dnl will be defined.
 
 AC_DEFUN([CURL_CHECK_FUNC_IOCTL_SIOCGIFADDR], [
@@ -2664,8 +2664,10 @@ AC_DEFUN([CURL_CHECK_FUNC_IOCTL_SIOCGIFADDR], [
     AC_COMPILE_IFELSE([
       AC_LANG_PROGRAM([[
         $curl_includes_stropts
+        #include <net/if.h>
       ]],[[
-        if(0 != ioctl(0, SIOCGIFADDR, 0))
+        struct ifreq ifr;
+        if(0 != ioctl(0, SIOCGIFADDR, &ifr))
           return 1;
       ]])
     ],[
