@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.80 2008-11-01 18:35:19 bagder Exp $ */
+/* $Id: ares_init.c,v 1.81 2008-11-20 07:50:48 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -1503,9 +1503,9 @@ static int init_id_key(rc4_key* key,int key_data_len)
   return ARES_SUCCESS;
 }
 
-short ares__generate_new_id(rc4_key* key)
+unsigned short ares__generate_new_id(rc4_key* key)
 {
-  short r=0;
+  unsigned short r=0;
   ares__rc4(key, (unsigned char *)&r, sizeof(r));
   return r;
 }
