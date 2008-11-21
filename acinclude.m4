@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.215 2008-11-13 18:56:55 yangtse Exp $
+# $Id: acinclude.m4,v 1.216 2008-11-21 06:36:21 danf Exp $
 #***************************************************************************
 
 
@@ -2541,6 +2541,7 @@ dnl /etc/ssl/certs/ca-certificates.crt Debian systems
 dnl /etc/pki/tls/certs/ca-bundle.crt Redhat and Mandriva
 dnl /usr/share/ssl/certs/ca-bundle.crt old(er) Redhat
 dnl /usr/local/share/certs/ca-root.crt FreeBSD
+dnl /etc/ssl/cert.pem OpenBSD
 dnl /etc/ssl/certs/ (ca path) SUSE
 
 AC_DEFUN([CURL_CHECK_CA_BUNDLE], [
@@ -2603,6 +2604,7 @@ AC_HELP_STRING([--without-ca-path], [Don't use a default CA path]),
                /etc/pki/tls/certs/ca-bundle.crt \
                /usr/share/ssl/certs/ca-bundle.crt \
                /usr/local/share/certs/ca-root.crt \
+               /etc/ssl/cert.pem \
                "$cac"; do
         if test -f "$a"; then
           ca="$a"
