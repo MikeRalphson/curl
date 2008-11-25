@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.129 2008-10-01 17:34:25 danf Exp $
+ * $Id: sws.c,v 1.130 2008-11-25 23:23:47 danf Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -441,6 +441,13 @@ static int ProcessRequest(struct httprequest *req)
     req->partno += 1001;
     req->ntlm = TRUE; /* NTLM found */
     logmsg("Received NTLM type-1, sending back data %ld", req->partno);
+  }
+  else if((req->partno >= 1000) && strstr(req->reqbuf, "Authorization: Basic")) {
+    /* If the client is passing this Basic-header and the part number is already
+       >=1000, we add 1 to the part number.  This allows simple Basic authentication
+       negotiation to work in the test suite. */
+    req->partno += 1;
+    logmsg("Received Basic request, sending back data %ld", req->partno);
   }
   if(strstr(req->reqbuf, "Connection: close"))
     req->open = FALSE; /* close connection after this request */
