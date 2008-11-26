@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.44 2008-10-23 11:49:19 bagder Exp $
+ * $Id: http_digest.c,v 1.45 2008-11-26 12:35:24 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -105,8 +105,8 @@ CURLdigest Curl_input_digest(struct connectdata *conn,
          (2 ==  sscanf(header, "%255[^=]=%1023[^\r\n,]",
                        value, content)) ) {
         if(!strcmp("\"\"", content)) {
-          /* for the name="" case where we get only the "" in the content variable,
-           * simply clear the content then
+          /* for the name="" case where we get only the "" in the content
+           * variable, simply clear the content then
            */
           content[0]=0;
         }
