@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.82 2008-11-25 16:26:58 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.83 2008-11-28 22:41:14 danf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -966,7 +966,9 @@ static int init_by_defaults(ares_channel channel)
      */
     size_t len = 64;
     int res;
+    channel->ndomains = 0; /* default to none */
 
+#ifdef HAVE_GETHOSTNAME
     hostname = malloc(len);
     if(!hostname) {
       rc = ARES_ENOMEM;
@@ -994,7 +996,6 @@ static int init_by_defaults(ares_channel channel)
 
     } while(0);
 
-    channel->ndomains = 0; /* default to none */
     if (strchr(hostname, '.'))  {
       /* a dot was found */
 
@@ -1010,6 +1011,7 @@ static int init_by_defaults(ares_channel channel)
       }
       channel->ndomains = 1;
     }
+#endif
   }
 
   if (channel->nsort == -1) {

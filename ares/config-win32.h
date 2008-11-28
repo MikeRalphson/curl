@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.26 2008-11-13 18:56:56 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.27 2008-11-28 22:41:14 danf Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -96,6 +96,9 @@
 
 /* Define if you have the strnicmp function. */
 #define HAVE_STRNICMP 1
+
+/* Define if you have the gethostname function.  */
+#define HAVE_GETHOSTNAME 1
 
 /* Define if you have the recv function. */
 #define HAVE_RECV 1

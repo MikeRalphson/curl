@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.31 2008-09-17 11:31:37 yangtse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.32 2008-11-28 22:41:14 danf Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -225,6 +225,7 @@ static void nameinfo_callback(void *arg, int status, int timeouts, struct hosten
          We do this by determining our own domain name, then searching the string
          for this domain name and removing it.
        */
+#ifdef HAVE_GETHOSTNAME
       if (niquery->flags & ARES_NI_NOFQDN)
         {
            char buf[255];
@@ -237,6 +238,7 @@ static void nameinfo_callback(void *arg, int status, int timeouts, struct hosten
                  *end = 0;
              }
         }
+#endif
       niquery->callback(niquery->arg, ARES_SUCCESS, niquery->timeouts, (char *)(host->h_name),
                         service);
       return;
