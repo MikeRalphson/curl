@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.53 2008-11-13 18:56:56 yangtse Exp $
+# $Id: Makefile.netware,v 1.54 2008-11-28 23:34:39 danf Exp $
 #
 ## Makefile for building libcares (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -352,6 +352,7 @@ endif
 	@echo $(DL)#define HAVE_FCNTL_H 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GETHOSTBYADDR 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GETHOSTBYNAME 1$(DL) >> $@
+	@echo $(DL)#define HAVE_GETHOSTNAME 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GETPROTOBYNAME 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GMTIME_R 1$(DL) >> $@
 	@echo $(DL)#define HAVE_INET_ADDR 1$(DL) >> $@
