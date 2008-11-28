@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.71 2008-11-13 18:56:56 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.72 2008-11-28 22:07:40 danf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -897,6 +897,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
        return -1;
     }
 
+#ifdef TCP_NODELAY
   /*
    * Disable the Nagle algorithm (only relevant for TCP sockets, and thus not in
    * configure_socket). In general, in DNS lookups we're pretty much interested
@@ -910,6 +911,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
        closesocket(s);
        return -1;
     }
+#endif
 
   /* Connect to the server. */
   memset(&sockin, 0, sizeof(sockin));
