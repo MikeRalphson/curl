@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.13 2008-11-29 16:39:56 yangtse Exp $
+ * $Id: ssh.h,v 1.14 2008-11-29 17:45:16 yangtse Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
@@ -30,9 +30,9 @@
 #endif
 
 #if (LIBSSH2_VERSION_NUM >= 0x001300)
-#  ifndef HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS
-#    define HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS 1
-#  endif
+#  define HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS 1
+#else
+#  undef HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS
 #endif
 
 extern const struct Curl_handler Curl_handler_scp;
