@@ -1,4 +1,4 @@
-/* $Id: ares_mkquery.c,v 1.15 2008-09-17 01:02:57 yangtse Exp $ */
+/* $Id: ares_mkquery.c,v 1.16 2008-11-29 00:26:07 danf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -17,6 +17,9 @@
 
 #include "setup.h"
 
+#ifdef HAVE_SYS_SOCKET_H
+#  include <sys/socket.h>
+#endif
 #ifdef HAVE_NETINET_IN_H
 #  include <netinet/in.h>
 #endif

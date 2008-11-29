@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.42 2008-11-19 15:16:16 bagder Exp $ */
+/* $Id: ares.h,v 1.43 2008-11-29 00:26:07 danf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007 by Daniel Stenberg
@@ -51,8 +51,8 @@
 #  include <winsock2.h>
 #  include <ws2tcpip.h>
 #else
-  #include <netinet/in.h>
   #include <sys/socket.h>
+  #include <netinet/in.h>
 #endif
 
 #ifdef  __cplusplus
