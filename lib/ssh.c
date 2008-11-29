@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.119 2008-11-24 13:59:51 bagder Exp $
+ * $Id: ssh.c,v 1.120 2008-11-29 16:39:56 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -35,17 +35,6 @@
 
 #include <libssh2.h>
 #include <libssh2_sftp.h>
-
-#if !defined(LIBSSH2_VERSION_NUM) || (LIBSSH2_VERSION_NUM < 0x001000)
-#error "this requires libssh2 0.16 or later"
-#endif
-
-#if !defined(HAVE_LIBSSH2_SESSION_BLOCK_DIRECTION) && \
-   (LIBSSH2_VERSION_NUM >= 0x001300)
-/* this is just a check for non-configure based systems to get this properly
-   setup if libssh2 0.19+ is used */
-#define HAVE_LIBSSH2_SESSION_BLOCK_DIRECTION 1
-#endif
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -2070,7 +2059,7 @@ static CURLcode ssh_easy_statemach(struct connectdata *conn)
     bool block;
     result = ssh_statemach_act(conn, &block);
 
-#ifdef HAVE_LIBSSH2_SESSION_BLOCK_DIRECTION
+#ifdef HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS
     if((CURLE_OK == result) && block) {
       int dir = libssh2_session_block_directions(sshc->ssh_session);
       curl_socket_t sock = conn->sock[FIRSTSOCKET];
