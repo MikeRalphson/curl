@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.43 2008-11-29 00:26:07 danf Exp $ */
+/* $Id: ares.h,v 1.44 2008-12-01 19:06:24 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007 by Daniel Stenberg
@@ -185,7 +185,6 @@ struct ares_options {
   int timeout; /* in seconds or milliseconds, depending on options */
   int tries;
   int ndots;
-  int rotate;
   unsigned short udp_port;
   unsigned short tcp_port;
   int socket_send_buffer_size;

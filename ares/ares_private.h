@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.40 2008-11-25 16:26:58 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.41 2008-12-01 19:06:24 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -262,6 +262,8 @@ struct ares_channeldata {
   struct apattern *sortlist;
   int nsort;
   char *lookups;
+
+  int optmask; /* the option bitfield passed in at init time */
 
   /* Server addresses and communications state */
   struct server_state *servers;
