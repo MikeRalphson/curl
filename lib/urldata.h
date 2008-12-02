@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.395 2008-11-03 16:24:56 bagder Exp $
+ * $Id: urldata.h,v 1.396 2008-12-02 23:00:10 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -977,6 +977,10 @@ struct connectdata {
   const struct Curl_sec_client_mech *mech;
   struct sockaddr_in local_addr;
 #endif
+
+  /* the two following *_inuse fields are only flags, not counters in any way.
+     If TRUE it means the channel is in use, and if FALSE it means the channel
+     is up for grabs by one. */
 
   bool readchannel_inuse;  /* whether the read channel is in use by an easy
                               handle */
