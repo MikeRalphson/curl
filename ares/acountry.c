@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.10 2008-10-17 19:04:53 yangtse Exp $
+ * $Id: acountry.c,v 1.11 2008-12-02 02:58:04 danf Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -50,6 +50,7 @@
 #if defined(WIN32) && !defined(WATT32)
   #include <winsock.h>
 #else
+  #include <sys/socket.h>
   #include <arpa/inet.h>
   #include <netinet/in.h>
   #include <netdb.h>
