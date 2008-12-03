@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.98 2008-10-23 11:49:19 bagder Exp $
+ * $Id: cookie.c,v 1.99 2008-12-03 15:08:09 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -1003,7 +1003,8 @@ int Curl_cookie_output(struct CookieInfo *c, const char *dumphere)
       format_ptr = get_netscape_format(co);
       if(format_ptr == NULL) {
         fprintf(out, "#\n# Fatal libcurl error\n");
-        fclose(out);
+        if(!use_stdout)
+          fclose(out);
         return 1;
       }
       fprintf(out, "%s\n", format_ptr);
