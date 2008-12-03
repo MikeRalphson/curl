@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.772 2008-11-19 10:15:19 bagder Exp $
+ * $Id: url.c,v 1.773 2008-12-03 15:20:27 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2359,6 +2359,20 @@ int Curl_removeHandleFromPipeline(struct SessionHandle *handle,
   return 0;
 }
 
+/* remove the specified connection from all (possible) pipelines and related
+   queues */
+void Curl_getoff_all_pipelines(struct SessionHandle *data,
+                               struct connectdata *conn)
+{
+  if(Curl_removeHandleFromPipeline(data, conn->recv_pipe) &&
+     conn->readchannel_inuse)
+    conn->readchannel_inuse = FALSE;
+  if(Curl_removeHandleFromPipeline(data, conn->send_pipe) &&
+     conn->writechannel_inuse)
+    conn->writechannel_inuse = FALSE;
+  Curl_removeHandleFromPipeline(data, conn->pend_pipe);
+}
+
 #if 0 /* this code is saved here as it is useful for debugging purposes */
 static void Curl_printPipeline(struct curl_llist *pipeline)
 {
@@ -4548,13 +4562,7 @@ CURLcode Curl_done(struct connectdata **connp,
 
   Curl_expire(data, 0); /* stop timer */
 
-  if(Curl_removeHandleFromPipeline(data, conn->recv_pipe) &&
-     conn->readchannel_inuse)
-    conn->readchannel_inuse = FALSE;
-  if(Curl_removeHandleFromPipeline(data, conn->send_pipe) &&
-     conn->writechannel_inuse)
-    conn->writechannel_inuse = FALSE;
-  Curl_removeHandleFromPipeline(data, conn->pend_pipe);
+  Curl_getoff_all_pipelines(data, conn);
 
   if(conn->bits.done ||
      (conn->send_pipe->size + conn->recv_pipe->size != 0 &&
