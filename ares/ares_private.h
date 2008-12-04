@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.41 2008-12-01 19:06:24 bagder Exp $ */
+/* $Id: ares_private.h,v 1.42 2008-12-04 12:53:03 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -296,6 +296,9 @@ struct ares_channeldata {
 
   ares_sock_state_cb sock_state_cb;
   void *sock_state_cb_data;
+
+  ares_sock_create_callback sock_create_cb;
+  void *sock_create_cb_data;
 };
 
 /* return true if now is exactly check time or later */

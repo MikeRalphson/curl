@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.72 2008-11-28 22:07:40 danf Exp $ */
+/* $Id: ares_process.c,v 1.73 2008-12-04 12:53:03 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -929,6 +929,17 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
         }
     }
 
+  if (channel->sock_create_cb)
+    {
+      int err = channel->sock_create_cb(s, SOCK_STREAM,
+                                        channel->sock_create_cb_data);
+      if (err < 0)
+        {
+          closesocket(s);
+          return err;
+        }
+    }
+
   SOCK_STATE_CALLBACK(channel, s, 1, 0);
   server->tcp_buffer_pos = 0;
   server->tcp_socket = s;
@@ -966,6 +977,17 @@ static int open_udp_socket(ares_channel channel, struct server_state *server)
         {
           closesocket(s);
           return -1;
+        }
+    }
+
+  if (channel->sock_create_cb)
+    {
+      int err = channel->sock_create_cb(s, SOCK_DGRAM,
+                                        channel->sock_create_cb_data);
+      if (err < 0)
+        {
+          closesocket(s);
+          return err;
         }
     }
 

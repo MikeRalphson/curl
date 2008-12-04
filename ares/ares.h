@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.47 2008-12-04 07:18:13 danf Exp $ */
+/* $Id: ares.h,v 1.48 2008-12-04 12:53:03 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2008 by Daniel Stenberg
@@ -229,6 +229,8 @@ typedef void (*ares_host_callback)(void *arg, int status, int timeouts,
                                    struct hostent *hostent);
 typedef void (*ares_nameinfo_callback)(void *arg, int status, int timeouts,
                                        char *node, char *service);
+typedef int  (*ares_sock_create_callback)(ares_socket_t socket_fd,
+                                          int type, void *data);
 
 int ares_init(ares_channel *channelptr);
 int ares_init_options(ares_channel *channelptr, struct ares_options *options,
@@ -239,6 +241,9 @@ void ares_destroy_options(struct ares_options *options);
 int ares_dup(ares_channel *dest, ares_channel src);
 void ares_destroy(ares_channel channel);
 void ares_cancel(ares_channel channel);
+void ares_set_socket_callback(ares_channel channel,
+                              ares_sock_create_callback callback,
+                              void *user_data);
 void ares_send(ares_channel channel, const unsigned char *qbuf, int qlen,
                ares_callback callback, void *arg);
 void ares_query(ares_channel channel, const char *name, int dnsclass,
