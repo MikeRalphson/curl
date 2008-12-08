@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.396 2008-12-02 23:00:10 bagder Exp $
+ * $Id: urldata.h,v 1.397 2008-12-08 13:52:20 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -299,6 +299,9 @@ struct ntlmdata {
 
 #ifdef HAVE_GSSAPI
 struct negotiatedata {
+  /* when doing Negotiate we first need to receive an auth token and then we
+     need to send our header */
+  enum { GSS_AUTHNONE, GSS_AUTHRECV, GSS_AUTHSENT } state;
   bool gss; /* Whether we're processing GSS-Negotiate or Negotiate */
   const char* protocol; /* "GSS-Negotiate" or "Negotiate" */
   OM_uint32 status;
