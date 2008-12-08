@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.27 2008-11-28 22:41:14 danf Exp $ */
+/* $Id: config-win32.h,v 1.28 2008-12-08 16:12:11 giva Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -168,6 +168,15 @@
   #define SOCKET              int
   #define NS_INADDRSZ         4
   #define HAVE_ARPA_NAMESER_H 1
+  #define HAVE_ARPA_INET_H    1
+  #define HAVE_NETDB_H        1
+  #define HAVE_NETINET_IN_H   1
+  #define HAVE_SYS_SOCKET_H   1
+  #define HAVE_NETINET_TCP_H  1
+  #define HAVE_AF_INET6       1
+  #define HAVE_PF_INET6       1
+  #define HAVE_STRUCT_IN6_ADDR     1
+  #define HAVE_STRUCT_SOCKADDR_IN6 1
   #undef HAVE_WINSOCK_H
   #undef HAVE_WINSOCK2_H
   #undef HAVE_WS2TCPIP_H
