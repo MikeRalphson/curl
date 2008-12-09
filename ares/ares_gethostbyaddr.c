@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyaddr.c,v 1.31 2008-11-25 16:26:58 yangtse Exp $ */
+/* $Id: ares_gethostbyaddr.c,v 1.32 2008-12-09 01:02:28 danf Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -266,13 +266,16 @@ static void ptr_rr_name(char *name, struct ares_addr *addr)
   else
     {
        unsigned char *bytes = (unsigned char *)&addr->addrV6.s6_addr;
+       /* There are too many arguments to do this in one line using
+	* minimally C89-compliant compilers */
        sprintf(name,
-                "%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x."
-                "%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.ip6.arpa",
+                "%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.",
                 bytes[15]&0xf, bytes[15] >> 4, bytes[14]&0xf, bytes[14] >> 4,
                 bytes[13]&0xf, bytes[13] >> 4, bytes[12]&0xf, bytes[12] >> 4,
                 bytes[11]&0xf, bytes[11] >> 4, bytes[10]&0xf, bytes[10] >> 4,
-                bytes[9]&0xf, bytes[9] >> 4, bytes[8]&0xf, bytes[8] >> 4,
+                bytes[9]&0xf, bytes[9] >> 4, bytes[8]&0xf, bytes[8] >> 4);
+       sprintf(name+strlen(name),
+                "%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.ip6.arpa",
                 bytes[7]&0xf, bytes[7] >> 4, bytes[6]&0xf, bytes[6] >> 4,
                 bytes[5]&0xf, bytes[5] >> 4, bytes[4]&0xf, bytes[4] >> 4,
                 bytes[3]&0xf, bytes[3] >> 4, bytes[2]&0xf, bytes[2] >> 4,
