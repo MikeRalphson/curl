@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.45 2008-11-26 12:35:24 bagder Exp $
+ * $Id: http_digest.c,v 1.46 2008-12-10 23:13:31 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -356,7 +356,25 @@ CURLcode Curl_output_digest(struct connectdata *conn,
     5.1.1 of RFC 2616)
   */
 
-  md5this = (unsigned char *)aprintf("%s:%s", request, uripath);
+  /* So IE browsers < v7 cut off the URI part at the query part when they
+     evaluate the MD5 and some (IIS?) servers work with them so we may need to
+     do the Digest IE-style. Note that the different ways cause different MD5
+     sums to get sent.
+
+     Apache servers can be set to do the Digest IE-style automatically using
+     the BrowserMatch feature:
+     http://httpd.apache.org/docs/2.2/mod/mod_auth_digest.html#msie
+
+     Further details on Digest implementation differences:
+     http://www.fngtps.com/2006/09/http-authentication
+  */
+  if(authp->iestyle && (tmp = strchr((char *)uripath, '?'))) {
+    md5this = (unsigned char *)aprintf("%s:%.*s", request,
+                                       (int)(tmp - (char *)uripath), uripath);
+  }
+  else
+    md5this = (unsigned char *)aprintf("%s:%s", request, uripath);
+
   if(!md5this) {
     free(ha1);
     return CURLE_OUT_OF_MEMORY;

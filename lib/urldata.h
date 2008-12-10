@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.397 2008-12-08 13:52:20 bagder Exp $
+ * $Id: urldata.h,v 1.398 2008-12-10 23:13:31 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1139,7 +1139,8 @@ struct auth {
                  request */
   bool multi; /* TRUE if this is not yet authenticated but within the auth
                  multipass negotiation */
-
+  bool iestyle; /* TRUE if digest should be done IE-style or FALSE if it should
+                   be RFC compliant */
 };
 
 struct conncache {
