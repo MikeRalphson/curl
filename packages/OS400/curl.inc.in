@@ -18,7 +18,7 @@
       * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF
       * ANY KIND, either express or implied.
       *
-      * $Id: curl.inc.in,v 1.15 2008-10-17 13:17:41 patrickm Exp $
+      * $Id: curl.inc.in,v 1.16 2008-12-11 19:20:03 patrickm Exp $
       *
       **************************************************************************
       *
@@ -127,9 +127,11 @@
      d CURLAUTH_GSSNEGOTIATE...
      d                 c                   X'00000004'
      d CURLAUTH_NTLM   c                   X'00000008'
-     d CURLAUTH_ANY    c                   X'7FFFFFFF'
+     d CURLAUTH_DIGEST_IE...
+     d                 c                   X'00000010'
+     d CURLAUTH_ANY    c                   X'7FFFFFEF'
      d CURLAUTH_ANYSAFE...
-     d                 c                   X'7FFFFFFE'                          ~CURLAUTH_BASIC
+     d                 c                   X'7FFFFFEE'                          ~CURLAUTH_BASIC
       *
      d CURLSSH_AUTH_ANY...
      d                 c                   X'7FFFFFFF'
