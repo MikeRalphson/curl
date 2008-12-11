@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.774 2008-12-10 23:13:31 bagder Exp $
+ * $Id: url.c,v 1.775 2008-12-11 22:22:47 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3724,7 +3724,8 @@ static CURLcode parse_remote_port(struct SessionHandle *data,
   char *portptr;
   char endbracket;
 
-  if((1 == sscanf(conn->host.name, "[%*39[0123456789abcdefABCDEF:.%]%c", &endbracket)) &&
+  if((1 == sscanf(conn->host.name, "[%*45[0123456789abcdefABCDEF:.%]%c",
+                  &endbracket)) &&
      (']' == endbracket)) {
     /* this is a RFC2732-style specified IP-address */
     conn->bits.ipv6_ip = TRUE;
