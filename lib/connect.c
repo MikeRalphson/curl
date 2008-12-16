@@ -18,13 +18,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.209 2008-11-14 23:17:32 danf Exp $
+ * $Id: connect.c,v 1.210 2008-12-16 08:25:55 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
 
-#ifndef WIN32
-/* headers for non-win32 */
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
@@ -70,8 +68,6 @@
 #include <in.h>
 #include <inet.h>
 #endif
-
-#endif  /* !WIN32 */
 
 #include <stdio.h>
 #include <errno.h>

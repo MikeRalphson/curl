@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.492 2008-12-09 15:02:37 bagder Exp $
+ * $Id: ftp.c,v 1.493 2008-12-16 08:25:55 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -34,7 +34,6 @@
 #include <unistd.h>
 #endif
 
-#ifndef WIN32
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
@@ -54,7 +53,6 @@
 #include <in.h>
 #include <inet.h>
 #endif
-#endif  /* !WIN32 */
 
 #if (defined(NETWARE) && defined(__NOVELL_LIBC__))
 #undef in_addr_t
