@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.121 2008-12-15 23:04:51 bagder Exp $
+ * $Id: ssh.c,v 1.122 2008-12-17 12:32:41 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2309,30 +2309,24 @@ static CURLcode scp_disconnect(struct connectdata *conn)
 static CURLcode ssh_done(struct connectdata *conn, CURLcode status)
 {
   CURLcode result = CURLE_OK;
-  bool done = FALSE;
+  struct SSHPROTO *sftp_scp = conn->data->state.proto.ssh;
 
   if(status == CURLE_OK) {
-    /* run the state-machine */
-    if(conn->data->state.used_interface == Curl_if_multi) {
-      result = ssh_multi_statemach(conn, &done);
-    }
-    else {
-      result = ssh_easy_statemach(conn);
-      done = TRUE;
-    }
+    /* run the state-machine
+
+       TODO: when the multi interface this _really_ should be using the
+       ssh_multi_statemach function but we have no general support for
+       non-blocking DONE operations, not in the multi state machine and with
+       Curl_done() invokes on several places in the code!
+    */
+    result = ssh_easy_statemach(conn);
   }
-  else {
+  else
     result = status;
-    done = TRUE;
-  }
 
-  if(done) {
-    struct SSHPROTO *sftp_scp = conn->data->state.proto.ssh;
-
-    Curl_safefree(sftp_scp->path);
-    sftp_scp->path = NULL;
-    Curl_pgrsDone(conn);
-  }
+  Curl_safefree(sftp_scp->path);
+  sftp_scp->path = NULL;
+  Curl_pgrsDone(conn);
 
   return result;
 }
