@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.59 2008-11-14 23:17:32 danf Exp $
+ * $Id: dict.c,v 1.60 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -106,6 +106,7 @@ const struct Curl_handler Curl_handler_dict = {
   ZERO_NULL,                            /* doing */
   ZERO_NULL,                            /* proto_getsock */
   ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_DICT,                            /* defport */
   PROT_DICT                             /* protocol */

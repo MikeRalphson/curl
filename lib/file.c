@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.117 2008-11-14 23:17:32 danf Exp $
+ * $Id: file.c,v 1.118 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -119,6 +119,7 @@ const struct Curl_handler Curl_handler_file = {
   ZERO_NULL,                            /* doing */
   ZERO_NULL,                            /* proto_getsock */
   ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   0,                                    /* defport */
   PROT_FILE                             /* protocol */

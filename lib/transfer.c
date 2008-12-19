@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.422 2008-11-14 23:17:32 danf Exp $
+ * $Id: transfer.c,v 1.423 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1524,6 +1524,7 @@ static CURLcode readwrite_upload(struct SessionHandle *data,
 			data->req.upload_fromhere, /* buffer pointer */
 			data->req.upload_present,  /* buffer size */
 			&bytes_written);       /* actually send away */
+
     if(result)
       return result;
 
@@ -1743,6 +1744,9 @@ int Curl_single_getsock(const struct connectdata *conn,
   const struct SessionHandle *data = conn->data;
   int bitmap = GETSOCK_BLANK;
   unsigned sockindex = 0;
+
+  if(conn->handler->perform_getsock)
+    return conn->handler->perform_getsock(conn, sock, numsocks);
 
   if(numsocks < 2)
     /* simple check but we might need two slots */

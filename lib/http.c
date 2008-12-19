@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.407 2008-12-08 13:52:20 bagder Exp $
+ * $Id: http.c,v 1.408 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -137,6 +137,7 @@ const struct Curl_handler Curl_handler_http = {
   ZERO_NULL,                            /* doing */
   ZERO_NULL,                            /* proto_getsock */
   http_getsock_do,                      /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_HTTP,                            /* defport */
   PROT_HTTP,                            /* protocol */
@@ -157,6 +158,7 @@ const struct Curl_handler Curl_handler_https = {
   ZERO_NULL,                            /* doing */
   https_getsock,                        /* proto_getsock */
   http_getsock_do,                      /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_HTTPS,                           /* defport */
   PROT_HTTP | PROT_HTTPS | PROT_SSL     /* protocol */

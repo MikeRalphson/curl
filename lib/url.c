@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.777 2008-12-12 12:04:10 bagder Exp $
+ * $Id: url.c,v 1.778 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -218,6 +218,7 @@ static const struct Curl_handler Curl_handler_dummy = {
   ZERO_NULL,                            /* doing */
   ZERO_NULL,                            /* proto_getsock */
   ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   0,                                    /* defport */
   0                                     /* protocol */

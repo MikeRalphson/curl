@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.398 2008-12-10 23:13:31 bagder Exp $
+ * $Id: urldata.h,v 1.399 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -559,6 +559,8 @@ struct ssh_conn {
   LIBSSH2_CHANNEL *ssh_channel; /* Secure Shell channel handle */
   LIBSSH2_SFTP *sftp_session;   /* SFTP handle */
   LIBSSH2_SFTP_HANDLE *sftp_handle;
+  int waitfor;                  /* current READ/WRITE bits to wait for */
+  int orig_waitfor;             /* default READ/WRITE bits wait for */
 #endif /* USE_LIBSSH2 */
 };
 
@@ -849,6 +851,13 @@ struct Curl_handler {
   int (*doing_getsock)(struct connectdata *conn,
                        curl_socket_t *socks,
                        int numsocks);
+
+  /* Called from the multi interface during the DO_DONE, PERFORM and
+     WAITPERFORM phases, and it should then return a proper fd set. Not setting
+     this will make libcurl use the generic default one. */
+  int (*perform_getsock)(const struct connectdata *conn,
+                         curl_socket_t *socks,
+                         int numsocks);
 
   /* This function *MAY* be set to a protocol-dependent function that is run
    * by the curl_disconnect(), as a step in the disconnection.

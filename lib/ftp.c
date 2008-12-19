@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.493 2008-12-16 08:25:55 giva Exp $
+ * $Id: ftp.c,v 1.494 2008-12-19 21:14:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -171,9 +171,10 @@ const struct Curl_handler Curl_handler_ftp = {
   ftp_doing,                       /* doing */
   ftp_getsock,                     /* proto_getsock */
   ftp_getsock,                     /* doing_getsock */
+  ZERO_NULL,                       /* perform_getsock */
   ftp_disconnect,                  /* disconnect */
-  PORT_FTP,                             /* defport */
-  PROT_FTP                              /* protocol */
+  PORT_FTP,                        /* defport */
+  PROT_FTP                         /* protocol */
 };
 
 
@@ -193,9 +194,10 @@ const struct Curl_handler Curl_handler_ftps = {
   ftp_doing,                       /* doing */
   ftp_getsock,                     /* proto_getsock */
   ftp_getsock,                     /* doing_getsock */
+  ZERO_NULL,                       /* perform_getsock */
   ftp_disconnect,                  /* disconnect */
-  PORT_FTPS,                            /* defport */
-  PROT_FTP | PROT_FTPS | PROT_SSL       /* protocol */
+  PORT_FTPS,                       /* defport */
+  PROT_FTP | PROT_FTPS | PROT_SSL  /* protocol */
 };
 #endif
 
@@ -215,6 +217,7 @@ const struct Curl_handler Curl_handler_ftp_proxy = {
   ZERO_NULL,                            /* doing */
   ZERO_NULL,                            /* proto_getsock */
   ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_FTP,                             /* defport */
   PROT_HTTP                             /* protocol */
@@ -237,6 +240,7 @@ const struct Curl_handler Curl_handler_ftps_proxy = {
   ZERO_NULL,                            /* doing */
   ZERO_NULL,                            /* proto_getsock */
   ZERO_NULL,                            /* doing_getsock */
+  ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_FTPS,                            /* defport */
   PROT_HTTP                             /* protocol */
