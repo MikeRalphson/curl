@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.123 2008-12-19 21:14:52 bagder Exp $
+ * $Id: ssh.c,v 1.124 2008-12-19 22:27:11 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2577,9 +2577,6 @@ ssize_t Curl_sftp_send(struct connectdata *conn, int sockindex,
   (void)sockindex;
 
   nwrite = libssh2_sftp_write(conn->proto.sshc.sftp_handle, mem, len);
-
-  infof(conn->data, "libssh2_sftp_write() returned %d (told to send %d)\n",
-        nwrite, (int)len);
 
   ssh_block2waitfor(conn, (nwrite == LIBSSH2_ERROR_EAGAIN)?TRUE:FALSE);
 
