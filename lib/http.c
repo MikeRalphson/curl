@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.408 2008-12-19 21:14:52 bagder Exp $
+ * $Id: http.c,v 1.409 2008-12-20 22:47:49 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -975,13 +975,7 @@ static CURLcode
 static
 send_buffer *add_buffer_init(void)
 {
-  send_buffer *blonk;
-  blonk = malloc(sizeof(send_buffer));
-  if(blonk) {
-    memset(blonk, 0, sizeof(send_buffer));
-    return blonk;
-  }
-  return NULL; /* failed, go home */
+  return calloc(sizeof(send_buffer), 1);
 }
 
 /*
