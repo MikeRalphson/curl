@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.16 2008-12-22 13:21:23 bagder Exp $
+ * $Id: ssh.h,v 1.17 2008-12-22 18:46:12 giva Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
@@ -44,7 +44,7 @@
    later */
 #  define HAVE_LIBSSH2_SFTP_SEEK64 1
 #else
-#  undef HAVE_LIBSSH2_SFTP_SEEK64 1
+#  undef HAVE_LIBSSH2_SFTP_SEEK64
 #endif
 
 
