@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.126 2008-12-22 13:21:23 bagder Exp $
+ * $Id: ssh.c,v 1.127 2008-12-28 05:49:39 gknauf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2117,6 +2117,9 @@ static int ssh_getsock(struct connectdata *conn,
                        int numsocks)
 {
 #ifndef HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS
+  (void)conn;
+  (void)sock;
+  (void)numsocks;
   /* if we don't know any direction we can just play along as we used to and
      not provide any sensible info */
   return GETSOCK_BLANK;
