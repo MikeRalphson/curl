@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.242 2008-12-28 21:29:13 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.243 2008-12-28 21:31:55 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "11 Dec 2008" "libcurl 7.19.3" "libcurl Manual"
@@ -1623,9 +1623,9 @@ cache. Note that while nothing ever should get hurt by attempting to reuse SSL
 session-IDs, there seem to be broken SSL implementations in the wild that may
 require you to disable this in order for you to succeed. (Added in 7.16.0)
 .IP CURLOPT_KRBLEVEL
-Pass a char * as parameter. Set the kerberos security level for FTP; this
-also enables kerberos awareness.  This is a string, 'clear', 'safe',
-'confidential' or \&'private'.  If the string is set but doesn't match one
+Pass a char * as parameter. Set the kerberos security level for FTP; this also
+enables kerberos awareness.  This is a string, \&'clear', \&'safe',
+\&'confidential' or \&'private'.  If the string is set but doesn't match one
 of these, 'private' will be used. Set the string to NULL to disable kerberos
 support for FTP.
 
