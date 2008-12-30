@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.210 2008-12-16 08:25:55 giva Exp $
+ * $Id: connect.c,v 1.211 2008-12-30 08:05:38 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -769,7 +769,7 @@ singleipconnect(struct connectdata *conn,
     /* no socket, no connection */
     return CURL_SOCKET_BAD;
 
-#ifdef ENABLE_IPV6
+#if defined(ENABLE_IPV6) && defined(HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID)
   if (conn->scope && (addr.family == AF_INET6))
     sa6->sin6_scope_id = conn->scope;
 #endif

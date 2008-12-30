@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: if2ip.c,v 1.62 2008-12-04 06:24:00 danf Exp $
+ * $Id: if2ip.c,v 1.63 2008-12-30 08:05:38 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -86,10 +86,12 @@ char *Curl_if2ip(int af, const char *interface, char *buf, int buf_size)
         char scope[12]="";
 #ifdef ENABLE_IPV6
         if (af == AF_INET6) {
-          unsigned int scopeid;
+          unsigned int scopeid = 0;
           addr = &((struct sockaddr_in6 *)iface->ifa_addr)->sin6_addr;
+#ifdef HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID
           /* Include the scope of this interface as part of the address */
           scopeid = ((struct sockaddr_in6 *)iface->ifa_addr)->sin6_scope_id;
+#endif
           if (scopeid)
             snprintf(scope, sizeof(scope), "%%%u", scopeid);
         }

@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.386 2008-12-27 04:30:36 gknauf Exp $
+# $Id: configure.ac,v 1.387 2008-12-30 08:05:38 gknauf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -826,10 +826,10 @@ if test "$ipv6" = yes; then
 #include <netinet/in.h>] ,
   struct sockaddr_in6 s; s.sin6_scope_id = 0; , have_sin6_scope_id=yes)
   if test "$have_sin6_scope_id" = yes; then
-  	AC_MSG_RESULT([yes])
-  	AC_DEFINE(HAVE_SIN6_SCOPE_ID, 1, [Define to 1 if struct sockaddr_in6 has the sin6_scope_id member])
+    AC_MSG_RESULT([yes])
+    AC_DEFINE(HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID, 1, [Define to 1 if struct sockaddr_in6 has the sin6_scope_id member])
   else
-  	AC_MSG_RESULT([no])
+    AC_MSG_RESULT([no])
   fi
 fi
 

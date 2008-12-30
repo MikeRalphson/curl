@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.116 2008-12-30 07:31:04 gknauf Exp $
+# $Id: Makefile.netware,v 1.117 2008-12-30 08:05:38 gknauf Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -454,7 +454,7 @@ ifdef ENABLE_IPV6
 	@echo $(DL)#define ENABLE_IPV6 1$(DL) >> $@
 	@echo $(DL)#define HAVE_FREEADDRINFO 1$(DL) >> $@
 	@echo $(DL)#define HAVE_GETADDRINFO 1$(DL) >> $@
-	@echo $(DL)#define HAVE_SIN6_SCOPE_ID 1$(DL) >> $@
+	@echo $(DL)#define HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID 1$(DL) >> $@
 endif
 endif
 	@echo $(DL)#define USE_MANUAL 1$(DL) >> $@
