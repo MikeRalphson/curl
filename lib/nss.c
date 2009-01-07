@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.38 2009-01-07 14:10:36 bagder Exp $
+ * $Id: nss.c,v 1.39 2009-01-07 14:12:01 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -235,11 +235,11 @@ static SECStatus set_ciphers(struct SessionHandle *data, PRFileDesc * model,
  * Get the number of ciphers that are enabled. We use this to determine
  * if we need to call NSS_SetDomesticPolicy() to enable the default ciphers.
  */
-static int num_enabled_ciphers()
+static int num_enabled_ciphers(void)
 {
   PRInt32 policy = 0;
   int count = 0;
-  int i;
+  unsigned int i;
 
   for(i=0; i<NUM_OF_CIPHERS; i++) {
     SSL_CipherPolicyGet(cipherlist[i].num, &policy);
