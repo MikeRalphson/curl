@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.423 2008-12-19 21:14:52 bagder Exp $
+ * $Id: transfer.c,v 1.424 2009-01-07 19:39:35 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -323,10 +323,6 @@ static int data_pending(const struct connectdata *conn)
     Curl_ssl_data_pending(conn, FIRSTSOCKET);
 }
 
-#ifndef MIN
-#define MIN(a,b) (a < b ? a : b)
-#endif
-
 static void read_rewind(struct connectdata *conn,
                         size_t thismuch)
 {
@@ -338,7 +334,7 @@ static void read_rewind(struct connectdata *conn,
     char buf[512 + 1];
     size_t show;
 
-    show = MIN(conn->buf_len - conn->read_pos, sizeof(buf)-1);
+    show = CURLMIN(conn->buf_len - conn->read_pos, sizeof(buf)-1);
     if(conn->master_buffer) {
         memcpy(buf, conn->master_buffer + conn->read_pos, show);
         buf[show] = '\0';

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.501 2008-12-16 08:48:44 giva Exp $
+ * $Id: main.c,v 1.502 2009-01-07 19:39:35 danf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -183,14 +183,6 @@ char **__crt0_glob_function (char *arg)
 
 #define CURL_PROGRESS_STATS 0 /* default progress display */
 #define CURL_PROGRESS_BAR   1
-
-/**
- * @def MIN
- * standard MIN macro
- */
-#ifndef MIN
-#define MIN(X,Y)        (((X) < (Y)) ? (X) : (Y))
-#endif
 
 typedef enum {
   HTTPREQ_UNSPEC,

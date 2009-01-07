@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.399 2008-12-19 21:14:52 bagder Exp $
+ * $Id: urldata.h,v 1.400 2009-01-07 19:39:35 danf Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -150,9 +150,11 @@
 
 #define CURLEASY_MAGIC_NUMBER 0xc0dedbadU
 
-/* Just a convenience macro to get the larger value out of two given.
+/* Some convenience macros to get the larger/smaller value out of two given.
    We prefix with CURL to prevent name collisions. */
 #define CURLMAX(x,y) ((x)>(y)?(x):(y))
+#define CURLMIN(x,y) ((x)<(y)?(x):(y))
+
 
 #if defined(HAVE_KRB4) || defined(HAVE_GSSAPI)
 /* Types needed for krb4/5-ftp connections */
