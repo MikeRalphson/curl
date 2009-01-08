@@ -6,7 +6,7 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 1998 - 2009, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.63 2008-08-14 23:55:24 yangtse Exp $
+# $Id: buildconf,v 1.64 2009-01-08 22:53:37 bagder Exp $
 ###########################################################################
 
 die(){
@@ -191,7 +191,7 @@ else
   libtoolize=`findtool $LIBTOOLIZE`
 fi
 
-lt_pversion=`$libtool --version 2>/dev/null|head -n 2|sed -e 's/^[^0-9]*//g' -e 's/[- ].*//'`
+lt_pversion=`$libtool --version 2>/dev/null|head -n 1|sed -e 's/^[^0-9]*//g' -e 's/[- ].*//'`
 if test -z "$lt_pversion"; then
   echo "buildconf: libtool not found."
   echo "            You need libtool version $LIBTOOL_WANTED_VERSION or newer installed"
