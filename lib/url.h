@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.h,v 1.39 2008-12-03 15:20:27 bagder Exp $
+ * $Id: url.h,v 1.40 2009-01-08 00:31:49 danf Exp $
  ***************************************************************************/
 
 #include <stdarg.h> /* to make sure we have ap_list */
@@ -30,6 +30,7 @@
  */
 
 CURLcode Curl_open(struct SessionHandle **curl);
+CURLcode Curl_init_userdefined(struct UserDefined *set);
 CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
                      va_list arg);
 CURLcode Curl_dupset(struct SessionHandle * dst, struct SessionHandle * src);
