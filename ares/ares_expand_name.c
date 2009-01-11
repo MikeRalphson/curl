@@ -1,4 +1,4 @@
-/* $Id: ares_expand_name.c,v 1.17 2008-11-29 00:26:07 danf Exp $ */
+/* $Id: ares_expand_name.c,v 1.18 2009-01-11 13:49:13 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -176,4 +176,15 @@ static int name_length(const unsigned char *encoded, const unsigned char *abuf,
    * less than the number of labels, so subtract one.
    */
   return (n) ? n - 1 : n;
+}
+
+/* Like ares_expand_name but returns EBADRESP in case of invalid input. */
+int ares__expand_name_for_response(const unsigned char *encoded,
+                                   const unsigned char *abuf, int alen,
+                                   char **s, long *enclen)
+{
+  int status = ares_expand_name(encoded, abuf, alen, s, enclen);
+  if (status == ARES_EBADNAME)
+    status = ARES_EBADRESP;
+  return status;
 }
