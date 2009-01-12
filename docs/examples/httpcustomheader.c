@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: httpcustomheader.c,v 1.1 2008-08-13 08:51:52 bagder Exp $
+ * $Id: httpcustomheader.c,v 1.2 2009-01-12 21:29:23 bagder Exp $
  */
 
 #include <stdio.h>
@@ -21,6 +21,7 @@ int main(void)
     struct curl_slist *chunk = NULL;
 
     chunk = curl_slist_append(chunk, "Accept: moo");
+    chunk = curl_slist_append(chunk, "Another: yes");
 
     /* request with the built-in Accept: */
     curl_easy_setopt(curl, CURLOPT_URL, "localhost");
