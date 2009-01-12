@@ -1,6 +1,6 @@
 .\" You can view this file with:
 .\" nroff -man [file]
-.\" $Id: curl_formadd.3,v 1.18 2008-07-08 21:16:18 danf Exp $
+.\" $Id: curl_formadd.3,v 1.19 2009-01-12 21:22:51 bagder Exp $
 .\"
 .TH curl_formadd 3 "24 June 2002" "libcurl 7.9.8" "libcurl Manual"
 .SH NAME
@@ -106,8 +106,9 @@ long which gives the length of the buffer.
 Tells libcurl to use the \fICURLOPT_READFUNCTION\fP callback to get data. The
 parameter you pass to \fICURLFORM_STREAM\fP is the pointer passed on to the
 read callback's fourth argument. If you want the part to look like a file
-upload one, set the \fICURLFORM_FILENAME\fP parameter as well. (Option added
-in libcurl 7.18.2)
+upload one, set the \fICURLFORM_FILENAME\fP parameter as well. Note that when
+using \fICURLFORM_STREAM\fP, \fICURLFORM_CONTENTSLENGTH\fP must also be set
+with the total expected length of the part. (Option added in libcurl 7.18.2)
 .IP CURLFORM_ARRAY
 Another possibility to send options to curl_formadd() is the
 \fBCURLFORM_ARRAY\fP option, that passes a struct curl_forms array pointer as
