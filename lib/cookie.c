@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2009, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.99 2008-12-03 15:08:09 bagder Exp $
+ * $Id: cookie.c,v 1.100 2009-01-13 22:21:14 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -878,7 +878,7 @@ void Curl_cookie_clearsess(struct CookieInfo *cookies)
 {
   struct Cookie *first, *curr, *next, *prev = NULL;
 
-  if(!cookies->cookies)
+  if(!cookies->cookies || !cookies->cookies)
     return;
 
   first = curr = prev = cookies->cookies;
