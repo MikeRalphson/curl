@@ -5,10 +5,14 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: first.c,v 1.19 2008-09-20 04:26:55 yangtse Exp $
+ * $Id: first.c,v 1.20 2009-01-21 04:30:05 danf Exp $
  */
 
 #include "test.h"
+
+#ifdef HAVE_LOCALE_H
+#include <locale.h> /* for setlocale() */
+#endif
 
 #ifdef CURLDEBUG
 #  define MEMDEBUG_NODEFINES
@@ -60,6 +64,16 @@ int main(int argc, char **argv)
     curl_free(env);
   }
 #endif
+
+  /*
+   * Setup proper locale from environment. This is needed to enable locale-
+   * specific behaviour by the C library in order to test for undesired side
+   * effects that could cause in libcurl.
+   */
+#ifdef HAVE_SETLOCALE
+  setlocale(LC_ALL, "");
+#endif
+
   if(argc< 2 ) {
     fprintf(stderr, "Pass URL as argument please\n");
     return 1;
