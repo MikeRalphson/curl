@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: rawstr.h,v 1.1 2008-10-23 11:49:19 bagder Exp $
+ * $Id: rawstr.h,v 1.2 2009-01-21 04:42:47 danf Exp $
  ***************************************************************************/
 
 #include <curl/curl.h>
@@ -34,6 +34,8 @@
  */
 int Curl_raw_equal(const char *first, const char *second);
 int Curl_raw_nequal(const char *first, const char *second, size_t max);
+
+char Curl_raw_toupper(char in);
 
 /* checkprefix() is a shorter version of the above, used when the first
    argument is zero-byte terminated */

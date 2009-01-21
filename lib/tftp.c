@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.76 2009-01-13 23:24:06 bagder Exp $
+ * $Id: tftp.c,v 1.77 2009-01-21 04:42:47 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -72,6 +72,7 @@
 #include "strerror.h"
 #include "sockaddr.h" /* required for Curl_sockaddr_storage */
 #include "url.h"
+#include "rawstr.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -904,7 +905,7 @@ static CURLcode tftp_setup_connection(struct connectdata * conn)
 
   if(type) {
     *type = 0;                   /* it was in the middle of the hostname */
-    command = (char) toupper((int) type[6]);
+    command = Curl_raw_toupper(type[6]);
 
     switch (command) {
     case 'A': /* ASCII mode */

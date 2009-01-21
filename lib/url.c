@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.780 2009-01-08 00:31:49 danf Exp $
+ * $Id: url.c,v 1.781 2009-01-21 04:42:47 danf Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -228,6 +228,21 @@ void Curl_safefree(void *ptr)
 {
   if(ptr)
     free(ptr);
+}
+
+/* Copy an upper case version of the string from src to dest.  The
+ * strings may overlap.  No more than n characters of the string are copied
+ * (including any NUL) and the destination string will NOT be
+ * NUL-terminated if that limit is reached.
+ */
+void Curl_strntoupper(char *dest, const char *src, size_t n)
+{
+  if (n < 1)
+    return;
+
+  do {
+    *dest++ = Curl_raw_toupper(*src);
+  } while (*src++ && --n);
 }
 
 static void close_connections(struct SessionHandle *data)
@@ -3441,8 +3456,7 @@ static char *detect_proxy(struct connectdata *conn)
        */
       if(!prox && !Curl_raw_equal("http_proxy", proxy_env)) {
         /* There was no lowercase variable, try the uppercase version: */
-        for(envp = proxy_env; *envp; envp++)
-          *envp = (char)toupper((int)*envp);
+	Curl_strntoupper(proxy_env, proxy_env, sizeof(proxy_env));
         prox=curl_getenv(proxy_env);
       }
 

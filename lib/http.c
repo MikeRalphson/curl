@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.409 2008-12-20 22:47:49 bagder Exp $
+ * $Id: http.c,v 1.410 2009-01-21 04:42:47 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2271,7 +2271,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
       if(checkprefix("ftp://", ppath) || checkprefix("ftps://", ppath)) {
         char *p = strstr(ppath, ";type=");
         if(p && p[6] && p[7] == 0) {
-          switch (toupper((int)((unsigned char)p[6]))) {
+          switch (Curl_raw_toupper(p[6])) {
           case 'A':
           case 'D':
           case 'I':
