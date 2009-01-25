@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.401 2009-01-13 06:44:03 bagder Exp $
+ * $Id: urldata.h,v 1.402 2009-01-25 23:26:31 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1363,6 +1363,8 @@ enum dupstring {
   STRING_PASSWORD,        /* <password>, if used */
   STRING_PROXYUSERNAME,   /* Proxy <username>, if used */
   STRING_PROXYPASSWORD,   /* Proxy <password>, if used */
+  STRING_NOPROXY,         /* List of hosts which should not use the proxy, if
+                             used */
 
   /* -- end of strings -- */
   STRING_LAST /* not used, just an end-of-list marker */
