@@ -1,5 +1,5 @@
 #########################################################################
-# $Id: Makefile.m32,v 1.47 2008-11-13 01:39:10 gknauf Exp $
+# $Id: Makefile.m32,v 1.48 2009-01-26 07:33:29 gknauf Exp $
 #
 ## Makefile for building curl.exe with MingW32 (GCC-3.2)
 ## and optionally OpenSSL (0.9.8), libssh2 (0.18), zlib (1.2.3)
@@ -120,8 +120,11 @@ COMPILE = $(CC) $(INCLUDES) $(CFLAGS)
 include Makefile.inc
 
 curl_OBJECTS := $(patsubst %.c,%.o,$(strip $(CURL_SOURCES)))
-# curlx_OBJECTS := $(patsubst %.c,%.o,$(notdir $(strip $(CURLX_ONES))))
-# vpath %.c ../lib
+ifdef DYN
+curlx_OBJECTS := $(patsubst %.c,%.o,$(notdir $(strip $(CURLX_ONES))))
+curl_OBJECTS += $(curlx_OBJECTS)
+vpath %.c ../lib
+endif
 
 RESOURCE = curl.res
 
