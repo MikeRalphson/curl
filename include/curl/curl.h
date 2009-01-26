@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.372 2009-01-25 23:26:31 bagder Exp $
+ * $Id: curl.h,v 1.373 2009-01-26 22:43:08 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1158,6 +1158,9 @@ typedef enum {
      local.com. A single * is the only valid wildcard, and effectively
      disables the use of proxy. */
   CINIT(NOPROXY, OBJECTPOINT, 177),
+
+  /* block size for TFTP transfers */
+  CINIT(TFTP_BLKSIZE, LONG, 178),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

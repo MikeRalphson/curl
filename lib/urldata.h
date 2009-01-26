@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.402 2009-01-25 23:26:31 bagder Exp $
+ * $Id: urldata.h,v 1.403 2009-01-26 22:43:08 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1047,6 +1047,7 @@ struct connectdata {
   union {
     struct ftp_conn ftpc;
     struct ssh_conn sshc;
+    struct tftp_state_data *tftpc;
   } proto;
 
   int cselect_bits; /* bitmask of socket events */
@@ -1288,7 +1289,7 @@ struct UrlState {
     struct HTTP *http;
     struct HTTP *https;  /* alias, just for the sake of being more readable */
     struct FTP *ftp;
-    void *tftp;        /* private for tftp.c-eyes only */
+    /* void *tftp;    not used */
     struct FILEPROTO *file;
     void *telnet;        /* private for telnet.c-eyes only */
     void *generic;
@@ -1425,6 +1426,7 @@ struct UserDefined {
   long timeout;         /* in milliseconds, 0 means no timeout */
   long connecttimeout;  /* in milliseconds, 0 means no timeout */
   long ftp_response_timeout; /* in milliseconds, 0 means no timeout */
+  long tftp_blksize ; /* in bytes, 0 means use default */
   curl_off_t infilesize;      /* size of file to upload, -1 means unknown */
   long low_speed_limit; /* bytes/second */
   long low_speed_time;  /* number of seconds */

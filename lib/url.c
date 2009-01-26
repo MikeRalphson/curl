@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.782 2009-01-25 23:26:31 bagder Exp $
+ * $Id: url.c,v 1.783 2009-01-26 22:43:08 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -931,6 +931,12 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
      * obtained before it is considered failure.
      */
     data->set.ftp_response_timeout = va_arg( param , long ) * 1000;
+    break;
+  case CURLOPT_TFTP_BLKSIZE:
+    /*
+     * TFTP option that specifies the block size to use for data transmission
+     */
+    data->set.tftp_blksize = va_arg(param, long);
     break;
   case CURLOPT_DIRLISTONLY:
     /*
