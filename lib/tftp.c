@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.79 2009-01-28 17:26:26 yangtse Exp $
+ * $Id: tftp.c,v 1.80 2009-01-28 17:43:11 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -204,7 +204,7 @@ static CURLcode tftp_set_timeouts(tftp_state_data_t *state)
 {
   time_t maxtime, timeout;
   long timeout_ms;
-  const bool start = (state->state == TFTP_STATE_START);
+  bool start = (bool)(state->state == TFTP_STATE_START);
 
   time(&state->start_time);
 
