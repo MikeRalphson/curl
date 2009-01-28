@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.373 2009-01-26 22:43:08 bagder Exp $
+ * $Id: curl.h,v 1.374 2009-01-28 21:34:16 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1161,6 +1161,12 @@ typedef enum {
 
   /* block size for TFTP transfers */
   CINIT(TFTP_BLKSIZE, LONG, 178),
+
+  /* Socks Service */
+  CINIT(SOCKS5_GSSAPI_SERVICE, LONG, 179),
+
+  /* Socks Service */
+  CINIT(SOCKS5_GSSAPI_NEC, LONG, 180),
 
   CURLOPT_LASTENTRY /* the last unused */
 } CURLoption;

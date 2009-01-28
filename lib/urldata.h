@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.403 2009-01-26 22:43:08 bagder Exp $
+ * $Id: urldata.h,v 1.404 2009-01-28 21:34:17 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1051,6 +1051,9 @@ struct connectdata {
   } proto;
 
   int cselect_bits; /* bitmask of socket events */
+#if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
+  int socks5_gssapi_enctype;
+#endif
 };
 
 /* The end of connectdata. */
@@ -1366,6 +1369,9 @@ enum dupstring {
   STRING_PROXYPASSWORD,   /* Proxy <password>, if used */
   STRING_NOPROXY,         /* List of hosts which should not use the proxy, if
                              used */
+#if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
+  STRING_SOCKS5_GSSAPI_SERVICE,  /* GSSAPI service name */
+#endif
 
   /* -- end of strings -- */
   STRING_LAST /* not used, just an end-of-list marker */
@@ -1524,6 +1530,9 @@ struct UserDefined {
                                via an HTTP proxy */
   char *str[STRING_LAST]; /* array of strings, pointing to allocated memory */
   unsigned int scope;    /* address scope for IPv6 */
+#if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
+  long socks5_gssapi_nec; /* flag to support nec socks5 server */
+#endif
 };
 
 struct Names {
