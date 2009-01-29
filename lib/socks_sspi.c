@@ -18,14 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks_sspi.c,v 1.2 2009-01-29 03:39:10 yangtse Exp $
+ * $Id: socks_sspi.c,v 1.3 2009-01-29 14:00:18 yangtse Exp $
  ***************************************************************************/
 
 
 #include "setup.h"
 
 #ifdef USE_WINDOWS_SSPI
-#include <ntsecapi.h>
 
 #include <string.h>
 
@@ -44,6 +43,12 @@
 
 /* The last #include file should be: */
 #include "memdebug.h"
+
+/*
+ * Definitions required from ntsecapi.h are directly provided below this point
+ * to avoid including ntsecapi.h due to a conflict with OpenSSL's safestack.h
+ */
+#define KERB_WRAP_NO_ENCRYPT 0x80000001
 
 /*
  * Helper sspi error functions.
