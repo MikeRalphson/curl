@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.404 2009-01-28 21:34:17 bagder Exp $
+ * $Id: urldata.h,v 1.405 2009-01-29 20:32:31 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -269,13 +269,7 @@ typedef enum {
 } curlntlm;
 
 #ifdef USE_WINDOWS_SSPI
-/* When including these headers, you must define either SECURITY_WIN32
- * or SECURITY_KERNEL, indicating who is compiling the code.
- */
-#define SECURITY_WIN32 1
-#include <security.h>
-#include <sspi.h>
-#include <rpc.h>
+#include "curl_sspi.h"
 #endif
 
 #if defined(CURL_DOES_CONVERSIONS) && defined(HAVE_ICONV)
