@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_sspi.h,v 1.2 2009-01-29 21:44:36 yangtse Exp $
+ * $Id: curl_sspi.h,v 1.3 2009-01-30 01:37:37 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -48,6 +48,9 @@
 #endif
 #ifndef SEC_E_BUFFER_TOO_SMALL
 # define SEC_E_BUFFER_TOO_SMALL ((HRESULT)0x80090321L)
+#endif
+#ifndef SEC_E_CONTEXT_EXPIRED
+# define SEC_E_CONTEXT_EXPIRED ((HRESULT)0x80090317L)
 #endif
 #ifndef SEC_E_CRYPTO_SYSTEM_INVALID
 # define SEC_E_CRYPTO_SYSTEM_INVALID ((HRESULT)0x80090337L)
