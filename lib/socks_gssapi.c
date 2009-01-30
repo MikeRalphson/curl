@@ -18,10 +18,12 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks_gssapi.c,v 1.1 2009-01-28 21:34:16 bagder Exp $
+ * $Id: socks_gssapi.c,v 1.2 2009-01-30 19:29:25 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
+
+#ifndef CURL_DISABLE_PROXY
 
 #ifdef HAVE_GSSAPI
 #ifdef HAVE_OLD_GSSMIT
@@ -545,3 +547,5 @@ CURLcode Curl_SOCKS5_gssapi_negotiate(int sockindex,
   return CURLE_OK;
 }
 #endif
+
+#endif /* CURL_DISABLE_PROXY */
