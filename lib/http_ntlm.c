@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.76 2009-01-29 20:32:31 yangtse Exp $
+ * $Id: http_ntlm.c,v 1.77 2009-01-30 02:35:40 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -606,7 +606,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
       ntlm->p_identity = NULL;
     }
 
-    if(s_pSecFn->AcquireCredentialsHandle(
+    if(s_pSecFn->AcquireCredentialsHandleA(
           NULL, (char *)"NTLM", SECPKG_CRED_OUTBOUND, NULL, ntlm->p_identity,
           NULL, NULL, &ntlm->handle, &tsDummy
           ) != SEC_E_OK) {
@@ -620,7 +620,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
     buf.BufferType = SECBUFFER_TOKEN;
     buf.pvBuffer   = ntlmbuf;
 
-    status = s_pSecFn->InitializeSecurityContext(&ntlm->handle, NULL,
+    status = s_pSecFn->InitializeSecurityContextA(&ntlm->handle, NULL,
                                                  (char *) host,
                                                  ISC_REQ_CONFIDENTIALITY |
                                                  ISC_REQ_REPLAY_DETECT |
@@ -776,7 +776,7 @@ CURLcode Curl_output_ntlm(struct connectdata *conn,
     type_3.pvBuffer   = ntlmbuf;
     type_3.cbBuffer   = sizeof(ntlmbuf);
 
-    status = s_pSecFn->InitializeSecurityContext(&ntlm->handle, &ntlm->c_handle,
+    status = s_pSecFn->InitializeSecurityContextA(&ntlm->handle, &ntlm->c_handle,
                                        (char *) host,
                                        ISC_REQ_CONFIDENTIALITY |
                                        ISC_REQ_REPLAY_DETECT |
