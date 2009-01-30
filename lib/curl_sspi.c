@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_sspi.c,v 1.1 2009-01-29 20:32:31 yangtse Exp $
+ * $Id: curl_sspi.c,v 1.2 2009-01-30 01:54:22 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -52,7 +52,7 @@ PSecurityFunctionTableA s_pSecFn = NULL;
  * the need to directly link libcurl, nor the application using it, at
  * build time.
  *
- * Once this function has been execured, Windows SSPI functions can be
+ * Once this function has been executed, Windows SSPI functions can be
  * called through the Security Service Provider Interface dispatch table.
  */
 
