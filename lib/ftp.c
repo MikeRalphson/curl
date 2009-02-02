@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.497 2009-01-30 19:29:25 danf Exp $
+ * $Id: ftp.c,v 1.498 2009-02-02 16:19:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1894,6 +1894,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     break;
 #endif /* CURL_DISABLE_PROXY */
   case CURLPROXY_HTTP:
+  case CURLPROXY_HTTP_1_0:
     /* do nothing here. handled later. */
     break;
   default:
