@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.193 2009-01-10 22:10:58 bagder Exp $
+ * $Id: multi.c,v 1.194 2009-02-02 21:20:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -646,7 +646,7 @@ CURLMcode curl_multi_remove_handle(CURLM *multi_handle,
     }
 
     /* If this easy_handle was the last one in charge for one or more
-       connections a the shared connection cache, we might need to keep this
+       connections in the shared connection cache, we might need to keep this
        handle around until either A) the connection is closed and killed
        properly, or B) another easy_handle uses the connection.
 
