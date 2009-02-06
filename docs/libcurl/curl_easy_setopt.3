@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.249 2009-02-02 16:19:23 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.250 2009-02-06 19:25:32 danf Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "11 Dec 2008" "libcurl 7.19.3" "libcurl Manual"
@@ -1190,6 +1190,7 @@ libcurl does one CWD with the full target directory and then operates on the
 file \&"normally" (like in the multicwd case). This is somewhat more standards
 compliant than 'nocwd' but without the full penalty of 'multicwd'.
 .RE
+(Added in 7.15.1)
 .SH PROTOCOL OPTIONS
 .IP CURLOPT_TRANSFERTEXT
 A parameter set to 1 tells the library to use ASCII mode for FTP transfers,
