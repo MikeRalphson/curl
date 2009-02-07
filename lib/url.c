@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.786 2009-02-02 21:36:47 bagder Exp $
+ * $Id: url.c,v 1.787 2009-02-07 22:53:37 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -228,21 +228,6 @@ void Curl_safefree(void *ptr)
 {
   if(ptr)
     free(ptr);
-}
-
-/* Copy an upper case version of the string from src to dest.  The
- * strings may overlap.  No more than n characters of the string are copied
- * (including any NUL) and the destination string will NOT be
- * NUL-terminated if that limit is reached.
- */
-void Curl_strntoupper(char *dest, const char *src, size_t n)
-{
-  if (n < 1)
-    return;
-
-  do {
-    *dest++ = Curl_raw_toupper(*src);
-  } while (*src++ && --n);
 }
 
 static void close_connections(struct SessionHandle *data)
