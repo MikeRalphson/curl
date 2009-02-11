@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.498 2009-02-02 16:19:23 bagder Exp $
+ * $Id: ftp.c,v 1.499 2009-02-11 21:47:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2045,6 +2045,7 @@ static CURLcode ftp_state_mdtm_resp(struct connectdata *conn,
         if(data->info.filetime <= data->set.timevalue) {
           infof(data, "The requested document is not new enough\n");
           ftp->transfer = FTPTRANSFER_NONE; /* mark this to not transfer data */
+          data->info.timecond = TRUE;
           state(conn, FTP_STOP);
           return CURLE_OK;
         }
@@ -2053,6 +2054,7 @@ static CURLcode ftp_state_mdtm_resp(struct connectdata *conn,
         if(data->info.filetime > data->set.timevalue) {
           infof(data, "The requested document is not old enough\n");
           ftp->transfer = FTPTRANSFER_NONE; /* mark this to not transfer data */
+          data->info.timecond = TRUE;
           state(conn, FTP_STOP);
           return CURLE_OK;
         }

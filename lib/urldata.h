@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.405 2009-01-29 20:32:31 yangtse Exp $
+ * $Id: urldata.h,v 1.406 2009-02-11 21:47:18 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1063,6 +1063,8 @@ struct PureInfo {
                     was unretrievable. We cannot have this of type time_t,
                     since time_t is unsigned on several platforms such as
                     OpenVMS. */
+  bool timecond;  /* set to TRUE if the time condition didn't match, which
+                     thus made the document NOT get fetched */
   long header_size;  /* size of read header(s) in bytes */
   long request_size; /* the amount of bytes sent in the request(s) */
   long proxyauthavail; /* what proxy auth types were announced */
