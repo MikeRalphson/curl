@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.389 2009-02-04 23:33:40 danf Exp $
+# $Id: configure.ac,v 1.390 2009-02-12 20:48:42 danf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2508,7 +2508,7 @@ fi
 if test "x$USE_WINDOWS_SSPI" = "x1"; then
   SUPPORT_FEATURES="$SUPPORT_FEATURES SSPI"
 fi
-if test "x$USE_SSLEAY" = "x1" -o "x$USE_WINDOWS_SSPI" = "x1"; then
+if test "x$USE_SSLEAY" = "x1" -o "x$USE_WINDOWS_SSPI" = "x1" -o "x$USE_GNUTLS" = "x1"; then
   SUPPORT_FEATURES="$SUPPORT_FEATURES NTLM"
 fi
 
