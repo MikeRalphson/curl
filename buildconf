@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.64 2009-01-08 22:53:37 bagder Exp $
+# $Id: buildconf,v 1.65 2009-02-13 06:25:35 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -277,6 +277,10 @@ for fname in .deps \
     libtool \
     libtool.m4 \
     ltmain.sh \
+    ltoptions.m4 \
+    ltsugar.m4 \
+    ltversion.m4 \
+    lt~obsolete.m4 \
     stamp-h1 \
     stamp-h2 \
     stamp-h3 ; do
