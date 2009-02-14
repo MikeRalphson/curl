@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.80 2009-01-28 17:43:11 yangtse Exp $
+ * $Id: tftp.c,v 1.81 2009-02-14 13:43:18 giva Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -140,8 +140,8 @@ typedef struct tftp_state_data {
   struct connectdata      *conn;
   curl_socket_t   sockfd;
   int             retries;
-  int             retry_time;
-  int             retry_max;
+  time_t          retry_time;
+  time_t          retry_max;
   time_t          start_time;
   time_t          max_time;
   unsigned short  block;
@@ -973,7 +973,7 @@ static CURLcode tftp_do(struct connectdata *conn, bool *done)
 
     /* Wait until ready to read or timeout occurs */
     rc=Curl_socket_ready(state->sockfd, CURL_SOCKET_BAD,
-                         state->retry_time * 1000);
+                         (int)(state->retry_time * 1000));
 
     if(rc == -1) {
       /* bail out */
