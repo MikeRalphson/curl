@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: initscript.sh,v 1.6 2008-08-25 13:58:45 patrickm Exp $
+# $Id: initscript.sh,v 1.7 2009-02-16 15:33:17 patrickm Exp $
 
 case "${SCRIPTDIR}" in
 /*)     ;;
@@ -156,7 +156,7 @@ db2_name()
 
 {
         basename "${1}"                                                 |
-        tr '[a-z-]' '[A-Z_]'                                              |
+        tr '[a-z-]' '[A-Z_]'                                            |
         sed -e 's/\..*//'                                               \
             -e 's/^\(..........\).*/\1/'
 }
