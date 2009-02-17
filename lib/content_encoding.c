@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.30 2009-02-14 09:12:55 bagder Exp $
+ * $Id: content_encoding.c,v 1.31 2009-02-17 12:14:52 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -136,7 +136,7 @@ inflate_stream(struct connectdata *conn,
       (void) inflateEnd(z);     /* don't care about the return code */
       if(inflateInit2(z, -MAX_WBITS) != Z_OK) {
         free(decomp);
-        return process_zlib_error(conn, z);
+        return exit_zlib(z, &k->zlib_init, process_zlib_error(conn, z));
       }
       z->next_in = orig_in;
       z->avail_in = nread;
