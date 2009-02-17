@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.499 2009-02-11 21:47:18 bagder Exp $
+ * $Id: ftp.c,v 1.500 2009-02-17 09:08:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -828,7 +828,13 @@ static CURLcode ftp_state_cwd(struct connectdata *conn)
     /* already done and fine */
     result = ftp_state_post_cwd(conn);
   else {
-    ftpc->count2 = 0;
+    ftpc->count2 = 0; /* count2 counts failed CWDs */
+
+    /* count3 is set to allow a MKD to fail once. In the case when first CWD
+       fails and then MKD fails (due to another session raced it to create the
+       dir) this then allows for a second try to CWD to it */
+    ftpc->count3 = (conn->data->set.ftp_create_missing_dirs==2)?1:0;
+
     if(conn->bits.reuse && ftpc->entrypath) {
       /* This is a re-used connection. Since we change directory to where the
          transfer is taking place, we must first get back to the original dir
@@ -2834,7 +2840,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
       break;
 
     case FTP_MKD:
-      if(ftpcode/100 != 2) {
+      if((ftpcode/100 != 2) && !ftpc->count3--) {
         /* failure to MKD the dir */
         failf(data, "Failed to MKD dir: %03d", ftpcode);
         return CURLE_REMOTE_ACCESS_DENIED;

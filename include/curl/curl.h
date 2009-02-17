@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.377 2009-02-11 21:47:18 bagder Exp $
+ * $Id: curl.h,v 1.378 2009-02-17 09:08:22 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -530,6 +530,17 @@ typedef enum {
   CURLFTPAUTH_LAST /* not an option, never use */
 } curl_ftpauth;
 
+/* parameter for the CURLOPT_FTP_CREATE_MISSING_DIRS option */
+typedef enum {
+  CURLFTP_CREATE_DIR_NONE,  /* do NOT create missing dirs! */
+  CURLFTP_CREATE_DIR,       /* (FTP/SFTP) if CWD fails, try MKD and then CWD
+                               again if MKD succeeded, for SFTP this does
+                               similar magic */
+  CURLFTP_CREATE_DIR_RETRY, /* (FTP only) if CWD fails, try MKD and then CWD
+                               again even if MKD failed! */
+  CURLFTP_CREATE_DIR_LAST   /* not an option, never use */
+} curl_ftpcreatedir;
+
 /* parameter for the CURLOPT_FTP_FILEMETHOD option */
 typedef enum {
   CURLFTPMETHOD_DEFAULT,   /* let libcurl pick */
@@ -936,7 +947,10 @@ typedef enum {
      argument */
   CINIT(SSL_CTX_DATA, OBJECTPOINT, 109),
 
-  /* FTP Option that causes missing dirs to be created on the remote server */
+  /* FTP Option that causes missing dirs to be created on the remote server.
+     In 7.19.4 we introduced the convenience enums for this option using the
+     CURLFTP_CREATE_DIR prefix.
+  */
   CINIT(FTP_CREATE_MISSING_DIRS, LONG, 110),
 
   /* Set this to a bitmask value to enable the particular authentications
