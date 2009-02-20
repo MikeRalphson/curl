@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.407 2009-02-17 09:09:09 bagder Exp $
+ * $Id: urldata.h,v 1.408 2009-02-20 08:16:04 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -438,6 +438,9 @@ struct ftp_conn {
   size_t nread_resp; /* number of bytes currently read of a server response */
   char *linestart_resp; /* line start pointer for the FTP server response
                            reader function */
+  bool pending_resp;  /* set TRUE when a server response is pending or in
+                         progress, and is cleared once the last response is
+                         read */
 
   int count1; /* general purpose counter for the state machine */
   int count2; /* general purpose counter for the state machine */
@@ -904,6 +907,7 @@ struct connectdata {
 
 #define PROT_CLOSEACTION PROT_FTP /* these ones need action before socket
                                      close */
+#define PROT_DUALCHANNEL PROT_FTP /* these protocols use two connections */
 
   /* 'dns_entry' is the particular host we use. This points to an entry in the
      DNS cache and it will not get pruned while locked. It gets unlocked in
