@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks_sspi.c,v 1.5 2009-01-29 20:32:31 yangtse Exp $
+ * $Id: socks_sspi.c,v 1.6 2009-02-23 01:04:18 yangtse Exp $
  ***************************************************************************/
 
 
@@ -41,6 +41,9 @@
 #include "timeval.h"
 #include "socks.h"
 #include "curl_sspi.h"
+
+#define _MPRINTF_REPLACE /* use the internal *printf() functions */
+#include <curl/mprintf.h>
 
 /* The last #include file should be: */
 #include "memdebug.h"
@@ -207,8 +210,8 @@ CURLcode Curl_SOCKS5_gssapi_negotiate(int sockindex,
     service_name = malloc(strlen(service) + strlen(conn->proxy.name) + 2);
     if(!service_name)
       return CURLE_OUT_OF_MEMORY;
-    _snprintf(service_name,strlen(service) +strlen(conn->proxy.name)+2,"%s/%s",
-              service,conn->proxy.name);
+    snprintf(service_name,strlen(service) +strlen(conn->proxy.name)+2,"%s/%s",
+             service,conn->proxy.name);
   }
 
   input_desc.cBuffers = 1;
