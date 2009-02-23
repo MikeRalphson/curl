@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: getinfo.c,v 1.66 2009-02-11 21:47:18 bagder Exp $
+ * $Id: getinfo.c,v 1.67 2009-02-23 18:45:00 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -35,6 +35,7 @@
 #include "memory.h"
 #include "sslgen.h"
 #include "connect.h" /* Curl_getconnectinfo() */
+#include "progress.h"
 
 /* Make this the last #include */
 #include "memdebug.h"
@@ -167,10 +168,12 @@ CURLcode Curl_getinfo(struct SessionHandle *data, CURLINFO info, ...)
     *param_longp = data->set.ssl.certverifyresult;
     break;
   case CURLINFO_CONTENT_LENGTH_DOWNLOAD:
-    *param_doublep = (double)data->progress.size_dl;
+    *param_doublep = (data->progress.flags & PGRS_DL_SIZE_KNOWN)?
+      (double)data->progress.size_dl:-1;
     break;
   case CURLINFO_CONTENT_LENGTH_UPLOAD:
-    *param_doublep = (double)data->progress.size_ul;
+    *param_doublep = (data->progress.flags & PGRS_UL_SIZE_KNOWN)?
+      (double)data->progress.size_ul:-1;
     break;
   case CURLINFO_REDIRECT_TIME:
     *param_doublep =  data->progress.t_redirect;
