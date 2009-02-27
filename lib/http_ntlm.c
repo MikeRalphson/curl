@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.78 2009-02-12 20:48:44 danf Exp $
+ * $Id: http_ntlm.c,v 1.79 2009-02-27 08:53:10 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -347,7 +347,7 @@ static void setup_des_key(const unsigned char *key_56,
  * Turns a 56 bit key into the 64 bit, odd parity key and sets the key.
  */
 static void setup_des_key(const unsigned char *key_56,
-			  gcry_cipher_hd_t *des)
+                          gcry_cipher_hd_t *des)
 {
   char key[8];
 

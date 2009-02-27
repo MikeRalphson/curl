@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.40 2009-02-17 12:18:59 bagder Exp $
+ * $Id: nss.c,v 1.41 2009-02-27 08:53:10 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -455,7 +455,7 @@ static int nss_load_crl(const char* crlfilename, PRBool ascii)
                         NULL,SEC_CRL_TYPE,
                         NULL,CRL_IMPORT_DEFAULT_OPTIONS,
                         NULL,(CRL_DECODE_DEFAULT_OPTIONS|
-			      CRL_DECODE_DONT_COPY_DER));
+                              CRL_DECODE_DONT_COPY_DER));
   if (slot) PK11_FreeSlot(slot);
   if (!crl) return 0;
   SEC_DestroyCrl(crl);
