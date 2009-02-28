@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.47 2009-01-26 13:19:04 bagder Exp $
+ * $Id: http_digest.c,v 1.48 2009-02-28 01:11:57 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -428,7 +428,7 @@ CURLcode Curl_output_digest(struct connectdata *conn,
      Further details on Digest implementation differences:
      http://www.fngtps.com/2006/09/http-authentication
   */
-  if(authp->iestyle && (tmp = strchr((char *)uripath, '?'))) {
+  if(authp->iestyle && ((tmp = strchr((char *)uripath, '?')) != NULL)) {
     md5this = (unsigned char *)aprintf("%s:%.*s", request,
                                        (int)(tmp - (char *)uripath), uripath);
   }
