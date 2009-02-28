@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.212 2009-02-27 12:07:14 bagder Exp $
+ * $Id: connect.c,v 1.213 2009-02-28 01:35:53 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -87,6 +87,7 @@
 #include "multiif.h"
 #include "sockaddr.h" /* required for Curl_sockaddr_storage */
 #include "inet_ntop.h"
+#include "inet_pton.h"
 #include "sslgen.h" /* for Curl_ssl_check_cxn() */
 
 /* The last #include file should be: */
@@ -383,8 +384,8 @@ static CURLcode bindlocal(struct connectdata *conn,
     if(done > 0) {
 #ifdef ENABLE_IPV6
       /* ipv6 address */
-      if ( (af == AF_INET6) &&
-           inet_pton(AF_INET6, myhost, &si6->sin6_addr) > 0 ) {
+      if((af == AF_INET6) &&
+         (Curl_inet_pton(AF_INET6, myhost, &si6->sin6_addr) > 0)) {
         si6->sin6_family = AF_INET6;
         si6->sin6_port = htons(port);
         sizeof_sa = sizeof(struct sockaddr_in6);
@@ -392,7 +393,8 @@ static CURLcode bindlocal(struct connectdata *conn,
       else
 #endif
       /* ipv4 address */
-      if ( af == AF_INET && inet_pton(AF_INET, myhost, &si4->sin_addr) > 0 ) {
+      if((af == AF_INET) &&
+         (Curl_inet_pton(AF_INET, myhost, &si4->sin_addr) > 0)) {
         si4->sin_family = AF_INET;
         si4->sin_port = htons(port);
         sizeof_sa = sizeof(struct sockaddr_in);
