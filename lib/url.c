@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.790 2009-03-02 23:05:31 bagder Exp $
+ * $Id: url.c,v 1.791 2009-03-03 11:01:24 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2565,6 +2565,22 @@ ConnectionExists(struct SessionHandle *data,
                                   from the multi */
     }
 
+    if(!pipeLen && !check->inuse) {
+      /* The check for a dead socket makes sense only if there are no
+         handles in pipeline and the connection isn't already marked in
+         use */
+      bool dead = SocketIsDead(check->sock[FIRSTSOCKET]);
+      if(dead) {
+        check->data = data;
+        infof(data, "Connection #%d seems to be dead!\n", i);
+
+        Curl_disconnect(check); /* disconnect resources */
+        data->state.connc->connects[i]=NULL; /* nothing here */
+
+        continue;
+      }
+    }
+
     if(canPipeline) {
       /* Make sure the pipe has only GET requests */
       struct SessionHandle* sh = gethandleathead(check->send_pipe);
@@ -2688,22 +2704,6 @@ ConnectionExists(struct SessionHandle *data,
     }
 
     if(match) {
-      if(!pipeLen && !check->inuse) {
-        /* The check for a dead socket makes sense only if there are no
-           handles in pipeline and the connection isn't already marked in
-           use */
-        bool dead = SocketIsDead(check->sock[FIRSTSOCKET]);
-        if(dead) {
-          check->data = data;
-          infof(data, "Connection #%d seems to be dead!\n", i);
-
-          Curl_disconnect(check); /* disconnect resources */
-          data->state.connc->connects[i]=NULL; /* nothing here */
-
-          return FALSE;
-        }
-      }
-
       check->inuse = TRUE; /* mark this as being in use so that no other
                               handle in a multi stack may nick it */
 
