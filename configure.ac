@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.392 2009-02-13 05:49:58 yangtse Exp $
+# $Id: configure.ac,v 1.393 2009-03-04 08:09:39 danf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1171,7 +1171,7 @@ if test X"$OPT_SSL" != Xno; then
     PKGTEST="no"
     PREFIX_OPENSSL=$OPT_SSL
     LIB_OPENSSL="$PREFIX_OPENSSL/lib$libsuff"
-    if [ "$PREFIX_OPENSSL" != "/usr" ] ; then
+    if test "$PREFIX_OPENSSL" != "/usr" ; then
       LDFLAGS="$LDFLAGS -L$LIB_OPENSSL"
       CPPFLAGS="$CPPFLAGS -I$PREFIX_OPENSSL/include"
     fi
