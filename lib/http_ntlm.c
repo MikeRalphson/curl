@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_ntlm.c,v 1.79 2009-02-27 08:53:10 bagder Exp $
+ * $Id: http_ntlm.c,v 1.80 2009-03-05 01:23:15 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -303,9 +303,8 @@ CURLntlm Curl_input_ntlm(struct connectdata *conn,
         fprintf(stderr, "\n****\n");
         fprintf(stderr, "**** Header %s\n ", header);
       });
-
-      free(buffer);
 #endif
+      free(buffer);
     }
     else {
       if(ntlm->state >= NTLMSTATE_TYPE1)
