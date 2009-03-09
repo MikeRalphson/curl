@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.502 2009-02-20 08:16:03 bagder Exp $
+ * $Id: ftp.c,v 1.503 2009-03-09 04:32:51 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3055,7 +3055,7 @@ static CURLcode ftp_connect(struct connectdata *conn,
                                  bool *done) /* see description above */
 {
   CURLcode result;
-#ifndef CURL_DISABLE_HTTP
+#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_PROXY)
   /* for FTP over HTTP proxy */
   struct HTTP http_proxy;
   struct FTP *ftp_save;
