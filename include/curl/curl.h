@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.379 2009-03-02 23:05:31 bagder Exp $
+ * $Id: curl.h,v 1.380 2009-03-11 22:56:04 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1510,7 +1510,9 @@ CURL_EXTERN void curl_free(void *p);
  * DESCRIPTION
  *
  * curl_global_init() should be invoked exactly once for each application that
- * uses libcurl
+ * uses libcurl and before any call of other libcurl function.
+ *
+ * This function is not thread-safe!
  */
 CURL_EXTERN CURLcode curl_global_init(long flags);
 
