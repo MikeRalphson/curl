@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.11 2008-12-02 02:58:04 danf Exp $
+ * $Id: acountry.c,v 1.12 2009-03-11 05:09:03 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -547,7 +547,7 @@ static void find_country_from_cname(const char *cname, struct in_addr addr)
   const struct search_list *country;
   char  ccode_A2[3], *ccopy, *dot_4;
   int   cnumber, z0, z1, ver_1, ver_2;
-  u_long ip;
+  unsigned long ip;
 
   ip = ntohl(addr.s_addr);
   z0 = tolower(cname[0]);
