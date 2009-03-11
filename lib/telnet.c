@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.110 2009-03-11 04:15:33 yangtse Exp $
+ * $Id: telnet.c,v 1.111 2009-03-11 04:45:18 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1366,8 +1366,8 @@ static CURLcode telnet_do(struct connectdata *conn, bool *done)
           infof(data,"WSAEnumNetworkEvents failed (%d)", err);
           keepon = FALSE;
           code = CURLE_READ_ERROR;
-          break;
         }
+        break;
       }
       if(events.lNetworkEvents & FD_READ) {
         /* This reallu OUGHT to check its return code. */
