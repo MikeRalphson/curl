@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.394 2009-03-11 09:00:34 bagder Exp $
+# $Id: configure.ac,v 1.395 2009-03-13 09:58:15 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1493,6 +1493,9 @@ if test X"$OPT_LIBSSH2" != Xno; then
        dnl when the libssh2 shared libs were found in a path that the run-time
        dnl linker doesn't search through, we need to add it to LD_LIBRARY_PATH
        dnl to prevent further configure tests to fail due to this
+
+       dnl libssh2_version is a post 1.0 addition
+       AC_CHECK_FUNCS( libssh2_version )
 
        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$LIB_LIBSSH2"
        export LD_LIBRARY_PATH
