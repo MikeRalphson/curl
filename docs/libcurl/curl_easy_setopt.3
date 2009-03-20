@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.255 2009-03-02 23:05:31 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.256 2009-03-20 23:28:20 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "11 Dec 2008" "libcurl 7.19.3" "libcurl Manual"
@@ -1726,8 +1726,9 @@ Pass a share handle as a parameter. The share handle must have been created by
 a previous call to \fIcurl_share_init(3)\fP. Setting this option, will make
 this curl handle use the data from the shared handle instead of keeping the
 data to itself. This enables several curl handles to share data. If the curl
-handles are used simultaneously, you \fBMUST\fP use the locking methods in the
-share handle. See \fIcurl_share_setopt(3)\fP for details.
+handles are used simultaneously in multiple threads, you \fBMUST\fP use the
+locking methods in the share handle. See \fIcurl_share_setopt(3)\fP for
+details.
 
 If you add a share that is set to share cookies, your easy handle will use
 that cookie cache and get the cookie engine enabled. If you unshare an object
