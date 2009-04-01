@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.503 2009-03-09 04:32:51 danf Exp $
+ * $Id: ftp.c,v 1.504 2009-04-01 12:15:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3214,7 +3214,8 @@ static CURLcode ftp_done(struct connectdata *conn, CURLcode status,
         ftpc->prevpath=strdup("");
         free(path);
       }
-      infof(data, "Remembering we are in dir \"%s\"\n", ftpc->prevpath);
+      if(ftpc->prevpath)
+        infof(data, "Remembering we are in dir \"%s\"\n", ftpc->prevpath);
     }
     else {
       ftpc->prevpath = NULL; /* no path */
