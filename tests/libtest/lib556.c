@@ -5,12 +5,23 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib556.c,v 1.4 2008-09-20 04:26:57 yangtse Exp $
+ * $Id: lib556.c,v 1.5 2009-04-07 21:59:15 sukender Exp $
  */
 
 #include "test.h"
 
 #include "memdebug.h"
+
+/* For Windows, mainly (may be moved in a config file?) */
+#ifndef STDIN_FILENO
+  #define STDIN_FILENO 0
+#endif
+#ifndef STDOUT_FILENO
+  #define STDOUT_FILENO 1
+#endif
+#ifndef STDERR_FILENO
+  #define STDERR_FILENO 2
+#endif
 
 int test(char *URL)
 {
@@ -53,7 +64,6 @@ int test(char *URL)
         if(iolen)
           /* send received stuff to stdout */
           write(STDOUT_FILENO, buf, iolen);
-
         total += iolen;
 
       } while(((res == CURLE_OK) || (res == CURLE_AGAIN)) && (total < 129));
