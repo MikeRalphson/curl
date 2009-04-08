@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.380 2009-03-11 22:56:04 bagder Exp $
+ * $Id: curl.h,v 1.381 2009-04-08 23:35:09 sukender Exp $
  ***************************************************************************/
 
 /*
@@ -93,6 +93,10 @@ extern "C" {
 
 typedef void CURL;
 
+#ifdef USES_DIRECT_CURL_UTILITIES
+#define CURL_EXTERN
+#else /* USES_DIRECT_CURL_UTILITIES */
+
 /*
  * Decorate exportable functions for Win32 and Symbian OS DLL linking.
  * This avoids using a .def file for building libcurl.dll.
@@ -118,6 +122,7 @@ typedef void CURL;
 #define CURL_EXTERN
 #endif
 #endif
+#endif /* USES_DIRECT_CURL_UTILITIES */
 
 #ifndef curl_socket_typedef
 /* socket typedef */
