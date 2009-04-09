@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.49 2009-04-08 18:37:11 giva Exp $
+ * $Id: tftpd.c,v 1.50 2009-04-09 02:46:56 gknauf Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -761,7 +761,7 @@ static void timer(int signum)
 #endif
 }
 
-static void (int signum)
+static void justtimeout(int signum)
 {
   (void)signum;
 }
