@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.135 2009-03-31 14:49:25 danf Exp $
+ * $Id: easy.c,v 1.136 2009-04-11 02:11:02 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1096,7 +1096,7 @@ CURLcode curl_easy_recv(CURL *curl, void *buffer, size_t buflen, size_t *n)
     return CURLE_AGAIN;
 
   if(ret1 != CURLE_OK)
-    return ret1;
+    return (CURLcode)ret1;
 
   *n = (size_t)n1;
 
