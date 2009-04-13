@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.409 2009-03-02 23:05:31 bagder Exp $
+ * $Id: urldata.h,v 1.410 2009-04-13 17:42:10 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -93,6 +93,7 @@
 
 #ifdef USE_NSS
 #include <nspr.h>
+#include <pk11pub.h>
 #endif
 
 #ifdef USE_QSOSSL
@@ -210,6 +211,10 @@ struct ssl_connect_data {
 #ifdef USE_NSS
   PRFileDesc *handle;
   char *client_nickname;
+#ifdef HAVE_PK11_CREATEGENERICOBJECT
+  PK11GenericObject *key;
+  PK11GenericObject *cacert[2];
+#endif
 #endif /* USE_NSS */
 #ifdef USE_QSOSSL
   SSLHandle *handle;
