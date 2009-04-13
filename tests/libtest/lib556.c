@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib556.c,v 1.5 2009-04-07 21:59:15 sukender Exp $
+ * $Id: lib556.c,v 1.6 2009-04-13 07:18:39 yangtse Exp $
  */
 
 #include "test.h"
@@ -55,7 +55,7 @@ int test(char *URL)
 
     if(!res) {
       /* we assume that sending always work */
-      int total=0;
+      size_t total=0;
 
       do {
         /* busy-read like crazy */

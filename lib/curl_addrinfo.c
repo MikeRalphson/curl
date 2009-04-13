@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2009, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.5 2008-11-06 17:19:57 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.6 2009-04-13 07:18:39 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -370,7 +370,7 @@ Curl_ip2addr(int af, const void *inaddr, const char *hostname, int port)
   struct namebuff *buf;
   char  *addrentry;
   char  *hoststr;
-  int    addrsize;
+  size_t addrsize;
 
   DEBUGASSERT(inaddr && hostname);
 
