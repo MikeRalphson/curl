@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.43 2009-04-13 17:42:10 bagder Exp $
+ * $Id: nss.c,v 1.44 2009-04-14 09:40:53 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -367,7 +367,7 @@ static int nss_load_cert(struct ssl_connect_data *ssl,
 
   PK11_FreeSlot(slot);
 
-  if(ssl->cacert == NULL) {
+  if(ssl->cacert[slotID] == NULL) {
     free(nickname);
     return 0;
   }
