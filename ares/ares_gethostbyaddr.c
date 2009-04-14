@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyaddr.c,v 1.33 2009-01-18 16:33:10 giva Exp $ */
+/* $Id: ares_gethostbyaddr.c,v 1.34 2009-04-14 12:53:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -145,16 +145,23 @@ static void addr_callback(void *arg, int status, int timeouts,
 {
   struct addr_query *aquery = (struct addr_query *) arg;
   struct hostent *host;
+  size_t addrlen;
 
   aquery->timeouts += timeouts;
   if (status == ARES_SUCCESS)
     {
       if (aquery->addr.family == AF_INET)
-        status = ares_parse_ptr_reply(abuf, alen, &aquery->addr.addrV4,
-                                      sizeof(struct in_addr), AF_INET, &host);
+        {
+          addrlen = sizeof(struct in_addr);
+          status = ares_parse_ptr_reply(abuf, alen, &aquery->addr.addrV4,
+                                        (int)addrlen, AF_INET, &host);
+        }
       else
-        status = ares_parse_ptr_reply(abuf, alen, &aquery->addr.addrV6,
-                                      sizeof(struct in6_addr), AF_INET6, &host);
+        {
+          addrlen = sizeof(struct in6_addr);
+          status = ares_parse_ptr_reply(abuf, alen, &aquery->addr.addrV6,
+                                        (int)addrlen, AF_INET6, &host);
+        }
       end_aquery(aquery, status, host);
     }
   else if (status == ARES_EDESTRUCTION)
