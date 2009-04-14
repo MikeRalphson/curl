@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.219 2009-04-14 12:53:54 yangtse Exp $
+ * $Id: ssluse.c,v 1.220 2009-04-14 13:26:06 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -36,6 +36,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
