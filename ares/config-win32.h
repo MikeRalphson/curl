@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.29 2009-02-20 11:30:11 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.30 2009-04-14 13:50:32 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -28,6 +28,9 @@
 #if defined(__MINGW32__)
 #define HAVE_GETOPT_H 1
 #endif
+
+/* Define if you have the <limits.h> header file.  */
+#define HAVE_LIMITS_H 1
 
 /* Define if you have the <signal.h> header file. */
 #define HAVE_SIGNAL_H 1

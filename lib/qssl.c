@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: qssl.c,v 1.15 2009-04-14 13:26:06 yangtse Exp $
+ * $Id: qssl.c,v 1.16 2009-04-14 13:50:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -27,7 +27,9 @@
 #include <qsossl.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#ifdef HAVE_LIMITS_H
+#  include <limits.h>
+#endif
 
 #include <curl/curl.h>
 #include "urldata.h"

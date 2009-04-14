@@ -1,4 +1,4 @@
-/* $Id: ares_parse_aaaa_reply.c,v 1.12 2009-01-11 13:49:14 bagder Exp $ */
+/* $Id: ares_parse_aaaa_reply.c,v 1.13 2009-04-14 13:50:32 yangtse Exp $ */
 
 /* Copyright 2005 Dominick Meglio
  *
@@ -44,7 +44,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
+#ifdef HAVE_LIMITS_H
+#  include <limits.h>
+#endif
+
 #include "ares.h"
 #include "ares_dns.h"
 #include "inet_net_pton.h"

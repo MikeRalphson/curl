@@ -1,4 +1,4 @@
-/* $Id: ares_parse_a_reply.c,v 1.17 2009-01-11 13:49:14 bagder Exp $ */
+/* $Id: ares_parse_a_reply.c,v 1.18 2009-04-14 13:50:32 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -44,7 +44,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
+#ifdef HAVE_LIMITS_H
+#  include <limits.h>
+#endif
+
 #include "ares.h"
 #include "ares_dns.h"
 #include "ares_private.h"

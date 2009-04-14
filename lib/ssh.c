@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.127 2008-12-28 05:49:39 gknauf Exp $
+ * $Id: ssh.c,v 1.128 2009-04-14 13:50:32 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -31,7 +31,9 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <ctype.h>
-#include <limits.h>
+#ifdef HAVE_LIMITS_H
+#  include <limits.h>
+#endif
 
 #include <libssh2.h>
 #include <libssh2_sftp.h>
