@@ -5,7 +5,7 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 1998 - 2009, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.46 2008-11-18 20:13:56 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.47 2009-04-15 22:54:26 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 46
+# serial 47
 
 
 dnl CURL_CHECK_COMPILER
@@ -914,11 +914,11 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
         #
         if test "$want_warnings" = "yes"; then
           dnl Issue all warnings
-          dnl tmp_CFLAGS="$tmp_CFLAGS +w1"
+          tmp_CFLAGS="$tmp_CFLAGS +w1"
           dnl Due to the HP-UX socklen_t issue it is insane to use the +w1
           dnl warning level. Until the issue is somehow fixed we will just
           dnl use the +w2 warning level.
-          tmp_CFLAGS="$tmp_CFLAGS +w2"
+          dnl tmp_CFLAGS="$tmp_CFLAGS +w2"
         fi
         ;;
         #
