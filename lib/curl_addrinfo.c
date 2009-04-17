@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.8 2009-04-16 08:31:09 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.9 2009-04-17 07:30:25 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -74,7 +74,9 @@
 void
 Curl_freeaddrinfo(Curl_addrinfo *cahead)
 {
-#if defined(__INTEL_COMPILER) && (__INTEL_COMPILER == 910)
+#if defined(__INTEL_COMPILER) && (__INTEL_COMPILER == 910) && \
+    defined(__unix__) &&  defined(__i386__)
+  /* workaround icc 9.1 optimizer issue */
   volatile Curl_addrinfo * volatile ca;
   volatile Curl_addrinfo * volatile canext;
 #else
