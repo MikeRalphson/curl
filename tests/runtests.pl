@@ -6,7 +6,7 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 1998 - 2008, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 1998 - 2009, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.315 2008-11-19 21:56:11 bagder Exp $
+# $Id: runtests.pl,v 1.316 2009-04-17 07:30:56 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1820,19 +1820,6 @@ sub singletest {
 
         $why = "curl lacks $f support";
         last;
-    }
-
-    my $dbghosttype=join(' ', runclientoutput("uname -a"));
-    if(($dbghosttype =~ /SMP PREEMPT/) && ($dbghosttype =~ /i686 GNU/)) {
-        if(!$curl_debug) {
-            if(($testnum != 1)   && ($testnum != 100) &&
-               ($testnum != 500) && ($testnum != 507) &&
-               ($testnum != 517) && ($testnum != 534) &&
-               ($testnum != 558) && ($testnum != 559) &&
-               ($testnum != 557) && ($testnum != 1013)) {
-                $why = "debugging icc build";
-            }
-        }
     }
 
     if(!$why) {
