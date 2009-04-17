@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.504 2009-04-01 12:15:38 bagder Exp $
+ * $Id: ftp.c,v 1.505 2009-04-17 12:48:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -4146,7 +4146,12 @@ static CURLcode ftp_setup_connection(struct connectdata * conn)
       return CURLE_UNSUPPORTED_PROTOCOL;
 #endif
     }
-
+    /*
+     * We explicitly mark this connection as persistent here as we're doing
+     * FTP over HTTP and thus we accidentally avoid setting this value
+     * otherwise.
+     */
+    conn->bits.close = FALSE;
 #else
     failf(data, "FTP over http proxy requires HTTP support built-in!");
     return CURLE_UNSUPPORTED_PROTOCOL;
