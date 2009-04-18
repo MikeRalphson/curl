@@ -2,7 +2,7 @@
 #  Watcom / OpenWatcom / Win32 makefile for libcurl.
 #  G. Vanem <gvanem@broadpark.no>
 #
-# $Id: Makefile.Watcom,v 1.28 2008-12-16 09:12:46 giva Exp $
+# $Id: Makefile.Watcom,v 1.29 2009-04-18 16:54:15 giva Exp $
 
 TARGETS = libcurl_wc.dll libcurl_wc_imp.lib libcurl_wc.lib
 
@@ -68,7 +68,8 @@ OBJS = $(OBJ_DIR)\base64.obj           $(OBJ_DIR)\connect.obj        &
        $(OBJ_DIR)\strtok.obj           $(OBJ_DIR)\strtoofft.obj      &
        $(OBJ_DIR)\telnet.obj           $(OBJ_DIR)\tftp.obj           &
        $(OBJ_DIR)\timeval.obj          $(OBJ_DIR)\transfer.obj       &
-       $(OBJ_DIR)\url.obj              $(OBJ_DIR)\version.obj
+       $(OBJ_DIR)\url.obj              $(OBJ_DIR)\version.obj        &
+       $(OBJ_DIR)\slist.obj
 
 #
 # Use $(OBJS) as a template to generate $(OBJS_STAT) and $(OBJS_DYN).
