@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.506 2009-04-19 05:20:04 yangtse Exp $
+ * $Id: ftp.c,v 1.507 2009-04-20 21:41:18 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3185,6 +3185,7 @@ static CURLcode ftp_done(struct connectdata *conn, CURLcode status,
     ftpc->cwdfail = TRUE; /* set this TRUE to prevent us to remember the
                              current path, as this connection is going */
     conn->bits.close = TRUE; /* marked for closure */
+    result = status;      /* use the already set error code */
     break;
   }
 
