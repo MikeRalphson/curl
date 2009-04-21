@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostares.c,v 1.48 2009-04-14 13:50:32 yangtse Exp $
+ * $Id: hostares.c,v 1.49 2009-04-21 10:26:59 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -27,9 +27,6 @@
 
 #ifdef HAVE_LIMITS_H
 #include <limits.h>
-#endif
-#ifdef NEED_MALLOC_H
-#include <malloc.h>
 #endif
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>

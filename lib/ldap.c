@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.96 2009-03-08 22:45:59 bagder Exp $
+ * $Id: ldap.c,v 1.97 2009-04-21 10:26:59 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -30,9 +30,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <ctype.h>
-#ifdef NEED_MALLOC_H
-#include <malloc.h>
-#endif
 #include <errno.h>
 
 #ifdef CURL_LDAP_HYBRID         /* If W$ definitions are needed. */

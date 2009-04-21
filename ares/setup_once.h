@@ -1,7 +1,7 @@
 #ifndef __SETUP_ONCE_H
 #define __SETUP_ONCE_H
 
-/* $Id: setup_once.h,v 1.32 2008-08-27 00:25:03 yangtse Exp $ */
+/* $Id: setup_once.h,v 1.33 2009-04-21 10:26:58 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -40,6 +40,14 @@
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
+#endif
+
+#ifdef NEED_MALLOC_H
+#include <malloc.h>
+#endif
+
+#ifdef NEED_MEMORY_H
+#include <memory.h>
 #endif
 
 #ifdef HAVE_SYS_STAT_H
