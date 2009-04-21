@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.427 2009-02-27 08:53:10 bagder Exp $
+ * $Id: transfer.c,v 1.428 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -99,7 +99,7 @@
 #include "http_ntlm.h"
 #include "http_negotiate.h"
 #include "share.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "select.h"
 #include "multiif.h"
 #include "easyif.h" /* for Curl_convert_to_network prototype */

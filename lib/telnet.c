@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: telnet.c,v 1.113 2009-03-12 13:18:25 yangtse Exp $
+ * $Id: telnet.c,v 1.114 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -76,7 +76,7 @@
 #define  TELCMDS
 
 #include "arpa_telnet.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "select.h"
 #include "strequal.h"
 #include "rawstr.h"

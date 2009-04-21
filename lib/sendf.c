@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sendf.c,v 1.156 2009-03-09 12:21:47 bagder Exp $
+ * $Id: sendf.c,v 1.157 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -56,7 +56,7 @@
 #endif
 
 #include <string.h>
-#include "memory.h"
+#include "curl_memory.h"
 #include "strerror.h"
 #include "easyif.h" /* for the Curl_convert_from_network prototype */
 /* The last #include file should be: */

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib558.c,v 1.10 2009-04-09 01:24:41 yangtse Exp $
+ * $Id: lib558.c,v 1.11 2009-04-21 11:46:17 yangtse Exp $
  */
 
 #include "test.h"
@@ -29,7 +29,7 @@
 #include "hash.h"
 #include "hostip.h"
 
-#include "memory.h"
+#include "curl_memory.h"
 #include "memdebug.h"
 
 /* This source file is used for test # 558 and 559 */

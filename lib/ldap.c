@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.97 2009-04-21 10:26:59 yangtse Exp $
+ * $Id: ldap.c,v 1.98 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -70,7 +70,7 @@
 #include "strequal.h"
 #include "strtok.h"
 #include "curl_ldap.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "curl_base64.h"
 #include "rawstr.h"
 

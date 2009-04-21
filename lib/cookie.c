@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.101 2009-01-15 08:32:58 bagder Exp $
+ * $Id: cookie.c,v 1.102 2009-04-21 11:46:16 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -93,7 +93,7 @@ Example set of cookies:
 #include "strequal.h"
 #include "strtok.h"
 #include "sendf.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "share.h"
 #include "strtoofft.h"
 #include "rawstr.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.61 2009-04-21 09:03:15 yangtse Exp $
+ * $Id: memdebug.c,v 1.62 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -42,7 +42,7 @@
 #endif
 
 #define MEMDEBUG_NODEFINES /* don't redefine the standard functions */
-#include "memory.h"
+#include "curl_memory.h"
 #include "memdebug.h"
 
 struct memdebug {

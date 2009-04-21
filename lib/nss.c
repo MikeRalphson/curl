@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.44 2009-04-14 09:40:53 bagder Exp $
+ * $Id: nss.c,v 1.45 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -64,7 +64,7 @@
 #include <secport.h>
 #include <certdb.h>
 
-#include "memory.h"
+#include "curl_memory.h"
 #include "rawstr.h"
 #include "easyif.h" /* for Curl_convert_from_utf8 prototype */
 

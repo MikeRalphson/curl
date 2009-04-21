@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.31 2009-02-17 12:14:52 bagder Exp $
+ * $Id: content_encoding.c,v 1.32 2009-04-21 11:46:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -32,7 +32,7 @@
 #include <curl/curl.h>
 #include "sendf.h"
 #include "content_encoding.h"
-#include "memory.h"
+#include "curl_memory.h"
 
 #include "memdebug.h"
 

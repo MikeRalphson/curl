@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: base64.c,v 1.51 2008-11-14 16:22:18 bagder Exp $
+ * $Id: base64.c,v 1.52 2009-04-21 11:46:16 yangtse Exp $
  ***************************************************************************/
 
 /* Base64 encoding/decoding
@@ -43,7 +43,7 @@
 #include "urldata.h" /* for the SessionHandle definition */
 #include "easyif.h"  /* for Curl_convert_... prototypes */
 #include "curl_base64.h"
-#include "memory.h"
+#include "curl_memory.h"
 
 /* include memdebug.h last */
 #include "memdebug.h"

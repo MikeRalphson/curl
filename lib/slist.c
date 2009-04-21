@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: slist.c,v 1.1 2009-03-09 12:21:47 bagder Exp $
+ * $Id: slist.c,v 1.2 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -28,7 +28,7 @@
 #include <stdlib.h>
 
 #include <string.h>
-#include "memory.h"
+#include "curl_memory.h"
 #include "slist.h"
 
 /* The last #include file should be: */

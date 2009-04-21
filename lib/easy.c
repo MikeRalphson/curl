@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.136 2009-04-11 02:11:02 yangtse Exp $
+ * $Id: easy.c,v 1.137 2009-04-21 11:46:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -77,7 +77,7 @@
 #include "hostip.h"
 #include "share.h"
 #include "strdup.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "progress.h"
 #include "easyif.h"
 #include "select.h"

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.792 2009-04-13 18:01:02 bagder Exp $
+ * $Id: url.c,v 1.793 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -135,7 +135,7 @@ void idn_free (void *ptr); /* prototype from idn-free.h, not provided by
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
 
-#include "memory.h"
+#include "curl_memory.h"
 /* The last #include file should be: */
 #include "memdebug.h"
 

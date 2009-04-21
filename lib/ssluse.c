@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.221 2009-04-14 13:50:32 yangtse Exp $
+ * $Id: ssluse.c,v 1.222 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -68,7 +68,7 @@
 #include <x509v3.h>
 #endif
 
-#include "memory.h"
+#include "curl_memory.h"
 #include "easyif.h" /* for Curl_convert_from_utf8 prototype */
 
 /* The last #include file should be: */

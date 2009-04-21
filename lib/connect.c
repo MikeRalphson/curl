@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.213 2009-02-28 01:35:53 yangtse Exp $
+ * $Id: connect.c,v 1.214 2009-04-21 11:46:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -81,7 +81,7 @@
 #include "if2ip.h"
 #include "strerror.h"
 #include "connect.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "select.h"
 #include "url.h" /* for Curl_safefree() */
 #include "multiif.h"

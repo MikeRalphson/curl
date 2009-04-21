@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: file.c,v 1.119 2009-02-03 22:28:41 bagder Exp $
+ * $Id: file.c,v 1.120 2009-04-21 11:46:16 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -82,7 +82,7 @@
 #include "getinfo.h"
 #include "transfer.h"
 #include "url.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "parsedate.h" /* for the week day and month names */
 
 #define _MPRINTF_REPLACE /* use our functions only */

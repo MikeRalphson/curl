@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.45 2009-02-25 12:51:39 bagder Exp $
+ * $Id: sslgen.c,v 1.46 2009-04-21 11:46:17 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for implementing all "generic" SSL functions that all libcurl
@@ -59,7 +59,7 @@
 #include "sendf.h"
 #include "rawstr.h"
 #include "url.h"
-#include "memory.h"
+#include "curl_memory.h"
 #include "progress.h"
 /* The last #include file should be: */
 #include "memdebug.h"
