@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.268 2009-02-27 13:52:05 bagder Exp $
+.\" * $Id: curl.1,v 1.269 2009-04-23 22:01:34 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -1482,8 +1482,10 @@ default statistics.
 .I ~/.curlrc
 .RS
 Default config file, see \fI-K/--config\fP for details.
-
 .SH ENVIRONMENT
+The environment variables can be specified in lower case or upper case. The
+lower case version has precedence. http_proxy is an exception as it is only
+available in lower case.
 .IP "http_proxy [protocol://]<host>[:port]"
 Sets the proxy server to use for HTTP.
 .IP "HTTPS_PROXY [protocol://]<host>[:port]"
