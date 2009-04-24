@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.13 2009-04-23 11:09:20 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.14 2009-04-24 10:38:12 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -68,17 +68,19 @@
  * any function call which actually allocates a Curl_addrinfo struct.
  */
 
-void
-Curl_freeaddrinfo(Curl_addrinfo *cahead)
-{
 #if defined(__INTEL_COMPILER) && (__INTEL_COMPILER == 910) && \
     defined(__unix__) &&  defined(__i386__)
   /* workaround icc 9.1 optimizer issue */
-  volatile Curl_addrinfo * volatile canext;
-  Curl_addrinfo *ca;
+# define vqualifier volatile
 #else
-  Curl_addrinfo *ca, *canext;
+# define vqualifier
 #endif
+
+void
+Curl_freeaddrinfo(Curl_addrinfo *cahead)
+{
+  Curl_addrinfo *vqualifier canext;
+  Curl_addrinfo *ca;
 
   for(ca = cahead; ca != NULL; ca = canext) {
 
