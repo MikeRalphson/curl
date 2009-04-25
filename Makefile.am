@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.74 2009-04-14 22:00:37 bagder Exp $
+# $Id: Makefile.am,v 1.75 2009-04-25 21:01:28 bagder Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -28,8 +28,8 @@ ACLOCAL_AMFLAGS = -I m4
 CMAKE_DIST = CMakeLists.txt CMake/CheckTypeSize.c.in CMake/CheckTypeSize.cmake \
 CMake/CMakeConfigurableFile.in CMake/CurlCheckCSourceCompiles.cmake	       \
 CMake/CurlCheckCSourceRuns.cmake CMake/CurlTests.c CMake/FindOpenSSL.cmake     \
-CMake/FindZLIB.cmake CMake/OtherTests.cmake CMake/Platforms/config-aix.h       \
-CMake/Platforms/WindowsCache.cmake CMake/Utilities.cmake
+CMake/FindZLIB.cmake CMake/OtherTests.cmake CMake/Platforms/WindowsCache.cmake \
+CMake/Utilities.cmake
 
 EXTRA_DIST = CHANGES COPYING maketgz Makefile.dist curl-config.in	\
  curl-style.el sample.emacs RELEASE-NOTES buildconf buildconf.bat	\
