@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.14 2009-04-24 10:38:12 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.15 2009-04-25 10:24:11 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -69,7 +69,7 @@
  */
 
 #if defined(__INTEL_COMPILER) && (__INTEL_COMPILER == 910) && \
-    defined(__unix__) &&  defined(__i386__)
+    defined(__OPTIMIZE__) && defined(__unix__) &&  defined(__i386__)
   /* workaround icc 9.1 optimizer issue */
 # define vqualifier volatile
 #else
