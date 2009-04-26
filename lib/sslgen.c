@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.46 2009-04-21 11:46:17 yangtse Exp $
+ * $Id: sslgen.c,v 1.47 2009-04-26 11:56:23 bagder Exp $
  ***************************************************************************/
 
 /* This file is for implementing all "generic" SSL functions that all libcurl
@@ -195,9 +195,13 @@ Curl_ssl_connect_nonblocking(struct connectdata *conn, int sockindex,
                              bool *done)
 {
 #ifdef curlssl_connect_nonblocking
+  CURLcode res;
   /* mark this is being ssl requested from here on. */
   conn->ssl[sockindex].use = TRUE;
-  return curlssl_connect_nonblocking(conn, sockindex, done);
+  res = curlssl_connect_nonblocking(conn, sockindex, done);
+  if(!res && *done == TRUE)
+    Curl_pgrsTime(conn->data, TIMER_APPCONNECT); /* SSL is connected */
+  return res;
 #else
   *done = TRUE; /* fallback to BLOCKING */
   conn->ssl[sockindex].use = TRUE;
