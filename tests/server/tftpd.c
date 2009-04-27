@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.51 2009-04-24 21:46:42 bagder Exp $
+ * $Id: tftpd.c,v 1.52 2009-04-27 23:59:41 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -64,6 +64,9 @@
 #endif
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
+#endif
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
 #endif
 #ifdef HAVE_ARPA_TFTP_H
 #include <arpa/tftp.h>
