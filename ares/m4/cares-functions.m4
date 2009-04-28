@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.28 2009-04-26 18:51:03 yangtse Exp $
+# $Id: cares-functions.m4,v 1.29 2009-04-28 10:40:02 yangtse Exp $
 #
 # Copyright (C) 2008 - 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 28
+# serial 29
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -184,6 +184,24 @@ cares_includes_sys_socket="\
   AC_CHECK_HEADERS(
     sys/types.h sys/socket.h,
     [], [], [$cares_includes_sys_socket])
+])
+
+
+dnl CARES_INCLUDES_SYS_TYPES
+dnl -------------------------------------------------
+dnl Set up variable with list of headers that must be
+dnl included when sys/types.h is to be included.
+
+AC_DEFUN([CARES_INCLUDES_SYS_TYPES], [
+cares_includes_sys_types="\
+/* includes start */
+#ifdef HAVE_SYS_TYPES_H
+#  include <sys/types.h>
+#endif
+/* includes end */"
+  AC_CHECK_HEADERS(
+    sys/types.h,
+    [], [], [$cares_includes_sys_types])
 ])
 
 
