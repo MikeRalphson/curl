@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.49 2009-01-14 13:08:50 bagder Exp $ */
+/* $Id: ares.h,v 1.50 2009-04-28 16:47:33 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -18,6 +18,9 @@
 
 #ifndef ARES__H
 #define ARES__H
+
+#include "ares_build.h"  /* c-ares build definitions */
+#include "ares_rules.h"  /* c-ares rules enforcement */
 
 /*
  * Define WIN32 when build target is Win32 API

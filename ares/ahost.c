@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.24 2008-09-15 15:28:26 yangtse Exp $
+ * $Id: ahost.c,v 1.25 2009-04-28 16:47:33 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -42,6 +42,7 @@
 #include "inet_ntop.h"
 #include "inet_net_pton.h"
 #include "ares_getopt.h"
+#include "ares_ipv6.h"
 
 #ifndef HAVE_STRDUP
 #  include "ares_strdup.h"
