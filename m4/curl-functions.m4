@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.46 2009-04-26 18:51:03 yangtse Exp $
+# $Id: curl-functions.m4,v 1.47 2009-04-28 10:27:04 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 46
+# serial 47
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -100,6 +100,30 @@ curl_includes_ifaddrs="\
   AC_CHECK_HEADERS(
     sys/types.h sys/socket.h netinet/in.h ifaddrs.h,
     [], [], [$curl_includes_ifaddrs])
+])
+
+
+dnl CURL_INCLUDES_INTTYPES
+dnl -------------------------------------------------
+dnl Set up variable with list of headers that must be
+dnl included when inttypes.h is to be included.
+
+AC_DEFUN([CURL_INCLUDES_INTTYPES], [
+curl_includes_inttypes="\
+/* includes start */
+#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#endif
+#ifdef HAVE_INTTYPES_H
+# include <inttypes.h>
+#endif
+/* includes end */"
+  AC_CHECK_HEADERS(
+    sys/types.h stdint.h inttypes.h,
+    [], [], [$curl_includes_inttypes])
 ])
 
 

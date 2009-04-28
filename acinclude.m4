@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.224 2009-04-28 09:40:12 yangtse Exp $
+# $Id: acinclude.m4,v 1.225 2009-04-28 10:27:04 yangtse Exp $
 #***************************************************************************
 
 
@@ -2709,30 +2709,6 @@ AC_DEFUN([CURL_DEFINE_UNQUOTED], [
 cat >>confdefs.h <<_EOF
 [@%:@define] $1 ifelse($#, 2, [$2], 1)
 _EOF
-])
-
-
-dnl CURL_INCLUDES_INTTYPES
-dnl -------------------------------------------------
-dnl Set up variable with list of headers that must be
-dnl included when inttypes.h is to be included.
-
-AC_DEFUN([CURL_INCLUDES_INTTYPES], [
-curl_includes_inttypes="\
-/* includes start */
-#ifdef HAVE_SYS_TYPES_H
-# include <sys/types.h>
-#endif
-#ifdef HAVE_STDINT_H
-# include <stdint.h>
-#endif
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
-#endif
-/* includes end */"
-  AC_CHECK_HEADERS(
-    sys/types.h stdint.h inttypes.h,
-    [], [], [$curl_includes_inttypes])
 ])
 
 
