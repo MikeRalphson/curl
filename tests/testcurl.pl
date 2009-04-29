@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.70 2009-04-29 01:31:37 yangtse Exp $
+# $Id: testcurl.pl,v 1.71 2009-04-29 17:57:49 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.70 $';
+$version='$Revision: 1.71 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -499,6 +499,9 @@ if ($configurebuild) {
     system("cp -af ../$CURLDIR/Makefile.dist Makefile");
     system("$make -i -C lib -f Makefile.netware prebuild");
     system("$make -i -C src -f Makefile.netware prebuild");
+    if (-d "../$CURLDIR/ares") {
+      system("$make -i -C ares -f Makefile.netware prebuild");
+    }
   }
   elsif ($^O eq 'linux') {
     system("cp -afr ../$CURLDIR/* .");
@@ -506,6 +509,10 @@ if ($configurebuild) {
     system("cp -af ../$CURLDIR/include/curl/curlbuild.h.dist ./include/curl/curlbuild.h");
     system("$make -i -C lib -f Makefile.$targetos prebuild");
     system("$make -i -C src -f Makefile.$targetos prebuild");
+    if (-d "../$CURLDIR/ares") {
+      system("cp -af ../$CURLDIR/ares/ares_build.h.dist ./ares/ares_build.h");
+      system("$make -i -C ares -f Makefile.$targetos prebuild");
+    }
   }
 }
 
