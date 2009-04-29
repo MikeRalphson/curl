@@ -1,7 +1,7 @@
 #ifndef __CARES_RULES_H
 #define __CARES_RULES_H
 
-/* $Id: ares_rules.h,v 1.1 2009-04-28 16:47:33 yangtse Exp $ */
+/* $Id: ares_rules.h,v 1.2 2009-04-29 15:15:14 yangtse Exp $ */
 
 /* Copyright (C) 2009 by Daniel Stenberg et al
  *
@@ -136,6 +136,7 @@ typedef char
  * Get rid of macros not intended to exist beyond this point.
  */
 
+#undef CARES_PULL_WS2TCPIP_H
 #undef CARES_PULL_SYS_TYPES_H
 #undef CARES_PULL_SYS_SOCKET_H
 
