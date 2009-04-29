@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.71 2009-04-29 17:57:49 yangtse Exp $
+# $Id: testcurl.pl,v 1.72 2009-04-29 19:02:22 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.71 $';
+$version='$Revision: 1.72 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -521,7 +521,7 @@ if(-f "./include/curl/curlbuild.h") {
   if(open(F, "<./include/curl/curlbuild.h")) {
     while(<F>) {
       my $ll = $_;
-      print $ll if(($ll =~ /^ *# *define/) && ($ll !~ /__CURL_CURLBUILD_H/));
+      print $ll if(($ll =~ /^ *# *define *CURL_/) && ($ll !~ /__CURL_CURLBUILD_H/));
     }
     close(F);
   }
@@ -545,7 +545,7 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
     if(open(F, "<./ares/ares_build.h")) {
       while(<F>) {
         my $ll = $_;
-        print $ll if(($ll =~ /^ *# *define/) && ($ll !~ /__CARES_BUILD_H/));
+        print $ll if(($ll =~ /^ *# *define *CARES_/) && ($ll !~ /__CARES_BUILD_H/));
       }
       close(F);
     }
