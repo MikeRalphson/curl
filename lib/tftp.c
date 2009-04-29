@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.82 2009-04-21 11:46:17 yangtse Exp $
+ * $Id: tftp.c,v 1.83 2009-04-29 11:30:03 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -863,7 +863,9 @@ static CURLcode tftp_connect(struct connectdata *conn, bool *done)
       return CURLE_OUT_OF_MEMORY;
   }
 
-  conn->bits.close = FALSE; /* keep it open if possible */
+  conn->bits.close = TRUE; /* we don't keep TFTP connections up bascially
+                              because there's none or very little gain for UDP
+                           */
 
   state->conn = conn;
   state->sockfd = state->conn->sock[FIRSTSOCKET];
