@@ -1,5 +1,5 @@
 #################################################################
-# $Id: Makefile.netware,v 1.124 2009-04-30 00:11:20 yangtse Exp $
+# $Id: Makefile.netware,v 1.125 2009-04-30 01:34:04 yangtse Exp $
 #
 ## Makefile for building libcurl.nlm (NetWare version - gnu make)
 ## Use: make -f Makefile.netware
@@ -619,7 +619,7 @@ $(CURL_INC)/curl/curlbuild.h: Makefile.netware FORCE
 	@echo $(DL)#define __CURL_CURLBUILD_H$(DL) >> $@
 ifeq ($(LIBARCH),LIBC)
 	@echo $(DL)#define CURL_SIZEOF_LONG 4$(DL) >> $@
-	@echo $(DL)#define CURL_TYPEOF_CURL_SOCKLEN_T size_t$(DL) >> $@
+	@echo $(DL)#define CURL_TYPEOF_CURL_SOCKLEN_T unsigned int$(DL) >> $@
 	@echo $(DL)#define CURL_SIZEOF_CURL_SOCKLEN_T 4$(DL) >> $@
 	@echo $(DL)#define CURL_TYPEOF_CURL_OFF_T long long$(DL) >> $@
 	@echo $(DL)#define CURL_FORMAT_CURL_OFF_T "lld"$(DL) >> $@
