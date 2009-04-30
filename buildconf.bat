@@ -1,7 +1,7 @@
 @echo off
 REM set up a CVS tree to build when there's no autotools
-REM $Revision: 1.7 $
-REM $Date: 2009-04-30 10:43:27 $
+REM $Revision: 1.8 $
+REM $Date: 2009-04-30 12:12:31 $
 
 REM create hugehelp.c
 copy src\hugehelp.c.cvs src\hugehelp.c
