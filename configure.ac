@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.398 2009-04-27 02:47:34 yangtse Exp $
+# $Id: configure.ac,v 1.399 2009-04-30 18:35:36 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -497,6 +497,28 @@ dnl script to allow other actions to disable it as well.
 dnl **********************************************************************
 dnl Checks for libraries.
 dnl **********************************************************************
+
+tst_lib_xnet_required="no"
+AC_MSG_CHECKING([if X/Open network library is required])
+CURL_CHECK_DEF([__hpux], [], [silent])
+CURL_CHECK_DEF([_XOPEN_SOURCE_EXTENDED], [], [silent])
+if test "$curl_cv_have_def__XOPEN_SOURCE_EXTENDED" = "yes" &&
+  test "$curl_cv_have_def___hpux" = "yes"; then
+  my_ac_save_LIBS=$LIBS
+  LIBS="-lxnet $LIBS"
+  AC_LINK_IFELSE([
+    AC_LANG_PROGRAM([[
+    ]],[[
+      if(0 != getpeername(0, 0, 0))
+        return 1;
+    ]])
+  ],[
+    tst_lib_xnet_required="yes"
+  ],[
+    LIBS=$my_ac_save_LIBS
+  ])
+fi
+AC_MSG_RESULT([$tst_lib_xnet_required])
 
 dnl gethostbyname without lib or in the nsl lib?
 AC_CHECK_FUNC(gethostbyname,
