@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.215 2009-04-28 20:27:06 bagder Exp $
+ * $Id: connect.c,v 1.216 2009-04-30 09:32:02 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -718,6 +718,7 @@ static void sndbufset(struct connectdata *conn,
                       curl_socket_t sockfd)
 {
   int val = CURL_MAX_WRITE_SIZE + 32;
+  (void)conn;
   setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, (const char *)&val, sizeof(val));
 }
 #else
