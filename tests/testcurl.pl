@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.72 2009-04-29 19:02:22 yangtse Exp $
+# $Id: testcurl.pl,v 1.73 2009-04-30 17:06:58 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.72 $';
+$version='$Revision: 1.73 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -198,6 +198,13 @@ sub logit($) {
     my $text=$_[0];
     if ($text) {
       print "testcurl: $text\n";
+    }
+}
+
+sub logit_spaced($) {
+    my $text=$_[0];
+    if ($text) {
+      print "\ntestcurl: $text\n\n";
     }
 }
 
@@ -516,8 +523,19 @@ if ($configurebuild) {
   }
 }
 
+if(-f "./libcurl.pc") {
+  logit_spaced "display libcurl.pc";
+  if(open(F, "<./libcurl.pc")) {
+    while(<F>) {
+      my $ll = $_;
+      print $ll if(($ll !~ /^ *#/) && ($ll !~ /^ *$/));
+    }
+    close(F);
+  }
+}
+
 if(-f "./include/curl/curlbuild.h") {
-  logit "display include/curl/curlbuild.h";
+  logit_spaced "display include/curl/curlbuild.h";
   if(open(F, "<./include/curl/curlbuild.h")) {
     while(<F>) {
       my $ll = $_;
@@ -530,7 +548,7 @@ else {
   mydie "no curlbuild.h created/found";
 }
 
-logit "display lib/config$confsuffix.h";
+logit_spaced "display lib/config$confsuffix.h";
 open(F, "lib/config$confsuffix.h") or die "lib/config$confsuffix.h: $!";
 while (<F>) {
   print if /^ *#/;
@@ -538,10 +556,22 @@ while (<F>) {
 close(F);
 
 if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
+  print "\n";
   logit "setup to build ares";
 
+  if(-f "./ares/libcares.pc") {
+    logit_spaced  "display ares/libcares.pc";
+    if(open(F, "<./ares/libcares.pc")) {
+      while(<F>) {
+        my $ll = $_;
+        print $ll if(($ll !~ /^ *#/) && ($ll !~ /^ *$/));
+      }
+      close(F);
+    }
+  }
+
   if(-f "./ares/ares_build.h") {
-    logit "display ares/ares_build.h";
+    logit_spaced "display ares/ares_build.h";
     if(open(F, "<./ares/ares_build.h")) {
       while(<F>) {
         my $ll = $_;
@@ -554,7 +584,7 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
     mydie "no ares_build.h created/found";
   }
 
-  logit "display ares/config$confsuffix.h";
+  logit_spaced "display ares/config$confsuffix.h";
   if(open(F, "ares/config$confsuffix.h")) {
       while (<F>) {
           print if /^ *#/;
@@ -562,6 +592,7 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
       close(F);
   }
 
+  print "\n";
   logit "build ares";
   chdir "ares";
 
