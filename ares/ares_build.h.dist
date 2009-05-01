@@ -1,7 +1,7 @@
 #ifndef __CARES_BUILD_H
 #define __CARES_BUILD_H
 
-/* $Id: ares_build.h.dist,v 1.2 2009-05-01 12:39:40 yangtse Exp $ */
+/* $Id: ares_build.h.dist,v 1.3 2009-05-01 22:41:23 yangtse Exp $ */
 
 /* Copyright (C) 2009 by Daniel Stenberg et al
  *
@@ -198,8 +198,8 @@
 
 #elif defined(TPF)
 #  define CARES_SIZEOF_LONG           8
-#  define CARES_TYPEOF_ARES_SOCKLEN_T FIXME
-#  define CARES_SIZEOF_ARES_SOCKLEN_T -1
+#  define CARES_TYPEOF_ARES_SOCKLEN_T int
+#  define CARES_SIZEOF_ARES_SOCKLEN_T 4
 
 /* ===================================== */
 /*    KEEP MSVC THE PENULTIMATE ENTRY    */
