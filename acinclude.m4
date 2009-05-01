@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.226 2009-04-28 10:37:06 yangtse Exp $
+# $Id: acinclude.m4,v 1.227 2009-05-01 02:03:42 yangtse Exp $
 #***************************************************************************
 
 
@@ -114,6 +114,44 @@ CURL_DEF_TOKEN $1
     ifelse($3,,[AC_MSG_RESULT([$tmp_exp])])
   fi
   AS_VAR_POPDEF([ac_Def])dnl
+  AS_VAR_POPDEF([ac_HaveDef])dnl
+])
+
+
+dnl CURL_CHECK_DEF_CC (SYMBOL, [INCLUDES], [SILENT])
+dnl -------------------------------------------------
+dnl Use the C compiler to find out only if the given symbol is defined
+dnl or not, this can not find out its expansion. This macro will not use
+dnl default includes even if no INCLUDES argument is given. This macro
+dnl will run silently when invoked with three arguments.
+
+AC_DEFUN([CURL_CHECK_DEF_CC], [
+  AS_VAR_PUSHDEF([ac_HaveDef], [curl_cv_have_def_$1])dnl
+  ifelse($3,,[AC_MSG_CHECKING([for compiler definition of $1])])
+  AC_COMPILE_IFELSE([
+    AC_LANG_SOURCE(
+ifelse($2,,,[$2])[[
+int main (void)
+{
+#ifdef $1
+  return 0;
+#else
+  force compilation error
+#endif
+}
+    ]])
+  ],[
+    tst_symbol_defined="yes"
+  ],[
+    tst_symbol_defined="no"
+  ])
+  if test "$tst_symbol_defined" = "yes"; then
+    AS_VAR_SET(ac_HaveDef, yes)
+    ifelse($3,,[AC_MSG_RESULT([yes])])
+  else
+    AS_VAR_SET(ac_HaveDef, no)
+    ifelse($3,,[AC_MSG_RESULT([no])])
+  fi
   AS_VAR_POPDEF([ac_HaveDef])dnl
 ])
 
