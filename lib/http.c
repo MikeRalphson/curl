@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.414 2009-04-28 11:19:11 bagder Exp $
+ * $Id: http.c,v 1.415 2009-05-01 13:00:38 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1544,9 +1544,17 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
             else
               for(i = 0; i < gotbytes; ptr++, i++) {
                 perline++; /* amount of bytes in this line so far */
-                if(*ptr=='\n') {
+                if(*ptr=='\x0a') {
                   char letter;
                   int writetype;
+
+#ifdef CURL_DOES_CONVERSIONS
+                  /* convert from the network encoding */
+                  result = Curl_convert_from_network(data, line_start, perline);
+                  /* Curl_convert_from_network calls failf if unsuccessful */
+                  if(result)
+                    return result;
+#endif /* CURL_DOES_CONVERSIONS */
 
                   /* output debug if that is requested */
                   if(data->set.verbose)
