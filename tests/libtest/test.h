@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: test.h,v 1.21 2008-09-18 16:21:09 yangtse Exp $
+ * $Id: test.h,v 1.22 2009-05-01 12:39:40 yangtse Exp $
  */
 
 /* Now include the setup.h file from libcurl's private libdir (the source
@@ -31,6 +31,10 @@
 #ifdef HAVE_UNISTD_H
 /* at least somewhat oldish FreeBSD systems need this for select() */
 #include <unistd.h>
+#endif
+
+#ifdef TPF
+#  include "select.h"
 #endif
 
 #define TEST_ERR_MAJOR_BAD     100

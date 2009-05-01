@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.512 2009-04-28 11:19:11 bagder Exp $
+ * $Id: main.c,v 1.513 2009-05-01 12:39:40 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -257,6 +257,8 @@ typedef enum {
 #    if defined(_LP64) || defined(_LARGE_FILES)
 #      define SIZEOF_OFF_T 8
 #    endif
+#  elif defined(TPF)
+#    define SIZEOF_OFF_T 8
 #  endif
 #  ifndef SIZEOF_OFF_T
 #    define SIZEOF_OFF_T 4
