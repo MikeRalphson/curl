@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.402 2009-05-01 22:59:16 yangtse Exp $
+# $Id: configure.ac,v 1.403 2009-05-02 02:37:34 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2020,9 +2020,6 @@ AC_CHECK_TYPE([bool],[
 ])
 
 CURL_CONFIGURE_CURL_SOCKLEN_T
-
-# Check for socklen_t or equivalent
-CURL_CHECK_TYPE_SOCKLEN_T
 
 TYPE_IN_ADDR_T
 

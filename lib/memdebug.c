@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.62 2009-04-21 11:46:17 yangtse Exp $
+ * $Id: memdebug.c,v 1.63 2009-05-02 02:37:34 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -255,7 +255,7 @@ int curl_accept(int s, void *saddr, void *saddrlen,
                 int line, const char *source)
 {
   struct sockaddr *addr = (struct sockaddr *)saddr;
-  socklen_t *addrlen = (socklen_t *)saddrlen;
+  curl_socklen_t *addrlen = (curl_socklen_t *)saddrlen;
   int sockfd=accept(s, addr, addrlen);
   if(logfile)
     fprintf(logfile, "FD %s:%d accept() = %d\n",

@@ -3,7 +3,7 @@
 
 /* lib/config.dos - Hand crafted config file for MSDOS.
  *
- * $Id: config.dos,v 1.26 2009-04-18 16:50:09 giva Exp $
+ * $Id: config.dos,v 1.27 2009-05-02 02:37:34 yangtse Exp $
  */
 #if defined(DJGPP)
   #define OS  "MSDOS/djgpp"
@@ -117,7 +117,6 @@
 #define CURL_DISABLE_LDAP        1
 
 #define in_addr_t  u_long
-#define socklen_t  int
 
 #if defined(__HIGHC__) || \
     (defined(__GNUC__) && __GNUC__ < 4)   /* gcc 4.x built-in ? */

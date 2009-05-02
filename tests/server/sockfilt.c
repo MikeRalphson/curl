@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.57 2009-04-27 23:59:41 yangtse Exp $
+ * $Id: sockfilt.c,v 1.58 2009-05-02 02:37:34 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -751,7 +751,7 @@ static curl_socket_t sockdaemon(curl_socket_t sock,
        got */
     /* we succeeded to bind */
     struct sockaddr_in add;
-    socklen_t socksize = sizeof(add);
+    curl_socklen_t socksize = sizeof(add);
 
     if(getsockname(sock, (struct sockaddr *) &add,
                    &socksize)<0) {

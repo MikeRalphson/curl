@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.216 2009-04-30 09:32:02 yangtse Exp $
+ * $Id: connect.c,v 1.217 2009-05-02 02:37:34 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -281,7 +281,7 @@ static CURLcode bindlocal(struct connectdata *conn,
 
   struct Curl_sockaddr_storage sa;
   struct sockaddr *sock = (struct sockaddr *)&sa;  /* bind to this address */
-  socklen_t sizeof_sa = 0; /* size of the data sock points to */
+  curl_socklen_t sizeof_sa = 0; /* size of the data sock points to */
   struct sockaddr_in *si4 = (struct sockaddr_in *)&sa;
 #ifdef ENABLE_IPV6
   struct sockaddr_in6 *si6 = (struct sockaddr_in6 *)&sa;
@@ -427,7 +427,7 @@ static CURLcode bindlocal(struct connectdata *conn,
     if( bind(sockfd, sock, sizeof_sa) >= 0) {
     /* we succeeded to bind */
       struct Curl_sockaddr_storage add;
-      socklen_t size = sizeof(add);
+      curl_socklen_t size = sizeof(add);
       memset(&add, 0, sizeof(struct Curl_sockaddr_storage));
       if(getsockname(sockfd, (struct sockaddr *) &add, &size) < 0) {
         data->state.os_errno = error = SOCKERRNO;
@@ -470,7 +470,7 @@ static bool verifyconnect(curl_socket_t sockfd, int *error)
   bool rc = TRUE;
 #ifdef SO_ERROR
   int err = 0;
-  socklen_t errSize = sizeof(err);
+  curl_socklen_t errSize = sizeof(err);
 
 #ifdef WIN32
   /*
@@ -657,7 +657,7 @@ static void tcpnodelay(struct connectdata *conn,
 {
 #ifdef TCP_NODELAY
   struct SessionHandle *data= conn->data;
-  socklen_t onoff = (socklen_t) data->set.tcp_nodelay;
+  curl_socklen_t onoff = (curl_socklen_t) data->set.tcp_nodelay;
   int proto = IPPROTO_TCP;
 
 #if 0

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.83 2009-04-29 11:30:03 bagder Exp $
+ * $Id: tftp.c,v 1.84 2009-05-02 02:37:34 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -147,7 +147,7 @@ typedef struct tftp_state_data {
   unsigned short  block;
   struct Curl_sockaddr_storage   local_addr;
   struct Curl_sockaddr_storage   remote_addr;
-  socklen_t       remote_addrlen;
+  curl_socklen_t  remote_addrlen;
   ssize_t         rbytes;
   size_t          sbytes;
   size_t          blksize;
@@ -947,7 +947,7 @@ static CURLcode tftp_do(struct connectdata *conn, bool *done)
   CURLcode              code;
   int                   rc;
   struct Curl_sockaddr_storage fromaddr;
-  socklen_t             fromlen;
+  curl_socklen_t        fromlen;
   int                   check_time = 0;
   struct SingleRequest *k = &data->req;
 

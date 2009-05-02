@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.15 2009-04-25 10:24:11 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.16 2009-05-02 02:37:34 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -221,7 +221,7 @@ Curl_getaddrinfo_ex(const char *nodename,
  *       int                   ai_family;
  *       int                   ai_socktype;
  *       int                   ai_protocol;
- *       socklen_t             ai_addrlen;   * Follow rfc3493 struct addrinfo *
+ *       curl_socklen_t        ai_addrlen;   * Follow rfc3493 struct addrinfo *
  *       char                 *ai_canonname;
  *       struct sockaddr      *ai_addr;
  *       struct Curl_addrinfo *ai_next;
