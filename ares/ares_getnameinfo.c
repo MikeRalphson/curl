@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.32 2008-11-28 22:41:14 danf Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.33 2009-05-02 02:36:48 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -92,7 +92,8 @@ static void append_scopeid(struct sockaddr_in6 *addr6, unsigned int scopeid,
 #endif
 static char *ares_striendstr(const char *s1, const char *s2);
 
-void ares_getnameinfo(ares_channel channel, const struct sockaddr *sa, socklen_t salen,
+void ares_getnameinfo(ares_channel channel, const struct sockaddr *sa,
+                      ares_socklen_t salen,
                       int flags, ares_nameinfo_callback callback, void *arg)
 {
   struct sockaddr_in *addr = NULL;

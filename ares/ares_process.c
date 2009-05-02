@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.75 2009-04-14 12:53:53 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.76 2009-05-02 02:36:48 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -429,7 +429,7 @@ static void read_udp_packets(ares_channel channel, fd_set *read_fds,
   unsigned char buf[PACKETSZ + 1];
 #ifdef HAVE_RECVFROM
   struct sockaddr_in from;
-  socklen_t fromlen;
+  ares_socklen_t fromlen;
 #endif
 
   if(!read_fds && (read_fd == ARES_SOCKET_BAD))

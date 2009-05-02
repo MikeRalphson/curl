@@ -1,4 +1,4 @@
-/* $Id: ares_ipv6.h,v 1.8 2007-12-10 16:14:02 giva Exp $ */
+/* $Id: ares_ipv6.h,v 1.9 2009-05-02 02:36:48 yangtse Exp $ */
 
 /* Copyright (C) 2005 by Dominick Meglio
  *
@@ -49,7 +49,7 @@ struct addrinfo
   int              ai_family;
   int              ai_socktype;
   int              ai_protocol;
-  socklen_t        ai_addrlen;   /* Follow rfc3493 struct addrinfo */
+  ares_socklen_t   ai_addrlen;   /* Follow rfc3493 struct addrinfo */
   char            *ai_canonname;
   struct sockaddr *ai_addr;
   struct addrinfo *ai_next;
