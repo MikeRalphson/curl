@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.229 2009-05-03 17:35:44 yangtse Exp $
+# $Id: acinclude.m4,v 1.230 2009-05-03 19:41:12 yangtse Exp $
 #***************************************************************************
 
 
@@ -169,7 +169,7 @@ int main (void)
 {
 #if defined(__hpux) && defined(_XOPEN_SOURCE) && defined(_XOPEN_SOURCE >= 600)
   return 0;
-#if defined(__hpux) && defined(_XOPEN_SOURCE) && defined(_XOPEN_SOURCE_EXTENDED)
+#elif defined(__hpux) && defined(_XOPEN_SOURCE_EXTENDED)
   return 0;
 #else
   force compilation error
