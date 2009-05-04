@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: ftpserver.pl,v 1.98 2008-12-08 20:20:51 bagder Exp $
+# $Id: ftpserver.pl,v 1.99 2009-05-04 10:30:23 yangtse Exp $
 ###########################################################################
 
 # This is the FTP server designed for the curl test suite.
@@ -83,6 +83,7 @@ my $ext; # append to log/pid file names
 my $grok_eprt;
 my $port = 8921; # just a default
 my $listenaddr = "127.0.0.1"; # just a default
+my $client;
 my $pidfile = ".ftpd.pid"; # a default, use --pidfile
 
 my $SERVERLOGS_LOCK="log/serverlogs.lock"; # server logs advisor read lock
@@ -114,7 +115,12 @@ do {
     }
     elsif($ARGV[0] eq "--addr") {
         $listenaddr = $ARGV[1];
-	$listenaddr =~ s/^\[(.*)\]$/\1/;
+        $listenaddr =~ s/^\[(.*)\]$/\1/;
+        shift @ARGV;
+    }
+    elsif($ARGV[0] eq "--client") {
+        $client = $ARGV[1];
+        $client =~ s/^\[(.*)\]$/\1/;
         shift @ARGV;
     }
 } while(shift @ARGV);
@@ -705,7 +711,7 @@ sub PORT_command {
 
     # We fire up a new sockfilt to do the data transfer for us.
     # FIX: make it use IPv6 if need be
-    my $filtcmd="./server/sockfilt --connect $port --addr $addr --logfile log/sockdata$ftpdnum$ext.log --pidfile .sockdata$ftpdnum$ext.pid $ipv6";
+    my $filtcmd="./server/sockfilt --connect $port --addr $client --logfile log/sockdata$ftpdnum$ext.log --pidfile .sockdata$ftpdnum$ext.pid $ipv6";
     $slavepid = open2(\*DREAD, \*DWRITE, $filtcmd);
 
     print STDERR "$filtcmd\n" if($verbose);
