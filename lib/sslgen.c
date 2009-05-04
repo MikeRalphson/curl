@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sslgen.c,v 1.47 2009-04-26 11:56:23 bagder Exp $
+ * $Id: sslgen.c,v 1.48 2009-05-04 21:57:14 bagder Exp $
  ***************************************************************************/
 
 /* This file is for implementing all "generic" SSL functions that all libcurl
@@ -269,6 +269,22 @@ static int kill_session(struct curl_ssl_session *session)
   }
   else
     return 1;
+}
+
+/*
+ * Delete the given session ID from the cache.
+ */
+void Curl_ssl_delsessionid(struct connectdata *conn, void *ssl_sessionid)
+{
+  int i;
+  for(i=0; i< conn->data->set.ssl.numsessions; i++) {
+    struct curl_ssl_session *check = &conn->data->state.session[i];
+
+    if (check->sessionid == ssl_sessionid) {
+      kill_session(check);
+      break;
+    }
+  }
 }
 
 /*
