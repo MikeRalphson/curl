@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.415 2009-05-01 13:00:38 yangtse Exp $
+ * $Id: http.c,v 1.416 2009-05-05 13:04:33 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1544,7 +1544,7 @@ CURLcode Curl_proxyCONNECT(struct connectdata *conn,
             else
               for(i = 0; i < gotbytes; ptr++, i++) {
                 perline++; /* amount of bytes in this line so far */
-                if(*ptr=='\x0a') {
+                if(*ptr == 0x0a) {
                   char letter;
                   int writetype;
 
