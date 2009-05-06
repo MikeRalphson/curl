@@ -18,7 +18,7 @@
       * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF
       * ANY KIND, either express or implied.
       *
-      * $Id: curl.inc.in,v 1.19 2009-03-03 09:57:21 patrickm Exp $
+      * $Id: curl.inc.in,v 1.20 2009-05-06 14:04:05 yangtse Exp $
       *
       **************************************************************************
       *
@@ -1141,7 +1141,7 @@
      d  family                       10i 0
      d  socktype                     10i 0
      d  protocol                     10i 0
-     d  addrlen                      10i 0                                      socklen_t
+     d  addrlen                      10u 0
      d  addr                         16                                         struct sockaddr
       *
      d curl_forms      ds                  based(######ptr######)
