@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.405 2009-05-04 00:33:31 yangtse Exp $
+# $Id: configure.ac,v 1.406 2009-05-06 18:37:24 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1998,6 +1998,8 @@ AC_CHECK_TYPE([bool],[
 #include <stdbool.h>
 #endif
 ])
+
+CURL_A_COUPLE_OF_EXPERIMENTAL_COMPILER_TESTS
 
 CURL_CONFIGURE_CURL_SOCKLEN_T
 

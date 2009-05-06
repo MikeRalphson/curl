@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.230 2009-05-03 19:41:12 yangtse Exp $
+# $Id: acinclude.m4,v 1.231 2009-05-06 18:37:24 yangtse Exp $
 #***************************************************************************
 
 
@@ -2405,6 +2405,59 @@ AC_DEFUN([CURL_CONFIGURE_CURL_SOCKLEN_T], [
   esac
   CURL_DEFINE_UNQUOTED([CURL_TYPEOF_CURL_SOCKLEN_T], [$curl_typeof_curl_socklen_t])
   CURL_DEFINE_UNQUOTED([CURL_SIZEOF_CURL_SOCKLEN_T], [$curl_sizeof_curl_socklen_t])
+])
+
+
+dnl CURL_A_COUPLE_OF_EXPERIMENTAL_COMPILER_TESTS
+dnl -------------------------------------------------
+dnl Use autobuilds to verify if these two tests pass.
+dnl To be removed in 24 or 48 hours.
+
+AC_DEFUN([CURL_A_COUPLE_OF_EXPERIMENTAL_COMPILER_TESTS], [
+  AC_MSG_CHECKING([compiler test 01])
+  AC_COMPILE_IFELSE([
+    AC_LANG_PROGRAM([[
+      struct mystruct {
+        int              member1;
+        char            *member2;
+        struct mystruct *next;
+      };
+      typedef struct mystruct mystruct;
+      struct mystruct myfunc();
+      typedef char __my_arr_01__
+        [sizeof(myfunc().member1) == sizeof(int) ? 1 : -1];
+    ]],[[
+      /* this should compile ok to pass test 01 */
+      struct mystruct dummy;
+    ]])
+  ],[
+    AC_MSG_RESULT([pass])
+  ],[
+    AC_MSG_RESULT([FAIL])
+    sed 's/^/cc-src: /' conftest.$ac_ext >&6
+    sed 's/^/cc-err: /' conftest.err >&6
+  ])
+  AC_MSG_CHECKING([compiler test 02])
+  AC_COMPILE_IFELSE([
+    AC_LANG_PROGRAM([[
+      struct mystruct {
+        int              member1;
+        char            *member2;
+        struct mystruct *next;
+      };
+      typedef struct mystruct mystruct;
+      struct mystruct myfunc();
+      typedef char __my_arr_02__
+        [sizeof(myfunc().member1) == sizeof(char) ? 1 : -1];
+    ]],[[
+      /* this should fail compilation to pass test 02 */
+      struct mystruct dummy;
+    ]])
+  ],[
+    AC_MSG_RESULT([FAIL])
+  ],[
+    AC_MSG_RESULT([pass])
+  ])
 ])
 
 
