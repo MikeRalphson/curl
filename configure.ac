@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.407 2009-05-07 13:58:15 yangtse Exp $
+# $Id: configure.ac,v 1.408 2009-05-07 14:03:04 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2105,7 +2105,7 @@ AC_CHECK_FUNCS([basename \
     ],[
       AC_MSG_RESULT([yes])
       eval "ac_cv_func_$func=yes"
-      AC_DEFINE_UNQUOTED([AS_TR_CPP([HAVE_$func])], [1],
+      AC_DEFINE_UNQUOTED(AS_TR_CPP([HAVE_$func]), [1],
         [Define to 1 if you have the $func function.])
     ],[
       AC_MSG_RESULT([but still no])
