@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.84 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: tftp.c,v 1.85 2009-05-07 08:30:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -695,6 +695,8 @@ static CURLcode tftp_tx(tftp_state_data_t *state, tftp_event_t event)
       }
       return res;
     }
+    /* fall-through */
+  case TFTP_EVENT_OACK:
     /* This is the expected packet.  Reset the counters and send the next
        block */
     state->block++;
