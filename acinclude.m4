@@ -18,55 +18,8 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.231 2009-05-06 18:37:24 yangtse Exp $
+# $Id: acinclude.m4,v 1.232 2009-05-07 11:06:48 yangtse Exp $
 #***************************************************************************
-
-
-dnl CURL_CHECK_COMPILER_HALT_ON_ERROR
-dnl -------------------------------------------------
-dnl Verifies if the compiler actually halts after the
-dnl compilation phase without generating any object
-dnl code file, when the source compiles with errors.
-
-AC_DEFUN([CURL_CHECK_COMPILER_HALT_ON_ERROR], [
-  AC_MSG_CHECKING([if compiler halts on compilation errors])
-  AC_COMPILE_IFELSE([
-    AC_LANG_PROGRAM([[
-    ]],[[
-      force compilation error
-    ]])
-  ],[
-    AC_MSG_RESULT([no])
-    AC_MSG_ERROR([compiler does not halt on compilation errors.])
-  ],[
-    AC_MSG_RESULT([yes])
-  ])
-])
-
-
-dnl CURL_CHECK_COMPILER_ARRAY_SIZE_NEGATIVE
-dnl -------------------------------------------------
-dnl Verifies if the compiler actually halts after the
-dnl compilation phase without generating any object
-dnl code file, when the source code tries to define a
-dnl type for a constant array with negative dimension.
-
-AC_DEFUN([CURL_CHECK_COMPILER_ARRAY_SIZE_NEGATIVE], [
-  AC_REQUIRE([CURL_CHECK_COMPILER_HALT_ON_ERROR])dnl
-  AC_MSG_CHECKING([if compiler halts on negative sized arrays])
-  AC_COMPILE_IFELSE([
-    AC_LANG_PROGRAM([[
-      typedef char bad_t[sizeof(char) == sizeof(int) ? -1 : -1 ];
-    ]],[[
-      bad_t dummy;
-    ]])
-  ],[
-    AC_MSG_RESULT([no])
-    AC_MSG_ERROR([compiler does not halt on negative sized arrays.])
-  ],[
-    AC_MSG_RESULT([yes])
-  ])
-])
 
 
 dnl CURL_CHECK_DEF (SYMBOL, [INCLUDES], [SILENT])
