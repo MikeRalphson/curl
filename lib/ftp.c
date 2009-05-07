@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.510 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: ftp.c,v 1.511 2009-05-07 20:00:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2307,6 +2307,9 @@ static CURLcode ftp_state_stor_resp(struct connectdata *conn,
      size prior to the actual upload. */
 
   Curl_pgrsSetUploadSize(data, data->set.infilesize);
+
+  /* set the SO_SNDBUF for the secondary socket for those who need it */
+  Curl_sndbufset(conn->sock[SECONDARYSOCKET]);
 
   result = Curl_setup_transfer(conn, -1, -1, FALSE, NULL, /* no download */
                                SECONDARYSOCKET, ftp->bytecountp);

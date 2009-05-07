@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.217 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: connect.c,v 1.218 2009-05-07 20:00:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -714,15 +714,13 @@ static void nosigpipe(struct connectdata *conn,
    Buffer Size
 
 */
-static void sndbufset(struct connectdata *conn,
-                      curl_socket_t sockfd)
+void Curl_sndbufset(curl_socket_t sockfd)
 {
   int val = CURL_MAX_WRITE_SIZE + 32;
-  (void)conn;
   setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, (const char *)&val, sizeof(val));
 }
 #else
-#define sndbufset(x,y)
+#define Curl_sndbufset(y)
 #endif
 
 
@@ -829,7 +827,7 @@ singleipconnect(struct connectdata *conn,
 
   nosigpipe(conn, sockfd);
 
-  sndbufset(conn, sockfd);
+  Curl_sndbufset(sockfd);
 
   if(data->set.fsockopt) {
     /* activate callback for setting socket options */
