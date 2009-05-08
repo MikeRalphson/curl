@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.145 2009-05-08 17:52:36 yangtse Exp $
+# $Id: Makefile.am,v 1.146 2009-05-08 18:55:43 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -32,8 +32,8 @@ DOCS = README.encoding README.memoryleak README.ares README.curlx	\
 CMAKE_DIST = CMakeLists.txt config.h.cmake
 
 EXTRA_DIST = Makefile.b32 Makefile.m32 Makefile.vc6 Makefile.riscos $(DSP) \
- libcurl.dsw config-win32.h config-win32ce.h config-riscos.h config-mac.h  \
- config.h.in makefile.dj config.dos libcurl.plist                          \
+ vc6libcurl.dsw config-win32.h config-win32ce.h config-riscos.h            \
+ config-mac.h config.h.in makefile.dj config.dos libcurl.plist             \
  libcurl.rc config-amigaos.h amigaos.c amigaos.h makefile.amiga		   \
  Makefile.netware nwlib.c nwos.c libcurl.imp msvcproj.head msvcproj.foot   \
  config-win32ce.h config-os400.h setup-os400.h config-symbian.h		   \
