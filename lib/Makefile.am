@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.144 2009-04-28 19:29:50 yangtse Exp $
+# $Id: Makefile.am,v 1.145 2009-05-08 17:52:36 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
-DSP = libcurl.dsp
+DSP = vc6libcurl.dsp
 VCPROJ = libcurl.vcproj
 
 DOCS = README.encoding README.memoryleak README.ares README.curlx	\
