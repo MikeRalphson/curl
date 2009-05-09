@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.408 2009-05-07 14:03:04 yangtse Exp $
+# $Id: configure.ac,v 1.409 2009-05-09 12:08:24 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2551,14 +2551,12 @@ AC_CONFIG_FILES([Makefile \
            packages/Linux/RPM/curl.spec \
            packages/Linux/RPM/curl-ssl.spec \
            packages/Solaris/Makefile \
-           packages/DOS/Makefile \
            packages/EPM/curl.list \
            packages/EPM/Makefile \
            packages/vms/Makefile \
            packages/AIX/Makefile \
            packages/AIX/RPM/Makefile \
            packages/AIX/RPM/curl.spec \
-           packages/TPF/Makefile \
            curl-config \
            libcurl.pc
 ])
