@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_addrinfo.c,v 1.16 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: curl_addrinfo.c,v 1.17 2009-05-10 10:24:53 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -303,7 +303,7 @@ Curl_he2ai(const struct hostent *he, int port)
        the type must be ignored and conn->socktype be used instead! */
     ai->ai_socktype = SOCK_STREAM;
 
-    ai->ai_addrlen = (int)ss_size;
+    ai->ai_addrlen = (curl_socklen_t)ss_size;
 
     /* leave the rest of the struct filled with zero */
 
