@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http_digest.c,v 1.49 2009-04-21 11:46:17 yangtse Exp $
+ * $Id: http_digest.c,v 1.50 2009-05-10 21:33:55 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -543,8 +543,8 @@ CURLcode Curl_output_digest(struct connectdata *conn,
     *allocuserpwd = tmp;
   }
 
-  /* append CRLF to the userpwd header */
-  tmp = realloc(*allocuserpwd, strlen(*allocuserpwd) + 3 + 1);
+  /* append CRLF + zero (3 bytes) to the userpwd header */
+  tmp = realloc(*allocuserpwd, strlen(*allocuserpwd) + 3);
   if(!tmp)
     return CURLE_OUT_OF_MEMORY;
   strcat(tmp, "\r\n");
