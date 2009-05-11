@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.795 2009-05-09 21:34:48 bagder Exp $
+ * $Id: url.c,v 1.796 2009-05-11 11:45:56 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2824,6 +2824,12 @@ CURLcode Curl_connected_proxy(struct connectdata *conn)
 {
   CURLcode result = CURLE_OK;
   struct SessionHandle *data = conn->data;
+
+  if(conn->bits.tcpconnect)
+    /* allow this to get called again from the multi interface when TCP is
+       found connected in the state machine, even though it has already been
+       called if the connection happened "instantly" */
+    return CURLE_OK;
 
   switch(data->set.proxytype) {
 #ifndef CURL_DISABLE_PROXY
