@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.322 2009-05-11 01:16:28 yangtse Exp $
+# $Id: runtests.pl,v 1.323 2009-05-11 11:39:42 bagder Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2799,7 +2799,7 @@ while(@ARGV) {
         # keep stdout and stderr files after tests
         $keepoutfiles=1;
     }
-    elsif($ARGV[0] eq "-h") {
+    elsif(($ARGV[0] eq "-h") || ($ARGV[0] eq "--help")) {
         # show help text
         print <<EOHELP
 Usage: runtests.pl [options] [test selection(s)]
