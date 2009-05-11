@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.409 2009-05-09 12:08:24 yangtse Exp $
+# $Id: configure.ac,v 1.410 2009-05-11 00:28:18 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -269,7 +269,6 @@ esac
 
 CURL_CHECK_COMPILER_HALT_ON_ERROR
 CURL_CHECK_COMPILER_ARRAY_SIZE_NEGATIVE
-CURL_CHECK_COMPILER_STRUCT_MEMBER_SIZE
 
 dnl **********************************************************************
 dnl Compilation based checks should not be done before this point.
