@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.512 2009-05-11 11:49:39 bagder Exp $
+ * $Id: ftp.c,v 1.513 2009-05-11 12:13:41 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3040,11 +3040,6 @@ static CURLcode ftp_connect(struct connectdata *conn,
                                  bool *done) /* see description above */
 {
   CURLcode result;
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_PROXY)
-  /* for FTP over HTTP proxy */
-  struct HTTP http_proxy;
-  struct FTP *ftp_save;
-#endif   /* CURL_DISABLE_HTTP */
   struct ftp_conn *ftpc = &conn->proto.ftpc;
   struct SessionHandle *data=conn->data;
 
@@ -3065,6 +3060,10 @@ static CURLcode ftp_connect(struct connectdata *conn,
 
 #if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_PROXY)
   if(conn->bits.tunnel_proxy && conn->bits.httpproxy) {
+    /* for FTP over HTTP proxy */
+    struct HTTP http_proxy;
+    struct FTP *ftp_save;
+
     /* BLOCKING */
     /* We want "seamless" FTP operations through HTTP proxy tunnel */
 
