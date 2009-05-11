@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.416 2009-05-05 13:04:33 yangtse Exp $
+ * $Id: http.c,v 1.417 2009-05-11 08:55:59 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -369,6 +369,8 @@ CURLcode Curl_http_perhapsrewind(struct connectdata *conn)
     case HTTPREQ_POST:
       if(data->set.postfieldsize != -1)
         expectsend = data->set.postfieldsize;
+      else if(data->set.postfields)
+        expectsend = (curl_off_t)strlen(data->set.postfields);
       break;
     case HTTPREQ_PUT:
       if(data->set.infilesize != -1)
