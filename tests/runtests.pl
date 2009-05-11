@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.321 2009-05-10 21:20:15 bagder Exp $
+# $Id: runtests.pl,v 1.322 2009-05-11 01:16:28 yangtse Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -2370,7 +2370,8 @@ sub singletest {
     }
     else {
         if(!$short) {
-            printf "\ncurl returned $cmdres, %d was expected\n", $errorcode;
+            printf("\n%s returned $cmdres, %d was expected\n",
+                   (!$tool)?"curl":$tool, $errorcode);
         }
         logmsg " exit FAILED\n";
         return 1;
