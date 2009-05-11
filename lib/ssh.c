@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.130 2009-04-28 11:19:11 bagder Exp $
+ * $Id: ssh.c,v 1.131 2009-05-11 07:53:38 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2102,10 +2102,10 @@ static int ssh_perform_getsock(const struct connectdata *conn,
 
   sock[0] = conn->sock[FIRSTSOCKET];
 
-  if(conn->proto.sshc.waitfor & KEEP_READ)
+  if(conn->proto.sshc.waitfor & KEEP_RECV)
     bitmap |= GETSOCK_READSOCK(FIRSTSOCKET);
 
-  if(conn->proto.sshc.waitfor & KEEP_WRITE)
+  if(conn->proto.sshc.waitfor & KEEP_SEND)
     bitmap |= GETSOCK_WRITESOCK(FIRSTSOCKET);
 
   return bitmap;
@@ -2151,8 +2151,8 @@ static void ssh_block2waitfor(struct connectdata *conn, bool block)
   int dir;
   if(block && (dir = libssh2_session_block_directions(sshc->ssh_session))) {
     /* translate the libssh2 define bits into our own bit defines */
-    sshc->waitfor = ((dir&LIBSSH2_SESSION_BLOCK_INBOUND)?KEEP_READ:0) |
-      ((dir&LIBSSH2_SESSION_BLOCK_OUTBOUND)?KEEP_WRITE:0);
+    sshc->waitfor = ((dir&LIBSSH2_SESSION_BLOCK_INBOUND)?KEEP_RECV:0) |
+      ((dir&LIBSSH2_SESSION_BLOCK_OUTBOUND)?KEEP_SEND:0);
   }
   else
     /* It didn't block or libssh2 didn't reveal in which direction, put back

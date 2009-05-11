@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.197 2009-05-08 10:59:40 bagder Exp $
+ * $Id: multi.c,v 1.198 2009-05-11 07:53:38 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1299,13 +1299,13 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
 
       k = &easy->easy_handle->req;
 
-      if(!(k->keepon & KEEP_READ)) {
-        /* We're done reading */
+      if(!(k->keepon & KEEP_RECV)) {
+        /* We're done receiving */
         easy->easy_conn->readchannel_inuse = FALSE;
       }
 
-      if(!(k->keepon & KEEP_WRITE)) {
-        /* We're done writing */
+      if(!(k->keepon & KEEP_SEND)) {
+        /* We're done sending */
         easy->easy_conn->writechannel_inuse = FALSE;
       }
 
