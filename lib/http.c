@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.417 2009-05-11 08:55:59 bagder Exp $
+ * $Id: http.c,v 1.418 2009-05-11 09:55:28 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -97,6 +97,7 @@
 #include "strtoofft.h"
 #include "multiif.h"
 #include "rawstr.h"
+#include "content_encoding.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -1916,6 +1917,8 @@ CURLcode Curl_http_done(struct connectdata *conn,
   struct SessionHandle *data = conn->data;
   struct HTTP *http =data->state.proto.http;
   (void)premature; /* not used */
+
+  Curl_unencode_cleanup(conn);
 
   /* set the proper values (possibly modified on POST) */
   conn->fread_func = data->set.fread_func; /* restore */
