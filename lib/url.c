@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.796 2009-05-11 11:45:56 bagder Exp $
+ * $Id: url.c,v 1.797 2009-05-12 07:38:31 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2853,9 +2853,7 @@ CURLcode Curl_connected_proxy(struct connectdata *conn)
     /* do nothing here. handled later. */
     break;
   default:
-    failf(data, "unknown proxytype option given");
-      result = CURLE_COULDNT_CONNECT;
-      break;
+    break;
   } /* switch proxytype */
 
   return result;
