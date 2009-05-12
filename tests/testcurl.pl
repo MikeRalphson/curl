@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.73 2009-04-30 17:06:58 yangtse Exp $
+# $Id: testcurl.pl,v 1.74 2009-05-12 11:24:29 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.73 $';
+$version='$Revision: 1.74 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -166,7 +166,8 @@ if (($^O eq 'MSWin32') &&
   $confsuffix = '-win32';
 }
 
-
+$ENV{LC_ALL}="C" if (($ENV{LC_ALL}) && ($ENV{LC_ALL} !~ /^C$/));
+$ENV{LC_CTYPE}="C" if (($ENV{LC_CTYPE}) && ($ENV{LC_CTYPE} !~ /^C$/));
 $ENV{LANG}="C";
 
 sub rmtree($) {
