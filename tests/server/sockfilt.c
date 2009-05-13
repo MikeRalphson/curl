@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.58 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: sockfilt.c,v 1.59 2009-05-13 04:16:00 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -558,9 +558,9 @@ static bool juggle(curl_socket_t *sockfdp,
     else if(!memcmp("PORT", buffer, 4)) {
       /* Question asking us what PORT number we are listening to.
          Replies to PORT with "IPv[num]/[port]" */
-      sprintf((char *)buffer, "%s/%d\n", ipv_inuse, (int)port);
+      sprintf((char *)buffer, "%s/%hu\n", ipv_inuse, port);
       buffer_len = (ssize_t)strlen((char *)buffer);
-      snprintf(data, sizeof(data), "PORT\n%04x\n", buffer_len);
+      snprintf(data, sizeof(data), "PORT\n%04zx\n", buffer_len);
       if(!write_stdout(data, 10))
         return FALSE;
       if(!write_stdout(buffer, buffer_len))
@@ -660,7 +660,7 @@ static bool juggle(curl_socket_t *sockfdp,
       return TRUE;
     }
 
-    snprintf(data, sizeof(data), "DATA\n%04x\n", nread_socket);
+    snprintf(data, sizeof(data), "DATA\n%04zx\n", nread_socket);
     if(!write_stdout(data, 10))
       return FALSE;
     if(!write_stdout(buffer, nread_socket))
