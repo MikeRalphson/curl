@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.59 2009-05-13 04:16:00 yangtse Exp $
+ * $Id: sockfilt.c,v 1.60 2009-05-13 19:20:45 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -688,13 +688,16 @@ static curl_socket_t sockdaemon(curl_socket_t sock,
   int delay= 20;
   int attempt = 0;
   int error = 0;
+  curl_socklen_t optlen;
 
   do {
     attempt++;
+    optlen = sizeof(flag);
     rc = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
-         (void *)&flag, sizeof(flag));
+         (void *)&flag, optlen);
     if(rc) {
       error = SOCKERRNO;
+      logmsg("setsockopt/SO_REUSEADDR failed: (%d) %s", error, strerror(error));
       if(maxretr) {
         rc = wait_ms(delay);
         if(rc) {
