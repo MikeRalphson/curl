@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.50 2009-05-07 13:58:15 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.51 2009-05-15 09:35:46 yangtse Exp $
 #
 # Copyright (C) 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 50
+# serial 51
 
 
 dnl CARES_CHECK_COMPILER
@@ -901,10 +901,6 @@ AC_DEFUN([CARES_SET_COMPILER_WARNING_OPTS], [
         if test "$want_warnings" = "yes"; then
           dnl Issue all warnings
           tmp_CFLAGS="$tmp_CFLAGS +w1"
-          dnl Due to the HP-UX socklen_t issue it is insane to use the +w1
-          dnl warning level. Until the issue is somehow fixed we will just
-          dnl use the +w2 warning level.
-          dnl tmp_CFLAGS="$tmp_CFLAGS +w2"
         fi
         ;;
         #
