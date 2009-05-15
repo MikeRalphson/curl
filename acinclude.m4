@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.233 2009-05-07 13:58:15 yangtse Exp $
+# $Id: acinclude.m4,v 1.234 2009-05-15 01:08:17 yangtse Exp $
 #***************************************************************************
 
 
@@ -120,7 +120,7 @@ AC_DEFUN([CURL_CHECK_LIB_XNET], [
     AC_LANG_SOURCE([[
 int main (void)
 {
-#if defined(__hpux) && defined(_XOPEN_SOURCE) && defined(_XOPEN_SOURCE >= 600)
+#if defined(__hpux) && defined(_XOPEN_SOURCE) && (_XOPEN_SOURCE >= 600)
   return 0;
 #elif defined(__hpux) && defined(_XOPEN_SOURCE_EXTENDED)
   return 0;
