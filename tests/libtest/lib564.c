@@ -5,10 +5,8 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib564.c,v 1.1 2009-05-11 11:43:55 bagder Exp $
+ * $Id: lib564.c,v 1.2 2009-05-15 10:16:33 yangtse Exp $
  */
-
-/* used for test case 533, 534 and 535 */
 
 #include "test.h"
 
@@ -29,7 +27,6 @@ int test(char *URL)
   int running;
   char done=FALSE;
   CURLM *m;
-  int current=0;
   struct timeval ml_start;
   struct timeval mp_start;
   char ml_timedout = FALSE;
