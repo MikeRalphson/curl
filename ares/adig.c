@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.36 2008-10-17 19:04:53 yangtse Exp $
+ * $Id: adig.c,v 1.37 2009-05-17 17:11:29 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -187,6 +187,13 @@ int main(int argc, char **argv)
   WSAStartup(wVersionRequested, &wsaData);
 #endif
 
+  status = ares_library_init(ARES_LIB_INIT_ALL);
+  if (status != ARES_SUCCESS)
+    {
+      fprintf(stderr, "ares_library_init: %s\n", ares_strerror(status));
+      return 1;
+    }
+
   options.flags = ARES_FLAG_NOCHECKRESP;
   options.servers = NULL;
   options.nservers = 0;
@@ -324,6 +331,8 @@ int main(int argc, char **argv)
     }
 
   ares_destroy(channel);
+
+  ares_library_cleanup();
 
 #ifdef USE_WINSOCK
   WSACleanup();

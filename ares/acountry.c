@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.12 2009-03-11 05:09:03 yangtse Exp $
+ * $Id: acountry.c,v 1.13 2009-05-17 17:11:28 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -116,6 +116,13 @@ int main(int argc, char **argv)
   WSAStartup(wVersionRequested, &wsaData);
 #endif
 
+  status = ares_library_init(ARES_LIB_INIT_ALL);
+  if (status != ARES_SUCCESS)
+    {
+      fprintf(stderr, "ares_library_init: %s\n", ares_strerror(status));
+      return 1;
+    }
+
   while ((ch = ares_getopt(argc, argv, "dvh?")) != -1)
     switch (ch)
       {
@@ -177,6 +184,8 @@ int main(int argc, char **argv)
 
   wait_ares(channel);
   ares_destroy(channel);
+
+  ares_library_cleanup();
 
 #if defined(WIN32) && !defined(WATT32)
   WSACleanup();
