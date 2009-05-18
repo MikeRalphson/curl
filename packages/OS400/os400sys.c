@@ -18,12 +18,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: os400sys.c,v 1.7 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: os400sys.c,v 1.8 2009-05-18 10:46:17 patrickm Exp $
  *
  ***************************************************************************/
 
 /* OS/400 additional support. */
 
+#include "curlbuild.h"
 #include "config-os400.h"       /* Not setup.h: we only need some defines. */
 
 #include <sys/types.h>

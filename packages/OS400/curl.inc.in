@@ -18,7 +18,7 @@
       * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF
       * ANY KIND, either express or implied.
       *
-      * $Id: curl.inc.in,v 1.20 2009-05-06 14:04:05 yangtse Exp $
+      * $Id: curl.inc.in,v 1.21 2009-05-18 10:46:17 patrickm Exp $
       *
       **************************************************************************
       *
@@ -111,6 +111,13 @@
      d                 c                   X'00000020'
      d HTTPPOST_CALLBACK...
      d                 c                   X'00000040'
+      *
+     d CURL_SEEKFUNC_OK...
+     d                 c                   0
+     d CURL_SEEKFUNC_FAIL...
+     d                 c                   1
+     d CURL_SEEKFUNC_CANTSEEK...
+     d                 c                   2
       *
      d CURL_READFUNC_ABORT...
      d                 c                   X'10000000'
