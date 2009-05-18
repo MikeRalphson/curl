@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.140 2009-05-17 18:22:39 gknauf Exp $
+ * $Id: easy.c,v 1.141 2009-05-18 00:25:48 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -280,7 +280,7 @@ CURLcode curl_global_init(long flags)
   idna_init();
 #endif
 
-#if defined(USE_ARES) && defined(ARES_VERSION) && (ARES_VERSION >= 0x010601)
+#ifdef CARES_HAVE_ARES_LIBRARY_INIT
   if(ares_library_init(ARES_LIB_INIT_ALL)) {
     DEBUGF(fprintf(stderr, "Error: ares_library_init failed\n"));
     return CURLE_FAILED_INIT;
@@ -340,7 +340,7 @@ void curl_global_cleanup(void)
   if(init_flags & CURL_GLOBAL_SSL)
     Curl_ssl_cleanup();
 
-#if defined(USE_ARES) && defined(ARES_VERSION) && (ARES_VERSION >= 0x010601)
+#ifdef CARES_HAVE_ARES_LIBRARY_CLEANUP
   ares_library_cleanup();
 #endif
 
