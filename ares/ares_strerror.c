@@ -1,4 +1,4 @@
-/* $Id: ares_strerror.c,v 1.13 2009-05-17 17:11:29 yangtse Exp $ */
+/* $Id: ares_strerror.c,v 1.14 2009-05-18 01:25:20 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -46,8 +46,7 @@ const char *ares_strerror(int code)
     "Illegal hints flags specified",
     "Error loading iphlpapi.dll",
     "Error loading advapi32.dll",
-    "Unknown GetNetworkParams function address",
-    "Unknown SystemFunction036 function address"
+    "Could not find GetNetworkParams function"
   };
 
   if(code >= 0 && code < (int)(sizeof(errtext) / sizeof(*errtext)))
