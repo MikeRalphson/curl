@@ -1,4 +1,4 @@
-/* $Id: ares_library_init.c,v 1.2 2009-05-18 01:25:20 yangtse Exp $ */
+/* $Id: ares_library_init.c,v 1.3 2009-05-18 15:49:32 yangtse Exp $ */
 
 #include "setup.h"
 
@@ -41,22 +41,19 @@ static int ares_win32_init(void)
       return ARES_EADDRGetNetworkParams;
     }
 
+  /*
+   * When advapi32.dll is unavailable or advapi32.dll has no SystemFunction036,
+   * also known as RtlGenRandom, which is the case for Windows versions prior
+   * to WinXP then c-ares uses portable rand() function. Then don't error here.
+   */
+
   hnd_advapi32 = 0;
   hnd_advapi32 = LoadLibrary("advapi32.dll");
-  if (!hnd_advapi32)
+  if (hnd_advapi32)
     {
-      FreeLibrary(hnd_iphlpapi);
-      return ARES_ELOADADVAPI32;
+      fpSystemFunction036 = (fpSystemFunction036_t)
+        GetProcAddress(hnd_advapi32, "SystemFunction036");
     }
-
-  fpSystemFunction036 = (fpSystemFunction036_t)
-    GetProcAddress(hnd_advapi32, "SystemFunction036");
-
-  /*
-   * Intentionally avoid checking if the address of SystemFunction036, a.k.a.
-   * RtlGenRandom, has been located or not. This function is only available on
-   * WinXP and later. When unavailable c-ares uses portable rand() function.
-   */
 
 #endif
   return ARES_SUCCESS;

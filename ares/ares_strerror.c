@@ -1,4 +1,4 @@
-/* $Id: ares_strerror.c,v 1.14 2009-05-18 01:25:20 yangtse Exp $ */
+/* $Id: ares_strerror.c,v 1.15 2009-05-18 15:49:32 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -45,7 +45,6 @@ const char *ares_strerror(int code)
     "Given hostname is not numeric",
     "Illegal hints flags specified",
     "Error loading iphlpapi.dll",
-    "Error loading advapi32.dll",
     "Could not find GetNetworkParams function"
   };
 
