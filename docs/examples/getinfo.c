@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: getinfo.c,v 1.2 2004-11-22 16:24:46 bagder Exp $
+ * $Id: getinfo.c,v 1.3 2009-05-18 12:33:51 yangtse Exp $
  */
 
 #include <stdio.h>
@@ -40,3 +40,4 @@ int main(void)
   }
   return 0;
 }
+
