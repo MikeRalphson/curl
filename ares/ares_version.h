@@ -1,4 +1,4 @@
-/* $Id: ares_version.h,v 1.15 2008-12-09 22:41:36 bagder Exp $ */
+/* $Id: ares_version.h,v 1.16 2009-05-18 00:21:02 yangtse Exp $ */
 
 #ifndef ARES__VERSION_H
 #define ARES__VERSION_H
@@ -11,15 +11,12 @@
                        (ARES_VERSION_PATCH))
 #define ARES_VERSION_STR "1.6.1-CVS"
 
-#ifdef  __cplusplus
-extern "C" {
-#endif
-
-const char *ares_version(int *version);
-
-#ifdef  __cplusplus
-}
+#if (ARES_VERSION >= 0x010601)
+#  define CARES_HAVE_ARES_LIBRARY_INIT 1
+#  define CARES_HAVE_ARES_LIBRARY_CLEANUP 1
+#else
+#  undef CARES_HAVE_ARES_LIBRARY_INIT
+#  undef CARES_HAVE_ARES_LIBRARY_CLEANUP
 #endif
 
 #endif
-
