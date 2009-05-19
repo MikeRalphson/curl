@@ -1,5 +1,5 @@
 ############################################################
-# $Id: Makefile.b32,v 1.20 2009-05-18 12:33:51 yangtse Exp $
+# $Id: Makefile.b32,v 1.21 2009-05-19 12:12:22 yangtse Exp $
 #
 #  Makefile.b32 - Borland's C++ Compiler 5.X
 #
@@ -87,5 +87,4 @@ $(LIBCURL_DLL) $(LIBCURL_IMPLIB): $(OBJECTS) $(LINKLIB)
 	@-$(RM) $(LIBCURL_IMPLIB)
 	$(LD) $(LDFLAGS) -e$(LIBCURL_DLL) $**
 	$(IMPLIB) $(LIBCURL_IMPLIB) $(LIBCURL_DLL)
-
 

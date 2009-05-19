@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.37 2009-05-18 12:33:51 yangtse Exp $
+# $Id: Makefile.am,v 1.38 2009-05-19 12:12:22 yangtse Exp $
 #
 
 AUTOMAKE_OPTIONS = foreign no-dependencies
@@ -38,5 +38,4 @@ pdf: $(PDFPAGES)
 	ps2pdf $$foo.ps $@; \
 	rm $$foo.ps; \
 	echo "converted $< to $@")
-
 

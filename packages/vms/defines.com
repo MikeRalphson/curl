@@ -1,4 +1,4 @@
-$! $Id: defines.com,v 1.5 2009-05-18 12:33:51 yangtse Exp $
+$! $Id: defines.com,v 1.6 2009-05-19 12:12:22 yangtse Exp $
 $! DEFINES.COM
 $! Define where to look for the curl include directory, where to put the 
 $! exes and objects, and the openssl stuff.  If you have hp's SSL product 
@@ -11,7 +11,6 @@ $! probably fail, or define CURL_BUILD_NOHPSSL to anything.
 $!
 $!  8-FEB-2005, MSK, changed the openssl, libssl and libcrypto defines
 $!                   to not override previously defined logicals.
-$!
 $!
 $ proc = f$environment( "PROCEDURE")
 $ thisdev = f$parse( proc,,,"DEVICE")

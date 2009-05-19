@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.am,v 1.2 2009-05-18 12:33:51 yangtse Exp $
+# $Id: Makefile.am,v 1.3 2009-05-19 12:12:22 yangtse Exp $
 #
 
 PKGADD_PKG="@PKGADD_PKG@"
@@ -37,4 +37,3 @@ package:
 	mkdir ./tmp
 	pkgmk -o -d ./tmp
 	pkgtrans -so ./tmp ${top_srcdir}/../${PKGADD_FILE} ${PKGADD_PKG}
-

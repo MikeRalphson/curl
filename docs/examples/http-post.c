@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: http-post.c,v 1.3 2009-05-18 12:33:51 yangtse Exp $
+ * $Id: http-post.c,v 1.4 2009-05-19 12:12:22 yangtse Exp $
  */
 
 #include <stdio.h>
@@ -33,4 +33,3 @@ int main(void)
   }
   return 0;
 }
-

@@ -1,4 +1,4 @@
-;; $Id: sample.emacs,v 1.3 2009-05-18 12:33:51 yangtse Exp $ -*- emacs-lisp -*-
+;; $Id: sample.emacs,v 1.4 2009-05-19 12:12:22 yangtse Exp $ -*- emacs-lisp -*-
 
 ;; This file was contributed by Mats Lidell
 
@@ -44,4 +44,3 @@ nil HOOK is executed and the rest of the hooks are ignored."
 	  '((string-match "other" (buffer-file-name)) . other-c-mode-common-hook))
 ;; Make sure the default style is appended.
 (add-hook 'my-style-selective-mode-hook '(t . my-c-mode-common-hook) t)
-
