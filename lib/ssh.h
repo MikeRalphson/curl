@@ -20,23 +20,13 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.h,v 1.18 2009-05-09 15:32:59 yangtse Exp $
+ * $Id: ssh.h,v 1.19 2009-05-19 23:21:25 gknauf Exp $
  ***************************************************************************/
 
 #ifdef USE_LIBSSH2
 
 #if !defined(LIBSSH2_VERSION_NUM) || (LIBSSH2_VERSION_NUM < 0x001000)
 #  error "SCP/SFTP protocols require libssh2 0.16 or later"
-#endif
-
-#if defined(LIBSSH2_VERSION_NUM) && (LIBSSH2_VERSION_NUM >= 0x001300)
-/* libssh2 0.19 was the planned release version for a while before it was
-   decided to instead become 1.0. Thus >= 0x001300 should still work fine
-   for snapshots done during the 0.19 days as well as things released once
-   it was bumped to 1.0 */
-#  define HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS 1
-#else
-#  undef HAVE_LIBSSH2_SESSION_BLOCK_DIRECTIONS
 #endif
 
 #if defined(LIBSSH2_VERSION_NUM) && (LIBSSH2_VERSION_NUM >= 0x010000)
