@@ -1,4 +1,4 @@
-/* $Id: ares_library_init.c,v 1.3 2009-05-18 15:49:32 yangtse Exp $ */
+/* $Id: ares_library_init.c,v 1.4 2009-05-19 15:19:03 yangtse Exp $ */
 
 #include "setup.h"
 
@@ -38,7 +38,7 @@ static int ares_win32_init(void)
   if (!fpGetNetworkParams)
     {
       FreeLibrary(hnd_iphlpapi);
-      return ARES_EADDRGetNetworkParams;
+      return ARES_EADDRGETNETWORKPARAMS;
     }
 
   /*
