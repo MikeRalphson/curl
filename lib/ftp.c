@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.514 2009-05-12 18:56:33 bagder Exp $
+ * $Id: ftp.c,v 1.515 2009-05-19 20:54:31 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3251,9 +3251,10 @@ static CURLcode ftp_done(struct connectdata *conn, CURLcode status,
       /* Note that we keep "use" set to TRUE since that (next) connection is
          still requested to use SSL */
     }
-    sclose(conn->sock[SECONDARYSOCKET]);
-
-    conn->sock[SECONDARYSOCKET] = CURL_SOCKET_BAD;
+    if(CURL_SOCKET_BAD != conn->sock[SECONDARYSOCKET]) {
+      sclose(conn->sock[SECONDARYSOCKET]);
+      conn->sock[SECONDARYSOCKET] = CURL_SOCKET_BAD;
+    }
   }
 
   if((ftp->transfer == FTPTRANSFER_BODY) && ftpc->ctl_valid &&
