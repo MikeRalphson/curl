@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.77 2009-05-21 13:23:49 gknauf Exp $
+# $Id: testcurl.pl,v 1.78 2009-05-21 14:08:53 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.77 $';
+$version='$Revision: 1.78 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -666,7 +666,6 @@ if (!$crosscompile || (($extvercmd ne '') && (-x $extvercmd))) {
   while(<F>) {
     s/\r//;
     print;
-    print LOG;
   }
   close(F);
 }
