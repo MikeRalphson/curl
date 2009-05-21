@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.76 2009-05-21 13:02:34 gknauf Exp $
+# $Id: testcurl.pl,v 1.77 2009-05-21 13:23:49 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.76 $';
+$version='$Revision: 1.77 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -624,11 +624,6 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
 if ($configurebuild) {
   logit "$make -i";
   open(F, "$make -i 2>&1 |") or die;
-  while (<F>) {
-    s/$pwd//g;
-    print;
-  }
-  close(F);
 }
 else {
   logit "$make -i $targetos";
@@ -643,12 +638,12 @@ else {
   else {
     open(F, "$make -i $targetos 2>&1 |") or die;
   }
-  while (<F>) {
-    s/$pwd//g;
-    print;
-  }
-  close(F);
 }
+while (<F>) {
+  s/$pwd//g;
+  print;
+}
+close(F);
 
 if (-f "lib/libcurl$libext") {
   logit "libcurl was created fine (libcurl$libext)";
