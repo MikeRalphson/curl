@@ -1,4 +1,4 @@
-/* $Id: ares_library_init.c,v 1.5 2009-05-19 15:23:25 yangtse Exp $ */
+/* $Id: ares_library_init.c,v 1.6 2009-05-26 18:00:14 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -119,4 +119,15 @@ void ares_library_cleanup(void)
 
   ares_init_flags = ARES_LIB_INIT_NONE;
 }
+
+
+int ares_library_initialized(void)
+{
+#ifdef WIN32
+  if (!ares_initialized)
+    return ARES_ENOTINITIALIZED;
+#endif
+  return ARES_SUCCESS;
+}
+
 

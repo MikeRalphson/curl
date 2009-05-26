@@ -1,4 +1,4 @@
-/* $Id: ares_strerror.c,v 1.15 2009-05-18 15:49:32 yangtse Exp $ */
+/* $Id: ares_strerror.c,v 1.16 2009-05-26 18:00:14 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -44,6 +44,7 @@ const char *ares_strerror(int code)
     "Illegal flags specified",
     "Given hostname is not numeric",
     "Illegal hints flags specified",
+    "c-ares library initialization not yet performed",
     "Error loading iphlpapi.dll",
     "Could not find GetNetworkParams function"
   };

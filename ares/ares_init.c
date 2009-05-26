@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.90 2009-05-17 17:11:29 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.91 2009-05-26 18:00:14 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -128,6 +128,9 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   if (env)
     curl_memlimit(atoi(env));
 #endif
+
+  if (ares_library_initialized() != ARES_SUCCESS)
+    return ARES_ENOTINITIALIZED;
 
   channel = malloc(sizeof(struct ares_channeldata));
   if (!channel) {
