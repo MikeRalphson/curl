@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.410 2009-05-11 00:28:18 yangtse Exp $
+# $Id: configure.ac,v 1.411 2009-05-26 14:50:45 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2529,6 +2529,10 @@ squeeze LIBS
 squeeze CURL_LIBS
 squeeze LIBCURL_LIBS
 squeeze TEST_SERVER_LIBS
+
+if test "x$want_debug" = "xyes" && test "x$HAVE_ARES" = "x1"; then
+  ac_configure_args="$ac_configure_args --enable-curldebug"
+fi
 
 AC_CONFIG_FILES([Makefile \
            docs/Makefile \
