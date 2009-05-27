@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.798 2009-05-17 14:47:50 bagder Exp $
+ * $Id: url.c,v 1.799 2009-05-27 21:45:12 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -275,8 +275,14 @@ static CURLcode setstropt_userpwd(char *option, char **user_storage,
   char* separator;
   CURLcode result = CURLE_OK;
 
-  if(!option)
-    return result;
+  if(!option) {
+    /* we treat a NULL passed in as a hint to clear existing info */
+    Curl_safefree(*user_storage);
+    *user_storage = (char *) NULL;
+    Curl_safefree(*pwd_storage);
+    *pwd_storage = (char *) NULL;
+    return CURLE_OK;
+  }
 
   separator = strchr(option, ':');
   if (separator != NULL) {
