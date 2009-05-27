@@ -1,4 +1,4 @@
-/* $Id: ares_library_init.c,v 1.6 2009-05-26 18:00:14 yangtse Exp $ */
+/* $Id: ares_library_init.c,v 1.7 2009-05-27 19:25:51 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -90,10 +90,13 @@ static void ares_win32_cleanup(void)
 int ares_library_init(int flags)
 {
   int res;
+  char *leekme;
 
   if (ares_initialized)
     return ARES_SUCCESS;
   ares_initialized++;
+
+  leekme = malloc(32);
 
   if (flags & ARES_LIB_INIT_WIN32)
     {
