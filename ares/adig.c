@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.37 2009-05-17 17:11:29 yangtse Exp $
+ * $Id: adig.c,v 1.38 2009-05-28 16:43:17 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -82,6 +82,11 @@
 /* Mac OS X portability check */
 #ifndef T_SRV
 #define T_SRV 33 /* server selection */
+#endif
+
+/* AIX portability check */
+#ifndef T_NAPTR
+#define T_NAPTR 35 /* naming authority pointer */
 #endif
 
 struct nv {
