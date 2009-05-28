@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.418 2009-05-11 09:55:28 bagder Exp $
+ * $Id: http.c,v 1.419 2009-05-28 16:18:25 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -524,7 +524,7 @@ output_auth_headers(struct connectdata *conn,
     &data->state.proxyneg:&data->state.negotiate;
 #endif
 
-#ifndef CURL_DISABLE_CRYPTO_AUTH
+#ifdef CURL_DISABLE_CRYPTO_AUTH
   (void)request;
   (void)path;
 #endif
