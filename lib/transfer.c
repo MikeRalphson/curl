@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.431 2009-05-11 07:53:38 bagder Exp $
+ * $Id: transfer.c,v 1.432 2009-05-28 16:19:03 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -130,18 +130,21 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
   struct SessionHandle *data = conn->data;
   size_t buffersize = (size_t)bytes;
   int nread;
+#ifdef CURL_DOES_CONVERSIONS
   bool sending_http_headers = FALSE;
 
-  if(data->req.upload_chunky) {
-    /* if chunked Transfer-Encoding */
-    buffersize -= (8 + 2 + 2);   /* 32bit hex + CRLF + CRLF */
-    data->req.upload_fromhere += (8 + 2); /* 32bit hex + CRLF */
-  }
   if((conn->protocol&PROT_HTTP) &&
      (data->state.proto.http->sending == HTTPSEND_REQUEST)) {
     /* We're sending the HTTP request headers, not the data.
        Remember that so we don't re-translate them into garbage. */
     sending_http_headers = TRUE;
+  }
+#endif
+
+  if(data->req.upload_chunky) {
+    /* if chunked Transfer-Encoding */
+    buffersize -= (8 + 2 + 2);   /* 32bit hex + CRLF + CRLF */
+    data->req.upload_fromhere += (8 + 2); /* 32bit hex + CRLF */
   }
 
   /* this function returns a size_t, so we typecast to int to prevent warnings
