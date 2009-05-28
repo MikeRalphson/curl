@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.48 2009-05-27 22:01:04 bagder Exp $
+ * $Id: nss.c,v 1.49 2009-05-28 21:32:31 danf Exp $
  ***************************************************************************/
 
 /*
@@ -157,7 +157,7 @@ static const cipher_s cipherlist[] = {
 #endif
 };
 
-/* following ciphers are new in NSS 3.4 and not enabled by default, therefor
+/* following ciphers are new in NSS 3.4 and not enabled by default, therefore
    they are enabled explicitly */
 static const int enable_ciphers_by_default[] = {
   TLS_DHE_DSS_WITH_AES_128_CBC_SHA,
