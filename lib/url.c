@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.800 2009-05-28 16:18:25 yangtse Exp $
+ * $Id: url.c,v 1.801 2009-05-29 07:43:43 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -1842,14 +1842,14 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     break;
   case CURLOPT_SSLKEY:
     /*
-     * String that holds file name of the SSL certificate to use
+     * String that holds file name of the SSL key to use
      */
     result = setstropt(&data->set.str[STRING_KEY],
                        va_arg(param, char *));
     break;
   case CURLOPT_SSLKEYTYPE:
     /*
-     * String that holds file type of the SSL certificate to use
+     * String that holds file type of the SSL key to use
      */
     result = setstropt(&data->set.str[STRING_KEY_TYPE],
                        va_arg(param, char *));
