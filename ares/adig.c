@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.38 2009-05-28 16:43:17 yangtse Exp $
+ * $Id: adig.c,v 1.39 2009-05-29 13:19:51 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -219,9 +219,10 @@ int main(int argc, char **argv)
               if (strcmp(flags[i].name, optarg) == 0)
                 break;
             }
-          if (i == nflags)
+          if (i < nflags)
+            options.flags |= flags[i].value;
+          else
             usage();
-          options.flags |= flags[i].value;
           break;
 
         case 's':
@@ -256,9 +257,10 @@ int main(int argc, char **argv)
               if (strcasecmp(classes[i].name, optarg) == 0)
                 break;
             }
-          if (i == nclasses)
+          if (i < nclasses)
+            dnsclass = classes[i].value;
+          else
             usage();
-          dnsclass = classes[i].value;
           break;
 
         case 't':
@@ -268,9 +270,10 @@ int main(int argc, char **argv)
               if (strcasecmp(types[i].name, optarg) == 0)
                 break;
             }
-          if (i == ntypes)
+          if (i < ntypes)
+            type = types[i].value;
+          else
             usage();
-          type = types[i].value;
           break;
 
         case 'T':
