@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.384 2009-05-28 21:32:31 danf Exp $
+ * $Id: curl.h,v 1.385 2009-05-30 00:07:50 danf Exp $
  ***************************************************************************/
 
 /*
@@ -70,7 +70,8 @@
    libc5-based Linux systems. Only include it on system that are known to
    require it! */
 #if defined(_AIX) || defined(__NOVELL_LIBC__) || defined(__NetBSD__) || \
-    defined(__minix) || defined(__SYMBIAN32__) || defined(__INTEGRITY)
+    defined(__minix) || defined(__SYMBIAN32__) || defined(__INTEGRITY) || \
+    defined(ANDROID)
 #include <sys/select.h>
 #endif
 
