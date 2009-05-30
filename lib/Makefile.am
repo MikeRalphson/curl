@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.146 2009-05-08 18:55:43 yangtse Exp $
+# $Id: Makefile.am,v 1.147 2009-05-30 15:56:42 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -103,12 +103,20 @@ if MIMPURE
 MIMPURE = -mimpure-text
 endif
 
+if USE_EMBEDDED_ARES
+EMBEDDEDARES = ../ares/libcares.la
+else
+EMBEDDEDARES =
+endif
+
 libcurl_la_LDFLAGS = $(UNDEF) $(VERSIONINFO) $(MIMPURE) $(LIBCURL_LIBS)
 
 # Makefile.inc provides the CSOURCES and HHEADERS defines
 include Makefile.inc
 
 libcurl_la_SOURCES = $(CSOURCES) $(HHEADERS)
+
+libcurl_la_LIBADD = $(EMBEDDEDARES)
 
 WIN32SOURCES = $(CSOURCES)
 WIN32HEADERS = $(HHEADERS) config-win32.h
