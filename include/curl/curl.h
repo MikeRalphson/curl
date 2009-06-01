@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.385 2009-05-30 00:07:50 danf Exp $
+ * $Id: curl.h,v 1.386 2009-06-01 09:18:15 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -48,13 +48,8 @@
 #include <limits.h>
 
 /* The include stuff here below is mainly for time_t! */
-#ifdef vms
-# include <types.h>
-# include <time.h>
-#else
-# include <sys/types.h>
-# include <time.h>
-#endif /* defined (vms) */
+#include <sys/types.h>
+#include <time.h>
 
 #if defined(WIN32) && !defined(_WIN32_WCE) && !defined(__GNUC__) && \
   !defined(__CYGWIN__) || defined(__MINGW32__)
