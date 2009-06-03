@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.70 2009-06-03 00:57:18 yangtse Exp $
+# $Id: buildconf,v 1.71 2009-06-03 03:15:19 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -257,6 +257,7 @@ PERL=`findtool ${PERL:-perl}`
 # Remove files generated on previous buildconf/configure run.
 #
 for fname in .deps \
+    .libs \
     Makefile \
     Makefile.in \
     aclocal.m4 \
