@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.71 2009-06-03 03:15:19 yangtse Exp $
+# $Id: buildconf,v 1.72 2009-06-03 10:34:37 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -258,6 +258,10 @@ PERL=`findtool ${PERL:-perl}`
 #
 for fname in .deps \
     .libs \
+    *.la \
+    *.lo \
+    *.a \
+    *.o \
     Makefile \
     Makefile.in \
     aclocal.m4 \
@@ -268,17 +272,15 @@ for fname in .deps \
     config.guess \
     config.h \
     config.h.in \
-    config.lt \
     config.log \
+    config.lt \
     config.status \
     config.sub \
     configure \
     curl-config \
     curlbuild.h \
     depcomp \
-    libcares.la \
     libcares.pc \
-    libcurl.la \
     libcurl.pc \
     libtool \
     libtool.m4 \
