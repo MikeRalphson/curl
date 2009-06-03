@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.80 2009-05-21 15:18:26 gknauf Exp $
+# $Id: testcurl.pl,v 1.81 2009-06-03 00:07:46 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.80 $';
+$version='$Revision: 1.81 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -614,7 +614,7 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
   if (-f "libcares$libext") {
     logit "ares is now built successfully (libcares$libext)";
   } else {
-    logit "ares build failed (libares$libext)";
+    mydie "ares build failed (libcares$libext)";
   }
 
   # cd back to the curl build dir
