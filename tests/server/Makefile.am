@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.26 2009-04-29 00:38:08 yangtse Exp $
+# $Id: Makefile.am,v 1.27 2009-06-04 04:13:40 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -34,12 +34,19 @@ AUTOMAKE_OPTIONS = foreign nostdinc
 # $(top_builddir)/ares is for in-tree c-ares's generated ares_build.h file
 # $(top_srcdir)/ares is for in-tree c-ares's external include files
 
+if USE_EMBEDDED_ARES
 INCLUDES = -I$(top_builddir)/include \
            -I$(top_srcdir)/include   \
            -I$(top_builddir)/lib     \
            -I$(top_srcdir)/lib       \
            -I$(top_builddir)/ares    \
            -I$(top_srcdir)/ares
+else
+INCLUDES = -I$(top_builddir)/include \
+           -I$(top_srcdir)/include   \
+           -I$(top_builddir)/lib     \
+           -I$(top_srcdir)/lib
+endif
 
 # Makefile.inc provides the source defines (noinst_PROGRAMS, useful, *_SOURCES, and *_LDADD)
 include Makefile.inc
