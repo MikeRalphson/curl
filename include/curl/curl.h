@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.386 2009-06-01 09:18:15 yangtse Exp $
+ * $Id: curl.h,v 1.387 2009-06-04 19:11:11 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -73,7 +73,7 @@
 #ifndef _WIN32_WCE
 #include <sys/socket.h>
 #endif
-#if !defined(WIN32) && !defined(__WATCOMC__)
+#if !defined(WIN32) && !defined(__WATCOMC__) && !defined(__VXWORKS__)
 #include <sys/time.h>
 #endif
 #include <sys/types.h>
