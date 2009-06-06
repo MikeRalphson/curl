@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.75 2009-06-06 14:27:28 yangtse Exp $
+# $Id: buildconf,v 1.76 2009-06-06 14:30:47 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -227,8 +227,6 @@ if test $lt_status != "good"; then
 fi
 
 echo "buildconf: libtool version $lt_version (ok)"
-
-exit 0
 
 if test -f "$libtoolize"; then
   echo "buildconf: libtoolize found"
