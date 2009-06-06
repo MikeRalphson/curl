@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.77 2009-06-06 17:22:00 yangtse Exp $
+# $Id: buildconf,v 1.78 2009-06-06 20:24:58 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -227,6 +227,25 @@ if test $lt_status != "good"; then
 fi
 
 echo "buildconf: libtool version $lt_version (ok)"
+
+dbg1=`$libtool --version 2>/dev/null|head -n 1`
+dbg2=`$libtool --version 2>/dev/null|head -n 1|sed -e "s/(.*)//"`
+dbg3=`$libtool --version 2>/dev/null|head -n 1|sed -e "s/(.*)//" -e "s/^[^0-9]*//g"`
+dbg4=`$libtool --version 2>/dev/null|head -n 1|sed -e "s/(.*)//" -e "s/^[^0-9]*//g" -e "s/[- ].*//"`
+dbg5=`echo $dbg4|sed -e "s/\([a-z]*\)$//"`
+old_IFS=$IFS; IFS='.'; set $dbg5; IFS=$old_IFS
+dbg6=$1
+dbg7=$2
+dbg8=$3
+
+echo "dbg1 = $dbg1"
+echo "dbg2 = $dbg2"
+echo "dbg3 = $dbg3"
+echo "dbg4 = $dbg4"
+echo "dbg5 = $dbg5"
+echo "dbg6 = $dbg6"
+echo "dbg7 = $dbg7"
+echo "dbg8 = $dbg8"
 
 if test -f "$libtoolize"; then
   echo "buildconf: libtoolize found"
