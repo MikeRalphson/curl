@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.62 2009-05-30 15:56:42 yangtse Exp $
+# $Id: Makefile.am,v 1.63 2009-06-06 13:20:39 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -45,14 +45,8 @@ bin_PROGRAMS = curl
 
 include Makefile.inc
 
-if USE_EMBEDDED_ARES
-EMBEDDEDARES = ../ares/libcares.la
-else
-EMBEDDEDARES =
-endif
-
-curl_LDADD = ../lib/libcurl.la $(EMBEDDEDARES) @CURL_LIBS@
-curl_DEPENDENCIES = ../lib/libcurl.la $(EMBEDDEDARES)
+curl_LDADD = $(top_builddir)/lib/libcurl.la @CURL_LIBS@
+curl_DEPENDENCIES = $(top_builddir)/lib/libcurl.la
 BUILT_SOURCES = hugehelp.c
 CLEANFILES = hugehelp.c
 # Use the C locale to ensure that only ASCII characters appear in the
