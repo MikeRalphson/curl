@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.76 2009-06-06 14:30:47 yangtse Exp $
+# $Id: buildconf,v 1.77 2009-06-06 17:22:00 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -191,7 +191,7 @@ else
   libtoolize=`findtool $LIBTOOLIZE`
 fi
 
-lt_pversion=`$libtool --version 2>/dev/null|head -n 1|sed -e 's/[(].*[)]//' -e 's/^[^0-9]*//g' -e 's/[- ].*//'`
+lt_pversion=`$libtool --version 2>/dev/null|head -n 1|sed -e 's/^[^0-9]*//g' -e 's/[- ].*//'`
 if test -z "$lt_pversion"; then
   echo "buildconf: libtool not found."
   echo "            You need libtool version $LIBTOOL_WANTED_VERSION or newer installed"
