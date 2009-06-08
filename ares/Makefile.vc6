@@ -1,4 +1,4 @@
-# $Id: Makefile.vc6,v 1.24 2009-05-18 00:21:02 yangtse Exp $
+# $Id: Makefile.vc6,v 1.25 2009-06-08 12:09:15 giva Exp $
 #
 # C-ares makefile for MSVC6+
 # G. Vanem <giva@bgnett.no>.
@@ -12,8 +12,8 @@ USE_WATT32  = 0
 # Configurations:
 #  -MD   - msvcrt.dll,  threads, release (normal)
 #  -MDd  - msvcrtd.dll, threads, debug
-#  -ML   - libc, no threads,     release
-#  -MLd  - libc, no threads,     debug
+#  -ML   - libc, no threads,     release (not available on VC-2008+)
+#  -MLd  - libc, no threads,     debug   (not available on VC-2008+)
 #  -MT   - libc, threads,        release
 #  -MTd  - libc, threads,        debug
 
@@ -26,7 +26,7 @@ OBJ_DIR  = VC6_obj
 DEF_FILE = cares.def
 
 !if "$(USE_WATT32)" == "1"
-CFLAGS  = $(CFLAGS) -UWIN32 -DWATT32 -D_USE_32BIT_TIME_T -I$(WATT_ROOT)\inc
+CFLAGS  = $(CFLAGS) -UWIN32 -DWATT32 -I$(WATT_ROOT)\inc
 EX_LIBS = $(WATT_ROOT)\lib\wattcpvc_imp.lib
 
 !else
