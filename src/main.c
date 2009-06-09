@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.516 2009-06-08 18:55:35 yangtse Exp $
+ * $Id: main.c,v 1.517 2009-06-09 00:00:28 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2637,7 +2637,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       /* disable the output I/O buffering. note that the option is called
          --buffer but is mostly used in the negative form: --no-buffer */
       if(longopt)
-        config->nobuffer = !toggle;
+        config->nobuffer = (bool)(!toggle);
       else
         config->nobuffer = toggle;
       break;
