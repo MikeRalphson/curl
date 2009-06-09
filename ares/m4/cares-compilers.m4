@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.55 2009-06-05 13:17:55 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.56 2009-06-09 17:58:34 yangtse Exp $
 #
 # Copyright (C) 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 55
+# serial 56
 
 
 dnl CARES_CHECK_COMPILER
@@ -1151,6 +1151,11 @@ AC_DEFUN([CARES_CHECK_CURLDEBUG], [
     dnl TODO: Verify if the BUILDING_LIBCURL definition is still required.
     AC_DEFINE(BUILDING_LIBCURL, 1, [when building as static part of libcurl])
     CPPFLAGS="$CPPFLAGS -DCURLDEBUG"
+    squeeze CPPFLAGS
+  fi
+  #
+  if test "$want_debug" = "yes"; then
+    CPPFLAGS="$CPPFLAGS -DDEBUGBUILD"
     squeeze CPPFLAGS
   fi
 ])

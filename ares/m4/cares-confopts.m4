@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-confopts.m4,v 1.4 2009-05-26 14:50:45 yangtse Exp $
+# $Id: cares-confopts.m4,v 1.5 2009-06-09 17:58:34 yangtse Exp $
 #
 # Copyright (C) 2008 - 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 4
+# serial 5
 
 
 dnl CARES_CHECK_OPTION_CURLDEBUG
@@ -27,7 +27,7 @@ dnl shell variable want_curldebug value as appropriate.
 
 AC_DEFUN([CARES_CHECK_OPTION_CURLDEBUG], [
   AC_BEFORE([$0],[CARES_CHECK_CURLDEBUG])dnl
-  AC_MSG_CHECKING([whether to enable curl debug memory tracking requested])
+  AC_MSG_CHECKING([whether to enable curl debug memory tracking])
   OPT_CURLDEBUG_BUILD="default"
   AC_ARG_ENABLE(curldebug,
 AC_HELP_STRING([--enable-curldebug],[Enable curl debug memory tracking])
@@ -66,8 +66,8 @@ dnl variable want_debug value as appropriate.
 
 AC_DEFUN([CARES_CHECK_OPTION_DEBUG], [
   AC_BEFORE([$0],[CARES_CHECK_OPTION_WARNINGS])dnl
+  AC_BEFORE([$0],[CARES_CHECK_OPTION_CURLDEBUG])dnl
   AC_BEFORE([$0],[CARES_CHECK_PROG_CC])dnl
-  AC_BEFORE([$0],[CARES_CHECK_CURLDEBUG])dnl
   AC_MSG_CHECKING([whether to enable debug build options])
   OPT_DEBUG_BUILD="default"
   AC_ARG_ENABLE(debug,
