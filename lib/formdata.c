@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.117 2009-04-21 11:46:16 yangtse Exp $
+ * $Id: formdata.c,v 1.118 2009-06-09 00:49:34 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1425,6 +1425,7 @@ int Curl_FormInit(struct Form *form, struct FormData *formdata )
   form->data = formdata;
   form->sent = 0;
   form->fp = NULL;
+  form->fread_func = ZERO_NULL;
 
   return 0;
 }
