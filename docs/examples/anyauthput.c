@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: anyauthput.c,v 1.8 2009-06-05 18:40:40 yangtse Exp $
+ * $Id: anyauthput.c,v 1.9 2009-06-10 12:59:59 yangtse Exp $
  */
 
 #include <stdio.h>
@@ -13,7 +13,9 @@
 #ifdef WIN32
 #  include <io.h>
 #else
-#  ifndef __VMS
+#  ifdef __VMS
+     typedef int intptr_t;
+#  else
 #    include <stdint.h>
 #  endif
 #  include <unistd.h>
