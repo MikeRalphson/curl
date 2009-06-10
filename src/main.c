@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.519 2009-06-10 18:02:11 yangtse Exp $
+ * $Id: main.c,v 1.520 2009-06-10 21:26:11 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2702,7 +2702,6 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
       break;
     case 'Q':
       /* QUOTE command to send to FTP server */
-      err = PARAM_OK;
       switch(nextarg[0]) {
       case '-':
         /* prefixed with a dash makes it a POST TRANSFER one */
@@ -3382,7 +3381,6 @@ static int myprogress (void *clientp,
     percent = frac * 100.0f;
     barwidth = bar->width - 7;
     num = (int) (((double)barwidth) * frac);
-    i = 0;
     for ( i = 0; i < num; i++ ) {
       line[i] = '#';
     }

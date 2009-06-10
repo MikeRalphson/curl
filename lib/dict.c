@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.61 2009-06-04 23:55:56 yangtse Exp $
+ * $Id: dict.c,v 1.62 2009-06-10 21:26:11 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -182,7 +182,7 @@ static CURLcode dict_do(struct connectdata *conn, bool *done)
           *strategy++ = (char)0;
           nthdef = strchr(strategy, ':');
           if(nthdef) {
-            *nthdef++ = (char)0;
+            *nthdef = (char)0;
           }
         }
       }
@@ -238,7 +238,7 @@ static CURLcode dict_do(struct connectdata *conn, bool *done)
         *database++ = (char)0;
         nthdef = strchr(database, ':');
         if(nthdef) {
-          *nthdef++ = (char)0;
+          *nthdef = (char)0;
         }
       }
     }
