@@ -18,15 +18,11 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: os-specific.c,v 1.1 2009-06-05 16:14:50 yangtse Exp $
+ * $Id: os-specific.c,v 1.2 2009-06-10 18:02:11 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
 #include <curl/curl.h>
-
-#ifdef __VMS
-#  include "curlmsg_vms.h"
-#endif
 
 #define ENABLE_CURLX_PRINTF
 #include "curlx.h"
@@ -39,7 +35,12 @@
 
 #ifdef __VMS
 
-int vms_shell = -1;
+#include "curlmsg_vms.h"
+
+void decc$__posix_exit(int __status);
+void decc$exit(int __status);
+
+static int vms_shell = -1;
 
 /* VMS has a DCL shell and and also has Unix shells ported to it.
  * When curl is running under a Unix shell, we want it to be as much

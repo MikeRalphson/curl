@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.518 2009-06-10 02:49:43 yangtse Exp $
+ * $Id: main.c,v 1.519 2009-06-10 18:02:11 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -114,10 +114,6 @@
 #include <netinet/tcp.h> /* for TCP_KEEPIDLE, TCP_KEEPINTVL */
 #endif
 
-#ifdef __VMS
-#  include "curlmsg_vms.h"
-#endif
-
 #include "os-specific.h"
 
 /* The last #include file should be: */
@@ -129,6 +125,10 @@
    the library level code from this client-side is ugly, but we do this
    anyway for convenience. */
 #include "memdebug.h"
+#endif
+
+#ifdef __VMS
+static int vms_show = 0;
 #endif
 
 #if defined(NETWARE)
