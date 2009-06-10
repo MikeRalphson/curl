@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: version.c,v 1.60 2009-03-13 09:58:15 bagder Exp $
+ * $Id: version.c,v 1.61 2009-06-10 02:49:43 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -188,8 +188,11 @@ static curl_version_info_data version_info = {
 #ifdef HAVE_GSSAPI
   | CURL_VERSION_GSSNEGOTIATE
 #endif
-#ifdef CURLDEBUG
+#ifdef DEBUGBUILD
   | CURL_VERSION_DEBUG
+#endif
+#ifdef CURLDEBUG
+  | CURL_VERSION_CURLDEBUG
 #endif
 #ifdef USE_ARES
   | CURL_VERSION_ASYNCHDNS

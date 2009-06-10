@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: netrc.c,v 1.45 2009-04-21 11:46:17 yangtse Exp $
+ * $Id: netrc.c,v 1.46 2009-06-10 02:49:43 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -92,7 +92,7 @@ int Curl_parsenetrc(const char *host,
 
 #define NETRC DOT_CHAR "netrc"
 
-#ifdef CURLDEBUG
+#ifdef DEBUGBUILD
   {
     /* This is a hack to allow testing.
      * If compiled with --enable-debug and CURL_DEBUG_NETRC is defined,
@@ -106,7 +106,7 @@ int Curl_parsenetrc(const char *host,
       netrc_alloc = TRUE;
     }
   }
-#endif /* CURLDEBUG */
+#endif /* DEBUGBUILD */
   if(!netrcfile) {
     home = curl_getenv("HOME"); /* portable environment reader */
     if(home) {

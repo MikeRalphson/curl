@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.432 2009-05-28 16:19:03 yangtse Exp $
+ * $Id: transfer.c,v 1.433 2009-06-10 02:49:43 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -386,7 +386,7 @@ static void read_rewind(struct connectdata *conn,
   conn->read_pos -= thismuch;
   conn->bits.stream_was_rewound = TRUE;
 
-#ifdef CURLDEBUG
+#ifdef DEBUGBUILD
   {
     char buf[512 + 1];
     size_t show;

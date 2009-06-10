@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.517 2009-06-09 00:00:28 yangtse Exp $
+ * $Id: main.c,v 1.518 2009-06-10 02:49:43 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2857,6 +2857,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
         static const struct feat feats[] = {
           {"AsynchDNS", CURL_VERSION_ASYNCHDNS},
           {"Debug", CURL_VERSION_DEBUG},
+          {"TrackMemory", CURL_VERSION_CURLDEBUG},
           {"GSS-Negotiate", CURL_VERSION_GSSNEGOTIATE},
           {"IDN", CURL_VERSION_IDN},
           {"IPv6", CURL_VERSION_IPV6},
