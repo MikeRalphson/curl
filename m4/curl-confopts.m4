@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-confopts.m4,v 1.5 2009-06-09 17:59:28 yangtse Exp $
+# $Id: curl-confopts.m4,v 1.6 2009-06-10 04:25:01 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 5
+# serial 6
 
 
 dnl CURL_CHECK_OPTION_CURLDEBUG
@@ -66,7 +66,7 @@ AC_HELP_STRING([--disable-curldebug],[Disable curl debug memory tracking]),
       dnl debug memory tracking for the libcurl library. This can only
       dnl be done when some requisites are simultaneously satisfied.
       dnl Later on, these requisites are verified and if they are not
-      dnl not fully satisfied the option will be ignored and act as if
+      dnl fully satisfied the option will be ignored and act as if
       dnl --disable-curldebug had been given setting shell variable
       dnl want_curldebug to 'no'.
       want_curldebug="yes"
