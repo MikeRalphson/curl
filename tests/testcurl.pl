@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.81 2009-06-03 00:07:46 yangtse Exp $
+# $Id: testcurl.pl,v 1.82 2009-06-11 01:22:35 yangtse Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.81 $';
+$version='$Revision: 1.82 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -226,6 +226,22 @@ sub mydie($){
     }
     logit "ENDING HERE"; # last line logged!
     exit 1;
+}
+
+sub get_host_triplet {
+  my $triplet;
+  my $configfile = "$pwd/$build/lib/config.h";
+
+  if(-f $configfile && -s $configfile && open(LIBCONFIGH, "<$configfile")) {
+    while(<LIBCONFIGH>) {
+      if($_ =~ /^\#define\s+OS\s+"*([^"][^"]*)"*\s*/) {
+        $triplet = $1;
+        last;
+      }
+    }
+    close(LIBCONFIGH);
+  }
+  return $triplet;
 }
 
 if (open(F, "$setupfile")) {
@@ -683,11 +699,28 @@ if ($configurebuild && !$crosscompile) {
   } else {
     logit "the tests were successful!";
   }
-} else {
-  # dummy message to feign success
+}
+else {
   if($crosscompile) {
-    logit "cross-compiling, can't run tests";
+    # build test harness programs for selected cross-compiles
+    my $host_triplet = get_host_triplet();
+    if($host_triplet =~ /([^-]+)-([^-]+)-mingw(.*)/) {
+      chdir "$pwd/$build/tests";
+      logit_spaced "build test harness";
+      open(F, "$make -i 2>&1 |") or die;
+      open(LOG, ">$buildlog") or die;
+      while (<F>) {
+        s/$pwd//g;
+        print;
+        print LOG;
+      }
+      close(F);
+      close(LOG);
+      chdir "$pwd/$build";
+    }
+    logit_spaced "cross-compiling, can't run tests";
   }
+  # dummy message to feign success
   print "TESTDONE: 1 tests out of 0 (dummy message)\n";
 }
 
