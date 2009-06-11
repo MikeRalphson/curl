@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: tftpd.c,v 1.53 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: tftpd.c,v 1.54 2009-06-11 17:46:33 yangtse Exp $
  *
  * Trivial file transfer protocol server.
  *
@@ -484,7 +484,7 @@ int main(int argc, char **argv)
     sock = socket(AF_INET6, SOCK_DGRAM, 0);
 #endif
 
-  if (sock < 0) {
+  if(CURL_SOCKET_BAD == sock) {
     perror("opening stream socket");
     logmsg("Error opening socket");
     return 1;
@@ -543,7 +543,7 @@ int main(int argc, char **argv)
     from.sin_family = AF_INET;
 
     peer = socket(AF_INET, SOCK_DGRAM, 0);
-    if (peer < 0) {
+    if(CURL_SOCKET_BAD == peer) {
       logmsg("socket");
       result = 2;
       break;
