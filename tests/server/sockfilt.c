@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sockfilt.c,v 1.63 2009-05-18 02:19:21 yangtse Exp $
+ * $Id: sockfilt.c,v 1.64 2009-06-12 02:41:16 yangtse Exp $
  ***************************************************************************/
 
 /* Purpose
@@ -453,7 +453,17 @@ static bool juggle(curl_socket_t *sockfdp,
   FD_ZERO(&fds_write);
   FD_ZERO(&fds_err);
 
+#ifdef USE_WINSOCK
+  /*
+  ** WinSock select() does not support standard file descriptors,
+  ** it can only check SOCKETs. Since this program in its current
+  ** state will not work on WinSock based systems, next line is
+  ** commented out to allow warning-free compilation awaiting the
+  ** day it will be fixed to also run on WinSock systems.
+  */
+#else
   FD_SET(fileno(stdin), &fds_read);
+#endif
 
   switch(*mode) {
 
