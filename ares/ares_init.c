@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.92 2009-06-12 14:15:13 giva Exp $ */
+/* $Id: ares_init.c,v 1.93 2009-06-12 23:50:33 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -119,7 +119,7 @@ int ares_init_options(ares_channel *channelptr, struct ares_options *options,
   struct server_state *server;
   struct timeval now;
 
-#ifdef DEBUGBUILD
+#ifdef CURLDEBUG
   const char *env = getenv("CARES_MEMDEBUG");
 
   if (env)
