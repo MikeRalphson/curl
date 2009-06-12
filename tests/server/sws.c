@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.132 2009-06-11 17:46:33 yangtse Exp $
+ * $Id: sws.c,v 1.133 2009-06-12 09:01:41 yangtse Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -183,13 +183,15 @@ static const char *doc404 = "HTTP/1.1 404 Not Found\r\n"
     "The requested URL was not found on this server.\n"
     "<P><HR><ADDRESS>" SWSVERSION "</ADDRESS>\n" "</BODY></HTML>\n";
 
-#if defined(SIGPIPE) && defined(HAVE_SIGNAL)
+#ifndef WIN32
+#  if defined(SIGPIPE) && defined(HAVE_SIGNAL)
 static volatile int sigpipe;  /* Why? It's not used */
 static void sigpipe_handler(int sig)
 {
   (void)sig; /* prevent warning */
   sigpipe = 1;
 }
+#  endif
 #endif
 
 static int ProcessRequest(struct httprequest *req)
