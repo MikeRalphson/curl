@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.804 2009-06-12 02:41:16 yangtse Exp $
+ * $Id: url.c,v 1.805 2009-06-12 02:47:35 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -75,6 +75,10 @@
 #endif
 
 #endif  /* WIN32 */
+
+#ifdef HAVE_LIMITS_H
+#include <limits.h>
+#endif
 
 #ifdef USE_LIBIDN
 #include <idna.h>
