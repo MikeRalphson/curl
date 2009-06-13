@@ -2,7 +2,7 @@
 # c-ares Makefile for djgpp/gcc/Watt-32.
 #   By Gisle Vanem <giva@bgnett.no> 2004.
 #
-# $Id: Makefile.dj,v 1.32 2009-06-13 18:13:00 yangtse Exp $
+# $Id: Makefile.dj,v 1.33 2009-06-13 20:52:30 yangtse Exp $
 
 
 TOPDIR = ..
@@ -10,7 +10,7 @@ TOPDIR = ..
 include ../packages/DOS/common.dj
 include Makefile.inc
 
-CFLAGS += -DHAVE_CONFIG_H -DWATT32
+CFLAGS += -DWATT32
 
 LDFLAGS = -s
 
