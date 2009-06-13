@@ -1,4 +1,4 @@
-# $Id: common.dj,v 1.9 2009-06-13 18:11:18 yangtse Exp $
+# $Id: common.dj,v 1.10 2009-06-13 20:47:19 yangtse Exp $
 #
 # Common defines for curl (djgpp/Watt-32)
 #
@@ -72,6 +72,11 @@ USE_ARES = 0
 # Enable debug code in libcurl/curl
 #
 USE_DEBUG = 0
+
+#
+# Enable memory tracking code in libcurl/curl
+#
+USE_CURLDEBUG = 0
 
 default: all
 
