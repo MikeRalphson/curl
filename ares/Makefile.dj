@@ -2,7 +2,7 @@
 # c-ares Makefile for djgpp/gcc/Watt-32.
 #   By Gisle Vanem <giva@bgnett.no> 2004.
 #
-# $Id: Makefile.dj,v 1.30 2009-05-21 11:43:15 giva Exp $
+# $Id: Makefile.dj,v 1.31 2009-06-13 00:52:48 yangtse Exp $
 
 TOPDIR = ..
 
@@ -35,6 +35,11 @@ CFLAGS += -DWATT32 -DHAVE_AF_INET6 -DHAVE_PF_INET6 -DHAVE_IOCTLSOCKET \
 LDFLAGS = -s
 
 ifeq ($(USE_DEBUG),1)
+  CFLAGS += -DDEBUGBUILD
+endif
+
+ifeq ($(USE_CURLDEBUG),1)
+  CFLAGS += -DCURLDEBUG
   EX_LIBS  = ../lib/libcurl.a
   OBJ_HACK = $(OBJECTS)
 else
