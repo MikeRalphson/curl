@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.46 2009-06-12 23:50:33 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.47 2009-06-13 00:20:41 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2008 by Daniel Stenberg
@@ -340,8 +340,8 @@ long ares__tvdiff(struct timeval t1, struct timeval t2);
 #ifdef CURLDEBUG
 /* This is low-level hard-hacking memory leak tracking and similar. Using the
    libcurl lowlevel code from within library is ugly and only works when
-   c-ares is built and linked with a similarly debug-build libcurl, but we do
-   this anyway for convenience. */
+   c-ares is built and linked with a similarly curldebug-enabled libcurl,
+   but we do this anyway for convenience. */
 #include "../lib/memdebug.h"
 #endif
 
