@@ -2,22 +2,20 @@
 #  Adapted for djgpp2 / Watt-32 / DOS by
 #  Gisle Vanem <giva@bgnett.no>
 #
-# $Id: makefile.dj,v 1.14 2009-06-08 13:53:23 bagder Exp $
+# $Id: makefile.dj,v 1.15 2009-06-13 18:11:17 yangtse Exp $
 
 DEPEND_PREREQ = config.h
 TOPDIR = ..
 
 include ../packages/DOS/common.dj
-
-# Makefile.inc provides the CSOURCES and HHEADERS defines
 include Makefile.inc
 
 OBJECTS := $(patsubst %.c,$(OBJ_DIR)/%.o,$(strip $(CSOURCES)))
 
 CURL_LIB = libcurl.a
 
-# NOTE: if ../include/curl/curlbuild.h is missing, you're probably building this
-# from a CVS checkout and then you need to run buildconf.bat first!
+# NOTE: if ../include/curl/curlbuild.h is missing, you're probably building
+# this from a CVS checkout and then you need to run buildconf.bat first.
 
 all: $(OBJ_DIR) config.h $(CURL_LIB)
 
@@ -25,13 +23,28 @@ $(CURL_LIB): $(OBJECTS)
 	ar rs $@ $?
 
 config.h: config.dos
-	cp $^ $@
+	$(COPY) $^ $@
 
-clean:
-	- rm -f $(OBJECTS)
+# clean generated files
+#
+genclean:
+	- $(DELETE) config.h
 
+# clean object files and subdir
+#
+objclean: genclean
+	- $(DELETE) $(OBJ_DIR)$(DS)*.o
+	- $(RMDIR) $(OBJ_DIR)
+
+# clean without removing built library
+#
+clean: objclean
+	- $(DELETE) depend.dj
+
+# clean everything
+#
 realclean vclean: clean
-	- rm -f config.h depend.dj $(CURL_LIB)
+	- $(DELETE) $(CURL_LIB)
 
 -include depend.dj
 
