@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.805 2009-06-12 02:47:35 yangtse Exp $
+ * $Id: url.c,v 1.806 2009-06-16 13:16:28 mmarek Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3831,6 +3831,7 @@ static CURLcode parse_url_userpass(struct SessionHandle *data,
        * set user/passwd, but doing that first adds more cases here :-(
        */
 
+      conn->bits.userpwd_in_url = 1;
       if(data->set.use_netrc != CURL_NETRC_REQUIRED) {
         /* We could use the one in the URL */
 

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.413 2009-06-08 21:25:17 bagder Exp $
+ * $Id: urldata.h,v 1.414 2009-06-16 13:16:28 mmarek Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -625,6 +625,7 @@ struct ConnectBits {
                          EPRT doesn't work we disable it for the forthcoming
                          requests */
   bool netrc;         /* name+password provided by netrc */
+  bool userpwd_in_url; /* name+password found in url */
 
   bool done;          /* set to FALSE when Curl_do() is called and set to TRUE
                          when Curl_done() is called, to prevent Curl_done() to
