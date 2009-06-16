@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.522 2009-06-15 23:45:59 gknauf Exp $
+ * $Id: main.c,v 1.523 2009-06-16 00:06:30 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3241,6 +3241,9 @@ static void set_nonblocking(struct Configurable *config, int fd)
     flags = fcntl(fd, F_SETFL, flags | O_NONBLOCK);
   else
     warnf(config, "fcntl failed on fd=%d: %s\n", fd, strerror(errno));
+#else
+  (void) config;
+  (void) fd;
 #endif
 }
 
