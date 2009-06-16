@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.523 2009-06-16 00:06:30 yangtse Exp $
+ * $Id: main.c,v 1.524 2009-06-16 18:03:28 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -4584,7 +4584,7 @@ operate(struct Configurable *config, int argc, argv_item_t argv[])
         if(!config->errors)
           config->errors = stderr;
 
-        if(!outfile && !config->use_ascii) {
+        if((!outfile || !strcmp(outfile, "-")) && !config->use_ascii) {
           /* We get the output to stdout and we have not got the ASCII/text
              flag, then set stdout to be binary */
           SET_BINMODE(stdout);
