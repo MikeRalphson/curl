@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-compilers.m4,v 1.52 2009-06-09 17:59:28 yangtse Exp $
+# $Id: curl-compilers.m4,v 1.53 2009-06-17 02:26:40 danf Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -873,11 +873,16 @@ AC_DEFUN([CURL_SET_COMPILER_WARNING_OPTS], [
             tmp_CFLAGS="$tmp_CFLAGS -Wdeclaration-after-statement"
           fi
           #
+          dnl Only gcc 4.2 or later
+          if test "$compiler_num" -ge "402"; then
+            tmp_CFLAGS="$tmp_CFLAGS -Wcast-align"
+          fi
           dnl Only gcc 4.3 or later
           if test "$compiler_num" -ge "403"; then
             tmp_CFLAGS="$tmp_CFLAGS -Wtype-limits -Wold-style-declaration"
             tmp_CFLAGS="$tmp_CFLAGS -Wmissing-parameter-type -Wempty-body"
             tmp_CFLAGS="$tmp_CFLAGS -Wclobbered -Wignored-qualifiers"
+            tmp_CFLAGS="$tmp_CFLAGS -Wconversion -Wno-sign-conversion -Wvla"
           fi
           #
         fi
