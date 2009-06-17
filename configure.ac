@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.417 2009-06-09 17:59:28 yangtse Exp $
+# $Id: configure.ac,v 1.418 2009-06-17 09:12:19 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1999,6 +1999,7 @@ CURL_CHECK_FUNC_SEND
 CURL_CHECK_MSG_NOSIGNAL
 
 CURL_CHECK_FUNC_ALARM
+CURL_CHECK_FUNC_CLOSESOCKET
 CURL_CHECK_FUNC_FCNTL
 CURL_CHECK_FUNC_FDOPEN
 CURL_CHECK_FUNC_FREEADDRINFO
@@ -2026,6 +2027,7 @@ CURL_CHECK_FUNC_SIGACTION
 CURL_CHECK_FUNC_SIGINTERRUPT
 CURL_CHECK_FUNC_SIGNAL
 CURL_CHECK_FUNC_SIGSETJMP
+CURL_CHECK_FUNC_SOCKET
 CURL_CHECK_FUNC_STRCASECMP
 CURL_CHECK_FUNC_STRCASESTR
 CURL_CHECK_FUNC_STRCMPI
@@ -2054,7 +2056,6 @@ case $host in
 esac
 
 AC_CHECK_FUNCS([basename \
-  closesocket \
   fork \
   geteuid \
   getpass_r \
@@ -2069,7 +2070,6 @@ AC_CHECK_FUNCS([basename \
   setlocale \
   setmode \
   setrlimit \
-  socket \
   uname \
   utime
 ],[
