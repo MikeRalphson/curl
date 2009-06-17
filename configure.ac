@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.418 2009-06-17 09:12:19 yangtse Exp $
+# $Id: configure.ac,v 1.419 2009-06-17 12:51:24 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1889,6 +1889,7 @@ AC_CHECK_HEADERS(
         sys/utime.h \
         sys/poll.h \
         poll.h \
+        socket.h \
         sys/resource.h \
         libgen.h \
         locale.h \
