@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.419 2009-06-17 12:51:24 yangtse Exp $
+# $Id: configure.ac,v 1.420 2009-06-18 12:36:10 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2001,6 +2001,7 @@ CURL_CHECK_MSG_NOSIGNAL
 
 CURL_CHECK_FUNC_ALARM
 CURL_CHECK_FUNC_CLOSESOCKET
+CURL_CHECK_FUNC_CLOSESOCKET_CAMEL
 CURL_CHECK_FUNC_FCNTL
 CURL_CHECK_FUNC_FDOPEN
 CURL_CHECK_FUNC_FREEADDRINFO
