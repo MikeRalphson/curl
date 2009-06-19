@@ -1,7 +1,7 @@
 #ifndef HEADER_CONFIG_DOS_H
 #define HEADER_CONFIG_DOS_H
 
-/* $Id: config.dos,v 1.28 2009-06-11 16:43:47 yangtse Exp $ */
+/* $Id: config.dos,v 1.29 2009-06-19 00:41:04 yangtse Exp $ */
 
 /* ================================================================ */
 /*        lib/config.dos - Hand crafted config file for DOS         */
@@ -153,6 +153,11 @@
 
 #elif defined(__HIGHC__)
   #define HAVE_SYS_TIME_H 1
+#endif
+
+#ifdef MSDOS  /* Watt-32 */
+  #define HAVE_CLOSESOCKET_CAMEL  1
+  #define CloseSocket(s)          close_s((s))
 #endif
 
 #undef word

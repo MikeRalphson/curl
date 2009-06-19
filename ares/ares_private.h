@@ -1,10 +1,10 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.47 2009-06-13 00:20:41 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.48 2009-06-19 00:41:03 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
- * Copyright (C) 2004-2008 by Daniel Stenberg
+ * Copyright (C) 2004-2009 by Daniel Stenberg
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -32,16 +32,11 @@
 
 #if !defined(WIN32) || defined(WATT32)
 #include <netinet/in.h>
-/* We define closesocket() here so that we can use this function all over
-   the source code for closing sockets. */
-#define closesocket(x) close(x)
 #endif
 
 #ifdef WATT32
 #include <tcp.h>
 #include <sys/ioctl.h>
-#undef  closesocket
-#define closesocket(s)    close_s(s)
 #define writev(s,v,c)     writev_s(s,v,c)
 #define HAVE_WRITEV 1
 #endif

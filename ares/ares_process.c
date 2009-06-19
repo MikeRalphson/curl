@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.76 2009-05-02 02:36:48 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.77 2009-06-19 00:41:03 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -896,7 +896,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
   /* Configure it. */
   if (configure_socket(s, channel) < 0)
     {
-       closesocket(s);
+       sclose(s);
        return -1;
     }
 
@@ -911,7 +911,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
   if (setsockopt(s, IPPROTO_TCP, TCP_NODELAY,
                  (void *)&opt, sizeof(opt)) == -1)
     {
-       closesocket(s);
+       sclose(s);
        return -1;
     }
 #endif
@@ -927,7 +927,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
 
       if (err != EINPROGRESS && err != EWOULDBLOCK)
         {
-          closesocket(s);
+          sclose(s);
           return -1;
         }
     }
@@ -938,7 +938,7 @@ static int open_tcp_socket(ares_channel channel, struct server_state *server)
                                         channel->sock_create_cb_data);
       if (err < 0)
         {
-          closesocket(s);
+          sclose(s);
           return err;
         }
     }
@@ -963,7 +963,7 @@ static int open_udp_socket(ares_channel channel, struct server_state *server)
   /* Set the socket non-blocking. */
   if (configure_socket(s, channel) < 0)
     {
-       closesocket(s);
+       sclose(s);
        return -1;
     }
 
@@ -978,7 +978,7 @@ static int open_udp_socket(ares_channel channel, struct server_state *server)
 
       if (err != EINPROGRESS && err != EWOULDBLOCK)
         {
-          closesocket(s);
+          sclose(s);
           return -1;
         }
     }
@@ -989,7 +989,7 @@ static int open_udp_socket(ares_channel channel, struct server_state *server)
                                         channel->sock_create_cb_data);
       if (err < 0)
         {
-          closesocket(s);
+          sclose(s);
           return err;
         }
     }

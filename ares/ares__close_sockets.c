@@ -1,4 +1,4 @@
-/* $Id: ares__close_sockets.c,v 1.8 2007-09-28 14:28:14 sesse Exp $ */
+/* $Id: ares__close_sockets.c,v 1.9 2009-06-19 00:41:03 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -54,14 +54,14 @@ void ares__close_sockets(ares_channel channel, struct server_state *server)
   if (server->tcp_socket != ARES_SOCKET_BAD)
     {
       SOCK_STATE_CALLBACK(channel, server->tcp_socket, 0, 0);
-      closesocket(server->tcp_socket);
+      sclose(server->tcp_socket);
       server->tcp_socket = ARES_SOCKET_BAD;
       server->tcp_connection_generation = ++channel->tcp_connection_generation;
     }
   if (server->udp_socket != ARES_SOCKET_BAD)
     {
       SOCK_STATE_CALLBACK(channel, server->udp_socket, 0, 0);
-      closesocket(server->udp_socket);
+      sclose(server->udp_socket);
       server->udp_socket = ARES_SOCKET_BAD;
     }
 }

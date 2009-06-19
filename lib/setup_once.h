@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup_once.h,v 1.38 2009-06-10 02:49:43 yangtse Exp $
+ * $Id: setup_once.h,v 1.39 2009-06-19 00:41:04 yangtse Exp $
  ***************************************************************************/
 
 
@@ -227,6 +227,19 @@ struct timeval {
 #  define RECVFROM_ARG6_T RECVFROM_TYPE_ARG6
 #endif
 #endif /* if 0 */
+
+
+/*
+ * Function-like macro definition used to close a socket.
+ */
+
+#if defined(HAVE_CLOSESOCKET)
+#  define sclose(x)  closesocket((x))
+#elif defined(HAVE_CLOSESOCKET_CAMEL)
+#  define sclose(x)  CloseSocket((x))
+#else
+#  define sclose(x)  close((x))
+#endif
 
 
 /*
