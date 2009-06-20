@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.524 2009-06-16 18:03:28 bagder Exp $
+ * $Id: main.c,v 1.525 2009-06-20 10:19:49 gknauf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -5220,7 +5220,8 @@ int main(int argc, char *argv[])
   free_config_fields(&config);
 
 #ifdef __NOVELL_LIBC__
-  pressanykey();
+  if (getenv("_IN_NETWARE_BASH_") == NULL)
+    pressanykey();
 #endif
 #ifdef __VMS
   vms_special_exit(res, vms_show);
