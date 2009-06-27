@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.133 2009-06-10 02:49:43 yangtse Exp $
+ * $Id: ssh.c,v 1.134 2009-06-27 06:05:08 danf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -1877,7 +1877,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
     sshc->ssh_channel =
       libssh2_scp_send_ex(sshc->ssh_session, sftp_scp->path,
                           data->set.new_file_perms,
-                          data->set.infilesize, 0, 0);
+                          (size_t)data->set.infilesize, 0, 0);
     if(!sshc->ssh_channel) {
       if(libssh2_session_last_errno(sshc->ssh_session) ==
          LIBSSH2_ERROR_EAGAIN) {
