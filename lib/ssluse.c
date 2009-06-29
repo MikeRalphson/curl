@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.226 2009-06-10 21:26:11 bagder Exp $
+ * $Id: ssluse.c,v 1.227 2009-06-29 20:45:42 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -574,7 +574,7 @@ static int x509_name_oneline(X509_NAME *a, char *buf, size_t size)
   if(!bio_out)
     return 1; /* alloc failed! */
 
-  rc = X509_NAME_print_ex(bio_out, a, 0, XN_FLAG_SEP_CPLUS_SPC);
+  rc = X509_NAME_print_ex(bio_out, a, 0, XN_FLAG_SEP_SPLUS_SPC);
   BIO_get_mem_ptr(bio_out, &biomem);
 
   if((size_t)biomem->length < size)
