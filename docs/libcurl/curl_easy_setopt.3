@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.261 2009-06-10 18:43:07 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.262 2009-06-29 20:46:01 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "11 Dec 2008" "libcurl 7.19.3" "libcurl Manual"
@@ -1069,6 +1069,12 @@ tells the remote server to connect to our specified IP address. The string may
 be a plain IP address, a host name, a network interface name (under Unix) or
 just a '-' symbol to let the library use your system's default IP
 address. Default FTP operations are passive, and thus won't use PORT.
+
+Starting in 7.19.5, you can append \&":[start]-[end]\&" to the right of the
+address, to tell libcurl what TCP port range to use. That means you specify a
+port range, from a lower to a higher number. A single number works as well,
+but do not that it increases the risk of failure since the port may not be
+available.
 
 You disable PORT again and go back to using the passive version by setting
 this option to NULL.
