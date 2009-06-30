@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.517 2009-06-29 20:46:01 bagder Exp $
+ * $Id: ftp.c,v 1.518 2009-06-30 21:30:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1142,7 +1142,7 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
      below */
   Curl_printable_address(ai, myhost, sizeof(myhost));
 
-#ifdef PF_INET6
+#ifdef ENABLE_IPV6
   if(!conn->bits.ftp_use_eprt && conn->bits.ipv6)
     /* EPRT is disabled but we are connected to a IPv6 host, so we ignore the
        request and enable EPRT again! */
@@ -1163,11 +1163,13 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
     case AF_INET:
       port = ntohs(sa4->sin_port);
       break;
+#ifdef ENABLE_IPV6
     case AF_INET6:
       port = ntohs(sa6->sin6_port);
       break;
+#endif
     default:
-      break;
+      continue; /* might as well skip this */
     }
 
     if(EPRT == fcmd) {
