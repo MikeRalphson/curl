@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.519 2009-07-04 01:04:24 gknauf Exp $
+ * $Id: ftp.c,v 1.520 2009-07-04 11:06:00 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -98,10 +98,8 @@
 /* The last #include file should be: */
 #include "memdebug.h"
 
-#ifdef HAVE_NI_WITHSCOPEID
-#define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV | NI_WITHSCOPEID
-#else
-#define NIFLAGS NI_NUMERICHOST | NI_NUMERICSERV
+#ifndef NI_MAXHOST
+#define NI_MAXHOST 1025
 #endif
 
 #ifdef __SYMBIAN32__
