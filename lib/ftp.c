@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.520 2009-07-04 11:06:00 gknauf Exp $
+ * $Id: ftp.c,v 1.521 2009-07-04 11:27:42 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -100,6 +100,9 @@
 
 #ifndef NI_MAXHOST
 #define NI_MAXHOST 1025
+#endif
+#ifndef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16
 #endif
 
 #ifdef __SYMBIAN32__
