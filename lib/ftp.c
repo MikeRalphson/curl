@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.521 2009-07-04 11:27:42 gknauf Exp $
+ * $Id: ftp.c,v 1.522 2009-07-09 21:47:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -351,7 +351,7 @@ static CURLcode AllowServerConnect(struct connectdata *conn)
       infof(data, "Connection accepted from server\n");
 
       conn->sock[SECONDARYSOCKET] = s;
-      Curl_nonblock(s, TRUE); /* enable non-blocking */
+      curlx_nonblock(s, TRUE); /* enable non-blocking */
     }
     break;
   }
