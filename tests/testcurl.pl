@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.82 2009-06-11 01:22:35 yangtse Exp $
+# $Id: testcurl.pl,v 1.83 2009-07-13 23:33:57 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.82 $';
+$version='$Revision: 1.83 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -322,6 +322,7 @@ logit "CFLAGS = ".$ENV{CFLAGS};
 logit "LDFLAGS = ".$ENV{LDFLAGS};
 logit "CC = ".$ENV{CC};
 logit "MAKEFLAGS = ".$ENV{MAKEFLAGS};
+logit "PKG_CONFIG_PATH = ".$ENV{PKG_CONFIG_PATH};
 logit "target = ".$targetos;
 logit "version = $version"; # script version
 logit "date = $timestamp";  # When the test build starts
