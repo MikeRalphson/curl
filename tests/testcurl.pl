@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.84 2009-07-14 13:25:15 gknauf Exp $
+# $Id: testcurl.pl,v 1.85 2009-07-14 15:36:12 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.84 $';
+$version='$Revision: 1.85 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -566,14 +566,14 @@ else {
   mydie "no curlbuild.h created/found";
 }
 
-logit_spaced "display lib/config$confsuffix.h";
-open(F, "lib/config$confsuffix.h") or die "lib/config$confsuffix.h: $!";
+logit_spaced "display lib/curl_config$confsuffix.h";
+open(F, "lib/curl_config$confsuffix.h") or die "lib/curl_config$confsuffix.h: $!";
 while (<F>) {
   print if /^ *#/;
 }
 close(F);
 
-if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
+if (grepfile("define USE_ARES", "lib/curl_config$confsuffix.h")) {
   print "\n";
   logit "setup to build ares";
 
@@ -602,8 +602,8 @@ if (grepfile("define USE_ARES", "lib/config$confsuffix.h")) {
     mydie "no ares_build.h created/found";
   }
 
-  logit_spaced "display ares/config$confsuffix.h";
-  if(open(F, "ares/config$confsuffix.h")) {
+  logit_spaced "display ares/ares_config$confsuffix.h";
+  if(open(F, "ares/ares_config$confsuffix.h")) {
       while (<F>) {
           print if /^ *#/;
       }
