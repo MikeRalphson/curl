@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.36 2009-04-28 16:47:34 yangtse Exp $ */
+/* $Id: setup.h,v 1.37 2009-07-14 13:38:50 gknauf Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -30,7 +30,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "ares_config.h"
 #else
 
 #ifdef WIN32
@@ -154,7 +154,7 @@
 #endif /* HAVE_CONFIG_H */
 
 /*
- * Recent autoconf versions define these symbols in config.h. We don't
+ * Recent autoconf versions define these symbols in ares_config.h. We don't
  * want them (since they collide with the libcurl ones when we build
  *  --enable-debug) so we undef them again here.
  */

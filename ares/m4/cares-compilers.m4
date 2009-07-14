@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.56 2009-06-09 17:58:34 yangtse Exp $
+# $Id: cares-compilers.m4,v 1.57 2009-07-14 13:38:50 gknauf Exp $
 #
 # Copyright (C) 2009 by Daniel Stenberg et al
 #
@@ -1113,15 +1113,15 @@ AC_DEFUN([CARES_CHECK_CURLDEBUG], [
         test ! -f "$cares_builddir/../include/curl/curlbuild.h"; then
         AC_MSG_WARN([curl's configure has not been run.])
         supports_curldebug="no"
-      elif test ! -f "$cares_builddir/../lib/config.h"; then
-        AC_MSG_WARN([libcurl's config.h is missing.])
+      elif test ! -f "$cares_builddir/../lib/curl_config.h"; then
+        AC_MSG_WARN([libcurl's curl_config.h is missing.])
         supports_curldebug="no"
       elif test ! -f "$cares_builddir/../config.status"; then
         AC_MSG_WARN([curl's config.status is missing.])
         supports_curldebug="no"
       fi
       if test "$supports_curldebug" != "no"; then
-        grep '^#define USE_ARES' "$cares_builddir/../lib/config.h" >/dev/null
+        grep '^#define USE_ARES' "$cares_builddir/../lib/curl_config.h" >/dev/null
         if test "$?" -ne "0"; then
           AC_MSG_WARN([libcurl configured without c-ares support.])
           supports_curldebug="no"
