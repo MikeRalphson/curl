@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: runtests.pl,v 1.328 2009-06-10 02:49:43 yangtse Exp $
+# $Id: runtests.pl,v 1.329 2009-07-14 13:25:15 gknauf Exp $
 ###########################################################################
 
 # Experimental hooks are available to run tests remotely on machines that
@@ -1614,8 +1614,8 @@ sub checksystem {
         die "couldn't get curl's version";
     }
 
-    if(-r "../lib/config.h") {
-        open(CONF, "<../lib/config.h");
+    if(-r "../lib/curl_config.h") {
+        open(CONF, "<../lib/curl_config.h");
         while(<CONF>) {
             if($_ =~ /^\#define HAVE_GETRLIMIT/) {
                 $has_getrlimit = 1;

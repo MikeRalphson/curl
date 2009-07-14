@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: testcurl.pl,v 1.83 2009-07-13 23:33:57 gknauf Exp $
+# $Id: testcurl.pl,v 1.84 2009-07-14 13:25:15 gknauf Exp $
 ###########################################################################
 
 ###########################
@@ -69,7 +69,7 @@ use vars qw($name $email $desc $confopts $runtestopts $setupfile $mktarball
             $extvercmd $nocvsup $nobuildconf $crosscompile $timestamp);
 
 # version of this script
-$version='$Revision: 1.83 $';
+$version='$Revision: 1.84 $';
 $fixed=0;
 
 # Determine if we're running from CVS or a canned copy of curl,
@@ -230,7 +230,7 @@ sub mydie($){
 
 sub get_host_triplet {
   my $triplet;
-  my $configfile = "$pwd/$build/lib/config.h";
+  my $configfile = "$pwd/$build/lib/curl_config.h";
 
   if(-f $configfile && -s $configfile && open(LIBCONFIGH, "<$configfile")) {
     while(<LIBCONFIGH>) {

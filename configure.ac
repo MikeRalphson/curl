@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.422 2009-07-09 18:10:25 bagder Exp $
+# $Id: configure.ac,v 1.423 2009-07-14 13:25:14 gknauf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -35,7 +35,7 @@ This configure script may be copied, distributed and modified under the
 terms of the curl license; see COPYING for more details])
 
 AC_CONFIG_SRCDIR([lib/urldata.h])
-AM_CONFIG_HEADER(lib/config.h src/config.h include/curl/curlbuild.h)
+AM_CONFIG_HEADER(lib/curl_config.h src/curl_config.h include/curl/curlbuild.h)
 AM_MAINTAINER_MODE
 
 CURL_CHECK_OPTION_DEBUG

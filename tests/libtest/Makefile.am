@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.83 2009-06-06 13:20:39 yangtse Exp $
+# $Id: Makefile.am,v 1.84 2009-07-14 13:25:15 gknauf Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -29,7 +29,7 @@ AUTOMAKE_OPTIONS = foreign nostdinc
 #
 # $(top_builddir)/include is for libcurl's generated curl/curlbuild.h file
 # $(top_srcdir)/include is for libcurl's external include files
-# $(top_builddir)/lib is for libcurl's generated lib/config.h file
+# $(top_builddir)/lib is for libcurl's generated lib/curl_config.h file
 # $(top_srcdir)/lib is for libcurl's lib/setup.h and other "borrowed" files
 # $(top_builddir)/ares is for in-tree c-ares's generated ares_build.h file
 # $(top_srcdir)/ares is for in-tree c-ares's external include files

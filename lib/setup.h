@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.166 2009-06-19 00:41:04 yangtse Exp $
+ * $Id: setup.h,v 1.167 2009-07-14 13:25:14 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -38,7 +38,7 @@
 
 #ifdef HAVE_CONFIG_H
 
-#include "config.h"
+#include "curl_config.h"
 
 #else /* HAVE_CONFIG_H */
 
