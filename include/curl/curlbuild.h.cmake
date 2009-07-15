@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curlbuild.h.cmake,v 1.2 2009-06-06 13:18:01 whoffman Exp $
+ * $Id: curlbuild.h.cmake,v 1.3 2009-07-15 19:25:22 whoffman Exp $
  ***************************************************************************/
 
 /* ================================================================ */
@@ -140,6 +140,7 @@
 
 /* on windows socklen_t is in here */
 #ifdef _WIN32
+#  include <winsock2.h>
 #  include <ws2tcpip.h>
 #endif
 
