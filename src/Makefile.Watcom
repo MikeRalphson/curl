@@ -2,7 +2,7 @@
 #  Watcom / OpenWatcom / Win32 makefile for cURL.
 #  G. Vanem <gvanem@broadpark.no>
 #
-# $Id: Makefile.Watcom,v 1.15 2009-06-15 02:29:49 yangtse Exp $
+# $Id: Makefile.Watcom,v 1.16 2009-07-15 21:49:48 danf Exp $
 
 CC = wcc386
 
@@ -50,6 +50,10 @@ $(RESOURCE): curl.rc
 
 .ERASE
 $(OBJ_DIR)\rawstr.obj: ..\lib\rawstr.c
+	$(CC) $[@ $(CFLAGS) -fo=$@
+
+.ERASE
+$(OBJ_DIR)\nonblock.obj: ..\lib\nonblock.c
 	$(CC) $[@ $(CFLAGS) -fo=$@
 
 #
@@ -111,3 +115,11 @@ $(OBJ_DIR)\rawstr.obj: ..\lib\rawstr.c ..\lib\setup.h ..\lib\config-win32.h &
   ..\lib\strerror.h ..\lib\urldata.h ..\lib\cookie.h ..\lib\formdata.h &
   ..\lib\timeval.h ..\lib\http_chunks.h ..\lib\hostip.h ..\lib\hash.h &
   ..\lib\llist.h ..\lib\splay.h ..\include\curl\mprintf.h
+
+$(OBJ_DIR)\nonblock.obj: ..\lib\nonblock.c ..\lib\setup.h ..\lib\config-win32.h &
+  ..\include\curl\curlbuild.h ..\include\curl\curlrules.h ..\lib\setup_once.h &
+  ..\include\curl\curl.h ..\include\curl\curlver.h ..\include\curl\curlrules.h &
+  ..\include\curl\easy.h ..\include\curl\multi.h ..\include\curl\curl.h &
+  ..\lib\strerror.h ..\lib\urldata.h ..\lib\cookie.h ..\lib\formdata.h &
+  ..\lib\timeval.h ..\lib\http_chunks.h ..\lib\hostip.h ..\lib\hash.h &
+  ..\lib\llist.h ..\lib\splay.h ..\include\curl\mprintf.h ..\lib\nonblock.h
