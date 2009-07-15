@@ -1,6 +1,6 @@
 #ifdef CURLDEBUG
-#ifndef _CURL_MEDEBUG_H
-#define _CURL_MEDEBUG_H
+#ifndef _CURL_MEMDEBUG_H
+#define _CURL_MEMDEBUG_H
 /***************************************************************************
  *                                  _   _ ____  _
  *  Project                     ___| | | |  _ \| |
@@ -21,7 +21,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.h,v 1.38 2009-06-19 00:41:04 yangtse Exp $
+ * $Id: memdebug.h,v 1.39 2009-07-15 01:10:18 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -125,5 +125,5 @@ CURL_EXTERN int curl_fclose(FILE *file, int line, const char *source);
 
 #endif /* MEMDEBUG_NODEFINES */
 
-#endif /* _CURL_MEDEBUG_H */
+#endif /* _CURL_MEMDEBUG_H */
 #endif /* CURLDEBUG */
