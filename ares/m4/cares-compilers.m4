@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-compilers.m4,v 1.57 2009-07-14 13:38:50 gknauf Exp $
+# $Id: cares-compilers.m4,v 1.58 2009-07-16 12:20:16 gknauf Exp $
 #
 # Copyright (C) 2009 by Daniel Stenberg et al
 #
@@ -1150,7 +1150,8 @@ AC_DEFUN([CARES_CHECK_CURLDEBUG], [
   if test "$want_curldebug" = "yes"; then
     dnl TODO: Verify if the BUILDING_LIBCURL definition is still required.
     AC_DEFINE(BUILDING_LIBCURL, 1, [when building as static part of libcurl])
-    CPPFLAGS="$CPPFLAGS -DCURLDEBUG"
+    # CPPFLAGS="$CPPFLAGS -DCURLDEBUG"
+    CPPFLAGS="$CPPFLAGS -DCURLDEBUG -I../lib"
     squeeze CPPFLAGS
   fi
   #
