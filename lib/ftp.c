@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.522 2009-07-09 21:47:24 bagder Exp $
+ * $Id: ftp.c,v 1.523 2009-07-16 17:39:14 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -4004,7 +4004,7 @@ CURLcode ftp_parse_url_path(struct connectdata *conn)
       return CURLE_OUT_OF_MEMORY;
     }
 
-    dlen -= ftpc->file?strlen(ftpc->file):0;
+    dlen -= ftpc->file?(int)strlen(ftpc->file):0;
     if((dlen == (int)strlen(ftpc->prevpath)) &&
        strnequal(path, ftpc->prevpath, dlen)) {
       infof(data, "Request has same path as previous transfer\n");

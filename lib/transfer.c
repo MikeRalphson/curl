@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.433 2009-06-10 02:49:43 yangtse Exp $
+ * $Id: transfer.c,v 1.434 2009-07-16 17:41:21 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -244,7 +244,7 @@ CURLcode Curl_fillreadbuffer(struct connectdata *conn, int bytes, int *nreadp)
       data->req.upload_done = TRUE;
     }
 
-    nread+=strlen(endofline_native); /* for the added end of line */
+    nread+=(int)strlen(endofline_native); /* for the added end of line */
   }
 #ifdef CURL_DOES_CONVERSIONS
   else if((data->set.prefer_ascii) && (!sending_http_headers)) {
