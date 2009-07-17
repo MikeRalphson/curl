@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.526 2009-07-09 21:47:24 bagder Exp $
+ * $Id: main.c,v 1.527 2009-07-17 22:34:16 gknauf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -3056,11 +3056,11 @@ static int parseconfig(const char *filename,
             /* We got a valid filename - get the directory part */
             char *lastdirchar = strrchr(filebuffer, '\\');
             if (lastdirchar) {
-              int remaining;
+              size_t remaining;
               *lastdirchar = 0;
               /* If we have enough space, build the RC filename */
               remaining = sizeof(filebuffer) - strlen(filebuffer);
-              if ((int)strlen(CURLRC) < remaining - 1) {
+              if (strlen(CURLRC) < remaining - 1) {
                 snprintf(lastdirchar, remaining,
                          "%s%s", DIR_CHAR, CURLRC);
                 /* Don't bother checking if it exists - we do
