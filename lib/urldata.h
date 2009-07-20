@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.414 2009-06-16 13:16:28 mmarek Exp $
+ * $Id: urldata.h,v 1.415 2009-07-20 21:50:21 kdudka Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -211,6 +211,7 @@ struct ssl_connect_data {
 #ifdef USE_NSS
   PRFileDesc *handle;
   char *client_nickname;
+  struct SessionHandle *data;
 #ifdef HAVE_PK11_CREATEGENERICOBJECT
   PK11GenericObject *key;
   PK11GenericObject *cacert[2];
