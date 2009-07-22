@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: strerror.c,v 1.55 2009-06-04 19:11:11 yangtse Exp $
+ * $Id: strerror.c,v 1.56 2009-07-22 22:49:02 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -172,7 +172,7 @@ curl_easy_strerror(CURLcode error)
     return "Malformed telnet option";
 
   case CURLE_PEER_FAILED_VERIFICATION:
-    return "SSL peer certificate or SSH md5 fingerprint was not OK";
+    return "SSL peer certificate or SSH remote key was not OK";
 
   case CURLE_GOT_NOTHING:
     return "Server returned nothing (no headers, no data)";

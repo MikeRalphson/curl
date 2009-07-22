@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.806 2009-06-16 13:16:28 mmarek Exp $
+ * $Id: url.c,v 1.807 2009-07-22 22:49:02 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -2169,6 +2169,8 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     data->set.ssl.sessionid = (bool)(0 != va_arg(param, long));
     break;
 
+#ifdef USE_LIBSSH2
+    /* we only include SSH options if explicitly built to support SSH */
   case CURLOPT_SSH_AUTH_TYPES:
     data->set.ssh_auth_types = va_arg(param, long);
     break;
@@ -2196,6 +2198,31 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     result = setstropt(&data->set.str[STRING_SSH_HOST_PUBLIC_KEY_MD5],
                        va_arg(param, char *));
     break;
+#ifdef HAVE_LIBSSH2_KNOWNHOST_API
+  case CURLOPT_SSH_KNOWNHOSTS:
+    /*
+     * Store the file name to read known hosts from.
+     */
+    result = setstropt(&data->set.str[STRING_SSH_KNOWNHOSTS],
+                       va_arg(param, char *));
+    break;
+
+  case CURLOPT_SSH_KEYFUNCTION:
+    /* setting to NULL is fine since the ssh.c functions themselves will
+       then rever to use the internal default */
+    data->set.ssh_keyfunc = va_arg(param, curl_sshkeycallback);
+    break;
+
+  case CURLOPT_SSH_KEYDATA:
+    /*
+     * Custom client data to pass to the SSH keyfunc callback
+     */
+    data->set.ssh_keyfunc_userp = va_arg(param, void *);
+    break;
+#endif /* HAVE_LIBSSH2_KNOWNHOST_API */
+
+#endif /* USE_LIBSSH2 */
+
   case CURLOPT_HTTP_TRANSFER_DECODING:
     /*
      * disable libcurl transfer encoding is used

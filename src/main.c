@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.527 2009-07-17 22:34:16 gknauf Exp $
+ * $Id: main.c,v 1.528 2009-07-22 22:49:02 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -4693,6 +4693,16 @@ operate(struct Configurable *config, int argc, argv_item_t argv[])
           /* new stuff needed for libcurl 7.10 */
           my_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
           my_setopt(curl, CURLOPT_SSL_VERIFYHOST, 1);
+        }
+        else {
+          char *home = homedir();
+          char *file = aprintf("%s/%sssh/known_hosts", home, DOT_CHAR);
+          if(home && file) {
+            free(home);
+            my_setopt_str(curl, CURLOPT_SSH_KNOWNHOSTS, file);
+          }
+          else
+            return CURLE_OUT_OF_MEMORY;
         }
 
         if(config->no_body || config->remote_time) {
