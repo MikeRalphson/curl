@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib554.c,v 1.6 2009-05-08 02:14:50 yangtse Exp $
+ * $Id: lib554.c,v 1.7 2009-07-22 22:08:01 bagder Exp $
  */
 
 #include "test.h"
@@ -125,9 +125,6 @@ int test(char *URL)
 
   /* we want to use our own read function */
   curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
-
-  /* pointer to pass to our read function */
-  curl_easy_setopt(curl, CURLOPT_READDATA, &pooh);
 
   /* send a multi-part formpost */
   curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
