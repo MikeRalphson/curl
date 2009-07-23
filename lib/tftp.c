@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.88 2009-07-23 02:48:05 gknauf Exp $
+ * $Id: tftp.c,v 1.89 2009-07-23 03:54:01 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -605,7 +605,7 @@ static CURLcode tftp_rx(tftp_state_data_t *state, tftp_event_t event)
     if(sendto(state->sockfd, (void *)state->spacket.data,
               4, SEND_4TH_ARG,
               (struct sockaddr *)&state->remote_addr,
-              state->remote_addrlen)) < 0) {
+              state->remote_addrlen) < 0) {
       failf(data, "%s", Curl_strerror(state->conn, SOCKERRNO));
       return CURLE_SEND_ERROR;
     }
