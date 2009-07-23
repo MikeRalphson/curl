@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.135 2009-07-22 22:49:02 bagder Exp $
+ * $Id: ssh.c,v 1.136 2009-07-23 02:15:00 gknauf Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -434,6 +434,7 @@ static CURLcode ssh_getworkingpath(struct connectdata *conn,
   return CURLE_OK;
 }
 
+#ifdef HAVE_LIBSSH2_KNOWNHOST_API
 static int sshkeycallback(CURL *easy,
                           const struct curl_khkey *knownkey, /* known */
                           const struct curl_khkey *foundkey, /* found */
@@ -448,6 +449,7 @@ static int sshkeycallback(CURL *easy,
   /* we only allow perfect matches, and we reject everything else */
   return (match != CURLKHMATCH_OK)?CURLKHSTAT_REJECT:CURLKHSTAT_FINE;
 }
+#endif
 
 /*
  * Earlier libssh2 versions didn't have the ability to seek to 64bit positions
