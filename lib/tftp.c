@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.89 2009-07-23 03:54:01 gknauf Exp $
+ * $Id: tftp.c,v 1.90 2009-07-23 04:53:08 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -657,7 +657,6 @@ static CURLcode tftp_rx(tftp_state_data_t *state, tftp_event_t event)
 static CURLcode tftp_tx(tftp_state_data_t *state, tftp_event_t event)
 {
   struct SessionHandle *data = state->conn->data;
-  ssize_t sbytes;
   int rblock;
   int readcount;
   CURLcode res = CURLE_OK;
@@ -681,13 +680,11 @@ static CURLcode tftp_tx(tftp_state_data_t *state, tftp_event_t event)
         res = CURLE_SEND_ERROR;
       }
       else {
-        /* Re-send the data packet */
-        sbytes = sendto(state->sockfd, (void *)&state->spacket,
-                        4+state->sbytes, SEND_4TH_ARG,
-                        (struct sockaddr *)&state->remote_addr,
-                        state->remote_addrlen);
-        /* Check all sbytes were sent */
-        if(sbytes<0) {
+        /* Re-send the data packet and check all sbytes were sent */
+        if(sendto(state->sockfd, (void *)&state->spacket,
+                  4+state->sbytes, SEND_4TH_ARG,
+                  (struct sockaddr *)&state->remote_addr,
+                  state->remote_addrlen) < 0) {
           failf(data, "%s", Curl_strerror(state->conn, SOCKERRNO));
           res = CURLE_SEND_ERROR;
         }
@@ -710,12 +707,11 @@ static CURLcode tftp_tx(tftp_state_data_t *state, tftp_event_t event)
     state->sbytes = readcount;
     if(res)
       return res;
-    sbytes = sendto(state->sockfd, (void *)state->spacket.data,
-                    4+state->sbytes, SEND_4TH_ARG,
-                    (struct sockaddr *)&state->remote_addr,
-                    state->remote_addrlen);
-    /* Check all sbytes were sent */
-    if(sbytes<0) {
+    /* Send the data packet and check all sbytes were sent */
+    if(sendto(state->sockfd, (void *)state->spacket.data,
+              4+state->sbytes, SEND_4TH_ARG,
+              (struct sockaddr *)&state->remote_addr,
+              state->remote_addrlen) < 0) {
       failf(data, "%s", Curl_strerror(state->conn, SOCKERRNO));
       return CURLE_SEND_ERROR;
     }
@@ -735,13 +731,11 @@ static CURLcode tftp_tx(tftp_state_data_t *state, tftp_event_t event)
       state->state = TFTP_STATE_FIN;
     }
     else {
-      /* Re-send the data packet */
-      sbytes = sendto(state->sockfd, (void *)state->spacket.data,
-                      4+state->sbytes, SEND_4TH_ARG,
-                      (struct sockaddr *)&state->remote_addr,
-                      state->remote_addrlen);
-      /* Check all sbytes were sent */
-      if(sbytes<0) {
+      /* Re-send the data packet and check all sbytes were sent */
+      if(sendto(state->sockfd, (void *)state->spacket.data,
+                4+state->sbytes, SEND_4TH_ARG,
+                (struct sockaddr *)&state->remote_addr,
+                state->remote_addrlen) < 0) {
         failf(data, "%s", Curl_strerror(state->conn, SOCKERRNO));
         return CURLE_SEND_ERROR;
       }
