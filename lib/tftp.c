@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.91 2009-07-24 22:06:19 gknauf Exp $
+ * $Id: tftp.c,v 1.92 2009-07-24 22:20:22 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1035,7 +1035,7 @@ static CURLcode tftp_do(struct connectdata *conn, bool *done)
         case TFTP_EVENT_OACK:
           code = tftp_parse_option_ack(state,
                                        (const char *)state->rpacket.data+2,
-                                       state->rbytes-2);
+                                       (int)state->rbytes-2);
           if(code)
             return code;
           break;
