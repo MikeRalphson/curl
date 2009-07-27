@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.228 2009-07-26 17:33:37 bagder Exp $
+ * $Id: ssluse.c,v 1.229 2009-07-27 18:31:48 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -637,6 +637,9 @@ int Curl_ossl_init(void)
   SSL_load_error_strings();
 
   /* Init the global ciphers and digests */
+  if(!SSLeay_add_ssl_algorithms())
+    return 0;
+
   OpenSSL_add_all_algorithms();
 
   return 1;
