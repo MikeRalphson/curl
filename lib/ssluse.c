@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.229 2009-07-27 18:31:48 bagder Exp $
+ * $Id: ssluse.c,v 1.230 2009-08-01 11:09:03 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -225,8 +225,7 @@ static int ossl_seed(struct SessionHandle *data)
   /* If we get here, it means we need to seed the PRNG using a "silly"
      approach! */
 #ifdef HAVE_RAND_SCREEN
-  /* This one gets a random value by reading the currently shown screen */
-  RAND_screen();
+  /* if RAND_screen() is present, it was called during global init */
   nread = 100; /* just a value */
 #else
   {
@@ -641,6 +640,13 @@ int Curl_ossl_init(void)
     return 0;
 
   OpenSSL_add_all_algorithms();
+
+#ifdef HAVE_RAND_SCREEN
+  /* This one gets a random value by reading the currently shown screen.
+     RAND_screen() is not thread-safe according to OpenSSL devs - although not
+     mentioned in documentation. */
+  RAND_screen();
+#endif
 
   return 1;
 }
