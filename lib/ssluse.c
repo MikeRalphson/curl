@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.231 2009-08-01 21:57:00 bagder Exp $
+ * $Id: ssluse.c,v 1.232 2009-08-01 22:11:58 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1351,6 +1351,7 @@ ossl_connect_step1(struct connectdata *conn,
   X509_LOOKUP *lookup=NULL;
   curl_socket_t sockfd = conn->sock[sockindex];
   struct ssl_connect_data *connssl = &conn->ssl[sockindex];
+  bool sni = TRUE; /* default is SNI enabled */
 #ifdef SSL_CTRL_SET_TLSEXT_HOSTNAME
 #ifdef ENABLE_IPV6
   struct in6_addr addr;
@@ -1376,9 +1377,11 @@ ossl_connect_step1(struct connectdata *conn,
     break;
   case CURL_SSLVERSION_SSLv2:
     req_method = SSLv2_client_method();
+    sni = FALSE;
     break;
   case CURL_SSLVERSION_SSLv3:
     req_method = SSLv3_client_method();
+    sni = FALSE;
     break;
   }
 
@@ -1565,6 +1568,7 @@ ossl_connect_step1(struct connectdata *conn,
 #ifdef ENABLE_IPV6
       (0 == Curl_inet_pton(AF_INET6, conn->host.name, &addr)) &&
 #endif
+      sni &&
       !SSL_set_tlsext_host_name(connssl->handle, conn->host.name))
     infof(data, "WARNING: failed to configure server name indication (SNI) "
           "TLS extension\n");
