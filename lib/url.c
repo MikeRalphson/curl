@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.807 2009-07-22 22:49:02 bagder Exp $
+ * $Id: url.c,v 1.808 2009-08-01 11:02:11 bagder Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -4419,14 +4419,17 @@ static CURLcode create_conn(struct SessionHandle *data,
     }
   }
 
-  if(!proxy)
-    proxy = detect_proxy(conn);
-  else if(data->set.str[STRING_NOPROXY]) {
-    if(check_noproxy(conn->host.name, data->set.str[STRING_NOPROXY])) {
+
+  if(data->set.str[STRING_NOPROXY] &&
+     check_noproxy(conn->host.name, data->set.str[STRING_NOPROXY])) {
+    if(proxy) {
       free(proxy);  /* proxy is in exception list */
       proxy = NULL;
     }
   }
+  else if(!proxy)
+    proxy = detect_proxy(conn);
+
   if(proxy && !*proxy) {
     free(proxy);  /* Don't bother with an empty proxy string */
     proxy = NULL;
