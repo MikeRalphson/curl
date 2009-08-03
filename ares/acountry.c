@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.15 2009-08-03 12:16:00 giva Exp $
+ * $Id: acountry.c,v 1.16 2009-08-03 12:20:03 giva Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -114,10 +114,6 @@ int main(int argc, char **argv)
   WORD wVersionRequested = MAKEWORD(USE_WINSOCK,USE_WINSOCK);
   WSADATA wsaData;
   WSAStartup(wVersionRequested, &wsaData);
-#endif
-
-#ifdef WIN32
-  LoadLibrary ("exchndl.dll");
 #endif
 
   status = ares_library_init(ARES_LIB_INIT_ALL);
