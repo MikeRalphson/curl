@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.234 2009-08-03 08:45:19 bagder Exp $
+ * $Id: ssluse.c,v 1.235 2009-08-03 14:07:57 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1178,7 +1178,7 @@ static CURLcode verifyhost(struct connectdata *conn,
         else /* not a UTF8 name */
           j = ASN1_STRING_to_UTF8(&peer_CN, tmp);
 
-        if((int)strlen((char *)peer_CN) != j) {
+        if(peer_CN && ((int)strlen((char *)peer_CN) != j)) {
           /* there was a terminating zero before the end of string, this
              cannot match and we return failure! */
           failf(data, "SSL: illegal cert name field");
