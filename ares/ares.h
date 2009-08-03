@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.57 2009-05-26 18:00:14 yangtse Exp $ */
+/* $Id: ares.h,v 1.58 2009-08-03 11:51:06 bagder Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -86,6 +86,7 @@ extern "C" {
 #define ARES_ENOMEM             15
 #define ARES_EDESTRUCTION       16
 #define ARES_EBADSTR            17
+#define ARES_ECANCELLED         21
 
 /* ares_getnameinfo error codes */
 #define ARES_EBADFLAGS          18
