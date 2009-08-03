@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.530 2009-07-25 18:09:57 bagder Exp $
+ * $Id: main.c,v 1.531 2009-08-03 09:06:35 bagder Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -4991,7 +4991,14 @@ operate(struct Configurable *config, int argc, argv_item_t argv[])
                 fflush(outs.stream);
                 /* truncate file at the position where we started appending */
 #ifdef HAVE_FTRUNCATE
-                ftruncate( fileno(outs.stream), outs.init);
+                if(ftruncate( fileno(outs.stream), outs.init)) {
+                  /* when truncate fails, we can't just append as then we'll
+                     create something strange, bail out */
+                  if(!config->mute)
+                    fprintf(config->errors,
+                            "failed to truncate, exiting\n");
+                  break;
+                }
                 /* now seek to the end of the file, the position where we
                    just truncated the file in a large file-safe way */
                 fseek(outs.stream, 0, SEEK_END);
