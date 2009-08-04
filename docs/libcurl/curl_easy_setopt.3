@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl_easy_setopt.3,v 1.265 2009-07-22 22:49:01 bagder Exp $
+.\" * $Id: curl_easy_setopt.3,v 1.266 2009-08-04 12:02:27 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl_easy_setopt 3 "11 Dec 2008" "libcurl 7.19.3" "libcurl Manual"
@@ -870,7 +870,7 @@ data using the read callback!
 Using POST with HTTP 1.1 implies the use of a "Expect: 100-continue" header.
 You can disable this header with \fICURLOPT_HTTPHEADER\fP as usual.
 
-To make multipart/formdata posts (aka rfc1867-posts), check out the
+To make multipart/formdata posts (aka RFC2388-posts), check out the
 \fICURLOPT_HTTPPOST\fP option.
 .IP CURLOPT_POSTFIELDSIZE
 If you want to post data to the server without letting libcurl do a strlen()
