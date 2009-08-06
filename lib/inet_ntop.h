@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: inet_ntop.h,v 1.6 2009-08-06 11:10:30 gknauf Exp $
+ * $Id: inet_ntop.h,v 1.7 2009-08-06 12:02:00 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -31,7 +31,7 @@ char *Curl_inet_ntop(int af, const void *addr, char *buf, size_t size);
 #ifdef HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
-#define Curl_inet_ntop(af,addr,buf,size) inet_ntop(af,addr,buf,(size_t)size)
+#define Curl_inet_ntop(af,addr,buf,size) inet_ntop(af,addr,buf,(socklen_t)size)
 #endif
 
 #endif /* __INET_NTOP_H */
