@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.531 2009-08-03 09:06:35 bagder Exp $
+ * $Id: main.c,v 1.532 2009-08-06 13:23:00 gknauf Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2347,7 +2347,7 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
             postdata=strdup("");
           }
           else {
-            char *enc = curl_easy_escape(config->easy, postdata, size);
+            char *enc = curl_easy_escape(config->easy, postdata, (int)size);
             free(postdata); /* no matter if it worked or not */
             if(enc) {
               /* now make a string with the name from above and append the
