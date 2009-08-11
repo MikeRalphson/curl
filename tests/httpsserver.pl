@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# $Id: httpsserver.pl,v 1.12 2009-04-13 03:47:16 yangtse Exp $
+# $Id: httpsserver.pl,v 1.13 2009-08-11 21:48:59 bagder Exp $
 # This is the HTTPS and FTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -28,6 +28,8 @@ my $srcdir=$path;
 
 my $proto='https';
 
+my $stuncert;
+
 while(@ARGV) {
     if($ARGV[0] eq "-v") {
         $verbose=1;
@@ -51,6 +53,10 @@ while(@ARGV) {
         $srcdir=$ARGV[1];
         shift @ARGV;
     }
+    elsif($ARGV[0] eq "-c") {
+        $stuncert=$ARGV[1];
+        shift @ARGV;
+    }
     elsif($ARGV[0] =~ /^(\d+)$/) {
         $port = $1;
     }
@@ -58,7 +64,9 @@ while(@ARGV) {
 };
 
 my $conffile="$path/stunnel.conf";	# stunnel configuration data
-my $certfile="$srcdir/stunnel.pem";	# stunnel server certificate
+my $certfile="$srcdir/" 
+            . ($stuncert?"certs/$stuncert":"stunnel.pem");	# stunnel server certificate
+
 my $pidfile="$path/.$proto.pid";	# stunnel process pid file
 
 # find out version info for the given stunnel binary
@@ -107,6 +115,19 @@ else {
 
 if($verbose) {
     print uc($proto)." server: $cmd\n";
+
+   print  "
+	CApath = $path
+	cert = $certfile
+	pid = $pidfile
+	debug = 0
+	output = /dev/null
+	foreground = yes
+	
+	[curltest]
+	accept = $port
+	connect = $target_port
+	";
 }
 
 my $rc = system($cmd);

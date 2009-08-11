@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.235 2009-08-03 14:07:57 bagder Exp $
+ * $Id: ssluse.c,v 1.236 2009-08-11 21:48:58 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1137,6 +1137,12 @@ static CURLcode verifyhost(struct connectdata *conn,
   if(matched)
     /* an alternative name matched the server hostname */
     infof(data, "\t subjectAltName: %s matched\n", conn->host.dispname);
+  else if(altnames) {
+    /* an alternative name field existed, but didn't match and then
+       we MUST fail */
+    infof(data, "\t subjectAltName does not match %s\n", conn->host.dispname);
+    res = CURLE_PEER_FAILED_VERIFICATION;
+  }
   else {
     /* we have to look to the last occurence of a commonName in the
        distinguished one to get the most significant one. */
