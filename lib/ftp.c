@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.524 2009-07-27 18:36:56 bagder Exp $
+ * $Id: ftp.c,v 1.525 2009-08-11 02:30:53 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -926,9 +926,9 @@ static CURLcode ftp_state_use_port(struct connectdata *conn,
     char *port_start = NULL;
     char *port_sep = NULL;
 
-    addr = malloc(addrlen);
-    memset(addr, 0, addrlen);
-
+    addr = calloc(addrlen+1, 1);
+    if (!addr)
+      return CURLE_OUT_OF_MEMORY;
 
 #ifdef ENABLE_IPV6
     if(*string_ftpport == '[') {
