@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.77 2009-06-08 14:31:35 yangtse Exp $
+# $Id: Makefile.am,v 1.78 2009-08-11 18:11:40 danf Exp $
 ###########################################################################
 
 AUTOMAKE_OPTIONS = foreign
@@ -33,7 +33,7 @@ CMake/Utilities.cmake include/curl/curlbuild.h.cmake
 
 EXTRA_DIST = CHANGES COPYING maketgz Makefile.dist curl-config.in	\
  curl-style.el sample.emacs RELEASE-NOTES buildconf 	\
- libcurl.pc.in vc6curl.dsw MacOSX-Framework $(CMAKE_DIST)
+ libcurl.pc.in vc6curl.dsw MacOSX-Framework Android.mk $(CMAKE_DIST)
 
 bin_SCRIPTS = curl-config
 
