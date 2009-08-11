@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.525 2009-08-11 02:30:53 danf Exp $
+ * $Id: ftp.c,v 1.526 2009-08-11 20:43:12 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3529,7 +3529,7 @@ static CURLcode ftp_nextconnect(struct connectdata *conn)
 
         /* But only if a body transfer was requested. */
         if(ftp->transfer == FTPTRANSFER_BODY) {
-          result = ftp_nb_type(conn, 1, FTP_LIST_TYPE);
+          result = ftp_nb_type(conn, TRUE, FTP_LIST_TYPE);
           if(result)
             return result;
         }
@@ -4093,7 +4093,7 @@ CURLcode ftp_regular_transfer(struct connectdata *conn,
                               bool *dophase_done)
 {
   CURLcode result=CURLE_OK;
-  bool connected=0;
+  bool connected=FALSE;
   struct SessionHandle *data = conn->data;
   struct ftp_conn *ftpc = &conn->proto.ftpc;
   data->req.size = -1; /* make sure this is unknown at this point */
