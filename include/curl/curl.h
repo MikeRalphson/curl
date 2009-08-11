@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.389 2009-07-22 22:49:01 bagder Exp $
+ * $Id: curl.h,v 1.390 2009-08-11 14:07:08 patrickm Exp $
  ***************************************************************************/
 
 /*
@@ -1236,7 +1236,7 @@ typedef enum {
   CINIT(TFTP_BLKSIZE, LONG, 178),
 
   /* Socks Service */
-  CINIT(SOCKS5_GSSAPI_SERVICE, LONG, 179),
+  CINIT(SOCKS5_GSSAPI_SERVICE, OBJECTPOINT, 179),
 
   /* Socks Service */
   CINIT(SOCKS5_GSSAPI_NEC, LONG, 180),

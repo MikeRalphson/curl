@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.14 2009-02-17 16:16:27 patrickm Exp $
+ * $Id: ccsidcurl.c,v 1.15 2009-08-11 14:07:08 patrickm Exp $
  *
  ***************************************************************************/
 
@@ -1080,6 +1080,8 @@ curl_easy_setopt_ccsid(CURL * curl, CURLoption tag, ...)
   case CURLOPT_PROXYUSERNAME:
   case CURLOPT_PROXYPASSWORD:
   case CURLOPT_NOPROXY:
+  /* SSH2 not (yet) implemented on OS400. */
+  /* case CURLOPT_SSH_KNOWNHOSTS: */
   case CURLOPT_SOCKS5_GSSAPI_SERVICE:
     s = va_arg(arg, char *);
     ccsid = va_arg(arg, unsigned int);
