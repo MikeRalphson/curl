@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: tftp.c,v 1.92 2009-07-24 22:20:22 gknauf Exp $
+ * $Id: tftp.c,v 1.93 2009-08-12 08:19:39 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -443,7 +443,7 @@ static CURLcode tftp_send_first(tftp_state_data_t *state, tftp_event_t event)
   size_t sbytes;
   const char *mode = "octet";
   char *filename;
-  char buf[8];
+  char buf[64];
   struct SessionHandle *data = state->conn->data;
   CURLcode res = CURLE_OK;
 
@@ -489,11 +489,16 @@ static CURLcode tftp_send_first(tftp_state_data_t *state, tftp_event_t event)
     sbytes = 4 + strlen(filename) + strlen(mode);
 
     /* add tsize option */
+    if(data->set.upload && (data->set.infilesize != -1))
+      snprintf( buf, sizeof(buf), "%" FORMAT_OFF_T, data->set.infilesize );
+    else
+      strcpy(buf, "0"); /* the destination is large enough */
+
     sbytes += tftp_option_add(state, sbytes,
                               (char *)state->spacket.data+sbytes,
                               TFTP_OPTION_TSIZE);
     sbytes += tftp_option_add(state, sbytes,
-                              (char *)state->spacket.data+sbytes, "0");
+                              (char *)state->spacket.data+sbytes, buf);
     /* add blksize option */
     snprintf( buf, sizeof(buf), "%d", state->requested_blksize );
     sbytes += tftp_option_add(state, sbytes,
