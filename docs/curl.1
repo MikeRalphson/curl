@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.272 2009-08-04 12:02:27 bagder Exp $
+.\" * $Id: curl.1,v 1.273 2009-08-14 18:09:42 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -74,6 +74,10 @@ If you specify URL without protocol:// prefix, curl will attempt to guess what
 protocol you might want. It will then default to HTTP but try other protocols
 based on often-used host name prefixes. For example, for host names starting
 with "ftp." curl will assume you want to speak FTP.
+
+curl will do its best to use what you pass to it as a URL. It is not trying to
+validate it as a syntactically correct URL by any means but is instead
+\fBvery\fP liberal with what it accepts.
 
 Curl will attempt to re-use connections for multiple file transfers, so that
 getting many files from the same server will not do multiple connects /
