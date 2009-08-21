@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.424 2009-07-08 07:00:40 bagder Exp $
+ * $Id: http.c,v 1.425 2009-08-21 12:15:35 mmarek Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2050,7 +2050,7 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
   struct HTTP *http;
   const char *ppath = data->state.path;
   bool paste_ftp_userpwd = FALSE;
-  char ftp_typecode[sizeof(";type=?")] = "";
+  char ftp_typecode[sizeof("/;type=?")] = "";
   const char *host = conn->host.name;
   const char *te = ""; /* transfer-encoding */
   const char *ptr;
@@ -2292,20 +2292,27 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
     if(checkprefix("ftp://", ppath)) {
       if (data->set.proxy_transfer_mode) {
         /* when doing ftp, append ;type=<a|i> if not present */
-        char *p = strstr(ppath, ";type=");
-        if(p && p[6] && p[7] == 0) {
-          switch (Curl_raw_toupper(p[6])) {
+        char *type = strstr(ppath, ";type=");
+        if(type && type[6] && type[7] == 0) {
+          switch (Curl_raw_toupper(type[6])) {
           case 'A':
           case 'D':
           case 'I':
             break;
           default:
-            p = NULL;
+            type = NULL;
           }
         }
-        if(!p)
-          snprintf(ftp_typecode, sizeof(ftp_typecode), ";type=%c",
+        if(!type) {
+          char *p = ftp_typecode;
+          /* avoid sending invalid URLs like ftp://example.com;type=i if the
+           * user specified ftp://example.com without the slash */
+          if (!*data->state.path && ppath[strlen(ppath) - 1] != '/') {
+            *p++ = '/';
+          }
+          snprintf(p, sizeof(ftp_typecode) - 1, ";type=%c",
                    data->set.prefer_ascii ? 'a' : 'i');
+        }
       }
       if (conn->bits.user_passwd && !conn->bits.userpwd_in_url)
         paste_ftp_userpwd = TRUE;
