@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.416 2009-07-22 22:49:02 bagder Exp $
+ * $Id: urldata.h,v 1.417 2009-08-21 07:11:20 bagder Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1028,6 +1028,8 @@ struct connectdata {
                                    their responses on this pipeline */
   struct curl_llist *pend_pipe; /* List of pending handles on
                                    this pipeline */
+  struct curl_llist *done_pipe; /* Handles that are finished, but
+				   still reference this connectdata */
 #define MAX_PIPELINE_LENGTH 5
 
   char* master_buffer; /* The master buffer allocated on-demand;
