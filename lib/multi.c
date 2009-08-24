@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: multi.c,v 1.203 2009-08-21 12:01:36 bagder Exp $
+ * $Id: multi.c,v 1.204 2009-08-24 08:41:17 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1180,7 +1180,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
            * may have unexpectedly died.  If possible, send the connection
            * back to the CONNECT phase so we can try again.
            */
-          char *newurl;
+          char *newurl = NULL;
           followtype follow=FOLLOW_NONE;
           CURLcode drc;
           bool retry = FALSE;
@@ -1378,7 +1378,7 @@ static CURLMcode multi_runsingle(struct Curl_multi *multi,
         Curl_done(&easy->easy_conn, easy->result, FALSE);
       }
       else if(TRUE == done) {
-        char *newurl;
+        char *newurl = NULL;
         bool retry = FALSE;
         followtype follow=FOLLOW_NONE;
 
