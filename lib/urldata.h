@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.417 2009-08-21 07:11:20 bagder Exp $
+ * $Id: urldata.h,v 1.418 2009-08-24 12:57:25 patrickm Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -362,6 +362,8 @@ typedef enum {
   FTP_PROT,
   FTP_CCC,
   FTP_PWD,
+  FTP_SYST,
+  FTP_NAMEFMT,
   FTP_QUOTE, /* waiting for a response to a command sent in a quote list */
   FTP_RETR_PREQUOTE,
   FTP_STOR_PREQUOTE,
@@ -458,6 +460,7 @@ struct ftp_conn {
   struct timeval response; /* set to Curl_tvnow() when a command has been sent
                               off, used to time-out response reading */
   ftpstate state; /* always use ftp.c:state() to change state! */
+  char * server_os;     /* The target server operating system. */
 };
 
 /****************************************************************************
