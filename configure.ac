@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.423 2009-07-14 13:25:14 gknauf Exp $
+# $Id: configure.ac,v 1.424 2009-08-24 11:38:59 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1571,12 +1571,13 @@ if test "$OPENSSL_ENABLED" != "1"; then
     else
       dnl this is with a given path, first check if there's a libgnutls-config
       dnl there and if not, make an educated guess
-      check=`$OPT_GNUTLS/libgnutls-config --version 2>/dev/null`
+      cfg=$OPT_GNUTLS/bin/libgnutls-config
+      check=`$cfg --version 2>/dev/null`
       if test -n "$check"; then
-        addlib=`$OPT_GNUTLS/libgnutls-config --libs`
-        addcflags=`$OPT_GNUTLS/libgnutls-config --cflags`
-        version=`$OPT_GNUTLS/libgnutls-config --version`
-        gtlslib=`$OPT_GNUTLS/libgnutls-config --prefix`/lib$libsuff
+        addlib=`$cfg --libs`
+        addcflags=`$cfg --cflags`
+        version=`$cfg --version`
+        gtlslib=`$cfg --prefix`/lib$libsuff
       else
         dnl without pkg-config and libgnutls-config, we guess a lot!
         addlib=-lgnutls
