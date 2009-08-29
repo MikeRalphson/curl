@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: socks.c,v 1.32 2009-08-29 03:53:09 gknauf Exp $
+ * $Id: socks.c,v 1.33 2009-08-29 03:57:28 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -513,10 +513,10 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
     len = 0;
     socksreq[len++] = 1;    /* username/pw subnegotiation version */
     socksreq[len++] = (char) userlen;
-    memcpy(socksreq + len, proxy_name, (int) userlen);
+    memcpy(socksreq + len, proxy_name, userlen);
     len += (int)userlen;
     socksreq[len++] = (char) pwlen;
-    memcpy(socksreq + len, proxy_password, (int) pwlen);
+    memcpy(socksreq + len, proxy_password, pwlen);
     len += (int)pwlen;
 
     code = Curl_write_plain(conn, sock, (char *)socksreq, len, &written);
