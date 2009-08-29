@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: content_encoding.c,v 1.33 2009-05-11 09:55:28 bagder Exp $
+ * $Id: content_encoding.c,v 1.34 2009-08-29 03:42:13 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -365,7 +365,7 @@ Curl_unencode_gzip_write(struct connectdata *conn,
     ssize_t hlen;
     unsigned char *oldblock = z->next_in;
 
-    z->avail_in += nread;
+    z->avail_in += (uInt)nread;
     z->next_in = realloc(z->next_in, z->avail_in);
     if(z->next_in == NULL) {
       free(oldblock);
