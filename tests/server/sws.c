@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: sws.c,v 1.133 2009-06-12 09:01:41 yangtse Exp $
+ * $Id: sws.c,v 1.134 2009-08-29 15:44:31 gknauf Exp $
  ***************************************************************************/
 
 /* sws.c: simple (silly?) web server
@@ -613,7 +613,7 @@ static int get_request(curl_socket_t sock, struct httprequest *req)
 
     logmsg("Read %zd bytes", got);
 
-    req->offset += got;
+    req->offset += (int)got;
     reqbuf[req->offset] = '\0';
 
     if(ProcessRequest(req)) {
