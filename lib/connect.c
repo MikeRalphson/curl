@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.220 2009-07-09 21:47:24 bagder Exp $
+ * $Id: connect.c,v 1.221 2009-08-29 04:12:51 gknauf Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -277,7 +277,7 @@ static CURLcode bindlocal(struct connectdata *conn,
        * hostname or ip address.
        */
       if(setsockopt(sockfd, SOL_SOCKET, SO_BINDTODEVICE,
-                    dev, strlen(dev)+1) != 0) {
+                    dev, (curl_socklen_t)strlen(dev)+1) != 0) {
         error = SOCKERRNO;
         infof(data, "SO_BINDTODEVICE %s failed with errno %d: %s;"
               " will do regular bind\n",
