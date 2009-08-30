@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: gtls.c,v 1.61 2009-08-01 22:11:58 bagder Exp $
+ * $Id: gtls.c,v 1.62 2009-08-30 01:36:01 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -676,7 +676,7 @@ void Curl_gtls_close(struct connectdata *conn, int sockindex)
  */
 int Curl_gtls_shutdown(struct connectdata *conn, int sockindex)
 {
-  int result;
+  ssize_t result;
   int retval = 0;
   struct SessionHandle *data = conn->data;
   int done = 0;
@@ -776,7 +776,7 @@ ssize_t Curl_gtls_recv(struct connectdata *conn, /* connection data */
 
   if(ret < 0) {
     failf(conn->data, "GnuTLS recv error (%d): %s",
-          (int)ret, gnutls_strerror(ret));
+          (int)ret, gnutls_strerror((int)ret));
     return -1;
   }
 
