@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ccsidcurl.c,v 1.15 2009-08-11 14:07:08 patrickm Exp $
+ * $Id: ccsidcurl.c,v 1.16 2009-08-31 15:22:16 patrickm Exp $
  *
  ***************************************************************************/
 
@@ -32,8 +32,8 @@
 
 #pragma enum(int)
 
-#include <curl/curl.h>
-#include <curl/mprintf.h>
+#include "curl.h"
+#include "mprintf.h"
 #include "urldata.h"
 #include "url.h"
 #include "getinfo.h"
