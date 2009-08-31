@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.391 2009-08-31 02:05:04 gknauf Exp $
+ * $Id: curl.h,v 1.392 2009-08-31 13:58:47 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -32,7 +32,7 @@
  */
 
 #include "curlver.h"         /* libcurl version defines   */
-#include "curlbuild.h"       /* libcurl build definitions */
+#include "curl/curlbuild.h"  /* libcurl build definitions */
 #include "curlrules.h"       /* libcurl rules enforcement */
 
 /*
