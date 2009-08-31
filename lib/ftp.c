@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.527 2009-08-24 12:57:25 patrickm Exp $
+ * $Id: ftp.c,v 1.528 2009-08-31 20:49:30 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3026,9 +3026,13 @@ static CURLcode ftp_multi_statemach(struct connectdata *conn,
   }
   else if(rc != 0) {
     result = ftp_statemach_act(conn);
-    *done = (bool)(ftpc->state == FTP_STOP);
   }
   /* if rc == 0, then select() timed out */
+
+  /* Check for the state outside of the Curl_socket_ready() return code checks
+     since at times we are in fact already in this state when this function
+     gets called. */
+  *done = (bool)(ftpc->state == FTP_STOP);
 
   return result;
 }
