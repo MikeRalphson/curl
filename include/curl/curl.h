@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.393 2009-08-31 15:48:52 patrickm Exp $
+ * $Id: curl.h,v 1.394 2009-09-01 07:02:37 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -32,11 +32,10 @@
  */
 
 #include "curlver.h"         /* libcurl version defines   */
-/* The leading path on the following include statement is required by the
-   autobuild system (tests/testcurl.pl) because curlbuild.h is not generated
-   in the same directory as curl.h in this special case. As long as the
-   autobuild system works that way, do not remove it, unless you know what
-   you're doing. */
+/* The leading path on the following include statement is required to properly
+   allow building outside of the source tree, because then curlbuild.h is not
+   generated in the same directory as curl.h. Do not remove it, unless you
+   know what you're doing. */
 #include "curl/curlbuild.h"  /* libcurl build definitions */
 #include "curlrules.h"       /* libcurl rules enforcement */
 
