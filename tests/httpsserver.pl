@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# $Id: httpsserver.pl,v 1.13 2009-08-11 21:48:59 bagder Exp $
+# $Id: httpsserver.pl,v 1.14 2009-09-01 17:05:24 bagder Exp $
 # This is the HTTPS and FTPS server designed for the curl test suite.
 #
 # It is actually just a layer that runs stunnel properly.
@@ -133,9 +133,9 @@ if($verbose) {
 my $rc = system($cmd);
 
 $rc >>= 8;
-if($rc) {
-    print STDERR "stunnel exited with $rc!\n";
-}
+#if($rc) {
+#    print STDERR "stunnel exited with $rc!\n";
+#}
 
 unlink $conffile;
 
