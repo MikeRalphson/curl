@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.136 2009-07-23 02:15:00 gknauf Exp $
+ * $Id: ssh.c,v 1.137 2009-09-02 21:05:47 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -230,14 +230,11 @@ kbd_callback(const char *name, int name_len, const char *instruction,
   (void)abstract;
 } /* kbd_callback */
 
-static CURLcode sftp_libssh2_error_to_CURLE(unsigned long err)
+static CURLcode sftp_libssh2_error_to_CURLE(int err)
 {
   switch (err) {
     case LIBSSH2_FX_OK:
       return CURLE_OK;
-
-    case LIBSSH2_ERROR_ALLOC:
-      return CURLE_OUT_OF_MEMORY;
 
     case LIBSSH2_FX_NO_SUCH_FILE:
     case LIBSSH2_FX_NO_SUCH_PATH:
