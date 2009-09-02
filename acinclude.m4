@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: acinclude.m4,v 1.238 2009-09-01 06:53:02 bagder Exp $
+# $Id: acinclude.m4,v 1.239 2009-09-02 17:48:26 bagder Exp $
 #***************************************************************************
 
 
@@ -3195,13 +3195,23 @@ dnl ------------------------
 dnl search for the pkg-config tool (if not cross-compiling). Set the PKGCONFIG
 dnl variable to hold the path to it, or 'no' if not found/present.
 dnl
-dnl If pkg-config is present, check that it has info about the $module or return
-dnl "no" anyway!
+dnl If pkg-config is present, check that it has info about the $module or
+dnl return "no" anyway!
 dnl
 
 AC_DEFUN([CURL_CHECK_PKGCONFIG], [
 
-    AC_PATH_PROG( PKGCONFIG, pkg-config, no, $PATH:/usr/bin:/usr/local/bin)
+    PKGCONFIG="no"
+
+    if test x$cross_compiling = xyes; then
+      dnl see if there's a pkg-specific for this host setup
+      AC_PATH_PROG( PKGCONFIG, ${host}-pkg-config, no,
+                    $PATH:/usr/bin:/usr/local/bin)
+    fi
+
+    if test x$PKGCONFIG = xno; then
+      AC_PATH_PROG( PKGCONFIG, pkg-config, no, $PATH:/usr/bin:/usr/local/bin)
+    fi
 
     if test x$PKGCONFIG != xno; then
       AC_MSG_CHECKING([for $1 options with pkg-config])
