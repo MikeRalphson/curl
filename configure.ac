@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.426 2009-09-01 08:39:39 bagder Exp $
+# $Id: configure.ac,v 1.427 2009-09-04 17:46:59 gknauf Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -110,7 +110,7 @@ AC_SUBST(PKGADD_VENDOR)
 
 dnl
 dnl initialize all the info variables
-    curl_ssl_msg="no      (--with-ssl / --with-gnutls)"
+    curl_ssl_msg="no      (--with-ssl / --with-gnutls / --with-nss)"
     curl_ssh_msg="no      (--with-libssh2)"
    curl_zlib_msg="no      (--with-zlib)"
    curl_krb4_msg="no      (--with-krb4*)"
