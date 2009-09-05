@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.59 2009-09-04 21:56:14 bagder Exp $ */
+/* $Id: ares.h,v 1.60 2009-09-05 15:12:30 gknauf Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -323,9 +323,9 @@ struct addr6ttl {
 };
 
 struct srv_reply {
-  u_int16_t weight;
-  u_int16_t priority;
-  u_int16_t port;
+  unsigned short weight;
+  unsigned short priority;
+  unsigned short port;
   char *host;
 };
 
