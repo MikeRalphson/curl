@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.54 2009-09-06 17:59:46 gknauf Exp $
+ * $Id: nss.c,v 1.55 2009-09-06 19:45:08 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -266,7 +266,7 @@ static int num_enabled_ciphers(void)
  */
 static int is_file(const char *filename)
 {
-  struct stat st;
+  struct_stat st;
 
   if(filename == NULL)
     return 0;
@@ -968,7 +968,7 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
     certDir = getenv("SSL_DIR"); /* Look in $SSL_DIR */
 
     if(!certDir) {
-      struct stat st;
+      struct_stat st;
 
       if(stat(SSL_DIR, &st) == 0)
         if(S_ISDIR(st.st_mode)) {
@@ -1104,7 +1104,7 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
     }
   }
   else if(data->set.ssl.CApath) {
-    struct stat st;
+    struct_stat st;
     PRDir      *dir;
     PRDirEntry *entry;
 
