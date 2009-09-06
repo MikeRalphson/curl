@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.55 2009-09-06 19:45:08 gknauf Exp $
+ * $Id: nss.c,v 1.56 2009-09-06 20:16:59 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -1283,7 +1283,7 @@ int Curl_nss_send(struct connectdata *conn,  /* connection data */
   int rc;
 
   if(data->set.timeout)
-    timeout = PR_MillisecondsToInterval(data->set.timeout);
+    timeout = PR_MillisecondsToInterval((PRUint32)data->set.timeout);
   else
     timeout = PR_MillisecondsToInterval(DEFAULT_CONNECT_TIMEOUT);
 
@@ -1319,7 +1319,7 @@ ssize_t Curl_nss_recv(struct connectdata * conn, /* connection data */
   PRInt32 timeout;
 
   if(data->set.timeout)
-    timeout = PR_SecondsToInterval(data->set.timeout);
+    timeout = PR_SecondsToInterval((PRUint32)data->set.timeout);
   else
     timeout = PR_MillisecondsToInterval(DEFAULT_CONNECT_TIMEOUT);
 
