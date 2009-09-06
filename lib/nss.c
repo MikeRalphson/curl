@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.53 2009-08-28 12:06:51 kdudka Exp $
+ * $Id: nss.c,v 1.54 2009-09-06 17:59:46 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -63,6 +63,7 @@
 #include <secitem.h>
 #include <secport.h>
 #include <certdb.h>
+#include <base64.h>
 
 #include "curl_memory.h"
 #include "rawstr.h"
