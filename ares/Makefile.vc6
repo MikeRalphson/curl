@@ -1,7 +1,7 @@
-# $Id: Makefile.vc6,v 1.28 2009-09-05 15:12:30 gknauf Exp $
+# $Id: Makefile.vc6,v 1.29 2009-09-07 10:59:54 giva Exp $
 #
 # C-ares makefile for MSVC6+
-# G. Vanem <giva@bgnett.no>.
+# G. Vanem <gvanem@broadpark.no>.
 #
 
 CFG_MODEL   = MD
