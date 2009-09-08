@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.56 2009-09-06 20:16:59 gknauf Exp $
+ * $Id: nss.c,v 1.57 2009-09-08 01:13:49 gknauf Exp $
  ***************************************************************************/
 
 /*
@@ -978,6 +978,8 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
 
     if (!NSS_IsInitialized()) {
       initialized = 1;
+      infof(conn->data, "Initializing NSS with certpath: %s\n",
+            certDir ? certDir : "none");
       if(!certDir) {
         rv = NSS_NoDB_Init(NULL);
       }
