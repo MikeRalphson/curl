@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: chkspeed.c,v 1.2 2009-09-10 15:00:21 gknauf Exp $
+ * $Id: chkspeed.c,v 1.3 2009-09-10 18:36:06 gknauf Exp $
  *
  * Example source code to show how the callback function can be used to
  * download data into a chunk of memory instead of storing it in a file.
@@ -150,7 +150,8 @@ int main(int argc, char *argv[])
       printf("Average download speed: %0.3f kbyte/sec.\n", val / 1024);
 
   } else {
-    printf("Error while fetching '%s' : %s\n", url, curl_easy_strerror(res));
+    fprintf(stderr, "Error while fetching '%s' : %s\n",
+            url, curl_easy_strerror(res));
   }
 
   /* cleanup curl stuff */
