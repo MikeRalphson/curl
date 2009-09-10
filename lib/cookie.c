@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.105 2009-06-15 02:29:49 yangtse Exp $
+ * $Id: cookie.c,v 1.106 2009-09-10 21:06:50 bagder Exp $
  ***************************************************************************/
 
 /***
@@ -365,6 +365,12 @@ Curl_cookie_add(struct SessionHandle *data,
                get parsed for whatever reason. This will have the effect that
                the cookie won't match. */
             co->expires = curl_getdate(what, &now);
+            
+            /* Session cookies have expires set to 0 so if we get that back
+               from the date parser let's add a second to make it a 
+               non-session cookie */
+            if (co->expires == 0)
+                co->expires = 1;
           }
           else if(!co->name) {
             co->name = strdup(name);
