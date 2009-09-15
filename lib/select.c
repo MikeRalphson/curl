@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: select.c,v 1.52 2008-05-26 15:09:28 bagder Exp $
+ * $Id: select.c,v 1.53 2009-09-15 00:07:56 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -397,6 +397,20 @@ int Curl_poll(struct pollfd ufds[], unsigned int nfds, int timeout_ms)
         break;
     }
   } while(r == -1);
+
+  if(r < 0)
+    return -1;
+  if(r == 0)
+    return 0;
+
+  for (i = 0; i < nfds; i++) {
+    if(ufds[i].fd == CURL_SOCKET_BAD)
+      continue;
+    if(ufds[i].revents & POLLHUP)
+      ufds[i].revents |= POLLIN;
+    if(ufds[i].revents & POLLERR)
+      ufds[i].revents |= (POLLIN|POLLOUT);
+  }
 
 #else  /* HAVE_POLL_FINE */
 
