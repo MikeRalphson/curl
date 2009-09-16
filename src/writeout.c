@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: writeout.c,v 1.35 2009-09-16 14:38:18 yangtse Exp $
+ * $Id: writeout.c,v 1.36 2009-09-16 16:49:02 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -108,7 +108,7 @@ void ourWriteOut(CURL *curl, const char *writeinfo)
   long longinfo;
   double doubleinfo;
 
-  while(*ptr) {
+  while(ptr && *ptr) {
     if('%' == *ptr) {
       if('%' == ptr[1]) {
         /* an escaped %-letter */
