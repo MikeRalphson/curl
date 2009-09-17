@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.143 2009-06-15 10:15:28 patrickm Exp $
+ * $Id: easy.c,v 1.144 2009-09-17 14:23:27 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -85,7 +85,7 @@
 #include "http_ntlm.h"
 #include "connect.h" /* for Curl_getconnectinfo */
 #include "slist.h"
-#include "formdata.h"   /* For Curl_srand(). */
+#include "curl_rand.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
