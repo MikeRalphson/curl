@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.137 2009-09-02 21:05:47 bagder Exp $
+ * $Id: ssh.c,v 1.138 2009-09-17 15:06:34 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -455,7 +455,7 @@ static int sshkeycallback(CURL *easy,
 #ifdef HAVE_LIBSSH2_SFTP_SEEK64
 #define SFTP_SEEK(x,y) libssh2_sftp_seek64(x, (libssh2_uint64_t)y)
 #else
-#define SFTP_SEEK(x,y) libssh2_sftp_seek(x, y)
+#define SFTP_SEEK(x,y) libssh2_sftp_seek(x, (size_t)y)
 #endif
 
 /*
