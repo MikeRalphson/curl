@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.528 2009-08-31 20:49:30 bagder Exp $
+ * $Id: ftp.c,v 1.529 2009-09-17 16:11:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -445,7 +445,7 @@ static CURLcode ftp_readresp(curl_socket_t sockfd,
 #endif /* CURL_DOES_CONVERSIONS */
 
       if(CURLE_OK != res) {
-        result = res;	/* Set the outer result variable to this error. */
+        result = (CURLcode)res; /* Set outer result variable to this error. */
         keepon = FALSE;
       }
     }
