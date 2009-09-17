@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.810 2009-08-21 07:11:20 bagder Exp $
+ * $Id: url.c,v 1.811 2009-09-17 11:45:27 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3946,9 +3946,11 @@ static CURLcode parse_remote_port(struct SessionHandle *data,
 
     conn->host.name++; /* skip over the starting bracket */
     portptr = strchr(conn->host.name, ']');
-    *portptr++ = 0; /* zero terminate, killing the bracket */
-    if(':' != *portptr)
-      portptr = NULL; /* no port number available */
+    if(portptr) {
+      *portptr++ = '\0'; /* zero terminate, killing the bracket */
+      if(':' != *portptr)
+        portptr = NULL; /* no port number available */
+    }
   }
   else
     portptr = strrchr(conn->host.name, ':');
