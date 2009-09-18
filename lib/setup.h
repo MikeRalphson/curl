@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.167 2009-07-14 13:25:14 gknauf Exp $
+ * $Id: setup.h,v 1.168 2009-09-18 14:48:16 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -293,6 +293,7 @@
 #  define fstat(fdes,stp)            _fstati64(fdes, stp)
 #  define stat(fname,stp)            _stati64(fname, stp)
 #  define struct_stat                struct _stati64
+#  define LSEEK_ERROR                (__int64)-1
 #endif
 
 /*
@@ -307,10 +308,15 @@
 #  define fstat(fdes,stp)            _fstat(fdes, stp)
 #  define stat(fname,stp)            _stat(fname, stp)
 #  define struct_stat                struct _stat
+#  define LSEEK_ERROR                (long)-1
 #endif
 
 #ifndef struct_stat
 #  define struct_stat struct stat
+#endif
+
+#ifndef LSEEK_ERROR
+#  define LSEEK_ERROR (off_t)-1
 #endif
 
 /*
