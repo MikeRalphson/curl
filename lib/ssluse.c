@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.239 2009-09-16 20:44:18 bagder Exp $
+ * $Id: ssluse.c,v 1.240 2009-09-24 13:24:08 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1353,6 +1353,12 @@ static void ssl_tls_trace(int direction, int ssl_ver, int content_type,
 #ifdef USE_SSLEAY
 /* ====================================================== */
 
+#ifdef SSL_CTRL_SET_TLSEXT_HOSTNAME
+#  define use_sni(x)  sni = (x)
+#else
+#  define use_sni(x)  do { } while (0)
+#endif
+
 static CURLcode
 ossl_connect_step1(struct connectdata *conn,
                    int sockindex)
@@ -1365,8 +1371,8 @@ ossl_connect_step1(struct connectdata *conn,
   X509_LOOKUP *lookup=NULL;
   curl_socket_t sockfd = conn->sock[sockindex];
   struct ssl_connect_data *connssl = &conn->ssl[sockindex];
-  bool sni = TRUE; /* default is SNI enabled */
 #ifdef SSL_CTRL_SET_TLSEXT_HOSTNAME
+  bool sni;
 #ifdef ENABLE_IPV6
   struct in6_addr addr;
 #else
@@ -1385,17 +1391,19 @@ ossl_connect_step1(struct connectdata *conn,
   case CURL_SSLVERSION_DEFAULT:
     /* we try to figure out version */
     req_method = SSLv23_client_method();
+    use_sni(TRUE);
     break;
   case CURL_SSLVERSION_TLSv1:
     req_method = TLSv1_client_method();
+    use_sni(TRUE);
     break;
   case CURL_SSLVERSION_SSLv2:
     req_method = SSLv2_client_method();
-    sni = FALSE;
+    use_sni(FALSE);
     break;
   case CURL_SSLVERSION_SSLv3:
     req_method = SSLv3_client_method();
-    sni = FALSE;
+    use_sni(FALSE);
     break;
   }
 
