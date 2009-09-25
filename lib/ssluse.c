@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.241 2009-09-25 13:05:36 yangtse Exp $
+ * $Id: ssluse.c,v 1.242 2009-09-25 18:09:39 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -1536,8 +1536,8 @@ ossl_connect_step1(struct connectdata *conn,
      * revocation */
     lookup=X509_STORE_add_lookup(connssl->ctx->cert_store,X509_LOOKUP_file());
     if ( !lookup ||
-         (X509_load_crl_file(lookup,data->set.str[STRING_SSL_CRLFILE],
-                             X509_FILETYPE_PEM)!=1) ) {
+         (!X509_load_crl_file(lookup,data->set.str[STRING_SSL_CRLFILE],
+                              X509_FILETYPE_PEM)) ) {
       failf(data,"error loading CRL file :\n"
             "  CRLfile: %s\n",
             data->set.str[STRING_SSL_CRLFILE]?
