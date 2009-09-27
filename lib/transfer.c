@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.439 2009-09-27 21:34:13 bagder Exp $
+ * $Id: transfer.c,v 1.440 2009-09-27 21:37:24 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -752,7 +752,7 @@ static CURLcode header_append(struct SessionHandle *data,
                               struct SingleRequest *k,
                               size_t length)
 {
-    if(k->hbuflen + length >= data->state.headersize) {
+  if(k->hbuflen + length >= data->state.headersize) {
     /* We enlarge the header buffer as it is too small */
     char *newbuff;
     size_t hbufp_index;
