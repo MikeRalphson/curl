@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.109 2009-09-28 16:05:20 yangtse Exp $
+ * $Id: cookie.c,v 1.110 2009-09-28 17:01:23 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -442,9 +442,9 @@ Curl_cookie_add(struct SessionHandle *data,
       if(!queryp)
         endslash = strrchr(path, '/');
       else
-        endslash = memrchr(path, '/', queryp - path);
+        endslash = memrchr(path, '/', (size_t)(queryp - path));
       if(endslash) {
-        size_t pathlen = endslash-path+1; /* include the ending slash */
+        size_t pathlen = (size_t)(endslash-path+1); /* include ending slash */
         co->path=malloc(pathlen+1); /* one extra for the zero byte */
         if(co->path) {
           memcpy(co->path, path, pathlen);
