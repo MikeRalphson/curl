@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.108 2009-09-26 20:51:51 bagder Exp $
+ * $Id: cookie.c,v 1.109 2009-09-28 16:05:20 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -97,6 +97,7 @@ Example set of cookies:
 #include "share.h"
 #include "strtoofft.h"
 #include "rawstr.h"
+#include "curl_memrchr.h"
 
 /* The last #include file should be: */
 #include "memdebug.h"
@@ -165,23 +166,6 @@ static void strstore(char **str, const char *newstr)
   if(*str)
     free(*str);
   *str = strdup(newstr);
-}
-
-
-/*
- * The memrchr() function is like the memchr() function, except that it
- * searches backwards from the end of the n bytes pointed to by s instead of
- * forwards from the front.
- *
- * Exists in glibc but is not widely available on other systems.
- */
-static void *memrchr(const char *s, int c, size_t n)
-{
-  while(n--) {
-    if(s[n] == c)
-      return &s[n];
-  }
-  return NULL;
 }
 
 
