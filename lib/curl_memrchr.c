@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl_memrchr.c,v 1.1 2009-09-28 16:05:20 yangtse Exp $
+ * $Id: curl_memrchr.c,v 1.2 2009-09-28 18:13:35 danf Exp $
  ***************************************************************************/
 
 #include "setup.h"
