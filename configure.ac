@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.428 2009-09-16 03:19:39 danf Exp $
+# $Id: configure.ac,v 1.429 2009-09-28 12:16:29 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -2058,6 +2058,7 @@ CURL_CHECK_FUNC_IOCTL
 CURL_CHECK_FUNC_IOCTLSOCKET
 CURL_CHECK_FUNC_IOCTLSOCKET_CAMEL
 CURL_CHECK_FUNC_LOCALTIME_R
+CURL_CHECK_FUNC_MEMRCHR
 CURL_CHECK_FUNC_POLL
 CURL_CHECK_FUNC_SETSOCKOPT
 CURL_CHECK_FUNC_SIGACTION
