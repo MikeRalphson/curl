@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.274 2009-08-24 10:57:17 bagder Exp $
+.\" * $Id: curl.1,v 1.275 2009-10-01 07:35:15 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -1101,7 +1101,7 @@ Set this option to zero to not timeout retries. (Added in 7.12.3)
 If this option is used multiple times, the last occurrence determines the
 amount.
 .IP "-s/--silent"
-Silent mode. Don't show progress meter or error messages.  Makes
+Silent or quiet mode. Don't show progress meter or error messages.  Makes
 Curl mute.
 .IP "-S/--show-error"
 When used with -s it makes curl show an error message if it fails.
@@ -1260,6 +1260,8 @@ If you think this option still doesn't give you enough details, consider using
 \fI--trace\fP or \fI--trace-ascii\fP instead.
 
 This option overrides previous uses of \fI--trace-ascii\fP or \fI--trace\fP.
+
+Use \fI-S/--silent\fP to make curl quiet.
 .IP "-V/--version"
 Displays information about curl and the libcurl version it uses.
 
