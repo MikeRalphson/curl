@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.221 2009-08-29 04:12:51 gknauf Exp $
+ * $Id: connect.c,v 1.222 2009-10-01 07:05:07 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -664,6 +664,13 @@ static void nosigpipe(struct connectdata *conn,
 void Curl_sndbufset(curl_socket_t sockfd)
 {
   int val = CURL_MAX_WRITE_SIZE + 32;
+  int curval = 0;
+  int curlen = sizeof(curval);
+
+  if (getsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, (char *)&curval, &curlen) == 0)
+    if (curval > val)
+      return;
+
   setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, (const char *)&val, sizeof(val));
 }
 #endif
