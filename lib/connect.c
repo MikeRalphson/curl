@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: connect.c,v 1.222 2009-10-01 07:05:07 bagder Exp $
+ * $Id: connect.c,v 1.223 2009-10-01 07:59:45 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -502,7 +502,7 @@ static bool trynextip(struct connectdata *conn,
       /* store the new socket descriptor */
       conn->sock[sockindex] = sockfd;
       conn->ip_addr = ai;
-      break;
+      return FALSE;
     }
     ai = ai->ai_next;
   }
