@@ -18,7 +18,7 @@
 .\" * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 .\" * KIND, either express or implied.
 .\" *
-.\" * $Id: curl.1,v 1.275 2009-10-01 07:35:15 bagder Exp $
+.\" * $Id: curl.1,v 1.276 2009-10-01 07:37:58 bagder Exp $
 .\" **************************************************************************
 .\"
 .TH curl 1 "10 July 2008" "Curl 7.19.0" "Curl Manual"
@@ -1429,7 +1429,9 @@ If this option is used several times, the last one will be used.
 (HTTP) Specifies a custom request method to use when communicating with the
 HTTP server.  The specified request will be used instead of the method
 otherwise used (which defaults to GET). Read the HTTP 1.1 specification for
-details and explanations.
+details and explanations. Common additional HTTP requests include PUT and
+DELETE, but related technologies like WebDAV offers PROPFIND, COPY, MOVE and
+more.
 
 (FTP)
 Specifies a custom FTP command to use instead of LIST when doing file lists
