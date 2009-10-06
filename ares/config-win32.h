@@ -1,7 +1,7 @@
 #ifndef __ARES_CONFIG_WIN32_H
 #define __ARES_CONFIG_WIN32_H
 
-/* $Id: config-win32.h,v 1.30 2009-04-14 13:50:32 yangtse Exp $ */
+/* $Id: config-win32.h,v 1.31 2009-10-06 13:59:37 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2008 by Daniel Stenberg et al
  *
@@ -196,11 +196,15 @@
 #define RETSIGTYPE void
 
 /* Define ssize_t if it is not an available 'typedefed' type */
-#if (defined(__WATCOMC__) && (__WATCOMC__ >= 1240)) || defined(__POCC__)
+#ifndef _SSIZE_T_DEFINED
+#if (defined(__WATCOMC__) && (__WATCOMC__ >= 1240)) || defined(__POCC__) || \
+    defined(__MINGW32__)
 #elif defined(_WIN64)
 #define ssize_t __int64
 #else
 #define ssize_t int
+#endif
+#define _SSIZE_T_DEFINED
 #endif
 
 /* ---------------------------------------------------------------- */

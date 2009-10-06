@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.37 2009-07-14 13:38:50 gknauf Exp $ */
+/* $Id: setup.h,v 1.38 2009-10-06 13:59:37 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -132,12 +132,6 @@
  */
 
 #ifndef HAVE_CONFIG_H
-
-#if defined(__DJGPP__) || (defined(__WATCOMC__) && (__WATCOMC__ >= 1240)) || \
-    defined(__POCC__)
-#else
-#define ssize_t int
-#endif
 
 #if !defined(HAVE_SYS_TIME_H) && !defined(_MSC_VER) && !defined(__WATCOMC__)
 #define HAVE_SYS_TIME_H
