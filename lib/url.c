@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: url.c,v 1.811 2009-09-17 11:45:27 yangtse Exp $
+ * $Id: url.c,v 1.812 2009-10-08 12:44:25 yangtse Exp $
  ***************************************************************************/
 
 /* -- WIN32 approved -- */
@@ -3681,7 +3681,7 @@ static CURLcode parse_proxy(struct SessionHandle *data,
   char *endofprot;
 
   /* We use 'proxyptr' to point to the proxy name from now on... */
-  char *proxyptr=proxy;
+  char *proxyptr;
   char *portptr;
   char *atsign;
 
@@ -3691,9 +3691,11 @@ static CURLcode parse_proxy(struct SessionHandle *data,
    */
 
   /* Skip the protocol part if present */
-  endofprot=strstr(proxyptr, "://");
+  endofprot = strstr(proxy, "://");
   if(endofprot)
     proxyptr = endofprot+3;
+  else
+    proxyptr = proxy;
 
   /* Is there a username and password given in this proxy url? */
   atsign = strchr(proxyptr, '@');

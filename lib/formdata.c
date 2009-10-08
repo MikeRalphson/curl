@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: formdata.c,v 1.120 2009-09-17 14:23:27 yangtse Exp $
+ * $Id: formdata.c,v 1.121 2009-10-08 12:44:25 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -423,7 +423,7 @@ CURLFORMcode FormAdd(struct curl_httppost **httppost,
   while(return_value == CURL_FORMADD_OK) {
 
     /* first see if we have more parts of the array param */
-    if( array_state ) {
+    if( array_state && forms ) {
       /* get the upcoming option from the given array */
       option = forms->option;
       array_value = (char *)forms->value;
