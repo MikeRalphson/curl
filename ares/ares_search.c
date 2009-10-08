@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.18 2009-01-18 17:03:31 giva Exp $ */
+/* $Id: ares_search.c,v 1.19 2009-10-08 18:38:29 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -238,7 +238,8 @@ static int single_domain(ares_channel channel, const char *name, char **s)
   const char *hostaliases;
   FILE *fp;
   char *line = NULL;
-  int linesize, status;
+  int status;
+  size_t linesize;
   const char *p, *q;
   int error;
 

@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.48 2009-06-19 00:41:03 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.49 2009-10-08 18:38:29 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -312,7 +312,7 @@ void ares__send_query(ares_channel channel, struct query *query,
                       struct timeval *now);
 void ares__close_sockets(ares_channel channel, struct server_state *server);
 int ares__get_hostent(FILE *fp, int family, struct hostent **host);
-int ares__read_line(FILE *fp, char **buf, int *bufsize);
+int ares__read_line(FILE *fp, char **buf, size_t *bufsize);
 void ares__free_query(struct query *query);
 unsigned short ares__generate_new_id(rc4_key* key);
 struct timeval ares__tvnow(void);

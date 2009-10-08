@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.96 2009-09-17 11:45:27 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.97 2009-10-08 18:38:29 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -809,7 +809,7 @@ DhcpNameServer
   {
     char *p;
     FILE *fp;
-    int linesize;
+    size_t linesize;
     int error;
 
     /* Don't read resolv.conf and friends if we don't have to */
