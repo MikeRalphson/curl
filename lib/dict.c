@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: dict.c,v 1.62 2009-06-10 21:26:11 bagder Exp $
+ * $Id: dict.c,v 1.63 2009-10-08 00:02:32 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -125,7 +125,7 @@ static char *unescape_word(struct SessionHandle *data, const char *inputbuff)
   if(!newp)
     return NULL;
 
-  dictp = malloc(len*2 + 1); /* add one for terminating zero */
+  dictp = malloc(((size_t)len)*2 + 1); /* add one for terminating zero */
   if(dictp) {
     /* According to RFC2229 section 2.2, these letters need to be escaped with
        \[letter] */

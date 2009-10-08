@@ -1,4 +1,4 @@
-/* $Id: ares__get_hostent.c,v 1.19 2009-10-07 18:47:04 yangtse Exp $ */
+/* $Id: ares__get_hostent.c,v 1.20 2009-10-08 00:02:32 yangtse Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  *
@@ -194,7 +194,7 @@ int ares__get_hostent(FILE *fp, int family, struct hostent **host)
         memcpy(hostent->h_addr_list[0], &addr6, addrlen);
 
       /* Copy aliases. */
-      hostent->h_aliases = malloc((naliases + 1) * sizeof(char *));
+      hostent->h_aliases = malloc((((size_t)naliases) + 1) * sizeof(char *));
       if (!hostent->h_aliases)
         break;
       alias = hostent->h_aliases;
