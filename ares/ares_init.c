@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.97 2009-10-08 18:38:29 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.98 2009-10-10 12:29:32 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -1383,25 +1383,29 @@ static const char *try_option(const char *p, const char *q, const char *opt)
 static char *try_config(char *s, const char *opt)
 {
   size_t len;
-  ssize_t i;
-  ssize_t j;
   char *p;
+  char *q;
 
   if (!s || !opt)
     /* no line or no option */
     return NULL;
 
   /* trim line comment */
-  for (i = 0; s[i] && s[i] != '#'; ++i);
-  s[i] = '\0';
+  p = s;
+  while (*p && (*p != '#'))
+    p++;
+  *p = '\0';
 
   /* trim trailing whitespace */
-  for (j = i-1; j >= 0 && ISSPACE(s[j]); --j);
-  s[++j] = '\0';
+  q = p - 1;
+  while ((q >= s) && ISSPACE(*q))
+    q--;
+  *++q = '\0';
 
   /* skip leading whitespace */
-  for (i = 0; s[i] && ISSPACE(s[i]); ++i);
-  p = &s[i];
+  p = s;
+  while (*p && ISSPACE(*p))
+    p++;
 
   if (!*p)
     /* empty line */
