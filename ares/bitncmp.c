@@ -1,4 +1,4 @@
-/* $Id: bitncmp.c,v 1.6 2007-02-26 04:33:19 giva Exp $ */
+/* $Id: bitncmp.c,v 1.7 2009-10-10 12:31:27 yangtse Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -41,7 +41,7 @@ ares_bitncmp(const void *l, const void *r, int n) {
 
 	b = n / 8;
 	x = memcmp(l, r, b);
-	if (x)
+	if (x || (n % 8) == 0)
 		return (x);
 
 	lb = ((const unsigned char *)l)[b];
