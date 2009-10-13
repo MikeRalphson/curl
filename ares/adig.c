@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.39 2009-05-29 13:19:51 yangtse Exp $
+ * $Id: adig.c,v 1.40 2009-10-13 13:53:57 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -551,12 +551,20 @@ static const unsigned char *display_rr(const unsigned char *aptr,
       len = *p;
       if (p + len + 1 > aptr + dlen)
         return NULL;
-      printf("\t%.*s", (int)len, p + 1);
-      p += len + 1;
+      status = ares_expand_string(p, abuf, alen, &name.as_uchar, &len);
+      if (status != ARES_SUCCESS)
+        return NULL;
+      printf("\t%s", name.as_char);
+      ares_free_string(name.as_char);
+      p += len;
       len = *p;
       if (p + len + 1 > aptr + dlen)
         return NULL;
-      printf("\t%.*s", (int)len, p + 1);
+      status = ares_expand_string(p, abuf, alen, &name.as_uchar, &len);
+      if (status != ARES_SUCCESS)
+        return NULL;
+      printf("\t%s", name.as_char);
+      ares_free_string(name.as_char);
       break;
 
     case T_MINFO:
@@ -623,8 +631,12 @@ static const unsigned char *display_rr(const unsigned char *aptr,
           len = *p;
           if (p + len + 1 > aptr + dlen)
             return NULL;
-          printf("\t%.*s", (int)len, p + 1);
-          p += len + 1;
+          status = ares_expand_string(p, abuf, alen, &name.as_uchar, &len);
+          if (status != ARES_SUCCESS)
+            return NULL;
+          printf("\t%s", name.as_char);
+          ares_free_string(name.as_char);
+          p += len;
         }
       break;
 
