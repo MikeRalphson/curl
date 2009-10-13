@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.98 2009-04-21 11:46:17 yangtse Exp $
+ * $Id: ldap.c,v 1.99 2009-10-13 14:48:35 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -560,7 +560,7 @@ static bool unescape_elements (void *data, LDAPURLDesc *ludp)
  *   ldap://<hostname>:<port>/?<attributes>?<scope>?<filter>
  * yields ludp->lud_dn = "".
  *
- * Ref. http://developer.netscape.com/docs/manuals/dirsdk/csdk30/url.htm#2831915
+ * Defined in RFC4516 section 2.
  */
 static int _ldap_url_parse2 (const struct connectdata *conn, LDAPURLDesc *ludp)
 {
