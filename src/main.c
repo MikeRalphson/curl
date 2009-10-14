@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: main.c,v 1.535 2009-09-18 14:48:16 yangtse Exp $
+ * $Id: main.c,v 1.536 2009-10-14 18:11:36 yangtse Exp $
  ***************************************************************************/
 #include "setup.h"
 
@@ -2360,18 +2360,16 @@ static ParameterError getparameter(char *flag, /* f or -long-flag */
                  encoded string */
               size_t outlen = nlen + strlen(enc) + 2;
               char *n = malloc(outlen);
-              if(!n)
+              if(!n) {
+                curl_free(enc);
                 return PARAM_NO_MEM;
+              }
               if (nlen > 0) /* only append '=' if we have a name */
                 snprintf(n, outlen, "%.*s=%s", nlen, nextarg, enc);
               else
                 strcpy(n, enc);
               curl_free(enc);
-              if(n) {
-                postdata = n;
-              }
-              else
-                return PARAM_NO_MEM;
+              postdata = n;
             }
             else
               return PARAM_NO_MEM;
