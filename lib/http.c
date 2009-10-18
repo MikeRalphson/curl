@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.425 2009-08-21 12:15:35 mmarek Exp $
+ * $Id: http.c,v 1.426 2009-10-18 00:18:27 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -749,6 +749,9 @@ CURLcode Curl_http_input_auth(struct connectdata *conn,
         data->state.authproblem = FALSE;
         /* we received GSS auth info and we dealt with it fine */
         data->state.negotiate.state = GSS_AUTHRECV;
+      }
+      else {
+        data->state.authproblem = TRUE;
       }
     }
   }
