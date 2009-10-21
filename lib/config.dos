@@ -1,7 +1,7 @@
 #ifndef HEADER_CONFIG_DOS_H
 #define HEADER_CONFIG_DOS_H
 
-/* $Id: config.dos,v 1.29 2009-06-19 00:41:04 yangtse Exp $ */
+/* $Id: config.dos,v 1.30 2009-10-21 18:01:11 yangtse Exp $ */
 
 /* ================================================================ */
 /*        lib/config.dos - Hand crafted config file for DOS         */
@@ -101,7 +101,8 @@
 
 #define BSD
 
-/* #define MALLOCDEBUG */
+/* CURLDEBUG definition enables memory tracking */
+/* #define CURLDEBUG */
 
 /* USE_ZLIB on cmd-line */
 #ifdef USE_ZLIB
