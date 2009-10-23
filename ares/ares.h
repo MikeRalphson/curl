@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.60 2009-09-05 15:12:30 gknauf Exp $ */
+/* $Id: ares.h,v 1.61 2009-10-23 15:49:05 yangtse Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -86,7 +86,6 @@ extern "C" {
 #define ARES_ENOMEM             15
 #define ARES_EDESTRUCTION       16
 #define ARES_EBADSTR            17
-#define ARES_ECANCELLED         21
 
 /* ares_getnameinfo error codes */
 #define ARES_EBADFLAGS          18
@@ -96,11 +95,14 @@ extern "C" {
 #define ARES_EBADHINTS          20
 
 /* Uninitialized library error code */
-#define ARES_ENOTINITIALIZED    21
+#define ARES_ENOTINITIALIZED    21          /* introduced in 1.6.1 */
 
 /* ares_library_init error codes */
-#define ARES_ELOADIPHLPAPI           22
-#define ARES_EADDRGETNETWORKPARAMS   23
+#define ARES_ELOADIPHLPAPI           22     /* introduced in 1.6.1 */
+#define ARES_EADDRGETNETWORKPARAMS   23     /* introduced in 1.6.1 */
+
+/* More error codes */
+#define ARES_ECANCELLED         24          /* introduced in 1.6.1 */
 
 /* Flag values */
 #define ARES_FLAG_USEVC         (1 << 0)
