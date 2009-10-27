@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.38 2009-10-06 13:59:37 yangtse Exp $ */
+/* $Id: setup.h,v 1.39 2009-10-27 16:38:42 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -146,6 +146,12 @@
 #endif
 
 #endif /* HAVE_CONFIG_H */
+
+#ifdef __POCC__
+#  include <sys/types.h>
+#  include <unistd.h>
+#  define ESRCH 3
+#endif
 
 /*
  * Recent autoconf versions define these symbols in ares_config.h. We don't

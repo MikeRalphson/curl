@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: easy.c,v 1.144 2009-09-17 14:23:27 yangtse Exp $
+ * $Id: easy.c,v 1.145 2009-10-27 16:38:42 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -206,7 +206,7 @@ static long          init_flags;
 #define system_strdup strdup
 #endif
 
-#if defined(_MSC_VER) && defined(_DLL)
+#if defined(_MSC_VER) && defined(_DLL) && !defined(__POCC__)
 #  pragma warning(disable:4232) /* MSVC extension, dllimport identity */
 #endif
 
@@ -232,7 +232,7 @@ curl_strdup_callback Curl_cstrdup;
 curl_calloc_callback Curl_ccalloc;
 #endif
 
-#if defined(_MSC_VER) && defined(_DLL)
+#if defined(_MSC_VER) && defined(_DLL) && !defined(__POCC__)
 #  pragma warning(default:4232) /* MSVC extension, dllimport identity */
 #endif
 
