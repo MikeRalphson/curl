@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.40 2009-10-27 16:56:20 yangtse Exp $ */
+/* $Id: setup.h,v 1.41 2009-10-27 17:03:11 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -78,10 +78,10 @@
 
 #include <ares_rules.h>
 
-/* ================================================================ */
-/* No system header file shall be included in this file before this */
-/* point. The only allowed ones are those included from curlbuild.h */
-/* ================================================================ */
+/* ================================================================= */
+/* No system header file shall be included in this file before this  */
+/* point. The only allowed ones are those included from ares_build.h */
+/* ================================================================= */
 
 /*
  * Include header files for windows builds before redefining anything.
