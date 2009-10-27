@@ -1,7 +1,7 @@
 #ifndef __CARES_RULES_H
 #define __CARES_RULES_H
 
-/* $Id: ares_rules.h,v 1.2 2009-04-29 15:15:14 yangtse Exp $ */
+/* $Id: ares_rules.h,v 1.3 2009-10-27 16:56:20 yangtse Exp $ */
 
 /* Copyright (C) 2009 by Daniel Stenberg et al
  *
@@ -50,7 +50,7 @@
  * that the dimension of a constant array can not be a negative one.
  * In this way if the compile time verification fails, the compilation
  * will fail issuing an error. The error description wording is compiler
- * dependant but it will be quite similar to one of the following:
+ * dependent but it will be quite similar to one of the following:
  *
  *   "negative subscript or subscript is too large"
  *   "array must have at least one element"

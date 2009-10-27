@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.61 2009-07-14 13:25:14 gknauf Exp $
+ * $Id: setup.h,v 1.62 2009-10-27 16:56:20 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -84,7 +84,7 @@
  * Include header files for windows builds before redefining anything.
  * Use this preproessor block only to include or exclude windows.h, 
  * winsock2.h, ws2tcpip.h or winsock.h. Any other windows thing belongs 
- * to any other further and independant block.  Under Cygwin things work
+ * to any other further and independent block.  Under Cygwin things work
  * just as under linux (e.g. <sys/socket.h>) and the winsock headers should
  * never be included when __CYGWIN__ is defined.  configure script takes
  * care of this, not defining HAVE_WINDOWS_H, HAVE_WINSOCK_H, HAVE_WINSOCK2_H,

@@ -1,7 +1,7 @@
 #ifndef __ARES_SETUP_H
 #define __ARES_SETUP_H
 
-/* $Id: setup.h,v 1.39 2009-10-27 16:38:42 yangtse Exp $ */
+/* $Id: setup.h,v 1.40 2009-10-27 16:56:20 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -87,7 +87,7 @@
  * Include header files for windows builds before redefining anything.
  * Use this preproessor block only to include or exclude windows.h,
  * winsock2.h, ws2tcpip.h or winsock.h. Any other windows thing belongs
- * to any other further and independant block.  Under Cygwin things work
+ * to any other further and independent block.  Under Cygwin things work
  * just as under linux (e.g. <sys/socket.h>) and the winsock headers should
  * never be included when __CYGWIN__ is defined.  configure script takes
  * care of this, not defining HAVE_WINDOWS_H, HAVE_WINSOCK_H, HAVE_WINSOCK2_H,

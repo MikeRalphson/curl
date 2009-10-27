@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.432 2009-10-21 14:56:26 bagder Exp $
+# $Id: configure.ac,v 1.433 2009-10-27 16:56:20 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -79,7 +79,7 @@ fi
 AC_SUBST([EGREP])
 
 dnl AR is mandatory for configure process and libtool.
-dnl This is target dependant, so check it as a tool.
+dnl This is target dependent, so check it as a tool.
 AC_PATH_TOOL([AR], [ar], [not_found],
   [$PATH:/usr/bin:/usr/local/bin])
 if test -z "$AR" || test "$AR" = "not_found"; then
