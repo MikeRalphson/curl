@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.433 2009-10-27 16:56:20 yangtse Exp $
+# $Id: configure.ac,v 1.434 2009-10-28 00:33:28 yangtse Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1720,9 +1720,9 @@ if test X"$OPT_LIBSSH2" != Xno; then
 
   dnl if given with a prefix, we set -L and -I based on that
   if test -n "$PREFIX_SSH2"; then
-    LD_SSH2=-L${PREFIX_SSH2}/lib
+    LD_SSH2=-L${PREFIX_SSH2}/lib$libsuff
     CPP_SSH2=-I${PREFIX_SSH2}/include
-    DIR_SSH2=${PREFIX_SSH2}/lib
+    DIR_SSH2=${PREFIX_SSH2}/lib$libsuff
   fi
 
   LDFLAGS="$LDFLAGS $LD_SSH2"
@@ -1744,7 +1744,7 @@ if test X"$OPT_LIBSSH2" != Xno; then
   fi
 
   if test "$LIBSSH2_ENABLED" = "1"; then
-    if test -n "$LIB_LIBSSH2"; then
+    if test -n "$DIR_SSH2"; then
        dnl when the libssh2 shared libs were found in a path that the run-time
        dnl linker doesn't search through, we need to add it to LD_LIBRARY_PATH
        dnl to prevent further configure tests to fail due to this
