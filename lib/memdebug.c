@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.63 2009-05-02 02:37:34 yangtse Exp $
+ * $Id: memdebug.c,v 1.64 2009-10-28 20:30:23 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -263,13 +263,19 @@ int curl_accept(int s, void *saddr, void *saddrlen,
   return sockfd;
 }
 
+/* separate function to allow libcurl to mark a "faked" close */
+int curl_mark_sclose(int sockfd, int line, const char *source)
+{
+  if(logfile)
+    fprintf(logfile, "FD %s:%d sclose(%d)\n",
+            source, line, sockfd);
+}
+
 /* this is our own defined way to close sockets on *ALL* platforms */
 int curl_sclose(int sockfd, int line, const char *source)
 {
   int res=sclose(sockfd);
-  if(logfile)
-    fprintf(logfile, "FD %s:%d sclose(%d)\n",
-            source, line, sockfd);
+  curl_mark_sclose(sockfd, line, source);
   return res;
 }
 

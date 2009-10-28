@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.61 2009-10-18 00:10:13 bagder Exp $
+ * $Id: nss.c,v 1.62 2009-10-28 20:30:24 bagder Exp $
  ***************************************************************************/
 
 /*
@@ -930,6 +930,7 @@ void Curl_nss_close(struct connectdata *conn, int sockindex)
 
     /* NSS closes the socket we previously handed to it, so we must mark it
        as closed to avoid double close */
+    fake_sclose(conn->sock[sockindex]);
     conn->sock[sockindex] = CURL_SOCKET_BAD;
     if(connssl->client_nickname != NULL) {
       free(connssl->client_nickname);
