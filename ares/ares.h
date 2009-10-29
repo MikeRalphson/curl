@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.63 2009-10-29 01:02:54 yangtse Exp $ */
+/* $Id: ares.h,v 1.64 2009-10-29 08:50:34 bagder Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -429,7 +429,7 @@ struct addr6ttl {
   int             ttl;
 };
 
-struct srv_reply {
+struct ares_srv_reply {
   unsigned short weight;
   unsigned short priority;
   unsigned short port;
@@ -469,7 +469,7 @@ CARES_EXTERN int ares_parse_ns_reply(const unsigned char *abuf,
 
 CARES_EXTERN int ares_parse_srv_reply(const unsigned char* abuf,
                                       int alen,
-                                      struct srv_reply** srv_out,
+                                      struct ares_srv_reply** srv_out,
                                       int *nsrvreply);
 
 CARES_EXTERN void ares_free_string(void *str);
