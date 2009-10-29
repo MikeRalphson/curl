@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.419 2009-09-26 08:31:48 kdudka Exp $
+ * $Id: urldata.h,v 1.420 2009-10-29 03:48:00 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -115,7 +115,11 @@
 #endif
 
 #ifdef USE_ARES
-#include <ares.h>
+#  if defined(CURL_STATICLIB) && !defined(CARES_STATICLIB) && \
+     (defined(WIN32) || defined(_WIN32) || defined(__SYMBIAN32__))
+#    define CARES_STATICLIB
+#  endif
+#  include <ares.h>
 #endif
 
 #include <curl/curl.h>
