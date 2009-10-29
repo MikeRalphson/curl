@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-confopts.m4,v 1.6 2009-10-28 19:45:27 yangtse Exp $
+# $Id: cares-confopts.m4,v 1.7 2009-10-29 01:34:19 yangtse Exp $
 #
 # Copyright (C) 2008 - 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 6
+# serial 7
 
 
 dnl CARES_CHECK_OPTION_CURLDEBUG
@@ -303,10 +303,15 @@ dnl been done to prevent interferences on other tests.
 
 AC_DEFUN([CARES_CONFIGURE_HIDDEN_SYMBOLS], [
   AC_MSG_CHECKING([whether to actually hide library internal symbols])
-  if test "$want_hidden_symbols" = "yes" &&
+  if test x"$ac_cv_native_windows" != "xyes" &&
+    test "$want_hidden_symbols" = "yes" &&
     test "$hidden_symbols_supported" = "yes"; then
     tmp_save_CFLAGS="$CFLAGS"
     CFLAGS="$tmp_save_CFLAGS $hidden_symbols_CFLAGS"
+    AC_DEFINE_UNQUOTED(CARES_HIDDEN_SYMBOLS, 1,
+      [Define to 1 to enable hiding of library internal symbols.])
+    AC_DEFINE_UNQUOTED(CARES_EXTERN_SYMBOL, $hidden_symbols_extern,
+      [Definition to make a library symbol externally visible.])
     AC_MSG_RESULT([yes])
   else
     AC_MSG_RESULT([no])
