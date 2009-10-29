@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.64 2009-10-28 20:30:23 bagder Exp $
+ * $Id: memdebug.c,v 1.65 2009-10-29 04:02:21 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -264,7 +264,7 @@ int curl_accept(int s, void *saddr, void *saddrlen,
 }
 
 /* separate function to allow libcurl to mark a "faked" close */
-int curl_mark_sclose(int sockfd, int line, const char *source)
+void curl_mark_sclose(int sockfd, int line, const char *source)
 {
   if(logfile)
     fprintf(logfile, "FD %s:%d sclose(%d)\n",
