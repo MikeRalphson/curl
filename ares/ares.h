@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.64 2009-10-29 08:50:34 bagder Exp $ */
+/* $Id: ares.h,v 1.65 2009-10-29 08:59:40 bagder Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -436,6 +436,11 @@ struct ares_srv_reply {
   char *host;
 };
 
+struct ares_txt_reply {
+  unsigned int  length;
+  unsigned char *txt;
+};
+
 /*
 ** Parse the buffer, starting at *abuf and of length alen bytes, previously
 ** obtained from an ares_search call.  Put the results in *host, if nonnull.
@@ -470,6 +475,11 @@ CARES_EXTERN int ares_parse_ns_reply(const unsigned char *abuf,
 CARES_EXTERN int ares_parse_srv_reply(const unsigned char* abuf,
                                       int alen,
                                       struct ares_srv_reply** srv_out,
+                                      int *nsrvreply);
+
+CARES_EXTERN int ares_parse_txt_reply(const unsigned char* abuf,
+                                      int alen,
+                                      struct ares_txt_reply** txt_out,
                                       int *nsrvreply);
 
 CARES_EXTERN void ares_free_string(void *str);
