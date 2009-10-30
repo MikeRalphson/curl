@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * $Id: lib510.c,v 1.8 2009-05-08 02:14:50 yangtse Exp $
+ * $Id: lib510.c,v 1.9 2009-10-30 22:24:48 bagder Exp $
  */
 
 #include "test.h"
@@ -49,7 +49,6 @@ int test(char *URL)
   CURL *curl;
   CURLcode res=CURLE_OK;
   struct curl_slist *slist = NULL;
-
   struct WriteThis pooh;
   pooh.counter = 0;
 
@@ -97,6 +96,11 @@ int test(char *URL)
 
   /* enforce chunked transfer by setting the header */
   curl_easy_setopt(curl, CURLOPT_HTTPHEADER, slist);
+
+#ifdef LIB565
+  curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
+  curl_easy_setopt(curl, CURLOPT_USERPWD, "foo:bar");
+#endif
 
   /* Perform the request, res will get the return code */
   res = curl_easy_perform(curl);

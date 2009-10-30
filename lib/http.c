@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: http.c,v 1.426 2009-10-18 00:18:27 bagder Exp $
+ * $Id: http.c,v 1.427 2009-10-30 22:24:48 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -2905,7 +2905,17 @@ CURLcode Curl_http(struct connectdata *conn, bool *done)
       if(result)
         return result;
 
-      if(data->set.postfieldsize) {
+      if(data->req.upload_chunky && conn->bits.authneg) {
+        /* Chunky upload is selected and we're negotiating auth still, send
+           end-of-data only */
+        result = add_buffer(req_buffer,
+                            "\x0d\x0a\x30\x0d\x0a\x0d\x0a", 7);
+        /* CR  LF   0  CR  LF  CR  LF */
+        if(result)
+          return result;
+      }
+
+      else if(data->set.postfieldsize) {
         /* set the upload size to the progress meter */
         Curl_pgrsSetUploadSize(data, postsize?postsize:-1);
 
