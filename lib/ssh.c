@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.140 2009-10-18 01:11:25 bagder Exp $
+ * $Id: ssh.c,v 1.141 2009-10-30 22:28:56 bagder Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2221,6 +2221,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
       }
       sshc->ssh_session = NULL;
     }
+    conn->bits.close = TRUE;
     sshc->nextstate = SSH_NO_STATE;
     state(conn, SSH_STOP);
     result = sshc->actualcode;
