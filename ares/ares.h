@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.65 2009-10-29 08:59:40 bagder Exp $ */
+/* $Id: ares.h,v 1.66 2009-10-30 16:21:56 yangtse Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -437,7 +437,7 @@ struct ares_srv_reply {
 };
 
 struct ares_txt_reply {
-  unsigned int  length;
+  size_t         length;  /* length excludes null termination */
   unsigned char *txt;
 };
 
