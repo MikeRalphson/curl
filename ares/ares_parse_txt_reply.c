@@ -1,20 +1,21 @@
-/* $Id: ares_parse_txt_reply.c,v 1.3 2009-10-30 16:27:30 yangtse Exp $ */
+/* $Id: ares_parse_txt_reply.c,v 1.4 2009-10-30 18:07:17 yangtse Exp $ */
 
-/* Copyright (C) 2009 Jakub Hrozek <jhrozek@redhat.com>
-*  Copyright (C) 2009 Yang Tse <yangsita@gmail.com>
-*
-* Permission to use, copy, modify, and distribute this
-* software and its documentation for any purpose and without
-* fee is hereby granted, provided that the above copyright
-* notice appear in all copies and that both that copyright
-* notice and this permission notice appear in supporting
-* documentation, and that the name of M.I.T. not be used in
-* advertising or publicity pertaining to distribution of the
-* software without specific, written prior permission.
-* M.I.T. makes no representations about the suitability of
-* this software for any purpose.  It is provided "as is"
-* without express or implied warranty.
-*/
+/* Copyright 1998 by the Massachusetts Institute of Technology.
+ * Copyright (C) 2009 Jakub Hrozek <jhrozek@redhat.com>
+ * Copyright (C) 2009 Yang Tse <yangsita@gmail.com>
+ *
+ * Permission to use, copy, modify, and distribute this
+ * software and its documentation for any purpose and without
+ * fee is hereby granted, provided that the above copyright
+ * notice appear in all copies and that both that copyright
+ * notice and this permission notice appear in supporting
+ * documentation, and that the name of M.I.T. not be used in
+ * advertising or publicity pertaining to distribution of the
+ * software without specific, written prior permission.
+ * M.I.T. makes no representations about the suitability of
+ * this software for any purpose.  It is provided "as is"
+ * without express or implied warranty.
+ */
 
 #include "setup.h"
 
