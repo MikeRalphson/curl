@@ -1,4 +1,4 @@
-/* $Id: ares_parse_txt_reply.c,v 1.2 2009-10-30 16:21:56 yangtse Exp $ */
+/* $Id: ares_parse_txt_reply.c,v 1.3 2009-10-30 16:27:30 yangtse Exp $ */
 
 /* Copyright (C) 2009 Jakub Hrozek <jhrozek@redhat.com>
 *  Copyright (C) 2009 Yang Tse <yangsita@gmail.com>
@@ -53,7 +53,7 @@ ares_parse_txt_reply (const unsigned char *abuf, int alen,
   /* Set *txt_out to NULL for all failure cases. */
   *txt_out = NULL;
 
-  /* Same with *nsrvreply. */
+  /* Same with *ntxtreply. */
   *ntxtreply = 0;
 
   /* Give up if abuf doesn't have room for a header. */
