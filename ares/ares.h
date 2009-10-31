@@ -1,4 +1,4 @@
-/* $Id: ares.h,v 1.66 2009-10-30 16:21:56 yangtse Exp $ */
+/* $Id: ares.h,v 1.67 2009-10-31 04:16:40 yangtse Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -79,11 +79,11 @@ extern "C" {
 #  endif
 #else
    /* visibility function decoration for other cases */
-#  if !defined(CARES_HIDDEN_SYMBOLS) || \
+#  if !defined(CARES_SYMBOL_HIDING) || \
      defined(WIN32) || defined(_WIN32) || defined(__SYMBIAN32__)
 #    define CARES_EXTERN
 #  else
-#    define CARES_EXTERN CARES_EXTERN_SYMBOL
+#    define CARES_EXTERN CARES_SYMBOL_SCOPE_EXTERN
 #  endif
 #endif
 
