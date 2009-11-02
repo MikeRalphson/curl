@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.152 2009-10-17 18:31:57 bagder Exp $
+# $Id: Makefile.am,v 1.153 2009-11-02 16:24:11 bagder Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -27,7 +27,7 @@ VCPROJ = libcurl.vcproj
 
 DOCS = README.encoding README.memoryleak README.ares README.curlx	\
  README.hostip README.multi_socket README.httpauth README.pipelining    \
- README.curl_off_t
+ README.curl_off_t README.cmake
 
 CMAKE_DIST = CMakeLists.txt curl_config.h.cmake
 
