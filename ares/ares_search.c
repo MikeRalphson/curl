@@ -1,4 +1,4 @@
-/* $Id: ares_search.c,v 1.19 2009-10-08 18:38:29 yangtse Exp $ */
+/* $Id: ares_search.c,v 1.20 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #include <stdio.h>
 #include <stdlib.h>

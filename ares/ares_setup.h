@@ -1,7 +1,7 @@
-#ifndef __ARES_SETUP_H
-#define __ARES_SETUP_H
+#ifndef HEADER_CARES_SETUP_H
+#define HEADER_CARES_SETUP_H
 
-/* $Id: setup.h,v 1.41 2009-10-27 17:03:11 yangtse Exp $ */
+/* $Id: ares_setup.h,v 1.1 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -184,4 +184,4 @@
 #include "setup_once.h"
 #endif
 
-#endif /* __ARES_SETUP_H */
+#endif /* HEADER_CARES_SETUP_H */

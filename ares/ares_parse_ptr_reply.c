@@ -1,4 +1,4 @@
-/* $Id: ares_parse_ptr_reply.c,v 1.20 2009-01-11 13:49:14 bagder Exp $ */
+/* $Id: ares_parse_ptr_reply.c,v 1.21 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

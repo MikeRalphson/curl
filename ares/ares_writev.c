@@ -1,5 +1,5 @@
 
-/* $Id: ares_writev.c,v 1.2 2009-04-14 13:50:32 yangtse Exp $ */
+/* $Id: ares_writev.c,v 1.3 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,7 +16,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_LIMITS_H
 #  include <limits.h>

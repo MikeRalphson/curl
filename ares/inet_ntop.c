@@ -1,4 +1,4 @@
-/* $Id: inet_ntop.c,v 1.11 2008-09-24 16:43:12 yangtse Exp $ */
+/* $Id: inet_ntop.c,v 1.12 2009-11-02 11:55:54 yangtse Exp $ */
 
 /* Copyright (c) 1996 by Internet Software Consortium.
  *
@@ -16,7 +16,7 @@
  * SOFTWARE.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

@@ -1,4 +1,4 @@
-/* $Id: ares_gethostbyname.c,v 1.49 2009-08-27 09:53:55 sesse Exp $ */
+/* $Id: ares_gethostbyname.c,v 1.50 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

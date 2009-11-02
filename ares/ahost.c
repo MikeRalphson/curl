@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: ahost.c,v 1.26 2009-05-17 17:11:29 yangtse Exp $
+ * $Id: ahost.c,v 1.27 2009-11-02 11:55:53 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #if !defined(WIN32) || defined(WATT32)
 #ifdef HAVE_SYS_TIME_H

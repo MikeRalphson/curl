@@ -1,4 +1,4 @@
-/* $Id: ares__close_sockets.c,v 1.9 2009-06-19 00:41:03 yangtse Exp $ */
+/* $Id: ares__close_sockets.c,v 1.10 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #include <stdlib.h>
 #ifdef HAVE_UNISTD_H

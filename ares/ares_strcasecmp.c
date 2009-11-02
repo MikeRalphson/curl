@@ -1,5 +1,5 @@
 
-/* $Id: ares_strcasecmp.c,v 1.1 2008-09-15 15:28:26 yangtse Exp $ */
+/* $Id: ares_strcasecmp.c,v 1.2 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -16,7 +16,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 #include "ares_strcasecmp.h"
 
 #ifndef HAVE_STRCASECMP

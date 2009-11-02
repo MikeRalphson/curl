@@ -1,4 +1,4 @@
-/* $Id: ares_cancel.c,v 1.11 2009-08-03 11:51:06 bagder Exp $ */
+/* $Id: ares_cancel.c,v 1.12 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright (C) 2004 by Daniel Stenberg et al
  *
@@ -13,7 +13,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 #include <assert.h>
 #include <stdlib.h>
 #include "ares.h"

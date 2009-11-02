@@ -1,7 +1,7 @@
 #ifndef HEADER_CARES_LIBRARY_INIT_H
 #define HEADER_CARES_LIBRARY_INIT_H
 
-/* $Id: ares_library_init.h,v 1.2 2009-05-19 15:23:25 yangtse Exp $ */
+/* $Id: ares_library_init.h,v 1.3 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -19,7 +19,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef WIN32
 

@@ -1,4 +1,4 @@
-/* $Id: bitncmp.c,v 1.7 2009-10-10 12:31:27 yangtse Exp $ */
+/* $Id: bitncmp.c,v 1.8 2009-11-02 11:55:54 yangtse Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -19,7 +19,7 @@
 
 #ifndef HAVE_BITNCMP
 
-#include "setup.h"
+#include "ares_setup.h"
 #include "bitncmp.h"
 
 /*

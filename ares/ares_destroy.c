@@ -1,4 +1,4 @@
-/* $Id: ares_destroy.c,v 1.13 2007-10-04 08:07:47 sesse Exp $ */
+/* $Id: ares_destroy.c,v 1.14 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 #include <assert.h>
 #include <stdlib.h>
 #include "ares.h"

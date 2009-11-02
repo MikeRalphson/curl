@@ -1,6 +1,6 @@
-/* $Id: ares_version.c,v 1.4 2009-05-18 00:21:02 yangtse Exp $ */
+/* $Id: ares_version.c,v 1.5 2009-11-02 11:55:53 yangtse Exp $ */
 
-#include "setup.h"
+#include "ares_setup.h"
 #include "ares.h"
 
 const char *ares_version(int *version)

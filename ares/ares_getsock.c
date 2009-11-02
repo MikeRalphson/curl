@@ -1,4 +1,4 @@
-/* $Id: ares_getsock.c,v 1.7 2007-09-29 19:26:59 sesse Exp $ */
+/* $Id: ares_getsock.c,v 1.8 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright (C) 2005 - 2007, Daniel Stenberg
  *
@@ -13,7 +13,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>

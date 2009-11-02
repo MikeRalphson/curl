@@ -1,4 +1,4 @@
-/* $Id: inet_net_pton.c,v 1.16 2009-10-09 14:06:38 yangtse Exp $ */
+/* $Id: inet_net_pton.c,v 1.17 2009-11-02 11:55:54 yangtse Exp $ */
 
 /*
  * Copyright (c) 2004 by Internet Systems Consortium, Inc. ("ISC")
@@ -17,7 +17,7 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

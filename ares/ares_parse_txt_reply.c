@@ -1,4 +1,4 @@
-/* $Id: ares_parse_txt_reply.c,v 1.5 2009-10-30 18:20:17 yangtse Exp $ */
+/* $Id: ares_parse_txt_reply.c,v 1.6 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2009 Jakub Hrozek <jhrozek@redhat.com>
@@ -17,7 +17,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

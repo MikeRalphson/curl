@@ -1,4 +1,4 @@
-/* $Id: ares_library_init.c,v 1.8 2009-05-28 09:58:24 yangtse Exp $ */
+/* $Id: ares_library_init.c,v 1.9 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -16,7 +16,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #include "ares.h"
 #include "ares_library_init.h"

@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.34 2009-09-17 11:45:27 yangtse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.35 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -14,7 +14,7 @@
  * this software for any purpose.  It is provided "as is"
  * without express or implied warranty.
  */
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_GETSERVBYPORT_R
 #  if !defined(GETSERVBYPORT_R_ARGS) || \

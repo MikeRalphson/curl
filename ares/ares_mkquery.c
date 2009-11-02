@@ -1,4 +1,4 @@
-/* $Id: ares_mkquery.c,v 1.16 2008-11-29 00:26:07 danf Exp $ */
+/* $Id: ares_mkquery.c,v 1.17 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

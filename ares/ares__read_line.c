@@ -1,4 +1,4 @@
-/* $Id: ares__read_line.c,v 1.12 2009-10-09 14:06:38 yangtse Exp $ */
+/* $Id: ares__read_line.c,v 1.13 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,4 +1,4 @@
-/* $Id: ares_strerror.c,v 1.17 2009-10-23 15:49:05 yangtse Exp $ */
+/* $Id: ares_strerror.c,v 1.18 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 #include <assert.h>
 #include "ares.h"
 

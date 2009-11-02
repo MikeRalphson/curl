@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.77 2009-06-19 00:41:03 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.78 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -16,7 +16,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

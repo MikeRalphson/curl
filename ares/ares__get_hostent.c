@@ -1,4 +1,4 @@
-/* $Id: ares__get_hostent.c,v 1.23 2009-10-19 15:56:26 yangtse Exp $ */
+/* $Id: ares__get_hostent.c,v 1.24 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998, 2009 by the Massachusetts Institute of Technology.
  *
@@ -15,7 +15,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>

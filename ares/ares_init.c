@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.98 2009-10-10 12:29:32 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.99 2009-11-02 11:55:53 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -16,7 +16,7 @@
  * without express or implied warranty.
  */
 
-#include "setup.h"
+#include "ares_setup.h"
 
 #if defined(WIN32) && !defined(WATT32)
 #include <iphlpapi.h>
