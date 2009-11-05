@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.62 2009-10-28 20:30:24 bagder Exp $
+ * $Id: nss.c,v 1.63 2009-11-05 15:41:31 kdudka Exp $
  ***************************************************************************/
 
 /*
@@ -82,8 +82,6 @@ PRFileDesc *PR_ImportTCPSocket(PRInt32 osfd);
 PRLock * nss_initlock = NULL;
 
 volatile int initialized = 0;
-
-#define HANDSHAKE_TIMEOUT 30
 
 typedef struct {
   const char *name;
@@ -970,6 +968,8 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
   char *certDir = NULL;
   int curlerr;
   const int *cipher_to_enable;
+  PRSocketOptionData sock_opt;
+  PRUint32 timeout;
 
   curlerr = CURLE_SSL_CONNECT_ERROR;
 
@@ -1062,6 +1062,12 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
   if(!model)
     goto error;
   model = SSL_ImportFD(NULL, model);
+
+  /* make the socket nonblocking */
+  sock_opt.option = PR_SockOpt_Nonblocking;
+  sock_opt.value.non_blocking = PR_TRUE;
+  if(PR_SetSocketOption(model, &sock_opt) != SECSuccess)
+    goto error;
 
   if(SSL_OptionSet(model, SSL_SECURITY, PR_TRUE) != SECSuccess)
     goto error;
@@ -1234,9 +1240,8 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
   SSL_SetURL(connssl->handle, conn->host.name);
 
   /* Force the handshake now */
-  if(SSL_ForceHandshakeWithTimeout(connssl->handle,
-                                    PR_SecondsToInterval(HANDSHAKE_TIMEOUT))
-      != SECSuccess) {
+  timeout = PR_MillisecondsToInterval(Curl_timeleft(conn, NULL, TRUE));
+  if(SSL_ForceHandshakeWithTimeout(connssl->handle, timeout) != SECSuccess) {
     if(conn->data->set.ssl.certverifyresult == SSL_ERROR_BAD_CERT_DOMAIN)
       curlerr = CURLE_PEER_FAILED_VERIFICATION;
     else if(conn->data->set.ssl.certverifyresult!=0)
@@ -1288,27 +1293,12 @@ int Curl_nss_send(struct connectdata *conn,  /* connection data */
                   const void *mem,           /* send this data */
                   size_t len)                /* amount to write */
 {
-  PRInt32 err;
-  struct SessionHandle *data = conn->data;
-  PRInt32 timeout;
   int rc;
 
-  if(data->set.timeout)
-    timeout = PR_MillisecondsToInterval((PRUint32)data->set.timeout);
-  else
-    timeout = PR_MillisecondsToInterval(DEFAULT_CONNECT_TIMEOUT);
-
-  rc = PR_Send(conn->ssl[sockindex].handle, mem, (int)len, 0, timeout);
+  rc = PR_Send(conn->ssl[sockindex].handle, mem, (int)len, 0, -1);
 
   if(rc < 0) {
-    err = PR_GetError();
-
-    if(err == PR_IO_TIMEOUT_ERROR) {
-      failf(data, "SSL connection timeout");
-      return CURLE_OPERATION_TIMEDOUT;
-    }
-
-    failf(conn->data, "SSL write: error %d", err);
+    failf(conn->data, "SSL write: error %d", PR_GetError());
     return -1;
   }
   return rc; /* number of bytes */
@@ -1326,15 +1316,8 @@ ssize_t Curl_nss_recv(struct connectdata * conn, /* connection data */
                       bool * wouldblock)
 {
   ssize_t nread;
-  struct SessionHandle *data = conn->data;
-  PRInt32 timeout;
 
-  if(data->set.timeout)
-    timeout = PR_SecondsToInterval((PRUint32)data->set.timeout);
-  else
-    timeout = PR_MillisecondsToInterval(DEFAULT_CONNECT_TIMEOUT);
-
-  nread = PR_Recv(conn->ssl[num].handle, buf, (int)buffersize, 0, timeout);
+  nread = PR_Recv(conn->ssl[num].handle, buf, (int)buffersize, 0, -1);
   *wouldblock = FALSE;
   if(nread < 0) {
     /* failed SSL read */
@@ -1343,10 +1326,6 @@ ssize_t Curl_nss_recv(struct connectdata * conn, /* connection data */
     if(err == PR_WOULD_BLOCK_ERROR) {
       *wouldblock = TRUE;
       return -1; /* basically EWOULDBLOCK */
-    }
-    if(err == PR_IO_TIMEOUT_ERROR) {
-      failf(data, "SSL connection timeout");
-      return CURLE_OPERATION_TIMEDOUT;
     }
     failf(conn->data, "SSL read: errno %d", err);
     return -1;
