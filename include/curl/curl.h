@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: curl.h,v 1.396 2009-10-16 13:30:31 yangtse Exp $
+ * $Id: curl.h,v 1.397 2009-11-05 15:04:04 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -31,16 +31,8 @@
  *   http://cool.haxx.se/mailman/listinfo/curl-library/
  */
 
-/*
- * Leading 'curl' path on the 'curlbuild.h' include statement is
- * required to properly allow building outside of the source tree,
- * due to the fact that in this case 'curlbuild.h' is generated in
- * a subdirectory of the build tree while 'curl.h actually remains
- * in a subdirectory of the source tree.
- */
-
 #include "curlver.h"         /* libcurl version defines   */
-#include "curl/curlbuild.h"  /* libcurl build definitions */
+#include "curlbuild.h"       /* libcurl build definitions */
 #include "curlrules.h"       /* libcurl rules enforcement */
 
 /*

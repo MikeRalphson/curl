@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: Makefile.am,v 1.64 2009-07-14 13:25:14 gknauf Exp $
+# $Id: Makefile.am,v 1.65 2009-11-05 15:04:04 yangtse Exp $
 ###########################################################################
 AUTOMAKE_OPTIONS = foreign nostdinc
 
@@ -27,18 +27,20 @@ AUTOMAKE_OPTIONS = foreign nostdinc
 # being currently built and tested are searched before the library which
 # might possibly already be installed in the system.
 #
-# $(top_builddir)/include is for libcurl's generated curl/curlbuild.h file
+# $(top_builddir)/include/curl for generated curlbuild.h included from curl.h
+# $(top_builddir)/include for generated curlbuild.h included from lib/setup.h
 # $(top_srcdir)/include is for libcurl's external include files
 # $(top_builddir)/lib is for libcurl's generated lib/curl_config.h file
 # $(top_builddir)/src is for curl's generated src/curl_config.h file
 # $(top_srcdir)/lib is for libcurl's lib/setup.h and other "borrowed" files
 # $(top_srcdir)/src is for curl's src/setup.h and "curl-private" files
 
-INCLUDES = -I$(top_builddir)/include \
-           -I$(top_srcdir)/include   \
-           -I$(top_builddir)/lib     \
-           -I$(top_builddir)/src     \
-           -I$(top_srcdir)/lib       \
+INCLUDES = -I$(top_builddir)/include/curl \
+           -I$(top_builddir)/include      \
+           -I$(top_srcdir)/include        \
+           -I$(top_builddir)/lib          \
+           -I$(top_builddir)/src          \
+           -I$(top_srcdir)/lib            \
            -I$(top_srcdir)/src
 
 bin_PROGRAMS = curl
