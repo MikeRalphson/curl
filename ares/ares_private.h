@@ -1,7 +1,7 @@
 #ifndef __ARES_PRIVATE_H
 #define __ARES_PRIVATE_H
 
-/* $Id: ares_private.h,v 1.49 2009-10-08 18:38:29 yangtse Exp $ */
+/* $Id: ares_private.h,v 1.50 2009-11-09 12:56:50 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -30,7 +30,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-#if !defined(WIN32) || defined(WATT32)
+#ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
 
