@@ -1,4 +1,4 @@
-/* $Id: ares_getnameinfo.c,v 1.35 2009-11-02 11:55:53 yangtse Exp $ */
+/* $Id: ares_getnameinfo.c,v 1.36 2009-11-09 12:56:11 yangtse Exp $ */
 
 /* Copyright 2005 by Dominick Meglio
  *
@@ -60,10 +60,6 @@
 #include "ares_ipv6.h"
 #include "inet_ntop.h"
 #include "ares_private.h"
-
-#ifdef WATT32
-#undef WIN32
-#endif
 
 struct nameinfo_query {
   ares_nameinfo_callback callback;
