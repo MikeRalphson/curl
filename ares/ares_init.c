@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.99 2009-11-02 11:55:53 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.100 2009-11-09 12:57:26 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -18,7 +18,7 @@
 
 #include "ares_setup.h"
 
-#if defined(WIN32) && !defined(WATT32)
+#ifdef USE_WINSOCK
 #include <iphlpapi.h>
 #endif
 

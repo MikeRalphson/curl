@@ -1,7 +1,7 @@
 #ifndef HEADER_CARES_LIBRARY_INIT_H
 #define HEADER_CARES_LIBRARY_INIT_H
 
-/* $Id: ares_library_init.h,v 1.3 2009-11-02 11:55:53 yangtse Exp $ */
+/* $Id: ares_library_init.h,v 1.4 2009-11-09 12:57:26 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -21,7 +21,7 @@
 
 #include "ares_setup.h"
 
-#ifdef WIN32
+#ifdef USE_WINSOCK
 
 #include <iphlpapi.h>
 
@@ -34,7 +34,7 @@ typedef BOOLEAN (APIENTRY *fpSystemFunction036_t) (void*, ULONG);
 extern fpGetNetworkParams_t fpGetNetworkParams;
 extern fpSystemFunction036_t fpSystemFunction036;
 
-#endif /* WIN32 */
+#endif /* USE_WINSOCK */
 
 #endif /* HEADER_CARES_LIBRARY_INIT_H */
 
