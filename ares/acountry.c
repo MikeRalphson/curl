@@ -1,5 +1,5 @@
 /*
- * $Id: acountry.c,v 1.17 2009-11-02 11:55:53 yangtse Exp $
+ * $Id: acountry.c,v 1.18 2009-11-10 18:41:03 yangtse Exp $
  *
  * IP-address/hostname to country converter.
  *
@@ -199,7 +199,7 @@ int main(int argc, char **argv)
  */
 static void wait_ares(ares_channel channel)
 {
-  while (1)
+  for (;;)
     {
       struct timeval *tvp, tv;
       fd_set read_fds, write_fds;

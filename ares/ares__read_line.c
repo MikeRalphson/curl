@@ -1,4 +1,4 @@
-/* $Id: ares__read_line.c,v 1.13 2009-11-02 11:55:53 yangtse Exp $ */
+/* $Id: ares__read_line.c,v 1.14 2009-11-10 18:41:03 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
@@ -44,7 +44,7 @@ int ares__read_line(FILE *fp, char **buf, size_t *bufsize)
       *bufsize = 128;
     }
 
-  while (1)
+  for (;;)
     {
       if (!fgets(*buf + offset, (int)(*bufsize - offset), fp))
         return (offset != 0) ? 0 : (ferror(fp)) ? ARES_EFILE : ARES_EOF;

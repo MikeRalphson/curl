@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.41 2009-11-02 11:55:53 yangtse Exp $
+ * $Id: adig.c,v 1.42 2009-11-10 18:41:03 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -321,7 +321,7 @@ int main(int argc, char **argv)
     }
 
   /* Wait for all queries to complete. */
-  while (1)
+  for (;;)
     {
       FD_ZERO(&read_fds);
       FD_ZERO(&write_fds);
