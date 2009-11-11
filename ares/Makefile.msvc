@@ -1,4 +1,4 @@
-# $Id: Makefile.msvc,v 1.1 2009-11-09 13:24:11 yangtse Exp $
+# $Id: Makefile.msvc,v 1.2 2009-11-11 08:53:42 yangtse Exp $
 
 # Copyright (C) 2009 by Daniel Stenberg
 #
@@ -201,7 +201,7 @@ CFLAGS  = /UWIN32 /DWATT32 /I$(WATT_ROOT)\inc
 EX_LIBS = $(WATT_ROOT)\lib\wattcpvc_imp.lib
 !ELSE
 CFLAGS  = /DWIN32
-EX_LIBS = ws2_32.lib advapi32.lib
+EX_LIBS = ws2_32.lib advapi32.lib kernel32.lib
 !ENDIF
 
 # -----------------------------------------
