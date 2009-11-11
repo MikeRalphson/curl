@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.529 2009-09-17 16:11:54 yangtse Exp $
+ * $Id: ftp.c,v 1.530 2009-11-11 09:01:44 bagder Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -90,6 +90,7 @@
 #include "multiif.h"
 #include "url.h"
 #include "rawstr.h"
+#include "speedcheck.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -3067,6 +3068,13 @@ static CURLcode ftp_easy_statemach(struct connectdata *conn)
     }
     else {
       result = ftp_statemach_act(conn);
+      if(result)
+        break;
+      else if(Curl_pgrsUpdate(conn))
+        result = CURLE_ABORTED_BY_CALLBACK;
+      else
+        result = Curl_speedcheck(data, Curl_tvnow());
+
       if(result)
         break;
     }
