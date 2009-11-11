@@ -1,7 +1,7 @@
 #ifndef HEADER_CARES_LIBRARY_INIT_H
 #define HEADER_CARES_LIBRARY_INIT_H
 
-/* $Id: ares_library_init.h,v 1.4 2009-11-09 12:57:26 yangtse Exp $ */
+/* $Id: ares_library_init.h,v 1.5 2009-11-11 08:56:47 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -31,8 +31,8 @@ typedef BOOLEAN (APIENTRY *fpSystemFunction036_t) (void*, ULONG);
 /* Forward-declaration of variables defined in ares_library_init.c */
 /* that are global and unique instances for whole c-ares library.  */
 
-extern fpGetNetworkParams_t fpGetNetworkParams;
-extern fpSystemFunction036_t fpSystemFunction036;
+extern fpGetNetworkParams_t ares_fpGetNetworkParams;
+extern fpSystemFunction036_t ares_fpSystemFunction036;
 
 #endif /* USE_WINSOCK */
 
