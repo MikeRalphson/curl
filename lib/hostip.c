@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.218 2009-11-11 09:31:37 bagder Exp $
+ * $Id: hostip.c,v 1.219 2009-11-12 04:32:08 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -123,7 +123,7 @@
 static struct curl_hash hostname_cache;
 static int host_cache_initialized;
 
-#ifdef CURLDEBUG
+#ifdef DEBUGBUILD
 static int ndns = 0;
 #endif
 
@@ -711,11 +711,17 @@ static void freednsentry(void *freethis)
   }
 }
 
-#ifdef CURLDEBUG
+#if 0
+
+TODO before 7.19.8: Give some use to this function or remove it.
+
+#ifdef DEBUGBUILD
 int curl_get_ndns(void)
 {
   return ndns;
 }
+#endif
+
 #endif
 
 /*
