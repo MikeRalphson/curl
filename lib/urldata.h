@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.420 2009-10-29 03:48:00 yangtse Exp $
+ * $Id: urldata.h,v 1.421 2009-11-12 11:16:31 kdudka Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1331,6 +1331,9 @@ struct UrlState {
   } proto;
   /* current user of this SessionHandle instance, or NULL */
   struct connectdata *current_conn;
+
+  /* if true, force SSL connection retry (workaround for certain servers) */
+  bool ssl_connect_retry;
 };
 
 
