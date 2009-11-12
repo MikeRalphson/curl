@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: nss.c,v 1.63 2009-11-05 15:41:31 kdudka Exp $
+ * $Id: nss.c,v 1.64 2009-11-12 10:54:10 kdudka Exp $
  ***************************************************************************/
 
 /*
@@ -1227,7 +1227,9 @@ CURLcode Curl_nss_connect(struct connectdata *conn, int sockindex)
   connssl->handle = SSL_ImportFD(model, connssl->handle);
   if(!connssl->handle)
     goto error;
+
   PR_Close(model); /* We don't need this any more */
+  model = NULL;
 
   /* This is the password associated with the cert that we're using */
   if (data->set.str[STRING_KEY_PASSWD]) {
