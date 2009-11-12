@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.33 2009-11-12 18:31:33 yangtse Exp $
+# $Id: cares-functions.m4,v 1.34 2009-11-12 20:29:28 yangtse Exp $
 #
 # Copyright (C) 2008 - 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 33
+# serial 34
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -1024,6 +1024,12 @@ AC_DEFUN([CARES_CHECK_FUNC_GETADDRINFO], [
         tst_tsafe_getaddrinfo="no"
         ;;
       freebsd*)
+        tst_tsafe_getaddrinfo="yes"
+        ;;
+      hpux[[123456789]].* | hpux10.* | hpux11.0* | hpux11.10*)
+        tst_tsafe_getaddrinfo="no"
+        ;;
+      hpux*)
         tst_tsafe_getaddrinfo="yes"
         ;;
       linux*)

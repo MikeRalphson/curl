@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.55 2009-11-12 18:31:34 yangtse Exp $
+# $Id: curl-functions.m4,v 1.56 2009-11-12 20:29:29 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 55
+# serial 56
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -1648,6 +1648,12 @@ AC_DEFUN([CURL_CHECK_FUNC_GETADDRINFO], [
         tst_tsafe_getaddrinfo="no"
         ;;
       freebsd*)
+        tst_tsafe_getaddrinfo="yes"
+        ;;
+      hpux[[123456789]].* | hpux10.* | hpux11.0* | hpux11.10*)
+        tst_tsafe_getaddrinfo="no"
+        ;;
+      hpux*)
         tst_tsafe_getaddrinfo="yes"
         ;;
       linux*)
