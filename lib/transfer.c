@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: transfer.c,v 1.441 2009-11-12 11:16:31 kdudka Exp $
+ * $Id: transfer.c,v 1.442 2009-11-12 14:36:34 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -1993,6 +1993,8 @@ CURLcode Curl_pretransfer(struct SessionHandle *data)
   data->state.this_is_a_follow = FALSE; /* reset this */
   data->state.errorbuf = FALSE; /* no error has occurred */
   data->state.httpversion = 0; /* don't assume any particular server version */
+
+  data->state.ssl_connect_retry = FALSE;
 
   data->state.authproblem = FALSE;
   data->state.authhost.want = data->set.httpauth;
