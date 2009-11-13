@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.57 2009-11-12 22:48:40 yangtse Exp $
+# $Id: curl-functions.m4,v 1.58 2009-11-13 05:01:51 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 57
+# serial 58
 
 
 dnl CURL_INCLUDES_ARPA_INET
@@ -1643,16 +1643,16 @@ AC_DEFUN([CURL_CHECK_FUNC_GETADDRINFO], [
         dnl aix 5.2 and newer
         tst_tsafe_getaddrinfo="yes"
         ;;
-      darwin[[12354678]].*)
-        dnl darwin 8.X and older
+      darwin[[12345]].*)
+        dnl darwin 5.0 and mac os x 10.1.X and older
         tst_tsafe_getaddrinfo="no"
         ;;
       darwin*)
-        dnl darwin 9.X and newer
+        dnl darwin 6.0 and mac os x 10.2.X and newer
         tst_tsafe_getaddrinfo="yes"
         ;;
-      dragonflybsd*)
-        dnl dragonflybsd any version
+      dragonfly*)
+        dnl dragonfly bsd any version
         tst_tsafe_getaddrinfo="yes"
         ;;
       freebsd[[1234]].* | freebsd5.[[1234]]*)
@@ -1684,6 +1684,15 @@ AC_DEFUN([CURL_CHECK_FUNC_GETADDRINFO], [
         tst_tsafe_getaddrinfo="yes"
         ;;
     esac
+    CURL_CHECK_DEF_CC([h_errno], [
+      $curl_includes_ws2tcpip
+      $curl_includes_sys_socket
+      $curl_includes_netdb
+      ], [silent])
+    if test "$tst_tsafe_getaddrinfo" = "yes" &&
+       test "$curl_cv_have_def_h_errno" = "no"; then
+       tst_tsafe_getaddrinfo="no"
+    fi
     AC_MSG_RESULT([$tst_tsafe_getaddrinfo])
     if test "$tst_tsafe_getaddrinfo" = "yes"; then
       AC_DEFINE_UNQUOTED(HAVE_GETADDRINFO_THREADSAFE, 1,
