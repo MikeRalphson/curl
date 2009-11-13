@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.36 2009-11-13 05:01:51 yangtse Exp $
+# $Id: cares-functions.m4,v 1.37 2009-11-13 20:03:45 yangtse Exp $
 #
 # Copyright (C) 2008 - 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 36
+# serial 37
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -1027,10 +1027,6 @@ AC_DEFUN([CARES_CHECK_FUNC_GETADDRINFO], [
         dnl darwin 6.0 and mac os x 10.2.X and newer
         tst_tsafe_getaddrinfo="yes"
         ;;
-      dragonfly*)
-        dnl dragonfly bsd any version
-        tst_tsafe_getaddrinfo="yes"
-        ;;
       freebsd[[1234]].* | freebsd5.[[1234]]*)
         dnl freebsd 5.4 and older
         tst_tsafe_getaddrinfo="no"
@@ -1047,10 +1043,6 @@ AC_DEFUN([CARES_CHECK_FUNC_GETADDRINFO], [
         dnl hpux 11.11 and newer
         tst_tsafe_getaddrinfo="yes"
         ;;
-      linux*)
-        dnl linux any version
-        tst_tsafe_getaddrinfo="yes"
-        ;;
       netbsd[[123]].*)
         dnl netbsd 3.X and older
         tst_tsafe_getaddrinfo="no"
@@ -1059,15 +1051,21 @@ AC_DEFUN([CARES_CHECK_FUNC_GETADDRINFO], [
         dnl netbsd 4.X and newer
         tst_tsafe_getaddrinfo="yes"
         ;;
+      *bsd*)
+        dnl All other bsd's
+        tst_tsafe_getaddrinfo="no"
+        ;;
     esac
     CURL_CHECK_DEF_CC([h_errno], [
       $curl_includes_ws2tcpip
       $curl_includes_sys_socket
       $curl_includes_netdb
       ], [silent])
-    if test "$tst_tsafe_getaddrinfo" = "yes" &&
-       test "$curl_cv_have_def_h_errno" = "no"; then
-       tst_tsafe_getaddrinfo="no"
+    if test "$curl_cv_have_def_h_errno" = "no"; then
+      tst_tsafe_getaddrinfo="no"
+    fi
+    if test "$tst_tsafe_getaddrinfo" = "unknown"; then
+      tst_tsafe_getaddrinfo="yes"
     fi
     AC_MSG_RESULT([$tst_tsafe_getaddrinfo])
     if test "$tst_tsafe_getaddrinfo" = "yes"; then
