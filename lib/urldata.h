@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: urldata.h,v 1.421 2009-11-12 11:16:31 kdudka Exp $
+ * $Id: urldata.h,v 1.422 2009-11-14 02:30:31 yangtse Exp $
  ***************************************************************************/
 
 /* This file is for lib internal stuff */
@@ -1083,6 +1083,9 @@ struct connectdata {
 #if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
   int socks5_gssapi_enctype;
 #endif
+
+  long verifypeer;
+  long verifyhost;
 };
 
 /* The end of connectdata. */
