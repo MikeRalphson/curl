@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.436 2009-11-14 18:51:37 yangtse Exp $
+# $Id: configure.ac,v 1.437 2009-11-14 19:23:26 claesjac Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -44,6 +44,12 @@ CURL_CHECK_OPTION_WARNINGS
 CURL_CHECK_OPTION_CURLDEBUG
 
 CURL_CHECK_PATH_SEPARATOR_REQUIRED
+
+#
+# save the configure arguments
+#
+CONFIGURE_OPTIONS="\"$ac_configure_args\""
+AC_SUBST(CONFIGURE_OPTIONS)
 
 dnl SED is mandatory for configure process and libtool.
 dnl Set it now, allowing it to be changed later.
