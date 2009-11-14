@@ -1,7 +1,7 @@
 #ifndef HEADER_CARES_SETUP_H
 #define HEADER_CARES_SETUP_H
 
-/* $Id: ares_setup.h,v 1.1 2009-11-02 11:55:53 yangtse Exp $ */
+/* $Id: ares_setup.h,v 1.2 2009-11-14 18:51:37 yangtse Exp $ */
 
 /* Copyright (C) 2004 - 2009 by Daniel Stenberg et al
  *
@@ -47,6 +47,17 @@
 /* before this point. As a result of all this we frown inclusion of */
 /* system header files in our config files, avoid this at any cost. */
 /* ================================================================ */
+
+/*
+ * AIX 4.3 and newer needs _THREAD_SAFE defined to build
+ * proper reentrant code. Others may also need it.
+ */
+
+#ifdef NEED_THREAD_SAFE
+#  ifndef _THREAD_SAFE
+#    define _THREAD_SAFE
+#  endif
+#endif
 
 /*
  * Tru64 needs _REENTRANT set for a few function prototypes and

@@ -20,7 +20,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: setup.h,v 1.62 2009-10-27 16:56:20 yangtse Exp $
+ * $Id: setup.h,v 1.63 2009-11-14 18:51:38 yangtse Exp $
  ***************************************************************************/
 
 #define CURL_NO_OLDIES
@@ -67,6 +67,17 @@
 #endif
 
 #endif /* HAVE_CONFIG_H */
+
+/*
+ * AIX 4.3 and newer needs _THREAD_SAFE defined to build
+ * proper reentrant code. Others may also need it.
+ */
+
+#ifdef NEED_THREAD_SAFE
+#  ifndef _THREAD_SAFE
+#    define _THREAD_SAFE
+#  endif
+#endif
 
 /*
  * Tru64 needs _REENTRANT set for a few function prototypes and
