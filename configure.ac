@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: configure.ac,v 1.434 2009-10-28 00:33:28 yangtse Exp $
+# $Id: configure.ac,v 1.435 2009-11-14 09:13:47 bagder Exp $
 #***************************************************************************
 dnl Process this file with autoconf to produce a configure script.
 
@@ -1612,8 +1612,14 @@ if test "$OPENSSL_ENABLED" != "1" -a "$GNUTLS_ENABLED" != "1"; then
           version="unknown"
         fi
       fi
+    else	 
+        # Without pkg-config, we'll kludge in some defaults	 
+        addlib="-L$OPT_NSS/lib -lssl3 -lsmime3 -lnss3 -lplds4 -lplc4 -lnspr4 -lpthread -ldl"	 
+        addcflags="-I$OPT_NSS/include"	 
+        version="unknown"	 
+        nssprefix=$OPT_NSS
     fi
-
+	
     dnl Check for functionPK11_CreateGenericObject
     dnl this is needed for using the PEM PKCS#11 module
     AC_CHECK_LIB(nss3, PK11_CreateGenericObject,
