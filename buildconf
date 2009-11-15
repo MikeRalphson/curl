@@ -19,7 +19,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: buildconf,v 1.81 2009-07-14 13:25:14 gknauf Exp $
+# $Id: buildconf,v 1.82 2009-11-15 03:46:14 yangtse Exp $
 ###########################################################################
 
 die(){
@@ -267,6 +267,8 @@ for fname in .deps \
     aclocal.m4 \
     aclocal.m4.bak \
     ares_build.h \
+    ares_config.h \
+    ares_config.h.in \
     autom4te.cache \
     compile \
     config.guess \
