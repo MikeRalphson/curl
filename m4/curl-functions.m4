@@ -18,7 +18,7 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.59 2009-11-13 20:03:45 yangtse Exp $
+# $Id: curl-functions.m4,v 1.60 2009-11-15 13:43:15 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
@@ -1679,14 +1679,20 @@ AC_DEFUN([CURL_CHECK_FUNC_GETADDRINFO], [
         dnl All other bsd's
         tst_tsafe_getaddrinfo="no"
         ;;
+      solaris2*)
+        dnl solaris which have it
+        tst_tsafe_getaddrinfo="yes"
+        ;;
     esac
-    CURL_CHECK_DEF_CC([h_errno], [
-      $curl_includes_ws2tcpip
-      $curl_includes_sys_socket
-      $curl_includes_netdb
-      ], [silent])
-    if test "$curl_cv_have_def_h_errno" = "no"; then
-      tst_tsafe_getaddrinfo="no"
+    if test "$tst_tsafe_getaddrinfo" = "unknown"; then
+      CURL_CHECK_DEF_CC([h_errno], [
+        $curl_includes_ws2tcpip
+        $curl_includes_sys_socket
+        $curl_includes_netdb
+        ], [silent])
+      if test "$curl_cv_have_def_h_errno" = "no"; then
+        tst_tsafe_getaddrinfo="no"
+      fi
     fi
     if test "$tst_tsafe_getaddrinfo" = "unknown"; then
       tst_tsafe_getaddrinfo="yes"
