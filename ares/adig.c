@@ -1,6 +1,6 @@
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  *
- * $Id: adig.c,v 1.42 2009-11-10 18:41:03 yangtse Exp $
+ * $Id: adig.c,v 1.43 2009-11-16 20:02:12 yangtse Exp $
  *
  * Permission to use, copy, modify, and distribute this
  * software and its documentation for any purpose and without
@@ -157,13 +157,14 @@ static const char *opcodes[] = {
   "UPDATEA", "UPDATED", "UPDATEDA", "UPDATEM", "UPDATEMA",
   "ZONEINIT", "ZONEREF"
 };
-  struct in_addr inaddr;
 
 static const char *rcodes[] = {
   "NOERROR", "FORMERR", "SERVFAIL", "NXDOMAIN", "NOTIMP", "REFUSED",
   "(unknown)", "(unknown)", "(unknown)", "(unknown)", "(unknown)",
   "(unknown)", "(unknown)", "(unknown)", "(unknown)", "NOCHANGE"
 };
+
+static struct in_addr inaddr;
 
 static void callback(void *arg, int status, int timeouts,
                      unsigned char *abuf, int alen);
