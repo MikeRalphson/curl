@@ -1,5 +1,5 @@
 #***************************************************************************
-# $Id: cares-functions.m4,v 1.38 2009-11-15 13:43:15 yangtse Exp $
+# $Id: cares-functions.m4,v 1.39 2009-11-16 01:56:16 yangtse Exp $
 #
 # Copyright (C) 2008 - 2009 by Daniel Stenberg et al
 #
@@ -16,7 +16,7 @@
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 37
+# serial 39
 
 
 dnl CARES_INCLUDES_ARPA_INET
@@ -1062,9 +1062,9 @@ AC_DEFUN([CARES_CHECK_FUNC_GETADDRINFO], [
     esac
     if test "$tst_tsafe_getaddrinfo" = "unknown"; then
       CURL_CHECK_DEF_CC([h_errno], [
-        $curl_includes_ws2tcpip
-        $curl_includes_sys_socket
-        $curl_includes_netdb
+        $cares_includes_ws2tcpip
+        $cares_includes_sys_socket
+        $cares_includes_netdb
         ], [silent])
       if test "$curl_cv_have_def_h_errno" = "no"; then
         tst_tsafe_getaddrinfo="no"
