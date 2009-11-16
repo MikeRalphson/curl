@@ -18,11 +18,11 @@
 # This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
 # KIND, either express or implied.
 #
-# $Id: curl-functions.m4,v 1.60 2009-11-15 13:43:15 yangtse Exp $
+# $Id: curl-functions.m4,v 1.61 2009-11-16 01:56:45 yangtse Exp $
 #***************************************************************************
 
 # File version for 'aclocal' use. Keep it a single number.
-# serial 59
+# serial 61
 
 
 dnl CURL_INCLUDES_ARPA_INET
