@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ldap.c,v 1.101 2009-11-02 20:04:18 yangtse Exp $
+ * $Id: ldap.c,v 1.102 2009-11-18 10:33:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -673,7 +673,7 @@ static int _ldap_url_parse2 (const struct connectdata *conn, LDAPURLDesc *ludp)
 static int _ldap_url_parse (const struct connectdata *conn,
                             LDAPURLDesc **ludpp)
 {
-  LDAPURLDesc *ludp = calloc(sizeof(*ludp), 1);
+  LDAPURLDesc *ludp = calloc(1, sizeof(*ludp));
   int rc;
 
   *ludpp = NULL;

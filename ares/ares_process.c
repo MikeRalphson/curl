@@ -1,4 +1,4 @@
-/* $Id: ares_process.c,v 1.78 2009-11-02 11:55:53 yangtse Exp $ */
+/* $Id: ares_process.c,v 1.79 2009-11-18 10:33:54 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2004-2009 by Daniel Stenberg
@@ -732,7 +732,7 @@ void ares__send_query(ares_channel channel, struct query *query,
               return;
             }
         }
-      sendreq = calloc(sizeof(struct send_request), 1);
+      sendreq = calloc(1, sizeof(struct send_request));
       if (!sendreq)
         {
         end_query(channel, query, ARES_ENOMEM, NULL, 0);

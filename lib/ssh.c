@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssh.c,v 1.141 2009-10-30 22:28:56 bagder Exp $
+ * $Id: ssh.c,v 1.142 2009-11-18 10:33:55 yangtse Exp $
  ***************************************************************************/
 
 /* #define CURL_LIBSSH2_DEBUG */
@@ -2383,7 +2383,7 @@ static CURLcode ssh_init(struct connectdata *conn)
   if(data->state.proto.ssh)
     return CURLE_OK;
 
-  ssh = calloc(sizeof(struct SSHPROTO), 1);
+  ssh = calloc(1, sizeof(struct SSHPROTO));
   if(!ssh)
     return CURLE_OUT_OF_MEMORY;
 

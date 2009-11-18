@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip4.c,v 1.49 2009-04-21 11:46:16 yangtse Exp $
+ * $Id: hostip4.c,v 1.50 2009-11-18 10:33:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -137,7 +137,7 @@ Curl_addrinfo *Curl_getaddrinfo(struct connectdata *conn,
   else {
     int h_errnop;
 
-    buf = calloc(CURL_HOSTENT_SIZE, 1);
+    buf = calloc(1, CURL_HOSTENT_SIZE);
     if(!buf)
       return NULL; /* major failure */
     /*

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostip.c,v 1.220 2009-11-12 19:28:43 yangtse Exp $
+ * $Id: hostip.c,v 1.221 2009-11-18 10:33:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -341,7 +341,7 @@ Curl_cache_addr(struct SessionHandle *data,
   entry_len = strlen(entry_id);
 
   /* Create a new cache entry */
-  dns = calloc(sizeof(struct Curl_dns_entry), 1);
+  dns = calloc(1, sizeof(struct Curl_dns_entry));
   if(!dns) {
     free(entry_id);
     return NULL;

@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: cookie.c,v 1.111 2009-10-25 18:15:14 bagder Exp $
+ * $Id: cookie.c,v 1.112 2009-11-18 10:33:54 yangtse Exp $
  ***************************************************************************/
 
 /***
@@ -204,7 +204,7 @@ Curl_cookie_add(struct SessionHandle *data,
 #endif
 
   /* First, alloc and init a new struct for it */
-  co = calloc(sizeof(struct Cookie), 1);
+  co = calloc(1, sizeof(struct Cookie));
   if(!co)
     return NULL; /* bail out if we're this low on memory */
 

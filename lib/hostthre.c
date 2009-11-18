@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: hostthre.c,v 1.59 2009-04-21 11:46:16 yangtse Exp $
+ * $Id: hostthre.c,v 1.60 2009-11-18 10:33:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -396,7 +396,7 @@ static bool init_resolve_thread (struct connectdata *conn,
                                  const char *hostname, int port,
                                  const struct addrinfo *hints)
 {
-  struct thread_data *td = calloc(sizeof(*td), 1);
+  struct thread_data *td = calloc(1, sizeof(struct thread_data));
   HANDLE thread_and_event[2] = {0};
 
   if(!td) {

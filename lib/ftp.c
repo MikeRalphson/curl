@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ftp.c,v 1.530 2009-11-11 09:01:44 bagder Exp $
+ * $Id: ftp.c,v 1.531 2009-11-18 10:33:54 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -3092,7 +3092,7 @@ static CURLcode ftp_init(struct connectdata *conn)
   struct SessionHandle *data = conn->data;
   struct FTP *ftp = data->state.proto.ftp;
   if(!ftp) {
-    ftp = data->state.proto.ftp = calloc(sizeof(struct FTP), 1);
+    ftp = data->state.proto.ftp = calloc(1, sizeof(struct FTP));
     if(!ftp)
       return CURLE_OUT_OF_MEMORY;
   }

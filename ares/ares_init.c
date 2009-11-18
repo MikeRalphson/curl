@@ -1,4 +1,4 @@
-/* $Id: ares_init.c,v 1.102 2009-11-18 02:57:34 yangtse Exp $ */
+/* $Id: ares_init.c,v 1.103 2009-11-18 10:33:54 yangtse Exp $ */
 
 /* Copyright 1998 by the Massachusetts Institute of Technology.
  * Copyright (C) 2007-2009 by Daniel Stenberg
@@ -797,7 +797,7 @@ DhcpNameServer
     return ARES_SUCCESS; /* use localhost DNS server */
 
   nservers = i;
-  servers = calloc(sizeof(*servers), i);
+  servers = calloc(i, sizeof(struct server_state));
   if (!servers)
      return ARES_ENOMEM;
 

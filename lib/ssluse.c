@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: ssluse.c,v 1.246 2009-11-15 12:58:50 yangtse Exp $
+ * $Id: ssluse.c,v 1.247 2009-11-18 10:33:55 yangtse Exp $
  ***************************************************************************/
 
 /*
@@ -1966,7 +1966,7 @@ static int init_certinfo(struct SessionHandle *data,
   Curl_ssl_free_certinfo(data);
 
   ci->num_of_certs = num;
-  table = calloc(sizeof(struct curl_slist *) * num, 1);
+  table = calloc((size_t)num, sizeof(struct curl_slist *));
   if(!table)
     return 1;
 
