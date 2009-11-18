@@ -18,7 +18,7 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: memdebug.c,v 1.66 2009-11-18 11:21:58 yangtse Exp $
+ * $Id: memdebug.c,v 1.67 2009-11-18 11:53:31 yangtse Exp $
  ***************************************************************************/
 
 #include "setup.h"
@@ -211,9 +211,9 @@ void *curl_dorealloc(void *ptr, size_t wantedsize,
 {
   struct memdebug *mem=NULL;
 
-  assert(wantedsize != 0);
-
   size_t size = sizeof(struct memdebug)+wantedsize;
+
+  assert(wantedsize != 0);
 
   if(countcheck("realloc", line, source))
     return NULL;
